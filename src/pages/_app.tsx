@@ -103,6 +103,13 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
                 clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
               }),
             ]}
+            sdkOptions={{
+              gasless: {
+                openzeppelin: {
+                  relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
+                },
+              },
+            }}
           >
             {/*
             <WalletProvider>

@@ -76,6 +76,9 @@ const MintPage: NextPageWithLayout = () => {
   console.log('MintPage=========');
 
   const address = useAddress();
+
+  console.log('address=====', address);
+
   const disconnect = useDisconnect();
 
   const { contract: nftDropContract } = useContract(
@@ -165,10 +168,20 @@ const MintPage: NextPageWithLayout = () => {
       {!address && <div className="m-5">No wallet connected</div>}
 
       <Web3Button
+        theme="dark"
         //colorMode="dark"
         //accentColor="#5204BF"
         contractAddress={nftDropContractAddress}
-        action={(contract) => contract.erc721.claim(1)}
+        action={async (contract) => {
+          try {
+            const tx = await contract.erc721.claim(1);
+            console.log(tx);
+            alert('NFT Claimed!');
+          } catch (e) {
+            console.log(e);
+          }
+        }}
+        /*
         onSuccess={() => {
           alert('NFT Claimed!');
           ////router.push("/stake");
@@ -176,6 +189,7 @@ const MintPage: NextPageWithLayout = () => {
         onError={(error) => {
           alert(error);
         }}
+        */
       >
         Claim An NFT
       </Web3Button>
@@ -184,9 +198,7 @@ const MintPage: NextPageWithLayout = () => {
         {ownedNfts?.map((nft) => (
           <div className="" key={nft.metadata.id.toString()}>
             <ThirdwebNftMedia metadata={nft.metadata} className="" />
-            <h4>
-              {nft.metadata.name} #{nft.metadata.id.toString()}
-            </h4>
+            <h4>{nft.metadata.name}</h4>
           </div>
         ))}
       </div>

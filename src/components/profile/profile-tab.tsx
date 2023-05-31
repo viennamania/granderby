@@ -146,9 +146,7 @@ export default function ProfileTab() {
                 metadata={nft.metadata}
                 className="rounded-lg"
               />
-              <h4>
-                {nft.metadata.name} #{nft.metadata.id.toString()}
-              </h4>
+              <h4>{nft.metadata.name}</h4>
 
               <Web3Button
                 contractAddress={stakingContractAddress}
