@@ -173,8 +173,11 @@ const MintPage: NextPageWithLayout = () => {
         //accentColor="#5204BF"
         contractAddress={nftDropContractAddress}
         action={async (contract) => {
+          console.log('Web3Button contract=', contract);
+
           try {
             const tx = await contract.erc721.claim(1);
+
             console.log(tx);
             alert('NFT Claimed!');
           } catch (e) {
