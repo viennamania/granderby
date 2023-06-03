@@ -18,17 +18,7 @@ import WalletConnect from '@/components/nft/wallet-connect';
 
 import { ConnectButton } from '@paperxyz/embedded-wallet-service-rainbowkit';
 
-import {
-  ConnectWallet,
-  useDisconnect,
-  ThirdwebNftMedia,
-  useAddress,
-  useContract,
-  useContractRead,
-  useOwnedNFTs,
-  useTokenBalance,
-  Web3Button,
-} from '@thirdweb-dev/react';
+import { ConnectWallet } from '@thirdweb-dev/react';
 
 function NotificationButton() {
   return (
@@ -49,8 +39,6 @@ function HeaderRightArea() {
       {/*
       <WalletConnect />
   */}
-
-      <ConnectWallet />
     </div>
   );
 }

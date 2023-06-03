@@ -17,6 +17,7 @@ import { LAYOUT_OPTIONS } from '@/lib/constants';
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
 
+import { ConnectWallet } from '@thirdweb-dev/react';
 
 export function MenuItems() {
   const router = useRouter();
@@ -97,23 +98,14 @@ export default function DrawerMenu() {
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
       <div className="flex h-24 items-center justify-between overflow-hidden px-6 py-4">
-
-
-{/*
+        {/*
         <Logo />
   */}
 
-          <div className='flex flex-row'>
-            <Image
-              src={logo}
-              alt="logo"
-              width={24}
-              height={24}
-              className=""
-            />
-            <span>Granderby</span>
-          </div>
-
+        <div className="flex flex-row">
+          <Image src={logo} alt="logo" width={24} height={24} className="" />
+          <span>Granderby</span>
+        </div>
 
         <div className="md:hidden">
           <Button
@@ -128,6 +120,7 @@ export default function DrawerMenu() {
           </Button>
         </div>
       </div>
+
       <Scrollbar style={{ height: 'calc(100% - 96px)' }}>
         <div className="px-6 pb-14 2xl:px-8">
           <div className="mt-2 sm:mt-4 md:mt-8 lg:mt-12">
@@ -143,8 +136,13 @@ export default function DrawerMenu() {
           </div>
         </div>
       </Scrollbar>
-      <div className="absolute right-0 bottom-4 z-10 w-full px-6">
+
+      <div className="absolute bottom-4 right-0 z-10 w-full px-6">
+        {/*
         <WalletConnect anchorClassName="w-full" btnClassName="!w-full !h-11" />
+            */}
+
+        <ConnectWallet />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 import Loader from '@/components/ui/loader';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
+
 // dynamic imports
 const MinimalLayout = dynamic(() => import('@/layouts/_minimal'), {
   loading: () => <FallbackLoader />,
@@ -57,7 +58,11 @@ export default function RootLayout({
   }
 
   // render default layout which is modern
-  return (
+  return <MinimalLayout>{children}</MinimalLayout>;
+}
+
+{
+  /*
     <ModernLayout contentClassName={contentClassName}>{children}</ModernLayout>
-  );
+  */
 }

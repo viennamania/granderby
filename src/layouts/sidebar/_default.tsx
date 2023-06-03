@@ -13,7 +13,6 @@ import AuthorImage from '@/assets/images/nevertry.jpeg';
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
 
-
 export default function Sidebar({ className }: { className?: string }) {
   const { closeDrawer } = useDrawer();
   return (
@@ -24,23 +23,14 @@ export default function Sidebar({ className }: { className?: string }) {
       )}
     >
       <div className="relative flex h-24 items-center justify-between overflow-hidden px-6 py-4 2xl:px-8">
-        
         {/*
         <Logo />
       */}
 
-
-          <div className='flex flex-row gap-2'>
-            <Image
-              src={logo}
-              alt="logo"
-              width={24}
-              height={24}
-              className=""
-            />
-            <span>Granderby</span>
-          </div>
-
+        <div className="flex flex-row gap-2">
+          <Image src={logo} alt="logo" width={24} height={24} className="" />
+          <span>Granderby</span>
+        </div>
 
         <div className="md:hidden">
           <Button
@@ -58,11 +48,7 @@ export default function Sidebar({ className }: { className?: string }) {
 
       <Scrollbar style={{ height: 'calc(100% - 96px)' }}>
         <div className="px-6 pb-5 2xl:px-8">
-          <AuthorCard
-            image={AuthorImage}
-            name="Wayne Park"
-            role="admin"
-          />
+          <AuthorCard image={AuthorImage} name="Wayne Park" role="admin" />
 
           <div className="mt-12">
             {menuItems.map((item, index) => (
