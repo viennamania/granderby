@@ -39,6 +39,8 @@ import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 
 import { BigNumber, ethers } from 'ethers';
 
+import NFTCard from '../nft/NFTCard';
+
 const tabMenu = [
   {
     title: 'Collection',
@@ -169,15 +171,13 @@ export default function ProfileTab() {
               : 'md:grid-cols-1'
           )}
         >
-          {/*
-            {stakedTokens &&
-              stakedTokens[0]?.map((stakedToken: BigNumber) => (
-                <NFTCard
-                  tokenId={stakedToken.toNumber()}
-                  key={stakedToken.toString()}
-                />
-              ))}
-              */}
+          {stakedTokens &&
+            stakedTokens[0]?.map((stakedToken: BigNumber) => (
+              <NFTCard
+                tokenId={stakedToken.toNumber()}
+                key={stakedToken.toString()}
+              />
+            ))}
         </div>
 
         <h2 className="flex justify-center">Your Unstaked NFTs</h2>
@@ -201,23 +201,25 @@ export default function ProfileTab() {
 
           {/*
           {stakedTokens[0]?.map((nft) => (
-            <div className="" key={nft.metadata.id.toString()}>
-            <ThirdwebNftMedia
-              metadata={nft.metadata}
-              className="rounded-lg"
-            />
-            <h4>
-              {nft.metadata.name} #{nft.metadata.id.toString()}
-            </h4>
 
-            <Web3Button
+            <div className="" key={nft.metadata.id.toString()}>
+              <ThirdwebNftMedia
+                metadata={nft.metadata}
+                className="rounded-lg"
+              />
+              <h4>
+                {nft.metadata.name} #{nft.metadata.id.toString()}
+              </h4>
+
+              <Web3Button
                 contractAddress={stakingContractAddress}
                 action={() => stakeNft(nft.metadata.id)}
               >
-                Rent to Gwacheon Racetrack
+                Withdraw from Racetrack
               </Web3Button>
 
-          </div>
+            </div>
+
           ))}
           */}
 
@@ -237,7 +239,7 @@ export default function ProfileTab() {
                   contractAddress={stakingContractAddress}
                   action={() => stakeNft(nft.metadata.id)}
                 >
-                  Rent to Arena
+                  Rent to Racetrack
                 </Web3Button>
 
                 <Web3Button
