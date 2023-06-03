@@ -4,8 +4,10 @@
 // 1155
 ///export const nftDropContractAddress = '0xd96D35baC965FD4A07A7fe2066A60FeeD7652089';
 
+//export const nftDropContractAddress = '0xd80c851aC4d8801dCa339d8cd05Ca5c3aCA245Cd';
+
 export const nftDropContractAddress =
-  '0xd80c851aC4d8801dCa339d8cd05Ca5c3aCA245Cd';
+  '0x41FBA0bd9f4DC9a968a10aEBb792af6A09969F60';
 
 // Songpa Token (SONGPA)
 //export const tokenContractAddress = '0xe5Ae1a10c1af58eC2Fe11413029057892cC5fAae';
