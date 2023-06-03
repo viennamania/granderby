@@ -127,9 +127,36 @@ export default function Profile() {
                   {tokenBalance?.symbol}
                 </h3>
 
+                {/*
                 <Web3Button
                   action={(contract) => contract.call('claimRewards')}
                   contractAddress={stakingContractAddress}
+                >
+                  Claim Rewards
+                </Web3Button>
+                    */}
+
+                <Web3Button
+                  theme="dark"
+                  //colorMode="dark"
+                  //accentColor="#5204BF"
+                  contractAddress={stakingContractAddress}
+                  action={async (contract) => {
+                    try {
+                      const tx = await contract.call('claimRewards');
+                      console.log(tx);
+                      alert('Rewards Claimed!');
+
+                      const stakeInfo = await stakingContract?.call(
+                        'getStakeInfo',
+                        [address]
+                      );
+                      ////const stakeInfo = await contract?.call("getStakeInfo", );
+                      setClaimableRewards(stakeInfo[1]);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  }}
                 >
                   Claim Rewards
                 </Web3Button>

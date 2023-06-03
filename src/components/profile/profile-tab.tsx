@@ -112,6 +112,8 @@ export default function ProfileTab() {
     [address]
   );
 
+  console.log('stakedTokens', stakedTokens);
+
   async function sellNft(id: string) {
     if (!address) return;
 
@@ -156,10 +158,33 @@ export default function ProfileTab() {
 
   return (
     <ParamTab tabMenu={tabMenu}>
-      <TabPanel className="focus:outline-none">
+      <TabPanel className="focus:outline-none  ">
+        <h2 className="flex justify-center ">Your Staked NFTs</h2>
+
         <div
           className={cn(
-            'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4',
+            'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+            layout === LAYOUT_OPTIONS.RETRO
+              ? 'md:grid-cols-2'
+              : 'md:grid-cols-1'
+          )}
+        >
+          {/*
+            {stakedTokens &&
+              stakedTokens[0]?.map((stakedToken: BigNumber) => (
+                <NFTCard
+                  tokenId={stakedToken.toNumber()}
+                  key={stakedToken.toString()}
+                />
+              ))}
+              */}
+        </div>
+
+        <h2 className="flex justify-center">Your Unstaked NFTs</h2>
+
+        <div
+          className={cn(
+            'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
             layout === LAYOUT_OPTIONS.RETRO
               ? 'md:grid-cols-2'
               : 'md:grid-cols-1'
@@ -197,10 +222,13 @@ export default function ProfileTab() {
           */}
 
           {ownedNfts?.map((nft) => (
-            <div className="" key={nft.metadata.id.toString()}>
+            <div
+              className="mb-5 flex flex-col items-center justify-center"
+              key={nft.metadata.id.toString()}
+            >
               <ThirdwebNftMedia
                 metadata={nft.metadata}
-                className="rounded-lg"
+                className="rounded-lg "
               />
               <h4>{nft.metadata.name}</h4>
 
