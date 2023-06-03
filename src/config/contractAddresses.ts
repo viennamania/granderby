@@ -18,3 +18,6 @@ export const tokenContractAddress =
 
 export const stakingContractAddress =
   '0xE0DC3d4cB15614f4be1C469AF494c9261a0495a5';
+
+export const marketplaceContractAddress =
+  '0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';

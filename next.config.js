@@ -11,6 +11,7 @@ const nextConfig = withPWA({
   reactStrictMode: true,
   images: {
     domains: [
+      'granderby.io',
       'assets.coingecko.com',
       'nft-cdn.alchemy.com',
       'ipfs.io',

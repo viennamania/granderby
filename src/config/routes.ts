@@ -19,8 +19,8 @@ const routes = {
   search: '/search',
   notification: '/notifications',
   vote: '/vote',
-  proposals: '/proposals',
   landing: '/landing',
+  proposals: '/proposals',
   createProposal: '/proposals/create',
   charts: '/charts',
   profile: '/profile',
@@ -28,6 +28,9 @@ const routes = {
   history: '/profile?view=history',
   classic: '/classic',
   coinDetails: '/coin-details',
+
+  marketplace: '/marketplace',
+  createBid: '/marketplace/create',
 
   mint: '/mint',
   stake: '/stake',

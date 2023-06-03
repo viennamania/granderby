@@ -167,4 +167,20 @@ export const menuItems = [
     ],
   },
   */
+
+  {
+    name: 'Market',
+    icon: <VoteIcon />,
+    href: routes.marketplace,
+    dropdownItems: [
+      {
+        name: 'Buy',
+        href: routes.marketplace,
+      },
+      {
+        name: 'Create Bid',
+        href: routes.createBid,
+      },
+    ],
+  },
 ];
