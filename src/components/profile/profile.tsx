@@ -57,19 +57,21 @@ export default function Profile() {
 
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
-  const { contract, isLoading } = useContract(stakingContractAddress);
+  const { contract: stakingContract, isLoading } = useContract(
+    stakingContractAddress
+  );
 
   useEffect(() => {
-    if (!contract || !address) return;
+    if (!stakingContract || !address) return;
 
     async function loadClaimableRewards() {
-      const stakeInfo = await contract?.call('getStakeInfo', [address]);
+      const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
       ////const stakeInfo = await contract?.call("getStakeInfo", );
       setClaimableRewards(stakeInfo[1]);
     }
 
     loadClaimableRewards();
-  }, [address, contract]);
+  }, [address, stakingContract]);
 
   return (
     <div className="flex w-full flex-col pt-4 md:flex-row md:pt-10 lg:flex-row 3xl:pt-12">
@@ -134,6 +136,7 @@ export default function Profile() {
               </div>
             </div>
 
+            {/*
             <div className="mt-10 flex flex-wrap items-center justify-center gap-6 border-y border-dashed border-gray-200 py-5 text-center dark:border-gray-700 md:justify-start ltr:md:text-left rtl:md:text-right xl:mt-12 xl:gap-8 xl:py-6">
               <div>
                 <div className="mb-1.5 text-lg font-medium tracking-tighter text-gray-900 dark:text-white">
@@ -189,8 +192,11 @@ export default function Profile() {
                   View All
                 </AnchorLink>
               </div>
+              
             </div>
             <AuthorInformation className="hidden md:block" data={authorData} />
+
+*/}
           </div>
         </>
       )}

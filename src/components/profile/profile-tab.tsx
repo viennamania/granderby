@@ -93,13 +93,15 @@ export default function ProfileTab() {
       stakingContractAddress
     );
 
+    console.log('isApproved', isApproved);
+
     if (!isApproved) {
       await nftDropContract?.setApprovalForAll(stakingContractAddress, true);
     }
 
-    const data = await stakingContract?.call('stake', [id]);
+    const data = await stakingContract?.call('stake', [[id]]);
 
-    //console.log("data",data);
+    console.log('staking data', data);
   }
 
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
