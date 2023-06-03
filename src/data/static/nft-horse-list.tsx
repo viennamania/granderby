@@ -161,7 +161,7 @@ export const NFTList = [
   },
   {
     id: '10',
-    name: 'Whooptang #0',
+    name: 'Whooptang #10',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -177,7 +177,7 @@ export const NFTList = [
   },
   {
     id: '11',
-    name: 'Whooptang #1',
+    name: 'Whooptang #11',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -193,7 +193,7 @@ export const NFTList = [
   },
   {
     id: '12',
-    name: 'Whooptang #2',
+    name: 'Whooptang #12',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -209,7 +209,7 @@ export const NFTList = [
   },
   {
     id: '13',
-    name: 'Whooptang #3',
+    name: 'Whooptang #13',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -225,7 +225,7 @@ export const NFTList = [
   },
   {
     id: '14',
-    name: 'Whooptang #4',
+    name: 'Whooptang #14',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -241,7 +241,7 @@ export const NFTList = [
   },
   {
     id: '15',
-    name: 'Whooptang #5',
+    name: 'Whooptang #15',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -257,7 +257,7 @@ export const NFTList = [
   },
   {
     id: '16',
-    name: 'Whooptang #6',
+    name: 'Whooptang #16',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -273,7 +273,7 @@ export const NFTList = [
   },
   {
     id: '17',
-    name: 'Whooptang #7',
+    name: 'Whooptang #17',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -289,7 +289,7 @@ export const NFTList = [
   },
   {
     id: '18',
-    name: 'Whooptang #8',
+    name: 'Whooptang #18',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
@@ -305,7 +305,7 @@ export const NFTList = [
   },
   {
     id: '19',
-    name: 'Whooptang #9',
+    name: 'Whooptang #19',
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
