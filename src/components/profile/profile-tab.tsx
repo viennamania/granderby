@@ -18,6 +18,7 @@ import {
   nftDropContractAddress,
   stakingContractAddress,
   tokenContractAddress,
+  marketplaceContractAddress,
 } from '../../config/contractAddresses';
 
 import { useEffect, useState } from 'react';
@@ -33,6 +34,8 @@ import {
   useTokenBalance,
   Web3Button,
 } from '@thirdweb-dev/react';
+
+import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 
 import { BigNumber, ethers } from 'ethers';
 
@@ -69,9 +72,18 @@ export default function ProfileTab() {
     'token'
   );
 
-  const { contract, isLoading } = useContract(stakingContractAddress);
+  const { contract: stakingContract, isLoading } = useContract(
+    stakingContractAddress
+  );
 
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  // Connect to our marketplace contract via the useContract hook
+  const { contract: contractMarketplace } = useContract(
+    marketplaceContractAddress,
+    //'marketplace',
+    'marketplace-v3'
+  );
 
   async function stakeNft(id: string) {
     if (!address) return;
@@ -85,18 +97,60 @@ export default function ProfileTab() {
       await nftDropContract?.setApprovalForAll(stakingContractAddress, true);
     }
 
-    const data = await contract?.call('stake', [id]);
+    const data = await stakingContract?.call('stake', [id]);
 
     //console.log("data",data);
   }
 
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
-  const { data: stakedTokens } = useContractRead(contract, 'getStakeInfo', [
-    address,
-  ]);
+  const { data: stakedTokens } = useContractRead(
+    stakingContract,
+    'getStakeInfo',
+    [address]
+  );
 
-  //console.log(stakedTokens);
+  async function sellNft(id: string) {
+    if (!address) return;
+
+    /*
+    const isApproved = await nftDropContract?.isApproved(
+      address,
+      stakingContractAddress
+    );
+
+    if (!isApproved) {
+      await nftDropContract?.setApprovalForAll(stakingContractAddress, true);
+    }
+
+    const data = await stakingContract?.call('stake', [id]);
+    */
+
+    //console.log("data",data);
+
+    const price = '0.2';
+
+    try {
+      const transaction =
+        await contractMarketplace?.directListings.createListing({
+          assetContractAddress: nftDropContractAddress, // Contract Address of the NFT
+          tokenId: id, // Token ID of the NFT.
+          //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+          pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+          currencyContractAddress: NATIVE_TOKEN_ADDRESS, // NATIVE_TOKEN_ADDRESS is the crpyto curency that is native to the network. i.e. Goerli ETH.
+          //listingDurationInSeconds: 60 * 60 * 24 * 7, // When the auction will be closed and no longer accept bids (1 Week)
+          //quantity: 1, // How many of the NFTs are being listed (useful for ERC 1155 tokens)
+          startTimestamp: new Date(), // When the listing will start
+          endTimestamp: new Date(
+            new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+          ), // Optional - when the listing should end (default is 7 days from now)
+        });
+
+      return transaction;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <ParamTab tabMenu={tabMenu}>
@@ -148,12 +202,21 @@ export default function ProfileTab() {
               />
               <h4>{nft.metadata.name}</h4>
 
-              <Web3Button
-                contractAddress={stakingContractAddress}
-                action={() => stakeNft(nft.metadata.id)}
-              >
-                Rent to Gwacheon Racetrack
-              </Web3Button>
+              <div className="flex flex-row gap-2">
+                <Web3Button
+                  contractAddress={stakingContractAddress}
+                  action={() => stakeNft(nft.metadata.id)}
+                >
+                  Rent to Arena
+                </Web3Button>
+
+                <Web3Button
+                  contractAddress={marketplaceContractAddress}
+                  action={() => sellNft(nft.metadata.id)}
+                >
+                  Sell
+                </Web3Button>
+              </div>
             </div>
           ))}
         </div>
