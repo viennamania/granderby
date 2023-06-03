@@ -14,9 +14,12 @@ import Listbox, { ListboxOption } from '@/components/ui/list-box';
 import votePool from '@/assets/images/vote-pool.svg';
 import RootLayout from '@/layouts/_root-layout';
 
-import { marketplaceContractAddress } from '../../config/contractAddresses';
-
 import styles from '../../styles/Home.module.css';
+
+import {
+  nftDropContractAddress,
+  marketplaceContractAddress,
+} from '../../config/contractAddresses';
 
 import {
   useContract,
@@ -39,7 +42,8 @@ const CreatePage: NextPageWithLayout = () => {
   // Connect to our marketplace contract via the useContract hook
   const { contract: contractMarketplace } = useContract(
     marketplaceContractAddress,
-    'marketplace'
+    //'marketplace',
+    'marketplace-v3'
   );
 
   // This function gets called when the form is submitted.
@@ -120,15 +124,20 @@ const CreatePage: NextPageWithLayout = () => {
     price: string
   ) {
     try {
-      const transaction = await contractMarketplace?.direct.createListing({
-        assetContractAddress: contractAddress, // Contract Address of the NFT
-        buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
-        currencyContractAddress: NATIVE_TOKEN_ADDRESS, // NATIVE_TOKEN_ADDRESS is the crpyto curency that is native to the network. i.e. Goerli ETH.
-        listingDurationInSeconds: 60 * 60 * 24 * 7, // When the auction will be closed and no longer accept bids (1 Week)
-        quantity: 1, // How many of the NFTs are being listed (useful for ERC 1155 tokens)
-        startTimestamp: new Date(0), // When the listing will start
-        tokenId: tokenId, // Token ID of the NFT.
-      });
+      const transaction =
+        await contractMarketplace?.directListings.createListing({
+          assetContractAddress: contractAddress, // Contract Address of the NFT
+          tokenId: tokenId, // Token ID of the NFT.
+          //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+          pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+          currencyContractAddress: NATIVE_TOKEN_ADDRESS, // NATIVE_TOKEN_ADDRESS is the crpyto curency that is native to the network. i.e. Goerli ETH.
+          //listingDurationInSeconds: 60 * 60 * 24 * 7, // When the auction will be closed and no longer accept bids (1 Week)
+          //quantity: 1, // How many of the NFTs are being listed (useful for ERC 1155 tokens)
+          startTimestamp: new Date(), // When the listing will start
+          endTimestamp: new Date(
+            new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+          ), // Optional - when the listing should end (default is 7 days from now)
+        });
 
       return transaction;
     } catch (error) {
@@ -188,6 +197,7 @@ const CreatePage: NextPageWithLayout = () => {
               type="text"
               name="contractAddress"
               placeholder="NFT Contract Address"
+              value={nftDropContractAddress}
             />
 
             {/* NFT Token ID Field */}
