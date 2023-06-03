@@ -3,7 +3,7 @@ export const NFTList = [
     id: '0',
     name: 'Whooptang #0',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby-delta.vercel.app/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
       { trait_type: 'Size', value: 'large' },
       { trait_type: 'Age', value: 42 },
@@ -19,7 +19,7 @@ export const NFTList = [
     id: '1',
     name: 'Whooptang #1',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby-delta.vercel.app/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
