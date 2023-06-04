@@ -15,8 +15,8 @@ import {
 } from '@/data/static/author-profile';
 
 import {
-  nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  nftDropContractAddressJockey,
+  stakingContractAddressJockey,
   tokenContractAddress,
   marketplaceContractAddress,
 } from '../../config/contractAddresses';
@@ -64,7 +64,7 @@ export default function ProfileTab() {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddressHorse,
+    nftDropContractAddressJockey,
     'nft-drop'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
@@ -75,7 +75,7 @@ export default function ProfileTab() {
   );
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressJockey
   );
 
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
@@ -92,14 +92,14 @@ export default function ProfileTab() {
 
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressJockey
     );
 
     console.log('isApproved', isApproved);
 
     if (!isApproved) {
       await nftDropContract?.setApprovalForAll(
-        stakingContractAddressHorse,
+        stakingContractAddressJockey,
         true
       );
     }
@@ -125,11 +125,11 @@ export default function ProfileTab() {
     /*
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressJockey
     );
 
     if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(stakingContractAddressHorse, true);
+      await nftDropContract?.setApprovalForAll(stakingContractAddressJockey, true);
     }
 
     const data = await stakingContract?.call('stake', [id]);
@@ -142,7 +142,7 @@ export default function ProfileTab() {
     try {
       const transaction =
         await contractMarketplace?.directListings.createListing({
-          assetContractAddress: nftDropContractAddressHorse, // Contract Address of the NFT
+          assetContractAddress: nftDropContractAddressJockey, // Contract Address of the NFT
           tokenId: id, // Token ID of the NFT.
           //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
           pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
@@ -215,7 +215,7 @@ export default function ProfileTab() {
               </h4>
 
               <Web3Button
-                contractAddress={stakingContractAddressHorse}
+                contractAddress={stakingContractAddressJockey}
                 action={() => stakeNft(nft.metadata.id)}
               >
                 Withdraw from Racetrack
@@ -239,7 +239,7 @@ export default function ProfileTab() {
 
               <div className="flex flex-row gap-2">
                 <Web3Button
-                  contractAddress={stakingContractAddressHorse}
+                  contractAddress={stakingContractAddressJockey}
                   action={() => stakeNft(nft.metadata.id)}
                 >
                   Rent to Racetrack
