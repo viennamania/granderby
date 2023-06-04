@@ -86,6 +86,25 @@ export const menuItems = [
     icon: <ProfileIcon />,
     href: routes.profile,
   },
+
+  {
+    name: 'RENT',
+    icon: <FarmIcon />,
+    href: routes.rentHorse,
+    dropdownItems: [
+      {
+        name: 'Horse',
+        icon: <CompassIcon />,
+        href: routes.rentHorse,
+      },
+      {
+        name: 'Jockey',
+        icon: <PlusCircle />,
+        href: routes.rentJockey,
+      },
+    ],
+  },
+
   /*
   {
     name: 'Landing',

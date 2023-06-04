@@ -22,11 +22,15 @@ export const nftDropContractAddressJockey =
 export const tokenContractAddress =
   '0xe426D2410f20B0434FE2ce56299a1543d3fDe450';
 
-///export const stakingContractAddress = '0xE0DC3d4cB15614f4be1C469AF494c9261a0495a5';
+///export const stakingContractAddressHorse = '0xE0DC3d4cB15614f4be1C469AF494c9261a0495a5';
 
-// Happy Valley Racecourse
-export const stakingContractAddress =
+// Happy Valley Racecourse for Horse
+export const stakingContractAddressHorse =
   '0xF8b219c425B7Ef110917Bd61AD65D68a6db6A407';
+
+// Happy Valley Racecourse for Jockey
+export const stakingContractAddressJockey =
+  '0x5e050D71eb9B3261c32366a188A71B1322b5fEa2';
 
 export const marketplaceContractAddress =
   '0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';

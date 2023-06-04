@@ -10,8 +10,8 @@ import Avatar from '@/components/ui/avatar';
 import ProfileTab from '@/components/profile/profile-tab';
 
 import {
-  nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  nftDropContractAddressJockey,
+  stakingContractAddressJockey,
   tokenContractAddress,
 } from '../../config/contractAddresses';
 
@@ -44,7 +44,7 @@ export default function Profile() {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddressHorse,
+    nftDropContractAddressJockey,
     'nft-drop'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
@@ -58,7 +58,7 @@ export default function Profile() {
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressJockey
   );
 
   useEffect(() => {
@@ -140,7 +140,7 @@ export default function Profile() {
                   theme="dark"
                   //colorMode="dark"
                   //accentColor="#5204BF"
-                  contractAddress={stakingContractAddressHorse}
+                  contractAddress={stakingContractAddressJockey}
                   action={async (contract) => {
                     try {
                       const tx = await contract.call('claimRewards');

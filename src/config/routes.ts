@@ -36,6 +36,9 @@ const routes = {
   mintHorse: '/mint-horse',
   mintJockey: '/mint-jockey',
 
+  rentHorse: '/rent-horse',
+  rentJockey: '/rent-jockey',
+
   stake: '/stake',
 
   apiBlogPosts: '/api/blogPosts',

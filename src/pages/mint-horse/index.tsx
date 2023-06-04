@@ -40,7 +40,7 @@ import {
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddress,
+  stakingContractAddressHorse,
   tokenContractAddress,
 } from '../../config/contractAddresses';
 
