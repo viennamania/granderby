@@ -12,6 +12,9 @@ export const nftDropContractAddressHorse =
 export const nftDropContractAddressJockey =
   '0x4B63DE411e6706b9F9a99bAcE8f810e394710AE7';
 
+export const nftDropContractAddressREVVRacing =
+  '0x6e7899874656B13c36c071710de39b6c7E087d67';
+
 // Songpa Token (SONGPA)
 //export const tokenContractAddress = '0xe5Ae1a10c1af58eC2Fe11413029057892cC5fAae';
 

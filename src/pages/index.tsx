@@ -19,6 +19,11 @@ const HomePage: NextPageWithLayout<
 > = () => {
   const { layout } = useLayout();
 
+  // render morden screen/page
+  if (layout === LAYOUT_OPTIONS.MODERN) {
+    return <ModernScreen />;
+  }
+
   // render minimal screen/page
   if (layout === LAYOUT_OPTIONS.MINIMAL) {
     return <MinimalScreen />;
@@ -35,7 +40,10 @@ const HomePage: NextPageWithLayout<
   }
 
   // render default screen/page which is modern
-  return <ModernScreen />;
+  ///return <ModernScreen />;
+
+  // render default screen/page which is minimal
+  return <MinimalScreen />;
 };
 
 HomePage.getLayout = function getLayout(page) {

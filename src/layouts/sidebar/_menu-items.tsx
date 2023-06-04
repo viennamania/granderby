@@ -47,6 +47,11 @@ export const menuItems = [
         icon: <DiskIcon />,
         href: routes.searchTrack,
       },
+      {
+        name: 'Car',
+        icon: <DiskIcon />,
+        href: routes.searchCar,
+      },
     ],
   },
 

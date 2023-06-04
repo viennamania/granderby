@@ -183,7 +183,7 @@ export default function ProfileTab() {
             ))}
         </div>
 
-        <h2 className="flex justify-center">Your Unstaked NFTs</h2>
+        <h2 className="mt-10 flex justify-center">Your Unstaked NFTs</h2>
 
         <div
           className={cn(

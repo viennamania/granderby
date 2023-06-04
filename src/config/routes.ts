@@ -5,6 +5,8 @@ const routes = {
   searchHorse: '/search-horse',
   searchJockey: '/search-jockey',
   searchTrack: '/search-track',
+  searchCar: '/search-car',
+
   race: '/race',
 
   minimal: '/minimal',

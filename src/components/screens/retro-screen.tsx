@@ -13,6 +13,7 @@ export default function RetroScreen() {
         title="Criptic - Retro"
         description="Criptic - React Next Web3 NFT Crypto Dashboard Template"
       />
+
       <div className="retro-container">
         <div>
           <ComparisonChart />

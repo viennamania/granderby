@@ -10,8 +10,27 @@ import TransactCoin from '@/components/ui/transact-coin';
 import PriceFeedSlider from '@/components/ui/live-price-feed';
 import { priceFeedData } from '@/data/static/price-feed';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
+
 //images
 import AuthorImage from '@/assets/images/author.jpg';
+
+import {
+  ConnectWallet,
+  useDisconnect,
+  ThirdwebNftMedia,
+  useAddress,
+  useContract,
+  useContractRead,
+  useOwnedNFTs,
+  useTokenBalance,
+  Web3Button,
+} from '@thirdweb-dev/react';
+
+import {
+  nftDropContractAddressHorse,
+  stakingContractAddressHorse,
+  tokenContractAddress,
+} from '../../config/contractAddresses';
 
 const topPoolsLimit = (breakpoint: string) => {
   switch (breakpoint) {
@@ -30,6 +49,14 @@ export default function MinimalScreen() {
   useEffect(() => {
     setLimit(topPoolsLimit(breakpoint));
   }, [breakpoint]);
+
+  const address = useAddress();
+  const { contract: tokenContract } = useContract(
+    tokenContractAddress,
+    'token'
+  );
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
   return (
     <>
       <NextSeo
@@ -46,19 +73,28 @@ export default function MinimalScreen() {
           <div className="flex items-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark md:col-span-1 md:h-[678px] lg:col-span-5 lg:h-[644px] xl:col-span-3 xl:row-start-1 xl:row-end-2 xl:h-auto 2xl:col-span-3 2xl:h-full 2xl:p-6 3xl:col-span-3 3xl:p-8">
             <div className="w-full">
               <div className="mb-8 h-full">
-                <Avatar
-                  image={AuthorImage}
-                  alt="Author"
-                  className="mx-auto mb-6"
-                  size="lg"
-                />
-                <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
-                  My Balance
-                </h3>
-                <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-                  $10,86,000
-                </div>
+                {!address ? (
+                  <ConnectWallet />
+                ) : (
+                  <>
+                    <Avatar
+                      image={AuthorImage}
+                      alt="Author"
+                      className="mx-auto mb-6"
+                      size="lg"
+                    />
+
+                    <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+                      My Balance
+                    </h3>
+                    <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                      {/*$10,86,000*/}
+                      <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
+                    </div>
+                  </>
+                )}
               </div>
+
               <span className="-mx-6 block border-t border-dashed border-t-gray-200 dark:border-t-gray-700 3xl:-mx-8" />
               <TransactCoin className="mt-6" />
             </div>

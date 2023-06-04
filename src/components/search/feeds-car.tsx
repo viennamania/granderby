@@ -13,14 +13,14 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import { useEffect, useState } from 'react';
 
-import { nftDropContractAddressJockey } from '../../config/contractAddresses';
+import { nftDropContractAddressREVVRacing } from '../../config/contractAddresses';
 
 import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
 
 import { StaticImageData } from 'next/image';
 
-export default function FeedsJockey({ className }: { className?: string }) {
+export default function FeedsCar({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const settings = {
@@ -48,8 +48,10 @@ export default function FeedsJockey({ className }: { className?: string }) {
     const main = async () => {
       //Call the method to fetch metadata
       const response = await alchemy.nft.getNftsForContract(
-        nftDropContractAddressJockey
+        nftDropContractAddressREVVRacing
       );
+
+      console.log('feeds-car response', response);
 
       //Logging the response to the console
 

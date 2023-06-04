@@ -127,15 +127,6 @@ export default function Profile() {
                   {tokenBalance?.symbol}
                 </h3>
 
-                {/*
-                <Web3Button
-                  action={(contract) => contract.call('claimRewards')}
-                  contractAddress={stakingContractAddressHorse}
-                >
-                  Claim Rewards
-                </Web3Button>
-                    */}
-
                 <Web3Button
                   theme="dark"
                   //colorMode="dark"
