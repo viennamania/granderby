@@ -1,4 +1,4 @@
-'use client';
+import cn from 'classnames';
 
 import type { NextPageWithLayout } from '@/types';
 
@@ -16,6 +16,11 @@ import { ConnectButton } from '@paperxyz/embedded-wallet-service-rainbowkit';
 //import RootLayout from './layout';
 
 import RootLayout from '@/layouts/_root-layout';
+
+import { useLayout } from '@/lib/hooks/use-layout';
+import { LAYOUT_OPTIONS } from '@/lib/constants';
+
+import NFTCard from '@/components/nft/NFTCard';
 
 //import '@rainbow-me/rainbowkit/styles.css';
 import { ThirdwebProvider } from '@thirdweb-dev/react';
@@ -73,13 +78,9 @@ const dummyPosts: BlogPost[] = [
 ///const HomePage = () => {
 
 const MintPage: NextPageWithLayout = () => {
-  console.log('MintPage=========');
+  const { layout } = useLayout();
 
   const address = useAddress();
-
-  console.log('address=====', address);
-
-  const disconnect = useDisconnect();
 
   const { contract: nftDropContract } = useContract(
     nftDropContractAddress,
@@ -165,26 +166,27 @@ const MintPage: NextPageWithLayout = () => {
       {/* Header */}
       <h1 className="mt-12 text-3xl">Mint</h1>
 
-      {!address && <div className="m-5">No wallet connected</div>}
+      <div className="mb-10">
+        {!address && <div className="m-5">No wallet connected</div>}
 
-      <Web3Button
-        theme="dark"
-        //colorMode="dark"
-        //accentColor="#5204BF"
-        contractAddress={nftDropContractAddress}
-        action={async (contract) => {
-          console.log('Web3Button contract=', contract);
+        <Web3Button
+          theme="dark"
+          //colorMode="dark"
+          //accentColor="#5204BF"
+          contractAddress={nftDropContractAddress}
+          action={async (contract) => {
+            console.log('Web3Button contract=', contract);
 
-          try {
-            const tx = await contract.erc721.claim(1);
+            try {
+              const tx = await contract.erc721.claim(1);
 
-            console.log(tx);
-            alert('NFT Claimed!');
-          } catch (e) {
-            console.log(e);
-          }
-        }}
-        /*
+              console.log(tx);
+              alert('NFT Claimed!');
+            } catch (e) {
+              console.log(e);
+            }
+          }}
+          /*
         onSuccess={() => {
           alert('NFT Claimed!');
           ////router.push("/stake");
@@ -193,14 +195,23 @@ const MintPage: NextPageWithLayout = () => {
           alert(error);
         }}
         */
-      >
-        Claim An NFT
-      </Web3Button>
+        >
+          Claim An NFT
+        </Web3Button>
+      </div>
 
-      <div className="mt-5 grid grid-cols-3 gap-4">
+      <div
+        className={cn(
+          'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+          layout === LAYOUT_OPTIONS.RETRO ? 'md:grid-cols-2' : 'md:grid-cols-1'
+        )}
+      >
         {ownedNfts?.map((nft) => (
-          <div className="" key={nft.metadata.id.toString()}>
-            <ThirdwebNftMedia metadata={nft.metadata} className="" />
+          <div
+            className="mb-5 flex flex-col items-center justify-center"
+            key={nft.metadata.id.toString()}
+          >
+            <ThirdwebNftMedia metadata={nft.metadata} className="rounded-lg " />
             <h4>{nft.metadata.name}</h4>
           </div>
         ))}

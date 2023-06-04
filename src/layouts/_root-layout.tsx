@@ -36,6 +36,10 @@ export default function RootLayout({
   // fix the `Hydration failed because the initial UI does not match` issue
   if (!isMounted) return null;
 
+  if (layout === LAYOUT_OPTIONS.MODERN) {
+    return <ModernLayout>{children}</ModernLayout>;
+  }
+
   // render minimal layout
   if (layout === LAYOUT_OPTIONS.MINIMAL) {
     return <MinimalLayout>{children}</MinimalLayout>;
