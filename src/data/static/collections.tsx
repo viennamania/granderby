@@ -31,7 +31,7 @@ export const collections = [
     image: CollectionImage1,
     user: {
       avatar: User1,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
@@ -45,7 +45,7 @@ export const collections = [
     image: CollectionImage2,
     user: {
       avatar: User2,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
@@ -59,7 +59,7 @@ export const collections = [
     image: CollectionImage3,
     user: {
       avatar: User3,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
@@ -73,7 +73,7 @@ export const collections = [
     image: CollectionImage4,
     user: {
       avatar: User4,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
@@ -87,7 +87,7 @@ export const collections = [
     image: CollectionImage5,
     user: {
       avatar: User5,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
@@ -101,7 +101,7 @@ export const collections = [
     image: CollectionImage6,
     user: {
       avatar: User4,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
@@ -115,7 +115,7 @@ export const collections = [
     image: CollectionImage2,
     user: {
       avatar: User1,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
@@ -129,7 +129,7 @@ export const collections = [
     image: CollectionImage1,
     user: {
       avatar: User2,
-      name: 'Waynepark',
+      name: 'Rubywalsh',
       slug: 'rubywalsh',
     },
   },
