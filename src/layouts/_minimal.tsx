@@ -49,9 +49,10 @@ function HeaderRightArea() {
         )}
         <NotificationButton />
 
-        {/*}
+        {/*
         <WalletConnect />
         */}
+        <ConnectWallet />
       </div>
 
       <div className="flex items-center lg:hidden">
