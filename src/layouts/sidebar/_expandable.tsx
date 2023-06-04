@@ -14,11 +14,10 @@ import { useClickAway } from '@/lib/hooks/use-click-away';
 import { menuItems } from '@/layouts/sidebar/_menu-items';
 import routes from '@/config/routes';
 //images
-import AuthorImage from '@/assets/images/nevertry.jpeg';
+import AuthorImage from '@/assets/images/logo.png';
 
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
-
 
 export default function Sidebar({ className }: { className?: string }) {
   const router = useRouter();
@@ -62,43 +61,29 @@ export default function Sidebar({ className }: { className?: string }) {
       >
         {!open ? (
           <div onClick={() => setOpen(!open)}>
-
             {/*
             <LogoIcon />
         */}
 
-          <Image
-            src={logo}
-            alt="logo"
-            width={24}
-            height={24}
-            className=""
-          />
-
+            <Image src={logo} alt="logo" width={24} height={24} className="" />
           </div>
         ) : (
-          
           <>
-
-          {/*
+            {/*
           <Logo />
         */}
 
-          <div className='flex flex-row gap-2'>
-            <Image
-              src={logo}
-              alt="logo"
-              width={24}
-              height={24}
-              className=""
-            />
-            <span>Granderby</span>
-          </div>
-
-
+            <div className="flex flex-row gap-2">
+              <Image
+                src={logo}
+                alt="logo"
+                width={24}
+                height={24}
+                className=""
+              />
+              <span>Granderby</span>
+            </div>
           </>
-        
-
         )}
 
         <div className="md:hidden">
@@ -184,11 +169,7 @@ export default function Sidebar({ className }: { className?: string }) {
                 })
               }
             >
-              <AuthorCard
-                image={AuthorImage}
-                name="Wayne Park"
-                role="admin"
-              />
+              <AuthorCard image={AuthorImage} name="Wayne Park" role="admin" />
             </motion.div>
           </div>
         )}

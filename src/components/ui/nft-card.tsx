@@ -28,36 +28,37 @@ export default function NFTGrid({
           href="/"
           className="flex items-center text-sm font-medium text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
         >
-          {/*
           <Avatar
             image={authorImage}
             alt={name}
             size="sm"
             className="text-ellipsis ltr:mr-3 rtl:ml-3 dark:border-gray-500"
           />
-  */}
-
           <span className="overflow-hidden text-ellipsis">{author}</span>
         </AnchorLink>
       </div>
 
-      <AnchorLink href="/nft-details" className="relative block w-full">
-        <Image
-          src={image}
-          //placeholder="blur"
-          width={450}
-          height={450}
-          alt=""
-        />
-      </AnchorLink>
+      <div className="pl-4 pr-4">
+        <AnchorLink href="/nft-details" className="relative block w-full">
+          <Image
+            className="rounded-lg"
+            src={image}
+            //placeholder="blur"
+            width={450}
+            height={450}
+            alt=""
+          />
+        </AnchorLink>
+      </div>
 
-      <div className="p-5">
+      <div className="p-4 ">
         <AnchorLink
           href="/nft-details"
           className="text-sm font-medium text-black dark:text-white"
         >
           {name}
         </AnchorLink>
+
         <div className="mt-1.5 flex">
           <AnchorLink
             href="/"
@@ -67,6 +68,7 @@ export default function NFTGrid({
             <Verified className="ltr:ml-1 rtl:mr-1" />
           </AnchorLink>
         </div>
+
         <div className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
           {price}
         </div>

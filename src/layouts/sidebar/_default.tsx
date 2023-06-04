@@ -8,7 +8,7 @@ import { useDrawer } from '@/components/drawer-views/context';
 import { Close } from '@/components/icons/close';
 import { menuItems } from '@/layouts/sidebar/_menu-items';
 //images
-import AuthorImage from '@/assets/images/nevertry.jpeg';
+import AuthorImage from '@/assets/images/logo.png';
 
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';

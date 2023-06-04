@@ -12,7 +12,7 @@ import Avatar from '@/components/ui/avatar';
 import TopupButton from '@/components/ui/topup-button';
 
 //images
-import AuthorImage from '@/assets/images/nevertry.jpeg';
+import AuthorImage from '@/assets/images/logo.png';
 
 export default function ModernScreen() {
   return (

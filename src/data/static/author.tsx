@@ -1,7 +1,7 @@
 ///import CoverImage from '@/assets/images/profile-cover.jpg';
 import CoverImage from '@/assets/images/arena.png';
 
-//import AuthorImage from '@/assets/images/nevertry.jpeg';
+//import AuthorImage from '@/assets/images/logo.png';
 import AuthorImage from '@/assets/images/logo.png';
 
 import { Instagram } from '@/components/icons/brands/instagram';

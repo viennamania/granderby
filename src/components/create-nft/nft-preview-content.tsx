@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from '@/components/ui/image';
-import AuthorImage from '@/assets/images/nevertry.jpeg';
+import AuthorImage from '@/assets/images/logo.png';
 
 ///import NFT1 from '@/assets/images/nft/nft-1.jpg';
 import NFT1 from '@/assets/images/nft/Hrs_00006000.png';

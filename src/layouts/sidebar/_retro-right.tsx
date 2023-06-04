@@ -5,7 +5,7 @@ import TopupButton from '@/components/ui/topup-button';
 import TransactCoin from '@/components/ui/transact-coin';
 import WalletCard from '@/components/ui/wallet-card-two';
 //images
-import AuthorImage from '@/assets/images/nevertry.jpeg';
+import AuthorImage from '@/assets/images/logo.png';
 
 export default function Sidebar({ className }: { className?: string }) {
   return (
@@ -15,10 +15,10 @@ export default function Sidebar({ className }: { className?: string }) {
         className
       )}
     >
-      <div className="absolute top-0 right-0 z-20 h-[75px] w-full bg-sidebar-body dark:bg-dark md:block xl:hidden" />
+      <div className="absolute right-0 top-0 z-20 h-[75px] w-full bg-sidebar-body dark:bg-dark md:block xl:hidden" />
       <Scrollbar style={{ height: 'calc(100% + 20px)' }}>
         <div className="relative z-20 pb-5">
-          <div className="my-16 mx-5 flex h-full flex-col justify-between overflow-x-hidden rounded-lg bg-transparent sm:mx-6 sm:flex-row lg:mx-0 lg:flex-col lg:p-6 xl:my-0 2xl:p-8">
+          <div className="mx-5 my-16 flex h-full flex-col justify-between overflow-x-hidden rounded-lg bg-transparent sm:mx-6 sm:flex-row lg:mx-0 lg:flex-col lg:p-6 xl:my-0 2xl:p-8">
             <div className="w-full sm:w-[48%] lg:w-full">
               <Avatar
                 image={AuthorImage}
@@ -36,7 +36,7 @@ export default function Sidebar({ className }: { className?: string }) {
               <div>
                 <span className="-mx-6 block border-t border-dashed border-t-gray-200 dark:border-t-gray-700 3xl:-mx-8" />
 
-                <TransactCoin className="mt-6 mb-8" />
+                <TransactCoin className="mb-8 mt-6" />
               </div>
               <span className="-mx-6 block border-t border-dashed border-t-gray-200 dark:border-t-gray-700 3xl:-mx-8" />
             </div>
