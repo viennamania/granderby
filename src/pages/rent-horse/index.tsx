@@ -10,7 +10,7 @@ import Profile from '@/components/rent-horse/profile';
 
 import RetroProfile from '@/components/rent-horse/retro-profile';
 // static data
-import { authorData } from '@/data/static/author';
+import { authorData } from '@/data/static/authorHorse';
 import RootLayout from '@/layouts/_root-layout';
 
 import {

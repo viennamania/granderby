@@ -11,7 +11,8 @@ import Profile from '@/components/rent-jockey/profile';
 import RetroProfile from '@/components/rent-jockey/retro-profile';
 
 // static data
-import { authorData } from '@/data/static/author';
+import { authorData } from '@/data/static/authorJockey';
+
 import RootLayout from '@/layouts/_root-layout';
 
 import {
