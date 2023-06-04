@@ -5,6 +5,7 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
+
   return (
     <div
       className={cn(

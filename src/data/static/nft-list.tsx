@@ -13,7 +13,7 @@ import NFT2 from '@/assets/images/nft/Hrs_00006001.png';
 import NFT3 from '@/assets/images/nft/Hrs_00006002.png';
 import NFT4 from '@/assets/images/nft/Hrs_00006003.png';
 
-import { nftDropContractAddress } from '../../config/contractAddresses';
+import { nftDropContractAddressHorse } from '../../config/contractAddresses';
 
 import { Network, Alchemy } from 'alchemy-sdk';
 
@@ -25,7 +25,9 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 const main = async () => {
-  const response = await alchemy.nft.getNftsForContract(nftDropContractAddress);
+  const response = await alchemy.nft.getNftsForContract(
+    nftDropContractAddressHorse
+  );
 
   //Logging the response to the console
 

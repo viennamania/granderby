@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { NFTList } from '@/data/static/nft-horse-list';
+import { NFTList } from '@/data/static/nft-jockey-list';
 
 type Data = {
   name: string;

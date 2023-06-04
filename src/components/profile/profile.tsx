@@ -10,7 +10,7 @@ import Avatar from '@/components/ui/avatar';
 import ProfileTab from '@/components/profile/profile-tab';
 
 import {
-  nftDropContractAddress,
+  nftDropContractAddressHorse,
   stakingContractAddress,
   tokenContractAddress,
 } from '../../config/contractAddresses';
@@ -44,7 +44,7 @@ export default function Profile() {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddress,
+    nftDropContractAddressHorse,
     'nft-drop'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);

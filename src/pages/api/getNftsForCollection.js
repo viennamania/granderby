@@ -1,6 +1,6 @@
 import { Network, Alchemy } from 'alchemy-sdk';
 
-import { nftDropContractAddress } from '../../config/contractAddresses';
+import { nftDropContractAddressHorse } from '../../config/contractAddresses';
 
 export default async function handler(req, res) {
   const { pageKey, pageSize } = JSON.parse(req.body);
@@ -20,10 +20,13 @@ export default async function handler(req, res) {
   const alchemy = new Alchemy(settings);
 
   try {
-    const nfts = await alchemy.nft.getNftsForContract(nftDropContractAddress, {
-      pageKey: pageKey ? pageKey : null,
-      pageSize: pageSize ? pageSize : null,
-    });
+    const nfts = await alchemy.nft.getNftsForContract(
+      nftDropContractAddressHorse,
+      {
+        pageKey: pageKey ? pageKey : null,
+        pageSize: pageSize ? pageSize : null,
+      }
+    );
     const formattedNfts = nfts.nfts.map((nft) => {
       const { contract, title, tokenType, tokenId, description, media } = nft;
 

@@ -17,7 +17,7 @@ import RootLayout from '@/layouts/_root-layout';
 import styles from '../../styles/Home.module.css';
 
 import {
-  nftDropContractAddress,
+  nftDropContractAddressHorse,
   marketplaceContractAddress,
 } from '../../config/contractAddresses';
 
@@ -197,7 +197,7 @@ const CreatePage: NextPageWithLayout = () => {
               type="text"
               name="contractAddress"
               placeholder="NFT Contract Address"
-              value={nftDropContractAddress}
+              value={nftDropContractAddressHorse}
             />
 
             {/* NFT Token ID Field */}

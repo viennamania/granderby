@@ -1,11 +1,12 @@
 import Button from '@/components/ui/button';
-import Feeds from '@/components/search/feeds';
+import Feeds from '@/components/search/feeds-jockey';
 import { useDrawer } from '@/components/drawer-views/context';
 import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
 import { OptionIcon } from '@/components/icons/option';
 
-export default function Search() {
+export default function SearchJockey() {
   const { openDrawer } = useDrawer();
+
   return (
     <>
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
@@ -21,9 +22,11 @@ export default function Search() {
 
             <div className="flex gap-6 3xl:gap-8">
               <SortList />
+
               <div className="hidden 3xl:block">
                 <GridSwitcher />
               </div>
+
               <div className="hidden sm:block 2xl:hidden">
                 <Button
                   shape="rounded"

@@ -15,7 +15,7 @@ import {
 } from '@/data/static/author-profile';
 
 import {
-  nftDropContractAddress,
+  nftDropContractAddressHorse,
   stakingContractAddress,
   tokenContractAddress,
   marketplaceContractAddress,
@@ -64,7 +64,7 @@ export default function ProfileTab() {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddress,
+    nftDropContractAddressHorse,
     'nft-drop'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
@@ -139,7 +139,7 @@ export default function ProfileTab() {
     try {
       const transaction =
         await contractMarketplace?.directListings.createListing({
-          assetContractAddress: nftDropContractAddress, // Contract Address of the NFT
+          assetContractAddress: nftDropContractAddressHorse, // Contract Address of the NFT
           tokenId: id, // Token ID of the NFT.
           //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
           pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.

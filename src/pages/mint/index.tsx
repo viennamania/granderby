@@ -39,7 +39,7 @@ import {
 } from '@thirdweb-dev/react';
 
 import {
-  nftDropContractAddress,
+  nftDropContractAddressHorse,
   stakingContractAddress,
   tokenContractAddress,
 } from '../../config/contractAddresses';
@@ -83,7 +83,7 @@ const MintPage: NextPageWithLayout = () => {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddress,
+    nftDropContractAddressHorse,
     'nft-drop'
   );
 
@@ -173,7 +173,7 @@ const MintPage: NextPageWithLayout = () => {
           theme="dark"
           //colorMode="dark"
           //accentColor="#5204BF"
-          contractAddress={nftDropContractAddress}
+          contractAddress={nftDropContractAddressHorse}
           action={async (contract) => {
             console.log('Web3Button contract=', contract);
 

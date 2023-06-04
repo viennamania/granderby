@@ -1,13 +1,16 @@
 // 721
-//export const nftDropContractAddress = '0xAdC05ca4766ee90B68d8B75D8AdedB00ca6C5846';
+//export const nftDropContractAddressHorse = '0xAdC05ca4766ee90B68d8B75D8AdedB00ca6C5846';
 
 // 1155
-///export const nftDropContractAddress = '0xd96D35baC965FD4A07A7fe2066A60FeeD7652089';
+///export const nftDropContractAddressHorse = '0xd96D35baC965FD4A07A7fe2066A60FeeD7652089';
 
-//export const nftDropContractAddress = '0xd80c851aC4d8801dCa339d8cd05Ca5c3aCA245Cd';
+//export const nftDropContractAddressHorse = '0xd80c851aC4d8801dCa339d8cd05Ca5c3aCA245Cd';
 
-export const nftDropContractAddress =
+export const nftDropContractAddressHorse =
   '0x41FBA0bd9f4DC9a968a10aEBb792af6A09969F60';
+
+export const nftDropContractAddressJockey =
+  '0x4B63DE411e6706b9F9a99bAcE8f810e394710AE7';
 
 // Songpa Token (SONGPA)
 //export const tokenContractAddress = '0xe5Ae1a10c1af58eC2Fe11413029057892cC5fAae';

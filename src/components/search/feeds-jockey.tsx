@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import { NFTList } from '@/data/static/horse-list';
+///import { NFTList } from '@/data/static/horse-list';
 
 import NFTGrid from '@/components/ui/nft-card';
 
@@ -13,14 +13,14 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import { useEffect, useState } from 'react';
 
-import { nftDropContractAddressHorse } from '../../config/contractAddresses';
+import { nftDropContractAddressJockey } from '../../config/contractAddresses';
 
 import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
 
 import { StaticImageData } from 'next/image';
 
-export default function FeedsHorse({ className }: { className?: string }) {
+export default function FeedsHockey({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const settings = {
@@ -48,7 +48,7 @@ export default function FeedsHorse({ className }: { className?: string }) {
     const main = async () => {
       //Call the method to fetch metadata
       const response = await alchemy.nft.getNftsForContract(
-        nftDropContractAddressHorse
+        nftDropContractAddressJockey
       );
 
       //Logging the response to the console
