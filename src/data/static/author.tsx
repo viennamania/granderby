@@ -1,5 +1,5 @@
-///import CoverImage from '@/assets/images/profile-cover.jpg';
-import CoverImage from '@/assets/images/arena.png';
+import CoverImage from '@/assets/images/profile-cover.jpg';
+//import CoverImage from '@/assets/images/arena.png';
 
 //import AuthorImage from '@/assets/images/logo.png';
 import AuthorImage from '@/assets/images/logo.png';
