@@ -21,7 +21,7 @@ import Avatar from '@/components/ui/avatar';
 import Preview from '@/components/create-nft/nft-preview';
 
 //images
-import AuthorImage from '@/assets/images/logo.png';
+import AuthorImage from '@/assets/images/author.jpg';
 
 ///import NFT1 from '@/assets/images/nft/nft-1.jpg';
 import NFT1 from '@/assets/images/nft/Hrs_00006000.png';

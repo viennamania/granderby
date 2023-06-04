@@ -40,6 +40,7 @@ function Avatar({
   height,
 }: AvatarProps) {
   const sizeClassNames = sizes[size];
+
   return (
     <figure
       className={cn(

@@ -4,8 +4,8 @@ import { NFTList } from '@/data/static/horse-list';
 
 import NFTGrid from '@/components/ui/nft-card';
 
-//import AuthorImage from '@/assets/images/logo.png';
-import AuthorImage from '@/assets/images/logo.png';
+//import AuthorImage from '@/assets/images/author.jpg';
+import AuthorImage from '@/assets/images/author.jpg';
 
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 

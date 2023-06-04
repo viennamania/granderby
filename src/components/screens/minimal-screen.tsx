@@ -11,7 +11,7 @@ import PriceFeedSlider from '@/components/ui/live-price-feed';
 import { priceFeedData } from '@/data/static/price-feed';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 //images
-import AuthorImage from '@/assets/images/logo.png';
+import AuthorImage from '@/assets/images/author.jpg';
 
 const topPoolsLimit = (breakpoint: string) => {
   switch (breakpoint) {

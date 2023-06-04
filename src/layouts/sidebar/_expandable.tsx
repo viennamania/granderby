@@ -14,7 +14,7 @@ import { useClickAway } from '@/lib/hooks/use-click-away';
 import { menuItems } from '@/layouts/sidebar/_menu-items';
 import routes from '@/config/routes';
 //images
-import AuthorImage from '@/assets/images/logo.png';
+import AuthorImage from '@/assets/images/author.jpg';
 
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
