@@ -39,7 +39,7 @@ import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 
 import { BigNumber, ethers } from 'ethers';
 
-import NFTCard from '../nft/NFTCard';
+import NFTCard from '../nft-jockey/NFTCard';
 
 const tabMenu = [
   {
