@@ -7,7 +7,6 @@ import CollectionCover6 from '@/assets/images/collection/grid/Hrs_00006006.png';
 import CollectionCover7 from '@/assets/images/collection/grid/Hrs_00006007.png';
 import CollectionCover8 from '@/assets/images/collection/grid/Hrs_00006007.png';
 
-
 import User1 from '@/assets/images/avatar/4.png';
 import User2 from '@/assets/images/avatar/2.png';
 import User3 from '@/assets/images/avatar/3.png';
@@ -33,7 +32,7 @@ export const collections = [
     user: {
       avatar: User1,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
   {
@@ -47,7 +46,7 @@ export const collections = [
     user: {
       avatar: User2,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
   {
@@ -61,7 +60,7 @@ export const collections = [
     user: {
       avatar: User3,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
   {
@@ -75,7 +74,7 @@ export const collections = [
     user: {
       avatar: User4,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
   {
@@ -89,7 +88,7 @@ export const collections = [
     user: {
       avatar: User5,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
   {
@@ -103,7 +102,7 @@ export const collections = [
     user: {
       avatar: User4,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
   {
@@ -117,7 +116,7 @@ export const collections = [
     user: {
       avatar: User1,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
   {
@@ -131,7 +130,7 @@ export const collections = [
     user: {
       avatar: User2,
       name: 'Waynepark',
-      slug: 'waynepark',
+      slug: 'rubywalsh',
     },
   },
 ];

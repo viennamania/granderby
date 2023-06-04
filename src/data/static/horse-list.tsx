@@ -16,7 +16,7 @@ import NFT4 from '@/assets/images/nft/Hrs_00006003.png';
 export const NFTList = [
   {
     id: 1,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -25,7 +25,7 @@ export const NFTList = [
   },
   {
     id: 2,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT2,
     name: 'Pulses Of Imagination #214',
@@ -34,7 +34,7 @@ export const NFTList = [
   },
   {
     id: 3,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT3,
     name: 'Imagination of Pulses',
@@ -43,7 +43,7 @@ export const NFTList = [
   },
   {
     id: 4,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT4,
     name: 'Pulses Of Imagination #214',
@@ -52,7 +52,7 @@ export const NFTList = [
   },
   {
     id: 5,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT2,
     name: 'Pulses Of Imagination #214',
@@ -61,7 +61,7 @@ export const NFTList = [
   },
   {
     id: 6,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT4,
     name: 'Pulses Of Imagination #214',
@@ -70,7 +70,7 @@ export const NFTList = [
   },
   {
     id: 7,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT3,
     name: 'Pulses Of Imagination #214',
@@ -79,7 +79,7 @@ export const NFTList = [
   },
   {
     id: 8,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -88,7 +88,7 @@ export const NFTList = [
   },
   {
     id: 9,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -97,7 +97,7 @@ export const NFTList = [
   },
   {
     id: 10,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -106,7 +106,7 @@ export const NFTList = [
   },
   {
     id: 11,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -115,7 +115,7 @@ export const NFTList = [
   },
   {
     id: 12,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT2,
     name: 'Pulses Of Imagination #214',
@@ -124,7 +124,7 @@ export const NFTList = [
   },
   {
     id: 13,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT3,
     name: 'Imagination of Pulses',
@@ -133,7 +133,7 @@ export const NFTList = [
   },
   {
     id: 14,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT4,
     name: 'Pulses Of Imagination #214',
@@ -142,7 +142,7 @@ export const NFTList = [
   },
   {
     id: 15,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT2,
     name: 'Pulses Of Imagination #214',
@@ -151,7 +151,7 @@ export const NFTList = [
   },
   {
     id: 16,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT4,
     name: 'Pulses Of Imagination #214',
@@ -160,7 +160,7 @@ export const NFTList = [
   },
   {
     id: 17,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT3,
     name: 'Pulses Of Imagination #214',
@@ -169,7 +169,7 @@ export const NFTList = [
   },
   {
     id: 18,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -178,7 +178,7 @@ export const NFTList = [
   },
   {
     id: 19,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -187,7 +187,7 @@ export const NFTList = [
   },
   {
     id: 20,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -196,7 +196,7 @@ export const NFTList = [
   },
   {
     id: 21,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -205,7 +205,7 @@ export const NFTList = [
   },
   {
     id: 22,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT2,
     name: 'Pulses Of Imagination #214',
@@ -214,7 +214,7 @@ export const NFTList = [
   },
   {
     id: 23,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT3,
     name: 'Imagination of Pulses',
@@ -223,7 +223,7 @@ export const NFTList = [
   },
   {
     id: 24,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT4,
     name: 'Pulses Of Imagination #214',
@@ -232,7 +232,7 @@ export const NFTList = [
   },
   {
     id: 25,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT2,
     name: 'Pulses Of Imagination #214',
@@ -241,7 +241,7 @@ export const NFTList = [
   },
   {
     id: 26,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT4,
     name: 'Pulses Of Imagination #214',
@@ -250,7 +250,7 @@ export const NFTList = [
   },
   {
     id: 27,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT3,
     name: 'Pulses Of Imagination #214',
@@ -259,7 +259,7 @@ export const NFTList = [
   },
   {
     id: 28,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -268,7 +268,7 @@ export const NFTList = [
   },
   {
     id: 29,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
@@ -277,7 +277,7 @@ export const NFTList = [
   },
   {
     id: 30,
-    author: 'waynepark',
+    author: 'rubywalsh',
     authorImage: AuthorImage,
     image: NFT1,
     name: 'Pulses Of Imagination #214',
