@@ -28,7 +28,7 @@ export const menuItems = [
     href: routes.ranking,
   },
   {
-    name: 'ASSET',
+    name: 'ASSETS',
     icon: <CompassIcon />,
     href: routes.searchHorse,
     dropdownItems: [
@@ -82,7 +82,7 @@ export const menuItems = [
   */
 
   {
-    name: 'Profile',
+    name: 'PROFILE',
     icon: <ProfileIcon />,
     href: routes.profile,
   },
@@ -93,10 +93,31 @@ export const menuItems = [
     href: routes.landing,
   },
   */
+
+  /*
   {
     name: 'Minting',
     icon: <FarmIcon />,
     href: routes.mint,
+  },
+  */
+
+  {
+    name: 'MINT',
+    icon: <FarmIcon />,
+    href: routes.mint,
+    dropdownItems: [
+      {
+        name: 'Horse',
+        icon: <CompassIcon />,
+        href: routes.mintHorse,
+      },
+      {
+        name: 'Jockey',
+        icon: <PlusCircle />,
+        href: routes.mintJockey,
+      },
+    ],
   },
 
   /*

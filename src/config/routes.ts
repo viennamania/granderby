@@ -33,6 +33,9 @@ const routes = {
   createBid: '/marketplace/create',
 
   mint: '/mint',
+  mintHorse: '/mint-horse',
+  mintJockey: '/mint-jockey',
+
   stake: '/stake',
 
   apiBlogPosts: '/api/blogPosts',
