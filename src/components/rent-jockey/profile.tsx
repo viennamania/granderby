@@ -130,7 +130,7 @@ export default function Profile() {
                 {/*
                 <Web3Button
                   action={(contract) => contract.call('claimRewards')}
-                  contractAddress={stakingContractAddressHorse}
+                  contractAddress={stakingContractAddressJockey}
                 >
                   Claim Rewards
                 </Web3Button>
