@@ -22,10 +22,17 @@ export const menuItems = [
     icon: <HomeIcon />,
     href: routes.home,
   },
+  /*
   {
     name: 'RANKING',
     icon: <Ranking />,
     href: routes.ranking,
+  },
+  */
+  {
+    name: 'LIVE',
+    icon: <Ranking />,
+    href: routes.live,
   },
   {
     name: 'ASSETS',

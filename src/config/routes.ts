@@ -9,6 +9,8 @@ const routes = {
 
   race: '/race',
 
+  live: '/live',
+
   minimal: '/minimal',
   livePricing: '/live-pricing',
   retro: '/retro',
