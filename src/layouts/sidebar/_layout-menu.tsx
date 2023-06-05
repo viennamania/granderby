@@ -95,6 +95,7 @@ export function MenuItems() {
 
 export default function DrawerMenu() {
   const { closeDrawer } = useDrawer();
+
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
       <div className="flex h-24 items-center justify-between overflow-hidden px-6 py-4">

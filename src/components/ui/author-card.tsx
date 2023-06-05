@@ -45,12 +45,12 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
       }`}
     >
       {!address ? (
-        <ConnectWallet />
+        <></>
       ) : (
         <>
           <Avatar
             image={image}
-            alt={name ? name : ''}
+            alt={address ? address : ''}
             className="dark:border-gray-400"
           />
           <div className="ltr:pl-3 rtl:pr-3">
@@ -63,6 +63,12 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
           </div>
         </>
       )}
+
+      <ConnectWallet
+        theme="dark"
+        //theme="light"
+        btnTitle="Connect Wallet"
+      />
     </div>
   );
 }

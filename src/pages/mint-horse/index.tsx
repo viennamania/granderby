@@ -170,7 +170,7 @@ const MintPage: NextPageWithLayout = () => {
         {!address && <div className="m-5">No wallet connected</div>}
 
         <Web3Button
-          theme="dark"
+          theme="light"
           //colorMode="dark"
           //accentColor="#5204BF"
           contractAddress={nftDropContractAddressHorse}
