@@ -83,6 +83,7 @@ export default function Header({ className }: { className?: string }) {
               className="dark:text-white"
             />
           </div>
+
           <SearchButton
             variant="transparent"
             className="ltr:-ml-[17px] rtl:-mr-[17px] dark:text-white"
