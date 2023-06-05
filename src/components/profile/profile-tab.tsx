@@ -168,7 +168,7 @@ export default function ProfileTab() {
 
         <div
           className={cn(
-            'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+            'grid grid-cols-1 gap-4  xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
             layout === LAYOUT_OPTIONS.RETRO
               ? 'md:grid-cols-2'
               : 'md:grid-cols-1'
@@ -183,7 +183,7 @@ export default function ProfileTab() {
             ))}
         </div>
 
-        <h2 className="flex justify-center">Your Unstaked NFTs</h2>
+        <h2 className="mt-5 flex justify-center">Your Unstaked NFTs</h2>
 
         <div
           className={cn(
