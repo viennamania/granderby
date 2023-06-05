@@ -50,7 +50,7 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
         <>
           <Avatar
             image={image}
-            alt={address ? address : ''}
+            alt={name ? name : ''}
             className="dark:border-gray-400"
           />
 
@@ -69,9 +69,17 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
 
       <div className="flex w-full justify-center ">
         <ConnectWallet
-          //theme="dark"
-          theme="light"
-          btnTitle="Connect Wallet"
+          theme="dark"
+          //theme="light"
+          /*
+          detailsBtn={() => {
+            return (
+              <button className=''> Connect Wallet </button>
+            );
+          }}
+          */
+
+          //btnTitle="Connect Wallet"
         />
       </div>
     </div>
