@@ -53,6 +53,8 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
             alt={address ? address : ''}
             className="dark:border-gray-400"
           />
+
+          {/*
           <div className="ltr:pl-3 rtl:pr-3">
             <h3 className="text-sm font-medium uppercase tracking-wide text-gray-900 dark:text-white">
               {name}
@@ -61,12 +63,13 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
               {role}
             </span>
           </div>
+      */}
         </>
       )}
 
       <ConnectWallet
-        theme="dark"
-        //theme="light"
+        //theme="dark"
+        theme="light"
         btnTitle="Connect Wallet"
       />
     </div>
