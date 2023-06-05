@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import CoinSlider from '@/components/ui/coin-card';
 import OverviewChart from '@/components/ui/chats/overview-chart';
@@ -29,8 +30,11 @@ import {
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
+  stakingContractAddressJockey,
   tokenContractAddress,
 } from '../../config/contractAddresses';
+
+import { BigNumber, ethers } from 'ethers';
 
 export default function ModernScreen() {
   const address = useAddress();
@@ -40,6 +44,45 @@ export default function ModernScreen() {
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  const [claimableRewardsHorse, setClaimableRewardsHorse] =
+    useState<BigNumber>();
+  const [claimableRewardsJockey, setClaimableRewardsJockey] =
+    useState<BigNumber>();
+
+  const { contract: stakingContractHorse, isLoading: isLoadingHorse } =
+    useContract(stakingContractAddressHorse);
+
+  const { contract: stakingContractJockey, isLoading: isLoadingJockey } =
+    useContract(stakingContractAddressJockey);
+
+  useEffect(() => {
+    if (!stakingContractHorse || !address) return;
+
+    async function loadClaimableRewards() {
+      const stakeInfo = await stakingContractHorse?.call('getStakeInfo', [
+        address,
+      ]);
+      ////const stakeInfo = await contract?.call("getStakeInfo", );
+      setClaimableRewardsHorse(stakeInfo[1]);
+    }
+
+    loadClaimableRewards();
+  }, [address, stakingContractHorse]);
+
+  useEffect(() => {
+    if (!stakingContractJockey || !address) return;
+
+    async function loadClaimableRewards() {
+      const stakeInfo = await stakingContractJockey?.call('getStakeInfo', [
+        address,
+      ]);
+      ////const stakeInfo = await contract?.call("getStakeInfo", );
+      setClaimableRewardsJockey(stakeInfo[1]);
+    }
+
+    loadClaimableRewards();
+  }, [address, stakingContractJockey]);
 
   return (
     <>
@@ -71,6 +114,31 @@ export default function ModernScreen() {
                   <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
                   {/*$10,86,000*/}
                 </div>
+
+                <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+                  Claimable Rewards (Horse)
+                </h3>
+                <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                  <b>
+                    {!claimableRewardsHorse
+                      ? 'Loading...'
+                      : ethers.utils.formatUnits(claimableRewardsHorse, 18)}
+                  </b>{' '}
+                  {tokenBalance?.symbol}
+                </div>
+
+                <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+                  Claimable Rewards (Jockey)
+                </h3>
+                <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                  <b>
+                    {!claimableRewardsJockey
+                      ? 'Loading...'
+                      : ethers.utils.formatUnits(claimableRewardsJockey, 18)}
+                  </b>{' '}
+                  {tokenBalance?.symbol}
+                </div>
+
                 <TopupButton />
               </>
             )}

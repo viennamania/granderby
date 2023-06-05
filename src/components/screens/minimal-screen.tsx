@@ -29,8 +29,11 @@ import {
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
+  stakingContractAddressJockey,
   tokenContractAddress,
 } from '../../config/contractAddresses';
+
+import { BigNumber, ethers } from 'ethers';
 
 const topPoolsLimit = (breakpoint: string) => {
   switch (breakpoint) {
@@ -46,6 +49,7 @@ const topPoolsLimit = (breakpoint: string) => {
 export default function MinimalScreen() {
   const [limit, setLimit] = useState(4);
   const breakpoint = useBreakpoint();
+
   useEffect(() => {
     setLimit(topPoolsLimit(breakpoint));
   }, [breakpoint]);
@@ -56,6 +60,45 @@ export default function MinimalScreen() {
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  const [claimableRewardsHorse, setClaimableRewardsHorse] =
+    useState<BigNumber>();
+  const [claimableRewardsJockey, setClaimableRewardsJockey] =
+    useState<BigNumber>();
+
+  const { contract: stakingContractHorse, isLoading: isLoadingHorse } =
+    useContract(stakingContractAddressHorse);
+
+  const { contract: stakingContractJockey, isLoading: isLoadingJockey } =
+    useContract(stakingContractAddressJockey);
+
+  useEffect(() => {
+    if (!stakingContractHorse || !address) return;
+
+    async function loadClaimableRewards() {
+      const stakeInfo = await stakingContractHorse?.call('getStakeInfo', [
+        address,
+      ]);
+      ////const stakeInfo = await contract?.call("getStakeInfo", );
+      setClaimableRewardsHorse(stakeInfo[1]);
+    }
+
+    loadClaimableRewards();
+  }, [address, stakingContractHorse]);
+
+  useEffect(() => {
+    if (!stakingContractJockey || !address) return;
+
+    async function loadClaimableRewards() {
+      const stakeInfo = await stakingContractJockey?.call('getStakeInfo', [
+        address,
+      ]);
+      ////const stakeInfo = await contract?.call("getStakeInfo", );
+      setClaimableRewardsJockey(stakeInfo[1]);
+    }
+
+    loadClaimableRewards();
+  }, [address, stakingContractJockey]);
 
   return (
     <>
@@ -90,6 +133,33 @@ export default function MinimalScreen() {
                     <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
                       {/*$10,86,000*/}
                       <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
+                    </div>
+
+                    <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+                      Claimable Rewards (Horse)
+                    </h3>
+                    <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                      <b>
+                        {!claimableRewardsHorse
+                          ? 'Loading...'
+                          : ethers.utils.formatUnits(claimableRewardsHorse, 18)}
+                      </b>{' '}
+                      {tokenBalance?.symbol}
+                    </div>
+
+                    <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+                      Claimable Rewards (Jockey)
+                    </h3>
+                    <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                      <b>
+                        {!claimableRewardsJockey
+                          ? 'Loading...'
+                          : ethers.utils.formatUnits(
+                              claimableRewardsJockey,
+                              18
+                            )}
+                      </b>{' '}
+                      {tokenBalance?.symbol}
                     </div>
                   </>
                 )}

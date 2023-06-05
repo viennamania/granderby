@@ -7,7 +7,35 @@ type AuthorCardProps = {
   role?: string;
 };
 
+import {
+  nftDropContractAddressHorse,
+  stakingContractAddressHorse,
+  tokenContractAddress,
+} from '../../config/contractAddresses';
+
+import {
+  ConnectWallet,
+  useDisconnect,
+  ThirdwebNftMedia,
+  useAddress,
+  useContract,
+  useContractRead,
+  useOwnedNFTs,
+  useTokenBalance,
+  Web3Button,
+} from '@thirdweb-dev/react';
+
 export default function AuthorCard({ image, name, role }: AuthorCardProps) {
+  const address = useAddress();
+
+  /*
+  const { contract: tokenContract } = useContract(
+    tokenContractAddress,
+    'token'
+  );
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+    */
+
   return (
     <div
       className={`flex items-center rounded-lg  ${
@@ -16,19 +44,25 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
           : 'ml-3 justify-center bg-none p-5 dark:mr-3 dark:bg-none'
       }`}
     >
-      <Avatar
-        image={image}
-        alt={name ? name : ''}
-        className="dark:border-gray-400"
-      />
-      <div className="ltr:pl-3 rtl:pr-3">
-        <h3 className="text-sm font-medium uppercase tracking-wide text-gray-900 dark:text-white">
-          {name}
-        </h3>
-        <span className="mt-1 block text-xs text-gray-600 dark:text-gray-400">
-          {role}
-        </span>
-      </div>
+      {!address ? (
+        <ConnectWallet />
+      ) : (
+        <>
+          <Avatar
+            image={image}
+            alt={name ? name : ''}
+            className="dark:border-gray-400"
+          />
+          <div className="ltr:pl-3 rtl:pr-3">
+            <h3 className="text-sm font-medium uppercase tracking-wide text-gray-900 dark:text-white">
+              {name}
+            </h3>
+            <span className="mt-1 block text-xs text-gray-600 dark:text-gray-400">
+              {role}
+            </span>
+          </div>
+        </>
+      )}
     </div>
   );
 }
