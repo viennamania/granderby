@@ -19,7 +19,7 @@ export const NFTList = [
     id: '1',
     name: 'Granderby Horse #1',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006001.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -35,7 +35,7 @@ export const NFTList = [
     id: '2',
     name: 'Granderby Horse #2',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006002.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -51,7 +51,7 @@ export const NFTList = [
     id: '3',
     name: 'Granderby Horse #3',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006002.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -67,7 +67,7 @@ export const NFTList = [
     id: '4',
     name: 'Granderby Horse #4',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006004.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -83,7 +83,7 @@ export const NFTList = [
     id: '5',
     name: 'Granderby Horse #5',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006005.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -99,7 +99,7 @@ export const NFTList = [
     id: '6',
     name: 'Granderby Horse #6',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006006.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -115,7 +115,7 @@ export const NFTList = [
     id: '7',
     name: 'Granderby Horse #7',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006007.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -131,7 +131,7 @@ export const NFTList = [
     id: '8',
     name: 'Granderby Horse #8',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006008.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
@@ -147,7 +147,7 @@ export const NFTList = [
     id: '9',
     name: 'Granderby Horse #9',
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: 'https://granderby.io/nft/horse/Hrs_00006009.png',
     attributes: [
       { trait_type: 'Size', value: 'small' },
       { trait_type: 'Age', value: 23 },
