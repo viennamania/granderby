@@ -9,9 +9,9 @@ import NFT4 from '@/assets/images/nft/nft-4.jpg';
 
 import NFT1 from '@/assets/images/nft/Hrs_00006000.png';
 ///import NFT1 from '@/assets/images/nft/roan.glb';
-import NFT2 from '@/assets/images/nft/Hrs_00006001.png';
-import NFT3 from '@/assets/images/nft/Hrs_00006002.png';
-import NFT4 from '@/assets/images/nft/Hrs_00006003.png';
+import NFT2 from '@/assets/images/nft/Hrs_00006000.png';
+import NFT3 from '@/assets/images/nft/Hrs_00006000.png';
+import NFT4 from '@/assets/images/nft/Hrs_00006000.png';
 
 import { nftDropContractAddressHorse } from '../../config/contractAddresses';
 
