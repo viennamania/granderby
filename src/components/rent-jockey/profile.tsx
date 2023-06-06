@@ -209,7 +209,9 @@ export default function Profile() {
         <ProfileTab />
       </div>
 
+      {/*
       <AuthorInformation data={authorData} />
+    */}
     </div>
   );
 }

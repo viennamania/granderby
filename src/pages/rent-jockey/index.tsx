@@ -75,8 +75,8 @@ const RentPage: NextPageWithLayout<
           <Image
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
-            //fill
-            className="object-cover"
+            fill
+            className="object-contain"
             alt="Cover Image"
           />
         </div>

@@ -325,10 +325,6 @@ h4{ font-size: 1.625em; font-family: 'SUIT'; font-weight: 600; line-height:40px;
 #download .btn-wrap button svg path{ fill:#393939}
 #download .btn-wrap button:hover svg path{fill: #1B91CE;}
 
-footer{ background-color: #021E33; padding: 70px 0 50px;}
-footer .footer-wrap{ display: flex; flex-flow: column; justify-content: center; align-items: center;}
-footer .footer-wrap p{ text-align: center; color: #fff; font-size:0.875rem; padding-top: 1rem;}
-
 
 @media (max-width: 1400px){
   #partner{ width: 100%; margin: 0;}
