@@ -13,10 +13,7 @@ const SwapPage: NextPageWithLayout = () => {
   let [toggleCoin, setToggleCoin] = useState(false);
   return (
     <>
-      <NextSeo
-        title="Farms"
-        description="Criptic - React Next Web3 NFT Crypto Dashboard Template"
-      />
+      <NextSeo title="Farms" description="Granderby - Web3 NFT Game" />
       <Trade>
         <div className="mb-5 border-b border-dashed border-gray-200 pb-5 dark:border-gray-800 xs:mb-7 xs:pb-6">
           <div
@@ -31,7 +28,7 @@ const SwapPage: NextPageWithLayout = () => {
               defaultCoinIndex={0}
               getCoinValue={(data) => console.log('From coin value:', data)}
             />
-            <div className="absolute top-1/2 left-1/2 z-[1] -mt-4 -ml-4 rounded-full bg-white shadow-large dark:bg-gray-600">
+            <div className="absolute left-1/2 top-1/2 z-[1] -ml-4 -mt-4 rounded-full bg-white shadow-large dark:bg-gray-600">
               <Button
                 size="mini"
                 color="gray"

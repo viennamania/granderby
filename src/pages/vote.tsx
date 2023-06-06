@@ -20,10 +20,7 @@ const VotePage: NextPageWithLayout = () => {
   const { layout } = useLayout();
   return (
     <>
-      <NextSeo
-        title="Vote"
-        description="Criptic - React Next Web3 NFT Crypto Dashboard Template"
-      />
+      <NextSeo title="Vote" description="Granderby - Web3 NFT Game" />
       <div className="mx-auto w-full max-w-[1160px] text-sm md:pt-14 4xl:pt-24">
         <div
           className={cn('grid ', {
@@ -50,7 +47,7 @@ const VotePage: NextPageWithLayout = () => {
             <div className="h-auto w-16 xs:w-20 xl:w-24 3xl:w-28 4xl:w-auto">
               <Image alt="Vote Pool" src={votePool} />
             </div>
-            <h3 className="mt-6 mb-2 text-sm font-medium uppercase text-gray-800 dark:text-gray-100 sm:text-base 3xl:text-lg">
+            <h3 className="mb-2 mt-6 text-sm font-medium uppercase text-gray-800 dark:text-gray-100 sm:text-base 3xl:text-lg">
               Vote with Pool
             </h3>
             <p className="leading-loose text-gray-600 dark:text-gray-400">

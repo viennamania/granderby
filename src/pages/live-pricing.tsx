@@ -61,10 +61,7 @@ function CoinPrices() {
   if (layout === LAYOUT_OPTIONS.RETRO) {
     return (
       <>
-        <NextSeo
-          title="Live Pricing"
-          description="Criptic - React Next Web3 NFT Crypto Dashboard Template"
-        />
+        <NextSeo title="Live Pricing" description="Granderby - Web3 NFT Game" />
         <LivePricingSliderRetro limits={3} />
         <CryptocurrencyPricingRetroTable />
       </>
@@ -73,10 +70,7 @@ function CoinPrices() {
 
   return (
     <>
-      <NextSeo
-        title="Live Pricing"
-        description="Criptic - React Next Web3 NFT Crypto Dashboard Template"
-      />
+      <NextSeo title="Live Pricing" description="Granderby - Web3 NFT Game" />
       <LivePricingSlider limits={4} />
       <CryptocurrencyPricingTable />
     </>

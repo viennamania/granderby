@@ -43,7 +43,7 @@ export default function ClassicScreen() {
     <>
       <NextSeo
         title="Criptic Classic Demo"
-        description="Criptic - React Next Web3 NFT Crypto Dashboard Template"
+        description="Granderby - Web3 NFT Game"
       />
       <div className="flex flex-wrap">
         <div className="mb-8 w-full sm:mb-0  dark:[&_.swiper-scrollbar>_.swiper-scrollbar-drag]:bg-body/50">
