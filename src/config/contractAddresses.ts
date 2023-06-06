@@ -12,8 +12,20 @@ export const nftDropContractAddressHorse =
 export const nftDropContractAddressJockey =
   '0x4B63DE411e6706b9F9a99bAcE8f810e394710AE7';
 
-export const nftDropContractAddressREVVRacing =
-  '0x6e7899874656B13c36c071710de39b6c7E087d67';
+export const nftDropContractAddressTrack =
+  '0xfDe7aCA6ACa283a5578471Ca1000745a6ce8ce81';
+
+// Car
+export const nftDropContractAddressCar =
+  '0xfE6012470F3aB874403527177fd45D84C24A051B';
+
+//RedditCollectibleAvatars
+export const nftDropContractAddressReddit =
+  '0x5066C0934632BCc2902D139D7C875CBD295429f8';
+
+// Trump
+export const nftDropContractAddressTrump =
+  '0x24A11e702CD90f034Ea44FaF1e180C0C654AC5d9';
 
 // Songpa Token (SONGPA)
 //export const tokenContractAddress = '0xe5Ae1a10c1af58eC2Fe11413029057892cC5fAae';
@@ -34,6 +46,13 @@ export const stakingContractAddressHorse =
 // Happy Valley Racecourse for Jockey
 export const stakingContractAddressJockey =
   '0x5e050D71eb9B3261c32366a188A71B1322b5fEa2';
+
+// Happy Valley Racecourse for Car
+//export const stakingContractAddressCar ='0x6e7899874656B13c36c071710de39b6c7E087d67';
+
+// Happy Valley Racecourse for Rabbit
+export const stakingContractAddressCar =
+  '0xc90a2C19C162aE57BAF0Ef21947D10F23C48fed4';
 
 export const marketplaceContractAddress =
   '0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';

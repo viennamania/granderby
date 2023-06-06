@@ -20,7 +20,7 @@ import { fetcher } from '../../lib/utils';
 
 import { StaticImageData } from 'next/image';
 
-export default function FeedsJockey({ className }: { className?: string }) {
+export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const settings = {

@@ -1,6 +1,6 @@
 import Button from '@/components/ui/button';
 
-import Feeds from '@/components/search/feeds-jockey';
+import Feeds from '@/components/search/feeds-track';
 
 import { useDrawer } from '@/components/drawer-views/context';
 import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
@@ -8,7 +8,6 @@ import { OptionIcon } from '@/components/icons/option';
 
 export default function Search() {
   const { openDrawer } = useDrawer();
-
   return (
     <>
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">

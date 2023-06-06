@@ -117,7 +117,7 @@ export default function ProfileTab() {
     [address]
   );
 
-  console.log('stakedTokens', stakedTokens);
+  //console.log('stakedTokens', stakedTokens);
 
   async function sellNft(id: string) {
     if (!address) return;

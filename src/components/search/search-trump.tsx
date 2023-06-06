@@ -1,6 +1,6 @@
 import Button from '@/components/ui/button';
 
-import Feeds from '@/components/search/feeds-jockey';
+import Feeds from '@/components/search/feeds-trump';
 
 import { useDrawer } from '@/components/drawer-views/context';
 import { Filters, GridSwitcher, SortList } from '@/components/search/filters';

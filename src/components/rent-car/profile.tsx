@@ -7,11 +7,11 @@ import { Copy } from '@/components/icons/copy';
 import Button from '@/components/ui/button';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import Avatar from '@/components/ui/avatar';
-import ProfileTab from '@/components/rent-horse/profile-tab';
+import ProfileTab from '@/components/rent-car/profile-tab';
 
 import {
-  nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  nftDropContractAddressCar,
+  stakingContractAddressCar,
   tokenContractAddress,
 } from '../../config/contractAddresses';
 
@@ -44,7 +44,7 @@ export default function Profile() {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddressHorse,
+    nftDropContractAddressCar,
     'nft-drop'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
@@ -58,7 +58,7 @@ export default function Profile() {
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressCar
   );
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export default function Profile() {
               </div>
 
               <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-                <span>Claimable Rewards for Horse</span>
+                <span>Claimable Rewards for Car</span>
                 <h3>
                   <b>
                     {!claimableRewards
@@ -138,7 +138,7 @@ export default function Profile() {
                   theme="light"
                   //colorMode="dark"
                   //accentColor="#5204BF"
-                  contractAddress={stakingContractAddressHorse}
+                  contractAddress={stakingContractAddressCar}
                   action={async (contract) => {
                     try {
                       const tx = await contract.call('claimRewards');

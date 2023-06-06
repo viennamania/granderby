@@ -6,6 +6,8 @@ const routes = {
   searchJockey: '/search-jockey',
   searchTrack: '/search-track',
   searchCar: '/search-car',
+  searchTrump: '/search-trump',
+  searchReddit: '/search-reddit',
 
   race: '/race',
 
@@ -13,6 +15,7 @@ const routes = {
 
   minimal: '/minimal',
   livePricing: '/live-pricing',
+  liveRacing: '/live-racing',
   retro: '/retro',
   swap: '/swap',
   liquidity: '/liquidity',

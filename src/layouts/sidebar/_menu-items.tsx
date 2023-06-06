@@ -54,20 +54,31 @@ export const menuItems = [
         icon: <DiskIcon />,
         href: routes.searchTrack,
       },
-      /*
+
       {
         name: 'Car',
         icon: <DiskIcon />,
         href: routes.searchCar,
       },
-      */
+
+      {
+        name: 'Trump',
+        icon: <DiskIcon />,
+        href: routes.searchTrump,
+      },
+
+      {
+        name: 'Reddit',
+        icon: <DiskIcon />,
+        href: routes.searchReddit,
+      },
     ],
   },
 
   {
     name: 'RACE',
-    icon: <RaceIcon />,
-    href: routes.race,
+    icon: <CompassIcon />,
+    href: routes.liveRacing,
   },
 
   /*

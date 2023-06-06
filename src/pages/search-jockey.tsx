@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const SearchJockeyPage: NextPageWithLayout<
+const SearchPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
   const { layout } = useLayout();
@@ -46,8 +46,8 @@ const SearchJockeyPage: NextPageWithLayout<
   );
 };
 
-SearchJockeyPage.getLayout = function getLayout(page) {
+SearchPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default SearchJockeyPage;
+export default SearchPage;

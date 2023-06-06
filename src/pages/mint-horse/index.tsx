@@ -44,6 +44,8 @@ import {
   tokenContractAddress,
 } from '../../config/contractAddresses';
 
+import { Stack, Snackbar, Alert } from '@mui/material';
+
 export type BlogPost = {
   title: string;
   description: string;
@@ -175,7 +177,7 @@ const MintPage: NextPageWithLayout = () => {
           //accentColor="#5204BF"
           contractAddress={nftDropContractAddressHorse}
           action={async (contract) => {
-            console.log('Web3Button contract=', contract);
+            //console.log('Web3Button contract=', contract);
 
             try {
               const tx = await contract.erc721.claim(1);
@@ -271,6 +273,14 @@ const MintPage: NextPageWithLayout = () => {
         </button>
       )}
         */}
+
+      {/*
+<Stack spacing={2} sx={{ width: "100%" }}>
+   
+
+
+</Stack>
+   */}
     </div>
   );
 };

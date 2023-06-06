@@ -143,7 +143,7 @@ export default function Profile() {
                   contractAddress={stakingContractAddressHorse}
                   action={async (contract) => {
                     try {
-                      const tx = await contract.call('claimRewards');
+                      const tx = await contract?.call('claimRewards');
                       console.log(tx);
                       alert('Rewards Claimed!');
 

@@ -16,8 +16,8 @@ import {
 } from '@/data/static/author-profile';
 
 import {
-  nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  nftDropContractAddressCar,
+  stakingContractAddressCar,
   tokenContractAddress,
   marketplaceContractAddress,
 } from '../../config/contractAddresses';
@@ -40,7 +40,7 @@ import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 
 import { BigNumber, ethers } from 'ethers';
 
-import NFTCard from '../nft-horse/NFTCard';
+import NFTCard from '../nft-car/NFTCard';
 
 import { Stack, Snackbar, Alert } from '@mui/material';
 
@@ -109,10 +109,12 @@ export default function ProfileTab() {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddressHorse,
+    nftDropContractAddressCar,
     'nft-drop'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+
+  console.log('ownedNfts', ownedNfts);
 
   const { contract: tokenContract } = useContract(
     tokenContractAddress,
@@ -120,7 +122,7 @@ export default function ProfileTab() {
   );
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressCar
   );
 
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
@@ -137,16 +139,13 @@ export default function ProfileTab() {
 
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressCar
     );
 
     //onsole.log('isApproved', isApproved);
 
     if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(
-        stakingContractAddressHorse,
-        true
-      );
+      await nftDropContract?.setApprovalForAll(stakingContractAddressCar, true);
     }
 
     const data = await stakingContract?.call('stake', [[id]]);
@@ -178,11 +177,11 @@ export default function ProfileTab() {
     /*
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressCar
     );
 
     if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(stakingContractAddressHorse, true);
+      await nftDropContract?.setApprovalForAll(stakingContractAddressCar, true);
     }
 
     const data = await stakingContract?.call('stake', [id]);
@@ -195,7 +194,7 @@ export default function ProfileTab() {
     try {
       const transaction =
         await contractMarketplace?.directListings.createListing({
-          assetContractAddress: nftDropContractAddressHorse, // Contract Address of the NFT
+          assetContractAddress: nftDropContractAddressCar, // Contract Address of the NFT
           tokenId: id, // Token ID of the NFT.
           //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
           pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
@@ -218,7 +217,7 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h2 className="flex justify-center ">Your Staked Horses</h2>
+          <h2 className="flex justify-center ">Your Staked Cars</h2>
 
           <div
             className={cn(
@@ -237,7 +236,7 @@ export default function ProfileTab() {
               ))}
           </div>
 
-          <h2 className="mt-10 flex justify-center">Your Unstaked Horses</h2>
+          <h2 className="mt-10 flex justify-center">Your Unstaked Cars</h2>
 
           <div
             className={cn(
@@ -269,7 +268,7 @@ export default function ProfileTab() {
               </h4>
 
               <Web3Button
-                contractAddress={stakingContractAddressHorse}
+                contractAddress={stakingContractAddressCar}
                 action={() => stakeNft(nft.metadata.id)}
               >
                 Withdraw from Racetrack
@@ -294,7 +293,7 @@ export default function ProfileTab() {
                 <div className="flex flex-row gap-2">
                   <Web3Button
                     theme="light"
-                    contractAddress={stakingContractAddressHorse}
+                    contractAddress={stakingContractAddressCar}
                     action={() => stakeNft(nft.metadata.id)}
                   >
                     Rent to Racetrack

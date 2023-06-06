@@ -13,7 +13,7 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import { useEffect, useState } from 'react';
 
-import { nftDropContractAddressHorse } from '../../config/contractAddresses';
+import { nftDropContractAddressTrack } from '../../config/contractAddresses';
 
 import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
@@ -48,7 +48,7 @@ export default function Feeds({ className }: { className?: string }) {
     const main = async () => {
       //Call the method to fetch metadata
       const response = await alchemy.nft.getNftsForContract(
-        nftDropContractAddressHorse
+        nftDropContractAddressTrack
       );
 
       //Logging the response to the console
