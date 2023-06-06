@@ -165,7 +165,7 @@ export default function ProfileTab() {
   return (
     <ParamTab tabMenu={tabMenu}>
       <TabPanel className="focus:outline-none  ">
-        <h2 className="flex justify-center ">Your Staked NFTs</h2>
+        <h2 className="flex justify-center ">Your Staked Horses</h2>
 
         <div
           className={cn(
@@ -184,7 +184,7 @@ export default function ProfileTab() {
             ))}
         </div>
 
-        <h2 className="mt-10 flex justify-center">Your Unstaked NFTs</h2>
+        <h2 className="mt-10 flex justify-center">Your Unstaked Horses</h2>
 
         <div
           className={cn(

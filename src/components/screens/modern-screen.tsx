@@ -98,7 +98,7 @@ export default function ModernScreen() {
         <div className="w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
           <div className="flex h-full flex-col justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
             {!address ? (
-              <ConnectWallet />
+              <ConnectWallet theme="light" />
             ) : (
               <>
                 <Avatar
@@ -107,6 +107,11 @@ export default function ModernScreen() {
                   className="mx-auto mb-6"
                   size="lg"
                 />
+
+                <div className="mb-5 flex justify-center">
+                  <ConnectWallet theme="dark" />
+                </div>
+
                 <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
                   My Balance
                 </h3>
