@@ -239,6 +239,7 @@ export default function ProfileTab() {
 
               <div className="flex flex-row gap-2">
                 <Web3Button
+                  theme="light"
                   contractAddress={stakingContractAddressJockey}
                   action={() => stakeNft(nft.metadata.id)}
                 >
@@ -246,6 +247,7 @@ export default function ProfileTab() {
                 </Web3Button>
 
                 <Web3Button
+                  theme="light"
                   contractAddress={marketplaceContractAddress}
                   action={() => sellNft(nft.metadata.id)}
                 >
