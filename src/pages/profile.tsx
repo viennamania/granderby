@@ -45,7 +45,7 @@ const AuthorProfilePage: NextPageWithLayout<
           <Image
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
-            fill
+            //fill
             className="h-full w-full object-cover"
             alt="Cover Image"
           />

@@ -50,7 +50,7 @@ export const menuItems = [
         href: routes.searchJockey,
       },
       {
-        name: 'Track',
+        name: 'TRVC',
         icon: <DiskIcon />,
         href: routes.searchTrack,
       },

@@ -165,7 +165,7 @@ footer .footer-wrap p{ text-align: center; color: #fff; font-size:0.875rem; padd
 
         <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
           <div>
-            <Image src={LogoMomocon} alt="MOMOCON" width={38} height={38} />
+            <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
           </div>
 
           <AnchorLink

@@ -12,8 +12,11 @@ export const nftDropContractAddressHorse =
 export const nftDropContractAddressJockey =
   '0x4B63DE411e6706b9F9a99bAcE8f810e394710AE7';
 
+//export const nftDropContractAddressTrack =
+//'0xfDe7aCA6ACa283a5578471Ca1000745a6ce8ce81';
+
 export const nftDropContractAddressTrack =
-  '0xfDe7aCA6ACa283a5578471Ca1000745a6ce8ce81';
+  '0x8A57D0CB88E5dEA66383B64669aa98c1ab48f03E';
 
 // Car
 export const nftDropContractAddressCar =

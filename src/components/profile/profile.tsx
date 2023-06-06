@@ -11,7 +11,9 @@ import ProfileTab from '@/components/profile/profile-tab';
 
 import {
   nftDropContractAddressHorse,
+  nftDropContractAddressJockey,
   stakingContractAddressHorse,
+  stakingContractAddressJockey,
   tokenContractAddress,
 } from '../../config/contractAddresses';
 
@@ -43,11 +45,20 @@ export default function Profile() {
 
   const address = useAddress();
 
-  const { contract: nftDropContract } = useContract(
+  const { contract: nftDropContractHorse } = useContract(
     nftDropContractAddressHorse,
     'nft-drop'
   );
-  const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+  const { data: ownedNftsHorse } = useOwnedNFTs(nftDropContractHorse, address);
+
+  const { contract: nftDropContractJockey } = useContract(
+    nftDropContractAddressJockey,
+    'nft-drop'
+  );
+  const { data: ownedNftsJockey } = useOwnedNFTs(
+    nftDropContractJockey,
+    address
+  );
 
   const { contract: tokenContract } = useContract(
     tokenContractAddress,
@@ -55,60 +66,59 @@ export default function Profile() {
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
-  const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
+  const [claimableRewardsHorse, setClaimableRewardsHorse] =
+    useState<BigNumber>();
+  const [claimableRewardsJockey, setClaimableRewardsJockey] =
+    useState<BigNumber>();
 
-  const { contract: stakingContract, isLoading } = useContract(
+  const { contract: stakingContractHorse, isLoadingHorse } = useContract(
     stakingContractAddressHorse
   );
 
+  const { contract: stakingContractJockey, isLoadingJockey } = useContract(
+    stakingContractAddressJockey
+  );
+
   useEffect(() => {
-    if (!stakingContract || !address) return;
+    if (!stakingContractHorse || !address) return;
 
     async function loadClaimableRewards() {
-      const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
+      const stakeInfo = await stakingContractHorse?.call('getStakeInfo', [
+        address,
+      ]);
       ////const stakeInfo = await contract?.call("getStakeInfo", );
-      setClaimableRewards(stakeInfo[1]);
+      setClaimableRewardsHorse(stakeInfo[1]);
     }
 
     loadClaimableRewards();
-  }, [address, stakingContract]);
+  }, [address, stakingContractHorse]);
+
+  useEffect(() => {
+    if (!stakingContractJockey || !address) return;
+
+    async function loadClaimableRewardsJockey() {
+      const stakeInfo = await stakingContractJockey?.call('getStakeInfo', [
+        address,
+      ]);
+      ////const stakeInfo = await contract?.call("getStakeInfo", );
+      setClaimableRewardsJockey(stakeInfo[1]);
+    }
+
+    loadClaimableRewardsJockey();
+  }, [address, stakingContractJockey]);
 
   return (
     <div className="flex w-full flex-col pt-4 md:flex-row md:pt-10 lg:flex-row 3xl:pt-12">
+      <div className="h-23 flex justify-center p-10">
+        <ConnectWallet theme="dark" />
+      </div>
+
       {!address ? (
-        <ConnectWallet />
+        <></>
       ) : (
         <>
           <div className="shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
             <div className="text-center ltr:md:text-left rtl:md:text-right">
-              <h2 className="text-xl font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl">
-                {authorData?.name}
-              </h2>
-              <div className="mt-1 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-                @{authorData?.user_name}
-              </div>
-
-              <div className="md:max-w-auto mx-auto mt-5 flex h-9 max-w-sm items-center rounded-full bg-white shadow-card dark:bg-light-dark md:mx-0 xl:mt-6">
-                <div className="inline-flex h-full shrink-0 grow-0 items-center rounded-full bg-gray-900 px-4 text-xs text-white sm:text-sm">
-                  #{authorData?.id}
-                </div>
-                <div className="text truncate text-ellipsis bg-center text-xs text-gray-500 ltr:pl-4 rtl:pr-4 dark:text-gray-300 sm:text-sm">
-                  {address}
-                  {/*authorData?.wallet_key*/}
-                </div>
-                <div
-                  title="Copy Address"
-                  className="flex cursor-pointer items-center px-4 text-gray-500 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-                  onClick={() => handleCopyToClipboard()}
-                >
-                  {copyButtonStatus ? (
-                    <Check className="h-auto w-3.5 text-green-500" />
-                  ) : (
-                    <Copy className="h-auto w-3.5" />
-                  )}
-                </div>
-              </div>
-
               <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
                 <h3>
@@ -116,25 +126,16 @@ export default function Profile() {
                 </h3>
               </div>
 
-              <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-                <span>Claimable Rewards</span>
+              <div className="mb-10 mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+                <span>Claimable Rewards for Horse</span>
                 <h3>
                   <b>
-                    {!claimableRewards
+                    {!claimableRewardsHorse
                       ? 'Loading...'
-                      : ethers.utils.formatUnits(claimableRewards, 18)}
+                      : ethers.utils.formatUnits(claimableRewardsHorse, 18)}
                   </b>{' '}
                   {tokenBalance?.symbol}
                 </h3>
-
-                {/*
-                <Web3Button
-                  action={(contract) => contract.call('claimRewards')}
-                  contractAddress={stakingContractAddressHorse}
-                >
-                  Claim Rewards
-                </Web3Button>
-                    */}
 
                 <Web3Button
                   theme="dark"
@@ -147,12 +148,49 @@ export default function Profile() {
                       console.log(tx);
                       alert('Rewards Claimed!');
 
-                      const stakeInfo = await stakingContract?.call(
+                      const stakeInfo = await stakingContractHorse?.call(
                         'getStakeInfo',
                         [address]
                       );
                       ////const stakeInfo = await contract?.call("getStakeInfo", );
-                      setClaimableRewards(stakeInfo[1]);
+                      setClaimableRewardsHorse(stakeInfo[1]);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  }}
+                >
+                  Claim Rewards
+                </Web3Button>
+              </div>
+
+              <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+                <span>Claimable Rewards for Jockey</span>
+                <h3>
+                  <b>
+                    {!claimableRewardsJockey
+                      ? 'Loading...'
+                      : ethers.utils.formatUnits(claimableRewardsJockey, 18)}
+                  </b>{' '}
+                  {tokenBalance?.symbol}
+                </h3>
+
+                <Web3Button
+                  theme="dark"
+                  //colorMode="dark"
+                  //accentColor="#5204BF"
+                  contractAddress={stakingContractAddressJockey}
+                  action={async (contract) => {
+                    try {
+                      const tx = await contract?.call('claimRewards');
+                      console.log(tx);
+                      alert('Rewards Claimed!');
+
+                      const stakeInfo = await stakingContractJockey?.call(
+                        'getStakeInfo',
+                        [address]
+                      );
+                      ////const stakeInfo = await contract?.call("getStakeInfo", );
+                      setClaimableRewardsJockey(stakeInfo[1]);
                     } catch (e) {
                       console.log(e);
                     }
@@ -229,7 +267,9 @@ export default function Profile() {
       )}
 
       <div className="grow pb-9 pt-6 md:-mt-2.5 md:pb-0 md:pt-1.5 md:ltr:pl-7 md:rtl:pr-7 lg:ltr:pl-10 lg:rtl:pr-10 3xl:ltr:pl-14 3xl:rtl:pr-14">
+        {/*
         <ProfileTab />
+*/}
       </div>
 
       <AuthorInformation data={authorData} />
