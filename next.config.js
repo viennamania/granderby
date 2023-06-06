@@ -36,6 +36,7 @@ const nextConfig = withPWA({
       'granderby.io',
       'assets.coingecko.com',
       'alchemy.com',
+      'nft-cdn.alchemy.com',
       'ipfs.io',
       'via.placeholder.com',
     ],

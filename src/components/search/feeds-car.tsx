@@ -90,6 +90,8 @@ export default function Feeds({ className }: { className?: string }) {
         };
       });
 
+      //console.log("NFTList", NFTList);
+
       setHorses(NFTList);
 
       ///setHorses([...horses, ...NFTList]);
