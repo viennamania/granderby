@@ -12,7 +12,9 @@ import { useCoins } from '@/hooks/useCoin';
 import { NextSeo } from 'next-seo';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
+
 import CryptocurrencyPricingTable from '@/components/cryptocurrency-pricing-table/cryptocurrency-pricing-table';
+
 import LivePricingSlider from '@/components/ui/live-pricing-slider';
 import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
@@ -62,19 +64,21 @@ function CoinPrices() {
     return (
       <>
         <NextSeo title="Live Pricing" description="Granderby - Web3 NFT Game" />
+
         <LivePricingSliderRetro limits={3} />
         <CryptocurrencyPricingRetroTable />
       </>
     );
-  }
+  } else {
+    return (
+      <>
+        <NextSeo title="Live Pricing" description="Granderby - Web3 NFT Game" />
 
-  return (
-    <>
-      <NextSeo title="Live Pricing" description="Granderby - Web3 NFT Game" />
-      <LivePricingSlider limits={4} />
-      <CryptocurrencyPricingTable />
-    </>
-  );
+        <LivePricingSlider limits={4} />
+        <CryptocurrencyPricingTable />
+      </>
+    );
+  }
 }
 
 const LiveDemo: NextPageWithLayout = () => {

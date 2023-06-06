@@ -138,7 +138,7 @@ export default function DrawerMenu() {
         </div>
       </Scrollbar>
 
-      <div className="absolute bottom-4 right-0 z-10 w-full px-6">
+      <div className="absolute bottom-4 right-0 z-10 w-full px-6 ">
         {/*
         <WalletConnect anchorClassName="w-full" btnClassName="!w-full !h-11" />
             */}

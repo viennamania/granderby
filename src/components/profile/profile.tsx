@@ -9,12 +9,14 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import Avatar from '@/components/ui/avatar';
 import ProfileTab from '@/components/profile/profile-tab';
 
+import CryptocurrencyBalanceTable from '@/components/cryptocurrency-balance-table/cryptocurrency-balance-table';
+
 import {
   nftDropContractAddressHorse,
   nftDropContractAddressJockey,
   stakingContractAddressHorse,
   stakingContractAddressJockey,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 import {
@@ -60,11 +62,11 @@ export default function Profile() {
     address
   );
 
-  const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+  const { contract: tokenContractGRD } = useContract(
+    tokenContractAddressGRD,
     'token'
   );
-  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+  const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
 
   const [claimableRewardsHorse, setClaimableRewardsHorse] =
     useState<BigNumber>();
@@ -109,32 +111,39 @@ export default function Profile() {
 
   return (
     <div className="flex w-full flex-col pt-4 md:flex-row md:pt-10 lg:flex-row 3xl:pt-12">
-      <div className="h-23 flex justify-center p-10">
-        <ConnectWallet theme="dark" />
-      </div>
-
       {!address ? (
-        <></>
+        <>
+          <div className="flex w-full justify-center">
+            <ConnectWallet theme="light" />
+          </div>
+        </>
       ) : (
         <>
           <div className="shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
-            <div className="text-center ltr:md:text-left rtl:md:text-right">
-              <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+            <div className="flex w-full justify-center">
+              <ConnectWallet theme="dark" />
+            </div>
+
+            <div className="text-center ltr:md:text-right rtl:md:text-right">
+              <div className=" mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
                 <h3>
-                  <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
+                  <b>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</b>{' '}
+                  {tokenBalanceGRD?.symbol}
                 </h3>
               </div>
 
-              <div className="mb-10 mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className=" mb-10 mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Claimable Rewards for Horse</span>
                 <h3>
                   <b>
                     {!claimableRewardsHorse
                       ? 'Loading...'
-                      : ethers.utils.formatUnits(claimableRewardsHorse, 18)}
+                      : Number(
+                          ethers.utils.formatUnits(claimableRewardsHorse, 18)
+                        ).toFixed(2)}
                   </b>{' '}
-                  {tokenBalance?.symbol}
+                  {tokenBalanceGRD?.symbol}
                 </h3>
 
                 <Web3Button
@@ -169,9 +178,11 @@ export default function Profile() {
                   <b>
                     {!claimableRewardsJockey
                       ? 'Loading...'
-                      : ethers.utils.formatUnits(claimableRewardsJockey, 18)}
+                      : Number(
+                          ethers.utils.formatUnits(claimableRewardsJockey, 18)
+                        ).toFixed(2)}
                   </b>{' '}
-                  {tokenBalance?.symbol}
+                  {tokenBalanceGRD?.symbol}
                 </h3>
 
                 <Web3Button
@@ -200,79 +211,17 @@ export default function Profile() {
                 </Web3Button>
               </div>
             </div>
-
-            {/*
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-6 border-y border-dashed border-gray-200 py-5 text-center dark:border-gray-700 md:justify-start ltr:md:text-left rtl:md:text-right xl:mt-12 xl:gap-8 xl:py-6">
-              <div>
-                <div className="mb-1.5 text-lg font-medium tracking-tighter text-gray-900 dark:text-white">
-                  {authorData?.following}
-                </div>
-                <div className="text-sm tracking-tighter text-gray-600 dark:text-gray-400">
-                  Following
-                </div>
-              </div>
-              <div>
-                <div className="mb-1.5 text-lg font-medium tracking-tighter text-gray-900 dark:text-white">
-                  {authorData?.followers}
-                </div>
-                <div className="text-sm tracking-tighter text-gray-600 dark:text-gray-400">
-                  Followers
-                </div>
-              </div>
-              <Button
-                color="white"
-                className="shadow-card dark:bg-light-dark md:h-10 md:px-5 xl:h-12 xl:px-7"
-              >
-                Follow
-              </Button>
-            </div>
-
-            <div className="border-y border-dashed border-gray-200 py-5 text-center dark:border-gray-700 ltr:md:text-left rtl:md:text-right xl:py-6">
-              <div className="mb-2 text-sm font-medium uppercase tracking-wider text-gray-900 dark:text-white">
-                Followed by
-              </div>
-              <div className="flex justify-center md:justify-start">
-                {authorData?.followed_by?.map((item) => (
-                  <AnchorLink
-                    key={`author-key-${item?.id}`}
-                    href="/"
-                    className="-ml-2 first:ml-0"
-                  >
-                    <Avatar
-                      size="sm"
-                      image={item?.avatar?.thumbnail}
-                      alt="Author"
-                      height={28}
-                      width={28}
-                      className="dark:border-gray-500"
-                    />
-                  </AnchorLink>
-                ))}
-              </div>
-              <div className="mt-4">
-                <AnchorLink
-                  href="/"
-                  className="text-sm tracking-tighter text-gray-600 transition hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  View All
-                </AnchorLink>
-              </div>
-              
-            </div>
-            <AuthorInformation className="hidden md:block" data={authorData} />
-
-*/}
           </div>
+
+          <div className="grow pb-9 pt-6 md:-mt-2.5 md:pb-0 md:pt-1.5 md:ltr:pl-7 md:rtl:pr-7 lg:ltr:pl-10 lg:rtl:pr-10 3xl:ltr:pl-14 3xl:rtl:pr-14">
+            <CryptocurrencyBalanceTable />
+          </div>
+
+          {/*}
+      <AuthorInformation data={authorData} />
+                */}
         </>
       )}
-
-      <div className="grow pb-9 pt-6 md:-mt-2.5 md:pb-0 md:pt-1.5 md:ltr:pl-7 md:rtl:pr-7 lg:ltr:pl-10 lg:rtl:pr-10 3xl:ltr:pl-14 3xl:rtl:pr-14">
-        {/*
-        <ProfileTab />
-*/}
-      </div>
-
-      <AuthorInformation data={authorData} />
     </div>
   );
 }

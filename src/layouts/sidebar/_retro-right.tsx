@@ -22,14 +22,14 @@ import {
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 export default function Sidebar({ className }: { className?: string }) {
   const address = useAddress();
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);

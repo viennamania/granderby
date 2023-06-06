@@ -17,7 +17,7 @@ import {
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
-  tokenContractAddress,
+  tokenContractAddressGRD,
   marketplaceContractAddress,
 } from '../../config/contractAddresses';
 
@@ -70,7 +70,7 @@ export default function ProfileTab() {
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
 

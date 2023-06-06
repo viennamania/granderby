@@ -30,16 +30,6 @@ export const nftDropContractAddressReddit =
 export const nftDropContractAddressTrump =
   '0x24A11e702CD90f034Ea44FaF1e180C0C654AC5d9';
 
-// Songpa Token (SONGPA)
-//export const tokenContractAddress = '0xe5Ae1a10c1af58eC2Fe11413029057892cC5fAae';
-
-// Momocon Token (GRAND)
-//export const tokenContractAddress = '0xb6bA01EFe279d17868EBAbaC57748E2649509c1b';
-
-// Momocon Token (GRD)
-export const tokenContractAddress =
-  '0xe426D2410f20B0434FE2ce56299a1543d3fDe450';
-
 ///export const stakingContractAddressHorse = '0xE0DC3d4cB15614f4be1C469AF494c9261a0495a5';
 
 // Happy Valley Racecourse for Horse
@@ -59,3 +49,17 @@ export const stakingContractAddressCar =
 
 export const marketplaceContractAddress =
   '0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';
+
+// Songpa Token (SONGPA)
+//export const tokenContractAddress = '0xe5Ae1a10c1af58eC2Fe11413029057892cC5fAae';
+
+// Momocon Token (GRAND)
+//export const tokenContractAddress = '0xb6bA01EFe279d17868EBAbaC57748E2649509c1b';
+
+// Momocon Token (GRD)
+export const tokenContractAddressGRD =
+  '0xe426D2410f20B0434FE2ce56299a1543d3fDe450';
+
+// USDC Token (USDC)
+export const tokenContractAddressUSDC =
+  '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174';

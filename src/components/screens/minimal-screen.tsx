@@ -30,7 +30,7 @@ import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
   stakingContractAddressJockey,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 import { BigNumber, ethers } from 'ethers';
@@ -56,7 +56,7 @@ export default function MinimalScreen() {
 
   const address = useAddress();
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);

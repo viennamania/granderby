@@ -41,7 +41,7 @@ import {
 import {
   nftDropContractAddressJockey,
   stakingContractAddressHorse,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 export type BlogPost = {
@@ -88,7 +88,7 @@ const MintPage: NextPageWithLayout = () => {
   );
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);

@@ -29,7 +29,7 @@ import phoneMobile from '@/assets-landing/images/0_asset.png';
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 import {
@@ -55,7 +55,7 @@ const ProposalsPage: NextPageWithLayout = () => {
   const address = useAddress();
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);

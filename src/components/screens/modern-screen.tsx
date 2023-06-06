@@ -31,7 +31,7 @@ import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
   stakingContractAddressJockey,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 import { BigNumber, ethers } from 'ethers';
@@ -40,7 +40,7 @@ export default function ModernScreen() {
   const address = useAddress();
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
@@ -87,6 +87,7 @@ export default function ModernScreen() {
   return (
     <>
       <NextSeo title="Criptic" description="Granderby - Web3 NFT Game" />
+
       <div className="flex flex-wrap">
         <div className="mb-8 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
           <CoinSlider coins={coinSlideData} />

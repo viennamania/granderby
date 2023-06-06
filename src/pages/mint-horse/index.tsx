@@ -41,7 +41,7 @@ import {
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 import { Stack, Snackbar, Alert } from '@mui/material';
@@ -90,7 +90,7 @@ const MintPage: NextPageWithLayout = () => {
   );
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);

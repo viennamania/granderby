@@ -5,10 +5,13 @@ import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 import Image from '@/components/ui/image';
 import Avatar from '@/components/ui/avatar';
+
 import Profile from '@/components/profile/profile';
+
 import RetroProfile from '@/components/profile/retro-profile';
 // static data
 import { authorData } from '@/data/static/author';
+
 import RootLayout from '@/layouts/_root-layout';
 
 import {
@@ -41,11 +44,12 @@ const AuthorProfilePage: NextPageWithLayout<
     return (
       <>
         <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
+
         <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
           <Image
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
-            //fill
+            fill
             className="h-full w-full object-cover"
             alt="Cover Image"
           />

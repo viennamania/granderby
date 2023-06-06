@@ -10,7 +10,7 @@ type AuthorCardProps = {
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorse,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 import {
@@ -30,7 +30,7 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
 
   /*
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);

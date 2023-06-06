@@ -12,7 +12,7 @@ import ProfileTab from '@/components/rent-car/profile-tab';
 import {
   nftDropContractAddressCar,
   stakingContractAddressCar,
-  tokenContractAddress,
+  tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
 import {
@@ -50,7 +50,7 @@ export default function Profile() {
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
