@@ -15,7 +15,12 @@ export const nftDropContractAddressJockey =
 //export const nftDropContractAddressTrack =
 //'0xfDe7aCA6ACa283a5578471Ca1000745a6ce8ce81';
 
+// Track
 export const nftDropContractAddressTrack =
+  '0x8A57D0CB88E5dEA66383B64669aa98c1ab48f03E';
+
+// TRVC
+export const nftDropContractAddressTRVC =
   '0x8A57D0CB88E5dEA66383B64669aa98c1ab48f03E';
 
 // Car
@@ -43,9 +48,13 @@ export const stakingContractAddressJockey =
 // Happy Valley Racecourse for Car
 //export const stakingContractAddressCar ='0x6e7899874656B13c36c071710de39b6c7E087d67';
 
-// Happy Valley Racecourse for Rabbit
+// Happy Valley Racecourse for Car
 export const stakingContractAddressCar =
   '0xc90a2C19C162aE57BAF0Ef21947D10F23C48fed4';
+
+// Happy Valley Racecourse for TRVC
+export const stakingContractAddressTRVC =
+  '0x9eb77004D500B152dEaE261C3Dc1Ee7214D27aF3';
 
 export const marketplaceContractAddress =
   '0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';

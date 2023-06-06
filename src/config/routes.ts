@@ -45,6 +45,7 @@ const routes = {
 
   rentHorse: '/rent-horse',
   rentJockey: '/rent-jockey',
+  rentTRVC: '/rent-trvc',
 
   stake: '/stake',
 

@@ -127,6 +127,11 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.rentJockey,
       },
+      {
+        name: 'TRVC',
+        icon: <PlusCircle />,
+        href: routes.rentTRVC,
+      },
     ],
   },
 

@@ -17,6 +17,7 @@ import {
   stakingContractAddressHorse,
   stakingContractAddressJockey,
   tokenContractAddressGRD,
+  tokenContractAddressUSDC,
 } from '../../config/contractAddresses';
 
 import {
@@ -67,6 +68,15 @@ export default function Profile() {
     'token'
   );
   const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
+
+  const { contract: tokenContractUSDC } = useContract(
+    tokenContractAddressUSDC,
+    'token'
+  );
+  const { data: tokenBalanceUSDC } = useTokenBalance(
+    tokenContractUSDC,
+    address
+  );
 
   const [claimableRewardsHorse, setClaimableRewardsHorse] =
     useState<BigNumber>();
@@ -130,6 +140,10 @@ export default function Profile() {
                 <h3>
                   <b>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</b>{' '}
                   {tokenBalanceGRD?.symbol}
+                </h3>
+                <h3>
+                  <b>{Number(tokenBalanceUSDC?.displayValue).toFixed(2)}</b>{' '}
+                  {tokenBalanceUSDC?.symbol}
                 </h3>
               </div>
 
