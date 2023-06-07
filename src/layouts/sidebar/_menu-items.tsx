@@ -29,11 +29,14 @@ export const menuItems = [
     href: routes.ranking,
   },
   */
+
   {
     name: 'LIVE',
     icon: <Ranking />,
     href: routes.live,
   },
+
+  /*
   {
     name: 'ASSETS',
     icon: <CompassIcon />,
@@ -74,6 +77,7 @@ export const menuItems = [
       },
     ],
   },
+  */
 
   {
     name: 'RACE',
@@ -113,7 +117,7 @@ export const menuItems = [
   },
 
   {
-    name: 'RENT',
+    name: 'ASSETS',
     icon: <FarmIcon />,
     href: routes.rentHorse,
     dropdownItems: [
@@ -127,11 +131,13 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.rentJockey,
       },
+      /*
       {
         name: 'TRVC',
         icon: <PlusCircle />,
         href: routes.rentTRVC,
       },
+      */
     ],
   },
 

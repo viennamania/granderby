@@ -143,7 +143,9 @@ export default function DrawerMenu() {
         <WalletConnect anchorClassName="w-full" btnClassName="!w-full !h-11" />
             */}
 
+        {/*
         <ConnectWallet />
+          */}
       </div>
     </div>
   );

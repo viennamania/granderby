@@ -15,6 +15,7 @@ import logo from '@/assets/images/logo.png';
 
 export default function Sidebar({ className }: { className?: string }) {
   const { closeDrawer } = useDrawer();
+
   return (
     <aside
       className={cn(

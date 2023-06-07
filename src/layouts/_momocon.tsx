@@ -32,6 +32,7 @@ function HeaderRightArea() {
   const isMounted = useIsMounted();
   const breakpoint = useBreakpoint();
   const { openDrawer, isOpen } = useDrawer();
+
   return (
     <div className="order-last flex shrink-0 items-center">
       <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
@@ -109,13 +110,14 @@ export function Header() {
             <MenuItems />
           )}
         </div>
+
         <HeaderRightArea />
       </div>
     </nav>
   );
 }
 
-export default function MinimalLayout({
+export default function MomoconLayout({
   children,
 }: React.PropsWithChildren<{}>) {
   return (

@@ -17,6 +17,9 @@ const RetroLayout = dynamic(() => import('@/layouts/_retro'), {
 const ModernLayout = dynamic(() => import('@/layouts/_modern'), {
   loading: () => <FallbackLoader />,
 });
+const MomoconLayout = dynamic(() => import('@/layouts/_momocon'), {
+  loading: () => <FallbackLoader />,
+});
 
 function FallbackLoader() {
   return (
@@ -38,6 +41,10 @@ export default function RootLayout({
 
   if (layout === LAYOUT_OPTIONS.MODERN) {
     return <ModernLayout>{children}</ModernLayout>;
+  }
+
+  if (layout === LAYOUT_OPTIONS.MOMOCON) {
+    return <MomoconLayout>{children}</MomoconLayout>;
   }
 
   // render minimal layout
