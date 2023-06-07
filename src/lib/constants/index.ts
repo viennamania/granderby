@@ -3,4 +3,5 @@ export enum LAYOUT_OPTIONS {
   MINIMAL = 'Minimal',
   RETRO = 'Retro',
   CLASSIC = 'Classic',
+  MOMOCON = 'Momocon',
 }

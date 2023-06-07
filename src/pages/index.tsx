@@ -7,6 +7,7 @@ import ModernScreen from '@/components/screens/modern-screen';
 import MinimalScreen from '@/components/screens/minimal-screen';
 import ClassicScreen from '@/components/screens/classic-screen';
 import RetroScreen from '@/components/screens/retro-screen';
+import MomoconScreen from '@/components/screens/momocon-screen';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -39,11 +40,19 @@ const HomePage: NextPageWithLayout<
     return <RetroScreen />;
   }
 
+  // render retro screen/page
+  if (layout === LAYOUT_OPTIONS.MOMOCON) {
+    return <MomoconScreen />;
+  }
+
   // render default screen/page which is modern
   ///return <ModernScreen />;
 
   // render default screen/page which is minimal
-  return <MinimalScreen />;
+  //return <MinimalScreen />;
+
+  // render default screen/page which is momocon
+  return <MomoconScreen />;
 };
 
 HomePage.getLayout = function getLayout(page) {
