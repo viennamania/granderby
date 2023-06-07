@@ -169,7 +169,7 @@ export default function MomoconScreen() {
           <span> Granderby</span>
           <span className="line"> Horse Racing</span>
         </h1>
-        <div className="btn-wrap">
+        <div className="btn-wrap w-full">
           <button className="btn-app">
             <Image src={IcoApple} alt="" width={100} height={100} />
             Download App
