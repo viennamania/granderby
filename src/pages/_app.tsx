@@ -82,6 +82,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <meta property="og:title" content="GRANDERBY"></meta>
         <meta property="og:description" content="powered by MOMOCON"></meta>
         <meta property="og:image" content="/intro-bg.png"></meta>
+
         <meta property="og:image:width" content="1400"></meta>
         <meta property="og:image:height" content="1400"></meta>
 

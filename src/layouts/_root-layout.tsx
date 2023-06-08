@@ -68,8 +68,8 @@ export default function RootLayout({
     );
   }
 
-  // render default layout which is modern
-  return <MinimalLayout>{children}</MinimalLayout>;
+  // render default layout which is momocon
+  return <MomoconLayout>{children}</MomoconLayout>;
 }
 
 {

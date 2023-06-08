@@ -3,9 +3,13 @@ import { LAYOUT_OPTIONS } from '@/lib/constants';
 
 // 1. set initial atom for criptic layout
 const cripticLayoutAtom = atom(
+  /*
   typeof window !== 'undefined'
     ? localStorage.getItem('criptic-layout')
-    : LAYOUT_OPTIONS.MODERN
+    : LAYOUT_OPTIONS.MOMOCON
+  */
+
+  LAYOUT_OPTIONS.MOMOCON
 );
 
 const cripticLayoutAtomWithPersistence = atom(
