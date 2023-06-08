@@ -133,7 +133,9 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
             {getLayout(<Component {...pageProps} />)}
 
             <SettingsButton />
+
             <SettingsDrawer />
+
             <ModalsContainer />
             <DrawersContainer />
             {/* </div> */}

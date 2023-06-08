@@ -1,14 +1,21 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
+
+import AssetSlider from '@/components/ui/asset-card';
+
 import CoinSlider from '@/components/ui/coin-card';
+
 import OverviewChart from '@/components/ui/chats/overview-chart';
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
 import TopPools from '@/components/ui/top-pools';
 import TransactionTable from '@/components/transaction/transaction-table';
 import TopCurrencyTable from '@/components/top-currency/currency-table';
+
 import { coinSlideData } from '@/data/static/coin-slide-data';
+import { assetSlideData } from '@/data/static/asset-slide-data';
+
 import Avatar from '@/components/ui/avatar';
 import TopupButton from '@/components/ui/topup-button';
 
@@ -34,7 +41,11 @@ import {
   useOwnedNFTs,
   useTokenBalance,
   Web3Button,
+  usePaperWalletUserEmail,
 } from '@thirdweb-dev/react';
+
+import { PaperWallet } from '@thirdweb-dev/wallets';
+import { Polygon } from '@thirdweb-dev/chains';
 
 import {
   nftDropContractAddressHorse,
@@ -45,8 +56,24 @@ import {
 
 import { BigNumber, ethers } from 'ethers';
 
+/*
+const clientId =
+  process.env.NEXT_PUBLIC_CLIENT_ID === undefined
+    ? ''
+    : process.env.NEXT_PUBLIC_CLIENT_ID;
+
+const wallet = new PaperWallet({
+  chain: Polygon, //  chain to connect to
+  clientId: clientId, // Paper SDK client ID
+})
+*/
+
 export default function MomoconScreen() {
+  ///console.log("MomoconScreen");
+
   const address = useAddress();
+
+  const emailQuery = usePaperWalletUserEmail();
 
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,
@@ -98,11 +125,9 @@ export default function MomoconScreen() {
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
       <div className="flex flex-wrap">
-        {/*
         <div className="mb-8 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
-          <CoinSlider coins={coinSlideData} />
+          <AssetSlider coins={assetSlideData} />
         </div>
-        */}
 
         <div className="w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
           <div className="flex h-full flex-col justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
@@ -119,6 +144,12 @@ export default function MomoconScreen() {
 
                 <div className="mb-5 flex justify-center text-xs">
                   {address}
+                </div>
+                <div className="mb-5 flex justify-center text-xs">
+                  {/*
+                  (emailQuery.isLoading ? "Loading Email..." : )
+                  */}
+                  Logged in as {emailQuery.data}
                 </div>
                 <div className="mb-5 flex justify-center">
                   <ConnectWallet theme="dark" />
@@ -156,23 +187,23 @@ export default function MomoconScreen() {
                   {tokenBalance?.symbol}
                 </div>
 
+                {/*
                 <TopupButton />
+                    */}
               </>
             )}
           </div>
         </div>
       </div>
 
+      {/*
       <div className="flex flex-wrap">
         <video id="intro-video" src="/mov/intro.mp4" muted autoPlay></video>
       </div>
+                  */}
 
-      <div className="flex flex-wrap">
-        <h1>
-          <span> Granderby</span>
-          <span className="line"> Horse Racing</span>
-        </h1>
-        <div className="btn-wrap w-full">
+      <div className="flex flex-row ">
+        <div className="btn-wrap w-full ">
           <button className="btn-app">
             <Image src={IcoApple} alt="" width={100} height={100} />
             Download App

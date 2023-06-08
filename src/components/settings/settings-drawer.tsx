@@ -172,6 +172,8 @@ function LayoutSwitcher() {
   } = router;
   const { layout, setLayout } = useLayout();
   const layoutOptions = Object.values(LAYOUT_OPTIONS);
+
+  /*
   function handleLayoutChange(value: string) {
     setLayout(value);
     router.push(
@@ -199,13 +201,44 @@ function LayoutSwitcher() {
       { scroll: false }
     );
   }
+  */
+
+  function handleLayoutChange(value: string) {
+    setLayout(value);
+    router.push(
+      {
+        pathname,
+        ...(value !== LAYOUT_OPTIONS.MOMOCON && {
+          query: {
+            layout: value,
+          },
+        }),
+        ...(view !== undefined && {
+          query: {
+            view,
+          },
+        }),
+        ...(value !== LAYOUT_OPTIONS.MOMOCON &&
+          view !== undefined && {
+            query: {
+              layout: value,
+              view,
+            },
+          }),
+      },
+      undefined,
+      { scroll: false }
+    );
+  }
+
   return (
     <div className="px-6 pt-8">
       <h4 className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
         Layout
       </h4>
       <RadioGroup
-        value={layout ?? LAYOUT_OPTIONS.MODERN}
+        ///value={layout ?? LAYOUT_OPTIONS.MODERN}
+        value={layout ?? LAYOUT_OPTIONS.MOMOCON}
         onChange={(value) => handleLayoutChange(value)}
         className="grid grid-cols-2 gap-5 "
       >
