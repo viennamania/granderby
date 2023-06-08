@@ -39,6 +39,8 @@ export default function RootLayout({
   // fix the `Hydration failed because the initial UI does not match` issue
   if (!isMounted) return null;
 
+  console.log('RootLayout======', layout);
+
   if (layout === LAYOUT_OPTIONS.MODERN) {
     return <ModernLayout>{children}</ModernLayout>;
   }

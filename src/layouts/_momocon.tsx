@@ -120,6 +120,8 @@ export function Header() {
 export default function MomoconLayout({
   children,
 }: React.PropsWithChildren<{}>) {
+  console.log('layout MomoconLayout');
+
   return (
     <>
       <Header />
