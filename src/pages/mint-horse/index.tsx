@@ -113,7 +113,7 @@ const MintPage: NextPageWithLayout<
   //const MintPage: NextPageWithLayout = (props) => {
   //const MintPage: NextPageWithLayout = ({title, image}) => {
 
-  const { title, image, description } = props;
+  const { title, description, image } = props;
 
   const { layout } = useLayout();
 
