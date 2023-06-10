@@ -83,7 +83,16 @@ const dummyPosts: BlogPost[] = [
 ======================================= */
 ///const HomePage = () => {
 
-const MintPage: NextPageWithLayout = () => {
+//MintPage.title = 'Homepage';
+
+/*
+const Product = (props) => {
+    const { title, description } = props;
+    */
+
+const MintPage: NextPageWithLayout = (props) => {
+  const { image } = props;
+
   const { layout } = useLayout();
 
   const address = useAddress();
@@ -201,33 +210,12 @@ const MintPage: NextPageWithLayout = () => {
 
   return (
     <>
-      {/*
       <Head>
- 
-        <meta
-          property="og:site_name"
-          content="GRANDERBY - powered by MOMOCON"
-        ></meta>
-        <meta
-          property="og:title"
-          content="GRANDERBY- powered by MOMOCON"
-        ></meta>
-        <meta
-          property="og:description"
-          content="Mint your granderby NFT"
-        ></meta>
-
-        <meta property="og:image" content="/mint-bg.png"></meta>
-
-        <meta property="og:image:width" content="1400"></meta>
-        <meta property="og:image:height" content="1400"></meta>
-
-        <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:image" content="/mint-bg.png"></meta>
+        <meta property="og:image" content={image}></meta>
+        <meta name="twitter:image" content={image}></meta>
       </Head>
 
-      */}
-
+      {/* page content here */}
       <div className="flex flex-col justify-center text-center">
         {/* Header */}
         <h1 className="mb-2 mt-2 text-3xl">Mint Horse</h1>
@@ -420,4 +408,26 @@ MintPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
+//MintPage.title = 'Homepage';
+
 export default MintPage;
+
+export async function getServerSideProps(context: any) {
+  /*
+  // Retrieve id
+  const { params } = context;
+  const id = params.id;
+
+  // Fetch data
+  const result = await fetch(`[your API]/${id}`);
+  const data = await result.json();
+  */
+
+  const image = '/mint-bg.png';
+
+  return {
+    props: {
+      image: image,
+    },
+  };
+}
