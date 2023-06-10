@@ -1,5 +1,7 @@
 import cn from 'classnames';
 
+import type { GetStaticProps, InferGetStaticPropsType } from 'next';
+
 import type { NextPageWithLayout } from '@/types';
 
 import Link from 'next/link';
@@ -12,6 +14,7 @@ import { ConnectButton } from '@paperxyz/embedded-wallet-service-rainbowkit';
 //import { renderPaperCheckoutLink } from '@paperxyz/js-client-sdk';
 
 import { CheckoutWithCard } from '@paperxyz/react-client-sdk';
+import { createCheckoutWithCardElement } from '@paperxyz/js-client-sdk';
 
 //import { useAccount } from 'wagmi';
 
@@ -90,8 +93,27 @@ const Product = (props) => {
     const { title, description } = props;
     */
 
-const MintPage: NextPageWithLayout = (props) => {
-  const { image } = props;
+//export default function VideoPage({ video }) {
+
+//export default function Test({ title }) {
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      title: 'Granderby - Mint',
+      description: 'powered by MOMOCON',
+      image: '/mint-bg.png',
+    },
+  };
+};
+
+const MintPage: NextPageWithLayout<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = (props) => {
+  //const MintPage: NextPageWithLayout = (props) => {
+  //const MintPage: NextPageWithLayout = ({title, image}) => {
+
+  const { title, image, description } = props;
 
   const { layout } = useLayout();
 
@@ -108,7 +130,7 @@ const MintPage: NextPageWithLayout = (props) => {
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
-  console.log('owenedNfts', ownedNfts);
+  /////console.log('owenedNfts', ownedNfts);
 
   const [loading, setLoading] = useState(true);
   const [hasNFT, setHasNFT] = useState(false);
@@ -189,6 +211,32 @@ const MintPage: NextPageWithLayout = (props) => {
         //console.log("sdkClientSecret", sdkClientSecret);
 
         setSdkClientSecret(sdkClientSecret);
+
+        /*
+        const options = {
+          colorBackground: '#fefae0',
+          colorPrimary: '#606c38',
+          colorText: '#283618',
+          borderRadius: 6,
+          inputBackgroundColor: '#faedcd',
+          inputBorderColor: '#d4a373',
+        };
+        
+        createCheckoutWithCardElement({
+          sdkClientSecret: sdkClientSecret,
+          elementOrId: "paper-checkout-container",
+          appName: "My Web3 App",
+          
+          options,
+      
+          onError(error) {
+            console.error("Payment error:", error);
+          },
+          onPaymentSuccess({ id }) {
+            console.log("Payment successful.");
+          },
+        });
+        */
       }
     };
 
@@ -197,11 +245,23 @@ const MintPage: NextPageWithLayout = (props) => {
 
   const mintNFT = async () => {
     try {
+      /*
+      const { contract: nftDropContract } = useContract(
+        nftDropContractAddressHorse,
+        'nft-drop'
+      );
+      */
+
+      /*
       const contract = await sdk.getContract(nftDropContractAddressHorse);
 
       const tx = await contract.erc721.claim(1);
+      */
+
+      const tx = await nftDropContract?.erc721.claim(1);
 
       console.log(tx);
+
       alert('NFT Claimed!');
     } catch (e) {
       console.log(e);
@@ -211,8 +271,13 @@ const MintPage: NextPageWithLayout = (props) => {
   return (
     <>
       <Head>
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:description" content={description}></meta>
         <meta property="og:image" content={image}></meta>
+
         <meta name="twitter:image" content={image}></meta>
+
+        <title>{title}</title>
       </Head>
 
       {/* page content here */}
@@ -262,49 +327,25 @@ const MintPage: NextPageWithLayout = (props) => {
         </div>
 
         {/*
-      
-// Assume a container exists:
-//
-//      <div id="paper-checkout-container" width="380px" />
-//
-createCheckoutWithCardElement({
-  sdkClientSecret: "MY_SDK_CLIENT_SECRET",
-  elementOrId: "paper-checkout-container",
-  appName: "My Web3 App",
-  options,
-  onError(error) {
-    console.error("Payment error:", error);
-  },
-  onPaymentSuccess({ id }) {
-    console.log("Payment successful.");
-  },
-});
-
-// Alternatively, insert the iframe programmatically:
-//
-//      const iframe = createCheckoutWithCardElement(...)
-//      document.getElementById('paper-checkout-container').appendChild(iframe);
-
-      */}
+            <div id="paper-checkout-container" className="w-[380px]" />
+            */}
 
         <div className="mb-10 flex flex-row justify-center">
           {sdkClientSecret && (
             <div className="w-[380px]">
               <CheckoutWithCard
                 sdkClientSecret={sdkClientSecret}
-                /*
-              onPriceUpdate={
-                ({
-                  quantity: "1";
-                  unitPrice: 1.9;
-                  total: {
-                    display: "NFT";
-                    valueInSubunits: number;
-                    currency: string;
-                    };
-                  })
-              }
-              */
+                //onPriceUpdate={ (quantity, unitPrice, networkFees, serviceFees, total) => {
+                onPriceUpdate={(priceSummary) => {
+                  console.log('Payment successful priceSummary', priceSummary);
+                  /*
+                  console.log('Payment successful quantity', quantity);
+                  console.log('Payment successful unitPrice', unitPrice);
+                  console.log('Payment successful networkFees', networkFees);
+                  console.log('Payment successful serviceFees', serviceFees);
+                  console.log('Payment successful total', total);
+                  */
+                }}
                 onPaymentSuccess={(result) => {
                   console.log('Payment successful result', result);
 
@@ -411,23 +452,3 @@ MintPage.getLayout = function getLayout(page) {
 //MintPage.title = 'Homepage';
 
 export default MintPage;
-
-export async function getServerSideProps(context: any) {
-  /*
-  // Retrieve id
-  const { params } = context;
-  const id = params.id;
-
-  // Fetch data
-  const result = await fetch(`[your API]/${id}`);
-  const data = await result.json();
-  */
-
-  const image = '/mint-bg.png';
-
-  return {
-    props: {
-      image: image,
-    },
-  };
-}
