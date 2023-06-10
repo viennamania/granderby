@@ -231,8 +231,6 @@ const MintPage: NextPageWithLayout = () => {
 
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:image" content="/mint-bg.png"></meta>
-
-        <title>Granderby - Asset Manager</title>
       </Head>
 
       <div className="flex flex-col justify-center text-center">
