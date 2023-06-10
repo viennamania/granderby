@@ -201,16 +201,9 @@ const MintPage: NextPageWithLayout = () => {
 
   return (
     <>
+      {/*
       <Head>
-        {/* maximum-scale 1 meta tag need to prevent ios input focus auto zooming */}
-
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1 maximum-scale=1"
-        />
-
-        <meta property="og:type" content="website"></meta>
-
+ 
         <meta
           property="og:site_name"
           content="GRANDERBY - powered by MOMOCON"
@@ -232,6 +225,8 @@ const MintPage: NextPageWithLayout = () => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:image" content="/mint-bg.png"></meta>
       </Head>
+
+      */}
 
       <div className="flex flex-col justify-center text-center">
         {/* Header */}
