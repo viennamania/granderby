@@ -187,7 +187,9 @@ const MintPage: NextPageWithLayout = () => {
   return (
     <div className="flex flex-col justify-center text-center">
       {/* Header */}
-      <h1 className="mb-2 mt-12 text-3xl">Mint Horse</h1>
+      <h1 className="mb-2 mt-2 text-3xl">Mint Horse</h1>
+
+      <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
 
       <div className="mb-10">
         {!address ? (
@@ -198,8 +200,6 @@ const MintPage: NextPageWithLayout = () => {
         ) : (
           <>
             <div className="m-5">Wallet connected</div>
-
-            <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
           </>
         )}
 
