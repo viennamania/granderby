@@ -11,6 +11,8 @@ import Button from '@/components/ui/button';
 import { ConnectButton } from '@paperxyz/embedded-wallet-service-rainbowkit';
 //import { renderPaperCheckoutLink } from '@paperxyz/js-client-sdk';
 
+import { CheckoutWithCard } from '@paperxyz/react-client-sdk';
+
 //import { useAccount } from 'wagmi';
 
 //import RootLayout from './layout';
@@ -99,7 +101,8 @@ const MintPage: NextPageWithLayout = () => {
 
   const [loading, setLoading] = useState(true);
   const [hasNFT, setHasNFT] = useState(false);
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+
+  const [sdkClientSecret, setSdkClientSecret] = useState();
 
   // Thirdweb Stuff
   //const sdk = new ThirdwebSDK('mumbai');
@@ -163,12 +166,33 @@ const MintPage: NextPageWithLayout = () => {
   if (loading) return null;
   */
 
+  useEffect(() => {
+    const checkSdkClientSecret = async () => {
+      if (address) {
+        const res = await fetch('/api/checkout');
+
+        //console.log("res", res);
+
+        const { sdkClientSecret } = await res.json();
+
+        //console.log("sdkClientSecret", sdkClientSecret);
+
+        setSdkClientSecret(sdkClientSecret);
+      }
+    };
+
+    checkSdkClientSecret();
+  }, [address]);
+
   return (
     <div className="text-center">
       {/* Header */}
       <h1 className="mb-2 mt-12 text-3xl">Mint Horse</h1>
 
       <div className="mb-10">
+        <ConnectWallet theme="light" />
+
+        {/*
         {!address && <div className="m-5">No wallet connected</div>}
 
         <Web3Button
@@ -188,19 +212,23 @@ const MintPage: NextPageWithLayout = () => {
               console.log(e);
             }
           }}
-          /*
-        onSuccess={() => {
-          alert('NFT Claimed!');
-          ////router.push("/stake");
-        }}
-        onError={(error) => {
-          alert(error);
-        }}
-        */
+
         >
           Claim An Horse NFT
         </Web3Button>
+        */}
       </div>
+
+      {sdkClientSecret && (
+        <div className="mb-10">
+          <CheckoutWithCard
+            sdkClientSecret={sdkClientSecret}
+            onPaymentSuccess={(result) => {
+              console.log('Payment successful result', result);
+            }}
+          />
+        </div>
+      )}
 
       <div
         className={cn(

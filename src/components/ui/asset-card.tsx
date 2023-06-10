@@ -35,8 +35,15 @@ export function AssetCard({
         {name}
       </h4>
 
-      <div className="relative rounded-lg">
-        <Image src={logo} alt={name} width={500} height={500} priority />
+      <div className="relative">
+        <Image
+          src={logo}
+          alt={name}
+          width={500}
+          height={500}
+          priority
+          className="rounded-lg"
+        />
       </div>
 
       {/*
