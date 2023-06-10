@@ -15,6 +15,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   /*
+  const found = NFTList.find((element: any) => element.id === req.query.id);
+
+  res.status(200).json(found);
+*/
+
+  const walletAddress = req.query.address;
+
+  /*
 
 curl --request POST \
      --url https://withpaper.com/api/2022-08-12/checkout-sdk-intent \
@@ -65,7 +73,7 @@ $response = $client->request('POST', 'https://withpaper.com/api/2022-08-12/check
 echo $response->getBody();
 */
 
-  console.log('checkout API');
+  console.log('checkout API walletAddress', walletAddress);
 
   const resp = await fetch(
     'https://withpaper.com/api/2022-08-12/checkout-sdk-intent',
@@ -78,22 +86,16 @@ echo $response->getBody();
       },
       body: JSON.stringify({
         contractId: '39616f9c-1017-44f5-80dd-e3819708e570', //from the Contract Registration endpoint
-        walletAddress: '0x54C19eD3D131307e5D6B50d28Ea1E7A12ac52Af0',
+        walletAddress: walletAddress,
       }),
     }
   );
-
-  /*
-  const respjson = await resp.json();
-
-  console.log("checkout API resp", respjson);
-  */
 
   if (resp.ok) {
     const { sdkClientSecret } = await resp.json();
     // Pass this sdkClientSecret to your frontend 👇
 
-    ///console.log("sdkClientSecret", sdkClientSecret);
+    //console.log("sdkClientSecret", sdkClientSecret);
 
     res.status(200).json({ sdkClientSecret: sdkClientSecret });
 

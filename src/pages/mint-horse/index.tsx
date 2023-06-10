@@ -169,7 +169,7 @@ const MintPage: NextPageWithLayout = () => {
   useEffect(() => {
     const checkSdkClientSecret = async () => {
       if (address) {
-        const res = await fetch('/api/checkout');
+        const res = await fetch('/api/checkout?address=' + address);
 
         //console.log("res", res);
 
