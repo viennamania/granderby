@@ -48,6 +48,8 @@ import {
 
 import { Stack, Snackbar, Alert } from '@mui/material';
 
+import Head from 'next/head';
+
 export type BlogPost = {
   title: string;
   description: string;
@@ -198,25 +200,60 @@ const MintPage: NextPageWithLayout = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center text-center">
-      {/* Header */}
-      <h1 className="mb-2 mt-2 text-3xl">Mint Horse</h1>
+    <>
+      <Head>
+        {/* maximum-scale 1 meta tag need to prevent ios input focus auto zooming */}
 
-      <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 maximum-scale=1"
+        />
 
-      <div className="mb-10">
-        {!address ? (
-          <>
-            <div className="m-5">No wallet connected</div>
-            <ConnectWallet theme="light" />
-          </>
-        ) : (
-          <>
-            <div className="m-5">Wallet connected</div>
-          </>
-        )}
+        <meta property="og:type" content="website"></meta>
 
-        {/*
+        <meta
+          property="og:site_name"
+          content="GRANDERBY - powered by MOMOCON"
+        ></meta>
+        <meta
+          property="og:title"
+          content="GRANDERBY- powered by MOMOCON"
+        ></meta>
+        <meta
+          property="og:description"
+          content="Mint your granderby NFT"
+        ></meta>
+
+        <meta property="og:image" content="/mint-bg.png"></meta>
+
+        <meta property="og:image:width" content="1400"></meta>
+        <meta property="og:image:height" content="1400"></meta>
+
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:image" content="/mint-bg.png"></meta>
+
+        <title>Granderby - Asset Manager</title>
+      </Head>
+
+      <div className="flex flex-col justify-center text-center">
+        {/* Header */}
+        <h1 className="mb-2 mt-2 text-3xl">Mint Horse</h1>
+
+        <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
+
+        <div className="mb-10">
+          {!address ? (
+            <>
+              <div className="m-5">No wallet connected</div>
+              <ConnectWallet theme="light" />
+            </>
+          ) : (
+            <>
+              <div className="m-5">Wallet connected</div>
+            </>
+          )}
+
+          {/*
         {!address && <div className="m-5">No wallet connected</div>}
 
         <Web3Button
@@ -241,9 +278,9 @@ const MintPage: NextPageWithLayout = () => {
           Claim An Horse NFT
         </Web3Button>
         */}
-      </div>
+        </div>
 
-      {/*
+        {/*
       
 // Assume a container exists:
 //
@@ -269,12 +306,12 @@ createCheckoutWithCardElement({
 
       */}
 
-      <div className="mb-10 flex flex-row justify-center">
-        {sdkClientSecret && (
-          <div className="w-[380px]">
-            <CheckoutWithCard
-              sdkClientSecret={sdkClientSecret}
-              /*
+        <div className="mb-10 flex flex-row justify-center">
+          {sdkClientSecret && (
+            <div className="w-[380px]">
+              <CheckoutWithCard
+                sdkClientSecret={sdkClientSecret}
+                /*
               onPriceUpdate={
                 ({
                   quantity: "1";
@@ -287,35 +324,40 @@ createCheckoutWithCardElement({
                   })
               }
               */
-              onPaymentSuccess={(result) => {
-                console.log('Payment successful result', result);
+                onPaymentSuccess={(result) => {
+                  console.log('Payment successful result', result);
 
-                mintNFT();
-              }}
-            />
-          </div>
-        )}
-      </div>
+                  mintNFT();
+                }}
+              />
+            </div>
+          )}
+        </div>
 
-      <div
-        className={cn(
-          'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
-          layout === LAYOUT_OPTIONS.RETRO ? 'md:grid-cols-2' : 'md:grid-cols-1'
-        )}
-      >
-        {ownedNfts?.map((nft) => (
-          <div
-            className="mb-5 flex flex-col items-center justify-center"
-            key={nft.metadata.id.toString()}
-          >
-            <ThirdwebNftMedia metadata={nft.metadata} className="rounded-lg " />
-            <h4>{nft.metadata.name}</h4>
-          </div>
-        ))}
-      </div>
+        <div
+          className={cn(
+            'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+            layout === LAYOUT_OPTIONS.RETRO
+              ? 'md:grid-cols-2'
+              : 'md:grid-cols-1'
+          )}
+        >
+          {ownedNfts?.map((nft) => (
+            <div
+              className="mb-5 flex flex-col items-center justify-center"
+              key={nft.metadata.id.toString()}
+            >
+              <ThirdwebNftMedia
+                metadata={nft.metadata}
+                className="rounded-lg "
+              />
+              <h4>{nft.metadata.name}</h4>
+            </div>
+          ))}
+        </div>
 
-      {/* Blog Posts */}
-      {/*
+        {/* Blog Posts */}
+        {/*
       {hasNFT ? (
         <div className="bg-dark-main text-light-main mx-auto mb-10 mt-8 max-w-5xl p-4">
           <div className="grid grid-cols-2 gap-4">
@@ -353,8 +395,8 @@ createCheckoutWithCardElement({
       )}
             */}
 
-      {/* Buy NFT Button */}
-      {/*
+        {/* Buy NFT Button */}
+        {/*
       {!address ? null : hasNFT ? null : (
         <button
           onClick={() =>
@@ -369,14 +411,15 @@ createCheckoutWithCardElement({
       )}
         */}
 
-      {/*
+        {/*
 <Stack spacing={2} sx={{ width: "100%" }}>
    
 
 
 </Stack>
    */}
-    </div>
+      </div>
+    </>
   );
 };
 
