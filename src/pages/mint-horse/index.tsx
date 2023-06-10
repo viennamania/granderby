@@ -185,12 +185,23 @@ const MintPage: NextPageWithLayout = () => {
   }, [address]);
 
   return (
-    <div className="text-center">
+    <div className="flex flex-col justify-center text-center">
       {/* Header */}
       <h1 className="mb-2 mt-12 text-3xl">Mint Horse</h1>
 
       <div className="mb-10">
-        <ConnectWallet theme="light" />
+        {!address ? (
+          <>
+            <div className="m-5">No wallet connected</div>
+            <ConnectWallet theme="light" />
+          </>
+        ) : (
+          <>
+            <div className="m-5">Wallet connected</div>
+
+            <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
+          </>
+        )}
 
         {/*
         {!address && <div className="m-5">No wallet connected</div>}
@@ -219,16 +230,57 @@ const MintPage: NextPageWithLayout = () => {
         */}
       </div>
 
-      {sdkClientSecret && (
-        <div className="mb-10">
-          <CheckoutWithCard
-            sdkClientSecret={sdkClientSecret}
-            onPaymentSuccess={(result) => {
-              console.log('Payment successful result', result);
-            }}
-          />
-        </div>
-      )}
+      {/*
+      
+// Assume a container exists:
+//
+//      <div id="paper-checkout-container" width="380px" />
+//
+createCheckoutWithCardElement({
+  sdkClientSecret: "MY_SDK_CLIENT_SECRET",
+  elementOrId: "paper-checkout-container",
+  appName: "My Web3 App",
+  options,
+  onError(error) {
+    console.error("Payment error:", error);
+  },
+  onPaymentSuccess({ id }) {
+    console.log("Payment successful.");
+  },
+});
+
+// Alternatively, insert the iframe programmatically:
+//
+//      const iframe = createCheckoutWithCardElement(...)
+//      document.getElementById('paper-checkout-container').appendChild(iframe);
+
+      */}
+
+      <div className="mb-10 flex flex-row justify-center">
+        {sdkClientSecret && (
+          <div className="w-[380px]">
+            <CheckoutWithCard
+              sdkClientSecret={sdkClientSecret}
+              /*
+            onPriceUpdate={
+              ({
+                quantity: "1";
+                unitPrice: 1.9;
+                total: {
+                  display: "NFT";
+                  valueInSubunits: number;
+                  currency: string;
+                  };
+                })
+            }
+            */
+              onPaymentSuccess={(result) => {
+                console.log('Payment successful result', result);
+              }}
+            />
+          </div>
+        )}
+      </div>
 
       <div
         className={cn(
