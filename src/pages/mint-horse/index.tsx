@@ -184,6 +184,19 @@ const MintPage: NextPageWithLayout = () => {
     checkSdkClientSecret();
   }, [address]);
 
+  const mintNFT = async () => {
+    try {
+      const contract = await sdk.getContract(nftDropContractAddressHorse);
+
+      const tx = await contract.erc721.claim(1);
+
+      console.log(tx);
+      alert('NFT Claimed!');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center text-center">
       {/* Header */}
@@ -262,20 +275,22 @@ createCheckoutWithCardElement({
             <CheckoutWithCard
               sdkClientSecret={sdkClientSecret}
               /*
-            onPriceUpdate={
-              ({
-                quantity: "1";
-                unitPrice: 1.9;
-                total: {
-                  display: "NFT";
-                  valueInSubunits: number;
-                  currency: string;
-                  };
-                })
-            }
-            */
+              onPriceUpdate={
+                ({
+                  quantity: "1";
+                  unitPrice: 1.9;
+                  total: {
+                    display: "NFT";
+                    valueInSubunits: number;
+                    currency: string;
+                    };
+                  })
+              }
+              */
               onPaymentSuccess={(result) => {
                 console.log('Payment successful result', result);
+
+                mintNFT();
               }}
             />
           </div>
