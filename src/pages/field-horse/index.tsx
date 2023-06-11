@@ -67,7 +67,7 @@ const FieldPage: NextPageWithLayout<
             src={fieldData?.cover_image?.thumbnail}
             placeholder="blur"
             fill
-            className="object-contain"
+            className="object-cover"
             alt="Cover Image"
           />
         </div>

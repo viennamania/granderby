@@ -218,7 +218,16 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h2 className="flex justify-center ">Your rented horses</h2>
+          <div className="mb-5 flex flex-col justify-center">
+            {!address ? (
+              <>
+                <ConnectWallet theme="light" />
+                <h4>to see your rented horses</h4>
+              </>
+            ) : (
+              <h4>Your rented horses</h4>
+            )}
+          </div>
 
           <div
             className={cn(

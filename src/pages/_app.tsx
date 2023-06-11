@@ -33,6 +33,8 @@ import '@/assets-landing/css/swiper.min.css';
 
 import { useState } from 'react';
 
+import Head from 'next/head';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -58,13 +60,42 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
       : process.env.NEXT_PUBLIC_CLIENT_ID;
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        attribute="class"
-        enableSystem={false}
-        defaultTheme="light"
-      >
-        {/*
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 maximum-scale=1"
+        />
+        <meta property="og:type" content="website"></meta>
+
+        <meta property="og:site_name" content="GRANDERBY"></meta>
+        <meta name="twitter:card" content="summary_large_image"></meta>
+
+        <meta property="og:image:width" content="1400"></meta>
+        <meta property="og:image:height" content="1400"></meta>
+
+        <meta
+          property="og:title"
+          content="Granderby - powered by MOMOCON"
+        ></meta>
+        <meta
+          property="og:description"
+          content="GRANDERBY is a game where players raise and manage NFT horses to enter them into races and earn tokens."
+        ></meta>
+        <meta property="og:image" content="/intro-bg.png"></meta>
+
+        <meta name="twitter:image" content="/intro-bg.png"></meta>
+
+        <title>Granderby - powered by MOMOCON</title>
+      </Head>
+
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider
+          attribute="class"
+          enableSystem={false}
+          defaultTheme="light"
+        >
+          {/*
 
         <PaperEmbeddedWalletProvider
           appName="Paper RainbowKit Provider"
@@ -76,46 +107,47 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         >
         */}
 
-        <ThirdwebProvider
-          activeChain={Polygon}
-          supportedWallets={[
-            paperWallet({
-              clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
-            }),
-          ]}
-          sdkOptions={{
-            gasless: {
-              openzeppelin: {
-                relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
+          <ThirdwebProvider
+            activeChain={Polygon}
+            supportedWallets={[
+              paperWallet({
+                clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
+              }),
+            ]}
+            sdkOptions={{
+              gasless: {
+                openzeppelin: {
+                  relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
+                },
               },
-            },
-          }}
-        >
-          {/*
+            }}
+          >
+            {/*
             <WalletProvider>
       */}
-          {/* <div className={`${firaCode.variable} font-body`}> */}
+            {/* <div className={`${firaCode.variable} font-body`}> */}
 
-          {getLayout(<Component {...pageProps} />)}
+            {getLayout(<Component {...pageProps} />)}
 
-          <SettingsButton />
+            <SettingsButton />
 
-          <SettingsDrawer />
+            <SettingsDrawer />
 
-          <ModalsContainer />
-          <DrawersContainer />
-          {/* </div> */}
+            <ModalsContainer />
+            <DrawersContainer />
+            {/* </div> */}
 
-          {/*
+            {/*
             </WalletProvider>
     */}
-        </ThirdwebProvider>
+          </ThirdwebProvider>
 
-        {/*   
+          {/*   
         </PaperEmbeddedWalletProvider>
       */}
-      </ThemeProvider>
-    </QueryClientProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 
