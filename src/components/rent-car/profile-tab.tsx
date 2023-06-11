@@ -112,8 +112,12 @@ export default function ProfileTab() {
     nftDropContractAddressCar,
     'nft-drop'
   );
+
+  //console.log("nftDropContract", nftDropContract);
+
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
+  console.log('nftDropContractAddressCar', nftDropContractAddressCar);
   console.log('ownedNfts', ownedNfts);
 
   const { contract: tokenContract } = useContract(

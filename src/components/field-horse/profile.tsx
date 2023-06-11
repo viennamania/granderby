@@ -40,6 +40,8 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 import NFTGrid from '@/components/ui/nft-card-small';
 
+import Races from '@/components/races/races';
+
 export default function Profile() {
   const { isGridCompact } = useGridSwitcher();
 
@@ -171,7 +173,12 @@ export default function Profile() {
     >
       */}
 
-      <div className="shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
+      <div className="mb-10 shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
+        <h4>Race List</h4>
+        <Races />
+      </div>
+
+      <div className=" shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
         <div className="text-center ltr:md:text-left rtl:md:text-right">
           <h4>Rented horses for field</h4>
 

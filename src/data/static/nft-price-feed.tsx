@@ -7,7 +7,9 @@ import { Bitcoin } from '@/components/icons/bitcoin';
 import { Tether } from '@/components/icons/tether';
 import { Bnb } from '@/components/icons/bnb';
 import { Cardano } from '@/components/icons/cardano';
+
 import { HorseIcon } from '@/components/icons/horse';
+
 import { RaceIcon } from '@/components/icons/race-icon';
 import { PowerIcon } from '@/components/icons/power';
 

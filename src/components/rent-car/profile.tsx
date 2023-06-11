@@ -7,7 +7,7 @@ import { Copy } from '@/components/icons/copy';
 import Button from '@/components/ui/button';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import Avatar from '@/components/ui/avatar';
-import ProfileTab from '@/components/rent-car/profile-tab';
+import ProfileTab from './profile-tab';
 
 import {
   nftDropContractAddressCar,
