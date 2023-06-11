@@ -327,14 +327,17 @@ const MintPage: NextPageWithLayout<
           )}
         </div>
 
-        <div className="mb-3 mt-12">
+        <div className="mb-3 mt-16">
           {!address ? (
             <>
               <ConnectWallet theme="light" />
               <h4>to see your owned horses</h4>
             </>
           ) : (
-            <h3>Your owned horses</h3>
+            <>
+              <h3>Your owned horses</h3>
+              <h4 className="">Rented horses are not listed</h4>
+            </>
           )}
         </div>
 

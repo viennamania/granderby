@@ -1,16 +1,26 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
+
 import CoinSlider from '@/components/ui/coin-card';
+import AssetSlider from '@/components/ui/asset-card';
+
 import OverviewChart from '@/components/ui/chats/overview-chart';
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
 import TopPools from '@/components/ui/top-pools';
 import TransactionTable from '@/components/transaction/transaction-table';
 import TopCurrencyTable from '@/components/top-currency/currency-table';
+
 import { coinSlideData } from '@/data/static/coin-slide-data';
+import { assetSlideData } from '@/data/static/asset-slide-data';
+
 import Avatar from '@/components/ui/avatar';
 import TopupButton from '@/components/ui/topup-button';
+
+import Image from '@/components/ui/image';
+import IcoApple from '@/assets-landing/images/ico-apple.svg';
+import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 
 //images
 import AuthorImage from '@/assets/images/author.jpg';
@@ -89,14 +99,29 @@ export default function ModernScreen() {
       <NextSeo title="Criptic" description="Granderby - Web3 NFT Game" />
 
       <div className="flex flex-wrap">
-        <div className="mb-8 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
-          <CoinSlider coins={coinSlideData} />
-        </div>
+        {!address && (
+          <>
+            <video
+              id="intro-video"
+              src="/mov/intro.mp4"
+              muted
+              autoPlay
+              className="rounded-lg"
+            ></video>
+
+            <div className="mt-10 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
+              <AssetSlider coins={assetSlideData} />
+            </div>
+          </>
+        )}
 
         <div className="w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
           <div className="flex h-full flex-col justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
             {!address ? (
-              <ConnectWallet theme="light" />
+              <div className="flex flex-col justify-center">
+                <ConnectWallet theme="light" />
+                <h3> to experience the GRANDERBY service</h3>
+              </div>
             ) : (
               <>
                 <Avatar
@@ -149,6 +174,7 @@ export default function ModernScreen() {
         </div>
       </div>
 
+      {/*
       <div className="mt-8 grid gap-6 sm:my-10 md:grid-cols-2">
         <LiquidityChart />
         <VolumeChart />
@@ -157,6 +183,7 @@ export default function ModernScreen() {
       <div className="my-8 sm:my-10">
         <TopCurrencyTable />
       </div>
+
 
       <div className="flex flex-wrap">
         <div
@@ -173,6 +200,20 @@ export default function ModernScreen() {
         >
           <OverviewChart />
           <TopPools />
+        </div>
+      </div>
+          */}
+
+      <div className="flex flex-row ">
+        <div className="btn-wrap w-full ">
+          <button className="btn-app">
+            <Image src={IcoApple} alt="" width={100} height={100} />
+            Download App
+          </button>
+          <button className="btn-app">
+            <Image src={IcoAndroid} alt="" width={100} height={100} />
+            Download App
+          </button>
         </div>
       </div>
     </>
