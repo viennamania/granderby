@@ -141,6 +141,33 @@ export const menuItems = [
     ],
   },
 
+  {
+    name: 'FIELD',
+    icon: <FarmIcon />,
+    href: routes.fieldHorse,
+    dropdownItems: [
+      {
+        name: 'Horse',
+        icon: <CompassIcon />,
+        href: routes.fieldHorse,
+      },
+      /*
+      {
+        name: 'Jockey',
+        icon: <PlusCircle />,
+        href: routes.fieldJockey,
+      },
+      */
+      /*
+      {
+        name: 'TRVC',
+        icon: <PlusCircle />,
+        href: routes.rentTRVC,
+      },
+      */
+    ],
+  },
+
   /*
   {
     name: 'Landing',

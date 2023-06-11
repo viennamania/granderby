@@ -218,7 +218,7 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h2 className="flex justify-center ">Your Staked Horses</h2>
+          <h2 className="flex justify-center ">Your rented horses</h2>
 
           <div
             className={cn(
@@ -237,7 +237,7 @@ export default function ProfileTab() {
               ))}
           </div>
 
-          <h2 className="mt-10 flex justify-center">Your Unstaked Horses</h2>
+          <h2 className="mt-10 flex justify-center">Your horses</h2>
 
           <div
             className={cn(

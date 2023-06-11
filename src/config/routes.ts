@@ -47,6 +47,10 @@ const routes = {
   rentJockey: '/rent-jockey',
   rentTRVC: '/rent-trvc',
 
+  fieldHorse: '/field-horse',
+  //fieldJockey: '/field-jockey',
+  //fieldTRVC: '/field-trvc',
+
   stake: '/stake',
 
   apiBlogPosts: '/api/blogPosts',

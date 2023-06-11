@@ -125,6 +125,7 @@ export default function MomoconLayout({
   return (
     <>
       <Header />
+
       <div className="bg-light-100 dark:bg-dark-100 mt-8 flex min-h-screen flex-col gap-6 px-4 sm:px-6 lg:px-8 3xl:px-10">
         <main className="mx-auto mb-12 flex w-full max-w-[2160px] flex-grow flex-col">
           {children}
