@@ -1,3 +1,4 @@
+import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { NextPageWithLayout } from '@/types';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -44,7 +45,23 @@ import {
   Web3Button,
 } from '@thirdweb-dev/react';
 
-const ProposalsPage: NextPageWithLayout = () => {
+import Head from 'next/head';
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      title: 'Granderby - Home',
+      description: 'powered by MOMOCON',
+      image: '/intro-bg.png',
+    },
+  };
+};
+
+const ProposalsPage: NextPageWithLayout<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = (props) => {
+  const { title, image, description } = props;
+
   const router = useRouter();
   const { layout } = useLayout();
   const { totalVote: totalActiveVote } = getVotesByStatus('active');
@@ -91,6 +108,33 @@ const ProposalsPage: NextPageWithLayout = () => {
         description="Granderby - NFT Horse Racing Game"
       />
 
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 maximum-scale=1"
+        />
+        <meta property="og:type" content="website"></meta>
+
+        <meta property="og:site_name" content="GRANDERBY"></meta>
+        <meta name="twitter:card" content="summary_large_image"></meta>
+
+        <meta property="og:image:width" content="1400"></meta>
+        <meta property="og:image:height" content="1400"></meta>
+
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:description" content={description}></meta>
+        <meta property="og:image" content={image}></meta>
+
+        <meta name="twitter:image" content={image}></meta>
+
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        ></meta>
+
+        <title>{title}</title>
+      </Head>
+
       <div className=" w-full">
         {!address ? (
           <ConnectWallet theme="light" />
@@ -105,7 +149,14 @@ const ProposalsPage: NextPageWithLayout = () => {
 
         <iframe
           //className='w-full h-[600px]'
-          src="http://live.granderby.io"
+
+          ///src="http://live.granderby.io"
+
+          src="https://granderby.io/redirect.html"
+          ///src="http://localhost:3000/redirect.html"
+
+          //src="https://www.google.com/search?q=%http://live.granderby.io"
+
           //width="600px"
 
           //style={{ with: '100%' }}
