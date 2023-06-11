@@ -10,7 +10,7 @@ export default function RetroScreen() {
   return (
     <>
       <NextSeo
-        title="Criptic - Retro"
+        title="Granderby - Retro"
         description="Granderby - Web3 NFT Game"
       />
 

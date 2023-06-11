@@ -103,7 +103,7 @@ export default function MinimalScreen() {
   return (
     <>
       <NextSeo
-        title="Criptic Minimal"
+        title="Granderby Minimal"
         description="Granderby - Web3 NFT Game"
       />
       <div className="">

@@ -17,7 +17,7 @@ export const priceFeedData = [
   {
     id: '0',
     name: 'DISCOREA',
-    symbol: 'USDC',
+    symbol: 'USD',
     balance: '12.22',
     usdBalance: '11,032.24',
     logo: HorseImage1,
@@ -40,7 +40,7 @@ export const priceFeedData = [
   {
     id: '1',
     name: 'WESTERN',
-    symbol: 'USDC',
+    symbol: 'USD',
     balance: '422.45',
     usdBalance: '1,032.24',
     logo: HorseImage1,
@@ -63,7 +63,7 @@ export const priceFeedData = [
   {
     id: '2',
     name: 'WINTER',
-    symbol: 'USDC',
+    symbol: 'USD',
     balance: '43.20',
     usdBalance: '532.94',
     logo: HorseImage1,
@@ -86,7 +86,7 @@ export const priceFeedData = [
   {
     id: '3',
     name: 'MOTRICO',
-    symbol: 'USDC',
+    symbol: 'USD',
     balance: '6.55',
     usdBalance: '340.24',
     logo: HorseImage1,
@@ -109,7 +109,7 @@ export const priceFeedData = [
   {
     id: '4',
     name: 'TIZIANO',
-    symbol: 'BUSD',
+    symbol: 'USD',
     balance: '240.55',
     usdBalance: '340.24',
     logo: HorseImage1,
@@ -132,7 +132,7 @@ export const priceFeedData = [
   {
     id: '5',
     name: 'VIENNA',
-    symbol: 'BUSD',
+    symbol: 'USD',
     balance: '240.55',
     usdBalance: '340.24',
     logo: HorseImage1,

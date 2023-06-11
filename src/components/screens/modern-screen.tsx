@@ -100,7 +100,7 @@ export default function ModernScreen() {
 
   return (
     <>
-      <NextSeo title="Criptic" description="Granderby - Web3 NFT Game" />
+      <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
       <div className="flex flex-wrap">
         {!address && (

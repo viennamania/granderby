@@ -42,7 +42,7 @@ export default function ClassicScreen() {
   return (
     <>
       <NextSeo
-        title="Criptic Classic Demo"
+        title="Granderby Classic Demo"
         description="Granderby - Web3 NFT Game"
       />
       <div className="flex flex-wrap">
