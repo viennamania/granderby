@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CurrencySwapIcons from '@/components/ui/currency-swap-icons';
 import { CoinList } from '@/components/ui/currency-swap-icons';
 import TransactionInfo from '@/components/ui/transaction-info';
 
 import { HorseIcon } from '@/components/icons/horse';
+
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+
+import { contractAddressRace } from '../../config/contractAddresses';
+
+import { BigNumber, ethers } from 'ethers';
 
 interface RaceListTypes {
   from: string;
@@ -14,6 +20,8 @@ interface RaceListTypes {
   liquidity: string;
   multiplier: string;
 }
+
+const sdk = new ThirdwebSDK('polygon');
 
 export default function RaceList({
   from,
@@ -27,6 +35,20 @@ export default function RaceList({
   let [isExpand, setIsExpand] = useState(false);
   const setFrom = from as CoinList;
   const setTo = to as CoinList;
+
+  const [totalSupply, setTotalSupply] = useState<BigNumber>(0);
+
+  useEffect(() => {
+    const main = async () => {
+      const contract = await sdk.getContract(contractAddressRace);
+
+      const totalSupply = await contract.erc1155.totalSupply(0);
+
+      setTotalSupply(totalSupply);
+    };
+
+    main();
+  }, []);
 
   return (
     <div className="relative mb-3 overflow-hidden rounded-lg bg-white shadow-card transition-all last:mb-0 hover:shadow-large dark:bg-light-dark">
@@ -43,9 +65,16 @@ export default function RaceList({
 
         <div className="px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm">
           <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
-            Earned
+            Race Num
           </span>
           {earned}
+        </div>
+
+        <div className="px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm">
+          <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
+            Entry Count
+          </span>
+          {Number(ethers.utils.formatUnits(totalSupply, 18)).toFixed(0)}
         </div>
 
         {/*

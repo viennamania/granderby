@@ -40,7 +40,7 @@ import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 
 import { BigNumber, ethers } from 'ethers';
 
-import NFTCard from '../nft-horse/NFTCard';
+import NFTCard from './NFTCard';
 
 import { Stack, Snackbar, Alert } from '@mui/material';
 

@@ -72,3 +72,5 @@ export const tokenContractAddressGRD =
 // USDC Token (USDC)
 export const tokenContractAddressUSDC =
   '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174';
+
+export const contractAddressRace = '0x5e52c17869F8fF63Eeb5f832Bfbf98465bc213bf';
