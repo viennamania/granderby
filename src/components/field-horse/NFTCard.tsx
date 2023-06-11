@@ -63,7 +63,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
               console.error('Failed to enter', error);
             }}
           >
-            Enter
+            Enter (10 GRD)
           </Web3Button>
         </div>
       )}

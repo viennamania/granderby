@@ -44,6 +44,8 @@ export default function RaceList({
 
       const totalSupply = await contract.erc1155.totalSupply(0);
 
+      console.log('totalSupply', totalSupply);
+
       setTotalSupply(totalSupply);
     };
 
@@ -74,7 +76,7 @@ export default function RaceList({
           <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
             Entry Count
           </span>
-          {Number(ethers.utils.formatUnits(totalSupply, 18)).toFixed(0)}
+          {Number(ethers.utils.formatUnits(totalSupply, 0)).toFixed(0)}
         </div>
 
         {/*
