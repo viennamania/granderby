@@ -14,13 +14,17 @@ import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
 import CryptocurrencyPricingTable from '@/components/cryptocurrency-pricing-table/cryptocurrency-pricing-table';
+
 import LivePricingSlider from '@/components/ui/live-pricing-slider';
+
 import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
+
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
 import CryptocurrencyPricingRetroTable from '@/components/cryptocurrency-pricing-table/cryptocurrency-pricing-retro-table';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient();
+
   try {
     await Promise.all([
       queryClient.prefetchQuery(
@@ -72,8 +76,12 @@ function CoinPrices() {
   return (
     <>
       <NextSeo title="Race List" description="Granderby - Web3 NFT Game" />
+
       <LivePricingSlider limits={4} />
+
+      {/*
       <CryptocurrencyPricingTable />
+  */}
     </>
   );
 }
