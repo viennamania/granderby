@@ -12,6 +12,7 @@ import MomoconScreen from '@/components/screens/momocon-screen';
 import Head from 'next/head';
 
 import Image from '@/components/ui/image';
+
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 
 import { Github } from '@/components/icons/brands/github';

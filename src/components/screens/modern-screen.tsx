@@ -112,18 +112,18 @@ export default function ModernScreen() {
               autoPlay
               className="rounded-lg"
             ></video>
-
-            <div className="mt-10 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
-              {/*
-              <AssetSlider coins={assetSlideData} />
-        */}
-
-              <LiveNftPricingSlider limits={4} />
-            </div>
           </>
         )}
 
-        <div className="w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
+        <div className="mt-5 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
+          {/*
+          <AssetSlider coins={assetSlideData} />
+        */}
+
+          <LiveNftPricingSlider limits={4} />
+        </div>
+
+        <div className="mt-10 w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
           <div className="flex h-full flex-col justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
             {!address ? (
               <div className="flex flex-col justify-center">
@@ -139,9 +139,11 @@ export default function ModernScreen() {
                   size="lg"
                 />
 
+                {/*
                 <div className="mb-5 flex justify-center">
                   <ConnectWallet theme="dark" />
                 </div>
+            */}
 
                 <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
                   My Balance
