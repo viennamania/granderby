@@ -46,6 +46,10 @@ import {
 
 import { BigNumber, ethers } from 'ethers';
 
+import LiveNftPricingSlider from '@/components/ui/live-nft-pricing-slider';
+
+import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
+
 export default function ModernScreen() {
   const address = useAddress();
 
@@ -110,7 +114,11 @@ export default function ModernScreen() {
             ></video>
 
             <div className="mt-10 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
+              {/*
               <AssetSlider coins={assetSlideData} />
+        */}
+
+              <LiveNftPricingSlider limits={4} />
             </div>
           </>
         )}

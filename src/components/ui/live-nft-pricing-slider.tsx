@@ -1,7 +1,7 @@
 import { ArrowUp } from '@/components/icons/arrow-up';
 import { ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { A11y, Pagination } from 'swiper';
+import { A11y, Pagination, Autoplay } from 'swiper';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import cn from 'classnames';
 import { priceFeedData } from '@/data/static/nft-price-feed';
@@ -145,13 +145,17 @@ export default function LiveNftPricingSlider({ limits }: { limits: number }) {
 
   return (
     <Swiper
-      modules={[Pagination, A11y]}
+      modules={[Autoplay, Pagination, A11y]}
       spaceBetween={24}
       slidesPerView={1}
       breakpoints={sliderBreakPoints}
       pagination={{ clickable: true }}
       observer={true}
       dir="ltr"
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
       className="w-full pb-10"
     >
       {priceFeedData.map((item) => (
