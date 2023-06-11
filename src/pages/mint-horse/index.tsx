@@ -299,52 +299,11 @@ const MintPage: NextPageWithLayout<
 
         <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
 
-        <div className="mb-10">
-          {!address ? (
-            <>
-              <div className="m-5">No wallet connected</div>
-              <ConnectWallet theme="light" />
-            </>
-          ) : (
-            <>
-              <div className="m-5">Wallet connected</div>
-            </>
-          )}
+        <h3 className="mt-10">Own your horse by minting</h3>
 
-          {/*
-        {!address && <div className="m-5">No wallet connected</div>}
-
-        <Web3Button
-          theme="light"
-          //colorMode="dark"
-          //accentColor="#5204BF"
-          contractAddress={nftDropContractAddressHorse}
-          action={async (contract) => {
-            //console.log('Web3Button contract=', contract);
-
-            try {
-              const tx = await contract.erc721.claim(1);
-
-              console.log(tx);
-              alert('NFT Claimed!');
-            } catch (e) {
-              console.log(e);
-            }
-          }}
-
-        >
-          Claim An Horse NFT
-        </Web3Button>
-        */}
-        </div>
-
-        {/*
-            <div id="paper-checkout-container" className="w-[380px]" />
-            */}
-
-        <div className="mb-10 flex flex-row justify-center">
+        <div className=" flex flex-row justify-center ">
           {sdkClientSecret && (
-            <div className="w-[380px]">
+            <div className="w-[380px] rounded-lg border p-5">
               <CheckoutWithCard
                 sdkClientSecret={sdkClientSecret}
                 //onPriceUpdate={ (quantity, unitPrice, networkFees, serviceFees, total) => {
@@ -368,9 +327,20 @@ const MintPage: NextPageWithLayout<
           )}
         </div>
 
+        <div className="mb-3 mt-12">
+          {!address ? (
+            <>
+              <ConnectWallet theme="light" />
+              <h4>to see your owned horses</h4>
+            </>
+          ) : (
+            <h3>Your owned horses</h3>
+          )}
+        </div>
+
         <div
           className={cn(
-            'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+            'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-4 4xl:grid-cols-4 ',
             layout === LAYOUT_OPTIONS.RETRO
               ? 'md:grid-cols-2'
               : 'md:grid-cols-1'
