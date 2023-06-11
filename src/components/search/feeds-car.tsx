@@ -51,12 +51,6 @@ export default function Feeds({ className }: { className?: string }) {
         nftDropContractAddressCar
       );
 
-      ///console.log('feeds-car response', response);
-
-      //Logging the response to the console
-
-      ///setHorses(response.nfts)
-
       const NFTList = response.nfts.map((nft) => {
         const { contract, title, tokenType, tokenId, description, media } = nft;
 
@@ -72,39 +66,10 @@ export default function Feeds({ className }: { className?: string }) {
             ? contract.openSea?.collectionName
             : '',
           price: '0',
-
-          /*
-          contract: contract.address,
-          symbol: contract.symbol,
-          media: media[0]?.gateway
-            ? media[0]?.gateway
-            : "https://via.placeholder.com/500",
-          collectionName: contract.openSea?.collectionName,
-          verified: contract.openSea?.safelistRequestStatus,
-          tokenType,
-          tokenId,
-          title,
-          description,
-          format: media[0]?.format ? media[0]?.format : "png",
-          */
         };
       });
 
-      //console.log("NFTList", NFTList);
-
       setHorses(NFTList);
-
-      ///setHorses([...horses, ...NFTList]);
-
-      ///setHorses([...horses, ...response.nfts]);
-
-      ///setHorses((horses) => [...horses, response.nfts]);
-
-      ///setHorses((horses) => [...horses, NFTList]);
-
-      //setHorses(horses.concat(response.nfts))
-
-      ///console.log(NFTList);
     };
 
     main();

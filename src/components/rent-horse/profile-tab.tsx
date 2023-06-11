@@ -218,7 +218,7 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h2 className="flex justify-center ">Your rented horses</h2>
+          <h2 className="flex justify-center ">My rented horses</h2>
 
           <div
             className={cn(

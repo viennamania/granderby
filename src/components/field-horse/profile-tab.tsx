@@ -222,16 +222,16 @@ export default function ProfileTab() {
             {!address ? (
               <>
                 <ConnectWallet theme="light" />
-                <h4>to see your rented horses</h4>
+                <h4>to see your rented horses for racing</h4>
               </>
             ) : (
-              <h4>Your rented horses</h4>
+              <h4>My rented horses</h4>
             )}
           </div>
 
           <div
             className={cn(
-              'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+              'grid  grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
               layout === LAYOUT_OPTIONS.RETRO
                 ? 'md:grid-cols-2'
                 : 'md:grid-cols-1'
