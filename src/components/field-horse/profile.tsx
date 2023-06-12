@@ -180,33 +180,32 @@ export default function Profile() {
       </div>
 
       <div className=" shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
-        <div className="text-center ltr:md:text-left rtl:md:text-right">
-          <h4>Rented horses for field</h4>
+        <h4>Rented horses for field</h4>
 
-          <div
-            className={cn(
-              'mt-5 grid grid-cols-6 gap-1 sm:grid-cols-2 md:grid-cols-3',
-              '3xl:!grid-cols-4 4xl:!grid-cols-5'
-            )}
-          >
-            {horses.map((nft) => (
-              <NFTGrid
-                key={nft.id}
-                name={nft.name}
-                image={nft.image}
-                author={nft.author}
-                authorImage={nft.authorImage}
-                price={nft.price}
-                collection={nft.collection}
-              />
-            ))}
-          </div>
+        <div
+          className={cn(
+            'mt-5 grid grid-cols-6 gap-1 sm:grid-cols-2 md:grid-cols-3',
+            '3xl:!grid-cols-4 4xl:!grid-cols-5'
+          )}
+        >
+          {horses.map((nft) => (
+            <NFTGrid
+              key={nft.id}
+              name={nft.name}
+              image={nft.image}
+              author={nft.author}
+              authorImage={nft.authorImage}
+              price={nft.price}
+              collection={nft.collection}
+            />
+          ))}
+        </div>
 
-          {!address ? (
-            <></>
-          ) : (
-            <>
-              {/*
+        {!address ? (
+          <></>
+        ) : (
+          <>
+            {/*
 
               <h2 className="text-xl font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl">
                 {authorData?.name}
@@ -237,7 +236,7 @@ export default function Profile() {
               </div>
                   */}
 
-              {/*
+            {/*
               <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Claimable Rewards for Horse</span>
                 <h3>
@@ -275,9 +274,8 @@ export default function Profile() {
                 </Web3Button>
               </div>
                 */}
-            </>
-          )}
-        </div>
+          </>
+        )}
       </div>
 
       <div className="grow pb-9 pt-6 md:-mt-2.5 md:pb-0 md:pt-1.5 md:ltr:pl-7 md:rtl:pr-7 lg:ltr:pl-10 lg:rtl:pr-10 3xl:ltr:pl-14 3xl:rtl:pr-14">

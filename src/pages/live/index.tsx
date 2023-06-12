@@ -147,6 +147,7 @@ const ProposalsPage: NextPageWithLayout<
           </div>
         )}
 
+        {/*
         <iframe
           //className='w-full h-[600px]'
 
@@ -165,6 +166,7 @@ const ProposalsPage: NextPageWithLayout<
           width={1100}
           height={670}
         ></iframe>
+        */}
       </div>
 
       {/*
