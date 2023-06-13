@@ -35,10 +35,18 @@ export const nftDropContractAddressReddit =
 export const nftDropContractAddressTrump =
   '0x24A11e702CD90f034Ea44FaF1e180C0C654AC5d9';
 
-///export const stakingContractAddressHorse = '0xE0DC3d4cB15614f4be1C469AF494c9261a0495a5';
+///export const stakingContractAddressHorseAAA = '0xE0DC3d4cB15614f4be1C469AF494c9261a0495a5';
 
 // Happy Valley Racecourse for Horse
-export const stakingContractAddressHorse =
+export const stakingContractAddressHorseAAA =
+  '0xF8b219c425B7Ef110917Bd61AD65D68a6db6A407';
+
+//Kyoto Racecourse for Horse
+export const stakingContractAddressHorseBBB =
+  '0x215c4c0F7cbDE5a2e3d12a312B643B54Ca2fDb7b';
+
+// Churchill Downs Racecourse for Horse
+export const stakingContractAddressHorseCCC =
   '0xF8b219c425B7Ef110917Bd61AD65D68a6db6A407';
 
 // Happy Valley Racecourse for Jockey
