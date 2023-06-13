@@ -28,7 +28,7 @@ import {
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   stakingContractAddressJockey,
   tokenContractAddressGRD,
 } from '../../config/contractAddresses';
@@ -67,7 +67,7 @@ export default function MinimalScreen() {
     useState<BigNumber>();
 
   const { contract: stakingContractHorse, isLoading: isLoadingHorse } =
-    useContract(stakingContractAddressHorse);
+    useContract(stakingContractAddressHorseAAA);
 
   const { contract: stakingContractJockey, isLoading: isLoadingJockey } =
     useContract(stakingContractAddressJockey);

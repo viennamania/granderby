@@ -17,7 +17,7 @@ import {
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
   marketplaceContractAddress,
 } from '../../config/contractAddresses';
@@ -120,7 +120,7 @@ export default function ProfileTab() {
   );
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressHorseAAA
   );
 
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
@@ -137,14 +137,14 @@ export default function ProfileTab() {
 
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressHorseAAA
     );
 
     //onsole.log('isApproved', isApproved);
 
     if (!isApproved) {
       await nftDropContract?.setApprovalForAll(
-        stakingContractAddressHorse,
+        stakingContractAddressHorseAAA,
         true
       );
     }
@@ -178,11 +178,11 @@ export default function ProfileTab() {
     /*
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressHorseAAA
     );
 
     if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(stakingContractAddressHorse, true);
+      await nftDropContract?.setApprovalForAll(stakingContractAddressHorseAAA, true);
     }
 
     const data = await stakingContract?.call('stake', [id]);

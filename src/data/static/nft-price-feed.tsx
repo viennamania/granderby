@@ -13,11 +13,12 @@ import { HorseIcon } from '@/components/icons/horse';
 import { RaceIcon } from '@/components/icons/race-icon';
 import { PowerIcon } from '@/components/icons/power';
 
-import HorseImage1 from '@/assets/images/nft/Hrs_00006000.png';
+///import HorseImage1 from '@/assets/images/nft/Hrs_00006000.png';
+const HorseImage1 = '/images/NFT/nft_01.jpg';
 
 export const priceFeedData = [
   {
-    id: '0',
+    id: '524',
     name: 'DISCOREA',
     symbol: 'USD',
     balance: '12.22',
@@ -40,7 +41,7 @@ export const priceFeedData = [
     ],
   },
   {
-    id: '1',
+    id: '9645',
     name: 'WESTERN',
     symbol: 'USD',
     balance: '422.45',
@@ -63,7 +64,7 @@ export const priceFeedData = [
     ],
   },
   {
-    id: '2',
+    id: '2732',
     name: 'WINTER',
     symbol: 'USD',
     balance: '43.20',
@@ -86,7 +87,7 @@ export const priceFeedData = [
     ],
   },
   {
-    id: '3',
+    id: '7224',
     name: 'MOTRICO',
     symbol: 'USD',
     balance: '6.55',
@@ -109,7 +110,7 @@ export const priceFeedData = [
     ],
   },
   {
-    id: '4',
+    id: '413',
     name: 'TIZIANO',
     symbol: 'USD',
     balance: '240.55',
@@ -132,7 +133,7 @@ export const priceFeedData = [
     ],
   },
   {
-    id: '5',
+    id: '5032',
     name: 'VIENNA',
     symbol: 'USD',
     balance: '240.55',

@@ -9,7 +9,7 @@ type AuthorCardProps = {
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 

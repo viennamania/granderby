@@ -29,7 +29,7 @@ import phoneMobile from '@/assets-landing/images/0_asset.png';
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 

@@ -16,7 +16,7 @@ import {
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
   marketplaceContractAddress,
 } from '../../config/contractAddresses';
@@ -75,7 +75,7 @@ export default function ProfileTab() {
   );
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressHorseAAA
   );
 
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
@@ -92,14 +92,14 @@ export default function ProfileTab() {
 
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressHorseAAA
     );
 
     console.log('isApproved', isApproved);
 
     if (!isApproved) {
       await nftDropContract?.setApprovalForAll(
-        stakingContractAddressHorse,
+        stakingContractAddressHorseAAA,
         true
       );
     }
@@ -125,11 +125,11 @@ export default function ProfileTab() {
     /*
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorse
+      stakingContractAddressHorseAAA
     );
 
     if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(stakingContractAddressHorse, true);
+      await nftDropContract?.setApprovalForAll(stakingContractAddressHorseAAA, true);
     }
 
     const data = await stakingContract?.call('stake', [id]);
@@ -215,7 +215,7 @@ export default function ProfileTab() {
               </h4>
 
               <Web3Button
-                contractAddress={stakingContractAddressHorse}
+                contractAddress={stakingContractAddressHorseAAA}
                 action={() => stakeNft(nft.metadata.id)}
               >
                 Withdraw from Racetrack
@@ -239,7 +239,7 @@ export default function ProfileTab() {
 
               <div className="flex flex-row gap-2">
                 <Web3Button
-                  contractAddress={stakingContractAddressHorse}
+                  contractAddress={stakingContractAddressHorseAAA}
                   action={() => stakeNft(nft.metadata.id)}
                 >
                   Rent to Racetrack

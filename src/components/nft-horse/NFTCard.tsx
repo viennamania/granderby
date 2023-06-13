@@ -4,10 +4,12 @@ import {
   useNFT,
   Web3Button,
 } from '@thirdweb-dev/react';
+
 import type { FC } from 'react';
+
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
 } from '../../config/contractAddresses';
 
 import styles from '../../styles/Home.module.css';
@@ -38,9 +40,9 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             action={(contract) =>
               contract?.call('withdraw', [[nft.metadata.id]])
             }
-            contractAddress={stakingContractAddressHorse}
+            contractAddress={stakingContractAddressHorseAAA}
           >
-            Withdraw
+            Withdraw from field
           </Web3Button>
         </div>
       )}

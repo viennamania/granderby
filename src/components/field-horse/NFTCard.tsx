@@ -7,7 +7,7 @@ import {
 import type { FC } from 'react';
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   contractAddressRace,
 } from '../../config/contractAddresses';
 
@@ -42,7 +42,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             action={(contract) =>
               contract?.call('withdraw', [[nft.metadata.id]])
             }
-            contractAddress={stakingContractAddressHorse}
+            contractAddress={stakingContractAddressHorseAAA}
           >
             Withdraw
           </Web3Button>

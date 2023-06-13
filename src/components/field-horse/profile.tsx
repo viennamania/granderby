@@ -12,7 +12,7 @@ import ProfileTab from './profile-tab';
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
@@ -73,7 +73,7 @@ export default function Profile() {
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressHorseAAA
   );
 
   useEffect(() => {
@@ -252,7 +252,7 @@ export default function Profile() {
                   theme="light"
                   //colorMode="dark"
                   //accentColor="#5204BF"
-                  contractAddress={stakingContractAddressHorse}
+                  contractAddress={stakingContractAddressHorseAAA}
                   action={async (contract) => {
                     try {
                       const tx = await contract.call('claimRewards');

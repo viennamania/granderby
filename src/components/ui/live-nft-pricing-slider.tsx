@@ -5,6 +5,7 @@ import { A11y, Pagination, Autoplay } from 'swiper';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import cn from 'classnames';
 import { priceFeedData } from '@/data/static/nft-price-feed';
+import Image from '@/components/ui/image';
 
 type Price = {
   name: number;
@@ -18,6 +19,7 @@ type LivePriceFeedProps = {
   icon: React.ReactElement;
   balance: string;
   usdBalance: string;
+  logo: string;
   change: string;
   isChangePositive: boolean;
   isBorder?: boolean;
@@ -31,6 +33,7 @@ export function LivePricingFeed({
   icon,
   balance,
   usdBalance,
+  logo,
   change,
   isChangePositive,
   prices,
@@ -44,10 +47,25 @@ export function LivePricingFeed({
     >
       <div className="w-full flex-col">
         <div className="mb-3 flex items-center">
-          {icon}
-          <h4 className="text-sm font-medium text-gray-900 ltr:ml-3 rtl:mr-3 dark:text-white">
-            {name}
-          </h4>
+          <div className="h-[34px] w-[34px]">
+            <Image
+              src={logo}
+              alt={name}
+              width={100}
+              height={100}
+              className="rounded-full"
+            />
+          </div>
+          {/*icon*/}
+
+          <div className="flex flex-col">
+            <h4 className="text-sm font-medium text-gray-900 ltr:ml-3 rtl:mr-3 dark:text-white">
+              NFT # {id}
+            </h4>
+            <h4 className="text-sm font-medium text-gray-900 ltr:ml-3 rtl:mr-3 dark:text-white">
+              {name}
+            </h4>
+          </div>
         </div>
 
         <div className="mb-2 text-sm font-medium tracking-tighter text-gray-900 dark:text-white lg:text-lg 2xl:text-xl 3xl:text-2xl">

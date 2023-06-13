@@ -49,7 +49,7 @@ import { Polygon } from '@thirdweb-dev/chains';
 
 import {
   nftDropContractAddressHorse,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   stakingContractAddressJockey,
   tokenContractAddressGRD,
 } from '../../config/contractAddresses';
@@ -87,7 +87,7 @@ export default function MomoconScreen() {
     useState<BigNumber>();
 
   const { contract: stakingContractHorse, isLoading: isLoadingHorse } =
-    useContract(stakingContractAddressHorse);
+    useContract(stakingContractAddressHorseAAA);
 
   const { contract: stakingContractJockey, isLoading: isLoadingJockey } =
     useContract(stakingContractAddressJockey);

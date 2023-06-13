@@ -14,7 +14,7 @@ import CryptocurrencyBalanceTable from '@/components/cryptocurrency-balance-tabl
 import {
   nftDropContractAddressHorse,
   nftDropContractAddressJockey,
-  stakingContractAddressHorse,
+  stakingContractAddressHorseAAA,
   stakingContractAddressJockey,
   tokenContractAddressGRD,
   tokenContractAddressUSDC,
@@ -84,7 +84,7 @@ export default function Profile() {
     useState<BigNumber>();
 
   const { contract: stakingContractHorse, isLoadingHorse } = useContract(
-    stakingContractAddressHorse
+    stakingContractAddressHorseAAA
   );
 
   const { contract: stakingContractJockey, isLoadingJockey } = useContract(
@@ -164,7 +164,7 @@ export default function Profile() {
                   theme="dark"
                   //colorMode="dark"
                   //accentColor="#5204BF"
-                  contractAddress={stakingContractAddressHorse}
+                  contractAddress={stakingContractAddressHorseAAA}
                   action={async (contract) => {
                     try {
                       const tx = await contract?.call('claimRewards');
