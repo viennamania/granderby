@@ -114,7 +114,7 @@ export default function Profile() {
         nftDropContractAddressHorse
       );
 
-      console.log('response', response);
+      //console.log('response', response);
 
       const NFTList = response.nfts.map((nft) => {
         const { contract, title, tokenType, tokenId, description, media } = nft;
@@ -279,13 +279,16 @@ export default function Profile() {
       </div>
 
       <div className="grow pb-9 pt-6 md:-mt-2.5 md:pb-0 md:pt-1.5 md:ltr:pl-7 md:rtl:pr-7 lg:ltr:pl-10 lg:rtl:pr-10 3xl:ltr:pl-14 3xl:rtl:pr-14">
-        <div className="text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-          <span>Current Balance</span>
-          <h3>
-            <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
-            {tokenBalance?.symbol}
-          </h3>
-        </div>
+        {address && (
+          <div className="text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+            <span>Current Balance</span>
+            <h3>
+              <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
+              {tokenBalance?.symbol}
+            </h3>
+          </div>
+        )}
+
         <ProfileTab />
       </div>
 
