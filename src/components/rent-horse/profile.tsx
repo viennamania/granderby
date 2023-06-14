@@ -121,7 +121,8 @@ export default function Profile() {
               <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
                 <h3>
-                  <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
+                  <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
+                  {tokenBalance?.symbol}
                 </h3>
               </div>
 
@@ -131,7 +132,9 @@ export default function Profile() {
                   <b>
                     {!claimableRewards
                       ? 'Loading...'
-                      : ethers.utils.formatUnits(claimableRewards, 18)}
+                      : Number(
+                          ethers.utils.formatUnits(claimableRewards, 18)
+                        ).toFixed(2)}
                   </b>{' '}
                   {tokenBalance?.symbol}
                 </h3>
