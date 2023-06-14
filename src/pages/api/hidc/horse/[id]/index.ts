@@ -18,12 +18,28 @@ export default function handler(
 
   //res.status(200).json(found);
 
+  let grade = '';
+
+  if (req.query.id) {
+    if (Number(req.query.id) >= 0 && Number(req.query.id) <= 5) {
+      grade = 'S';
+    } else if (Number(req.query.id) >= 6 && Number(req.query.id) <= 25) {
+      grade = 'A';
+    } else if (Number(req.query.id) >= 26 && Number(req.query.id) <= 165) {
+      grade = 'B';
+    } else if (Number(req.query.id) >= 166 && Number(req.query.id) <= 565) {
+      grade = 'C';
+    } else if (Number(req.query.id) >= 566 && Number(req.query.id) <= 1265) {
+      grade = 'D';
+    }
+  }
+
   const nftData = {
     id: req.query.id,
     name: 'Granderby Horse #' + req.query.id,
     description: 'Granderby NFT Horses',
     image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
-    attributes: [],
+    attributes: [{ trait_type: 'Grade', value: grade }],
   };
 
   res.status(200).json(nftData);

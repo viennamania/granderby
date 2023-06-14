@@ -48,11 +48,13 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
         <></>
       ) : (
         <>
-          <Avatar
-            image={image}
-            alt={name ? name : ''}
-            className="dark:border-gray-400"
-          />
+          <div className="pr-3">
+            <Avatar
+              image={image}
+              alt={name ? name : ''}
+              className="dark:border-gray-400"
+            />
+          </div>
 
           {/*
           <div className="ltr:pl-3 rtl:pr-3">
