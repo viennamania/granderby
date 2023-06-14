@@ -152,7 +152,8 @@ export default function ModernScreen() {
                   My Balance
                 </h3>
                 <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-                  <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
+                  <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
+                  {tokenBalance?.symbol}
                   {/*$10,86,000*/}
                 </div>
 
@@ -163,7 +164,9 @@ export default function ModernScreen() {
                   <b>
                     {!claimableRewardsHorse
                       ? 'Loading...'
-                      : ethers.utils.formatUnits(claimableRewardsHorse, 18)}
+                      : Number(
+                          ethers.utils.formatUnits(claimableRewardsHorse, 18)
+                        ).toFixed(2)}
                   </b>{' '}
                   {tokenBalance?.symbol}
                 </div>
@@ -175,7 +178,9 @@ export default function ModernScreen() {
                   <b>
                     {!claimableRewardsJockey
                       ? 'Loading...'
-                      : ethers.utils.formatUnits(claimableRewardsJockey, 18)}
+                      : Number(
+                          ethers.utils.formatUnits(claimableRewardsJockey, 18)
+                        ).toFixed(2)}
                   </b>{' '}
                   {tokenBalance?.symbol}
                 </div>

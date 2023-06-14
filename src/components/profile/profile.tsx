@@ -30,7 +30,10 @@ import {
   useOwnedNFTs,
   useTokenBalance,
   Web3Button,
+  useBalance,
 } from '@thirdweb-dev/react';
+
+import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 
 import { BigNumber, ethers } from 'ethers';
 
@@ -47,6 +50,9 @@ export default function Profile() {
   }
 
   const address = useAddress();
+
+  const { data: balance, isLoading: isLoadingBalance } =
+    useBalance(NATIVE_TOKEN_ADDRESS);
 
   const { contract: nftDropContractHorse } = useContract(
     nftDropContractAddressHorse,
@@ -80,16 +86,15 @@ export default function Profile() {
 
   const [claimableRewardsHorse, setClaimableRewardsHorse] =
     useState<BigNumber>();
+
   const [claimableRewardsJockey, setClaimableRewardsJockey] =
     useState<BigNumber>();
 
-  const { contract: stakingContractHorse, isLoadingHorse } = useContract(
-    stakingContractAddressHorseAAA
-  );
+  const { contract: stakingContractHorse, isLoading: isLoadingHorse } =
+    useContract(stakingContractAddressHorseAAA);
 
-  const { contract: stakingContractJockey, isLoadingJockey } = useContract(
-    stakingContractAddressJockey
-  );
+  const { contract: stakingContractJockey, isLoading: isLoadingJockey } =
+    useContract(stakingContractAddressJockey);
 
   useEffect(() => {
     if (!stakingContractHorse || !address) return;
@@ -130,13 +135,25 @@ export default function Profile() {
       ) : (
         <>
           <div className="shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
+            {/*
             <div className="flex w-full justify-center">
               <ConnectWallet theme="dark" />
             </div>
-
+      */}
+            ethers.utils.formatUnits(claimableRewards, 18
             <div className="text-center ltr:md:text-right rtl:md:text-right">
               <div className=" mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
+                <h3>
+                  <b>
+                    {!balance?.value
+                      ? 'Loading...'
+                      : Number(
+                          ethers.utils.formatUnits(balance?.value, 18)
+                        ).toFixed(2)}
+                  </b>{' '}
+                  {balance?.symbol}
+                </h3>
                 <h3>
                   <b>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</b>{' '}
                   {tokenBalanceGRD?.symbol}

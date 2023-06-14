@@ -338,6 +338,29 @@ const MintPage: NextPageWithLayout<
           )}
         </div>
 
+        <div className=" mt-10 flex flex-row justify-center">
+          <Web3Button
+            theme="dark"
+            //colorMode="dark"
+            //accentColor="#5204BF"
+            contractAddress={nftDropContractAddressHorse}
+            action={async (contract) => {
+              console.log('Web3Button contract=', contract);
+
+              try {
+                const tx = await contract.erc721.claim(1);
+
+                console.log(tx);
+                alert('NFT Claimed!');
+              } catch (e) {
+                console.log(e);
+              }
+            }}
+          >
+            Claim An NFT
+          </Web3Button>
+        </div>
+
         <div className="mb-3 mt-16">
           {!address ? (
             <>
