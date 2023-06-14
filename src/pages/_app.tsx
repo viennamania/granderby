@@ -10,7 +10,11 @@ import SettingsButton from '@/components/settings/settings-button';
 import SettingsDrawer from '@/components/settings/settings-drawer';
 import { WalletProvider } from '@/lib/hooks/use-connect';
 
-import { ThirdwebProvider, paperWallet } from '@thirdweb-dev/react';
+import {
+  ThirdwebProvider,
+  paperWallet,
+  metamaskWallet,
+} from '@thirdweb-dev/react';
 import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
 
 import { Polygon } from '@thirdweb-dev/chains';
@@ -110,9 +114,12 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           <ThirdwebProvider
             activeChain={Polygon}
             supportedWallets={[
+              /*
               paperWallet({
                 clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
               }),
+              */
+              metamaskWallet(),
             ]}
             sdkOptions={{
               gasless: {

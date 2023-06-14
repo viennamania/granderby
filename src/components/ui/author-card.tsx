@@ -48,6 +48,7 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
         <></>
       ) : (
         <>
+          {/*
           <div className="pr-3">
             <Avatar
               image={image}
@@ -55,6 +56,7 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
               className="dark:border-gray-400"
             />
           </div>
+      */}
 
           {/*
           <div className="ltr:pl-3 rtl:pr-3">
