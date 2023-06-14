@@ -14,9 +14,19 @@ export default function handler(
 ) {
   //res.status(200).json( NFTList[ req.query.id ] )
 
-  const found = NFTList.find((element: any) => element.id === req.query.id);
+  //const found = NFTList.find((element: any) => element.id === req.query.id);
 
-  res.status(200).json(found);
+  //res.status(200).json(found);
+
+  const nftData = {
+    id: req.query.id,
+    name: 'Granderby Horse #' + req.query.id,
+    description: 'Granderby NFT Horses',
+    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    attributes: [],
+  };
+
+  res.status(200).json(nftData);
 
   //res.status(200).json({ name: req.query.id })
 
