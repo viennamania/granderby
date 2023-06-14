@@ -114,12 +114,11 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           <ThirdwebProvider
             activeChain={Polygon}
             supportedWallets={[
-              /*
+              metamaskWallet(),
+
               paperWallet({
                 clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
               }),
-              */
-              metamaskWallet(),
             ]}
             sdkOptions={{
               gasless: {
