@@ -35,6 +35,7 @@ import {
   useOwnedNFTs,
   useTokenBalance,
   Web3Button,
+  usePaperWalletUserEmail,
 } from '@thirdweb-dev/react';
 
 import {
@@ -52,6 +53,8 @@ import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 
 export default function ModernScreen() {
   const address = useAddress();
+
+  const emailQuery = usePaperWalletUserEmail();
 
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,

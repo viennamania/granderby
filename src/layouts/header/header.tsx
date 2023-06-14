@@ -34,7 +34,9 @@ function NotificationButton() {
 function HeaderRightArea() {
   return (
     <div className="relative order-last flex shrink-0 items-center gap-4 sm:gap-6 lg:gap-8">
+      {/*
       <NotificationButton />
+  */}
 
       {/*
       <WalletConnect />
@@ -84,10 +86,12 @@ export default function Header({ className }: { className?: string }) {
             />
           </div>
 
+          {/*
           <SearchButton
             variant="transparent"
             className="ltr:-ml-[17px] rtl:-mr-[17px] dark:text-white"
           />
+        */}
         </div>
 
         <HeaderRightArea />
