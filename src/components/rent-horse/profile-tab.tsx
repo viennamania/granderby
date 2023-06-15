@@ -218,7 +218,7 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h2 className="flex justify-center ">My rented horses</h2>
+          <h3 className="flex justify-center ">My rented horses</h3>
 
           <div
             className={cn(
@@ -237,7 +237,7 @@ export default function ProfileTab() {
               ))}
           </div>
 
-          <h2 className="mt-10 flex justify-center">My owned horses</h2>
+          <h3 className="mt-10 flex justify-center">My owned horses</h3>
 
           <div
             className={cn(
@@ -282,14 +282,14 @@ export default function ProfileTab() {
 
             {ownedNfts?.map((nft) => (
               <div
-                className="mb-5 flex flex-col items-center justify-center"
+                className="mb-5 flex flex-col  items-center justify-center gap-3"
                 key={nft.metadata.id.toString()}
               >
+                <h5>{nft.metadata.name}</h5>
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
                   className="rounded-lg "
                 />
-                <h4>{nft.metadata.name}</h4>
 
                 <div className="flex flex-row gap-2">
                   <Web3Button

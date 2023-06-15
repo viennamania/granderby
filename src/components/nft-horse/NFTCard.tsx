@@ -25,7 +25,8 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   return (
     <>
       {nft && (
-        <div className="mb-5 flex flex-col items-center justify-center">
+        <div className="mb-5 flex flex-col items-center justify-center gap-3">
+          <h5>{nft.metadata.name}</h5>
           {nft.metadata && (
             <ThirdwebNftMedia
               metadata={nft.metadata}
@@ -33,7 +34,6 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
               className="rounded-lg "
             />
           )}
-          <h3>{nft.metadata.name}</h3>
 
           <Web3Button
             theme="light"

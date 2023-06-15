@@ -388,11 +388,11 @@ const MintPage: NextPageWithLayout<
               className="mb-5 flex flex-col items-center justify-center"
               key={nft.metadata.id.toString()}
             >
+              <h5>{nft.metadata.name}</h5>
               <ThirdwebNftMedia
                 metadata={nft.metadata}
                 className="rounded-lg "
               />
-              <h4>{nft.metadata.name}</h4>
             </div>
           ))}
         </div>
