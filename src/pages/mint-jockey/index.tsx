@@ -358,7 +358,7 @@ const MintPage: NextPageWithLayout<
           ) : (
             <>
               <h3>Your owned jockeys</h3>
-              <h4 className="">Rented jockeys are not listed</h4>
+              <h4 className="">Registered jockeys are not listed</h4>
             </>
           )}
         </div>

@@ -178,7 +178,7 @@ export default function Profile() {
                 </h3>
 
                 <Web3Button
-                  theme="dark"
+                  theme="light"
                   //colorMode="dark"
                   //accentColor="#5204BF"
                   contractAddress={stakingContractAddressHorseAAA}
@@ -217,7 +217,7 @@ export default function Profile() {
                 </h3>
 
                 <Web3Button
-                  theme="dark"
+                  theme="light"
                   //colorMode="dark"
                   //accentColor="#5204BF"
                   contractAddress={stakingContractAddressJockey}

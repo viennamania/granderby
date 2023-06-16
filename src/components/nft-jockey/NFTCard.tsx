@@ -42,7 +42,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             }
             contractAddress={stakingContractAddressJockey}
           >
-            Withdraw from field
+            Unregister from field
           </Web3Button>
         </div>
       )}

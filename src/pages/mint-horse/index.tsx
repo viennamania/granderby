@@ -371,7 +371,7 @@ const MintPage: NextPageWithLayout<
           ) : (
             <>
               <h3>Your owned horses</h3>
-              <h4 className="">Rented horses are not listed</h4>
+              <h4 className="">Registered horses are not listed</h4>
             </>
           )}
         </div>

@@ -222,10 +222,10 @@ export default function ProfileTab() {
             {!address ? (
               <>
                 <ConnectWallet theme="light" />
-                <h4>to see your rented horses for racing</h4>
+                <h4>to see your registered horses for racing</h4>
               </>
             ) : (
-              <h4>My rented horses</h4>
+              <h4>My registered horses</h4>
             )}
           </div>
 

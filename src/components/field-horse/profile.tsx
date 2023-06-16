@@ -180,7 +180,7 @@ export default function Profile() {
       </div>
 
       <div className=" shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
-        <h4>Rented horses for field</h4>
+        <h4>Registered horses for field</h4>
 
         <div
           className={cn(

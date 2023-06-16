@@ -218,7 +218,7 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h3 className="flex justify-center ">My rented horses</h3>
+          <h3 className="flex justify-center ">My registered horses</h3>
 
           <div
             className={cn(
@@ -272,7 +272,7 @@ export default function ProfileTab() {
                 contractAddress={stakingContractAddressHorseAAA}
                 action={() => stakeNft(nft.metadata.id)}
               >
-                Withdraw from Racetrack
+                Unregister from Racetrack
               </Web3Button>
 
             </div>
@@ -297,7 +297,7 @@ export default function ProfileTab() {
                     contractAddress={stakingContractAddressHorseAAA}
                     action={() => stakeNft(nft.metadata.id)}
                   >
-                    Rent to Field
+                    Register to Field
                   </Web3Button>
 
                   {/*
