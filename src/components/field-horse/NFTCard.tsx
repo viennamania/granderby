@@ -62,7 +62,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
     };
 
     checkNFT();
-  }, [address]);
+  }, [address, editionDrop]);
 
   return (
     <>
@@ -117,4 +117,5 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
     </>
   );
 };
+
 export default NFTCard;
