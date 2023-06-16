@@ -10,7 +10,7 @@ import Profile from '@/components/rent-jockey/profile';
 
 import RetroProfile from '@/components/rent-jockey/retro-profile';
 // static data
-import { authorData } from '@/data/static/authorHorse';
+import { authorData } from '@/data/static/authorJockey';
 import RootLayout from '@/layouts/_root-layout';
 
 import { useAddress } from '@thirdweb-dev/react';

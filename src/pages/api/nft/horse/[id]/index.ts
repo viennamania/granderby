@@ -3,6 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { NFTList } from '@/data/static/nft-horse-list';
 
+//const util = require('util');
+
 type Data = {
   name: string;
 };
@@ -20,11 +22,34 @@ export default function handler(
   res.status(200).json(found);
   */
 
+  let imagesrc = '';
+
+  if (Number(req.query.id) >= 0 && Number(req.query.id) <= 100) {
+    //const filename = util.format("%08d", Number(req.query.id));
+
+    //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
+
+    //Number(req.query.id).padStart(2, "0");
+
+    //imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+
+    var formattedNumber = req.query.id + '';
+    while (formattedNumber.length < 3) {
+      formattedNumber = '0' + formattedNumber;
+    }
+    formattedNumber = '00006' + formattedNumber;
+
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+  } else {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+  }
+
   const nftData = {
     id: req.query.id,
     name: 'Granderby Horse #' + req.query.id,
     description: 'Granderby NFT Horses',
-    image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+    image: imagesrc,
     ///attributes: [{ trait_type: 'Grade', value: grade }],
   };
 

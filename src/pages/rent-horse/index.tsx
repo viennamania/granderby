@@ -39,7 +39,7 @@ const RentPage: NextPageWithLayout<
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
             fill
-            className="h-full w-full object-cover"
+            className="h-full w-full object-fill"
             alt="Cover Image"
           />
         </div>
@@ -67,7 +67,7 @@ const RentPage: NextPageWithLayout<
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
             fill
-            className="object-contain"
+            className="object-fill"
             alt="Cover Image"
           />
         </div>
