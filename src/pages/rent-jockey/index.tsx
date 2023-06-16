@@ -9,10 +9,8 @@ import Avatar from '@/components/ui/avatar';
 import Profile from '@/components/rent-jockey/profile';
 
 import RetroProfile from '@/components/rent-jockey/retro-profile';
-
 // static data
-import { authorData } from '@/data/static/authorJockey';
-
+import { authorData } from '@/data/static/authorHorse';
 import RootLayout from '@/layouts/_root-layout';
 
 import { useAddress } from '@thirdweb-dev/react';
@@ -53,7 +51,6 @@ const RentPage: NextPageWithLayout<
             alt="Author"
             className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
           />
-
           <RetroProfile />
         </div>
       </>

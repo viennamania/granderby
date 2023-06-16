@@ -19,7 +19,7 @@ import LivePricingSlider from '@/components/ui/live-pricing-slider';
 
 import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 
-import LiveNftPricingSlider from '@/components/ui/live-nft-pricing-slider';
+import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
 import CryptocurrencyPricingRetroTable from '@/components/cryptocurrency-pricing-table/cryptocurrency-pricing-retro-table';

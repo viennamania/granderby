@@ -315,7 +315,7 @@ const MintPage: NextPageWithLayout<
         <LiveNftPricingSlider limits={4} />
 
         <div className=" mt-10 flex flex-row justify-center">
-          {sdkClientSecret && (
+          {address && sdkClientSecret && (
             <div className="w-[380px] rounded-lg border p-5">
               <CheckoutWithCard
                 sdkClientSecret={sdkClientSecret}
@@ -342,7 +342,7 @@ const MintPage: NextPageWithLayout<
 
         <div className=" mt-10 flex flex-row justify-center">
           <Web3Button
-            theme="dark"
+            theme="light"
             //colorMode="dark"
             //accentColor="#5204BF"
             contractAddress={nftDropContractAddressHorse}
@@ -366,7 +366,6 @@ const MintPage: NextPageWithLayout<
         <div className="mb-3 mt-16">
           {!address ? (
             <>
-              <ConnectWallet theme="light" />
               <h4>to see your owned horses</h4>
             </>
           ) : (

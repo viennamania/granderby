@@ -47,7 +47,7 @@ import {
 
 import { BigNumber, ethers } from 'ethers';
 
-import LiveNftPricingSlider from '@/components/ui/live-nft-pricing-slider';
+import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
 import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 

@@ -6,6 +6,7 @@ import TransactionHistory from '@/components/author/transaction-history';
 import CollectionCard from '@/components/ui/collection-card';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
+
 // static data
 import { collections } from '@/data/static/collections';
 import {
@@ -41,6 +42,10 @@ import { BigNumber, ethers } from 'ethers';
 
 import NFTCard from '../nft-jockey/NFTCard';
 
+import { Stack, Snackbar, Alert } from '@mui/material';
+
+import dynamic from 'next/dynamic';
+
 const tabMenu = [
   {
     title: 'Collection',
@@ -58,7 +63,47 @@ const tabMenu = [
   */
 ];
 
+const MessageSnackbar = dynamic(
+  () => import('@/components/ui/message-snackbar'),
+  { ssr: false }
+);
+
 export default function ProfileTab() {
+  const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>('');
+  const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>('');
+  const [succ, setSucc] = useState(false);
+  const [err, setErr] = useState(false);
+
+  const handleClickSucc = () => {
+    setSucc(true);
+  };
+
+  const handleClickErr = () => {
+    setErr(true);
+  };
+
+  const handleCloseSucc = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSucc(false);
+  };
+
+  const handleCloseErr = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setErr(false);
+  };
+
   const { layout } = useLayout();
 
   const address = useAddress();
@@ -95,7 +140,7 @@ export default function ProfileTab() {
       stakingContractAddressJockey
     );
 
-    console.log('isApproved', isApproved);
+    //onsole.log('isApproved', isApproved);
 
     if (!isApproved) {
       await nftDropContract?.setApprovalForAll(
@@ -106,7 +151,15 @@ export default function ProfileTab() {
 
     const data = await stakingContract?.call('stake', [[id]]);
 
-    console.log('staking data', data);
+    //console.log('staking data', data);
+
+    if (data) {
+      setSuccessMsgSnackbar('Your request has been sent successfully');
+      handleClickSucc();
+    } else {
+      setErrMsgSnackbar(data);
+      handleClickErr();
+    }
   }
 
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
@@ -162,38 +215,39 @@ export default function ProfileTab() {
   }
 
   return (
-    <ParamTab tabMenu={tabMenu}>
-      <TabPanel className="focus:outline-none  ">
-        <h2 className="flex justify-center ">Your Staked Jockeys</h2>
+    <>
+      <ParamTab tabMenu={tabMenu}>
+        <TabPanel className="focus:outline-none  ">
+          <h3 className="flex justify-center ">My rented jockeys</h3>
 
-        <div
-          className={cn(
-            'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
-            layout === LAYOUT_OPTIONS.RETRO
-              ? 'md:grid-cols-2'
-              : 'md:grid-cols-1'
-          )}
-        >
-          {stakedTokens &&
-            stakedTokens[0]?.map((stakedToken: BigNumber) => (
-              <NFTCard
-                tokenId={stakedToken.toNumber()}
-                key={stakedToken.toString()}
-              />
-            ))}
-        </div>
+          <div
+            className={cn(
+              'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+              layout === LAYOUT_OPTIONS.RETRO
+                ? 'md:grid-cols-2'
+                : 'md:grid-cols-1'
+            )}
+          >
+            {stakedTokens &&
+              stakedTokens[0]?.map((stakedToken: BigNumber) => (
+                <NFTCard
+                  tokenId={stakedToken.toNumber()}
+                  key={stakedToken.toString()}
+                />
+              ))}
+          </div>
 
-        <h2 className="mt-10 flex justify-center">Your Unstaked Jockeys</h2>
+          <h3 className="mt-10 flex justify-center">My owned jockeys</h3>
 
-        <div
-          className={cn(
-            'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
-            layout === LAYOUT_OPTIONS.RETRO
-              ? 'md:grid-cols-2'
-              : 'md:grid-cols-1'
-          )}
-        >
-          {/*collections?.map((collection) => (
+          <div
+            className={cn(
+              'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+              layout === LAYOUT_OPTIONS.RETRO
+                ? 'md:grid-cols-2'
+                : 'md:grid-cols-1'
+            )}
+          >
+            {/*collections?.map((collection) => (
 
             <CollectionCard
               item={collection}
@@ -202,7 +256,7 @@ export default function ProfileTab() {
 
           ))*/}
 
-          {/*
+            {/*
           {stakedTokens[0]?.map((nft) => (
 
             <div className="" key={nft.metadata.id.toString()}>
@@ -226,87 +280,149 @@ export default function ProfileTab() {
           ))}
           */}
 
-          {ownedNfts?.map((nft) => (
-            <div
-              className="mb-5 flex flex-col items-center justify-center"
-              key={nft.metadata.id.toString()}
-            >
-              <ThirdwebNftMedia
-                metadata={nft.metadata}
-                className="rounded-lg "
-              />
-              <h4>{nft.metadata.name}</h4>
+            {ownedNfts?.map((nft) => (
+              <div
+                className="mb-5 flex flex-col  items-center justify-center gap-3"
+                key={nft.metadata.id.toString()}
+              >
+                <h5>{nft.metadata.name}</h5>
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
+                  className="rounded-lg "
+                />
 
-              <div className="flex flex-row gap-2">
-                <Web3Button
-                  theme="light"
-                  contractAddress={stakingContractAddressJockey}
-                  action={() => stakeNft(nft.metadata.id)}
-                >
-                  Rent to Racetrack
-                </Web3Button>
+                <div className="flex flex-row gap-2">
+                  <Web3Button
+                    theme="light"
+                    contractAddress={stakingContractAddressJockey}
+                    action={() => stakeNft(nft.metadata.id)}
+                  >
+                    Rent to Field
+                  </Web3Button>
 
-                <Web3Button
-                  theme="light"
-                  contractAddress={marketplaceContractAddress}
-                  action={() => sellNft(nft.metadata.id)}
-                >
-                  Sell
-                </Web3Button>
+                  {/*
+                  <Web3Button
+                    theme="light"
+                    contractAddress={marketplaceContractAddress}
+                    action={() => sellNft(nft.metadata.id)}
+                  >
+                    Sell
+                  </Web3Button>
+            */}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </TabPanel>
-
-      <TabPanel className="focus:outline-none">
-        <div className="space-y-8 md:space-y-10 xl:space-y-12">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4">
-            {authorWallets?.map((wallet) => (
-              <ListCard
-                item={wallet}
-                key={`wallet-key-${wallet?.id}`}
-                variant="medium"
-              />
             ))}
           </div>
-          <div className="block">
-            <h3 className="text-heading-style mb-3 uppercase text-gray-900 dark:text-white">
-              Protocols
-            </h3>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-              {authorProtocols?.map((protocol) => (
-                <ListCard
-                  item={protocol}
-                  key={`protocol-key-${protocol?.id}`}
-                  variant="large"
-                />
-              ))}
-            </div>
-          </div>
-          <div className="block">
-            <h3 className="text-heading-style mb-3 uppercase text-gray-900 dark:text-white">
-              Networks
-            </h3>
+        </TabPanel>
+
+        <TabPanel className="focus:outline-none">
+          <div className="space-y-8 md:space-y-10 xl:space-y-12">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4">
-              {authorNetworks?.map((network) => (
+              {authorWallets?.map((wallet) => (
                 <ListCard
-                  item={network}
-                  key={`network-key-${network?.id}`}
+                  item={wallet}
+                  key={`wallet-key-${wallet?.id}`}
                   variant="medium"
                 />
               ))}
             </div>
+            <div className="block">
+              <h3 className="text-heading-style mb-3 uppercase text-gray-900 dark:text-white">
+                Protocols
+              </h3>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+                {authorProtocols?.map((protocol) => (
+                  <ListCard
+                    item={protocol}
+                    key={`protocol-key-${protocol?.id}`}
+                    variant="large"
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="block">
+              <h3 className="text-heading-style mb-3 uppercase text-gray-900 dark:text-white">
+                Networks
+              </h3>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4">
+                {authorNetworks?.map((network) => (
+                  <ListCard
+                    item={network}
+                    key={`network-key-${network?.id}`}
+                    variant="medium"
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </TabPanel>
+        </TabPanel>
 
-      <TabPanel className="focus:outline-none">
-        <div className="space-y-8 xl:space-y-9">
-          <TransactionSearchForm />
-          <TransactionHistory />
-        </div>
-      </TabPanel>
-    </ParamTab>
+        <TabPanel className="focus:outline-none">
+          <div className="space-y-8 xl:space-y-9">
+            <TransactionSearchForm />
+            <TransactionHistory />
+          </div>
+        </TabPanel>
+      </ParamTab>
+
+      {/*
+
+    <MessageSnackbar open={true} autoHideDuration={5000} onClose={handleCloseSucc} severity ={"success"}/>
+              */}
+      {/*
+    <MessageSnackbar
+        open={succ}
+        autoHideDuration={6000}
+        onClose={handleCloseSucc}
+        severity ={"success"}
+    >
+      <Alert
+        onClose={handleCloseSucc}
+        severity="success"
+        sx={{ width: "100%" }}
+      >
+        {successMsgSnackbar}
+      </Alert>
+    </MessageSnackbar>
+              */}
+
+      {/*
+    
+    <Stack spacing={2} sx={{ width: "100%" }}>
+              */}
+
+      {/*
+      <Snackbar
+        open={succ}
+        autoHideDuration={6000}
+        onClose={handleCloseSucc}
+      >
+        <Alert
+          onClose={handleCloseSucc}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {successMsgSnackbar}
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+          open={err}
+          autoHideDuration={6000}
+          onClose={handleCloseErr}>
+        <Alert
+          onClose={handleCloseErr}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          {errMsgSnackbar}
+        </Alert>
+      </Snackbar>
+            */}
+
+      {/*
+    </Stack>
+  */}
+    </>
   );
 }
