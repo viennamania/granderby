@@ -140,7 +140,7 @@ export default function Profile() {
               <ConnectWallet theme="dark" />
             </div>
       */}
-            ethers.utils.formatUnits(claimableRewards, 18
+
             <div className="text-center ltr:md:text-right rtl:md:text-right">
               <div className=" mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
