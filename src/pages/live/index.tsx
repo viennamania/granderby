@@ -24,6 +24,14 @@ import IcoApple from '@/assets-landing/images/ico-apple.svg';
 import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 import IcoScrolldown from '@/assets-landing/images/ico-scrolldown.svg';
 
+import { Github } from '@/components/icons/brands/github';
+import { Instagram } from '@/components/icons/brands/instagram';
+import { Twitter } from '@/components/icons/brands/twitter';
+import { Check } from '@/components/icons/check';
+import { Copy } from '@/components/icons/copy';
+import { SearchIcon } from '@/components/icons/search';
+import AnchorLink from '@/components/ui/links/anchor-link';
+
 import phonePC from '@/assets-landing/images/img-app.png';
 import phoneMobile from '@/assets-landing/images/0_asset.png';
 
@@ -137,7 +145,11 @@ const ProposalsPage: NextPageWithLayout<
 
       <div className=" w-full">
         {!address ? (
+          <>
+            {/*
           <ConnectWallet theme="light" />
+        */}
+          </>
         ) : (
           <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
             <span>Current Balance</span>
@@ -169,18 +181,41 @@ const ProposalsPage: NextPageWithLayout<
         */}
       </div>
 
-      {/*
-<iframe src="http://live.granderby.io" width={1000} height={500} sandbox='allow-scripts allow-modal'></iframe>
-  */}
+      <iframe
+        src="https://granderby.io/webgl.html"
+        width={1000}
+        height={500}
+        sandbox="allow-scripts allow-modal"
+      ></iframe>
 
       <footer>
-        <div className="footer-wrap">
-          <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
-          <p>
-            MOMOCON SG CO.,LTD.
-            <br />
-            Copyrights GRANDERBY since 2023
-          </p>
+        <div className="flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
+          <div>Copyright ©MOMOCON</div>
+
+          <AnchorLink href="/terms">Terms of Service</AnchorLink>
+
+          <div>Privacy Policy</div>
+        </div>
+
+        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
+          <div>
+            <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
+          </div>
+
+          <AnchorLink
+            href="https://www.instagram.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Instagram className="h-4 w-4" /> Instagram
+          </AnchorLink>
+          <AnchorLink
+            href="https://twitter.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Twitter className="h-4 w-4" /> Twitter
+          </AnchorLink>
         </div>
       </footer>
     </>
