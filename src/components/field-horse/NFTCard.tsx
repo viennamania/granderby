@@ -255,7 +255,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                Enter (10 GRD)
+                <span className="text-xs">Enter KR01-199 (10 GRD)</span>
               </Web3Button>
             )}
           </div>
@@ -293,7 +293,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                Enter KR01-200 (25 GRD)
+                <span className="text-xs">Enter KR01-200 (25 GRD)</span>
               </Web3Button>
             )}
           </div>
@@ -331,7 +331,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                Enter KR01-201 (34 GRD)
+                <span className="text-xs">Enter KR01-201 (34 GRD)</span>
               </Web3Button>
             )}
           </div>
@@ -369,7 +369,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                Enter KR01-202 (625 GRD)
+                <span className="text-xs">Enter KR01-202 (625 GRD)</span>
               </Web3Button>
             )}
           </div>
