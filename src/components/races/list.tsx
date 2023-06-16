@@ -13,6 +13,7 @@ import { contractAddressRace } from '../../config/contractAddresses';
 import { BigNumber, ethers } from 'ethers';
 
 interface RaceListTypes {
+  tokenid: number;
   from: string;
   to: string;
   earned: string;
@@ -24,6 +25,7 @@ interface RaceListTypes {
 const sdk = new ThirdwebSDK('polygon');
 
 export default function RaceList({
+  tokenid,
   from,
   to,
   earned,
@@ -42,7 +44,7 @@ export default function RaceList({
     const main = async () => {
       const contract = await sdk.getContract(contractAddressRace);
 
-      const totalSupply = await contract.erc1155.totalSupply(0);
+      const totalSupply = await contract.erc1155.totalSupply(tokenid);
 
       console.log('totalSupply', totalSupply);
 
@@ -69,7 +71,8 @@ export default function RaceList({
           <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
             Race Num
           </span>
-          {earned}
+          {/*earned*/}
+          KR01-{tokenid}
         </div>
 
         <div className="px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm">
@@ -77,6 +80,16 @@ export default function RaceList({
             Entry Count
           </span>
           {Number(ethers.utils.formatUnits(totalSupply, 0)).toFixed(0)}
+        </div>
+
+        <div className="px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm">
+          <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
+            APR
+          </span>
+          {apr}
+          <span className="hidden font-normal text-gray-600 dark:text-gray-400 sm:block">
+            Annualized
+          </span>
         </div>
 
         {/*

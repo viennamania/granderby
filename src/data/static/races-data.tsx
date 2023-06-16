@@ -1,6 +1,6 @@
 export const RacesData = [
   {
-    id: 1,
+    id: 0,
     from: 'BTC',
     to: 'ETH',
     earned: 'KR01-199',
@@ -9,7 +9,7 @@ export const RacesData = [
     multiplier: '40x',
   },
   {
-    id: 2,
+    id: 1,
     from: 'USDT',
     to: 'BNB',
     earned: 'KR01-200',
@@ -18,7 +18,7 @@ export const RacesData = [
     multiplier: '10x',
   },
   {
-    id: 3,
+    id: 2,
     from: 'USDC',
     to: 'DOGE',
     earned: 'KR01-201',
@@ -27,7 +27,7 @@ export const RacesData = [
     multiplier: '22x',
   },
   {
-    id: 4,
+    id: 3,
     from: 'BTC',
     to: 'ADA',
     earned: 'KR01-202',
@@ -36,7 +36,7 @@ export const RacesData = [
     multiplier: '20x',
   },
   {
-    id: 5,
+    id: 4,
     from: 'BNB',
     to: 'USDC',
     earned: 'KR01-203',
@@ -45,7 +45,7 @@ export const RacesData = [
     multiplier: '34x',
   },
   {
-    id: 6,
+    id: 5,
     from: 'ETH',
     to: 'ADA',
     earned: 'KR01-204',

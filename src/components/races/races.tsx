@@ -42,6 +42,7 @@ export function SortList({
 }) {
   const { layout } = useLayout();
   const [selectedItem, setSelectedItem] = useState(sortData[0]);
+
   return (
     <div className="relative w-full lg:w-auto">
       <Listbox value={selectedItem} onChange={setSelectedItem}>
@@ -270,6 +271,7 @@ export default function Races() {
       {RacesData.map((race) => (
         <RaceList
           key={race.id}
+          tokenid={race.id}
           from={race.from}
           to={race.to}
           earned={race.earned}
