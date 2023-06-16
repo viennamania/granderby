@@ -1,0 +1,61 @@
+ManifestFileVersion: 0
+CRC: 1574885161
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fdbb85bb1965047c3c1f4b9f1566616e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundleFile/Tables/JSONVoiceSound_Condition.json
+- Assets/AssetBundleFile/Tables/JSONArcade.json
+- Assets/AssetBundleFile/Tables/JSONStadium.json
+- Assets/AssetBundleFile/Tables/JSONStadiumCongestion.json
+- Assets/AssetBundleFile/Tables/JSONPartsVariations_Jockey.json
+- Assets/AssetBundleFile/Tables/JSONEventQuest_Array.json
+- Assets/AssetBundleFile/Tables/JSONBattleRace.json
+- Assets/AssetBundleFile/Tables/JSONStadiumWeather.json
+- Assets/AssetBundleFile/Tables/JSONAssistant_FavorScriptSet.json
+- Assets/AssetBundleFile/Tables/JSONRandomReward_PostWheel.json
+- Assets/AssetBundleFile/Tables/JSONVoiceSoundTypeGroup.json
+- Assets/AssetBundleFile/Tables/JSONRandomReward_PowerSlot.json
+- Assets/AssetBundleFile/Tables/JSONRandomReward.json
+- Assets/AssetBundleFile/Tables/JSONBetFontColor.json
+- Assets/AssetBundleFile/Tables/JSONMission.json
+- Assets/AssetBundleFile/Tables/JSONRaceSoundMessage.json
+- Assets/AssetBundleFile/Tables/JSONQuest.json
+- Assets/AssetBundleFile/Tables/JSONBattleRace_RaceBet.json
+- Assets/AssetBundleFile/Tables/JSONAssistant.json
+- Assets/AssetBundleFile/Tables/JSONUserDefault_Array.json
+- Assets/AssetBundleFile/Tables/JSONStadiumTrack.json
+- Assets/AssetBundleFile/Tables/JSONAssistant_TutorialScript.json
+- Assets/AssetBundleFile/Tables/JSONAssistant_SecretaryIdle.json
+- Assets/AssetBundleFile/Tables/ClientConfig.json
+- Assets/AssetBundleFile/Tables/JSONTrainerSpeak.json
+- Assets/AssetBundleFile/Tables/JSONSoundMessage.json
+- Assets/AssetBundleFile/Tables/JSONTrackRankAdjust.json
+- Assets/AssetBundleFile/Tables/JSONImageGuide.json
+- Assets/AssetBundleFile/Tables/JSONBetGrade.json
+- Assets/AssetBundleFile/Tables/JSONAssistant_Script.json
+- Assets/AssetBundleFile/Tables/JSONLevelUp_Array.json
+- Assets/AssetBundleFile/Tables/JSONEventRace_LuckyChance.json
+- Assets/AssetBundleFile/Tables/JSONRanking.json
+- Assets/AssetBundleFile/Tables/JSONPartsVariations_Horse.json
+- Assets/AssetBundleFile/Tables/JSONVoiceSound_ConditionDefine.json
+- Assets/AssetBundleFile/Tables/JSONClassGame.json
+- Assets/AssetBundleFile/Tables/JSONRanking_Reward.json
+- Assets/AssetBundleFile/Tables/JSONAssistant_Resource.json
+- Assets/AssetBundleFile/Tables/JSONArcade_HighLow.json
+- Assets/AssetBundleFile/Tables/JSONAppInLink.json
+- Assets/AssetBundleFile/Tables/JSONBetUiPosition.json
+- Assets/AssetBundleFile/Tables/JSONVoiceSound_Mix.json
+- Assets/AssetBundleFile/Tables/JSONAssistant_Tutorial.json
+- Assets/AssetBundleFile/Tables/JSONShop_Item.json
+- Assets/AssetBundleFile/Tables/JSONEffectSound.json
+- Assets/AssetBundleFile/Tables/JSONAssistant_FavorLv.json
+Dependencies: []

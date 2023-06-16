@@ -1,0 +1,95 @@
+ManifestFileVersion: 0
+CRC: 2372375282
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f44d792e19db17aef46329fdeea19d69
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ed26e3ad9f6be9c24f85f5f5b54339d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/HorseTex/Ho_Pa_01_01_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_02_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_19_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_24_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_02_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_09_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_03_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_08_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_22_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_06_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_07_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_08_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_35_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_34_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_13_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_04_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_07_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_01_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_06_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_05_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_03_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_33_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_28_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_20_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_36_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_26_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_06_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_05_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_10_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_37_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_04_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_32_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_12_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_05_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_38_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_04_02_02_ManePa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_03_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_01_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_11_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_02_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_04_03_01_ManePa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_12_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_11_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_04_01_01_ManePa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_30_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_01_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_09_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_23_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_05_03_01_TailPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_14_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_27_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_16_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_05_01_01_TailPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_21_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_39_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_18_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_07_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_04_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_29_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_04_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_14_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_07_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_03_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_05_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_04_02_01_ManePa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_05_02_01_TailPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_13_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_06_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_09_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_40_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_17_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_25_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_08_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_On_08_OneBodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_15_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_31_BodyPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_02_10_HeadPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_05_03_02_TailPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_03_02_LegPa.jpg
+- Assets/Resources/HorseTex/Ho_Pa_01_15_BodyPa.jpg
+Dependencies: []

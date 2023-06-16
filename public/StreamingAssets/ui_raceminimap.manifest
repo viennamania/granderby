@@ -1,0 +1,57 @@
+ManifestFileVersion: 0
+CRC: 1545428006
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e84a42006bc3f83f27a1812cad419169
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: aa30db665a7713bc0f30de273e1be409
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a0fb68f2bec20c744a601754d74eeb39, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2fcc9a5cbcac08141bbe6d409e934d2f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Race/MiniMap/PathImage/Singapore_MiniMap_1000_Gradient.png
+- Assets/UI/Race/MiniMap/PathImage/Gwacheon_MiniMap_1000_Gradient.png
+- Assets/UI/Race/MiniMap/PathImage/Singapore_MiniMap_1000.png
+- Assets/UI/Race/MiniMap/PathImage/HappyValley_MiniMap_1000.png
+- Assets/UI/Race/MiniMap/PathImage/Singapore_MiniMap_1200.png
+- Assets/UI/Race/MiniMap/RaceMiniMap.prefab
+- Assets/UI/Race/MiniMap/PathImage/Shatin_MiniMap_1200_Gradient.png
+- Assets/UI/Race/MiniMap/PathImage/HappyValley_MiniMap_1200_Gradient.png
+- Assets/UI/Race/MiniMap/PathImage/Gwacheon_MiniMap_1000.png
+- Assets/UI/Race/MiniMap/PathImage/Shatin_MiniMap_1200.png
+- Assets/UI/Race/MiniMap/PathImage/HappyValley_MiniMap_1200.png
+- Assets/UI/Race/MiniMap/PathImage/Shatin_MiniMap_1000_Gradient.png
+- Assets/UI/Race/MiniMap/PathImage/Singapore_MiniMap_1200_Gradient.png
+- Assets/UI/Race/MiniMap/PathImage/Shatin_MiniMap_1000.png
+- Assets/UI/Race/MiniMap/MiniMapMtrl.mat
+- Assets/UI/Race/MiniMap/PathImage/Gwacheon_MiniMap_1200_Gradient.png
+- Assets/UI/Race/MiniMap/PathImage/Gwacheon_MiniMap_1200.png
+- Assets/UI/Race/MiniMap/PathImage/HappyValley_MiniMap_1000_Gradient.png
+Dependencies: []

@@ -1,0 +1,60 @@
+ManifestFileVersion: 0
+CRC: 4159304251
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7d406dcedbd8357d99022841b8971a6d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: dcc2d75460e26eb89f581f192cb7a079
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0bbcf490ecd0f3441b55690b4e3eb9e3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 57d43f90808a27c41adea897fdba3b51, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a0c6f0732c7cbca4a82855523e78c475, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5a92e5c5fe9b3b64f95a3c6d6cd6108b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a52b3a06b7cf12444992537de9b49eb6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d948c9a7475bb8546bbf7c45f28e6160, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fa8d71fa3ab5e1049b3ee6aeba2febb1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c5fe1b8b8c169c64dad38bc3b94f2427, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 23a9d64e448327244acfd2c282e9ba7b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 050d877e18b895f42bed82f1e97cfe5f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fcec868e2160bcf49a25ed1a569c8475, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: db46f83fd52f5924bb841acc6dca6008, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Lobby/BettingGroup/TypeD/Main/BettingTypeD.prefab
+Dependencies: []

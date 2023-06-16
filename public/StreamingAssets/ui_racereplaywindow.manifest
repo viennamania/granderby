@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+CRC: 2662089831
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ac8727913354be2c914c890d09b47675
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c2052a243c1c0b1dcda81e60e866c640
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3bbace763915d734eb47dd8bcaf52f21, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a4d589a63b5bed54487b629781a46af5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d948c9a7475bb8546bbf7c45f28e6160, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Race/Replay/RaceReplayWindow.prefab
+Dependencies: []

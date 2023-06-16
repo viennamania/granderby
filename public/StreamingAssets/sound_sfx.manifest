@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 4268310492
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3d035fcfcaf9cd5e304049f4d295b43f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundleFile/Sound/SFX/reel_stop_sfx.mp3
+- Assets/AssetBundleFile/Sound/SFX/casino_wheel_sfx_ing.mp3
+- Assets/AssetBundleFile/Sound/SFX/slot_jackpot_1.mp3
+- Assets/AssetBundleFile/Sound/SFX/casino_wheel_sfx_end.mp3
+- Assets/AssetBundleFile/Sound/SFX/Jackpot_fanfare.mp3
+Dependencies: []
