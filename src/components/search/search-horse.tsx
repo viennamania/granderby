@@ -8,6 +8,7 @@ import { OptionIcon } from '@/components/icons/option';
 
 export default function Search() {
   const { openDrawer } = useDrawer();
+
   return (
     <>
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
