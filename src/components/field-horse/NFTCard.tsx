@@ -224,7 +224,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
 
           <div className="mb-3">
             {hasNFT199 ? (
-              <h5>Entered to KR01-199</h5>
+              <h5>Entered to KR01-0</h5>
             ) : (
               <Web3Button
                 theme="light"
@@ -255,14 +255,14 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                <span className="text-xs">Enter KR01-199 (10 GRD)</span>
+                <span className="text-xs">Enter KR01-0 (10 GRD)</span>
               </Web3Button>
             )}
           </div>
 
           <div className="mb-3">
             {hasNFT200 ? (
-              <h5>Entered to KR01-200</h5>
+              <h5>Entered to KR01-1</h5>
             ) : (
               <Web3Button
                 theme="light"
@@ -293,14 +293,14 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                <span className="text-xs">Enter KR01-200 (25 GRD)</span>
+                <span className="text-xs">Enter KR01-1 (25 GRD)</span>
               </Web3Button>
             )}
           </div>
 
           <div className="mb-3">
             {hasNFT201 ? (
-              <h5>Entered to KR01-201</h5>
+              <h5>Entered to KR01-2</h5>
             ) : (
               <Web3Button
                 theme="light"
@@ -331,14 +331,14 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                <span className="text-xs">Enter KR01-201 (34 GRD)</span>
+                <span className="text-xs">Enter KR01-2 (34 GRD)</span>
               </Web3Button>
             )}
           </div>
 
           <div className="mb-3">
             {hasNFT202 ? (
-              <h5>Entered to KR01-202</h5>
+              <h5>Entered to KR01-3</h5>
             ) : (
               <Web3Button
                 theme="light"
@@ -369,7 +369,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                   console.error('Failed to enter', error);
                 }}
               >
-                <span className="text-xs">Enter KR01-202 (625 GRD)</span>
+                <span className="text-xs">Enter KR01-3 (625 GRD)</span>
               </Web3Button>
             )}
           </div>

@@ -48,14 +48,17 @@ import dynamic from 'next/dynamic';
 
 const tabMenu = [
   {
-    title: 'Collection',
+    title: 'collection',
     path: 'collection',
   },
+
   /*
   {
-    title: 'Portfolio',
-    path: 'portfolio',
+    title: 'Unregistered',
+    path: 'unregistered',
   },
+  */
+  /*
   {
     title: 'History',
     path: 'history',

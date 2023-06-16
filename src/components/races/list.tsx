@@ -14,6 +14,7 @@ import { BigNumber, ethers } from 'ethers';
 
 interface RaceListTypes {
   tokenid: number;
+  enterfee: number;
   from: string;
   to: string;
   earned: string;
@@ -26,6 +27,7 @@ const sdk = new ThirdwebSDK('polygon');
 
 export default function RaceList({
   tokenid,
+  enterfee,
   from,
   to,
   earned,
@@ -46,7 +48,7 @@ export default function RaceList({
 
       const totalSupply = await contract.erc1155.totalSupply(tokenid);
 
-      console.log('totalSupply', totalSupply);
+      //console.log('totalSupply', totalSupply);
 
       setTotalSupply(totalSupply);
     };
@@ -79,21 +81,20 @@ export default function RaceList({
           <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
             Entry Count
           </span>
-          {Number(ethers.utils.formatUnits(totalSupply, 0)).toFixed(0)}
+          {ethers.utils.formatUnits(totalSupply, 0)}
         </div>
 
-        <div className="px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm">
+        <div className=" px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm">
           <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
-            APR
+            Amount
           </span>
-          {apr}
+          {enterfee} GRD
           <span className="hidden font-normal text-gray-600 dark:text-gray-400 sm:block">
-            Annualized
+            {ethers.utils.formatUnits(totalSupply, 0) * enterfee} GRD
           </span>
         </div>
 
         {/*
-
         <div className="px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm">
           <span className="mb-1 block font-medium text-gray-600 dark:text-gray-400 sm:hidden">
             APR
@@ -103,6 +104,7 @@ export default function RaceList({
             Annualized
           </span>
         </div>
+
 
         <div className="hidden px-4 text-xs font-medium uppercase tracking-wider text-black dark:text-white sm:px-8 sm:text-sm lg:block">
           {liquidity}

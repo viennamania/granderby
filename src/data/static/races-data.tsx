@@ -1,6 +1,7 @@
 export const RacesData = [
   {
     id: 0,
+    enterfee: 10,
     from: 'BTC',
     to: 'ETH',
     earned: 'KR01-199',
@@ -10,6 +11,7 @@ export const RacesData = [
   },
   {
     id: 1,
+    enterfee: 25,
     from: 'USDT',
     to: 'BNB',
     earned: 'KR01-200',
@@ -19,6 +21,7 @@ export const RacesData = [
   },
   {
     id: 2,
+    enterfee: 34,
     from: 'USDC',
     to: 'DOGE',
     earned: 'KR01-201',
@@ -28,6 +31,7 @@ export const RacesData = [
   },
   {
     id: 3,
+    enterfee: 625,
     from: 'BTC',
     to: 'ADA',
     earned: 'KR01-202',
@@ -37,6 +41,7 @@ export const RacesData = [
   },
   {
     id: 4,
+    enterfee: 1323,
     from: 'BNB',
     to: 'USDC',
     earned: 'KR01-203',
@@ -46,6 +51,7 @@ export const RacesData = [
   },
   {
     id: 5,
+    enterfee: 2532,
     from: 'ETH',
     to: 'ADA',
     earned: 'KR01-204',

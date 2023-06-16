@@ -272,6 +272,7 @@ export default function Races() {
         <RaceList
           key={race.id}
           tokenid={race.id}
+          enterfee={race.enterfee}
           from={race.from}
           to={race.to}
           earned={race.earned}
