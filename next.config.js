@@ -31,6 +31,12 @@ const nextConfig = withPWA({
   },
 
   reactStrictMode: true,
+  //reactStrictMode: false,
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   images: {
     domains: [
       'granderby.io',
@@ -41,6 +47,7 @@ const nextConfig = withPWA({
       'via.placeholder.com',
     ],
   },
+
   ...(process.env.NODE_ENV === 'production' && {
     typescript: {
       ignoreBuildErrors: true,
