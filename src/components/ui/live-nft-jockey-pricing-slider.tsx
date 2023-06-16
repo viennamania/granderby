@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y, Pagination, Autoplay } from 'swiper';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import cn from 'classnames';
-import { priceFeedData } from '@/data/static/nft-price-feed';
+import { priceFeedData } from '@/data/static/nft-jockey-price-feed';
 import Image from '@/components/ui/image';
 
 type Price = {

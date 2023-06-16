@@ -58,7 +58,7 @@ import { Instagram } from '@/components/icons/brands/instagram';
 import { Twitter } from '@/components/icons/brands/twitter';
 import AnchorLink from '@/components/ui/links/anchor-link';
 
-import LiveNftPricingSlider from '@/components/ui/live-nft-pricing-slider';
+import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
 import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 
@@ -306,7 +306,9 @@ const MintPage: NextPageWithLayout<
         {/* Header */}
         <h1 className="mb-2 mt-2 text-3xl">Mint Horse</h1>
 
+        {/*
         <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
+  */}
 
         <h3 className="mt-10">Own your horse by minting</h3>
 

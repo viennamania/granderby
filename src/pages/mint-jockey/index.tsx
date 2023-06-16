@@ -1,5 +1,7 @@
 import cn from 'classnames';
 
+import type { GetStaticProps, InferGetStaticPropsType } from 'next';
+
 import type { NextPageWithLayout } from '@/types';
 
 import Link from 'next/link';
@@ -10,6 +12,9 @@ import Button from '@/components/ui/button';
 
 import { ConnectButton } from '@paperxyz/embedded-wallet-service-rainbowkit';
 //import { renderPaperCheckoutLink } from '@paperxyz/js-client-sdk';
+
+import { CheckoutWithCard } from '@paperxyz/react-client-sdk';
+import { createCheckoutWithCardElement } from '@paperxyz/js-client-sdk';
 
 //import { useAccount } from 'wagmi';
 
@@ -44,6 +49,19 @@ import {
   tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
+import { Stack, Snackbar, Alert } from '@mui/material';
+
+import Head from 'next/head';
+
+import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
+import { Instagram } from '@/components/icons/brands/instagram';
+import { Twitter } from '@/components/icons/brands/twitter';
+import AnchorLink from '@/components/ui/links/anchor-link';
+
+import LiveNftPricingSlider from '@/components/ui/live-nft-jockey-pricing-slider';
+
+import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
+
 export type BlogPost = {
   title: string;
   description: string;
@@ -77,7 +95,35 @@ const dummyPosts: BlogPost[] = [
 ======================================= */
 ///const HomePage = () => {
 
-const MintPage: NextPageWithLayout = () => {
+//MintPage.title = 'Homepage';
+
+/*
+const Product = (props) => {
+    const { title, description } = props;
+    */
+
+//export default function VideoPage({ video }) {
+
+//export default function Test({ title }) {
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      title: 'Granderby - Mint',
+      description: 'powered by MOMOCON',
+      image: '/mint-bg.png',
+    },
+  };
+};
+
+const MintPage: NextPageWithLayout<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = (props) => {
+  //const MintPage: NextPageWithLayout = (props) => {
+  //const MintPage: NextPageWithLayout = ({title, image}) => {
+
+  const { title, description, image } = props;
+
   const { layout } = useLayout();
 
   const address = useAddress();
@@ -93,11 +139,12 @@ const MintPage: NextPageWithLayout = () => {
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
-  console.log('owenedNfts', ownedNfts);
+  /////console.log('owenedNfts', ownedNfts);
 
   const [loading, setLoading] = useState(true);
   const [hasNFT, setHasNFT] = useState(false);
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+
+  const [sdkClientSecret, setSdkClientSecret] = useState();
 
   // Thirdweb Stuff
   //const sdk = new ThirdwebSDK('mumbai');
@@ -161,64 +208,186 @@ const MintPage: NextPageWithLayout = () => {
   if (loading) return null;
   */
 
-  return (
-    <div className="text-center">
-      {/* Header */}
-      <h1 className="mb-2 mt-12 text-3xl">Mint Jockey</h1>
+  useEffect(() => {
+    const checkSdkClientSecret = async () => {
+      if (address) {
+        const res = await fetch('/api/checkout?address=' + address);
 
-      <div className="mb-10">
-        {!address && <div className="m-5">No wallet connected</div>}
+        //console.log("res", res);
 
-        <Web3Button
-          theme="light"
-          //colorMode="dark"
-          //accentColor="#5204BF"
-          contractAddress={nftDropContractAddressJockey}
-          action={async (contract) => {
-            console.log('Web3Button contract=', contract);
+        const { sdkClientSecret } = await res.json();
 
-            try {
-              const tx = await contract.erc721.claim(1);
+        //console.log("sdkClientSecret", sdkClientSecret);
 
-              console.log(tx);
-              alert('NFT Claimed!');
-            } catch (e) {
-              console.log(e);
-            }
-          }}
-          /*
-        onSuccess={() => {
-          alert('NFT Claimed!');
-          ////router.push("/stake");
-        }}
-        onError={(error) => {
-          alert(error);
-        }}
+        setSdkClientSecret(sdkClientSecret);
+
+        /*
+        const options = {
+          colorBackground: '#fefae0',
+          colorPrimary: '#606c38',
+          colorText: '#283618',
+          borderRadius: 6,
+          inputBackgroundColor: '#faedcd',
+          inputBorderColor: '#d4a373',
+        };
+        
+        createCheckoutWithCardElement({
+          sdkClientSecret: sdkClientSecret,
+          elementOrId: "paper-checkout-container",
+          appName: "My Web3 App",
+          
+          options,
+      
+          onError(error) {
+            console.error("Payment error:", error);
+          },
+          onPaymentSuccess({ id }) {
+            console.log("Payment successful.");
+          },
+        });
         */
-        >
-          Claim A Jockey NFT
-        </Web3Button>
-      </div>
+      }
+    };
 
-      <div
-        className={cn(
-          'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
-          layout === LAYOUT_OPTIONS.RETRO ? 'md:grid-cols-2' : 'md:grid-cols-1'
-        )}
-      >
-        {ownedNfts?.map((nft) => (
-          <div
-            className="mb-5 flex flex-col items-center justify-center"
-            key={nft.metadata.id.toString()}
+    checkSdkClientSecret();
+  }, [address]);
+
+  const mintNFT = async () => {
+    try {
+      const tx = await nftDropContract?.erc721.claim(1);
+
+      console.log(tx);
+
+      alert('NFT Claimed!');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 maximum-scale=1"
+        />
+        <meta property="og:type" content="website"></meta>
+
+        <meta property="og:site_name" content="GRANDERBY"></meta>
+
+        <meta property="og:image:width" content="1400"></meta>
+        <meta property="og:image:height" content="1400"></meta>
+
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:description" content={description}></meta>
+        <meta property="og:image" content={image}></meta>
+
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:image" content={image}></meta>
+
+        <title>{title}</title>
+      </Head>
+
+      {/* page content here */}
+      <div className="flex flex-col justify-center text-center">
+        {/* Header */}
+        <h1 className="mb-2 mt-2 text-3xl">Mint Jockey</h1>
+
+        {/*
+        <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
+  */}
+
+        <h3 className="mt-10">Own your jockey by minting</h3>
+
+        <LiveNftPricingSlider limits={4} />
+
+        <div className=" mt-10 flex flex-row justify-center">
+          {sdkClientSecret && (
+            <div className="w-[380px] rounded-lg border p-5">
+              <CheckoutWithCard
+                sdkClientSecret={sdkClientSecret}
+                //onPriceUpdate={ (quantity, unitPrice, networkFees, serviceFees, total) => {
+                onPriceUpdate={(priceSummary) => {
+                  console.log('Payment successful priceSummary', priceSummary);
+                  /*
+                  console.log('Payment successful quantity', quantity);
+                  console.log('Payment successful unitPrice', unitPrice);
+                  console.log('Payment successful networkFees', networkFees);
+                  console.log('Payment successful serviceFees', serviceFees);
+                  console.log('Payment successful total', total);
+                  */
+                }}
+                onPaymentSuccess={(result) => {
+                  console.log('Payment successful result', result);
+
+                  mintNFT();
+                }}
+              />
+            </div>
+          )}
+        </div>
+
+        <div className=" mt-10 flex flex-row justify-center">
+          <Web3Button
+            theme="dark"
+            //colorMode="dark"
+            //accentColor="#5204BF"
+            contractAddress={nftDropContractAddressJockey}
+            action={async (contract) => {
+              console.log('Web3Button contract=', contract);
+
+              try {
+                const tx = await contract.erc721.claim(1);
+
+                console.log(tx);
+                alert('NFT Claimed!');
+              } catch (e) {
+                console.log(e);
+              }
+            }}
           >
-            <ThirdwebNftMedia metadata={nft.metadata} className="rounded-lg " />
-            <h4>{nft.metadata.name}</h4>
-          </div>
-        ))}
-      </div>
+            Claim An NFT
+          </Web3Button>
+        </div>
 
-      {/* Blog Posts */}
-      {/*
+        <div className="mb-3 mt-16">
+          {!address ? (
+            <>
+              <ConnectWallet theme="light" />
+              <h4>to see your owned jockeys</h4>
+            </>
+          ) : (
+            <>
+              <h3>Your owned jockeys</h3>
+              <h4 className="">Rented jockeys are not listed</h4>
+            </>
+          )}
+        </div>
+
+        <div
+          className={cn(
+            'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-4 4xl:grid-cols-4 ',
+            layout === LAYOUT_OPTIONS.RETRO
+              ? 'md:grid-cols-2'
+              : 'md:grid-cols-1'
+          )}
+        >
+          {ownedNfts?.map((nft) => (
+            <div
+              className="mb-5 flex flex-col items-center justify-center"
+              key={nft.metadata.id.toString()}
+            >
+              <h5>{nft.metadata.name}</h5>
+              <ThirdwebNftMedia
+                metadata={nft.metadata}
+                className="rounded-lg "
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Blog Posts */}
+        {/*
       {hasNFT ? (
         <div className="bg-dark-main text-light-main mx-auto mb-10 mt-8 max-w-5xl p-4">
           <div className="grid grid-cols-2 gap-4">
@@ -256,8 +425,8 @@ const MintPage: NextPageWithLayout = () => {
       )}
             */}
 
-      {/* Buy NFT Button */}
-      {/*
+        {/* Buy NFT Button */}
+        {/*
       {!address ? null : hasNFT ? null : (
         <button
           onClick={() =>
@@ -271,12 +440,54 @@ const MintPage: NextPageWithLayout = () => {
         </button>
       )}
         */}
-    </div>
+
+        {/*
+<Stack spacing={2} sx={{ width: "100%" }}>
+   
+
+
+</Stack>
+   */}
+      </div>
+
+      <footer>
+        <div className="flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
+          <div>Copyright ©MOMOCON</div>
+
+          <AnchorLink href="/terms">Terms of Service</AnchorLink>
+
+          <div>Privacy Policy</div>
+        </div>
+
+        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
+          <div>
+            <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
+          </div>
+
+          <AnchorLink
+            href="https://www.instagram.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Instagram className="h-4 w-4" /> Instagram
+          </AnchorLink>
+          <AnchorLink
+            href="https://twitter.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Twitter className="h-4 w-4" /> Twitter
+          </AnchorLink>
+        </div>
+      </footer>
+    </>
   );
 };
 
 MintPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
+
+//MintPage.title = 'Homepage';
 
 export default MintPage;

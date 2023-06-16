@@ -15,6 +15,11 @@ import { PowerIcon } from '@/components/icons/power';
 
 ///import HorseImage1 from '@/assets/images/nft/Hrs_00006000.png';
 const HorseImage1 = '/images/NFT/nft_01.jpg';
+const HorseImage2 = '/images/NFT/nft_02.jpg';
+const HorseImage3 = '/images/NFT/nft_03.jpg';
+const HorseImage4 = '/images/NFT/nft_04.jpg';
+const HorseImage5 = '/images/NFT/nft_05.jpg';
+const HorseImage6 = '/images/NFT/nft_06.jpg';
 
 export const priceFeedData = [
   {
@@ -46,7 +51,7 @@ export const priceFeedData = [
     symbol: 'USD',
     balance: '422.45',
     usdBalance: '1,032.24',
-    logo: HorseImage1,
+    logo: HorseImage2,
     change: '-1.5%',
     isChangePositive: false,
     color: '#E1F9F1',
@@ -69,7 +74,7 @@ export const priceFeedData = [
     symbol: 'USD',
     balance: '43.20',
     usdBalance: '532.94',
-    logo: HorseImage1,
+    logo: HorseImage3,
     change: '+12.5%',
     isChangePositive: true,
     color: '#DBE3FF',
@@ -92,7 +97,7 @@ export const priceFeedData = [
     symbol: 'USD',
     balance: '6.55',
     usdBalance: '340.24',
-    logo: HorseImage1,
+    logo: HorseImage4,
     change: '+1.5%',
     isChangePositive: true,
     color: '#FBF5D5',
@@ -115,7 +120,7 @@ export const priceFeedData = [
     symbol: 'USD',
     balance: '240.55',
     usdBalance: '340.24',
-    logo: HorseImage1,
+    logo: HorseImage5,
     change: '+1.5%',
     isChangePositive: true,
     color: '#FBF5D5',
@@ -138,7 +143,7 @@ export const priceFeedData = [
     symbol: 'USD',
     balance: '240.55',
     usdBalance: '340.24',
-    logo: HorseImage1,
+    logo: HorseImage6,
     change: '+1.5%',
     isChangePositive: true,
     color: '#FBF5D5',
