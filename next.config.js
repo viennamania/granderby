@@ -31,11 +31,6 @@ const nextConfig = withPWA({
   },
 
   reactStrictMode: true,
-  //reactStrictMode: false,
-
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
 
   images: {
     domains: [
