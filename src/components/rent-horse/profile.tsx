@@ -128,17 +128,17 @@ export default function Profile() {
               </div>
                   */}
 
-              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
-                <h3 className=" pr-10 text-right ">
+                <h3>
                   <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
                   {tokenBalance?.symbol}
                 </h3>
               </div>
 
-              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Claimable Rewards for Horse</span>
-                <h3 className=" pr-10 text-right">
+                <h3>
                   <b>
                     {!claimableRewards
                       ? 'Loading...'
@@ -177,9 +177,9 @@ export default function Profile() {
                 */}
               </div>
 
-              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Registered Horses to Happy Valley</span>
-                <h3 className=" pr-10 text-right ">
+                <h3>
                   <b>
                     {!stakedNftBalanceAAA
                       ? 'Loading...'
@@ -191,9 +191,9 @@ export default function Profile() {
                 </h3>
               </div>
 
-              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Owned Horses</span>
-                <h3 className=" pr-10 text-right ">
+                <h3>
                   <b>
                     {!nftBalance
                       ? 'Loading...'
