@@ -51,6 +51,8 @@ const routes = {
   //fieldJockey: '/field-jockey',
   //fieldTRVC: '/field-trvc',
 
+  racetrack: '/racetracks',
+
   stake: '/stake',
 
   apiBlogPosts: '/api/blogPosts',

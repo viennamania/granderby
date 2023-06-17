@@ -1,7 +1,11 @@
 import Button from '@/components/ui/button';
-import FarmList from '@/components/farms/list';
+
+import RacetrackList from './list';
+
 import ActiveLink from '@/components/ui/links/active-link';
-import { FieldsData } from '@/data/static/fields-data';
+
+import { RacetracksData } from '@/data/static/racetracks-data';
+
 import { Fragment, useState } from 'react';
 import { motion } from 'framer-motion';
 import cn from 'classnames';
@@ -195,7 +199,7 @@ function Status() {
   );
 }
 
-export default function Fields() {
+export default function Racetracks() {
   const { layout } = useLayout();
   return (
     <div className="mx-auto w-full">
@@ -250,8 +254,8 @@ export default function Fields() {
         </span>
       </div>
 
-      {FieldsData.map((field) => (
-        <FarmList
+      {RacetracksData.map((field) => (
+        <RacetrackList
           key={field.id}
           from={field.from}
           to={field.to}
@@ -277,7 +281,7 @@ export default function Fields() {
               APPROVE
             </Button>
           </ActiveLink>
-        </FarmList>
+        </RacetrackList>
       ))}
     </div>
   );

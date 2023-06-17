@@ -142,6 +142,12 @@ export const menuItems = [
   },
 
   {
+    name: 'RACETRACK',
+    icon: <FarmIcon />,
+    href: routes.racetrack,
+  },
+
+  {
     name: 'FIELD',
     icon: <FarmIcon />,
     href: routes.fieldHorse,

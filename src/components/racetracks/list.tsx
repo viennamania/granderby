@@ -4,7 +4,7 @@ import CurrencySwapIcons from '@/components/ui/currency-swap-icons';
 import { CoinList } from '@/components/ui/currency-swap-icons';
 import TransactionInfo from '@/components/ui/transaction-info';
 
-interface FieldListTypes {
+interface RacetrackListTypes {
   from: string;
   to: string;
   earned: string;
@@ -13,7 +13,7 @@ interface FieldListTypes {
   multiplier: string;
 }
 
-export default function FieldList({
+export default function RacetrackList({
   from,
   to,
   earned,
@@ -21,7 +21,7 @@ export default function FieldList({
   liquidity,
   multiplier,
   children,
-}: React.PropsWithChildren<FieldListTypes>) {
+}: React.PropsWithChildren<RacetrackListTypes>) {
   let [isExpand, setIsExpand] = useState(false);
   const setFrom = from as CoinList;
   const setTo = to as CoinList;

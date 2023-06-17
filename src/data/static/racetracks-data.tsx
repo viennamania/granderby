@@ -1,4 +1,4 @@
-export const FieldsData = [
+export const RacetracksData = [
   {
     id: 1,
     from: 'BTC',
