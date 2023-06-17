@@ -41,6 +41,10 @@ export default function RootLayout({
 
   console.log('RootLayout======', layout);
 
+  if (!layout) {
+    return <MomoconLayout>{children}</MomoconLayout>;
+  }
+
   if (layout === LAYOUT_OPTIONS.MODERN) {
     return <ModernLayout>{children}</ModernLayout>;
   }
