@@ -7,6 +7,10 @@ import CollectionCard from '@/components/ui/collection-card';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
+import AnchorLink from '@/components/ui/links/anchor-link';
+import routes from '@/config/routes';
+import { ExternalLink } from '@/components/icons/external-link';
+
 // static data
 import { collections } from '@/data/static/collections';
 import {
@@ -227,26 +231,31 @@ export default function ProfileTab() {
 
           <div
             className={cn(
-              'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+              'grid gap-4 xs:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
               layout === LAYOUT_OPTIONS.RETRO
                 ? 'md:grid-cols-2'
                 : 'md:grid-cols-1'
             )}
           >
-            {stakedTokens &&
+            {!stakedTokens ? (
+              <>
+                <div>{'Loading...'}</div>
+              </>
+            ) : (
               stakedTokens[0]?.map((stakedToken: BigNumber) => (
                 <NFTCard
                   tokenId={stakedToken.toNumber()}
                   key={stakedToken.toString()}
                 />
-              ))}
+              ))
+            )}
           </div>
 
           <h3 className="mt-10 flex justify-center">Owned Horses</h3>
 
           <div
             className={cn(
-              'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+              'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
               layout === LAYOUT_OPTIONS.RETRO
                 ? 'md:grid-cols-2'
                 : 'md:grid-cols-1'
@@ -290,7 +299,23 @@ export default function ProfileTab() {
                 className="mb-5 flex flex-col  items-center justify-center gap-3"
                 key={nft.metadata.id.toString()}
               >
-                <h5>{nft.metadata.name}</h5>
+                <div className="justifiy-center flex flex-row items-center gap-2">
+                  <h5>{nft.metadata.name}</h5>
+                  <AnchorLink
+                    href={{
+                      pathname: routes.horseDetails,
+                      ...(layout !== LAYOUT_OPTIONS.MODERN && {
+                        query: {
+                          layout,
+                        },
+                      }),
+                    }}
+                    className="cursor-pointer rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-brand dark:!bg-gray-700 dark:text-white"
+                  >
+                    <ExternalLink className="dark:text-white" />
+                  </AnchorLink>
+                </div>
+
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
                   className="rounded-lg "

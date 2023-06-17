@@ -310,7 +310,7 @@ const MintPage: NextPageWithLayout<
         <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
   */}
 
-        <h3 className="mt-10">Own your horse by minting</h3>
+        <h3 className="mt-10">Own your horses by minting</h3>
 
         <LiveNftPricingSlider limits={4} />
 

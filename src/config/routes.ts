@@ -36,6 +36,8 @@ const routes = {
   classic: '/classic',
   coinDetails: '/coin-details',
 
+  horseDetails: '/horse-details',
+
   marketplace: '/marketplace',
   createBid: '/marketplace/create',
 
