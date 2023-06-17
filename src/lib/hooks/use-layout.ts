@@ -2,28 +2,28 @@ import { atom, useAtom } from 'jotai';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
 // 1. set initial atom for criptic layout
-const cripticLayoutAtom = atom(
+const granderbyLayoutAtom = atom(
   typeof window !== 'undefined'
-    ? localStorage.getItem('criptic-layout')
+    ? localStorage.getItem('granderby-layout')
     : LAYOUT_OPTIONS.MOMOCON
 );
 
-const cripticLayoutAtomWithPersistence = atom(
-  (get) => get(cripticLayoutAtom),
+const granderbyLayoutAtomWithPersistence = atom(
+  (get) => get(granderbyLayoutAtom),
   (get, set, newStorage: any) => {
-    set(cripticLayoutAtom, newStorage);
+    set(granderbyLayoutAtom, newStorage);
 
-    localStorage.setItem('criptic-layout', newStorage);
+    localStorage.setItem('granderby-layout', newStorage);
   }
 );
 
 // 2. useLayout hook to check which layout is available
 export function useLayout() {
-  ///console.log("cripticLayoutAtom", cripticLayoutAtom);
+  ///console.log("granderbyLayoutAtom", granderbyLayoutAtom);
 
-  ///console.log("cripticLayoutAtomWithPersistence", cripticLayoutAtomWithPersistence);
+  ///console.log("granderbyLayoutAtomWithPersistence", granderbyLayoutAtomWithPersistence);
 
-  const [layout, setLayout] = useAtom(cripticLayoutAtomWithPersistence);
+  const [layout, setLayout] = useAtom(granderbyLayoutAtomWithPersistence);
 
   //setLayout("Momocon");
   ///console.log("layout", layout);
