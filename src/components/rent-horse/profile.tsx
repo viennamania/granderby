@@ -22,8 +22,9 @@ import {
   useAddress,
   useContract,
   useContractRead,
-  useOwnedNFTs,
+  //useOwnedNFTs,
   useTokenBalance,
+  useNFTBalance,
   Web3Button,
 } from '@thirdweb-dev/react';
 
@@ -47,7 +48,11 @@ export default function Profile() {
     nftDropContractAddressHorse,
     'nft-drop'
   );
-  const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+
+  //const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+  const { data: nftBalance } = useNFTBalance(nftDropContract, address);
+
+  ////console.log("nftBalance", nftBalance);
 
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,
@@ -55,6 +60,7 @@ export default function Profile() {
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
+  const [stakedNftBalanceAAA, setStakedNftBalanceAAA] = useState<BigNumber>();
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
   const { contract: stakingContract, isLoading } = useContract(
@@ -66,7 +72,11 @@ export default function Profile() {
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
-      ////const stakeInfo = await contract?.call("getStakeInfo", );
+
+      ////console.log("staeInfo", stakeInfo[0].length);
+
+      setStakedNftBalanceAAA(stakeInfo[0].length);
+
       setClaimableRewards(stakeInfo[1]);
     }
 
@@ -118,17 +128,17 @@ export default function Profile() {
               </div>
                   */}
 
-              <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
-                <h3>
+                <h3 className=" pr-10 text-right ">
                   <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
                   {tokenBalance?.symbol}
                 </h3>
               </div>
 
-              <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Claimable Rewards for Horse</span>
-                <h3>
+                <h3 className=" pr-10 text-right">
                   <b>
                     {!claimableRewards
                       ? 'Loading...'
@@ -139,6 +149,7 @@ export default function Profile() {
                   {tokenBalance?.symbol}
                 </h3>
 
+                {/*
                 <Web3Button
                   theme="light"
                   //colorMode="dark"
@@ -163,6 +174,35 @@ export default function Profile() {
                 >
                   Claim Rewards
                 </Web3Button>
+                */}
+              </div>
+
+              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+                <span>Registered Horses to Happy Valley</span>
+                <h3 className=" pr-10 text-right ">
+                  <b>
+                    {!stakedNftBalanceAAA
+                      ? 'Loading...'
+                      : Number(
+                          ethers.utils.formatUnits(stakedNftBalanceAAA, 0)
+                        ).toFixed(0)}
+                  </b>{' '}
+                  Horses
+                </h3>
+              </div>
+
+              <div className="mt-3 text-center text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+                <span>Owned Horses</span>
+                <h3 className=" pr-10 text-right ">
+                  <b>
+                    {!nftBalance
+                      ? 'Loading...'
+                      : Number(ethers.utils.formatUnits(nftBalance, 0)).toFixed(
+                          0
+                        )}
+                  </b>{' '}
+                  Horses
+                </h3>
               </div>
             </div>
           )}
