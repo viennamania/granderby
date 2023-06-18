@@ -5,7 +5,9 @@ import SearchButton from '@/components/search/button';
 import ActiveLink from '@/components/ui/links/active-link';
 import Hamburger from '@/components/ui/hamburger';
 import WalletConnect from '@/components/nft/wallet-connect';
+
 import { MenuItems } from '@/layouts/sidebar/_layout-menu';
+
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import { useDrawer } from '@/components/drawer-views/context';
@@ -36,18 +38,23 @@ function HeaderRightArea() {
   return (
     <div className="order-last flex shrink-0 items-center">
       <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
+        {/*
         <SearchButton
           color="white"
           className="shadow-main dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white"
         />
+  */}
       </div>
 
       <div className="hidden gap-6 lg:flex 2xl:gap-8">
         {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
           <div>
+            {/*
             <SearchButton variant="transparent" className="dark:text-white" />
+        */}
           </div>
         )}
+
         {/*
         <NotificationButton />
         */}
@@ -61,7 +68,10 @@ function HeaderRightArea() {
       </div>
 
       <div className="flex items-center lg:hidden">
+        {/*
         <NotificationButton />
+    */}
+
         <Hamburger
           isOpen={isOpen}
           onClick={() => openDrawer('DRAWER_MENU')}
@@ -103,9 +113,9 @@ export function Header() {
           <Logo />
       */}
 
-          <div className="flex flex-row gap-2">
-            <Image src={logo} alt="logo" width={24} height={24} className="" />
-            <span>Granderby</span>
+          <div className="flex flex-row items-center justify-center gap-2">
+            <Image src={logo} alt="logo" width={30} height={30} className="" />
+            <span className="text-md ml-1">Granderby</span>
           </div>
 
           {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (

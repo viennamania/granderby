@@ -142,11 +142,11 @@ export default function MomoconScreen() {
                   size="lg"
                 />
 
-                {/*
-                <div className="mb-5 flex justify-center">
-                  <ConnectWallet theme="dark" />
-                </div>
-            */}
+                {
+                  <div className="mb-5 flex justify-center">
+                    <ConnectWallet theme="dark" />
+                  </div>
+                }
 
                 <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
                   My Balance
