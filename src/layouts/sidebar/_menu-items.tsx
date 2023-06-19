@@ -277,6 +277,7 @@ export const menuItems = [
   },
   */
 
+  /*
   {
     name: 'Market',
     icon: <VoteIcon />,
@@ -292,4 +293,5 @@ export const menuItems = [
       },
     ],
   },
+  */
 ];

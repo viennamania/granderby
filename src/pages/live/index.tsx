@@ -20,16 +20,9 @@ import { LAYOUT_OPTIONS } from '@/lib/constants';
 //import movIntro from '@/assets-landing/mov/intro.mp4';
 
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
-import IcoApple from '@/assets-landing/images/ico-apple.svg';
-import IcoAndroid from '@/assets-landing/images/ico-android.svg';
-import IcoScrolldown from '@/assets-landing/images/ico-scrolldown.svg';
 
-import { Github } from '@/components/icons/brands/github';
 import { Instagram } from '@/components/icons/brands/instagram';
 import { Twitter } from '@/components/icons/brands/twitter';
-import { Check } from '@/components/icons/check';
-import { Copy } from '@/components/icons/copy';
-import { SearchIcon } from '@/components/icons/search';
 import AnchorLink from '@/components/ui/links/anchor-link';
 
 import phonePC from '@/assets-landing/images/img-app.png';

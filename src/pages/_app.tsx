@@ -15,6 +15,7 @@ import {
   paperWallet,
   metamaskWallet,
 } from '@thirdweb-dev/react';
+
 import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
 
 import { Polygon } from '@thirdweb-dev/chains';
