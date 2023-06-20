@@ -20,6 +20,7 @@ export default function handler(
 
   let grade = '';
 
+  /*
   if (req.query.id) {
     if (Number(req.query.id) >= 0 && Number(req.query.id) <= 5) {
       grade = 'S';
@@ -33,6 +34,8 @@ export default function handler(
       grade = 'D';
     }
   }
+  */
+  grade = 'D';
 
   const nftData = {
     id: req.query.id,
