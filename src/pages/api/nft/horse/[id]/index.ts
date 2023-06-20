@@ -44,6 +44,17 @@ export default function handler(
     imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
   }
 
+  const speed = '23';
+  const preceding = '42';
+  const overtaking = '66';
+  const stamina = '2';
+  const spirit = '64';
+  const power = '29';
+  const agiligty = '92';
+  const weight = '20';
+  const drivinghabits = '62';
+  const record = '77';
+
   const nftData = {
     id: req.query.id,
     name: 'Granderby Horse #' + req.query.id,
@@ -51,6 +62,18 @@ export default function handler(
     //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
     image: imagesrc,
     ///attributes: [{ trait_type: 'Grade', value: grade }],
+    attributes: [
+      { trait_type: 'Speed', value: speed },
+      { trait_type: 'Preceding', value: preceding },
+      { trait_type: 'Overtaking', value: overtaking },
+      { trait_type: 'Stamina', value: stamina },
+      { trait_type: 'Spirit', value: spirit },
+      { trait_type: 'Power', value: power },
+      { trait_type: 'Agiligty', value: agiligty },
+      { trait_type: 'Weight', value: weight },
+      { trait_type: 'DrivingHabits', value: drivinghabits },
+      { trait_type: 'Record', value: record },
+    ],
   };
 
   res.status(200).json(nftData);
