@@ -22,10 +22,13 @@ class CustomDocument extends Document {
             rel="stylesheet"
           />
     */}
+
+          {/*
           <meta
             httpEquiv="Content-Security-Policy"
             content="upgrade-insecure-requests"
           />
+  */}
         </Head>
 
         <body>
