@@ -65,7 +65,8 @@ export const stakingContractAddressTRVC =
   '0x9eb77004D500B152dEaE261C3Dc1Ee7214D27aF3';
 
 export const marketplaceContractAddress =
-  '0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';
+  //'0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';
+  '0x642D35ea500dA2497c8E703Ca38062A184006266'; // early bird
 
 // Songpa Token (SONGPA)
 //export const tokenContractAddress = '0xe5Ae1a10c1af58eC2Fe11413029057892cC5fAae';

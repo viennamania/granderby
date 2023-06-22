@@ -38,6 +38,7 @@ import {
   useOwnedNFTs,
   useTokenBalance,
   Web3Button,
+  useCreateDirectListing,
 } from '@thirdweb-dev/react';
 
 import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
@@ -133,11 +134,17 @@ export default function ProfileTab() {
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
   // Connect to our marketplace contract via the useContract hook
+
   const { contract: contractMarketplace } = useContract(
     marketplaceContractAddress,
-    //'marketplace',
     'marketplace-v3'
   );
+
+  const {
+    mutateAsync: createDirectListing,
+    isLoading: isLoadingSell,
+    error,
+  } = useCreateDirectListing(contractMarketplace);
 
   async function stakeNft(id: string) {
     if (!address) return;
@@ -321,13 +328,34 @@ export default function ProfileTab() {
                   className="rounded-lg "
                 />
 
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-col gap-2">
                   <Web3Button
                     theme="light"
                     contractAddress={stakingContractAddressHorseAAA}
                     action={() => stakeNft(nft.metadata.id)}
                   >
                     Register to Field
+                  </Web3Button>
+
+                  <Web3Button
+                    theme="light"
+                    contractAddress={marketplaceContractAddress}
+                    action={() =>
+                      createDirectListing({
+                        assetContractAddress: nftDropContractAddressHorse,
+                        tokenId: nft.metadata.id,
+                        pricePerToken: '2',
+                        currencyContractAddress: NATIVE_TOKEN_ADDRESS,
+                        isReservedListing: false,
+                        quantity: '1',
+                        startTimestamp: new Date(),
+                        endTimestamp: new Date(
+                          new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+                        ),
+                      })
+                    }
+                  >
+                    Sell to Market
                   </Web3Button>
 
                   {/*
