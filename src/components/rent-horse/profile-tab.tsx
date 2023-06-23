@@ -24,6 +24,7 @@ import {
   stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
   marketplaceContractAddress,
+  marketplaceContractAddressChaoscube,
 } from '../../config/contractAddresses';
 
 import { useEffect, useState } from 'react';
@@ -355,7 +356,28 @@ export default function ProfileTab() {
                       })
                     }
                   >
-                    Sell to Market
+                    Sell to Market AAA
+                  </Web3Button>
+
+                  <Web3Button
+                    theme="light"
+                    contractAddress={marketplaceContractAddressChaoscube}
+                    action={() =>
+                      createDirectListing({
+                        assetContractAddress: nftDropContractAddressHorse,
+                        tokenId: nft.metadata.id,
+                        pricePerToken: '1.8',
+                        currencyContractAddress: NATIVE_TOKEN_ADDRESS,
+                        isReservedListing: false,
+                        quantity: '1',
+                        startTimestamp: new Date(),
+                        endTimestamp: new Date(
+                          new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+                        ),
+                      })
+                    }
+                  >
+                    Sell to Market BBB
                   </Web3Button>
 
                   {/*
