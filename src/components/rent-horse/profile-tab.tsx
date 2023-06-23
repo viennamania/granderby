@@ -147,6 +147,17 @@ export default function ProfileTab() {
     error,
   } = useCreateDirectListing(contractMarketplace);
 
+  const { contract: contractMarketplaceChaoscube } = useContract(
+    marketplaceContractAddressChaoscube,
+    'marketplace-v3'
+  );
+
+  const {
+    mutateAsync: createDirectListingChaoscube,
+    isLoading: isLoadingSellChaoscube,
+    error: errorChaoscube,
+  } = useCreateDirectListing(contractMarketplaceChaoscube);
+
   async function stakeNft(id: string) {
     if (!address) return;
 
@@ -363,10 +374,10 @@ export default function ProfileTab() {
                     theme="light"
                     contractAddress={marketplaceContractAddressChaoscube}
                     action={() =>
-                      createDirectListing({
+                      createDirectListingChaoscube({
                         assetContractAddress: nftDropContractAddressHorse,
                         tokenId: nft.metadata.id,
-                        pricePerToken: '1.8',
+                        pricePerToken: '1.9',
                         currencyContractAddress: NATIVE_TOKEN_ADDRESS,
                         isReservedListing: false,
                         quantity: '1',
