@@ -14,6 +14,7 @@ import {
   ThirdwebProvider,
   paperWallet,
   metamaskWallet,
+  walletConnect,
 } from '@thirdweb-dev/react';
 
 import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
@@ -115,6 +116,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           <ThirdwebProvider
             activeChain={Polygon}
             supportedWallets={[
+              walletConnect(),
+
               metamaskWallet(),
 
               paperWallet({
