@@ -24,7 +24,7 @@ export default function handler(
 
   let imagesrc = '';
 
-  if (Number(req.query.id) >= 0 && Number(req.query.id) < 220) {
+  if (Number(req.query.id) >= 0 && Number(req.query.id) < 299) {
     //const filename = util.format("%08d", Number(req.query.id));
 
     //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
