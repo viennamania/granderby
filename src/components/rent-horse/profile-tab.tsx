@@ -356,7 +356,7 @@ export default function ProfileTab() {
                       createDirectListing({
                         assetContractAddress: nftDropContractAddressHorse,
                         tokenId: nft.metadata.id,
-                        pricePerToken: '98',
+                        pricePerToken: '3',
                         currencyContractAddress: NATIVE_TOKEN_ADDRESS,
                         isReservedListing: false,
                         quantity: '1',
