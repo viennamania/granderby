@@ -63,6 +63,7 @@ export default function handler(
     image: imagesrc,
     ///attributes: [{ trait_type: 'Grade', value: grade }],
     attributes: [
+      /*
       { trait_type: 'Speed', value: speed },
       { trait_type: 'Preceding', value: preceding },
       { trait_type: 'Overtaking', value: overtaking },
@@ -73,6 +74,7 @@ export default function handler(
       { trait_type: 'Weight', value: weight },
       { trait_type: 'DrivingHabits', value: drivinghabits },
       { trait_type: 'Record', value: record },
+      */
     ],
   };
 
