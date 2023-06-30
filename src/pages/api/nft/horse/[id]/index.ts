@@ -69,7 +69,7 @@ export default function handler(
 
     imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
   } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1500) {
-    var formattedNumber = Number(req.query.id) - 600 + '';
+    var formattedNumber = Number(req.query.id) + '';
 
     while (formattedNumber.length < 2) {
       formattedNumber = '0' + formattedNumber;
