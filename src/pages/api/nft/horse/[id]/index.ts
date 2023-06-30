@@ -24,64 +24,82 @@ export default function handler(
 
   let imagesrc = '';
 
-  if (Number(req.query.id) >= 0 && Number(req.query.id) < 299) {
-    //const filename = util.format("%08d", Number(req.query.id));
-
-    //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
-
-    //Number(req.query.id).padStart(2, "0");
-
-    //imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
-
-    var formattedNumber = req.query.id + '';
-    while (formattedNumber.length < 3) {
-      formattedNumber = '0' + formattedNumber;
-    }
-    formattedNumber = '00006' + formattedNumber;
-
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+  if (Number(req.query.id) === 0) {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000000.png';
+  } else if (Number(req.query.id) === 1) {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000001.png';
+  } else if (Number(req.query.id) === 2) {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000002.png';
+  } else if (Number(req.query.id) === 5) {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000003.png';
+  } else if (Number(req.query.id) === 7) {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000004.png';
+  } else if (Number(req.query.id) === 8) {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000005.png';
   } else {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
-  }
+    if (Number(req.query.id) >= 0 && Number(req.query.id) < 299) {
+      //const filename = util.format("%08d", Number(req.query.id));
 
-  if (Number(req.query.id) >= 300 && Number(req.query.id) < 500) {
-    var formattedNumber = Number(req.query.id) - 300 + '';
+      //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
 
-    while (formattedNumber.length < 3) {
-      formattedNumber = '0' + formattedNumber;
+      //Number(req.query.id).padStart(2, "0");
+
+      //imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+
+      var formattedNumber = req.query.id + '';
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+      formattedNumber = '00006' + formattedNumber;
+
+      imagesrc =
+        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+    } else {
+      imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
     }
 
-    formattedNumber = '00100' + formattedNumber;
+    if (Number(req.query.id) >= 300 && Number(req.query.id) < 500) {
+      var formattedNumber = Number(req.query.id) - 300 + '';
 
-    console.log('formattedNumber', formattedNumber);
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
 
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
-  } else if (Number(req.query.id) >= 600 && Number(req.query.id) < 1000) {
-    var formattedNumber = Number(req.query.id) - 600 + '';
+      formattedNumber = '00100' + formattedNumber;
 
-    while (formattedNumber.length < 3) {
-      formattedNumber = '0' + formattedNumber;
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc =
+        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+    } else if (Number(req.query.id) >= 600 && Number(req.query.id) < 1000) {
+      var formattedNumber = Number(req.query.id) - 600 + '';
+
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00200' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc =
+        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+    } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1500) {
+      var formattedNumber = Number(req.query.id) + '';
+
+      while (formattedNumber.length < 2) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0020' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc =
+        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+    } else {
+      imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
     }
-
-    formattedNumber = '00200' + formattedNumber;
-
-    console.log('formattedNumber', formattedNumber);
-
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
-  } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1500) {
-    var formattedNumber = Number(req.query.id) + '';
-
-    while (formattedNumber.length < 2) {
-      formattedNumber = '0' + formattedNumber;
-    }
-
-    formattedNumber = '0020' + formattedNumber;
-
-    console.log('formattedNumber', formattedNumber);
-
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
-  } else {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
   }
 
   //https://granderby.io/nft/horse/Hrs_00200000.png
