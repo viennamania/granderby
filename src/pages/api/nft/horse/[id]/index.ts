@@ -44,6 +44,39 @@ export default function handler(
     imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
   }
 
+  if (Number(req.query.id) >= 600 && Number(req.query.id) < 1500) {
+    //const filename = util.format("%08d", Number(req.query.id));
+
+    //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
+
+    //Number(req.query.id).padStart(2, "0");
+
+    //imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+
+    // 1200 => 002001200
+
+    //var formattedNumber = req.query.id + '';
+    //while (formattedNumber.length < 3) {
+    //  formattedNumber = '0' + formattedNumber;
+    //}
+
+    var formattedNumber = Number(req.query.id) - 600 + '';
+
+    while (formattedNumber.length < 3) {
+      formattedNumber = '0' + formattedNumber;
+    }
+
+    formattedNumber = '00200' + formattedNumber;
+
+    console.log('formattedNumber', formattedNumber);
+
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+  } else {
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+  }
+
+  //https://granderby.io/nft/horse/Hrs_00200000.png
+
   const speed = '23';
   const preceding = '42';
   const overtaking = '66';
