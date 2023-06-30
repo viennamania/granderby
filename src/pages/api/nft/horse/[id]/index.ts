@@ -44,7 +44,19 @@ export default function handler(
     imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
   }
 
-  if (Number(req.query.id) >= 600 && Number(req.query.id) < 1500) {
+  if (Number(req.query.id) >= 300 && Number(req.query.id) < 500) {
+    var formattedNumber = Number(req.query.id) - 300 + '';
+
+    while (formattedNumber.length < 3) {
+      formattedNumber = '0' + formattedNumber;
+    }
+
+    formattedNumber = '00100' + formattedNumber;
+
+    console.log('formattedNumber', formattedNumber);
+
+    imagesrc = 'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+  } else if (Number(req.query.id) >= 600 && Number(req.query.id) < 1500) {
     //const filename = util.format("%08d", Number(req.query.id));
 
     //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
