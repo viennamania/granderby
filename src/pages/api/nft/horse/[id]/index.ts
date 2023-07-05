@@ -138,7 +138,7 @@ export default function handler(
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'D';
-    } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1500) {
+    } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1800) {
       var formattedNumber = Number(req.query.id) + '';
 
       while (formattedNumber.length < 2) {
