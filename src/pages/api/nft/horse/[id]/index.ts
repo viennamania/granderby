@@ -172,6 +172,8 @@ export default function handler(
 
   const imagesrcUrl = s3url + imagesrc;
 
+  //const asset = imagesrc.substring(-3);
+
   const nftData = {
     id: req.query.id,
     name: 'Granderby Horse #' + req.query.id,
@@ -180,6 +182,7 @@ export default function handler(
     image: imagesrcUrl,
     ///attributes: [{ trait_type: 'Grade', value: grade }],
     attributes: [
+      { trait_type: 'Asset', value: imagesrc },
       { trait_type: 'Grade', value: grade },
       /*
       { trait_type: 'Speed', value: speed },
