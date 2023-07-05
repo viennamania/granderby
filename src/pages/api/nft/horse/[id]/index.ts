@@ -29,25 +29,48 @@ export default function handler(
   const s3url =
     'https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/';
 
+  let grade = '';
+
   let imagesrc = '';
 
   if (Number(req.query.id) === 0) {
     imagesrc = 'Hrs_00000000.png';
+    grade = 'S';
   } else if (Number(req.query.id) === 1) {
     imagesrc = 'Hrs_00000001.png';
+    grade = 'S';
   } else if (Number(req.query.id) === 2) {
     imagesrc = 'Hrs_00000002.png';
-  } else if (Number(req.query.id) === 5) {
+    grade = 'S';
+  } else if (Number(req.query.id) === 3) {
     imagesrc = 'Hrs_00000003.png';
-  } else if (Number(req.query.id) === 7) {
+    grade = 'S';
+  } else if (Number(req.query.id) === 4) {
     imagesrc = 'Hrs_00000004.png';
-  } else if (Number(req.query.id) === 8) {
+    grade = 'S';
+  } else if (Number(req.query.id) === 5) {
     imagesrc = 'Hrs_00000005.png';
+    grade = 'S';
+  } else if (Number(req.query.id) === 6) {
+    imagesrc = 'Hrs_00000006.png';
+    grade = 'S';
+  } else if (Number(req.query.id) === 7) {
+    imagesrc = 'Hrs_00000007.png';
+    grade = 'S';
+  } else if (Number(req.query.id) === 8) {
+    imagesrc = 'Hrs_00000008.png';
+    grade = 'S';
+  } else if (Number(req.query.id) === 9) {
+    imagesrc = 'Hrs_00000009.png';
+    grade = 'S';
+  } else if (Number(req.query.id) === 10) {
+    imagesrc = 'Hrs_00000010.png';
+    grade = 'S';
   } else {
-    console.log('req.query.id', req.query.id);
+    //console.log('req.query.id', req.query.id);
 
     // A Grade
-    if (Number(req.query.id) >= 11 && Number(req.query.id) < 100) {
+    if (Number(req.query.id) >= 11 && Number(req.query.id) <= 58) {
       console.log('A Grade req.query.id', req.query.id);
 
       var formattedNumber = Number(req.query.id) - 11 + '';
@@ -58,9 +81,11 @@ export default function handler(
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
+      grade = 'A';
+
       // B Grade
-    } else if (Number(req.query.id) >= 100 && Number(req.query.id) < 299) {
-      console.log('B Grade req.query.id', req.query.id);
+    } else if (Number(req.query.id) >= 59 && Number(req.query.id) <= 299) {
+      //console.log('B Grade req.query.id', req.query.id);
 
       //const filename = util.format("%08d", Number(req.query.id));
 
@@ -70,18 +95,22 @@ export default function handler(
 
       //imagesrc = 'Hrs_00006000.png';
 
-      var formattedNumber = req.query.id + '';
-      while (formattedNumber.length < 3) {
+      var formattedNumber = Number(req.query.id) - 59 + '';
+
+      while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
-      formattedNumber = '00006' + formattedNumber;
+      formattedNumber = '0002' + formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'B';
     } else {
       imagesrc = 'Hrs_00006000.png';
     }
 
-    if (Number(req.query.id) >= 300 && Number(req.query.id) < 500) {
+    // C Grade
+    if (Number(req.query.id) >= 300 && Number(req.query.id) <= 599) {
       var formattedNumber = Number(req.query.id) - 300 + '';
 
       while (formattedNumber.length < 3) {
@@ -93,6 +122,8 @@ export default function handler(
       console.log('formattedNumber', formattedNumber);
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'C';
     } else if (Number(req.query.id) >= 600 && Number(req.query.id) < 1000) {
       var formattedNumber = Number(req.query.id) - 600 + '';
 
@@ -105,6 +136,8 @@ export default function handler(
       console.log('formattedNumber', formattedNumber);
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'D';
     } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1500) {
       var formattedNumber = Number(req.query.id) + '';
 
@@ -117,8 +150,10 @@ export default function handler(
       console.log('formattedNumber', formattedNumber);
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'D';
     } else {
-      imagesrc = 'Hrs_00006000.png';
+      ////imagesrc = 'Hrs_00006000.png';
     }
   }
 
@@ -145,6 +180,7 @@ export default function handler(
     image: imagesrcUrl,
     ///attributes: [{ trait_type: 'Grade', value: grade }],
     attributes: [
+      { trait_type: 'Grade', value: grade },
       /*
       { trait_type: 'Speed', value: speed },
       { trait_type: 'Preceding', value: preceding },
