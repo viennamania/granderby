@@ -22,29 +22,53 @@ export default function handler(
   res.status(200).json(found);
   */
 
+  /*
+  https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/Hrs_00200000.png
+  */
+
+  const s3url =
+    'https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/';
+
   let imagesrc = '';
 
   if (Number(req.query.id) === 0) {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000000.png';
+    imagesrc = 'Hrs_00000000.png';
   } else if (Number(req.query.id) === 1) {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000001.png';
+    imagesrc = 'Hrs_00000001.png';
   } else if (Number(req.query.id) === 2) {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000002.png';
+    imagesrc = 'Hrs_00000002.png';
   } else if (Number(req.query.id) === 5) {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000003.png';
+    imagesrc = 'Hrs_00000003.png';
   } else if (Number(req.query.id) === 7) {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000004.png';
+    imagesrc = 'Hrs_00000004.png';
   } else if (Number(req.query.id) === 8) {
-    imagesrc = 'https://granderby.io/nft/horse/Hrs_00000005.png';
+    imagesrc = 'Hrs_00000005.png';
   } else {
-    if (Number(req.query.id) >= 0 && Number(req.query.id) < 299) {
+    console.log('req.query.id', req.query.id);
+
+    // A Grade
+    if (Number(req.query.id) >= 11 && Number(req.query.id) < 100) {
+      console.log('A Grade req.query.id', req.query.id);
+
+      var formattedNumber = Number(req.query.id) - 11 + '';
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+      formattedNumber = '00001' + formattedNumber;
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      // B Grade
+    } else if (Number(req.query.id) >= 100 && Number(req.query.id) < 299) {
+      console.log('B Grade req.query.id', req.query.id);
+
       //const filename = util.format("%08d", Number(req.query.id));
 
       //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
 
       //Number(req.query.id).padStart(2, "0");
 
-      //imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+      //imagesrc = 'Hrs_00006000.png';
 
       var formattedNumber = req.query.id + '';
       while (formattedNumber.length < 3) {
@@ -52,10 +76,9 @@ export default function handler(
       }
       formattedNumber = '00006' + formattedNumber;
 
-      imagesrc =
-        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
     } else {
-      imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+      imagesrc = 'Hrs_00006000.png';
     }
 
     if (Number(req.query.id) >= 300 && Number(req.query.id) < 500) {
@@ -69,8 +92,7 @@ export default function handler(
 
       console.log('formattedNumber', formattedNumber);
 
-      imagesrc =
-        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
     } else if (Number(req.query.id) >= 600 && Number(req.query.id) < 1000) {
       var formattedNumber = Number(req.query.id) - 600 + '';
 
@@ -82,8 +104,7 @@ export default function handler(
 
       console.log('formattedNumber', formattedNumber);
 
-      imagesrc =
-        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
     } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1500) {
       var formattedNumber = Number(req.query.id) + '';
 
@@ -95,10 +116,9 @@ export default function handler(
 
       console.log('formattedNumber', formattedNumber);
 
-      imagesrc =
-        'https://granderby.io/nft/horse/Hrs_' + formattedNumber + '.png';
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
     } else {
-      imagesrc = 'https://granderby.io/nft/horse/Hrs_00006000.png';
+      imagesrc = 'Hrs_00006000.png';
     }
   }
 
@@ -115,12 +135,14 @@ export default function handler(
   const drivinghabits = '62';
   const record = '77';
 
+  const imagesrcUrl = s3url + imagesrc;
+
   const nftData = {
     id: req.query.id,
     name: 'Granderby Horse #' + req.query.id,
     description: 'Granderby NFT Horses',
     //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
-    image: imagesrc,
+    image: imagesrcUrl,
     ///attributes: [{ trait_type: 'Grade', value: grade }],
     attributes: [
       /*
