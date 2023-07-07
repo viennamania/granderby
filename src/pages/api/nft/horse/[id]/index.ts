@@ -139,7 +139,7 @@ export default function handler(
 
       grade = 'D';
     } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1800) {
-      var formattedNumber = Number(req.query.id) + '';
+      var formattedNumber = Number(req.query.id) - 600 + '';
 
       while (formattedNumber.length < 2) {
         formattedNumber = '0' + formattedNumber;
