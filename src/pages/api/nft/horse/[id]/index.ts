@@ -229,6 +229,8 @@ export default function handler(
         { trait_type: 'Record', value: record },
         */
       ],
+
+      animation_url: 'https://animation.granderby.io',
     };
 
     res.status(200).json(nftData);
