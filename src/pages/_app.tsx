@@ -125,20 +125,20 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
               }),
             ]}
             sdkOptions={{
-              /*
               gasless: {
                 openzeppelin: {
                   relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
                 },
               },
-              */
 
+              /*
               gasless: {
                 biconomy: {
-                  apiKey: 'KS4M9E0y9.b8da5e67-b15a-4e79-9d36-9477fcdbd2ae',
-                  apiId: 'f4b1e11b-d32f-4ff6-81f7-3d6ef0218dce',
+                  apiKey: 'BlotrRJre.fe0d620c-d56f-4663-8e63-8cf5e6400dcd',
+                  apiId: 'fd500daa-7efb-4e68-b488-4b2f9f212ab6',
                 },
               },
+              */
             }}
           >
             {/*

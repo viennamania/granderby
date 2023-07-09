@@ -174,32 +174,65 @@ export default function handler(
 
   //const asset = imagesrc.substring(-3);
 
-  const nftData = {
-    id: req.query.id,
-    name: 'Granderby Horse #' + req.query.id,
-    description: 'Granderby NFT Horses',
-    //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
-    image: imagesrcUrl,
-    ///attributes: [{ trait_type: 'Grade', value: grade }],
-    attributes: [
-      { trait_type: 'Asset', value: imagesrc },
-      { trait_type: 'Grade', value: grade },
-      /*
-      { trait_type: 'Speed', value: speed },
-      { trait_type: 'Preceding', value: preceding },
-      { trait_type: 'Overtaking', value: overtaking },
-      { trait_type: 'Stamina', value: stamina },
-      { trait_type: 'Spirit', value: spirit },
-      { trait_type: 'Power', value: power },
-      { trait_type: 'Agiligty', value: agiligty },
-      { trait_type: 'Weight', value: weight },
-      { trait_type: 'DrivingHabits', value: drivinghabits },
-      { trait_type: 'Record', value: record },
-      */
-    ],
-  };
+  if (req.query.id === '0') {
+    const nftData = {
+      id: req.query.id,
+      name: 'Granderby Horse #' + req.query.id,
+      description: 'Granderby NFT Horses',
+      //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+      image: imagesrcUrl,
+      ///attributes: [{ trait_type: 'Grade', value: grade }],
 
-  res.status(200).json(nftData);
+      attributes: [
+        { trait_type: 'Asset', value: imagesrc },
+        { trait_type: 'Grade', value: grade },
+        /*
+        { trait_type: 'Speed', value: speed },
+        { trait_type: 'Preceding', value: preceding },
+        { trait_type: 'Overtaking', value: overtaking },
+        { trait_type: 'Stamina', value: stamina },
+        { trait_type: 'Spirit', value: spirit },
+        { trait_type: 'Power', value: power },
+        { trait_type: 'Agiligty', value: agiligty },
+        { trait_type: 'Weight', value: weight },
+        { trait_type: 'DrivingHabits', value: drivinghabits },
+        { trait_type: 'Record', value: record },
+        */
+      ],
+
+      animation_url: 'https://animation.granderby.io',
+    };
+
+    res.status(200).json(nftData);
+  } else {
+    const nftData = {
+      id: req.query.id,
+      name: 'Granderby Horse #' + req.query.id,
+      description: 'Granderby NFT Horses',
+      //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
+      image: imagesrcUrl,
+      ///attributes: [{ trait_type: 'Grade', value: grade }],
+
+      attributes: [
+        { trait_type: 'Asset', value: imagesrc },
+        { trait_type: 'Grade', value: grade },
+        /*
+        { trait_type: 'Speed', value: speed },
+        { trait_type: 'Preceding', value: preceding },
+        { trait_type: 'Overtaking', value: overtaking },
+        { trait_type: 'Stamina', value: stamina },
+        { trait_type: 'Spirit', value: spirit },
+        { trait_type: 'Power', value: power },
+        { trait_type: 'Agiligty', value: agiligty },
+        { trait_type: 'Weight', value: weight },
+        { trait_type: 'DrivingHabits', value: drivinghabits },
+        { trait_type: 'Record', value: record },
+        */
+      ],
+    };
+
+    res.status(200).json(nftData);
+  }
 
   //res.status(200).json({ name: req.query.id })
 

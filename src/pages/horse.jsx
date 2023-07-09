@@ -3,7 +3,8 @@ import { Stats, OrbitControls, Environment, useGLTF } from '@react-three/drei';
 import { useControls } from 'leva';
 
 const Models = [
-  { title: 'Hammer', url: './models/roan.glb' },
+  //{ title: 'Hammer', url: './models/roan.glb' },
+  { title: 'Hammer', url: './models/TEST2.glb' },
   //{ title: 'Drill', url: './models/roan.glb' },
   //{ title: 'Tape Measure', url: './models/roan.glb' },
 ];
