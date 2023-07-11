@@ -35,6 +35,17 @@ class CustomDocument extends Document {
           <Main />
           <NextScript />
 
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+              `,
+            }}
+          />
+
+          {/*
           <script src="/js/jquery-latest.js"></script>
           <script src="/js/swiper.min.js"></script>
           <script src="/js/aos.min.js"></script>
@@ -43,6 +54,7 @@ class CustomDocument extends Document {
           <script src="/js/ScrollTrigger.min.js"></script>
           <script src="/js/common.js"></script>
           <script src="https://cdn.rawgit.com/wilddeer/stickyfill/master/dist/stickyfill.min.js"></script>
+*/}
         </body>
       </Html>
     );

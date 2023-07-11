@@ -41,6 +41,11 @@ import { useState } from 'react';
 
 import Head from 'next/head';
 
+import Script from 'next/script';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import * as gtag from '@/lib/gtag';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -64,6 +69,21 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
     process.env.NEXT_PUBLIC_CLIENT_ID === undefined
       ? ''
       : process.env.NEXT_PUBLIC_CLIENT_ID;
+
+  gtag.useGtag();
+
+  /*
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url:any) => {
+      gtag.pageview(url)
+    }
+    router.events.on("routeChangeComplete", handleRouteChange)
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  }, [router.events])
+  */
 
   return (
     <>
@@ -94,6 +114,25 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
         <title>Granderby - powered by MOMOCON</title>
       </Head>
+
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gtag.GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
 
       <QueryClientProvider client={queryClient}>
         <ThemeProvider
