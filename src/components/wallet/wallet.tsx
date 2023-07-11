@@ -20,7 +20,7 @@ import {
   stakingContractAddressJockey,
   tokenContractAddressGRD,
   tokenContractAddressUSDC,
-} from '../../config/contractAddresses';
+} from '@/config/contractAddresses';
 
 import {
   ConnectWallet,
@@ -39,7 +39,7 @@ import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 
 import { BigNumber, ethers } from 'ethers';
 
-export default function Profile() {
+export default function Wallet() {
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
 
