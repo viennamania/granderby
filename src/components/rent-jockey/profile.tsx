@@ -24,6 +24,7 @@ import {
   useContractRead,
   useOwnedNFTs,
   useTokenBalance,
+  useNFTBalance,
   Web3Button,
 } from '@thirdweb-dev/react';
 
@@ -47,7 +48,9 @@ export default function Profile() {
     nftDropContractAddressJockey,
     'nft-drop'
   );
-  const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+  ////const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+
+  const { data: nftBalance } = useNFTBalance(nftDropContract, address);
 
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,
@@ -55,6 +58,7 @@ export default function Profile() {
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
+  const [stakedNftBalanceAAA, setStakedNftBalanceAAA] = useState<BigNumber>();
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
   const { contract: stakingContract, isLoading } = useContract(
@@ -66,7 +70,9 @@ export default function Profile() {
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
-      ////const stakeInfo = await contract?.call("getStakeInfo", );
+
+      setStakedNftBalanceAAA(stakeInfo[0].length);
+
       setClaimableRewards(stakeInfo[1]);
     }
 
@@ -163,6 +169,34 @@ export default function Profile() {
                 >
                   Claim Rewards
                 </Web3Button>
+              </div>
+
+              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+                <span>Registered Jockeys to Happy Valley</span>
+                <h3>
+                  <b>
+                    {!stakedNftBalanceAAA
+                      ? 'Loading...'
+                      : Number(
+                          ethers.utils.formatUnits(stakedNftBalanceAAA, 0)
+                        ).toFixed(0)}
+                  </b>{' '}
+                  Jockeys
+                </h3>
+              </div>
+
+              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+                <span>Owned Jockeys</span>
+                <h3>
+                  <b>
+                    {!nftBalance
+                      ? 'Loading...'
+                      : Number(ethers.utils.formatUnits(nftBalance, 0)).toFixed(
+                          0
+                        )}
+                  </b>{' '}
+                  Jockeys
+                </h3>
               </div>
             </div>
           )}

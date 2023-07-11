@@ -177,6 +177,7 @@ export default function Profile() {
                   {tokenBalanceGRD?.symbol}
                 </h3>
 
+                {/*
                 <Web3Button
                   theme="light"
                   //colorMode="dark"
@@ -201,6 +202,7 @@ export default function Profile() {
                 >
                   Claim Rewards
                 </Web3Button>
+                */}
               </div>
 
               <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
@@ -216,6 +218,7 @@ export default function Profile() {
                   {tokenBalanceGRD?.symbol}
                 </h3>
 
+                {/*
                 <Web3Button
                   theme="light"
                   //colorMode="dark"
@@ -240,6 +243,7 @@ export default function Profile() {
                 >
                   Claim Rewards
                 </Web3Button>
+                */}
               </div>
             </div>
           </div>
