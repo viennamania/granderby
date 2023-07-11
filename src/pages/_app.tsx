@@ -46,6 +46,8 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import * as gtag from '@/lib/gtag';
 
+import { Analytics } from '@vercel/analytics/react';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -186,6 +188,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
             {/* <div className={`${firaCode.variable} font-body`}> */}
 
             {getLayout(<Component {...pageProps} />)}
+
+            <Analytics />
 
             {/*
             <SettingsButton />
