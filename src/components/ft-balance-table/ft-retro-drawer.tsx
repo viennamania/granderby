@@ -32,6 +32,7 @@ export default function FtRetroDrawer({
         >
           <Dialog.Overlay className="fixed inset-0 bg-gray-700 bg-opacity-60 backdrop-blur" />
         </Transition.Child>
+
         <Transition.Child
           as={Fragment}
           enter="transform transition ease-out duration-300"

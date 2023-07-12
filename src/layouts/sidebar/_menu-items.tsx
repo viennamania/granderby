@@ -79,11 +79,13 @@ export const menuItems = [
   },
   */
 
+  /*
   {
     name: 'RACE',
     icon: <CompassIcon />,
     href: routes.liveRacing,
   },
+  */
 
   /*
   {
@@ -131,6 +133,7 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.rentJockey,
       },
+
       /*
       {
         name: 'TRVC',
@@ -141,12 +144,15 @@ export const menuItems = [
     ],
   },
 
+  /*
   {
     name: 'RACETRACK',
     icon: <FarmIcon />,
     href: routes.racetrack,
   },
+  */
 
+  /*
   {
     name: 'FIELD',
     icon: <FarmIcon />,
@@ -157,22 +163,10 @@ export const menuItems = [
         icon: <CompassIcon />,
         href: routes.fieldHorse,
       },
-      /*
-      {
-        name: 'Jockey',
-        icon: <PlusCircle />,
-        href: routes.fieldJockey,
-      },
-      */
-      /*
-      {
-        name: 'TRVC',
-        icon: <PlusCircle />,
-        href: routes.rentTRVC,
-      },
-      */
+
     ],
   },
+  */
 
   /*
   {
@@ -190,6 +184,7 @@ export const menuItems = [
   },
   */
 
+  /*
   {
     name: 'MINT',
     icon: <FarmIcon />,
@@ -207,6 +202,7 @@ export const menuItems = [
       },
     ],
   },
+  */
 
   /*
   {
