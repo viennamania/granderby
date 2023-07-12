@@ -74,10 +74,11 @@ export default function handler(
   const qunalla = [20.1, 32.4, 18.0, 14.2];
   */
 
-  const reqData = JSON.parse(req.body);
+  ///const reqData = JSON.parse(req.body);
 
   //console.log(reqData);
 
+  /*
   console.log(reqData.racing_time);
   console.log(reqData.round);
   console.log(reqData.odd_even);
@@ -85,6 +86,7 @@ export default function handler(
   console.log(reqData.win);
   console.log(reqData.place);
   console.log(reqData.qunalla);
+  */
 
   ///console.log(req.query);
 
