@@ -22,31 +22,34 @@ type Data = {
   "racing_time": "2020-12-21 06:13:05",
   "round": 100,
   "odd_even": [
-   "1:1.95",
-   "2:1.87"
-  ],
+   1:1.95, //소수점 두자리까지 전달
+   2:1.87,
+  ]
   "over_under": [
-  "1:2.15",
-  "2:1.70"
-  ],
+  1:2.15, //소수점 두자리까지 전달
+  2:1.70,
+  ]
    "win": [
-    "1:1,3",
-    "2:10.4",
-    "3:1.7",
-    "11:23.0"
+    1:1,3, //소수점 한자리까지 전달
+    2:10.4,
+    3:1.7,
+    ...
+    11:23.0,
    ],
   "place": [
-  "1:120.0",
-  "2:12.4",
-  "3:3.1",
-  "4:1.1",
-  "11:10.2"
+  1:120.0, //소수점 한자리까지 전달
+  2:12.4,
+  3:3.1,
+  4:1.1,
+  ...
+  11:10.2, 
   ],
-  "qunalla": [
-  "1-2:20.1",
-  "1-3:32.4",
-  "1-4:18.0",
-  "11-12:14.2"
+  “qunalla”: [
+  1-2:20.1, //소수점 한자리까지 전달
+  1-3:32.4,
+  1-4:18.0,
+  ...
+  11-12:14.2,
   ]
 }
 */
@@ -74,21 +77,6 @@ export default function handler(
   const qunalla = [20.1, 32.4, 18.0, 14.2];
   */
 
-  const reqData = JSON.parse(req.body);
-
-  //console.log(reqData);
-
-  console.log(reqData.racing_time);
-  console.log(reqData.round);
-  console.log(reqData.odd_even);
-  console.log(reqData.over_under);
-  console.log(reqData.win);
-  console.log(reqData.place);
-  console.log(reqData.qunalla);
-
-  ///console.log(req.query);
-
-  /*
   const racing_time = req.query.racing_time;
   const round = req.query.round;
   const odd_even = req.query.odd_even;
@@ -96,8 +84,6 @@ export default function handler(
   const win = req.query.win;
   const place = req.query.place;
   const qunalla = req.query.qunalla;
-
-  
 
   if (
     racing_time === undefined ||
@@ -108,16 +94,13 @@ export default function handler(
     place === undefined ||
     qunalla === undefined
   ) {
-    res
-      .status(200)
-      .json({
-        status: 0,
-        error: 'INVALID_PARAM',
-        message: 'invalid parameter',
-      });
+    res.status(200).json({
+      status: 0,
+      error: 'INVALID_PARAM',
+      message: 'invalid parameter',
+    });
     return;
   }
-  */
 
   //res.status(200).json(nftData);
 
