@@ -349,6 +349,7 @@ export default function ProfileTab() {
                     Register to Field
                   </Web3Button>
 
+                  {/*
                   <Web3Button
                     theme="light"
                     contractAddress={marketplaceContractAddress}
@@ -390,6 +391,7 @@ export default function ProfileTab() {
                   >
                     Sell to Market BBB
                   </Web3Button>
+                  */}
 
                   {/*
                   <Web3Button

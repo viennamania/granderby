@@ -133,6 +133,11 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.rentJockey,
       },
+      {
+        name: 'Track',
+        icon: <PlusCircle />,
+        href: routes.rentHorse,
+      },
 
       /*
       {

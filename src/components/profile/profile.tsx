@@ -20,6 +20,7 @@ import {
   stakingContractAddressJockey,
   tokenContractAddressGRD,
   tokenContractAddressUSDC,
+  tokenContractAddressUSDT,
 } from '../../config/contractAddresses';
 
 import {
@@ -83,6 +84,15 @@ export default function Profile() {
   );
   const { data: tokenBalanceUSDC } = useTokenBalance(
     tokenContractUSDC,
+    address
+  );
+
+  const { contract: tokenContractUSDT } = useContract(
+    tokenContractAddressUSDT,
+    'token'
+  );
+  const { data: tokenBalanceUSDT } = useTokenBalance(
+    tokenContractUSDT,
     address
   );
 
@@ -164,9 +174,17 @@ export default function Profile() {
                   <b>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</b>{' '}
                   {tokenBalanceGRD?.symbol}
                 </h3>
+
+                {/*
                 <h3>
                   <b>{Number(tokenBalanceUSDC?.displayValue).toFixed(2)}</b>{' '}
                   {tokenBalanceUSDC?.symbol}
+                </h3>
+                    */}
+
+                <h3>
+                  <b>{Number(tokenBalanceUSDT?.displayValue).toFixed(2)}</b>{' '}
+                  {tokenBalanceUSDT?.symbol}
                 </h3>
               </div>
 

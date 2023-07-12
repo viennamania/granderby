@@ -85,5 +85,9 @@ export const tokenContractAddressGRD =
 export const tokenContractAddressUSDC =
   '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174';
 
+// USDT Token (USDT)
+export const tokenContractAddressUSDT =
+  '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
+
 // Race Ticket ERC-1155
 export const contractAddressRace = '0x5e52c17869F8fF63Eeb5f832Bfbf98465bc213bf';
