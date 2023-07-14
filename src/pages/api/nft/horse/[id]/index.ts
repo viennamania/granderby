@@ -26,8 +26,10 @@ export default function handler(
   https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/Hrs_00200000.png
   */
 
-  const s3url =
-    'https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/';
+  //const s3url =
+  //    'https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/';
+
+  const s3url = 'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/';
 
   let grade = '';
 
