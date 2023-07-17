@@ -14,6 +14,81 @@ export default function handler(
   //res: NextApiResponse<Data>
   res: NextApiResponse
 ) {
+  if (req.query.id && String(req.query.id).substring(0, 2) === '0x') {
+    const address = req.query.id;
+
+    const asset = 'Hrs_00006000.png';
+
+    const grade = 'S';
+    const speed = '23';
+    const preceding = '42';
+    const overtaking = '66';
+    const stamina = '2';
+    const spirit = '64';
+    const power = '29';
+    const agiligty = '92';
+    const weight = '20';
+    const drivinghabits = '62';
+    const record = '77';
+
+    const tokenid = '100';
+    const name = 'Granderby Horse #100';
+    const description = 'Granderby NFT Horses';
+    const image =
+      'https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/Hrs_00006000.png';
+
+    const nftData = {
+      address: address,
+
+      nfts: [
+        {
+          asset: asset,
+          tokenid: tokenid,
+          name: name,
+          description: description,
+          image: image,
+          attributes: [
+            { trait_type: 'Grade', value: grade },
+            { trait_type: 'Speed', value: speed },
+            { trait_type: 'Preceding', value: preceding },
+            { trait_type: 'Overtaking', value: overtaking },
+            { trait_type: 'Stamina', value: stamina },
+            { trait_type: 'Spirit', value: spirit },
+            { trait_type: 'Power', value: power },
+            { trait_type: 'Agiligty', value: agiligty },
+            { trait_type: 'Weight', value: weight },
+            { trait_type: 'DrivingHabits', value: drivinghabits },
+            { trait_type: 'Record', value: record },
+          ],
+        },
+        {
+          asset: asset,
+          tokenid: tokenid,
+          name: name,
+          description: description,
+          image: image,
+          attributes: [
+            { trait_type: 'Grade', value: grade },
+            { trait_type: 'Speed', value: speed },
+            { trait_type: 'Preceding', value: preceding },
+            { trait_type: 'Overtaking', value: overtaking },
+            { trait_type: 'Stamina', value: stamina },
+            { trait_type: 'Spirit', value: spirit },
+            { trait_type: 'Power', value: power },
+            { trait_type: 'Agiligty', value: agiligty },
+            { trait_type: 'Weight', value: weight },
+            { trait_type: 'DrivingHabits', value: drivinghabits },
+            { trait_type: 'Record', value: record },
+          ],
+        },
+      ],
+    };
+
+    res.status(200).json(nftData);
+
+    return;
+  }
+
   //res.status(200).json( NFTList[ req.query.id ] )
 
   /*
