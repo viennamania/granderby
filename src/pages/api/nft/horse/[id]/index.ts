@@ -3,13 +3,17 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { NFTList } from '@/data/static/nft-horse-list';
 
+import { Network, Alchemy } from 'alchemy-sdk';
+
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+
 //const util = require('util');
 
 type Data = {
   name: string;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   //res: NextApiResponse<Data>
   res: NextApiResponse
@@ -17,71 +21,72 @@ export default function handler(
   if (req.query.id && String(req.query.id).substring(0, 2) === '0x') {
     const address = req.query.id;
 
-    const asset = 'Hrs_00006000.png';
+    const settings = {
+      apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key.
+      network: Network.MATIC_MAINNET, // Replace with your network.
+    };
 
-    const grade = 'S';
-    const speed = '23';
-    const preceding = '42';
-    const overtaking = '66';
-    const stamina = '2';
-    const spirit = '64';
-    const power = '29';
-    const agiligty = '92';
-    const weight = '20';
-    const drivinghabits = '62';
-    const record = '77';
+    const alchemy = new Alchemy(settings);
 
-    const tokenid = '100';
-    const name = 'Granderby Horse #100';
-    const description = 'Granderby NFT Horses';
-    const image =
-      'https://granderby-hosted-content.s3.ap-southeast-1.amazonaws.com/Hrs_00006000.png';
+    // Get all NFTs
+    ////const response = await alchemy.nft.getNftsForOwner(String(arr20Address[j]), {
+    const response = await alchemy.nft.getNftsForOwner(String(address), {
+      omitMetadata: false, // // Flag to omit metadata
+      contractAddresses: [nftDropContractAddressHorse],
+    });
+
+    const nfts = [];
+
+    for (var k = 0; k < response.ownedNfts.length; k++) {
+      if (response.ownedNfts[k].tokenUri?.gateway) {
+        const res = await fetch(response.ownedNfts[k].tokenUri?.gateway!);
+        const responseJson = await res.json();
+
+        //console.log("responseJson", responseJson.attributes[0].value);
+        //console.log("responseJson", responseJson.attributes[1].value);
+
+        const asset = responseJson.attributes[0].value;
+        const grade = responseJson.attributes[1].value;
+        const image = responseJson.image;
+
+        const tokenid = response.ownedNfts[k].tokenId;
+
+        const speed = '23';
+        const preceding = '42';
+        const overtaking = '66';
+        const stamina = '2';
+        const spirit = '64';
+        const power = '29';
+        const agiligty = '92';
+        const weight = '20';
+        const drivinghabits = '62';
+        const record = '77';
+
+        nfts.push({
+          asset: asset,
+          tokenid: tokenid,
+          image: image,
+          attributes: [
+            { trait_type: 'Grade', value: grade },
+            { trait_type: 'Speed', value: speed },
+            { trait_type: 'Preceding', value: preceding },
+            { trait_type: 'Overtaking', value: overtaking },
+            { trait_type: 'Stamina', value: stamina },
+            { trait_type: 'Spirit', value: spirit },
+            { trait_type: 'Power', value: power },
+            { trait_type: 'Agiligty', value: agiligty },
+            { trait_type: 'Weight', value: weight },
+            { trait_type: 'DrivingHabits', value: drivinghabits },
+            { trait_type: 'Record', value: record },
+          ],
+        });
+      }
+    }
 
     const nftData = {
       address: address,
 
-      nfts: [
-        {
-          asset: asset,
-          tokenid: tokenid,
-          name: name,
-          description: description,
-          image: image,
-          attributes: [
-            { trait_type: 'Grade', value: grade },
-            { trait_type: 'Speed', value: speed },
-            { trait_type: 'Preceding', value: preceding },
-            { trait_type: 'Overtaking', value: overtaking },
-            { trait_type: 'Stamina', value: stamina },
-            { trait_type: 'Spirit', value: spirit },
-            { trait_type: 'Power', value: power },
-            { trait_type: 'Agiligty', value: agiligty },
-            { trait_type: 'Weight', value: weight },
-            { trait_type: 'DrivingHabits', value: drivinghabits },
-            { trait_type: 'Record', value: record },
-          ],
-        },
-        {
-          asset: asset,
-          tokenid: tokenid,
-          name: name,
-          description: description,
-          image: image,
-          attributes: [
-            { trait_type: 'Grade', value: grade },
-            { trait_type: 'Speed', value: speed },
-            { trait_type: 'Preceding', value: preceding },
-            { trait_type: 'Overtaking', value: overtaking },
-            { trait_type: 'Stamina', value: stamina },
-            { trait_type: 'Spirit', value: spirit },
-            { trait_type: 'Power', value: power },
-            { trait_type: 'Agiligty', value: agiligty },
-            { trait_type: 'Weight', value: weight },
-            { trait_type: 'DrivingHabits', value: drivinghabits },
-            { trait_type: 'Record', value: record },
-          ],
-        },
-      ],
+      nfts: nfts,
     };
 
     res.status(200).json(nftData);
