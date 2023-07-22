@@ -162,8 +162,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
               metamaskWallet(),
 
               paperWallet({
-                /////clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
-                clientId: '0f8cb1f0-845f-4f71-b49d-d4a01abd5bf3',
+                clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c', // granderby
+                //clientId: '0f8cb1f0-845f-4f71-b49d-d4a01abd5bf3',
               }),
             ]}
             sdkOptions={{
