@@ -40,6 +40,7 @@ const nextConfig = withPWA({
       'nft-cdn.alchemy.com',
       'ipfs.io',
       'via.placeholder.com',
+      'dshujxhbbpmz18304035.gcdn.ntruss.com',
     ],
   },
 

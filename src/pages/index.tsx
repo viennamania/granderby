@@ -233,6 +233,7 @@ const HomePage: NextPageWithLayout<
           >
             <Instagram className="h-4 w-4" /> Instagram
           </AnchorLink>
+
           <AnchorLink
             href="https://twitter.com/nftgranderby"
             target="_blank"

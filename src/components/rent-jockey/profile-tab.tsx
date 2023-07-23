@@ -46,6 +46,8 @@ import { Stack, Snackbar, Alert } from '@mui/material';
 
 import dynamic from 'next/dynamic';
 
+import Image from 'next/image';
+
 const tabMenu = [
   {
     title: 'Collection',
@@ -286,9 +288,21 @@ export default function ProfileTab() {
                 key={nft.metadata.id.toString()}
               >
                 <h5>{nft.metadata.name}</h5>
+
+                {/*
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
                   className="rounded-lg "
+                />
+                */}
+
+                <Image
+                  //src={nft.media[0].thumbnail}
+                  src={nft.metadata.image ? nft.metadata.image : ''}
+                  alt={'alt'}
+                  width={500}
+                  height={500}
+                  className="rounded-lg"
                 />
 
                 <div className="flex flex-row gap-2">

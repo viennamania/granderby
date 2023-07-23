@@ -14,6 +14,8 @@ import {
 
 import styles from '../../styles/Home.module.css';
 
+import Image from 'next/image';
+
 interface NFTCardProps {
   tokenId: number;
 }
@@ -28,11 +30,24 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
         <div className="mb-5 flex flex-col items-center justify-center gap-3">
           <h5>{nft.metadata.name}</h5>
           {nft.metadata && (
+            <>
+              {/*
             <ThirdwebNftMedia
               metadata={nft.metadata}
               //className={styles.nftMedia}
               className="rounded-lg "
             />
+            */}
+
+              <Image
+                //src={nft.media[0].thumbnail}
+                src={nft.metadata.image ? nft.metadata.image : ''}
+                alt={'alt'}
+                width={500}
+                height={500}
+                className="rounded-lg"
+              />
+            </>
           )}
 
           <Web3Button
