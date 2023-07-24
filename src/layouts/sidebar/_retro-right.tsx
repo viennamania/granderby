@@ -63,7 +63,9 @@ export default function Sidebar({ className }: { className?: string }) {
                     {/*$10,86,000*/}
                     <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
                   </div>
+                  {/*
                   <TopupButton className="mb-8" />
+                  */}
                 </>
               )}
 

@@ -185,7 +185,9 @@ export default function ModernScreen() {
                   {tokenBalance?.symbol}
                 </div>
 
+                {/*
                 <TopupButton />
+                */}
               </>
             )}
           </div>
