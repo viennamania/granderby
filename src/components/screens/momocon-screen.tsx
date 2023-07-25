@@ -54,7 +54,7 @@ import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 export default function MomoconScreen() {
   const address = useAddress();
 
-  const emailQuery = usePaperWalletUserEmail();
+  ///const emailQuery = usePaperWalletUserEmail();
 
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,

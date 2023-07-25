@@ -3,7 +3,9 @@ import type { NextPageWithLayout } from '@/types';
 // import { Fira_Code } from 'next/font/google';
 
 import { ThemeProvider } from 'next-themes';
+
 import { QueryClient, QueryClientProvider } from 'react-query';
+
 import ModalsContainer from '@/components/modal-views/container';
 import DrawersContainer from '@/components/drawer-views/container';
 import SettingsButton from '@/components/settings/settings-button';
@@ -156,13 +158,14 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
           <ThirdwebProvider
             activeChain={Polygon}
+            clientId="6d0a3abfa7ad50324b419e1a4da4721c"
             supportedWallets={[
               walletConnect(),
 
               metamaskWallet(),
 
               paperWallet({
-                clientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c', // granderby
+                paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c', // granderby
                 //clientId: '0f8cb1f0-845f-4f71-b49d-d4a01abd5bf3',
               }),
             ]}

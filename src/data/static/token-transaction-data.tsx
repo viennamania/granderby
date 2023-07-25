@@ -1,0 +1,86 @@
+export const TransactionData = [
+  {
+    id: 0,
+    transactionType: 'Receive',
+    createdAt: '2023-07-18 11:32:20',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '32.2231345',
+      usdBalance: '11,032.24',
+    },
+  },
+  {
+    id: 1,
+    transactionType: 'Send',
+    createdAt: '2023-07-16 16:28:42',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '43.534',
+      usdBalance: '1,032.24',
+    },
+  },
+  {
+    id: 2,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 06:20:20',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '645.45',
+      usdBalance: '21,032.24',
+    },
+  },
+  {
+    id: 3,
+    transactionType: 'Send',
+    createdAt: '2023-07-15 02:43:25',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '1225.634',
+      usdBalance: '1,232.24',
+    },
+  },
+  {
+    id: 4,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 02:43:25',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '43.5422',
+      usdBalance: '9,032.24',
+    },
+  },
+  {
+    id: 5,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 02:43:25',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '18443.24245',
+      usdBalance: '31,032.24',
+    },
+  },
+  {
+    id: 6,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 17:33:28',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '422.24245',
+      usdBalance: '31,032.24',
+    },
+  },
+];
