@@ -41,6 +41,8 @@ const nextConfig = withPWA({
       'ipfs.io',
       'via.placeholder.com',
       'dshujxhbbpmz18304035.gcdn.ntruss.com',
+      '6d0a3abfa7ad50324b419e1a4da4721c.ipfscdn.io',
+      'randomuser.me',
     ],
   },
 

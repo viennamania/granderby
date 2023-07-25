@@ -1,5 +1,7 @@
 import { MediaRenderer } from '@thirdweb-dev/react';
 
+import Image from 'next/image';
+
 interface HeadingImage {
   src: string;
   isLoading: boolean;
@@ -41,6 +43,14 @@ export const HeadingImage: React.FC<HeadingImage> = ({
               className="h-full w-full object-cover"
             />
 */}
+
+              <Image
+                src={src}
+                width="300"
+                height="300"
+                className="h-full w-full object-cover"
+                alt="Cover Image"
+              />
             </>
           ) : (
             <div className="flex h-full w-full items-center justify-center rounded bg-gray-300 dark:bg-gray-700">

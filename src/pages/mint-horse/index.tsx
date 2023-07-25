@@ -794,6 +794,7 @@ const MintPage: NextPageWithLayout<
                         </button>
                       </div>
 
+                      {/*
                       <Web3Button
                         contractAddress={
                           contractQuery.contract?.getAddress() || ''
@@ -863,6 +864,7 @@ const MintPage: NextPageWithLayout<
                           buttonText
                         )}
                       </Web3Button>
+                        */}
                     </div>
                   </div>
                 )}
