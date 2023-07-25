@@ -408,6 +408,8 @@ const WalletPage: NextPageWithLayout<
           */}
 
             <div className="mt-5 flex flex-col items-center justify-center">
+              <ConnectWallet theme="dark" />
+
               <div className="mb-5 mt-5 flex flex-row items-center justify-center gap-3">
                 <span className=" text-sm">{address}</span>
 
@@ -603,12 +605,11 @@ const WalletPage: NextPageWithLayout<
         </div>
       </form>
 
-      {/*
-      <iframe src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c" />
-                */}
       <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
         <TransactionTable />
       </div>
+
+      <iframe src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c" />
 
       {/*
       <Web3Button
