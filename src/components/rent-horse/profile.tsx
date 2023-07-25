@@ -149,6 +149,7 @@ export default function Profile() {
                   {tokenBalance?.symbol}
                 </h3>
 
+                {/*
                 <Web3Button
                   theme="light"
                   //colorMode="dark"
@@ -173,6 +174,7 @@ export default function Profile() {
                 >
                   Claim Rewards
                 </Web3Button>
+*/}
               </div>
 
               <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">

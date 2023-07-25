@@ -224,10 +224,10 @@ export default function ProfileTab() {
 
           <div
             className={cn(
-              'grid gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+              'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
               layout === LAYOUT_OPTIONS.RETRO
                 ? 'md:grid-cols-2'
-                : 'md:grid-cols-1'
+                : 'md:grid-cols-4'
             )}
           >
             {stakedTokens &&
@@ -243,10 +243,10 @@ export default function ProfileTab() {
 
           <div
             className={cn(
-              'grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 lg:gap-5 xl:gap-6 3xl:grid-cols-3 4xl:grid-cols-4 ',
+              'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
               layout === LAYOUT_OPTIONS.RETRO
                 ? 'md:grid-cols-2'
-                : 'md:grid-cols-1'
+                : 'md:grid-cols-4'
             )}
           >
             {/*collections?.map((collection) => (
@@ -306,6 +306,7 @@ export default function ProfileTab() {
                 />
 
                 <div className="flex flex-row gap-2">
+                  {/*
                   <Web3Button
                     theme="light"
                     contractAddress={stakingContractAddressJockey}
@@ -313,6 +314,7 @@ export default function ProfileTab() {
                   >
                     Register to Field
                   </Web3Button>
+                  */}
 
                   {/*
                   <Web3Button

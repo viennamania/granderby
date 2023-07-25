@@ -138,13 +138,12 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         }}
       />
 
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider
-          attribute="class"
-          enableSystem={false}
-          defaultTheme="light"
-        >
-          {/*
+      <ThemeProvider
+        attribute="class"
+        enableSystem={false}
+        defaultTheme="light"
+      >
+        {/*
 
         <PaperEmbeddedWalletProvider
           appName="Paper RainbowKit Provider"
@@ -156,27 +155,27 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         >
         */}
 
-          <ThirdwebProvider
-            activeChain={Polygon}
-            clientId="6d0a3abfa7ad50324b419e1a4da4721c"
-            supportedWallets={[
-              walletConnect(),
+        <ThirdwebProvider
+          activeChain={Polygon}
+          clientId="6d0a3abfa7ad50324b419e1a4da4721c"
+          supportedWallets={[
+            walletConnect(),
 
-              metamaskWallet(),
+            metamaskWallet(),
 
-              paperWallet({
-                paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c', // granderby
-                //clientId: '0f8cb1f0-845f-4f71-b49d-d4a01abd5bf3',
-              }),
-            ]}
-            sdkOptions={{
-              gasless: {
-                openzeppelin: {
-                  relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
-                },
+            paperWallet({
+              paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c', // granderby
+              //clientId: '0f8cb1f0-845f-4f71-b49d-d4a01abd5bf3',
+            }),
+          ]}
+          sdkOptions={{
+            gasless: {
+              openzeppelin: {
+                relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
               },
+            },
 
-              /*
+            /*
               gasless: {
                 biconomy: {
                   apiKey: 'BlotrRJre.fe0d620c-d56f-4663-8e63-8cf5e6400dcd',
@@ -184,37 +183,38 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
                 },
               },
               */
-            }}
-          >
-            {/*
+          }}
+        >
+          {/*
             <WalletProvider>
       */}
-            {/* <div className={`${firaCode.variable} font-body`}> */}
+          {/* <div className={`${firaCode.variable} font-body`}> */}
 
+          <QueryClientProvider client={queryClient}>
             {getLayout(<Component {...pageProps} />)}
+          </QueryClientProvider>
 
-            <Analytics />
+          <Analytics />
 
-            {/*
+          {/*
             <SettingsButton />
     */}
 
-            <SettingsDrawer />
+          <SettingsDrawer />
 
-            <ModalsContainer />
-            <DrawersContainer />
-            {/* </div> */}
+          <ModalsContainer />
+          <DrawersContainer />
+          {/* </div> */}
 
-            {/*
+          {/*
             </WalletProvider>
     */}
-          </ThirdwebProvider>
+        </ThirdwebProvider>
 
-          {/*   
+        {/*   
         </PaperEmbeddedWalletProvider>
       */}
-        </ThemeProvider>
-      </QueryClientProvider>
+      </ThemeProvider>
     </>
   );
 }
