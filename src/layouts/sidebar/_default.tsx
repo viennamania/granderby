@@ -32,7 +32,7 @@ export default function Sidebar({ className }: { className?: string }) {
 
         <div className="flex flex-row justify-center gap-2">
           <Image src={logo} alt="logo" width={24} height={24} className="" />
-          <span>Granderby</span>
+          <span>Granderbyd</span>
         </div>
 
         <div className="md:hidden">

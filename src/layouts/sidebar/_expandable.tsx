@@ -81,7 +81,7 @@ export default function Sidebar({ className }: { className?: string }) {
                 height={24}
                 className=""
               />
-              <span>Granderby</span>
+              <span>ssssGranderby</span>
             </div>
           </>
         )}

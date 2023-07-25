@@ -254,7 +254,7 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h3 className="mt-10 flex justify-center">Owned Horses</h3>
+          <h3 className="mt-10 flex justify-center">Owned Track</h3>
 
           <div className="justify-right mb-5 flex h-16 items-center gap-6 border border-b border-dashed border-gray-200 px-6 dark:border-gray-700">
             <Button
@@ -432,33 +432,6 @@ export default function ProfileTab() {
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-
-          <h3 className="flex justify-center ">
-            Registered Horses to Happy Valley
-          </h3>
-
-          {address && !stakedTokens ? (
-            <>
-              <div className="w-full text-center text-xl">{'Loading...'}</div>
-            </>
-          ) : (
-            <div
-              className={cn(
-                'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
-                layout === LAYOUT_OPTIONS.RETRO
-                  ? 'md:grid-cols-2'
-                  : 'md:grid-cols-4'
-              )}
-            >
-              {stakedTokens &&
-                stakedTokens[0]?.map((stakedToken: BigNumber) => (
-                  <NFTCard
-                    tokenId={stakedToken.toNumber()}
-                    key={stakedToken.toString()}
-                  />
-                ))}
             </div>
           )}
         </TabPanel>

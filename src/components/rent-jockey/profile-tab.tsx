@@ -48,6 +48,12 @@ import dynamic from 'next/dynamic';
 
 import Image from 'next/image';
 
+import Button from '@/components/ui/button';
+import { Close } from '@/components/icons/close';
+import { Router } from 'next/router';
+
+import { useRouter } from 'next/router';
+
 const tabMenu = [
   {
     title: 'Collection',
@@ -220,115 +226,150 @@ export default function ProfileTab() {
     <>
       <ParamTab tabMenu={tabMenu}>
         <TabPanel className="focus:outline-none  ">
-          <h3 className="flex justify-center ">My registered jockeys</h3>
-
-          <div
-            className={cn(
-              'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
-              layout === LAYOUT_OPTIONS.RETRO
-                ? 'md:grid-cols-2'
-                : 'md:grid-cols-4'
-            )}
-          >
-            {stakedTokens &&
-              stakedTokens[0]?.map((stakedToken: BigNumber) => (
-                <NFTCard
-                  tokenId={stakedToken.toNumber()}
-                  key={stakedToken.toString()}
-                />
-              ))}
-          </div>
-
           <h3 className="mt-10 flex justify-center">My owned jockeys</h3>
 
-          <div
-            className={cn(
-              'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
-              layout === LAYOUT_OPTIONS.RETRO
-                ? 'md:grid-cols-2'
-                : 'md:grid-cols-4'
-            )}
-          >
-            {/*collections?.map((collection) => (
+          <div className="justify-right mb-5 flex h-16 items-center gap-6 border border-b border-dashed border-gray-200 px-6 dark:border-gray-700">
+            <Button
+              title="Go"
+              color="white"
+              shape="rounded"
+              variant="transparent"
+              size="large"
+              onClick={() => {
+                router.push('https://granderby.market/');
+              }}
+            >
+              <div className="flex flex-row items-center gap-2">
+                <Image
+                  src="/images/market.png"
+                  alt="market"
+                  width={34}
+                  height={34}
+                />
+                Granderby Market
+              </div>
+            </Button>
+          </div>
 
-            <CollectionCard
-              item={collection}
-              key={`collection-key-${collection?.id}`}
+          {address && !ownedNfts ? (
+            <>
+              <div className=" w-full text-center text-xl">{'Loading...'}</div>
+            </>
+          ) : (
+            <div
+              className={cn(
+                'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
+                layout === LAYOUT_OPTIONS.RETRO
+                  ? 'md:grid-cols-2'
+                  : 'md:grid-cols-4'
+              )}
+            >
+              {/*collections?.map((collection) => (
+
+          <CollectionCard
+            item={collection}
+            key={`collection-key-${collection?.id}`}
+          />
+
+        ))*/}
+
+              {/*
+        {stakedTokens[0]?.map((nft) => (
+
+          <div className="" key={nft.metadata.id.toString()}>
+            <ThirdwebNftMedia
+              metadata={nft.metadata}
+              className="rounded-lg"
             />
+            <h4>
+              {nft.metadata.name} #{nft.metadata.id.toString()}
+            </h4>
 
-          ))*/}
+            <Web3Button
+              contractAddress={stakingContractAddressJockey}
+              action={() => stakeNft(nft.metadata.id)}
+            >
+              Withdraw from Racetrack
+            </Web3Button>
 
-            {/*
-          {stakedTokens[0]?.map((nft) => (
+          </div>
 
-            <div className="" key={nft.metadata.id.toString()}>
+        ))}
+        */}
+
+              {ownedNfts?.map((nft) => (
+                <div
+                  className="mb-5 flex flex-col  items-center justify-center gap-3"
+                  key={nft.metadata.id.toString()}
+                >
+                  <h5>{nft.metadata.name}</h5>
+
+                  {/*
               <ThirdwebNftMedia
                 metadata={nft.metadata}
-                className="rounded-lg"
+                className="rounded-lg "
               />
-              <h4>
-                {nft.metadata.name} #{nft.metadata.id.toString()}
-              </h4>
+              */}
 
-              <Web3Button
-                contractAddress={stakingContractAddressJockey}
-                action={() => stakeNft(nft.metadata.id)}
-              >
-                Withdraw from Racetrack
-              </Web3Button>
+                  <Image
+                    //src={nft.media[0].thumbnail}
+                    src={nft.metadata.image ? nft.metadata.image : ''}
+                    alt={'alt'}
+                    width={500}
+                    height={500}
+                    className="rounded-lg"
+                  />
 
-            </div>
-
-          ))}
-          */}
-
-            {ownedNfts?.map((nft) => (
-              <div
-                className="mb-5 flex flex-col  items-center justify-center gap-3"
-                key={nft.metadata.id.toString()}
-              >
-                <h5>{nft.metadata.name}</h5>
-
-                {/*
-                <ThirdwebNftMedia
-                  metadata={nft.metadata}
-                  className="rounded-lg "
-                />
+                  <div className="flex flex-row gap-2">
+                    {/*
+                <Web3Button
+                  theme="light"
+                  contractAddress={stakingContractAddressJockey}
+                  action={() => stakeNft(nft.metadata.id)}
+                >
+                  Register to Field
+                </Web3Button>
                 */}
 
-                <Image
-                  //src={nft.media[0].thumbnail}
-                  src={nft.metadata.image ? nft.metadata.image : ''}
-                  alt={'alt'}
-                  width={500}
-                  height={500}
-                  className="rounded-lg"
-                />
-
-                <div className="flex flex-row gap-2">
-                  {/*
-                  <Web3Button
-                    theme="light"
-                    contractAddress={stakingContractAddressJockey}
-                    action={() => stakeNft(nft.metadata.id)}
-                  >
-                    Register to Field
-                  </Web3Button>
-                  */}
-
-                  {/*
-                  <Web3Button
-                    theme="light"
-                    contractAddress={marketplaceContractAddress}
-                    action={() => sellNft(nft.metadata.id)}
-                  >
-                    Sell
-                  </Web3Button>
-            */}
+                    {/*
+                <Web3Button
+                  theme="light"
+                  contractAddress={marketplaceContractAddress}
+                  action={() => sellNft(nft.metadata.id)}
+                >
+                  Sell
+                </Web3Button>
+          */}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
+
+          <h3 className="flex justify-center ">My registered jockeys</h3>
+
+          {address && !stakedTokens ? (
+            <>
+              <div className="w-full text-center text-xl">{'Loading...'}</div>
+            </>
+          ) : (
+            <div
+              className={cn(
+                'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
+                layout === LAYOUT_OPTIONS.RETRO
+                  ? 'md:grid-cols-2'
+                  : 'md:grid-cols-4'
+              )}
+            >
+              {stakedTokens &&
+                stakedTokens[0]?.map((stakedToken: BigNumber) => (
+                  <NFTCard
+                    tokenId={stakedToken.toNumber()}
+                    key={stakedToken.toString()}
+                  />
+                ))}
+            </div>
+          )}
         </TabPanel>
 
         <TabPanel className="focus:outline-none">

@@ -10,8 +10,8 @@ import Avatar from '@/components/ui/avatar';
 import ProfileTab from './profile-tab';
 
 import {
-  nftDropContractAddressJockey,
-  stakingContractAddressJockey,
+  nftDropContractAddressHorse,
+  stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
 } from '../../config/contractAddresses';
 
@@ -22,7 +22,7 @@ import {
   useAddress,
   useContract,
   useContractRead,
-  useOwnedNFTs,
+  //useOwnedNFTs,
   useTokenBalance,
   useNFTBalance,
   Web3Button,
@@ -45,12 +45,14 @@ export default function Profile() {
   const address = useAddress();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddressJockey,
+    nftDropContractAddressHorse,
     'nft-drop'
   );
-  ////const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
+  //const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
   const { data: nftBalance } = useNFTBalance(nftDropContract, address);
+
+  ////console.log("nftBalance", nftBalance);
 
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,
@@ -62,7 +64,7 @@ export default function Profile() {
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
   const { contract: stakingContract, isLoading } = useContract(
-    stakingContractAddressJockey
+    stakingContractAddressHorseAAA
   );
 
   useEffect(() => {
@@ -70,6 +72,8 @@ export default function Profile() {
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
+
+      ////console.log("staeInfo", stakeInfo[0].length);
 
       setStakedNftBalanceAAA(stakeInfo[0].length);
 
@@ -80,9 +84,9 @@ export default function Profile() {
   }, [address, stakingContract]);
 
   return (
-    <div className="flex w-full flex-col pt-4 md:flex-row md:pt-10 lg:flex-row 3xl:pt-12">
+    <div className="  flex w-full flex-col pt-4 md:flex-row md:pt-10 lg:flex-row 3xl:pt-12">
       <>
-        <div className="hidden shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
+        <div className=" hidden shrink-0 border-dashed border-gray-200 dark:border-gray-700 md:w-72 ltr:md:border-r md:ltr:pr-7 rtl:md:border-l md:rtl:pl-7 lg:ltr:pr-10 lg:rtl:pl-10 2xl:w-80 3xl:w-96 3xl:ltr:pr-14 3xl:rtl:pl-14">
           {/*
           <div className="flex justify-center">
             <ConnectWallet theme="dark" />
@@ -92,7 +96,7 @@ export default function Profile() {
           {!address ? (
             <></>
           ) : (
-            <div className=" text-center ltr:md:text-left rtl:md:text-right">
+            <div className="  text-center ltr:md:text-left rtl:md:text-right">
               {/*
 
               <h2 className="text-xl font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl">
@@ -124,7 +128,7 @@ export default function Profile() {
               </div>
                   */}
 
-              <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className=" mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
                 <h3>
                   <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
@@ -132,8 +136,8 @@ export default function Profile() {
                 </h3>
               </div>
 
-              <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-                <span>Claimable Rewards for Jockey</span>
+              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+                <span>Claimable Rewards from Happy Valley</span>
                 <h3>
                   <b>
                     {!claimableRewards
@@ -150,7 +154,7 @@ export default function Profile() {
                   theme="light"
                   //colorMode="dark"
                   //accentColor="#5204BF"
-                  contractAddress={stakingContractAddressJockey}
+                  contractAddress={stakingContractAddressHorseAAA}
                   action={async (contract) => {
                     try {
                       const tx = await contract.call('claimRewards');
@@ -170,11 +174,11 @@ export default function Profile() {
                 >
                   Claim Rewards
                 </Web3Button>
-                  */}
+*/}
               </div>
 
               <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-                <span>Registered Jockeys to Happy Valley</span>
+                <span>Registered Track to Happy Valley</span>
                 <h3>
                   <b>
                     {!stakedNftBalanceAAA
@@ -183,12 +187,12 @@ export default function Profile() {
                           ethers.utils.formatUnits(stakedNftBalanceAAA, 0)
                         ).toFixed(0)}
                   </b>{' '}
-                  Jockeys
+                  Track
                 </h3>
               </div>
 
               <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-                <span>Owned Jockeys</span>
+                <span>Owned Track</span>
                 <h3>
                   <b>
                     {!nftBalance
@@ -197,7 +201,7 @@ export default function Profile() {
                           0
                         )}
                   </b>{' '}
-                  Jockeys
+                  Track
                 </h3>
               </div>
             </div>

@@ -1,5 +1,4 @@
 import CoverImage from '@/assets/images/profile-cover-jockey.png';
-//import CoverImage from '@/assets/images/arena.png';
 
 //import AuthorImage from '@/assets/images/author.jpg';
 import AuthorImage from '@/assets/images/author.jpg';

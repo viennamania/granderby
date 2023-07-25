@@ -1,4 +1,4 @@
-import CoverImage from '@/assets/images/field-cover-horse.png';
+import CoverImage from '@/assets/images/profile-cover-track.png';
 
 //import AuthorImage from '@/assets/images/author.jpg';
 import AuthorImage from '@/assets/images/author.jpg';
@@ -12,7 +12,7 @@ import User3 from '@/assets/images/avatar/3.png';
 import User4 from '@/assets/images/avatar/1.png';
 import User5 from '@/assets/images/avatar/6.png';
 
-export const fieldData = {
+export const authorData = {
   id: 157896,
   name: 'Spy Thirtythree',
   user_name: 'Rubywalsh',
