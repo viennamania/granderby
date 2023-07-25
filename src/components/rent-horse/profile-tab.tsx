@@ -258,6 +258,7 @@ export default function ProfileTab() {
 
           <div className="justify-right mb-5 flex h-16 items-center gap-6 border border-b border-dashed border-gray-200 px-6 dark:border-gray-700">
             <Button
+              className="w-full"
               title="Go"
               color="white"
               shape="rounded"
