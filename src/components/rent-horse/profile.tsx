@@ -96,7 +96,7 @@ export default function Profile() {
           {!address ? (
             <></>
           ) : (
-            <div className="text-center ltr:md:text-left rtl:md:text-right">
+            <div className="  text-center ltr:md:text-left rtl:md:text-right">
               {/*
 
               <h2 className="text-xl font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl">
@@ -128,7 +128,7 @@ export default function Profile() {
               </div>
                   */}
 
-              <div className="mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
+              <div className=" mt-3 pr-10 text-right text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
                 <span>Current Balance</span>
                 <h3>
                   <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
