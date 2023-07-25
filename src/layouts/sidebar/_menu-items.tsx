@@ -112,10 +112,18 @@ export const menuItems = [
   },
   */
 
+  /*
   {
     name: 'PROFILE',
     icon: <ProfileIcon />,
     href: routes.profile,
+  },
+  */
+
+  {
+    name: 'WALLET',
+    icon: <ProfileIcon />,
+    href: routes.wallet,
   },
 
   {

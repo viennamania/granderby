@@ -28,18 +28,29 @@ import { myGetServerSideProps } from '@/helpers';
 
 import { deleteCookie } from 'cookies-next';
 
+import Image from '@/components/ui/image';
+import AnchorLink from '@/components/ui/links/anchor-link';
+import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
+
+import { Github } from '@/components/icons/brands/github';
+import { Instagram } from '@/components/icons/brands/instagram';
+import { Twitter } from '@/components/icons/brands/twitter';
+//import { Check } from '@/components/icons/check';
+//import { Copy } from '@/components/icons/copy';
+import { SearchIcon } from '@/components/icons/search';
+
 // Bebas Neue
 let socket;
 
 export const getStaticProps: GetStaticProps = async () => {
-  ///const { user, settings }: any = await myGetServerSideProps(context)
+  //const { user, settings }: any = await myGetServerSideProps(context)
 
-  /*
-    const npcNamesResponse = await fetch(process.env.API_URL + `/api/games/horseRace/settings/horseNames?method=all`,)
-    const npcNames = await npcNamesResponse.json()
+  const npcNamesResponse = await fetch(
+    process.env.API_URL + `/api/games/horseRace/settings/horseNames?method=all`
+  );
+  const npcNames = await npcNamesResponse.json();
 
-    console.log("npcNames[0]", npcNames.npcNames[0])
-    */
+  console.log('npcNames[0]', npcNames.npcNames[0]);
 
   /*
     if (settings.games[1].active === false) {
@@ -62,8 +73,8 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       //user: user ?? null,
       //settings: settings ?? null,
-      ////npcNames: npcNames.npcNames[0],
-      //inputs: npcNames.npcNames[0].inputs
+      npcNames: npcNames.npcNames[0],
+      inputs: npcNames.npcNames[0].inputs,
     },
   };
 };
@@ -71,6 +82,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const WatchPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
+  //const { npcNames: npcNames, inputs } = props;
   //const { inputs } = props;
 
   //export default function Hipodrom({ user, settings, npcNames, inputs }: { user: IUser | null, settings: ISettings | null, npcNames: any, inputs: any }
@@ -207,18 +219,20 @@ const WatchPage: NextPageWithLayout<
                                 */}
 
               {/*
-                                <BetInputs
-                                    horse1={horse1Oran}
-                                    horse2={horse2Oran}
-                                    horse3={horse3Oran}
-                                    horse4={horse4Oran}
-                                    horse5={horse5Oran}
-                                    npcs={npcNames}
-                                    user={user}
-                                    inputs={inputs}
-                                    balance={balance}
-                                />
-                            */}
+                <BetInputs
+                    horse1={horse1Oran}
+                    horse2={horse2Oran}
+                    horse3={horse3Oran}
+                    horse4={horse4Oran}
+                    horse5={horse5Oran}
+                    //user={user}
+                    user={null}
+                    npcs={npcNames}
+                    //inputs={inputs}
+                    inputs={null}
+                    balance={balance}
+                />
+                */}
 
               <BetTables npcs={npcNames} />
             </>
@@ -242,6 +256,38 @@ const WatchPage: NextPageWithLayout<
       {/*
             </Layout>
             */}
+
+      <footer>
+        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
+          <div>Copyright ©MOMOCON</div>
+
+          <AnchorLink href="/terms">Terms of Service</AnchorLink>
+
+          <div>Privacy Policy</div>
+        </div>
+
+        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
+          <div>
+            <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
+          </div>
+
+          <AnchorLink
+            href="https://www.instagram.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Instagram className="h-4 w-4" /> Instagram
+          </AnchorLink>
+
+          <AnchorLink
+            href="https://twitter.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Twitter className="h-4 w-4" /> Twitter
+          </AnchorLink>
+        </div>
+      </footer>
     </>
   );
 };

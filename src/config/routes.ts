@@ -11,7 +11,8 @@ const routes = {
 
   race: '/race',
 
-  live: '/live',
+  //live: '/live',
+  live: '/watch/horseRace',
 
   minimal: '/minimal',
   livePricing: '/live-pricing',
@@ -30,7 +31,10 @@ const routes = {
   proposals: '/proposals',
   createProposal: '/proposals/create',
   charts: '/charts',
+
   profile: '/profile',
+  wallet: '/wallet',
+
   portfolio: '/profile?view=portfolio',
   history: '/profile?view=history',
   classic: '/classic',

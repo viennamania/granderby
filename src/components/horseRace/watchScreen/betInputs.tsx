@@ -2,10 +2,11 @@ import { IUser } from '@/utils/interfaces/user-interface';
 import { Stack, Snackbar, Alert } from '@mui/material';
 import { getCookie, hasCookie, setCookie } from 'cookies-next';
 import { useState, useEffect } from 'react';
-import { FaCoins } from 'react-icons/fa';
+////import { FaCoins } from 'react-icons/fa';
 
 import {
-  nftDropContractAddressEntry,
+  ///nftDropContractAddressEntry,
+  nftDropContractAddressCar,
   tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
@@ -34,19 +35,23 @@ import { HeadingImage } from '@/components/HeadingImage';
 import { useToast } from '@/components/ui/use-toast';
 import { parseIneligibility } from '@/utils/parseIneligibility';
 
+/*
 import {
   ////contractConst,
   primaryColorConst,
   ///themeConst,
 } from '@/consts/parameters';
+*/
 
-import { ContractWrapper } from '@thirdweb-dev/sdk/dist/declarations/src/evm/core/classes/contract-wrapper';
+///import { ContractWrapper } from '@thirdweb-dev/sdk/dist/declarations/src/evm/core/classes/contract-wrapper';
 
 ///const urlParams = new URL(window.location.toString()).searchParams;
 //const contractAddress = urlParams.get("contract") || contractConst || "";
 
-const contractAddress = nftDropContractAddressEntry;
+//const contractAddress = nftDropContractAddressEntry;
+///const contractAddress = nftDropContractAddressCar;
 
+/*
 //const primaryColor =
 //  urlParams.get("primaryColor") || primaryColorConst || undefined;
 const primaryColor = primaryColorConst;
@@ -62,6 +67,7 @@ const colors = {
   cyan: '#22D3EE',
   yellow: '#FBBF24',
 } as const;
+*/
 
 export default function BetInputs({
   horse1,
@@ -84,6 +90,18 @@ export default function BetInputs({
   inputs: any;
   balance: any;
 }) {
+  console.log('BetInputs', {
+    horse1,
+    horse2,
+    horse3,
+    horse4,
+    horse5,
+    user,
+    npcs,
+    inputs,
+    balance,
+  });
+
   const [chosenNpc, setChosenNpc] = useState<any>(null);
   const [betAmount, setBetAmount] = useState<any>(0);
   const [placedBet, setPlacedBet] = useState<any>(false);
@@ -174,10 +192,6 @@ export default function BetInputs({
 
   const [tokenid, setTokenid] = useState<BigNumber>(BigNumber.from(0));
 
-  const contractQuery = useContract(contractAddress);
-
-  const contractMetadata = useContractMetadata(contractQuery.contract);
-
   ////console.log("contractMetadata", contractMetadata);
 
   const { toast } = useToast();
@@ -185,15 +199,9 @@ export default function BetInputs({
   //const root = window.document.documentElement;
   //root.classList.add(theme);
 
-  const address = useAddress();
+  //const address = useAddress();
 
   /*
-    const { data: ownedNfts } = useOwnedNFTs(contractQuery.contract, address || "");
-  
-  
-    console.log("ownedNfts", { ownedNfts });
-    */
-
   const [quantity, setQuantity] = useState(1);
 
   const claimConditions = useClaimConditions(contractQuery.contract, tokenid);
@@ -225,16 +233,6 @@ export default function BetInputs({
 
   const claimedSupply = useClaimedNFTSupply(contractQuery.contract);
 
-  /*
-    const { data: firstNft, isLoading: firstNftLoading } = useNFT(
-      contractQuery.contract,
-      tokenid,
-    );
-
-    console.log({ firstNft, firstNftLoading });
-
-    const firstNftLoading2 = true;
-    */
 
   const numberClaimed = useMemo(() => {
     /////////return BigNumber.from(claimedSupply.data || 0).toString();
@@ -244,11 +242,11 @@ export default function BetInputs({
   }, []);
 
   const numberTotal = useMemo(() => {
-    /*
-      return BigNumber.from(claimedSupply.data || 0)
-        .add(BigNumber.from(unclaimedSupply.data || 0))
-        .toString();
-        */
+    
+      //return BigNumber.from(claimedSupply.data || 0)
+      //  .add(BigNumber.from(unclaimedSupply.data || 0))
+      //  .toString();
+        
     return '10000';
 
     ////}, [claimedSupply.data, unclaimedSupply.data]);
@@ -459,10 +457,11 @@ export default function BetInputs({
       claimConditions.data,
     ]
   );
+  */
 
   return (
     <>
-      {
+      {/*
         //hasCookie('horse') &&
         address && (
           <div className="item-center flex w-full justify-center gap-1 bg-transparent text-xl text-white">
@@ -477,7 +476,7 @@ export default function BetInputs({
             </div>
           </div>
         )
-      }
+              */}
 
       <div className="disabled flex w-full flex-col items-center justify-center gap-5 lg:w-2/3">
         {/* //? Input amount manuel */}
@@ -581,11 +580,11 @@ export default function BetInputs({
           <button
             disabled={placedBet}
             onClick={() => {
-              setChosenNpc(npcs.horse1);
+              setChosenNpc(npcs?.horse1);
               setTokenid(BigNumber.from(0));
             }}
             className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
-              chosenNpc === npcs.horse1
+              chosenNpc === npcs?.horse1
                 ? 'gold-btn-active'
                 : chosenNpc === 0
                 ? 'bg-[#ffc000]'
@@ -595,8 +594,8 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 1</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs.nft1}</span>
-                <span>{npcs.horse1}</span>
+                <span className="text-sky-500">#{npcs?.nft1}</span>
+                <span>{npcs?.horse1}</span>
               </div>
               <span className="text-sm">x {horse1}</span>
             </div>
@@ -605,11 +604,11 @@ export default function BetInputs({
           <button
             disabled={placedBet}
             onClick={() => {
-              setChosenNpc(npcs.horse2);
+              setChosenNpc(npcs?.horse2);
               setTokenid(BigNumber.from(1));
             }}
             className={`gold-btn h-20 w-44 border  border-white p-1 text-center  text-white ${
-              chosenNpc === npcs.horse2
+              chosenNpc === npcs?.horse2
                 ? 'gold-btn-active '
                 : chosenNpc === 0
                 ? ''
@@ -619,7 +618,7 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 2</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs.nft2}</span>
+                <span className="text-sky-500">#{npcs?.nft2}</span>
                 <span>{npcs.horse2}</span>
               </div>
               <span className="text-sm">x {horse2}</span>
@@ -629,11 +628,11 @@ export default function BetInputs({
           <button
             disabled={placedBet}
             onClick={() => {
-              setChosenNpc(npcs.horse3);
+              setChosenNpc(npcs?.horse3);
               setTokenid(BigNumber.from(2));
             }}
             className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
-              chosenNpc === npcs.horse3
+              chosenNpc === npcs?.horse3
                 ? 'gold-btn-active'
                 : chosenNpc === 0
                 ? 'bg-[#ffc000]'
@@ -643,8 +642,8 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm ">Line 3</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs.nft3}</span>
-                <span>{npcs.horse3}</span>
+                <span className="text-sky-500">#{npcs?.nft3}</span>
+                <span>{npcs?.horse3}</span>
               </div>
               <span className="text-sm">x {horse3}</span>
             </div>
@@ -653,7 +652,7 @@ export default function BetInputs({
           <button
             disabled={placedBet}
             onClick={() => {
-              setChosenNpc(npcs.horse4);
+              setChosenNpc(npcs?.horse4);
               setTokenid(BigNumber.from(3));
             }}
             className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
@@ -667,8 +666,8 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 4</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs.nft4}</span>
-                <span>{npcs.horse4}</span>
+                <span className="text-sky-500">#{npcs?.nft4}</span>
+                <span>{npcs?.horse4}</span>
               </div>
               <span className="text-sm">x {horse4}</span>
             </div>
@@ -677,11 +676,11 @@ export default function BetInputs({
           <button
             disabled={placedBet}
             onClick={() => {
-              setChosenNpc(npcs.horse5);
+              setChosenNpc(npcs?.horse5);
               setTokenid(BigNumber.from(4));
             }}
             className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
-              chosenNpc === npcs.horse5
+              chosenNpc === npcs?.horse5
                 ? 'gold-btn-active'
                 : chosenNpc === 0
                 ? 'bg-[#ffc000]'
@@ -691,201 +690,12 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 5</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs.nft5}</span>
-                <span>{npcs.horse5}</span>
+                <span className="text-sky-500">#{npcs?.nft5}</span>
+                <span>{npcs?.horse5}</span>
               </div>
               <span className="text-sm">x {horse5}</span>
             </div>
           </button>
-        </div>
-
-        {/* //? Place Bet Button */}
-        {/*
-                <button
-                    disabled={placedBet} onClick={placeBet} className='emerald-btn duration-300 transition-all mt-5 w-32 p-2 disabled:text-white disabled:shadow-none disabled:bg-transparent disabled:opacity-50'>Place Bet </button>
-                */}
-
-        <div className="flex flex-col gap-2 xs:gap-4">
-          {isLoading ? (
-            <div
-              role="status"
-              className="animate-pulse space-y-8 md:flex md:items-center md:space-x-8 md:space-y-0"
-            >
-              <div className="w-full">
-                <div className="h-10 w-24 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-              </div>
-            </div>
-          ) : isOpenEdition ? null : (
-            <p>
-              {/*
-                      <span className="text-lg font-bold tracking-wider text-gray-500 xs:text-xl lg:text-2xl">
-                          {numberClaimed}
-                      </span>{" "}
-                      <span className="text-lg font-bold tracking-wider xs:text-xl lg:text-2xl">
-                          / {numberTotal} minted
-                      </span>
-                      */}
-            </p>
-          )}
-
-          <h1 className="line-clamp-1 text-2xl font-bold xs:text-3xl lg:text-4xl">
-            {contractMetadata.isLoading ? (
-              <div
-                role="status"
-                className="animate-pulse space-y-8 md:flex md:items-center md:space-x-8 md:space-y-0"
-              >
-                <div className="w-full">
-                  <div className="h-8 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-                </div>
-                <span className="sr-only">Loading...</span>
-              </div>
-            ) : (
-              contractMetadata.data?.name
-            )}
-          </h1>
-
-          {contractMetadata.data?.description || contractMetadata.isLoading ? (
-            <div className="line-clamp-2 text-gray-500">
-              {contractMetadata.isLoading ? (
-                <div
-                  role="status"
-                  className="animate-pulse space-y-8 md:flex md:items-center md:space-x-8 md:space-y-0"
-                >
-                  <div className="w-full">
-                    <div className="mb-2.5 h-2 max-w-[480px] rounded-full bg-gray-200 dark:bg-gray-700"></div>
-                    <div className="mb-2.5 h-2 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-                  </div>
-                  <span className="sr-only">Loading...</span>
-                </div>
-              ) : (
-                contractMetadata.data?.description
-              )}
-            </div>
-          ) : null}
-        </div>
-
-        <div className="flex w-full gap-4">
-          {dropNotReady ? (
-            <span className="text-red-500">
-              This drop is not ready to be minted yet. (No claim condition set)
-            </span>
-          ) : dropStartingSoon ? (
-            <span className="text-gray-500">
-              Drop is starting soon. Please check back later.
-            </span>
-          ) : (
-            <div className="flex w-full flex-col gap-4">
-              <div className="flex w-full flex-col gap-4 lg:flex-row lg:items-center lg:gap-4 ">
-                <div className="flex h-11 w-full rounded-lg border border-gray-400 px-2 dark:border-gray-800 md:w-full">
-                  <button
-                    onClick={() => {
-                      const value = quantity - 1;
-                      if (value > maxClaimable) {
-                        setQuantity(maxClaimable);
-                      } else if (value < 1) {
-                        setQuantity(1);
-                      } else {
-                        setQuantity(value);
-                      }
-                    }}
-                    className="flex h-full items-center justify-center rounded-l-md px-2 text-center text-2xl disabled:cursor-not-allowed disabled:text-gray-500 dark:text-white dark:disabled:text-gray-600"
-                    disabled={isSoldOut || quantity - 1 < 1}
-                  >
-                    -
-                  </button>
-
-                  <p className="flex h-full w-full items-center justify-center text-center font-mono dark:text-white lg:w-full">
-                    {!isLoading && isSoldOut ? 'Sold Out' : quantity}
-                  </p>
-                  <button
-                    onClick={() => {
-                      const value = quantity + 1;
-                      if (value > maxClaimable) {
-                        setQuantity(maxClaimable);
-                      } else if (value < 1) {
-                        setQuantity(1);
-                      } else {
-                        setQuantity(value);
-                      }
-                    }}
-                    className={
-                      'flex h-full items-center justify-center rounded-r-md px-2 text-center text-2xl disabled:cursor-not-allowed disabled:text-gray-500 dark:text-white dark:disabled:text-gray-600'
-                    }
-                    disabled={isSoldOut || quantity + 1 > maxClaimable}
-                  >
-                    +
-                  </button>
-                </div>
-
-                <Web3Button
-                  contractAddress={contractQuery.contract?.getAddress() || ''}
-                  style={{
-                    backgroundColor:
-                      colors[primaryColor as keyof typeof colors] ||
-                      primaryColor,
-                    maxHeight: '43px',
-                  }}
-                  theme={theme}
-                  action={(cntr) => {
-                    if (chosenNpc === null) {
-                      setErrMsg('You need to select a horse to bet');
-                      handleClickErr();
-                      return;
-                    }
-
-                    const ret = cntr.erc1155.claim(tokenid, quantity);
-
-                    ///console.log("Web3Button action", { ret });
-                  }}
-                  isDisabled={!canClaim || buttonLoading}
-                  onError={(err) => {
-                    console.error(err);
-                    console.log({ err });
-
-                    toast({
-                      title: 'Failed to mint drop',
-                      description: (err as any).reason || '',
-                      duration: 9000,
-                      variant: 'destructive',
-                    });
-                  }}
-                  onSuccess={() => {
-                    toast({
-                      title: 'Successfully minted',
-                      description:
-                        'The NFT has been transferred to your wallet',
-                      duration: 5000,
-                      className: 'bg-green-500',
-                    });
-                  }}
-                >
-                  {buttonLoading ? (
-                    <div role="status">
-                      <svg
-                        aria-hidden="true"
-                        className="mr-2 h-4 w-4 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
-                        viewBox="0 0 100 101"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                          fill="currentColor"
-                        />
-                        <path
-                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                          fill="currentFill"
-                        />
-                      </svg>
-                      <span className="sr-only">Loading...</span>
-                    </div>
-                  ) : (
-                    buttonText
-                  )}
-                </Web3Button>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 

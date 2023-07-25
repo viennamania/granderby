@@ -7,6 +7,15 @@ import Image from '@/components/ui/image';
 import Avatar from '@/components/ui/avatar';
 import AnchorLink from '@/components/ui/links/anchor-link';
 
+import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
+
+import { Github } from '@/components/icons/brands/github';
+import { Instagram } from '@/components/icons/brands/instagram';
+import { Twitter } from '@/components/icons/brands/twitter';
+//import { Check } from '@/components/icons/check';
+//import { Copy } from '@/components/icons/copy';
+import { SearchIcon } from '@/components/icons/search';
+
 import Profile from '@/components/profile/profile';
 
 import RetroProfile from '@/components/profile/retro-profile';
@@ -62,6 +71,7 @@ import {
 
 import {
   tokenContractAddressUSDT,
+  tokenContractAddressGRD,
   marketplaceContractAddress,
 } from '@/config/contractAddresses';
 
@@ -105,7 +115,7 @@ const WalletPage: NextPageWithLayout<
   const address = useAddress();
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddressUSDT,
+    tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
@@ -446,7 +456,9 @@ const WalletPage: NextPageWithLayout<
                 <>{Number(tokenBalance?.displayValue).toFixed(2)}</>
               )}
             </b>{' '}
-            <span className="text-[#2b57a2]">{tokenBalance?.symbol}</span>
+            <span className="text-lg text-[#2b57a2]">
+              {tokenBalance?.symbol}
+            </span>
           </div>
         ) : (
           <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
@@ -464,7 +476,7 @@ const WalletPage: NextPageWithLayout<
           {/* Form Section */}
           <div className={styles.collectionContainer}>
             <div className="mb-2 text-lg">
-              Send your USDT to another address:
+              Send your GRD to another address:
             </div>
 
             {/* Toggle between direct listing and auction listing */}
@@ -555,7 +567,7 @@ const WalletPage: NextPageWithLayout<
                   style={{ marginTop: 32, borderStyle: 'none' }}
                   onClick={(e) => handleTransferToken(e)}
                 >
-                  Transfer ({amount} USDT)
+                  Transfer ({amount} GRD)
                 </button>
 
                 {/*
@@ -591,8 +603,9 @@ const WalletPage: NextPageWithLayout<
         </div>
       </form>
 
+      {/*
       <iframe src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c" />
-
+                */}
       <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
         <TransactionTable />
       </div>
@@ -628,6 +641,38 @@ const WalletPage: NextPageWithLayout<
           <div className={styles2.result}>{result}</div>
         </div>
       </div>
+
+      <footer>
+        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
+          <div>Copyright ©MOMOCON</div>
+
+          <AnchorLink href="/terms">Terms of Service</AnchorLink>
+
+          <div>Privacy Policy</div>
+        </div>
+
+        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
+          <div>
+            <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
+          </div>
+
+          <AnchorLink
+            href="https://www.instagram.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Instagram className="h-4 w-4" /> Instagram
+          </AnchorLink>
+
+          <AnchorLink
+            href="https://twitter.com/nftgranderby"
+            target="_blank"
+            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+          >
+            <Twitter className="h-4 w-4" /> Twitter
+          </AnchorLink>
+        </div>
+      </footer>
 
       {/*
       

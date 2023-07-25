@@ -70,7 +70,7 @@ const COLUMNS = [
         <strong className="mb-0.5 flex justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
           {Number(value.balance).toFixed(2)}
           <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2">
-            USDC
+            GRD
           </span>
         </strong>
         {/*
