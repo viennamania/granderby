@@ -50,6 +50,8 @@ import * as gtag from '@/lib/gtag';
 
 import { Analytics } from '@vercel/analytics/react';
 
+import React from 'react';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -67,7 +69,11 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   //could remove this if you don't need to page level layout
   const getLayout = Component.getLayout ?? ((page) => page);
 
+  /******* */
+
   const [queryClient] = useState(() => new QueryClient());
+
+  /////const queryClient = new QueryClient();
 
   const clientId =
     process.env.NEXT_PUBLIC_CLIENT_ID === undefined
@@ -138,11 +144,15 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         }}
       />
 
+      <QueryClientProvider client={queryClient}>
+        {/*
       <ThemeProvider
         attribute="class"
         enableSystem={false}
         defaultTheme="light"
       >
+      */}
+
         {/*
 
         <PaperEmbeddedWalletProvider
@@ -165,7 +175,6 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
             paperWallet({
               paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c', // granderby
-              //clientId: '0f8cb1f0-845f-4f71-b49d-d4a01abd5bf3',
             }),
           ]}
           sdkOptions={{
@@ -190,11 +199,12 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
       */}
           {/* <div className={`${firaCode.variable} font-body`}> */}
 
-          <QueryClientProvider client={queryClient}>
-            {getLayout(<Component {...pageProps} />)}
-          </QueryClientProvider>
-
           <Analytics />
+
+          {getLayout(<Component {...pageProps} />)}
+          {/*
+            <Component {...pageProps} />
+            */}
 
           {/*
             <SettingsButton />
@@ -214,7 +224,10 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         {/*   
         </PaperEmbeddedWalletProvider>
       */}
+        {/*
       </ThemeProvider>
+      */}
+      </QueryClientProvider>
     </>
   );
 }
