@@ -72,6 +72,7 @@ function CryptocurrencyDrawerTable({
                 />
               </div>
             </div>
+
             <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
               <div>
                 <table
@@ -152,6 +153,7 @@ function CryptocurrencyDrawerTable({
               </div>
             </Scrollbar>
           </div>
+
           <div
             className={`-mt-[2px] flex items-center justify-center rounded-bl-lg bg-white px-5 py-4 text-sm shadow-card dark:bg-light-dark lg:py-6 ${
               !isOpen ? 'rounded-br-lg' : ''

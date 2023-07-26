@@ -27,7 +27,9 @@ import { Copy } from '@/components/icons/copy';
 import { SearchIcon } from '@/components/icons/search';
 import AnchorLink from '@/components/ui/links/anchor-link';
 
-function SinglePrice() {
+import { useRouter } from 'next/router';
+
+function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
   const isMounted = useIsMounted();
@@ -40,7 +42,11 @@ function SinglePrice() {
           className={`w-full 2xl:w-full 
         ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
         >
-          <NftSinglePrice isOpen={isOpen} setIsOpen={setIsOpen} />
+          <NftSinglePrice
+            tokenid={tokenid}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
         </div>
 
         {layout === LAYOUT_OPTIONS.RETRO ? (
@@ -51,11 +57,13 @@ function SinglePrice() {
               Info
             </h2>
             <NftInfo />
+
+            {/*
             <div>
               <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
-
               <CoinConverter />
             </div>
+            */}
 
             {/*
             <div className="px-8 pb-10">
@@ -110,7 +118,11 @@ function SinglePrice() {
 }
 
 const AssetSinglePrice: NextPageWithLayout = () => {
-  return <SinglePrice />;
+  const router = useRouter();
+
+  console.log('id======', router.query.tokenid);
+
+  return <SinglePrice tokenid={router.query.tokenid} />;
 };
 
 AssetSinglePrice.getLayout = function getLayout(page: any) {

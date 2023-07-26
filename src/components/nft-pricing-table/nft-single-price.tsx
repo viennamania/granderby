@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useEffect } from 'react';
 import { format } from 'date-fns';
 import cn from 'classnames';
 import {
@@ -73,11 +73,16 @@ const currency = [
 ];
 
 interface NftDrawerProps {
+  tokenid: any;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
+export default function NftSinglePrice({
+  tokenid,
+  isOpen,
+  setIsOpen,
+}: NftDrawerProps) {
   const [price, setPrice] = useState(6.2);
   const [date, setDate] = useState(1624147200);
   const [status, setStatus] = useState('Month');
@@ -88,6 +93,25 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
   const [selected, setSelected] = useState(currency[0]);
   const formattedDate = format(new Date(date * 1000), 'MMMM d, yyyy hh:mma');
   const { layout } = useLayout();
+
+  const [nft, setNft] = useState();
+
+  useEffect(() => {
+    const fetchNft = async () => {
+      const res = await fetch(
+        `https://granderby.io/api/nft/horse/${tokenid.tokenid}`
+      );
+      const data = await res.json();
+
+      console.log('data image', data.image);
+
+      setNft(data);
+    };
+
+    console.log('tokenid', tokenid.tokenid);
+
+    fetchNft();
+  }, [tokenid]);
 
   const handleOnChange = (value: string) => {
     setStatus(value);
@@ -119,8 +143,10 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
                   <Bitcoin className="h-auto w-7 lg:w-9" />
                   */}
                   <Image
-                    src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                    alt="Momocon"
+                    //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
+
+                    src={nft?.image}
+                    alt="nft"
                     width={50}
                     height={50}
                     className="h-auto w-7 lg:w-9"
@@ -249,15 +275,16 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
                   <Bitcoin className="h-auto w-7 lg:w-9" />
                   */}
                   <Image
-                    src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                    alt="Momocon"
-                    width={50}
-                    height={50}
-                    className="h-auto w-7 lg:w-9"
+                    //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
+                    src={nft?.image}
+                    alt="nft"
+                    width={100}
+                    height={100}
+                    className="w-30 h-auto rounded-lg lg:w-80"
                   />
                 </span>
                 <span className="flex items-end text-xl font-medium capitalize text-brand dark:text-white">
-                  <span>NFT #233</span>
+                  <span>#{nft?.id}</span>
                 </span>
 
                 <span className="text-sm text-gray-400">(Happyvelly)</span>
@@ -266,9 +293,13 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
                 <span className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium leading-none text-brand dark:!bg-gray-700 dark:text-white">
                   RANK #5
                 </span>
+
                 <span className="w-[65px]">
+                  {/*
                   <Listbox value={selected} onChange={setSelected}>
                     <div className="relative rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-brand rtl:text-left dark:bg-gray-700 dark:text-white">
+                      
+                      
                       <Listbox.Button className="rounded-lg bg-gray-100 text-sm font-medium text-brand dark:bg-gray-700 dark:text-white">
                         <span className="block truncate">{selected.name}</span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -278,6 +309,9 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
                           />
                         </span>
                       </Listbox.Button>
+                      
+
+                      
                       <Transition
                         as={Fragment}
                         leave="transition ease-in duration-100"
@@ -312,8 +346,11 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
                           ))}
                         </Listbox.Options>
                       </Transition>
+                      
+
                     </div>
                   </Listbox>
+                  */}
                 </span>
               </span>
             </div>
@@ -391,6 +428,7 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
         </ResponsiveContainer>
       </div>
 
+      {/*
       <div className="py-4">
         <h5 className="pb-5 pt-6 text-base font-medium uppercase">
           Market Stats
@@ -608,6 +646,8 @@ export default function NftSinglePrice({ setIsOpen }: NftDrawerProps) {
           </div>
         </div>
       </div>
+
+      */}
     </div>
   );
 }

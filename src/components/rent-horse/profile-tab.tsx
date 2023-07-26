@@ -60,6 +60,12 @@ import { Router } from 'next/router';
 
 import { useRouter } from 'next/router';
 
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
+import { LongArrowRight } from '@/components/icons/long-arrow-right';
+import { LongArrowLeft } from '@/components/icons/long-arrow-left';
+
+///import { useModal } from '@/components/modal-views/context';
+
 const tabMenu = [
   {
     title: 'collection',
@@ -87,6 +93,9 @@ const MessageSnackbar = dynamic(
 
 export default function ProfileTab() {
   const router = useRouter();
+
+  const [tokenid, setTokenid] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>('');
   const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>('');
@@ -333,6 +342,20 @@ export default function ProfileTab() {
                 >
                   <div className="justifiy-center flex flex-row items-center gap-2">
                     <h5>{nft.metadata.name}</h5>
+
+                    <button
+                      type="button"
+                      className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800"
+                      onClick={() =>
+                        //setTokenid(nft.metadata.id.toString()),
+                        //setIsOpen(true)
+                        router.push(
+                          '/horse-details/' + nft.metadata.id.toString()
+                        )
+                      }
+                    >
+                      NFT #{nft.metadata.id.toString()}
+                    </button>
                     {/*
                 <AnchorLink
                   href={{
@@ -572,6 +595,10 @@ export default function ProfileTab() {
       {/*
     </Stack>
   */}
+
+      {/*
+      <NftSinglePrice tokenid={tokenid} isOpen={isOpen} setIsOpen={setIsOpen} />
+      */}
     </>
   );
 }
