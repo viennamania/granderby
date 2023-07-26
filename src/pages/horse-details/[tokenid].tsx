@@ -15,6 +15,8 @@ import InfoDrawer from '@/components/cryptocurrency-pricing-table/info-drawer';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 
+import HistoryTable from '@/components/race-history/history-table';
+
 import Image from '@/components/ui/image';
 
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
@@ -54,8 +56,9 @@ function SinglePrice(tokenid: any) {
         ) : (
           <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark xl:max-w-[358px]">
             <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-              Info
+              NFT Info
             </h2>
+
             <NftInfo />
 
             {/*
@@ -75,6 +78,10 @@ function SinglePrice(tokenid: any) {
             */}
           </div>
         )}
+      </div>
+
+      <div className="mt-10">
+        <HistoryTable />
       </div>
 
       {/*

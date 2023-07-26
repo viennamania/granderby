@@ -26,18 +26,21 @@ function NftInfo() {
     <div className="mt-5 px-8 pb-10">
       <div className="flex items-center gap-4">
         <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
-          Website
+          Creator
         </div>
         <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-          bitcoin.com
+          0x00000
         </div>
       </div>
+
       <div className="mt-[10px] flex items-center gap-4">
         <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
           Explorers
         </div>
         <Explorers menu={CoinExplore} />
       </div>
+
+      {/*
       <div className="mt-[10px] flex items-start gap-4">
         <div className="w-[100px] shrink-0 grow-0 basis-auto text-sm tracking-wider text-[#6B7280]">
           Wallets
@@ -117,6 +120,7 @@ function NftInfo() {
           Cryptocurrency
         </div>
       </div>
+      */}
     </div>
   );
 }

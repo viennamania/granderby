@@ -212,6 +212,7 @@ export default function NftSinglePrice({
                 </span>
               </span>
             </div>
+
             <div
               className="relative flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-white text-brand shadow-main transition-all hover:-translate-y-0.5 hover:shadow-large focus:-translate-y-0.5 focus:shadow-large focus:outline-none dark:border-gray-700 dark:bg-light-dark dark:text-white"
               onClick={() => setIsOpen(true)}
@@ -219,6 +220,7 @@ export default function NftSinglePrice({
               <InfoCircle className="h-4 w-4" />
             </div>
           </div>
+
           <div className="mt-5 flex flex-col items-start justify-between gap-8 lg:flex-row lg:gap-4">
             <div>
               <div className="flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
@@ -280,14 +282,14 @@ export default function NftSinglePrice({
                     alt="nft"
                     width={100}
                     height={100}
-                    className="w-30 h-auto rounded-lg lg:w-80"
+                    className="lg:w-110 h-auto w-80 rounded-lg"
                   />
                 </span>
                 <span className="flex items-end text-xl font-medium capitalize text-brand dark:text-white">
                   <span>#{nft?.id}</span>
                 </span>
 
-                <span className="text-sm text-gray-400">(Happyvelly)</span>
+                <span className="text-sm text-gray-400">({nft?.name})</span>
               </span>
               <span className="flex flex-wrap items-center gap-[5px]">
                 <span className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium leading-none text-brand dark:!bg-gray-700 dark:text-white">
@@ -354,17 +356,21 @@ export default function NftSinglePrice({
                 </span>
               </span>
             </div>
+
             <div className="mt-5 flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
               <span className="text-2xl font-semibold xl:text-3xl">
                 {price}
               </span>
+
               <span
                 className={cn(
                   'flex items-end',
                   toggleCoin ? 'flex-row-reverse' : 'flex-row'
                 )}
               >
+                {/*
                 <span>BTCB</span>/<span>ETH</span>
+                */}
               </span>
 
               <span
@@ -383,6 +389,7 @@ export default function NftSinglePrice({
                 {priceDiff} ({percentage})
               </span>
             </div>
+
             <div className="mt-6 flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 sm:text-sm">
               <Refresh /> {formattedDate}
             </div>

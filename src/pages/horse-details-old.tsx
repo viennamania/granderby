@@ -27,6 +27,7 @@ function CoinSinglePrice() {
         >
           <CryptocurrencySinglePrice isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
+
         {layout === LAYOUT_OPTIONS.RETRO ? (
           <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
         ) : (

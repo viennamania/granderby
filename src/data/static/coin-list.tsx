@@ -51,6 +51,7 @@ export const coinList = [
   },
 ];
 
+/*
 export const CoinExplore = [
   {
     title: 'blockchain.info',
@@ -63,6 +64,22 @@ export const CoinExplore = [
   {
     title: 'live.blockcypher.com',
     url: 'https://live.blockcypher.com/btc/',
+  },
+];
+*/
+
+export const CoinExplore = [
+  {
+    title: 'polygonscan',
+    url: 'https://polygonscan.com/',
+  },
+  {
+    title: 'etherscan',
+    url: 'https://etherscan.com',
+  },
+  {
+    title: 'bscscan',
+    url: 'https://bscscan.com/',
   },
 ];
 
