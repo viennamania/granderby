@@ -73,8 +73,8 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       //user: user ?? null,
       //settings: settings ?? null,
-      npcNames: npcNames.npcNames[0],
-      inputs: npcNames.npcNames[0].inputs,
+      //npcNames: npcNames.npcNames[0],
+      //inputs: npcNames.npcNames[0].inputs,
     },
   };
 };
