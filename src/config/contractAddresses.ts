@@ -19,6 +19,10 @@ export const nftDropContractAddressJockey =
 export const nftDropContractAddressTrack =
   '0x8A57D0CB88E5dEA66383B64669aa98c1ab48f03E';
 
+// Coupon (1155)
+export const nftDropContractAddressCoupon =
+  '0xBFd722e4aAd285baAb88cb11Ca7155981841b04d';
+
 // TRVC
 export const nftDropContractAddressTRVC =
   '0x8A57D0CB88E5dEA66383B64669aa98c1ab48f03E';

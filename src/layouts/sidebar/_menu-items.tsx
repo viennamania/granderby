@@ -197,25 +197,28 @@ export const menuItems = [
   },
   */
 
-  /*
   {
-    name: 'MINT',
+    name: 'SHOP',
     icon: <FarmIcon />,
     href: routes.mint,
     dropdownItems: [
       {
-        name: 'Horse',
-        icon: <CompassIcon />,
-        href: routes.mintHorse,
+        name: 'Carrot',
+        icon: <PlusCircle />,
+        href: routes.mintCarrot,
       },
       {
-        name: 'Jockey',
+        name: 'Coupon',
         icon: <PlusCircle />,
-        href: routes.mintJockey,
+        href: routes.mintCoupon,
+      },
+      {
+        name: 'Ticket',
+        icon: <PlusCircle />,
+        href: routes.mintTicket,
       },
     ],
   },
-  */
 
   /*
   {
