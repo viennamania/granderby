@@ -58,16 +58,16 @@ export default async function handler(
 
         const tokenid = response.ownedNfts[k].tokenId;
 
-        const speed = '23';
-        const preceding = '42';
-        const overtaking = '66';
-        const stamina = '2';
-        const spirit = '64';
-        const power = '29';
-        const agiligty = '92';
-        const weight = '20';
-        const drivinghabits = '62';
-        const record = '77';
+        const speed = 23;
+        const preceding = 42;
+        const overtaking = 66;
+        const stamina = 2;
+        const spirit = 64;
+        const power = 29;
+        const agiligty = 92;
+        const weight = 20;
+        const drivinghabits = 62;
+        const record = 77;
 
         nfts.push({
           asset: asset,
@@ -248,16 +248,16 @@ export default async function handler(
 
   //https://granderby.io/nft/horse/Hrs_00200000.png
 
-  const speed = '0';
-  const preceding = '0';
-  const overtaking = '0';
-  const stamina = '0';
-  const spirit = '0';
-  const power = '0';
-  const agility = '0';
-  const weight = '0';
-  const drivinghabits = '0';
-  const record = '0';
+  const speed = 0;
+  const preceding = 0;
+  const overtaking = 0;
+  const stamina = 0;
+  const spirit = 0;
+  const power = 0;
+  const agility = 0;
+  const weight = 0;
+  const drivinghabits = 0;
+  const record = 0;
 
   const imagesrcUrl = s3url + imagesrc;
 
