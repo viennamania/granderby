@@ -146,6 +146,11 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.rentTrack,
       },
+      {
+        name: 'Item',
+        icon: <PlusCircle />,
+        href: routes.rentItem,
+      },
 
       /*
       {
