@@ -17,6 +17,7 @@ import {
 } from '@/utils/models/horseRace/game';
 
 import { getNpcFromTextureKey } from '@/utils/models/npc-model';
+import { el } from 'date-fns/locale';
 
 //const util = require('util');
 
@@ -293,115 +294,197 @@ export default async function handler(
   const npc = await getNpcFromTextureKey(textureKey);
 
   if (npc.success) {
-    attributes.push({ trait_type: 'TextureKey', value: npc.user.TEXTUREKEY });
+    let horseMane = '';
+    if (npc.user.HORSEMANE === 'Ho_Mo_04_01_Mane') {
+      horseMane = 'Long Mane';
+    } else if (npc.user.HORSEMANE === 'Ho_Mo_04_02_Mane') {
+      horseMane = 'Sporty Mane';
+    } else if (npc.user.HORSEMANE === 'Ho_Mo_04_03_Mane') {
+      horseMane = 'Short Mane';
+    }
 
-    attributes.push({ trait_type: 'HorseManeName', value: npc.user.HORSEMANE });
-    attributes.push({ trait_type: 'HorseTailName', value: npc.user.HORSETAIL });
+    let horseTail = '';
+    if (npc.user.HORSETAIL === 'Ho_Mo_05_01_Tail') {
+      horseTail = 'Normal Tail';
+    } else if (npc.user.HORSETAIL === 'Ho_Mo_05_02_Tail') {
+      horseTail = 'Richness Tail';
+    } else if (npc.user.HORSETAIL === 'Ho_Mo_05_03_Tail') {
+      horseTail = 'Brush Tail';
+    }
+
+    let horseManeMask = '';
+    if (npc.user.HORSEMANEMASK === 'Ho_Pa_Xx') {
+      horseManeMask = 'None';
+    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_01_01_ManePa') {
+      horseManeMask = 'Normal';
+    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_02_01_ManePa') {
+      horseManeMask = 'Zebra';
+    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_02_02_ManePa') {
+      horseManeMask = 'Stripe';
+    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_03_01_ManePa') {
+      horseManeMask = 'Gradation';
+    }
+
+    let horseTailMask = '';
+    if (npc.user.HORSETAILMASK === 'Ho_Pa_Xx') {
+      horseTailMask = 'None';
+    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_01_01_TailPa') {
+      horseTailMask = 'Normal';
+    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_02_01_TailPa') {
+      horseTailMask = 'Stripe';
+    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_03_01_TailPa') {
+      horseTailMask = 'Zebra';
+    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_03_02_TailPa') {
+      horseTailMask = 'Gradation';
+    }
+
+    let horseBodyAcc = '';
+    if (npc.user.HORSEBODYACC === 'Ho_Pa_Xx') {
+      horseBodyAcc = 'None';
+    } else if (npc.user.HORSEBODYACC === 'Ho_Mo_06_01_AccBody') {
+      horseBodyAcc = 'Devil Wing';
+    } else if (npc.user.HORSEBODYACC === 'Ho_Mo_06_02_AccBody') {
+      horseBodyAcc = 'Angel Wing';
+    }
+
+    let horseHeadAcc = '';
+    if (npc.user.HORSEHEADACC === 'Ho_Pa_Xx') {
+      horseHeadAcc = 'None';
+    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_01_AccHead') {
+      horseHeadAcc = 'Angel Ring';
+    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_02_AccHead') {
+      horseHeadAcc = 'Devil Horns';
+    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_03_AccHead') {
+      horseHeadAcc = 'Deer Antlers';
+    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_04_AccHead') {
+      horseHeadAcc = 'Unicorn Horn';
+    }
+
+    let horseLegAcc = '';
+    if (npc.user.HORSELEGACC === 'Ho_Pa_Xx') {
+      horseLegAcc = 'None';
+    } else if (npc.user.HORSELEGACC === 'Ho_Mo_08_01_AccLegpa') {
+      horseLegAcc = 'Richness';
+    } else if (npc.user.HORSELEGACC === 'Ho_Mo_08_02_AccLegpa') {
+      horseLegAcc = 'Normal';
+    }
+
+    let world = '';
+    if (npc.user.WORLD === 'GH') {
+      world = 'Gwacheon';
+    } else if (npc.user.WORLD === 'HV') {
+      world = 'Happy Valley';
+    } else if (npc.user.WORLD === 'SP') {
+      world = 'Singapore';
+    } else if (npc.user.WORLD === 'ST') {
+      world = 'Shatin';
+    }
+
     attributes.push({
-      trait_type: 'HorseBodyMask',
+      trait_type: 'Texture Key',
+      value: npc.user.TEXTUREKEY,
+    });
+
+    attributes.push({
+      trait_type: 'Mane',
+      value: horseMane,
+    });
+    attributes.push({
+      trait_type: 'Tail',
+      value: horseTail,
+    });
+    attributes.push({
+      trait_type: 'Body Mask',
       value: npc.user.HORSEBODYMASK,
     });
     attributes.push({
-      trait_type: 'BodyMaskName',
-      value: npc.user.HORSEBODYMASK,
-    });
-    attributes.push({
-      trait_type: 'HorseHeadMask',
+      trait_type: 'Head Mask',
       value: npc.user.HORSEHEADMASK,
     });
     attributes.push({
-      trait_type: 'HeadMaskName',
-      value: npc.user.HORSEHEADMASK,
-    });
-    attributes.push({
-      trait_type: 'HorseLegMask',
+      trait_type: 'Leg Mask',
       value: npc.user.HORSELEGMASK,
     });
     attributes.push({
-      trait_type: 'LegMaskName',
-      value: npc.user.HORSELEGMASK,
+      trait_type: 'Mane Mask',
+      value: horseManeMask,
     });
     attributes.push({
-      trait_type: 'HorseManeMask',
-      value: npc.user.HORSEMANEMASK,
+      trait_type: 'Tail Mask',
+      value: horseTailMask,
     });
     attributes.push({
-      trait_type: 'ManeMaskName',
-      value: npc.user.HORSEMANEMASK,
+      trait_type: 'Body Acc',
+      value: horseBodyAcc,
     });
     attributes.push({
-      trait_type: 'HorseTailMask',
-      value: npc.user.HORSETAILMASK,
+      trait_type: 'Head Acc',
+      value: horseHeadAcc,
     });
     attributes.push({
-      trait_type: 'TailMaskName',
-      value: npc.user.HORSETAILMASK,
+      trait_type: 'Leg Acc',
+      value: horseLegAcc,
     });
     attributes.push({
-      trait_type: 'HorseBodyAcc',
-      value: npc.user.HORSEBODYACC,
+      trait_type: 'Size',
+      value: npc.user.HORSESIZE,
     });
     attributes.push({
-      trait_type: 'HorseBodyAccName',
-      value: npc.user.HORSEBODYACC,
-    });
-    attributes.push({
-      trait_type: 'HorseHeadAcc',
-      value: npc.user.HORSEHEADACC,
-    });
-    attributes.push({
-      trait_type: 'HorseHeadAccName',
-      value: npc.user.HORSEHEADACC,
-    });
-    attributes.push({ trait_type: 'HorseLegAcc', value: npc.user.HORSELEGACC });
-    attributes.push({ trait_type: 'HorseSize', value: npc.user.HORSESIZE });
-    attributes.push({
-      trait_type: 'HorseBodyColor',
+      trait_type: 'Body Color',
       value: npc.user.HORSEBODYCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseManeColor',
+      trait_type: 'Mane Color',
       value: npc.user.HORSEMANECOLOR,
     });
     attributes.push({
-      trait_type: 'HorseTailColor',
+      trait_type: 'Tail Color',
       value: npc.user.HORSETAILCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseBodyMaskColor',
+      trait_type: 'Body Mask Color',
       value: npc.user.HORSEBODYMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseHeadMaskColor',
+      trait_type: 'Head Mask Color',
       value: npc.user.HORSEHEADMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseLegMaskColor',
+      trait_type: 'Leg Mask Color',
       value: npc.user.HORSELEGMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseManeMaskColor',
+      trait_type: 'Mane Mask Color',
       value: npc.user.HORSEMANEMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseTailMaskColor',
+      trait_type: 'Tail Mask Color',
       value: npc.user.HORSETAILMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseBodyAccColor',
+      trait_type: 'Body Acc Color',
       value: npc.user.HORSEBODYACCCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseHeadAccColor',
+      trait_type: 'Head Acc Color',
       value: npc.user.HORSEHEADACCCOLOR,
     });
     attributes.push({
-      trait_type: 'HorseLegAccColor',
+      trait_type: 'Leg Acc Color',
       value: npc.user.HORSELEGACCCOLOR,
     });
-    attributes.push({ trait_type: 'Comment', value: npc.user.COMMENT });
-    attributes.push({ trait_type: 'Grade', value: npc.user.GRADE });
-    attributes.push({ trait_type: 'World', value: npc.user.WORLD });
+    attributes.push({
+      trait_type: 'Comment',
+      value: npc.user.COMMENT,
+    });
+    attributes.push({
+      trait_type: 'Grade',
+      value: npc.user.GRADE,
+    });
+    attributes.push({
+      trait_type: 'World',
+      value: npc.user.WORLD,
+    });
   }
 
   if (req.query.id === '0') {
@@ -434,7 +517,7 @@ export default async function handler(
       ],
       */
 
-      //animation_url: 'https://animation.granderby.io',
+      animation_url: '',
     };
 
     res.status(200).json(nftData);
@@ -449,7 +532,7 @@ export default async function handler(
 
       attributes: attributes,
 
-      //animation_url: 'https://animation.granderby.io',
+      animation_url: '',
     };
 
     res.status(200).json(nftData);
