@@ -381,35 +381,35 @@ export default async function handler(
       value: horseTail,
     });
     attributes.push({
-      trait_type: 'Body Mask',
+      trait_type: 'BodyMask',
       value: npc.user.HORSEBODYMASK,
     });
     attributes.push({
-      trait_type: 'Head Mask',
+      trait_type: 'HeadMask',
       value: npc.user.HORSEHEADMASK,
     });
     attributes.push({
-      trait_type: 'Leg Mask',
+      trait_type: 'LegMask',
       value: npc.user.HORSELEGMASK,
     });
     attributes.push({
-      trait_type: 'Mane Mask',
+      trait_type: 'ManeMask',
       value: horseManeMask,
     });
     attributes.push({
-      trait_type: 'Tail Mask',
+      trait_type: 'TailMask',
       value: horseTailMask,
     });
     attributes.push({
-      trait_type: 'Body Acc',
+      trait_type: 'BodyAcc',
       value: horseBodyAcc,
     });
     attributes.push({
-      trait_type: 'Head Acc',
+      trait_type: 'HeadAcc',
       value: horseHeadAcc,
     });
     attributes.push({
-      trait_type: 'Leg Acc',
+      trait_type: 'LegAcc',
       value: horseLegAcc,
     });
     attributes.push({
@@ -417,47 +417,47 @@ export default async function handler(
       value: npc.user.HORSESIZE,
     });
     attributes.push({
-      trait_type: 'Body Color',
+      trait_type: 'BodyColor',
       value: npc.user.HORSEBODYCOLOR,
     });
     attributes.push({
-      trait_type: 'Mane Color',
+      trait_type: 'ManeColor',
       value: npc.user.HORSEMANECOLOR,
     });
     attributes.push({
-      trait_type: 'Tail Color',
+      trait_type: 'TailColor',
       value: npc.user.HORSETAILCOLOR,
     });
     attributes.push({
-      trait_type: 'Body Mask Color',
+      trait_type: 'BodyMaskColor',
       value: npc.user.HORSEBODYMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'Head Mask Color',
+      trait_type: 'HeadMaskColor',
       value: npc.user.HORSEHEADMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'Leg Mask Color',
+      trait_type: 'LegMaskColor',
       value: npc.user.HORSELEGMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'Mane Mask Color',
+      trait_type: 'ManeMaskColor',
       value: npc.user.HORSEMANEMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'Tail Mask Color',
+      trait_type: 'TailMaskColor',
       value: npc.user.HORSETAILMASKCOLOR,
     });
     attributes.push({
-      trait_type: 'Body Acc Color',
+      trait_type: 'BodyAccColor',
       value: npc.user.HORSEBODYACCCOLOR,
     });
     attributes.push({
-      trait_type: 'Head Acc Color',
+      trait_type: 'HeadAccColor',
       value: npc.user.HORSEHEADACCCOLOR,
     });
     attributes.push({
-      trait_type: 'Leg Acc Color',
+      trait_type: 'LegAccColor',
       value: npc.user.HORSELEGACCCOLOR,
     });
     attributes.push({
@@ -470,7 +470,7 @@ export default async function handler(
     });
     attributes.push({
       trait_type: 'World',
-      value: npc.user.WORLD,
+      value: world,
     });
   }
 
