@@ -8,14 +8,6 @@ import { Network, Alchemy } from 'alchemy-sdk';
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { at } from 'lodash';
 
-import {
-  newGameHorse,
-  getHorseGames,
-  deleteAllHorseGames,
-  deleteOneHorseGame,
-  getHorseGameByUserId,
-} from '@/utils/models/horseRace/game';
-
 import { getNpcFromTextureKey } from '@/utils/models/npc-model';
 import { el } from 'date-fns/locale';
 
@@ -129,11 +121,6 @@ export default async function handler(
   let grade = '';
 
   let imagesrc = '';
-
-  const userId = 'creath.park@gmail.com';
-  const game = await getHorseGameByUserId(userId);
-
-  console.log('game', game);
 
   if (Number(req.query.id) === 0) {
     imagesrc = 'Hrs_00000000.png';
@@ -289,6 +276,7 @@ export default async function handler(
   attributes.push({ trait_type: 'Drivinghabits', value: drivinghabits });
   attributes.push({ trait_type: 'Record', value: record });
 
+  /*
   ////const textureKye = 'Hrs_00000001';
   const textureKey = imagesrc.slice(0, -4);
   const npc = await getNpcFromTextureKey(textureKey);
@@ -486,6 +474,7 @@ export default async function handler(
       value: npc.user.WORLD,
     });
   }
+  */
 
   if (req.query.id === '0') {
     const nftData = {
