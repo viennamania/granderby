@@ -276,7 +276,6 @@ export default async function handler(
   attributes.push({ trait_type: 'Drivinghabits', value: drivinghabits });
   attributes.push({ trait_type: 'Record', value: record });
 
-  /*
   ////const textureKye = 'Hrs_00000001';
   const textureKey = imagesrc.slice(0, -4);
   const npc = await getNpcFromTextureKey(textureKey);
@@ -474,7 +473,6 @@ export default async function handler(
       value: npc.user.WORLD,
     });
   }
-  */
 
   if (req.query.id === '0') {
     const nftData = {
