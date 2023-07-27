@@ -248,13 +248,14 @@ export default async function handler(
         formattedNumber = '0' + formattedNumber;
       }
 
-      formattedNumber = '0020' + formattedNumber;
+      //formattedNumber = '0020' + formattedNumber;
+      formattedNumber = '00000000';
 
       console.log('formattedNumber', formattedNumber);
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
-      grade = 'D';
+      grade = 'S';
     } else {
       ////imagesrc = 'Hrs_00006000.png';
     }
