@@ -91,22 +91,6 @@ const COLUMNS = [
     maxWidth: 50,
   },
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Final</div>,
-    accessor: 'final',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="-tracking-[1px] ltr:text-right rtl:text-left">
-        <strong className="mb-0.5 flex justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
-          {value}
-          <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2"></span>
-        </strong>
-      </div>
-    ),
-    minWidth: 50,
-    maxWidth: 50,
-  },
-
-  {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Odds</div>,
     accessor: 'odds',
     // @ts-ignore
@@ -114,6 +98,21 @@ const COLUMNS = [
       <div className="-tracking-[1px] ltr:text-right rtl:text-left">
         <strong className="mb-0.5 flex justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
           {value}%
+          <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2"></span>
+        </strong>
+      </div>
+    ),
+    minWidth: 50,
+    maxWidth: 50,
+  },
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Final</div>,
+    accessor: 'final',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="-tracking-[1px] ltr:text-right rtl:text-left">
+        <strong className="mb-0.5 flex justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
+          {value}
           <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2"></span>
         </strong>
       </div>
