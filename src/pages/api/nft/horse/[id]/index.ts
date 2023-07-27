@@ -6,6 +6,17 @@ import { NFTList } from '@/data/static/nft-horse-list';
 import { Network, Alchemy } from 'alchemy-sdk';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+import { at } from 'lodash';
+
+import {
+  newGameHorse,
+  getHorseGames,
+  deleteAllHorseGames,
+  deleteOneHorseGame,
+  getHorseGameByUserId,
+} from '@/utils/models/horseRace/game';
+
+import { getNpcFromTextureKey } from '@/utils/models/npc-model';
 
 //const util = require('util');
 
@@ -117,6 +128,11 @@ export default async function handler(
   let grade = '';
 
   let imagesrc = '';
+
+  const userId = 'creath.park@gmail.com';
+  const game = await getHorseGameByUserId(userId);
+
+  console.log('game', game);
 
   if (Number(req.query.id) === 0) {
     imagesrc = 'Hrs_00000000.png';
@@ -244,20 +260,149 @@ export default async function handler(
 
   //https://granderby.io/nft/horse/Hrs_00200000.png
 
-  const speed = '23';
-  const preceding = '42';
-  const overtaking = '66';
-  const stamina = '2';
-  const spirit = '64';
-  const power = '29';
-  const agiligty = '92';
-  const weight = '20';
-  const drivinghabits = '62';
-  const record = '77';
+  const speed = '0';
+  const preceding = '0';
+  const overtaking = '0';
+  const stamina = '0';
+  const spirit = '0';
+  const power = '0';
+  const agility = '0';
+  const weight = '0';
+  const drivinghabits = '0';
+  const record = '0';
 
   const imagesrcUrl = s3url + imagesrc;
 
   //const asset = imagesrc.substring(-3);
+
+  const attributes = [];
+
+  attributes.push({ trait_type: 'Speed', value: speed });
+  attributes.push({ trait_type: 'Preceding', value: preceding });
+  attributes.push({ trait_type: 'Overtaking', value: overtaking });
+  attributes.push({ trait_type: 'Stamina', value: stamina });
+  attributes.push({ trait_type: 'Spirit', value: spirit });
+  attributes.push({ trait_type: 'Power', value: power });
+  attributes.push({ trait_type: 'Agility', value: agility });
+  attributes.push({ trait_type: 'Weight', value: weight });
+  attributes.push({ trait_type: 'Drivinghabits', value: drivinghabits });
+  attributes.push({ trait_type: 'Record', value: record });
+
+  ////const textureKye = 'Hrs_00000001';
+  const textureKey = imagesrc.slice(0, -4);
+  const npc = await getNpcFromTextureKey(textureKey);
+
+  if (npc.success) {
+    attributes.push({ trait_type: 'TextureKey', value: npc.user.TEXTUREKEY });
+
+    attributes.push({ trait_type: 'HorseManeName', value: npc.user.HORSEMANE });
+    attributes.push({ trait_type: 'HorseTailName', value: npc.user.HORSETAIL });
+    attributes.push({
+      trait_type: 'HorseBodyMask',
+      value: npc.user.HORSEBODYMASK,
+    });
+    attributes.push({
+      trait_type: 'BodyMaskName',
+      value: npc.user.HORSEBODYMASK,
+    });
+    attributes.push({
+      trait_type: 'HorseHeadMask',
+      value: npc.user.HORSEHEADMASK,
+    });
+    attributes.push({
+      trait_type: 'HeadMaskName',
+      value: npc.user.HORSEHEADMASK,
+    });
+    attributes.push({
+      trait_type: 'HorseLegMask',
+      value: npc.user.HORSELEGMASK,
+    });
+    attributes.push({
+      trait_type: 'LegMaskName',
+      value: npc.user.HORSELEGMASK,
+    });
+    attributes.push({
+      trait_type: 'HorseManeMask',
+      value: npc.user.HORSEMANEMASK,
+    });
+    attributes.push({
+      trait_type: 'ManeMaskName',
+      value: npc.user.HORSEMANEMASK,
+    });
+    attributes.push({
+      trait_type: 'HorseTailMask',
+      value: npc.user.HORSETAILMASK,
+    });
+    attributes.push({
+      trait_type: 'TailMaskName',
+      value: npc.user.HORSETAILMASK,
+    });
+    attributes.push({
+      trait_type: 'HorseBodyAcc',
+      value: npc.user.HORSEBODYACC,
+    });
+    attributes.push({
+      trait_type: 'HorseBodyAccName',
+      value: npc.user.HORSEBODYACC,
+    });
+    attributes.push({
+      trait_type: 'HorseHeadAcc',
+      value: npc.user.HORSEHEADACC,
+    });
+    attributes.push({
+      trait_type: 'HorseHeadAccName',
+      value: npc.user.HORSEHEADACC,
+    });
+    attributes.push({ trait_type: 'HorseLegAcc', value: npc.user.HORSELEGACC });
+    attributes.push({ trait_type: 'HorseSize', value: npc.user.HORSESIZE });
+    attributes.push({
+      trait_type: 'HorseBodyColor',
+      value: npc.user.HORSEBODYCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseManeColor',
+      value: npc.user.HORSEMANECOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseTailColor',
+      value: npc.user.HORSETAILCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseBodyMaskColor',
+      value: npc.user.HORSEBODYMASKCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseHeadMaskColor',
+      value: npc.user.HORSEHEADMASKCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseLegMaskColor',
+      value: npc.user.HORSELEGMASKCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseManeMaskColor',
+      value: npc.user.HORSEMANEMASKCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseTailMaskColor',
+      value: npc.user.HORSETAILMASKCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseBodyAccColor',
+      value: npc.user.HORSEBODYACCCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseHeadAccColor',
+      value: npc.user.HORSEHEADACCCOLOR,
+    });
+    attributes.push({
+      trait_type: 'HorseLegAccColor',
+      value: npc.user.HORSELEGACCCOLOR,
+    });
+    attributes.push({ trait_type: 'Comment', value: npc.user.COMMENT });
+    attributes.push({ trait_type: 'Grade', value: npc.user.GRADE });
+    attributes.push({ trait_type: 'World', value: npc.user.WORLD });
+  }
 
   if (req.query.id === '0') {
     const nftData = {
@@ -268,22 +413,26 @@ export default async function handler(
       image: imagesrcUrl,
       ///attributes: [{ trait_type: 'Grade', value: grade }],
 
+      attributes: attributes,
+
+      /*
       attributes: [
         { trait_type: 'Asset', value: imagesrc },
         { trait_type: 'Grade', value: grade },
-        /*
+     
         { trait_type: 'Speed', value: speed },
         { trait_type: 'Preceding', value: preceding },
         { trait_type: 'Overtaking', value: overtaking },
         { trait_type: 'Stamina', value: stamina },
         { trait_type: 'Spirit', value: spirit },
         { trait_type: 'Power', value: power },
-        { trait_type: 'Agiligty', value: agiligty },
+        { trait_type: 'Agility', value: agility },
         { trait_type: 'Weight', value: weight },
         { trait_type: 'DrivingHabits', value: drivinghabits },
         { trait_type: 'Record', value: record },
-        */
+        
       ],
+      */
 
       //animation_url: 'https://animation.granderby.io',
     };
@@ -298,22 +447,7 @@ export default async function handler(
       image: imagesrcUrl,
       ///attributes: [{ trait_type: 'Grade', value: grade }],
 
-      attributes: [
-        { trait_type: 'Asset', value: imagesrc },
-        { trait_type: 'Grade', value: grade },
-        /*
-        { trait_type: 'Speed', value: speed },
-        { trait_type: 'Preceding', value: preceding },
-        { trait_type: 'Overtaking', value: overtaking },
-        { trait_type: 'Stamina', value: stamina },
-        { trait_type: 'Spirit', value: spirit },
-        { trait_type: 'Power', value: power },
-        { trait_type: 'Agiligty', value: agiligty },
-        { trait_type: 'Weight', value: weight },
-        { trait_type: 'DrivingHabits', value: drivinghabits },
-        { trait_type: 'Record', value: record },
-        */
-      ],
+      attributes: attributes,
 
       //animation_url: 'https://animation.granderby.io',
     };

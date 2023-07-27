@@ -50,6 +50,7 @@
     "leva": "^0.9.34",
     "little-state-machine": "^4.8.0",
     "lodash": "^4.17.21",
+    "mongodb": "^5.7.0",
     "mongoose": "^7.4.1",
     "next": "^13.2.4",
     "next-pwa": "^5.6.0",
