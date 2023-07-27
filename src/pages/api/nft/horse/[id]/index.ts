@@ -285,7 +285,7 @@ export default async function handler(
         */
       ],
 
-      animation_url: 'https://animation.granderby.io',
+      //animation_url: 'https://animation.granderby.io',
     };
 
     res.status(200).json(nftData);
@@ -315,7 +315,7 @@ export default async function handler(
         */
       ],
 
-      animation_url: 'https://animation.granderby.io',
+      //animation_url: 'https://animation.granderby.io',
     };
 
     res.status(200).json(nftData);
