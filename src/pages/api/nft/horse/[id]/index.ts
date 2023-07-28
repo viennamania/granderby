@@ -241,7 +241,22 @@ export default async function handler(
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'D';
-    } else if (Number(req.query.id) >= 1800 && Number(req.query.id) < 1810) {
+    } else if (Number(req.query.id) >= 1800 && Number(req.query.id) < 1805) {
+      var formattedNumber = Number(req.query.id) - 1700 + '';
+
+      while (formattedNumber.length < 5) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '000' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'U';
+    } else if (Number(req.query.id) >= 1805 && Number(req.query.id) < 1810) {
       var formattedNumber = Number(req.query.id) - 1700 + '';
 
       while (formattedNumber.length < 5) {
@@ -256,8 +271,50 @@ export default async function handler(
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'S';
-    } else if (Number(req.query.id) >= 1810 && Number(req.query.id) < 5000) {
+    } else if (Number(req.query.id) >= 1815 && Number(req.query.id) < 1915) {
       var formattedNumber = Number(req.query.id) - 1700 + '';
+
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00001' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'A';
+    } else if (Number(req.query.id) >= 1915 && Number(req.query.id) < 2115) {
+      var formattedNumber = Number(req.query.id) - 1800 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+      formattedNumber = '0002' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'B';
+    } else if (Number(req.query.id) >= 2115 && Number(req.query.id) < 2645) {
+      var formattedNumber = Number(req.query.id) - 2000 + '';
+
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00100' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'C';
+    } else if (Number(req.query.id) >= 2645 && Number(req.query.id) < 5000) {
+      var formattedNumber = Number(req.query.id) - 2000 + '';
 
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
@@ -275,6 +332,30 @@ export default async function handler(
       ////imagesrc = 'Hrs_00006000.png';
     }
   }
+
+  /*
+
+그랑더비 판매 지갑주소6 : 0x847269a07bdcb674c54b6d2253c076f59199f208 - U 5개
+1800 - 1804번까지
+
+그랑더비 판매 지갑주소7 : 0xec29beab84e6182ce79e5b4ee115d043e3e65953 - S 10개
+1805 - 1814번까지
+
+그랑더비 판매 지갑주소8 : 0x7f8cd4941edba4ec4a7b265eeaf0f80ed6b29f56 - A 100개
+1815 - 1914번까지
+
+그랑더비 판매 지갑주소9 : 0x83993049280d4dA5BA69128acd868AFc83c77883 - B 200개
+1915 - 2114번까지
+
+그랑더비 판매 지갑주소10 : 0x516822659bD88976b5a26Dfb05fdE6cF8FA979f7 - C 530개
+2115 - 2644번까지
+
+그랑더비 판매 지갑주소11 : 0x43F06C41a01826a230B8168e9357f9e954A02CBf - D 500개
+2645 - 3144번까지
+
+그랑더비 판매 지갑주소12 : 0xE9F0Ec0c5A1875ae0A0F1007C664C0648D998C76 - D 500개
+3145 - 3644번까지
+*/
 
   //https://granderby.io/nft/horse/Hrs_00200000.png
 
