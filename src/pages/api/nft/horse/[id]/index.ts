@@ -241,21 +241,36 @@ export default async function handler(
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'D';
-    } else if (Number(req.query.id) >= 1800 && Number(req.query.id) < 5000) {
-      var formattedNumber = Number(req.query.id) - 600 + '';
+    } else if (Number(req.query.id) >= 1800 && Number(req.query.id) < 1810) {
+      var formattedNumber = Number(req.query.id) - 1700 + '';
 
-      while (formattedNumber.length < 4) {
+      while (formattedNumber.length < 5) {
         formattedNumber = '0' + formattedNumber;
       }
 
-      //formattedNumber = '0020' + formattedNumber;
-      formattedNumber = '00000000';
+      formattedNumber = '0000' + formattedNumber;
+      //formattedNumber = '00000000';
 
       console.log('formattedNumber', formattedNumber);
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'S';
+    } else if (Number(req.query.id) >= 1810 && Number(req.query.id) < 5000) {
+      var formattedNumber = Number(req.query.id) - 1700 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0020' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'D';
     } else {
       ////imagesrc = 'Hrs_00006000.png';
     }
