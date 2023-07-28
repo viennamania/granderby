@@ -45,12 +45,14 @@ let socket;
 export const getStaticProps: GetStaticProps = async () => {
   //const { user, settings }: any = await myGetServerSideProps(context)
 
+  /*
   const npcNamesResponse = await fetch(
     process.env.API_URL + `/api/games/horseRace/settings/horseNames?method=all`
   );
   const npcNames = await npcNamesResponse.json();
 
   console.log('npcNames[0]', npcNames.npcNames[0]);
+  */
 
   /*
     if (settings.games[1].active === false) {
