@@ -287,6 +287,9 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
 
   ///console.log("user", user);
 
+  // 특단의 조치를 취하기로
+  client.close();
+
   if (user) {
     return { success: true, user };
   } else {
