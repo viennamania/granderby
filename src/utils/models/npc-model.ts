@@ -266,6 +266,7 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
   ///console.log("getNpcFromTextureKey", textureKye);
 
   const user = await Npc.findOne({ TEXTURE_KEY: textureKye });
+
   ////const user = await Npc.findOne({ texture_key: textureKye});
 
   //const user = await Npc.findOne({ _id: "64c1e28568445fe469888f13"});
@@ -279,7 +280,9 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
 
 export const getAllNpcs = async () => {
   ///const users: INpc[] = (await Npc.find({ status: true })) as INpc[];
+
   const users: INpc[] = (await Npc.find({})) as INpc[];
+
   if (users) {
     return { success: true, users };
   } else {
