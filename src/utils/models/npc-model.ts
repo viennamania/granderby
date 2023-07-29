@@ -3,9 +3,7 @@ import { INpc } from '../interfaces/npc-interface';
 import { connectMongo } from '../services/database';
 import { getCoinConvert } from './settings-model';
 
-import dbConnect from '@/lib/dbConnect';
-
-/////connectMongo();
+connectMongo();
 
 const NpcSchema = new Schema({
   /*
@@ -213,8 +211,6 @@ export const newNpc = async (
   walletAddress: string,
   bonus: number
 ) => {
-  await dbConnect();
-
   const checkUser = await Npc.findOne({ email: email });
   if (checkUser) {
     return { success: false, message: 'User already exists' };
