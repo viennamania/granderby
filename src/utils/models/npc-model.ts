@@ -1,9 +1,12 @@
 import { Schema, models, model } from 'mongoose';
 import { INpc } from '../interfaces/npc-interface';
-import { connectMongo } from '../services/database';
+
+//import { connectMongo } from '../services/database';
+import clientPromise from '@/lib/mongodb';
+
 import { getCoinConvert } from './settings-model';
 
-connectMongo();
+//connectMongo();
 
 const NpcSchema = new Schema({
   /*
@@ -259,6 +262,7 @@ export const getNpcFromEmail = async (email: string) => {
 };
 
 export const getNpcFromTextureKey = async (textureKye: string) => {
+  /*
   ///console.log("getNpcFromTextureKey", textureKye);
 
   const user = await Npc.findOne({ TEXTURE_KEY: textureKye });
@@ -266,6 +270,20 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
   ////const user = await Npc.findOne({ texture_key: textureKye});
 
   //const user = await Npc.findOne({ _id: "64c1e28568445fe469888f13"});
+
+  if (user) {
+    return { success: true, user };
+  } else {
+    return { success: false, message: 'User not found' };
+  }
+  */
+
+  const client = await clientPromise;
+  const db = client.db('granderby');
+
+  const user = await db
+    .collection('horseextend')
+    .findOne({ TEXTURE_KEY: textureKye });
 
   if (user) {
     return { success: true, user };
