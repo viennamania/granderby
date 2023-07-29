@@ -394,94 +394,94 @@ export default async function handler(
 
   if (npc.success) {
     let horseMane = '';
-    if (npc.user.HORSEMANE === 'Ho_Mo_04_01_Mane') {
+    if (npc.user?.HORSEMANE === 'Ho_Mo_04_01_Mane') {
       horseMane = 'Long Mane';
-    } else if (npc.user.HORSEMANE === 'Ho_Mo_04_02_Mane') {
+    } else if (npc.user?.HORSEMANE === 'Ho_Mo_04_02_Mane') {
       horseMane = 'Sporty Mane';
-    } else if (npc.user.HORSEMANE === 'Ho_Mo_04_03_Mane') {
+    } else if (npc.user?.HORSEMANE === 'Ho_Mo_04_03_Mane') {
       horseMane = 'Short Mane';
     }
 
     let horseTail = '';
-    if (npc.user.HORSETAIL === 'Ho_Mo_05_01_Tail') {
+    if (npc.user?.HORSETAIL === 'Ho_Mo_05_01_Tail') {
       horseTail = 'Normal Tail';
-    } else if (npc.user.HORSETAIL === 'Ho_Mo_05_02_Tail') {
+    } else if (npc.user?.HORSETAIL === 'Ho_Mo_05_02_Tail') {
       horseTail = 'Richness Tail';
-    } else if (npc.user.HORSETAIL === 'Ho_Mo_05_03_Tail') {
+    } else if (npc.user?.HORSETAIL === 'Ho_Mo_05_03_Tail') {
       horseTail = 'Brush Tail';
     }
 
     let horseManeMask = '';
-    if (npc.user.HORSEMANEMASK === 'Ho_Pa_Xx') {
+    if (npc.user?.HORSEMANEMASK === 'Ho_Pa_Xx') {
       horseManeMask = 'None';
-    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_01_01_ManePa') {
+    } else if (npc.user?.HORSEMANEMASK === 'Ho_Pa_04_01_01_ManePa') {
       horseManeMask = 'Normal';
-    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_02_01_ManePa') {
+    } else if (npc.user?.HORSEMANEMASK === 'Ho_Pa_04_02_01_ManePa') {
       horseManeMask = 'Zebra';
-    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_02_02_ManePa') {
+    } else if (npc.user?.HORSEMANEMASK === 'Ho_Pa_04_02_02_ManePa') {
       horseManeMask = 'Stripe';
-    } else if (npc.user.HORSEMANEMASK === 'Ho_Pa_04_03_01_ManePa') {
+    } else if (npc.user?.HORSEMANEMASK === 'Ho_Pa_04_03_01_ManePa') {
       horseManeMask = 'Gradation';
     }
 
     let horseTailMask = '';
-    if (npc.user.HORSETAILMASK === 'Ho_Pa_Xx') {
+    if (npc.user?.HORSETAILMASK === 'Ho_Pa_Xx') {
       horseTailMask = 'None';
-    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_01_01_TailPa') {
+    } else if (npc.user?.HORSETAILMASK === 'Ho_Pa_05_01_01_TailPa') {
       horseTailMask = 'Normal';
-    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_02_01_TailPa') {
+    } else if (npc.user?.HORSETAILMASK === 'Ho_Pa_05_02_01_TailPa') {
       horseTailMask = 'Stripe';
-    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_03_01_TailPa') {
+    } else if (npc.user?.HORSETAILMASK === 'Ho_Pa_05_03_01_TailPa') {
       horseTailMask = 'Zebra';
-    } else if (npc.user.HORSETAILMASK === 'Ho_Pa_05_03_02_TailPa') {
+    } else if (npc.user?.HORSETAILMASK === 'Ho_Pa_05_03_02_TailPa') {
       horseTailMask = 'Gradation';
     }
 
     let horseBodyAcc = '';
-    if (npc.user.HORSEBODYACC === 'Ho_Pa_Xx') {
+    if (npc.user?.HORSEBODYACC === 'Ho_Pa_Xx') {
       horseBodyAcc = 'None';
-    } else if (npc.user.HORSEBODYACC === 'Ho_Mo_06_01_AccBody') {
+    } else if (npc.user?.HORSEBODYACC === 'Ho_Mo_06_01_AccBody') {
       horseBodyAcc = 'Devil Wing';
-    } else if (npc.user.HORSEBODYACC === 'Ho_Mo_06_02_AccBody') {
+    } else if (npc.user?.HORSEBODYACC === 'Ho_Mo_06_02_AccBody') {
       horseBodyAcc = 'Angel Wing';
     }
 
     let horseHeadAcc = '';
-    if (npc.user.HORSEHEADACC === 'Ho_Pa_Xx') {
+    if (npc.user?.HORSEHEADACC === 'Ho_Pa_Xx') {
       horseHeadAcc = 'None';
-    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_01_AccHead') {
+    } else if (npc.user?.HORSEHEADACC === 'Ho_Mo_07_01_AccHead') {
       horseHeadAcc = 'Angel Ring';
-    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_02_AccHead') {
+    } else if (npc.user?.HORSEHEADACC === 'Ho_Mo_07_02_AccHead') {
       horseHeadAcc = 'Devil Horns';
-    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_03_AccHead') {
+    } else if (npc.user?.HORSEHEADACC === 'Ho_Mo_07_03_AccHead') {
       horseHeadAcc = 'Deer Antlers';
-    } else if (npc.user.HORSEHEADACC === 'Ho_Mo_07_04_AccHead') {
+    } else if (npc.user?.HORSEHEADACC === 'Ho_Mo_07_04_AccHead') {
       horseHeadAcc = 'Unicorn Horn';
     }
 
     let horseLegAcc = '';
-    if (npc.user.HORSELEGACC === 'Ho_Pa_Xx') {
+    if (npc.user?.HORSELEGACC === 'Ho_Pa_Xx') {
       horseLegAcc = 'None';
-    } else if (npc.user.HORSELEGACC === 'Ho_Mo_08_01_AccLegpa') {
+    } else if (npc.user?.HORSELEGACC === 'Ho_Mo_08_01_AccLegpa') {
       horseLegAcc = 'Richness';
-    } else if (npc.user.HORSELEGACC === 'Ho_Mo_08_02_AccLegpa') {
+    } else if (npc.user?.HORSELEGACC === 'Ho_Mo_08_02_AccLegpa') {
       horseLegAcc = 'Normal';
     }
 
     let world = '';
-    if (npc.user.WORLD === 'GH') {
+    if (npc.user?.WORLD === 'GH') {
       world = 'Gwacheon';
-    } else if (npc.user.WORLD === 'HV') {
+    } else if (npc.user?.WORLD === 'HV') {
       world = 'Happy Valley';
-    } else if (npc.user.WORLD === 'SP') {
+    } else if (npc.user?.WORLD === 'SP') {
       world = 'Singapore';
-    } else if (npc.user.WORLD === 'ST') {
+    } else if (npc.user?.WORLD === 'ST') {
       world = 'Shatin';
     }
 
     attributes.push({
       trait_type: 'Texture Key',
-      value: npc.user.TEXTUREKEY,
+      value: npc.user?.TEXTUREKEY,
     });
 
     attributes.push({
@@ -494,15 +494,15 @@ export default async function handler(
     });
     attributes.push({
       trait_type: 'BodyMask',
-      value: npc.user.HORSEBODYMASK,
+      value: npc.user?.HORSEBODYMASK,
     });
     attributes.push({
       trait_type: 'HeadMask',
-      value: npc.user.HORSEHEADMASK,
+      value: npc.user?.HORSEHEADMASK,
     });
     attributes.push({
       trait_type: 'LegMask',
-      value: npc.user.HORSELEGMASK,
+      value: npc.user?.HORSELEGMASK,
     });
     attributes.push({
       trait_type: 'ManeMask',
@@ -526,59 +526,59 @@ export default async function handler(
     });
     attributes.push({
       trait_type: 'Size',
-      value: npc.user.HORSESIZE,
+      value: npc.user?.HORSESIZE,
     });
     attributes.push({
       trait_type: 'BodyColor',
-      value: npc.user.HORSEBODYCOLOR,
+      value: npc.user?.HORSEBODYCOLOR,
     });
     attributes.push({
       trait_type: 'ManeColor',
-      value: npc.user.HORSEMANECOLOR,
+      value: npc.user?.HORSEMANECOLOR,
     });
     attributes.push({
       trait_type: 'TailColor',
-      value: npc.user.HORSETAILCOLOR,
+      value: npc.user?.HORSETAILCOLOR,
     });
     attributes.push({
       trait_type: 'BodyMaskColor',
-      value: npc.user.HORSEBODYMASKCOLOR,
+      value: npc.user?.HORSEBODYMASKCOLOR,
     });
     attributes.push({
       trait_type: 'HeadMaskColor',
-      value: npc.user.HORSEHEADMASKCOLOR,
+      value: npc.user?.HORSEHEADMASKCOLOR,
     });
     attributes.push({
       trait_type: 'LegMaskColor',
-      value: npc.user.HORSELEGMASKCOLOR,
+      value: npc.user?.HORSELEGMASKCOLOR,
     });
     attributes.push({
       trait_type: 'ManeMaskColor',
-      value: npc.user.HORSEMANEMASKCOLOR,
+      value: npc.user?.HORSEMANEMASKCOLOR,
     });
     attributes.push({
       trait_type: 'TailMaskColor',
-      value: npc.user.HORSETAILMASKCOLOR,
+      value: npc.user?.HORSETAILMASKCOLOR,
     });
     attributes.push({
       trait_type: 'BodyAccColor',
-      value: npc.user.HORSEBODYACCCOLOR,
+      value: npc.user?.HORSEBODYACCCOLOR,
     });
     attributes.push({
       trait_type: 'HeadAccColor',
-      value: npc.user.HORSEHEADACCCOLOR,
+      value: npc.user?.HORSEHEADACCCOLOR,
     });
     attributes.push({
       trait_type: 'LegAccColor',
-      value: npc.user.HORSELEGACCCOLOR,
+      value: npc.user?.HORSELEGACCCOLOR,
     });
     attributes.push({
       trait_type: 'Comment',
-      value: npc.user.COMMENT,
+      value: npc.user?.COMMENT,
     });
     attributes.push({
       trait_type: 'Grade',
-      value: npc.user.GRADE,
+      value: npc.user?.GRADE,
     });
     attributes.push({
       trait_type: 'World',

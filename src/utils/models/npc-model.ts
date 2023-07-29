@@ -262,6 +262,8 @@ export const getNpcFromEmail = async (email: string) => {
 };
 
 export const getNpcFromTextureKey = async (textureKye: string) => {
+  console.log('getNpcFromTextureKey', textureKye);
+
   /*
   ///console.log("getNpcFromTextureKey", textureKye);
 
@@ -279,16 +281,20 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
   */
 
   const client = await clientPromise;
+
+  /////console.log('client', client);
+
   const db = client.db('granderby');
 
   const user = await db
     .collection('horseextends')
     .findOne({ TEXTURE_KEY: textureKye });
 
-  ///console.log("user", user);
+  /////console.log("user", user);
 
   // 특단의 조치를 취하기로
-  client.close();
+  /////const res = client.close();
+  //////console.log('res', res);
 
   if (user) {
     return { success: true, user };

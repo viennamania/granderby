@@ -51,6 +51,9 @@ if (process.env.NODE_ENV === 'development') {
 */
 
 client = new MongoClient(uri, options);
+
+////console.log('mongodb.ts client', client);
+
 clientPromise = client.connect();
 
 // Export a module-scoped MongoClient promise. By doing this in a
