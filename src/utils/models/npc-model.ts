@@ -282,8 +282,10 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
   const db = client.db('granderby');
 
   const user = await db
-    .collection('horseextend')
+    .collection('horseextends')
     .findOne({ TEXTURE_KEY: textureKye });
+
+  ///console.log("user", user);
 
   if (user) {
     return { success: true, user };
