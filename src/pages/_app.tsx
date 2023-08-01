@@ -72,8 +72,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   /******* */
 
   const [queryClient] = useState(() => new QueryClient());
-
-  /////const queryClient = new QueryClient();
+  ////const queryClient = new QueryClient();
 
   const clientId =
     process.env.NEXT_PUBLIC_CLIENT_ID === undefined
@@ -166,6 +165,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         */}
 
         <ThirdwebProvider
+          queryClient={queryClient}
           activeChain={Polygon}
           clientId="6d0a3abfa7ad50324b419e1a4da4721c"
           supportedWallets={[

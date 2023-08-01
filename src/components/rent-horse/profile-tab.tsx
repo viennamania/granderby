@@ -390,15 +390,13 @@ export default function ProfileTab() {
                   />
 
                   <div className="flex flex-col gap-2">
-                    {/*
-                <Web3Button
-                  theme="light"
-                  contractAddress={stakingContractAddressHorseAAA}
-                  action={() => stakeNft(nft.metadata.id)}
-                >
-                  Register to Field
-                </Web3Button>
-                */}
+                    <Web3Button
+                      theme="light"
+                      contractAddress={stakingContractAddressHorseAAA}
+                      action={() => stakeNft(nft.metadata.id)}
+                    >
+                      Register to Field
+                    </Web3Button>
 
                     {/*
                 <Web3Button

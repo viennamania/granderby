@@ -563,6 +563,7 @@ const WalletPage: NextPageWithLayout<
 
             {address && (
               <div className="mt-5 flex flex-row justify-center">
+                {/*}
                 <button
                   type="submit"
                   className={styles.mainButton}
@@ -571,8 +572,8 @@ const WalletPage: NextPageWithLayout<
                 >
                   Transfer ({amount} GRD)
                 </button>
+                  */}
 
-                {/*
                 <Web3Button
                   theme="light"
                   contractAddress={tokenContractAddressUSDT}
@@ -598,7 +599,6 @@ const WalletPage: NextPageWithLayout<
                 >
                   Transfer ({amount} USDT)
                 </Web3Button>
-                  */}
               </div>
             )}
           </div>
