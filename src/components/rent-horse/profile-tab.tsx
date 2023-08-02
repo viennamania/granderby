@@ -339,10 +339,14 @@ export default function ProfileTab() {
                 <div
                   className="mb-5 flex flex-col  items-center justify-center gap-3"
                   key={nft.metadata.id.toString()}
+                  onClick={() =>
+                    router.push('/horse-details/' + nft.metadata.id.toString())
+                  }
                 >
                   <div className="justifiy-center flex flex-row items-center gap-2">
                     <h5>{nft.metadata.name}</h5>
 
+                    {/*
                     <button
                       type="button"
                       className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800"
@@ -356,6 +360,8 @@ export default function ProfileTab() {
                     >
                       NFT #{nft.metadata.id.toString()}
                     </button>
+                    */}
+
                     {/*
                 <AnchorLink
                   href={{
@@ -390,6 +396,7 @@ export default function ProfileTab() {
                   />
 
                   <div className="flex flex-col gap-2">
+                    {/*
                     <Web3Button
                       theme="light"
                       contractAddress={stakingContractAddressHorseAAA}
@@ -397,6 +404,7 @@ export default function ProfileTab() {
                     >
                       Register to Field
                     </Web3Button>
+                    */}
 
                     {/*
                 <Web3Button

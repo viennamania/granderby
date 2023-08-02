@@ -4,7 +4,13 @@ import type { NextPageWithLayout } from '@/types';
 
 import { ThemeProvider } from 'next-themes';
 
-import { QueryClient, QueryClientProvider } from 'react-query';
+//import { QueryClient, QueryClientProvider } from 'react-query';
+
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
 
 import ModalsContainer from '@/components/modal-views/container';
 import DrawersContainer from '@/components/drawer-views/container';
@@ -71,8 +77,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   /******* */
 
-  const [queryClient] = useState(() => new QueryClient());
-  ////const queryClient = new QueryClient();
+  ///const [queryClient] = useState(() => new QueryClient());
+  const queryClient = new QueryClient();
 
   const clientId =
     process.env.NEXT_PUBLIC_CLIENT_ID === undefined
