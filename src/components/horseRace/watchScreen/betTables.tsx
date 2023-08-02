@@ -48,6 +48,26 @@ export default function BetTables({ npcs }: any) {
     ////console.log("getGames data====", data);
 
     setGames(data.games);
+
+    setBetAmount1(0);
+    setBetAmount2(0);
+    setBetAmount3(0);
+    setBetAmount4(0);
+    setBetAmount5(0);
+
+    games?.map((game: IHorseGame, i: number) => {
+      if (game.selectedSide === npcs.horse1) {
+        setBetAmount1((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse2) {
+        setBetAmount2((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse3) {
+        setBetAmount3((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse4) {
+        setBetAmount4((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse5) {
+        setBetAmount5((prev: any) => prev + game.betAmount);
+      }
+    });
   };
 
   useEffect(() => {
@@ -81,7 +101,6 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse1) {
-                  setBetAmount1(betAmount1 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -133,8 +152,6 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse2) {
-                  setBetAmount2(betAmount2 + game.betAmount);
-
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -184,7 +201,6 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse3) {
-                  setBetAmount3(betAmount3 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -234,7 +250,6 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse4) {
-                  setBetAmount4(betAmount4 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -284,7 +299,6 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse5) {
-                  setBetAmount5(betAmount5 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">

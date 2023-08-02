@@ -43,7 +43,7 @@ export default function WalkingAdnim({ time, npcSrc }: any) {
           <div className="item-center flex w-full justify-center gap-1 bg-transparent  text-white">
             <div className="glow-text font-lg p-2 text-white ">
               {' '}
-              Last <span className="text-4xl font-bold">{time}</span> seconds
+              Last <span className="text-6xl font-bold">{time}</span> seconds
               before game start{' '}
             </div>
           </div>
