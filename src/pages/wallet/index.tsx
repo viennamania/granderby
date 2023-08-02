@@ -574,6 +574,7 @@ const WalletPage: NextPageWithLayout<
                 </button>
                   */}
 
+                {/*
                 <Web3Button
                   theme="light"
                   contractAddress={tokenContractAddressUSDT}
@@ -599,6 +600,7 @@ const WalletPage: NextPageWithLayout<
                 >
                   Transfer ({amount} USDT)
                 </Web3Button>
+                  */}
               </div>
             )}
           </div>

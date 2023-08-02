@@ -39,7 +39,24 @@ import { Twitter } from '@/components/icons/brands/twitter';
 //import { Copy } from '@/components/icons/copy';
 import { SearchIcon } from '@/components/icons/search';
 
-import { ConnectWallet, useAddress, useDisconnect } from '@thirdweb-dev/react';
+import { Plus } from '@/components/icons/plus';
+import { ChevronForward } from '@/components/icons/chevron-forward';
+
+import Button from '@/components/ui/button';
+
+import {
+  ConnectWallet,
+  useAddress,
+  useDisconnect,
+  useContract,
+  useTokenBalance,
+} from '@thirdweb-dev/react';
+
+import OwnedFeeds from '@/components/search/feeds-horse-owned';
+
+import { tokenContractAddressGRD } from '@/config/contractAddresses';
+
+import { useRouter } from 'next/router';
 
 // Bebas Neue
 let socket;
@@ -97,6 +114,8 @@ const WidgetPage: NextPageWithLayout<
   //{ user: IUser | null, settings: ISettings | null, inputs: any }
   //) {
 
+  const router = useRouter();
+
   const [socket, setSocket] = useState<Socket | null>(null);
 
   const [status, setStatus] = useState<any>();
@@ -114,6 +133,13 @@ const WidgetPage: NextPageWithLayout<
   const address = useAddress();
 
   const disconnect = useDisconnect();
+
+  const { contract: tokenContract } = useContract(
+    tokenContractAddressGRD,
+    'token'
+  );
+
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
   useEffect(() => {
     socketInitializer();
@@ -205,30 +231,53 @@ const WidgetPage: NextPageWithLayout<
 */}
 
       <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-5 text-white ">
+        <OwnedFeeds />
+
         <Image src="/images/logo.svg" alt="Granderby" width={24} height={25} />
 
         {address ? (
           <>
             <div className="flex flex-shrink-0 flex-grow-0 items-center justify-center gap-3 bg-gray-800 pb-2 pt-2 text-yellow-600 ">
-              {address}
+              {/*address*/}
+
+              <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>
+              {tokenBalance?.symbol}
             </div>
 
             <ConnectWallet
               theme="dark"
-              btnTitle="Connect Wallet for Bet"
+              btnTitle="Connect Wallet for manage"
               modalTitle="Login"
               detailsBtn={() => {
-                return <button className="text-sm">Logout</button>;
+                return (
+                  <button className="text-sm">
+                    <ChevronForward className="rtl:rotate-180" />
+                  </button>
+                );
               }}
             />
           </>
         ) : (
           <ConnectWallet
             theme="light"
-            btnTitle="Connect Wallet for Bet"
+            btnTitle="Connect Wallet for manage"
             modalTitle="Login"
           />
         )}
+
+        <Button
+          className="flex "
+          title="Go"
+          color="white"
+          shape="rounded"
+          variant="transparent"
+          size="small"
+          onClick={() => {
+            router.push('https://granderby.market/');
+          }}
+        >
+          <Image src="/images/market.png" alt="market" width={24} height={24} />
+        </Button>
       </div>
 
       {!status ? (
