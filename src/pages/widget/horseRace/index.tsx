@@ -240,7 +240,9 @@ const WidgetPage: NextPageWithLayout<
             <div className="flex flex-shrink-0 flex-grow-0 items-center justify-center gap-3 bg-gray-800 pb-2 pt-2 text-yellow-600 ">
               {/*address*/}
 
-              <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>
+              <span className="text-lg font-bold">
+                {Number(tokenBalance?.displayValue).toFixed(2)}
+              </span>
               {tokenBalance?.symbol}
             </div>
 
