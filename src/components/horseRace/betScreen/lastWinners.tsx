@@ -23,7 +23,7 @@ export default function LastWinnersPage({ npcs }: any) {
 
   return (
     <div className="absolute right-5 top-20 hidden flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
-      <h4 className=" mb-2 border-b">Last Race Winners</h4>
+      <div className=" mb-2 border-b text-xl">Last Race Winners</div>
       <div className="">
         {sonKazananlar &&
           sonKazananlar.placements.map((item: any) => {
@@ -34,8 +34,7 @@ export default function LastWinnersPage({ npcs }: any) {
               >
                 <p className=" text-left  text-sm text-green-500">
                   Rank{item.line} -{' '}
-                  <span className="text-sky-500">NPC#{item.nft}</span>{' '}
-                  {item.horse}
+                  <span className="text-sky-500">#{item.nft}</span> {item.horse}
                 </p>
 
                 <Image

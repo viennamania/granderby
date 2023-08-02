@@ -593,10 +593,10 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 1</span>
-              <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs?.nft1}</span>
-                <span>{npcs?.horse1}</span>
+              <div className="flexitems-center justify-center">
+                <span className="text-sm text-sky-500">#{npcs?.nft1}</span>
               </div>
+              <span className="text-xs">{npcs?.horse1}</span>
               <span className="text-sm">x {horse1}</span>
             </div>
           </button>
@@ -618,9 +618,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 2</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs?.nft2}</span>
-                <span>{npcs.horse2}</span>
+                <span className="text-sm text-sky-500">#{npcs?.nft2}</span>
               </div>
+              <span className="text-xs">{npcs.horse2}</span>
               <span className="text-sm">x {horse2}</span>
             </div>
           </button>
@@ -642,9 +642,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm ">Line 3</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs?.nft3}</span>
-                <span>{npcs?.horse3}</span>
+                <span className="text-sm text-sky-500">#{npcs?.nft3}</span>
               </div>
+              <span className="text-xs">{npcs?.horse3}</span>
               <span className="text-sm">x {horse3}</span>
             </div>
           </button>
@@ -666,9 +666,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 4</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs?.nft4}</span>
-                <span>{npcs?.horse4}</span>
+                <span className="text-sm text-sky-500">#{npcs?.nft4}</span>
               </div>
+              <span className="text-xs">{npcs?.horse4}</span>
               <span className="text-sm">x {horse4}</span>
             </div>
           </button>
@@ -690,15 +690,16 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 5</span>
               <div className="flex items-center justify-center">
-                <span className="text-sky-500">#{npcs?.nft5}</span>
-                <span>{npcs?.horse5}</span>
+                <span className="text-sm text-sky-500">#{npcs?.nft5}</span>
               </div>
+              <span className="text-xs">{npcs?.horse5}</span>
               <span className="text-sm">x {horse5}</span>
             </div>
           </button>
         </div>
       </div>
 
+      {/*
       <Stack spacing={2} sx={{ width: '100%' }}>
         <Snackbar open={succ} autoHideDuration={6000} onClose={handleCloseSucc}>
           <Alert
@@ -719,6 +720,7 @@ export default function BetInputs({
           </Alert>
         </Snackbar>
       </Stack>
+          */}
     </>
   );
 }

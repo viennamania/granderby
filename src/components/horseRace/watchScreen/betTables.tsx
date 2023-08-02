@@ -54,9 +54,12 @@ export default function BetTables({ npcs }: any) {
         <div className="grid w-full grid-cols-5 gap-1 rounded-lg text-gray-200 lg:grid-cols-5  lg:gap-3">
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-col items-center justify-center">
+              {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
                 <span className=" text-sky-500">#{npcs.nft1}</span>
               </div>
+              */}
+
               <Image
                 src={npcs.media1}
                 width={100}
@@ -100,9 +103,11 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-col items-center justify-center">
+              {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
                 <span className=" text-sky-500">#{npcs.nft2}</span>
               </div>
+              */}
               <Image
                 src={npcs.media2}
                 width={100}
@@ -144,9 +149,11 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-col items-center justify-center">
+              {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
                 <span className=" text-sky-500">#{npcs.nft3}</span>
               </div>
+              */}
               <Image
                 src={npcs.media3}
                 width={100}
@@ -188,9 +195,11 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-col items-center justify-center">
+              {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
                 <span className=" text-sky-500">#{npcs.nft4}</span>
               </div>
+              */}
               <Image
                 src={npcs.media4}
                 width={100}
@@ -232,9 +241,11 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-col items-center justify-center">
+              {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
                 <span className=" text-sky-500">#{npcs.nft5}</span>
               </div>
+              */}
               <Image
                 src={npcs.media5}
                 width={100}

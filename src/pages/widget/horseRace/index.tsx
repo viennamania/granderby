@@ -11,8 +11,8 @@ import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
 import Race from '@/components/horseRace/watchScreen/race';
 
 import React, { use, useEffect, useState } from 'react';
-//import LastWinnersPage from '@/components/horseRace/betScreen/lastWinners';
-//import Last20GamePage from '@/components/horseRace/betScreen/last20';
+import LastWinnersPage from '@/components/horseRace/betScreen/lastWinners';
+import Last20GamePage from '@/components/horseRace/betScreen/last20';
 
 //@ts-ignore
 import { Socket, io } from 'socket.io-client';
@@ -284,11 +284,9 @@ const WidgetPage: NextPageWithLayout<
 
       {!status ? (
         <div className=" justify-top relative flex h-full w-full flex-col items-center gap-5 bg-[#0C0E1A] px-10 pb-10">
-          {/*
-                            <LastWinnersPage npcs={npcNames} />
-                            
-                            <Last20GamePage />
-                            */}
+          <LastWinnersPage npcs={npcNames} />
+
+          <Last20GamePage />
 
           {time ? (
             <>
@@ -296,33 +294,32 @@ const WidgetPage: NextPageWithLayout<
                                 <div className="bg-center bg-no-repeat bg-contain bg-[url(/snailRace/back.svg)] h-full ">
                                 */}
 
-              {/*
-              <div className="   justify-top flex flex-col items-center bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent p-5 bg-blend-difference md:gap-14 md:px-32  md:py-10">
+              <div className=" justify-top flex flex-col items-center bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent p-5 bg-blend-difference md:gap-14 md:px-32  md:py-10">
                 <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
-              </div>  
-              */}
+              </div>
 
               {/*
                                 </div>
                                 */}
 
-              {/*
-                <BetInputs
-                    horse1={horse1Oran}
-                    horse2={horse2Oran}
-                    horse3={horse3Oran}
-                    horse4={horse4Oran}
-                    horse5={horse5Oran}
-                    //user={user}
-                    user={null}
-                    npcs={npcNames}
-                    //inputs={inputs}
-                    inputs={null}
-                    balance={balance}
-                />
-                */}
+              <BetInputs
+                horse1={horse1Oran}
+                horse2={horse2Oran}
+                horse3={horse3Oran}
+                horse4={horse4Oran}
+                horse5={horse5Oran}
+                //user={user}
+                user={null}
+                npcs={npcNames}
+                //inputs={inputs}
+                inputs={null}
+                balance={balance}
+              />
 
+              {/*
               <div className="flex w-full flex-col items-center justify-center gap-5 p-2 lg:flex-row "></div>
+              */}
+
               <BetTables npcs={npcNames} />
             </>
           ) : (

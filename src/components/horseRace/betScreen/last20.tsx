@@ -21,7 +21,9 @@ export default function Last20GamePage() {
 
   return (
     <div className="absolute left-5 top-10  hidden flex-col items-center justify-center gap-3  rounded-lg bg-black/20 p-3 backdrop-blur-md lg:flex">
-      <h6 className=" mb-1 border-b text-gray-200">Last 20 Race Winners</h6>
+      <div className=" mb-1 border-b text-xl text-gray-200">
+        Last 20 Race Winners
+      </div>
       <div className="relative flex flex-col gap-1 bg-gradient-to-b from-green-500 to-red-500 bg-clip-text text-transparent">
         {last20Game &&
           last20Game.map((item: any) => {
@@ -31,7 +33,7 @@ export default function Last20GamePage() {
                 className="flex flex-row items-center justify-center"
               >
                 <span className=" w-16 text-xs text-sky-500">
-                  NPC#{item.winnerNft}
+                  #{item.winnerNft}
                 </span>
                 <span className=" w-16 text-xs">{item.winnerHorse}</span> -
                 <span className=" text-xs ">

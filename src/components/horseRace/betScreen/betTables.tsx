@@ -52,7 +52,7 @@ export default function BetTables({ npcs }: any) {
     <>
       <div className="flex w-full flex-col items-center lg:w-2/3">
         <div className="grid w-full grid-cols-1 gap-3 rounded-lg text-gray-200  lg:grid-cols-5">
-          <div className="flex max-h-[150px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+          <div className="flex max-h-[200px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-row items-center justify-center">
               <h2 className="mb-2 w-full border-b border-black  text-center text-lg ">
                 <span className=" text-sky-500">{npcs.horse1}</span>
@@ -90,7 +90,7 @@ export default function BetTables({ npcs }: any) {
             </ul>
           </div>
 
-          <div className="flex max-h-[150px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+          <div className="flex max-h-[200px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-row items-center justify-center">
               <h2 className="mb-2 w-full border-b border-black  text-center text-lg ">
                 <span className=" text-sky-500">{npcs.horse2}</span>
@@ -125,7 +125,7 @@ export default function BetTables({ npcs }: any) {
             </ul>
           </div>
 
-          <div className="flex max-h-[150px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+          <div className="flex max-h-[200px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-row items-center justify-center">
               <h2 className="mb-2 w-full border-b border-black  text-center text-lg ">
                 <span className=" text-sky-500">{npcs.horse3}</span>
@@ -160,7 +160,7 @@ export default function BetTables({ npcs }: any) {
             </ul>
           </div>
 
-          <div className="flex max-h-[150px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+          <div className="flex max-h-[200px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-row items-center justify-center">
               <h2 className="mb-2 w-full border-b border-black  text-center text-lg ">
                 <span className=" text-sky-500">{npcs.horse4}</span>
@@ -195,7 +195,7 @@ export default function BetTables({ npcs }: any) {
             </ul>
           </div>
 
-          <div className="flex max-h-[150px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+          <div className="flex max-h-[200px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="flex w-full flex-row items-center justify-center">
               <h2 className="mb-2 w-full border-b border-black  text-center text-lg ">
                 <span className=" text-sky-500">{npcs.horse5}</span>

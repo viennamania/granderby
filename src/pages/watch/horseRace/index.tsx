@@ -11,6 +11,7 @@ import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
 import Race from '@/components/horseRace/watchScreen/race';
 
 import React, { useEffect, useState } from 'react';
+
 //import LastWinnersPage from '@/components/horseRace/betScreen/lastWinners';
 //import Last20GamePage from '@/components/horseRace/betScreen/last20';
 
