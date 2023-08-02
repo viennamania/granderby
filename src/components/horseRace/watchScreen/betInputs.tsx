@@ -90,6 +90,7 @@ export default function BetInputs({
   inputs: any;
   balance: any;
 }) {
+  /*
   console.log('BetInputs', {
     horse1,
     horse2,
@@ -101,6 +102,7 @@ export default function BetInputs({
     inputs,
     balance,
   });
+  */
 
   const [chosenNpc, setChosenNpc] = useState<any>(null);
   const [betAmount, setBetAmount] = useState<any>(0);

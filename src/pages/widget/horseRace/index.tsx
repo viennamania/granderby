@@ -11,8 +11,11 @@ import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
 import Race from '@/components/horseRace/watchScreen/race';
 
 import React, { use, useEffect, useState } from 'react';
-import LastWinnersPage from '@/components/horseRace/betScreen/lastWinners';
-import Last20GamePage from '@/components/horseRace/betScreen/last20';
+
+import LastWinnersPage from '@/components/horseRace/watchScreen/lastWinners';
+import LastWinnersMobilePage from '@/components/horseRace/watchScreen/lastWinnersMobile';
+
+import Last20GamePage from '@/components/horseRace/watchScreen/last20';
 
 //@ts-ignore
 import { Socket, io } from 'socket.io-client';
@@ -127,6 +130,7 @@ const WidgetPage: NextPageWithLayout<
   const [horse5Oran, setHorse5Oran] = useState<any>([]);
   const [flag, setFlag] = useState<any>(false);
   const [balance, setBalance] = useState<any>(0);
+  const [flagLastWinner, setFlagLastWinner] = useState<any>(false);
 
   const [npcNames, setNpcNames] = useState<any>([]);
 
@@ -283,58 +287,75 @@ const WidgetPage: NextPageWithLayout<
       </div>
 
       {!status ? (
-        <div className=" justify-top relative flex h-full w-full flex-col items-center gap-5 bg-[#0C0E1A] px-10 pb-10">
-          <LastWinnersPage npcs={npcNames} />
+        <>
+          <div className=" justify-top relative flex h-full w-full flex-col items-center gap-5 bg-[#0C0E1A] px-10 pb-10">
+            <LastWinnersPage npcs={npcNames} />
 
-          <Last20GamePage />
+            <Last20GamePage />
 
-          {time ? (
-            <>
-              {/*
+            {time ? (
+              <>
+                {/*
                                 <div className="bg-center bg-no-repeat bg-contain bg-[url(/snailRace/back.svg)] h-full ">
                                 */}
 
-              <div className=" justify-top flex flex-col items-center bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent p-5 bg-blend-difference md:gap-14 md:px-32  md:py-10">
-                <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
-              </div>
+                <div className=" justify-top flex flex-col items-center bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent p-5 bg-blend-difference md:gap-14 md:px-32  md:py-10">
+                  <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
+                </div>
 
-              {/*
+                {/*
                                 </div>
                                 */}
 
-              <BetInputs
-                horse1={horse1Oran}
-                horse2={horse2Oran}
-                horse3={horse3Oran}
-                horse4={horse4Oran}
-                horse5={horse5Oran}
-                //user={user}
-                user={null}
-                npcs={npcNames}
-                //inputs={inputs}
-                inputs={null}
-                balance={balance}
-              />
+                <BetInputs
+                  horse1={horse1Oran}
+                  horse2={horse2Oran}
+                  horse3={horse3Oran}
+                  horse4={horse4Oran}
+                  horse5={horse5Oran}
+                  //user={user}
+                  user={null}
+                  npcs={npcNames}
+                  //inputs={inputs}
+                  inputs={null}
+                  balance={balance}
+                />
 
-              {/*
+                {/*
               <div className="flex w-full flex-col items-center justify-center gap-5 p-2 lg:flex-row "></div>
               */}
 
-              <BetTables npcs={npcNames} />
-            </>
-          ) : (
-            <>
-              {/*
+                <BetTables npcs={npcNames} />
+              </>
+            ) : (
+              <>
+                {/*
                                 <div className="bg-center bg-no-repeat bg-contain bg-[url(/snailRace/back.svg)] h-full ">
                                 */}
-              <div className="h-full bg-[url(/snailRace/1683723489-asd.jpg)] bg-contain bg-center bg-no-repeat ">
-                <div className="item-center mt-20 flex w-full justify-center gap-1 bg-transparent text-2xl text-white">
-                  Loading Game...
+                <div className="h-full bg-[url(/snailRace/1683723489-asd.jpg)] bg-contain bg-center bg-no-repeat ">
+                  <div className="item-center mt-20 flex w-full justify-center gap-1 bg-transparent text-2xl text-white">
+                    Loading Game...
+                  </div>
                 </div>
-              </div>
-            </>
-          )}
-        </div>
+              </>
+            )}
+          </div>
+
+          <button
+            className="absolute right-1 top-56 mr-5 mt-10 text-white"
+            onClick={() =>
+              flagLastWinner
+                ? setFlagLastWinner(false)
+                : setFlagLastWinner(true)
+            }
+          >
+            Last Winners
+          </button>
+
+          <div className={flagLastWinner ? '' : 'hidden'}>
+            <LastWinnersMobilePage npcs={npcNames} />
+          </div>
+        </>
       ) : (
         <Race npcNames={npcNames} flag={flag} setFlag={setFlag} />
       )}

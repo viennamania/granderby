@@ -48,7 +48,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   const address = useAddress();
 
-  console.log('Feeds address======>', address);
+  ////console.log('Feeds address======>', address);
 
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
@@ -56,7 +56,7 @@ export default function Feeds({ className }: { className?: string }) {
   );
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
-  console.log('Feeds ownedNfts======>', ownedNfts);
+  /////console.log('Feeds ownedNfts======>', ownedNfts);
 
   return (
     <>

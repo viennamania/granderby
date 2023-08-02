@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-export default function LastWinnersPage({ npcs }: any) {
+export default function LastWinnersMobilePage({ npcs }: any) {
   const [sonKazananlar, setSonKazananlar] = useState<any>();
 
   // last game winners
@@ -25,8 +25,9 @@ export default function LastWinnersPage({ npcs }: any) {
   }, []);
 
   return (
-    <div className="absolute right-5 top-20 hidden flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
+    <div className="absolute right-5 top-20 flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
+
       <div className="">
         {sonKazananlar &&
           sonKazananlar.placements.map((item: any) => {
