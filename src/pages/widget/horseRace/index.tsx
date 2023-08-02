@@ -145,6 +145,8 @@ const WidgetPage: NextPageWithLayout<
 
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
+  ///const [betAmount, setBetAmount] = useState<any>(0);
+
   useEffect(() => {
     socketInitializer();
   }, []);

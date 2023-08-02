@@ -8,6 +8,8 @@ export default function BetTables({ npcs }: any) {
   const [status, setStatus] = useState<any>();
   const [winner, setWinner] = useState<any>();
 
+  const [betAmountTotal, setBetAmountTotal] = useState<any>(0);
+
   const [betAmount1, setBetAmount1] = useState<any>(0);
   const [betAmount2, setBetAmount2] = useState<any>(0);
   const [betAmount3, setBetAmount3] = useState<any>(0);
@@ -49,6 +51,8 @@ export default function BetTables({ npcs }: any) {
 
     setGames(data.games);
 
+    setBetAmountTotal(0);
+
     setBetAmount1(0);
     setBetAmount2(0);
     setBetAmount3(0);
@@ -56,6 +60,8 @@ export default function BetTables({ npcs }: any) {
     setBetAmount5(0);
 
     games?.map((game: IHorseGame, i: number) => {
+      setBetAmountTotal((prev: any) => prev + game.betAmount);
+
       if (game.selectedSide === npcs.horse1) {
         setBetAmount1((prev: any) => prev + game.betAmount);
       } else if (game.selectedSide === npcs.horse2) {
@@ -77,6 +83,10 @@ export default function BetTables({ npcs }: any) {
   return (
     <>
       <div className="flex w-full flex-col items-center lg:w-2/3">
+        <div className="mb-2 flex w-full items-center justify-center rounded-lg text-2xl font-bold text-gray-200">
+          {betAmountTotal}
+        </div>
+
         <div className="grid w-full grid-cols-5 gap-1 rounded-lg text-gray-200 lg:grid-cols-5  lg:gap-3">
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="mb-2 flex w-full flex-col items-center justify-center">
