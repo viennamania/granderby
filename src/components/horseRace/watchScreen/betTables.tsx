@@ -8,6 +8,12 @@ export default function BetTables({ npcs }: any) {
   const [status, setStatus] = useState<any>();
   const [winner, setWinner] = useState<any>();
 
+  const [betAmount1, setBetAmount1] = useState<any>(0);
+  const [betAmount2, setBetAmount2] = useState<any>(0);
+  const [betAmount3, setBetAmount3] = useState<any>(0);
+  const [betAmount4, setBetAmount4] = useState<any>(0);
+  const [betAmount5, setBetAmount5] = useState<any>(0);
+
   useEffect(() => {
     socketInitializer();
   }, []);
@@ -20,7 +26,7 @@ export default function BetTables({ npcs }: any) {
       console.log('socket connected=====================');
     });
     socket.on('status', (data: any) => {
-      console.log('status data====', data);
+      //console.log('status data====', data);
 
       setStatus(data);
     });
@@ -53,6 +59,9 @@ export default function BetTables({ npcs }: any) {
       <div className="flex w-full flex-col items-center lg:w-2/3">
         <div className="grid w-full grid-cols-5 gap-1 rounded-lg text-gray-200 lg:grid-cols-5  lg:gap-3">
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-sm text-yellow-500">{betAmount1}</span>{' '}
+            </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
@@ -72,6 +81,7 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse1) {
+                  setBetAmount1(betAmount1 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -102,6 +112,10 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-sm text-yellow-500">{betAmount2}</span>{' '}
+            </div>
+
             <div className="flex w-full flex-col items-center justify-center">
               {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
@@ -119,6 +133,8 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse2) {
+                  setBetAmount2(betAmount2 + game.betAmount);
+
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -148,6 +164,9 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-sm text-yellow-500">{betAmount3}</span>{' '}
+            </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
@@ -165,6 +184,7 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse3) {
+                  setBetAmount3(betAmount3 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -194,6 +214,9 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-sm text-yellow-500">{betAmount4}</span>{' '}
+            </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
@@ -211,6 +234,7 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse4) {
+                  setBetAmount4(betAmount4 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
@@ -240,6 +264,9 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-sm text-yellow-500">{betAmount5}</span>{' '}
+            </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*
               <div className=" mb-2 w-full border-black  text-center text-sm ">
@@ -257,6 +284,7 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse5) {
+                  setBetAmount5(betAmount5 + game.betAmount);
                   return (
                     <li key={i} className="flex items-center gap-1">
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
