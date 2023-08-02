@@ -32,17 +32,28 @@ export default function Last20GamePage() {
                 key={item._id}
                 className="flex flex-row items-center justify-center"
               >
-                <span className=" w-16 text-xs text-sky-500">
-                  #{item.winnerNft}
+                <span className=" w-12 text-right text-xs text-sky-500">
+                  #{item.winnerNft}{' '}
                 </span>
-                <span className=" w-16 text-xs">{item.winnerHorse}</span> -
-                <span className=" text-xs ">
+                <span className=" ml-2 w-12 text-left text-xs">
+                  {item.winnerHorse}
+                </span>
+
+                <span className=" w-14 text-right text-xs ">
+                  {Number(item.totalBet).toFixed(2)}
+                </span>
+                <span className=" w-12 text-right text-xs">
+                  {Number(item.winPrize).toFixed(2)}
+                </span>
+
+                <span className=" ml-2 text-xs">
                   {/*new Date(item.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })*/}
                   &nbsp;
                   {new Date(item.date).toLocaleDateString('en-US', {
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
+                    // second: 'numeric',
                   })}
                 </span>
               </div>
