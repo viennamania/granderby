@@ -11,8 +11,8 @@ const routes = {
 
   race: '/race',
 
-  //live: '/live',
-  live: '/watch/horseRace',
+  live: '/live',
+  //live: '/watch/horseRace',
 
   minimal: '/minimal',
   livePricing: '/live-pricing',

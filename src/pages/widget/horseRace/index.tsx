@@ -205,7 +205,8 @@ const WidgetPage: NextPageWithLayout<
       );
       const npcNames = await npcNamesResponse.json();
 
-      console.log('npcNames[0]', npcNames.npcNames[0]);
+      /////console.log('npcNames[0]', npcNames.npcNames[0]);
+
       setNpcNames(npcNames.npcNames[0]);
 
       //npcNames.npcNames[0].nft1

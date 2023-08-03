@@ -70,6 +70,9 @@ export const updateHorseInputs = async (
 
 export const getHorseNames = async () => {
   const horses = await HorsesModel.find({});
+
+  console.log('getHorseNames horses', horses);
+
   return horses;
 };
 
