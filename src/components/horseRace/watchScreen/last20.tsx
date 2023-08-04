@@ -35,6 +35,7 @@ export default function Last20GamePage() {
                 <span className=" w-12 text-right text-xs text-sky-500">
                   #{item.winnerNft?.tokenId}{' '}
                 </span>
+
                 <span className=" ml-2 w-12 text-left text-xs">
                   {item.winnerHorse}
                 </span>

@@ -14,7 +14,7 @@ const HorseHistorySchema = new Schema({
     required: true,
   },
   winnerNft: {
-    type: Number,
+    type: Object,
     required: true,
   },
   placements: {
