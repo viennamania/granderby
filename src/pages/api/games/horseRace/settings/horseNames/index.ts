@@ -9,6 +9,16 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 //  useContract,
 //} from '@thirdweb-dev/react';
 
+const settings = {
+  //apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key.
+
+  apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key.
+
+  network: Network.MATIC_MAINNET, // Replace with your network.
+};
+
+const alchemy = new Alchemy(settings);
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -138,16 +148,6 @@ export default async function handler(
 
     //Object.assign(resNpcNames, npcNames);
 
-    const settings = {
-      //apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key.
-
-      apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key.
-
-      network: Network.MATIC_MAINNET, // Replace with your network.
-    };
-
-    const alchemy = new Alchemy(settings);
-
     await alchemy.nft
       .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft1)
       .then((response) => {
@@ -178,7 +178,7 @@ export default async function handler(
         resNpcNames[0].media5 = response.media[0];
       });
 
-    console.log('resNpcNames', resNpcNames);
+    ///console.log('resNpcNames', resNpcNames);
 
     /*
     alchemy.nft.getNftsForOwner('0x0a3e0f0b7b8a7a8d6a9e7f0e194a7d4d0b5b0b0b', {
