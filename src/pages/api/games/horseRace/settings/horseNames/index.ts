@@ -1,8 +1,13 @@
 import { editHorseNames, getHorseNames } from '@/utils/models/npcRace/horses';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Network, Alchemy } from 'alchemy-sdk';
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+///import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { exit } from 'process';
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+
+//import {
+//  useContract,
+//} from '@thirdweb-dev/react';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,18 +16,9 @@ export default async function handler(
   const { method } = req.query;
 
   if (method === 'all') {
-    /*
-    const settings = {
-      //apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key.
+    //const horseContract = useContract(nftDropContractAddressHorse, nftDropContractABI);
 
-      apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key.
-
-      network: Network.MATIC_MAINNET, // Replace with your network.
-    };
-
-
-    const alchemy = new Alchemy(settings);
-    */
+    //const nft = await horseContract.erc721.get(tokenId);
 
     /*
     // Get all NFTs
@@ -128,7 +124,92 @@ export default async function handler(
 
     const npcNames = await getHorseNames();
 
-    return res.status(200).json({ status: true, npcNames });
+    ///console.log('npcNames', npcNames);
+
+    console.log('nft1', npcNames[0].nft1);
+    console.log('nft2', npcNames[0].nft2);
+    console.log('nft3', npcNames[0].nft3);
+    console.log('nft4', npcNames[0].nft4);
+    console.log('nft5', npcNames[0].nft5);
+
+    var resNpcNames = JSON.parse(JSON.stringify(npcNames));
+
+    //Object.assign(target, source);
+
+    //Object.assign(resNpcNames, npcNames);
+
+    const settings = {
+      //apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key.
+
+      apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key.
+
+      network: Network.MATIC_MAINNET, // Replace with your network.
+    };
+
+    const alchemy = new Alchemy(settings);
+
+    await alchemy.nft
+      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft1)
+      .then((response) => {
+        resNpcNames[0].media1 = response.media[0];
+      });
+
+    await alchemy.nft
+      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft2)
+      .then((response) => {
+        resNpcNames[0].media2 = response.media[0];
+      });
+
+    await alchemy.nft
+      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft3)
+      .then((response) => {
+        resNpcNames[0].media3 = response.media[0];
+      });
+
+    await alchemy.nft
+      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft4)
+      .then((response) => {
+        resNpcNames[0].media4 = response.media[0];
+      });
+
+    await alchemy.nft
+      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft5)
+      .then((response) => {
+        resNpcNames[0].media5 = response.media[0];
+      });
+
+    console.log('resNpcNames', resNpcNames);
+
+    /*
+    alchemy.nft.getNftsForOwner('0x0a3e0f0b7b8a7a8d6a9e7f0e194a7d4d0b5b0b0b', {
+      omitMetadata: false, // // Flag to omit metadata
+      contractAddresses: ['0x7c40c393dc0f283f318791d746d894ddd3693572'],
+    }).then((response) => {
+      console.log('response', response);
+    });
+    */
+
+    //alchemy.nft.get
+
+    /*
+    const settings = {
+      //apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key.
+
+      apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key.
+
+      network: Network.MATIC_MAINNET, // Replace with your network.
+    };
+
+    const alchemy = new Alchemy(settings);
+    */
+    // Get all NFTs
+    ////const response = await alchemy.nft.getNftsForOwner(String(arr20Address[j]), {
+    //const response = await alchemy.nft.getNftsForOwner(String(address), {
+    //  omitMetadata: false, // // Flag to omit metadata
+    //  contractAddresses: [nftDropContractAddressHorse],
+    //});
+
+    return res.status(200).json({ status: true, npcNames: resNpcNames });
   }
 
   if (method === 'set') {

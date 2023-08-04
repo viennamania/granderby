@@ -53,11 +53,15 @@ import {
   useDisconnect,
   useContract,
   useTokenBalance,
+  useOwnedNFTs,
 } from '@thirdweb-dev/react';
 
 import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
-import { tokenContractAddressGRD } from '@/config/contractAddresses';
+import {
+  tokenContractAddressGRD,
+  nftDropContractAddressHorse,
+} from '@/config/contractAddresses';
 
 import { useRouter } from 'next/router';
 
@@ -145,6 +149,11 @@ const WidgetPage: NextPageWithLayout<
 
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
+  const { contract: nftDropContractHorse } = useContract(
+    nftDropContractAddressHorse,
+    'nftDrop'
+  );
+
   ///const [betAmount, setBetAmount] = useState<any>(0);
 
   useEffect(() => {
@@ -203,11 +212,13 @@ const WidgetPage: NextPageWithLayout<
       const npcNamesResponse = await fetch(
         `/api/games/horseRace/settings/horseNames?method=all`
       );
-      const npcNames = await npcNamesResponse.json();
+      const response = await npcNamesResponse.json();
 
-      /////console.log('npcNames[0]', npcNames.npcNames[0]);
+      console.log('getNpcNames response', response);
 
-      setNpcNames(npcNames.npcNames[0]);
+      //const data = useOwnedNFTs(nftDropContractHorse, address);
+
+      setNpcNames(response.npcNames[0]);
 
       //npcNames.npcNames[0].nft1
     }

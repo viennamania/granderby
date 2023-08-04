@@ -27,35 +27,35 @@ export default function Race({ npcNames, flag, setFlag }: any) {
         progress: progress1,
         name: `${npcNames.horse1}`,
         nft: `${npcNames.nft1}`,
-        media: `${npcNames.media1}`,
+        media: `${npcNames.media1.thumbnail}`,
       },
       {
         id: 2,
         progress: progress2,
         name: `${npcNames.horse2}`,
         nft: `${npcNames.nft2}`,
-        media: `${npcNames.media2}`,
+        media: `${npcNames.media2.thumbnail}`,
       },
       {
         id: 3,
         progress: progress3,
         name: `${npcNames.horse3}`,
         nft: `${npcNames.nft3}`,
-        media: `${npcNames.media3}`,
+        media: `${npcNames.media3.thumbnail}`,
       },
       {
         id: 4,
         progress: progress4,
         name: `${npcNames.horse4}`,
         nft: `${npcNames.nft4}`,
-        media: `${npcNames.media4}`,
+        media: `${npcNames.media4.thumbnail}`,
       },
       {
         id: 5,
         progress: progress5,
         name: `${npcNames.horse5}`,
         nft: `${npcNames.nft5}`,
-        media: `${npcNames.media5}`,
+        media: `${npcNames.media5.thumbnail}`,
       },
     ]);
   }, 40);
@@ -152,6 +152,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
             <div className="  flex flex-col gap-1 rounded-xl bg-gradient-to-t from-black to-transparent md:mt-5 md:h-44 md:w-full lg:px-5 xl:w-2/3">
               <div className="mt-5 flex flex-row gap-1">
                 {horses
+
                   .sort((a: any, b: any) => a.progress - b.progress)
                   .map((horse: any, index: number) => {
                     return (

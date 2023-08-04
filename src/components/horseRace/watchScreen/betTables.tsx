@@ -4,6 +4,8 @@ import { IHorseGame } from '../../../utils/horseRace/interfaces/horseGame';
 import Image from 'next/image';
 
 export default function BetTables({ npcs }: any) {
+  console.log('BetTables npcs====', npcs);
+
   const [games, setGames] = useState<any>();
   const [status, setStatus] = useState<any>();
   const [winner, setWinner] = useState<any>();
@@ -100,7 +102,7 @@ export default function BetTables({ npcs }: any) {
               */}
 
               <Image
-                src={npcs.media1}
+                src={npcs?.media1?.thumbnail}
                 width={100}
                 height={100}
                 alt="pp"
@@ -152,7 +154,7 @@ export default function BetTables({ npcs }: any) {
               </div>
               */}
               <Image
-                src={npcs.media2}
+                src={npcs?.media2?.thumbnail}
                 width={100}
                 height={100}
                 alt="pp"
@@ -201,7 +203,7 @@ export default function BetTables({ npcs }: any) {
               </div>
               */}
               <Image
-                src={npcs.media3}
+                src={npcs?.media3?.thumbnail}
                 width={100}
                 height={100}
                 alt="pp"
@@ -250,7 +252,7 @@ export default function BetTables({ npcs }: any) {
               </div>
               */}
               <Image
-                src={npcs.media4}
+                src={npcs?.media4?.thumbnail}
                 width={100}
                 height={100}
                 alt="pp"
@@ -299,7 +301,7 @@ export default function BetTables({ npcs }: any) {
               </div>
               */}
               <Image
-                src={npcs.media5}
+                src={npcs?.media5?.thumbnail}
                 width={100}
                 height={100}
                 alt="pp"
