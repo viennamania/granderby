@@ -214,7 +214,7 @@ const WidgetPage: NextPageWithLayout<
       );
       const response = await npcNamesResponse.json();
 
-      console.log('getNpcNames response', response);
+      ///console.log('getNpcNames response', response);
 
       //const data = useOwnedNFTs(nftDropContractHorse, address);
 

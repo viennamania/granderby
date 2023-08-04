@@ -37,7 +37,8 @@ export default function LastWinnersPage({ npcs }: any) {
               >
                 <p className=" text-left  text-sm text-green-500">
                   Rank{item.line} -{' '}
-                  <span className="text-sky-500">#{item.nft}</span> {item.horse}
+                  <span className="text-sky-500">#{item.nft?.tokenId}</span>{' '}
+                  {item.horse}
                 </p>
 
                 {/*

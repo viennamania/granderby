@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Network, Alchemy } from 'alchemy-sdk';
 ///import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { exit } from 'process';
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
 //import {
 //  useContract,
@@ -136,11 +135,11 @@ export default async function handler(
 
     ///console.log('npcNames', npcNames);
 
-    console.log('nft1', npcNames[0].nft1);
-    console.log('nft2', npcNames[0].nft2);
-    console.log('nft3', npcNames[0].nft3);
-    console.log('nft4', npcNames[0].nft4);
-    console.log('nft5', npcNames[0].nft5);
+    //console.log('nft1', npcNames[0].nft1);
+    //console.log('nft2', npcNames[0].nft2);
+    //console.log('nft3', npcNames[0].nft3);
+    //console.log('nft4', npcNames[0].nft4);
+    //console.log('nft5', npcNames[0].nft5);
 
     var resNpcNames = JSON.parse(JSON.stringify(npcNames));
 
@@ -149,31 +148,31 @@ export default async function handler(
     //Object.assign(resNpcNames, npcNames);
 
     await alchemy.nft
-      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft1)
+      .getNftMetadata(npcNames[0].nft1.contract, npcNames[0].nft1.tokenId)
       .then((response) => {
         resNpcNames[0].media1 = response.media[0];
       });
 
     await alchemy.nft
-      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft2)
+      .getNftMetadata(npcNames[0].nft2.contract, npcNames[0].nft2.tokenId)
       .then((response) => {
         resNpcNames[0].media2 = response.media[0];
       });
 
     await alchemy.nft
-      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft3)
+      .getNftMetadata(npcNames[0].nft3.contract, npcNames[0].nft3.tokenId)
       .then((response) => {
         resNpcNames[0].media3 = response.media[0];
       });
 
     await alchemy.nft
-      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft4)
+      .getNftMetadata(npcNames[0].nft4.contract, npcNames[0].nft4.tokenId)
       .then((response) => {
         resNpcNames[0].media4 = response.media[0];
       });
 
     await alchemy.nft
-      .getNftMetadata(nftDropContractAddressHorse, npcNames[0].nft5)
+      .getNftMetadata(npcNames[0].nft5.contract, npcNames[0].nft5.tokenId)
       .then((response) => {
         resNpcNames[0].media5 = response.media[0];
       });
@@ -208,6 +207,8 @@ export default async function handler(
     //  omitMetadata: false, // // Flag to omit metadata
     //  contractAddresses: [nftDropContractAddressHorse],
     //});
+
+    //console.log('resNpcNames', resNpcNames);
 
     return res.status(200).json({ status: true, npcNames: resNpcNames });
   }

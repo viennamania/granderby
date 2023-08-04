@@ -26,35 +26,35 @@ export default function Race({ npcNames, flag, setFlag }: any) {
         id: 1,
         progress: progress1,
         name: `${npcNames.horse1}`,
-        nft: `${npcNames.nft1}`,
+        nft: `${npcNames.nft1?.tokenId}`,
         media: `${npcNames.media1?.thumbnail || '/images/logo.png'}`,
       },
       {
         id: 2,
         progress: progress2,
         name: `${npcNames.horse2}`,
-        nft: `${npcNames.nft2}`,
+        nft: `${npcNames.nft2?.tokenId}`,
         media: `${npcNames.media2?.thumbnail || '/images/logo.png'}`,
       },
       {
         id: 3,
         progress: progress3,
         name: `${npcNames.horse3}`,
-        nft: `${npcNames.nft3}`,
+        nft: `${npcNames.nft3?.tokenId}`,
         media: `${npcNames.media3?.thumbnail || '/images/logo.png'}`,
       },
       {
         id: 4,
         progress: progress4,
         name: `${npcNames.horse4}`,
-        nft: `${npcNames.nft4}`,
+        nft: `${npcNames.nft4?.tokenId}`,
         media: `${npcNames.media4?.thumbnail || '/images/logo.png'}`,
       },
       {
         id: 5,
         progress: progress5,
         name: `${npcNames.horse5}`,
-        nft: `${npcNames.nft5}`,
+        nft: `${npcNames.nft5?.tokenId}`,
         media: `${npcNames.media5?.thumbnail || '/images/logo.png'}`,
       },
     ]);
@@ -239,7 +239,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
 
               <div className="ml-2">
                 <span className="font-extrabold text-sky-100">
-                  #{npcNames.nft1}
+                  #{npcNames.nft1?.tokenId}
                 </span>{' '}
                 {npcNames.horse1}
               </div>
@@ -271,7 +271,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
 
               <div className="ml-2">
                 <span className="font-extrabold text-sky-100">
-                  #{npcNames.nft2}
+                  #{npcNames.nft2?.tokenId}
                 </span>{' '}
                 {npcNames.horse2}
               </div>
@@ -303,7 +303,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
 
               <div className="ml-2">
                 <span className="font-extrabold text-sky-100">
-                  #{npcNames.nft3}
+                  #{npcNames.nft3?.tokenId}
                 </span>{' '}
                 {npcNames.horse3}
               </div>
@@ -335,7 +335,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
 
               <div className="ml-2">
                 <span className="font-extrabold text-sky-100">
-                  #{npcNames.nft4}
+                  #{npcNames.nft4?.tokenId}
                 </span>{' '}
                 {npcNames.horse4}
               </div>
@@ -367,7 +367,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
 
               <div className="ml-2">
                 <span className="font-extrabold text-sky-100">
-                  #{npcNames.nft5}
+                  #{npcNames.nft5?.tokenId}
                 </span>{' '}
                 {npcNames.horse5}
               </div>

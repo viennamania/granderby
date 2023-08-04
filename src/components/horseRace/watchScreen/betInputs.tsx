@@ -596,7 +596,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 1</span>
               <div className="flexitems-center justify-center">
-                <span className="text-sm text-sky-500">#{npcs?.nft1}</span>
+                <span className="text-sm text-sky-500">
+                  #{npcs?.nft1?.tokenId}
+                </span>
               </div>
               <span className="text-xs">{npcs?.horse1}</span>
               <span className="text-sm">x {horse1}</span>
@@ -620,7 +622,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 2</span>
               <div className="flex items-center justify-center">
-                <span className="text-sm text-sky-500">#{npcs?.nft2}</span>
+                <span className="text-sm text-sky-500">
+                  #{npcs?.nft2?.tokenId}
+                </span>
               </div>
               <span className="text-xs">{npcs.horse2}</span>
               <span className="text-sm">x {horse2}</span>
@@ -644,7 +648,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm ">Line 3</span>
               <div className="flex items-center justify-center">
-                <span className="text-sm text-sky-500">#{npcs?.nft3}</span>
+                <span className="text-sm text-sky-500">
+                  #{npcs?.nft3?.tokenId}
+                </span>
               </div>
               <span className="text-xs">{npcs?.horse3}</span>
               <span className="text-sm">x {horse3}</span>
@@ -668,7 +674,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 4</span>
               <div className="flex items-center justify-center">
-                <span className="text-sm text-sky-500">#{npcs?.nft4}</span>
+                <span className="text-sm text-sky-500">
+                  #{npcs?.nft4?.tokenId}
+                </span>
               </div>
               <span className="text-xs">{npcs?.horse4}</span>
               <span className="text-sm">x {horse4}</span>
@@ -692,7 +700,9 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 5</span>
               <div className="flex items-center justify-center">
-                <span className="text-sm text-sky-500">#{npcs?.nft5}</span>
+                <span className="text-sm text-sky-500">
+                  #{npcs?.nft5?.tokenId}
+                </span>
               </div>
               <span className="text-xs">{npcs?.horse5}</span>
               <span className="text-sm">x {horse5}</span>

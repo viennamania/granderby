@@ -33,7 +33,7 @@ export default function Last20GamePage() {
                 className="flex flex-row items-center justify-center"
               >
                 <span className=" w-12 text-right text-xs text-sky-500">
-                  #{item.winnerNft}{' '}
+                  #{item.winnerNft?.tokenId}{' '}
                 </span>
                 <span className=" ml-2 w-12 text-left text-xs">
                   {item.winnerHorse}
