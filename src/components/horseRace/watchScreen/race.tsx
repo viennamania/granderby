@@ -221,7 +221,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
             >
               <Image
                 //src={"/npcRace/at1.gif"}
-                src={npcNames.media1?.thumbnail}
+                src={npcNames.media1?.thumbnail || '/images/logo.png'}
                 width="50"
                 height="50"
                 alt={'at'}
@@ -253,7 +253,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
             >
               <Image
                 //src={"/npcRace/at2.gif"}
-                src={npcNames.media2?.thumbnail}
+                src={npcNames.media2?.thumbnail || '/images/logo.png'}
                 width="50"
                 height="50"
                 alt={'at'}
@@ -285,7 +285,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
             >
               <Image
                 //src={"/npcRace/at3.gif"}
-                src={npcNames.media3?.thumbnail}
+                src={npcNames.media3?.thumbnail || '/images/logo.png'}
                 width="50"
                 height="50"
                 alt={'at'}
@@ -317,7 +317,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
             >
               <Image
                 //src={"/npcRace/at4.gif"}
-                src={npcNames.media4?.thumbnail}
+                src={npcNames.media4?.thumbnail || '/images/logo.png'}
                 width="50"
                 height="50"
                 alt={'at'}
@@ -349,7 +349,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
             >
               <Image
                 //src={"/npcRace/at5.gif"}
-                src={npcNames.media5?.thumbnail}
+                src={npcNames.media5?.thumbnail || '/images/logo.png'}
                 width="50"
                 height="50"
                 alt={'at'}
