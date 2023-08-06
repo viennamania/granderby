@@ -620,7 +620,7 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs?.horse1}</span>
               */}
-              <span className="text-lg font-bold">x {horse1}</span>
+              <span className="text-md font-bold">x{horse1}</span>
             </div>
           </button>
 
@@ -662,7 +662,7 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs.horse2}</span>
               */}
-              <span className="text-lg font-bold">x {horse2}</span>
+              <span className="text-md font-bold">x{horse2}</span>
             </div>
           </button>
 
@@ -704,7 +704,7 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs?.horse3}</span>
               */}
-              <span className="text-lg font-bold">x {horse3}</span>
+              <span className="text-md font-bold">x{horse3}</span>
             </div>
           </button>
 
@@ -746,7 +746,7 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs?.horse4}</span>
               */}
-              <span className="text-lg font-bold">x {horse4}</span>
+              <span className="text-md font-bold">x{horse4}</span>
             </div>
           </button>
 
@@ -788,7 +788,7 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
-              <span className="text-lg font-bold">x {horse5}</span>
+              <span className="text-md font-bold">x{horse5}</span>
             </div>
           </button>
         </div>
