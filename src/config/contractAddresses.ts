@@ -70,7 +70,8 @@ export const stakingContractAddressTRVC =
 
 export const marketplaceContractAddress =
   //'0x6c24530AB7A4dca2ec38335B04A64Fb531d380B7';
-  '0x642D35ea500dA2497c8E703Ca38062A184006266'; // early bird
+  //'0x642D35ea500dA2497c8E703Ca38062A184006266'; // early bird
+  '0xbf71A426649Cd2e96C9a29a09f140f20EF831296'; // official
 
 export const marketplaceContractAddressChaoscube =
   '0xcc68084a1976195168D6874915FD8932094a46a9'; // chaoscube

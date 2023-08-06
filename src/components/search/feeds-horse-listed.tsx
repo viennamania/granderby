@@ -13,8 +13,6 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import { useEffect, useState } from 'react';
 
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
-
 import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
 
@@ -28,10 +26,61 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
+import {
+  nftDropContractAddressHorse,
+  marketplaceContractAddress,
+} from '@/config/contractAddresses';
+
+import {
+  ConnectWallet,
+  useDisconnect,
+  ThirdwebNftMedia,
+  useAddress,
+  useContract,
+  useContractRead,
+  useOwnedNFTs,
+  useTokenBalance,
+  useNFTBalance,
+  Web3Button,
+  useValidDirectListings,
+} from '@thirdweb-dev/react';
+
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
+
+  const address = useAddress();
+
+  console.log('address======>', address);
+
+  const { contract: nftDropContract } = useContract(
+    nftDropContractAddressHorse,
+    'nft-drop'
+  );
+
+  //////const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+
+  const { contract: marketplace } = useContract(
+    marketplaceContractAddress,
+    'marketplace-v3'
+  );
+
+  const {
+    data: directListings,
+    isLoading: loadingListings,
+    error,
+  } = useValidDirectListings(marketplace);
+
+  console.log('directListings======>', directListings);
+
+  /*
+  const settings = {
+    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
+
+    apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
+    network: Network.MATIC_MAINNET, // Replace with your network.
+  };
 
   type NFT = {
     id: string;
@@ -49,46 +98,35 @@ export default function Feeds({ className }: { className?: string }) {
 
   //const [cursor, setCursor] = useState<string | undefined>(undefined);
 
-  const settings = {
-    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
-
-    apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
-    network: Network.MATIC_MAINNET, // Replace with your network.
-  };
 
   const alchemy = new Alchemy(settings);
 
-  const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    'infiniteCharacters',
-    async ({
-      ///pageParam = 1,
 
-      pageParam = '',
-    }) =>
-      /*
-      await fetch(
-        `https://rickandmortyapi.com/api/character/?page=${pageParam}`
-      ).then((result) => result.json()),
-      */
-      await alchemy.nft
-        .getNftsForContract(nftDropContractAddressHorse, {
+
+  const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery (
+    "infiniteCharacters",
+
+    
+    async ( { pageParam = '', } ) => 
+      
+      await alchemy.nft.getNftsForOwner(
+        String(address),
+        {
+          omitMetadata: false, // // Flag to omit metadata
+          contractAddresses: [nftDropContractAddressHorse],
           pageKey: pageParam,
           pageSize: 40,
-        })
-        .then((result) => {
-          //result
-          ///console.log("result======>", result)
-          return result;
+        }
+      ).then((result) => { //result
+          console.log("result======>", result)
+          return result
         }),
 
-    /*
-      .finally((result:any) => {
-        pageParam = result.pageKey;
-      }),
-      */
+    
 
     {
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (lastPage, pages   ) => {
+
         //console.log("lastPage======>", lastPage);
         //console.log("pages======>", pages);
 
@@ -97,9 +135,12 @@ export default function Feeds({ className }: { className?: string }) {
         } else {
           return undefined;
         }
+
       },
     }
+
   );
+  */
 
   ///console.log(data);
 
@@ -172,111 +213,96 @@ export default function Feeds({ className }: { className?: string }) {
 
   return (
     <>
-      {/*
-    <div
-      className={cn(
-        'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-        isGridCompact
-          ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-          : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-        className
-      )}
-    >
-    */}
+      {
+        // If the listings are loading, show a loading message
+        loadingListings ? (
+          <div className="mb-10 w-full items-center justify-center">
+            <div className="text-2xl">Loading listings...</div>
+          </div>
+        ) : (
+          <div className="mb-10 w-full ">
+            {/*
+        {status === "success" && (
 
-      {/*
-      {horses.map((nft) => (
-        <NFTGrid
-          key={nft.id}
-          name={nft.name}
-          image={nft.image}
-          author={nft.author}
-          authorImage={nft.authorImage}
-          price={nft.price}
-          collection={nft.collection}
-        />
-      ))}
-      */}
-
-      {status === 'success' && (
-        <InfiniteScroll
-          dataLength={data?.pages.length * 20}
-          next={fetchNextPage}
-          hasMore={hasNextPage ?? false}
-          loader={<h4>Loading...</h4>}
-        >
-          {/*
-          <div className='grid-container'>
-*/}
-
-          <div
-            className={cn(
-              'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-              isGridCompact
-                ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-              className
-            )}
+          <InfiniteScroll
+            dataLength={data?.pages.length * 20}
+            next={fetchNextPage}
+            hasMore={hasNextPage ?? false}
+            loader={<h4>Loading...</h4>}
           >
-            {data?.pages.map((page) => (
+        */}
+
+            <div
+              className={cn(
+                'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                isGridCompact
+                  ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+                  : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                className
+              )}
+            >
+              {/*
+              {data?.pages.map((page) => (
+              */}
+
               <>
-                {page.nfts?.map((nft) => (
+                {/*
+                  {page.ownedNfts?.map((nft) => (
+                  */}
+
+                {directListings?.map((listing) => (
                   <>
                     <div
-                      key={nft?.tokenId}
+                      key={listing.id}
                       className="relative overflow-hidden rounded-lg bg-white shadow-lg"
                       onClick={() =>
                         //setTokenid(nft.metadata.id.toString()),
                         //setIsOpen(true)
-                        router.push('/horse-details/' + nft?.tokenId)
+                        router.push(`/listing/${listing.id}`)
                       }
                     >
                       <Image
                         src={
-                          nft?.media[0]?.gateway
-                            ? nft?.media[0]?.gateway
+                          listing.asset?.image
+                            ? listing.asset?.image
                             : '/default-nft.png'
                         }
-                        alt={nft?.title}
+                        alt="nft"
                         height={500}
                         width={500}
                         loading="lazy"
                       />
-                      <div className="m-2 w-full">
-                        <p className="text-md font-bold">{nft?.title}</p>
+                      <div className="m-2 w-full  ">
+                        <p className="text-md font-bold">
+                          {listing.asset?.name}
+                        </p>
+                      </div>
+
+                      <div className="m-2 flex w-full items-center justify-end pr-5">
+                        <b>{listing.currencyValuePerToken.displayValue}</b>
+                        &nbsp;
+                        {listing.currencyValuePerToken.symbol}
                       </div>
                     </div>
-
-                    {/*
-                {page.results.map((character) => (
-                  */}
-
-                    {/*
-                  <article key={nft?.id}>
-                    <img
-                      src={nft?.image}
-                      alt={nft?.name}
-                      height={250}
-                      loading='lazy'
-                      width={"100%"}
-                    />
-                    <div className='text'>
-                      <p>Name: {nft?.name}</p>
-
-                    </div>
-                  </article>
-                  */}
                   </>
                 ))}
               </>
-            ))}
-          </div>
-        </InfiniteScroll>
-      )}
 
-      {/*
-    </div>
-    */}
+              {/*
+
+              ))}
+              */}
+            </div>
+
+            {/*
+          </InfiniteScroll>
+
+        )}
+
+*/}
+          </div>
+        )
+      }
     </>
   );
 }

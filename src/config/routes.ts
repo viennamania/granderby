@@ -1,7 +1,9 @@
 const routes = {
   home: '/',
   ranking: '/ranking',
+
   horse: '/horse',
+
   searchHorse: '/search-horse',
   searchJockey: '/search-jockey',
   searchTrack: '/search-track',

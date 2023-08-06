@@ -4,13 +4,15 @@ import type { NextPageWithLayout } from '@/types';
 
 import { ThemeProvider } from 'next-themes';
 
-//import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
+/*
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
+*/
 
 import ModalsContainer from '@/components/modal-views/container';
 import DrawersContainer from '@/components/drawer-views/container';

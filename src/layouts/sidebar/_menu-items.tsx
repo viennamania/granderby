@@ -134,7 +134,7 @@ export const menuItems = [
       {
         name: 'Horse',
         icon: <CompassIcon />,
-        href: routes.rentHorse,
+        href: routes.horse,
       },
       {
         name: 'Jockey',

@@ -61,9 +61,13 @@ export default function Feeds({ className }: { className?: string }) {
   return (
     <>
       {!address ? (
-        <></>
-      ) : (
         <>
+          <div className="flex h-60 flex-col justify-center ">
+            <ConnectWallet theme="light" />
+          </div>
+        </>
+      ) : (
+        <div className="mb-10 w-full ">
           {/*
         {status === "success" && (
 
@@ -122,7 +126,7 @@ export default function Feeds({ className }: { className?: string }) {
         )}
 
 */}
-        </>
+        </div>
       )}
     </>
   );
