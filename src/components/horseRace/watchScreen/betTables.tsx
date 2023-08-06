@@ -62,18 +62,26 @@ export default function BetTables({ npcs }: any) {
     setBetAmount5(0);
 
     games?.map((game: IHorseGame, i: number) => {
-      setBetAmountTotal((prev: any) => prev + game.betAmount);
-
       if (game.selectedSide === npcs.horse1) {
         setBetAmount1((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
       } else if (game.selectedSide === npcs.horse2) {
         setBetAmount2((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
       } else if (game.selectedSide === npcs.horse3) {
         setBetAmount3((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
       } else if (game.selectedSide === npcs.horse4) {
         setBetAmount4((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
       } else if (game.selectedSide === npcs.horse5) {
         setBetAmount5((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
       }
     });
   };
