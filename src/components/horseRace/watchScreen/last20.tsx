@@ -35,7 +35,7 @@ export default function Last20GamePage() {
               >
                 <div className="flex w-10 flex-col text-right text-xs text-sky-500">
                   <Image
-                    src={item.nft?.media[0].thumbnail}
+                    src={item.nft?.media[0]?.thumbnail}
                     width={28}
                     height={28}
                     alt="alt"
