@@ -35,6 +35,8 @@ import { HeadingImage } from '@/components/HeadingImage';
 import { useToast } from '@/components/ui/use-toast';
 import { parseIneligibility } from '@/utils/parseIneligibility';
 
+import Image from 'next/image';
+
 /*
 import {
   ////contractConst,
@@ -595,7 +597,22 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 1</span>
-              <div className="flexitems-center justify-center">
+              <div className="flex flex-col items-center justify-center">
+                <Image
+                  src={npcs?.media1?.thumbnail}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="h-[45px] w-[45px] rounded-md"
+                />
+                <Image
+                  src={`/horseRace/${npcs?.nft1?.contract}.png`}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="mt-2 h-[45px] w-[45px] rounded-md grayscale"
+                />
+
                 <span className="text-sm text-sky-500">
                   #{npcs?.nft1?.tokenId}
                 </span>
@@ -621,7 +638,21 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 2</span>
-              <div className="flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
+                <Image
+                  src={npcs?.media2?.thumbnail}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="h-[45px] w-[45px] rounded-md"
+                />
+                <Image
+                  src={`/horseRace/${npcs?.nft2?.contract}.png`}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="mt-2 h-[45px] w-[45px] rounded-md grayscale"
+                />
                 <span className="text-sm text-sky-500">
                   #{npcs?.nft2?.tokenId}
                 </span>
@@ -647,7 +678,21 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm ">Line 3</span>
-              <div className="flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
+                <Image
+                  src={npcs?.media3?.thumbnail}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="h-[45px] w-[45px] rounded-md"
+                />
+                <Image
+                  src={`/horseRace/${npcs?.nft3?.contract}.png`}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="mt-2 h-[45px] w-[45px] rounded-md grayscale"
+                />
                 <span className="text-sm text-sky-500">
                   #{npcs?.nft3?.tokenId}
                 </span>
@@ -673,7 +718,21 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 4</span>
-              <div className="flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
+                <Image
+                  src={npcs?.media4?.thumbnail}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="h-[45px] w-[45px] rounded-md"
+                />
+                <Image
+                  src={`/horseRace/${npcs?.nft4?.contract}.png`}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="mt-2 h-[45px] w-[45px] rounded-md grayscale"
+                />
                 <span className="text-sm text-sky-500">
                   #{npcs?.nft4?.tokenId}
                 </span>
@@ -699,7 +758,21 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 5</span>
-              <div className="flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
+                <Image
+                  src={npcs?.media5?.thumbnail}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="h-[45px] w-[45px] rounded-md"
+                />
+                <Image
+                  src={`/horseRace/${npcs?.nft5?.contract}.png`}
+                  width={100}
+                  height={100}
+                  alt="pp"
+                  className="mt-2 h-[45px] w-[45px] rounded-md grayscale"
+                />
                 <span className="text-sm text-sky-500">
                   #{npcs?.nft5?.tokenId}
                 </span>

@@ -4,7 +4,7 @@ import { IHorseGame } from '../../../utils/horseRace/interfaces/horseGame';
 import Image from 'next/image';
 
 export default function BetTables({ npcs }: any) {
-  ///console.log('BetTables npcs====', npcs);
+  console.log('BetTables npcs====', npcs);
 
   const [games, setGames] = useState<any>();
   const [status, setStatus] = useState<any>();
@@ -84,7 +84,7 @@ export default function BetTables({ npcs }: any) {
 
   return (
     <>
-      <div className="flex w-full flex-col items-center lg:w-2/3">
+      <div className="mt-20 flex w-full flex-col items-center lg:w-2/3">
         <div className="mb-2 flex w-full items-center justify-center rounded-lg text-2xl font-bold text-gray-200">
           {betAmountTotal}
         </div>
@@ -101,13 +101,17 @@ export default function BetTables({ npcs }: any) {
               </div>
               */}
 
+              {/*
               <Image
-                src={npcs?.media1?.thumbnail}
+                src={
+                  npcs?.media1?.thumbnail
+                }
                 width={100}
                 height={100}
                 alt="pp"
                 className="h-[45px] w-[45px] rounded-md"
               />
+              */}
             </div>
 
             <ul className="mt-2 flex list-disc flex-col gap-2">
@@ -115,6 +119,7 @@ export default function BetTables({ npcs }: any) {
                 if (game.selectedSide === npcs.horse1) {
                   return (
                     <li key={i} className="flex items-center gap-1">
+                      {/*
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
                         <Image
                           src={game.img}
@@ -128,11 +133,12 @@ export default function BetTables({ npcs }: any) {
                           className="h-[25px] w-[25px] rounded-full"
                         />
                       </div>
+                      */}
 
-                      <span className=" w-3 text-xs">
-                        {`${game.username.slice(0, 2)}...`}
+                      <span className=" w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
                       </span>
-                      <span className="text-sm text-yellow-500">
+                      <span className="text-right text-sm text-yellow-500">
                         {game.betAmount}
                       </span>
                     </li>
@@ -153,6 +159,7 @@ export default function BetTables({ npcs }: any) {
                 <span className=" text-sky-500">#{npcs.nft2}</span>
               </div>
               */}
+              {/*
               <Image
                 src={npcs?.media2?.thumbnail}
                 width={100}
@@ -160,12 +167,14 @@ export default function BetTables({ npcs }: any) {
                 alt="pp"
                 className="h-[45px] w-[45px] rounded-md"
               />
+              */}
             </div>
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse2) {
                   return (
                     <li key={i} className="flex items-center gap-1">
+                      {/*
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
                         <Image
                           src={game.img}
@@ -179,10 +188,11 @@ export default function BetTables({ npcs }: any) {
                           className="h-[25px] w-[25px] rounded-full"
                         />
                       </div>
-                      <span className="w-3 text-xs">
-                        {`${game.username.slice(0, 2)}...`}
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
                       </span>
-                      <span className="text-sm text-yellow-500">
+                      <span className="text-right text-sm text-yellow-500">
                         {game.betAmount}
                       </span>{' '}
                     </li>
@@ -202,6 +212,7 @@ export default function BetTables({ npcs }: any) {
                 <span className=" text-sky-500">#{npcs.nft3}</span>
               </div>
               */}
+              {/*
               <Image
                 src={npcs?.media3?.thumbnail}
                 width={100}
@@ -209,12 +220,14 @@ export default function BetTables({ npcs }: any) {
                 alt="pp"
                 className="h-[45px] w-[45px] rounded-md"
               />
+              */}
             </div>
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse3) {
                   return (
                     <li key={i} className="flex items-center gap-1">
+                      {/*
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
                         <Image
                           src={game.img}
@@ -228,10 +241,11 @@ export default function BetTables({ npcs }: any) {
                           className="h-[25px] w-[25px] rounded-full"
                         />
                       </div>
-                      <span className="w-3 text-xs">
-                        {`${game.username.slice(0, 2)}...`}
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
                       </span>
-                      <span className="text-sm text-yellow-500">
+                      <span className="text-right text-sm text-yellow-500">
                         {game.betAmount}
                       </span>{' '}
                     </li>
@@ -251,6 +265,7 @@ export default function BetTables({ npcs }: any) {
                 <span className=" text-sky-500">#{npcs.nft4}</span>
               </div>
               */}
+              {/*
               <Image
                 src={npcs?.media4?.thumbnail}
                 width={100}
@@ -258,12 +273,14 @@ export default function BetTables({ npcs }: any) {
                 alt="pp"
                 className="h-[45px] w-[45px] rounded-md"
               />
+              */}
             </div>
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse4) {
                   return (
                     <li key={i} className="flex items-center gap-1">
+                      {/*
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
                         <Image
                           src={game.img}
@@ -277,10 +294,11 @@ export default function BetTables({ npcs }: any) {
                           className="h-[15px] w-[15px] rounded-full"
                         />
                       </div>
-                      <span className="w-3 text-xs ">
-                        {`${game.username.slice(0, 2)}...`}
+                      */}
+                      <span className="w-5 text-xs ">
+                        {`${game.username.slice(0, 3)}...`}
                       </span>
-                      <span className="text-sm text-yellow-500">
+                      <span className="text-right text-sm text-yellow-500">
                         {game.betAmount}
                       </span>{' '}
                     </li>
@@ -300,6 +318,7 @@ export default function BetTables({ npcs }: any) {
                 <span className=" text-sky-500">#{npcs.nft5}</span>
               </div>
               */}
+              {/*
               <Image
                 src={npcs?.media5?.thumbnail}
                 width={100}
@@ -307,12 +326,14 @@ export default function BetTables({ npcs }: any) {
                 alt="pp"
                 className="h-[45px] w-[45px] rounded-md"
               />
+              */}
             </div>
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse5) {
                   return (
                     <li key={i} className="flex items-center gap-1">
+                      {/*
                       <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
                         <Image
                           src={game.img}
@@ -326,10 +347,11 @@ export default function BetTables({ npcs }: any) {
                           className="h-[15px] w-[15px] rounded-full"
                         />
                       </div>
-                      <span className="w-3 text-xs">
-                        {`${game.username.slice(0, 2)}...`}
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
                       </span>
-                      <span className="text-sm text-yellow-500">
+                      <span className="text-right text-sm text-yellow-500">
                         {game.betAmount}
                       </span>
                     </li>
