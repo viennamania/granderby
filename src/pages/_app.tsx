@@ -173,7 +173,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         */}
 
         <ThirdwebProvider
-          queryClient={queryClient}
+          //queryClient={queryClient}
           activeChain={Polygon}
           clientId="6d0a3abfa7ad50324b419e1a4da4721c"
           supportedWallets={[

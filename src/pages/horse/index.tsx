@@ -80,12 +80,14 @@ const RentPage: NextPageWithLayout<
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
             fill
-            className="object-fill"
+            //className="object-fill"
+            className="h-full w-full object-cover"
             alt="Cover Image"
           />
         </div>
 
         <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          {/*
           {!address ? (
             <></>
           ) : (
@@ -96,6 +98,7 @@ const RentPage: NextPageWithLayout<
               className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
             />
           )}
+            */}
 
           {/*
           <Profile />

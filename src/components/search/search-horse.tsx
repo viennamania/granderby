@@ -64,11 +64,17 @@ export default function Search() {
                   <div className="flex gap-6 3xl:gap-8 ">
                     <SortList />
 
+                    {/*
                     <div className="hidden 3xl:block">
+                      */}
+                    <div className=" 3xl:block">
                       <GridSwitcher />
                     </div>
 
+                    {/*
                     <div className="hidden sm:block 2xl:hidden">
+                      */}
+                    <div className="sm:block 2xl:hidden">
                       <Button
                         shape="rounded"
                         size="small"
