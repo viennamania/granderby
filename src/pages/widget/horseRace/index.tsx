@@ -56,7 +56,7 @@ import {
   useOwnedNFTs,
 } from '@thirdweb-dev/react';
 
-import OwnedFeeds from '@/components/search/feeds-horse-owned';
+import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
 
 import {
   tokenContractAddressGRD,
