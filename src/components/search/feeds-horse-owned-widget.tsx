@@ -69,7 +69,7 @@ export default function Feeds({ className }: { className?: string }) {
         */}
         </>
       ) : (
-        <div className="mb-10 w-full ">
+        <div className=" w-full ">
           {/*
         {status === "success" && (
 

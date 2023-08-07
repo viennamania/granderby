@@ -72,7 +72,7 @@ export default function Feeds({ className }: { className?: string }) {
     error,
   } = useValidDirectListings(marketplace);
 
-  console.log('directListings======>', directListings);
+  ///console.log('directListings======>', directListings);
 
   /*
   const settings = {
@@ -251,40 +251,36 @@ export default function Feeds({ className }: { className?: string }) {
                   */}
 
                 {directListings?.map((listing) => (
-                  <>
-                    <div
-                      key={listing.id}
-                      className="relative overflow-hidden rounded-lg bg-white shadow-lg"
-                      onClick={() =>
-                        //setTokenid(nft.metadata.id.toString()),
-                        //setIsOpen(true)
-                        router.push(`/listing/${listing.id}`)
+                  <div
+                    key={listing.id}
+                    className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                    onClick={() =>
+                      //setTokenid(nft.metadata.id.toString()),
+                      //setIsOpen(true)
+                      router.push(`/listing/${listing.id}`)
+                    }
+                  >
+                    <Image
+                      src={
+                        listing.asset?.image
+                          ? listing.asset?.image
+                          : '/default-nft.png'
                       }
-                    >
-                      <Image
-                        src={
-                          listing.asset?.image
-                            ? listing.asset?.image
-                            : '/default-nft.png'
-                        }
-                        alt="nft"
-                        height={500}
-                        width={500}
-                        loading="lazy"
-                      />
-                      <div className="m-2 w-full  ">
-                        <p className="text-md font-bold">
-                          {listing.asset?.name}
-                        </p>
-                      </div>
-
-                      <div className="m-2 flex w-full items-center justify-end pr-5">
-                        <b>{listing.currencyValuePerToken.displayValue}</b>
-                        &nbsp;
-                        {listing.currencyValuePerToken.symbol}
-                      </div>
+                      alt="nft"
+                      height={500}
+                      width={500}
+                      loading="lazy"
+                    />
+                    <div className="m-2 w-full  ">
+                      <p className="text-md font-bold">{listing.asset?.name}</p>
                     </div>
-                  </>
+
+                    <div className="m-2 flex w-full items-center justify-end pr-5">
+                      <b>{listing.currencyValuePerToken.displayValue}</b>
+                      &nbsp;
+                      {listing.currencyValuePerToken.symbol}
+                    </div>
+                  </div>
                 ))}
               </>
 
