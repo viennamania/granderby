@@ -617,6 +617,7 @@ export default async function handler(
       */
 
       animation_url: '',
+      external_url: 'https://granderby.io/horse-details/' + req.query.id,
     };
 
     res.status(200).json(nftData);
@@ -632,6 +633,7 @@ export default async function handler(
       attributes: attributes,
 
       animation_url: '',
+      external_url: 'https://granderby.io/horse-details/' + req.query.id,
     };
 
     res.status(200).json(nftData);
