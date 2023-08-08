@@ -5,6 +5,7 @@ export type DRAWER_VIEW =
   | 'DRAWER_MENU'
   | 'DRAWER_SEARCH'
   | 'DRAWER_FILTER';
+
 const drawerAtom = atom({ isOpen: false, view: 'DASHBOARD_SIDEBAR' });
 
 export function useDrawer() {

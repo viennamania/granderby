@@ -6,7 +6,9 @@ import { Transition } from '@/components/ui/transition';
 import { DRAWER_VIEW, useDrawer } from '@/components/drawer-views/context';
 // dynamic imports
 const Sidebar = dynamic(() => import('@/layouts/sidebar/_default'));
+
 const DrawerFilters = dynamic(() => import('@/components/search/filters'));
+
 const DrawerMenu = dynamic(() => import('@/layouts/sidebar/_layout-menu'));
 const PreviewContent = dynamic(
   () => import('@/components/create-nft/nft-preview-content')
@@ -26,7 +28,6 @@ function renderDrawerContent(view: DRAWER_VIEW | string) {
 }
 
 export default function DrawersContainer() {
-  
   const router = useRouter();
   const { view, isOpen, closeDrawer } = useDrawer();
 
@@ -71,7 +72,6 @@ export default function DrawersContainer() {
             {view && renderDrawerContent(view)}
           </div>
         </Transition.Child>
-
       </Dialog>
     </Transition>
   );
