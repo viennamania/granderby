@@ -38,6 +38,19 @@ import 'tippy.js/dist/backdrop.css';
 import 'tippy.js/animations/shift-away.css';
 import PopoverContent from '@/components/cryptocurrency-pricing-table/popover-content';
 
+import { Network, Alchemy } from 'alchemy-sdk';
+
+import Link from 'next/link';
+
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+
+import {
+  ThirdwebNftMedia,
+  useContract,
+  useNFT,
+  Web3Button,
+} from '@thirdweb-dev/react';
+
 interface RadioOptionProps {
   value: string;
 }
@@ -94,24 +107,11 @@ export default function NftSinglePrice({
   const formattedDate = format(new Date(date * 1000), 'MMMM d, yyyy hh:mma');
   const { layout } = useLayout();
 
-  const [nft, setNft] = useState();
+  const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
-  useEffect(() => {
-    const fetchNft = async () => {
-      const res = await fetch(
-        `https://granderby.io/api/nft/horse/${tokenid.tokenid}`
-      );
-      const data = await res.json();
+  const { data: nft } = useNFT(contract, tokenid);
 
-      console.log('data image', data.image);
-
-      setNft(data);
-    };
-
-    console.log('tokenid', tokenid.tokenid);
-
-    fetchNft();
-  }, [tokenid]);
+  //console.log('nft', nft);
 
   const handleOnChange = (value: string) => {
     setStatus(value);
@@ -142,21 +142,36 @@ export default function NftSinglePrice({
                   {/*
                   <Bitcoin className="h-auto w-7 lg:w-9" />
                   */}
+
+                  <div className="text-xl font-medium capitalize text-brand dark:text-white">
+                    {nft?.metadata?.name}
+                  </div>
+
                   <Image
+                    src={
+                      nft?.metadata?.image
+                        ? nft?.metadata?.image
+                        : '/default-nft.png'
+                    }
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
 
-                    src={nft?.image}
+                    ///src={nft?.image}
                     alt="nft"
-                    width={50}
-                    height={50}
-                    className="h-auto w-7 lg:w-9"
+                    width={500}
+                    height={500}
+                    ///className="h-auto w-100 lg:w-200"
                   />
                 </span>
+
                 <span className="flex items-end text-xl font-medium capitalize text-brand dark:text-white">
-                  Bitcoin
+                  {nft?.metadata?.name}
                 </span>
+                {/*
                 <span className="text-sm text-gray-400">(BTC/USD)</span>
+                */}
               </span>
+
+              {/*
               <span className="flex flex-wrap items-center gap-[5px]">
                 <span className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium leading-none text-brand dark:!bg-gray-700 dark:text-white">
                   RANK #5
@@ -211,6 +226,7 @@ export default function NftSinglePrice({
                   </Listbox>
                 </span>
               </span>
+              */}
             </div>
 
             <div
@@ -268,95 +284,52 @@ export default function NftSinglePrice({
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-between gap-8 md:items-start lg:flex-row lg:items-center lg:gap-4">
+        <div className=" flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
               <span className="flex items-center gap-2.5">
-                <span className="flex flex-row items-center gap-2.5">
-                  {/*
-                  <Bitcoin className="h-auto w-7 lg:w-9" />
-                  */}
+                <span className="items-left flex flex-col gap-2.5 ">
+                  <div className="items-left flex flex-col justify-center lg:invisible">
+                    {/*
+                    <Bitcoin className="h-auto w-7 lg:w-9" />
+                    */}
+                    <Link
+                      className=" text-md text-left capitalize text-blue-500 dark:text-white "
+                      href={`/`}
+                    >
+                      Granderby Horse NFT
+                    </Link>
+                    <div className="text-left text-3xl font-bold capitalize text-black dark:text-white">
+                      {nft?.metadata?.name}
+                    </div>
+
+                    <div className="mt-5 flex items-center gap-4 ">
+                      <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
+                        Owned by
+                      </div>
+                      <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                        {nft?.owner.substring(0, 6)}...
+                      </div>
+                    </div>
+                  </div>
+
                   <Image
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                    src={nft?.image}
+                    src={
+                      nft?.metadata?.image
+                        ? nft?.metadata?.image
+                        : '/default-nft.png'
+                    }
                     alt="nft"
-                    width={100}
-                    height={100}
-                    className="lg:w-110 h-auto w-80 rounded-lg"
+                    width={1024}
+                    height={1024}
+                    className=" rounded-lg "
                   />
-                </span>
-                <span className="flex items-end text-xl font-medium capitalize text-brand dark:text-white">
-                  <span>#{nft?.id}</span>
-                </span>
-
-                <span className="text-sm text-gray-400">({nft?.name})</span>
-              </span>
-              <span className="flex flex-wrap items-center gap-[5px]">
-                <span className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium leading-none text-brand dark:!bg-gray-700 dark:text-white">
-                  RANK #5
-                </span>
-
-                <span className="w-[65px]">
-                  {/*
-                  <Listbox value={selected} onChange={setSelected}>
-                    <div className="relative rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-brand rtl:text-left dark:bg-gray-700 dark:text-white">
-                      
-                      
-                      <Listbox.Button className="rounded-lg bg-gray-100 text-sm font-medium text-brand dark:bg-gray-700 dark:text-white">
-                        <span className="block truncate">{selected.name}</span>
-                        <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronDown
-                            className="h-[10px] w-[12px] text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      
-
-                      
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options className="absolute left-0 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-large focus:outline-none dark:!bg-gray-700 sm:text-sm">
-                          {currency.map((item) => (
-                            <Listbox.Option
-                              key={item.id}
-                              className={({ active }) =>
-                                `relative cursor-pointer select-none px-4 py-2 ${
-                                  active
-                                    ? 'bg-gray-100 text-brand hover:bg-gray-200 dark:bg-gray-700 dark:text-white hover:dark:bg-slate-600'
-                                    : 'text-gray-900 dark:text-white'
-                                }`
-                              }
-                              value={item}
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span
-                                    className={`block truncate ${
-                                      selected ? 'font-medium' : 'font-normal'
-                                    }`}
-                                  >
-                                    {item.name}
-                                  </span>
-                                </>
-                              )}
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
-                      
-
-                    </div>
-                  </Listbox>
-                  */}
                 </span>
               </span>
             </div>
 
+            {/*
             <div className="mt-5 flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
               <span className="text-2xl font-semibold xl:text-3xl">
                 {price}
@@ -368,9 +341,7 @@ export default function NftSinglePrice({
                   toggleCoin ? 'flex-row-reverse' : 'flex-row'
                 )}
               >
-                {/*
-                <span>BTCB</span>/<span>ETH</span>
-                */}
+
               </span>
 
               <span
@@ -393,7 +364,11 @@ export default function NftSinglePrice({
             <div className="mt-6 flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 sm:text-sm">
               <Refresh /> {formattedDate}
             </div>
+
+            */}
           </div>
+
+          {/*
           <RadioGroup
             value={status}
             onChange={handleOnChange}
@@ -403,37 +378,9 @@ export default function NftSinglePrice({
             <RadioGroupOption value="Month" />
             <RadioGroupOption value="Year" />
           </RadioGroup>
+          */}
         </div>
       )}
-
-      <div
-        className={`mt-5 h-56 sm:mt-8 md:h-96 lg:h-[380px] xl:h-[402px] ${
-          layout === LAYOUT_OPTIONS.MODERN
-            ? '2xl:h-[23.75rem] min-[1536px]:h-[24rem] 3xl:h-[465px]'
-            : '2xl:h-[29rem] 3xl:h-[508px]'
-        }`}
-      >
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            width={500}
-            height={300}
-            data={chartData}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="7 7" vertical={false} />
-            <XAxis dataKey="name" tickLine={false} tickMargin={10} />
-            {/* <YAxis /> */}
-            {/* <Tooltip /> */}
-            <Bar dataKey="eth" fill="#F87171" />
-            <Bar dataKey="btc" fill="#10B981" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
 
       {/*
       <div className="py-4">

@@ -2,7 +2,7 @@ import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
 
 import RootLayout from '@/layouts/_root-layout';
 import { NextPageWithLayout } from '@/types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import NftInfo from '@/components/nft-pricing-table/nft-info';
 
@@ -17,9 +17,10 @@ import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 
 import HistoryTable from '@/components/race-history/history-table';
 
-import Image from '@/components/ui/image';
+import TransactionTable from '@/components/nft-transaction/transaction-table';
 
-import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
+import Image from '@/components/ui/image';
+import Link from 'next/link';
 
 import { Github } from '@/components/icons/brands/github';
 import { Instagram } from '@/components/icons/brands/instagram';
@@ -31,21 +32,36 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 
 import { useRouter } from 'next/router';
 
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+
+import {
+  ThirdwebNftMedia,
+  useContract,
+  useNFT,
+  Web3Button,
+} from '@thirdweb-dev/react';
+
+import { get } from 'http';
+import { set } from 'date-fns';
+
 function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
   const isMounted = useIsMounted();
   const breakpoint = useBreakpoint();
 
+  const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+  const { data: nftMetadata } = useNFT(contract, tokenid.tokenid);
+
   return (
     <>
-      <div className="flex flex-wrap gap-6 lg:flex-nowrap">
+      <div className="mt-20 flex flex-wrap gap-6 lg:flex-nowrap ">
         <div
           className={`w-full 2xl:w-full 
         ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
         >
           <NftSinglePrice
-            tokenid={tokenid}
+            tokenid={tokenid.tokenid}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
@@ -54,12 +70,14 @@ function SinglePrice(tokenid: any) {
         {layout === LAYOUT_OPTIONS.RETRO ? (
           <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
         ) : (
-          <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark xl:max-w-[358px]">
+          <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
+            {/*
             <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
               NFT Info
             </h2>
+            */}
 
-            <NftInfo />
+            <NftInfo nftMetadata={nftMetadata} />
 
             {/*
             <div>
@@ -80,8 +98,12 @@ function SinglePrice(tokenid: any) {
         )}
       </div>
 
-      <div className="mt-10">
+      <div className="mt-0">
+        <TransactionTable />
+
+        {/*
         <HistoryTable />
+        */}
       </div>
 
       {/*
@@ -89,37 +111,6 @@ function SinglePrice(tokenid: any) {
         <CoinTabs />
       </div> 
       */}
-
-      <footer>
-        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
-          <div>Copyright ©MOMOCON</div>
-
-          <AnchorLink href="/terms">Terms of Service</AnchorLink>
-
-          <div>Privacy Policy</div>
-        </div>
-
-        <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
-          <div>
-            <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
-          </div>
-
-          <AnchorLink
-            href="https://www.instagram.com/nftgranderby"
-            target="_blank"
-            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-          >
-            <Instagram className="h-4 w-4" /> Instagram
-          </AnchorLink>
-          <AnchorLink
-            href="https://twitter.com/nftgranderby"
-            target="_blank"
-            className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-          >
-            <Twitter className="h-4 w-4" /> Twitter
-          </AnchorLink>
-        </div>
-      </footer>
     </>
   );
 }
