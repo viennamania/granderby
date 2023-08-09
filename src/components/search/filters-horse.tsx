@@ -321,7 +321,7 @@ export function Grade() {
               width={18}
               height={18}
             />
-            &nbsp;&nbsp; Grade-A
+            &nbsp;&nbsp; Grade A
           </span>
         )}
       </RadioGroup.Option>
