@@ -278,10 +278,10 @@ export function Grade() {
             <Image
               src="/images/grade-u.png"
               alt="Grade U"
-              width={18}
-              height={18}
+              width={15}
+              height={15}
             />
-            &nbsp;&nbsp; Grade U
+            &nbsp; Grade U
           </span>
         )}
       </RadioGroup.Option>
@@ -298,10 +298,10 @@ export function Grade() {
             <Image
               src="/images/grade-s.png"
               alt="Grade S"
-              width={18}
-              height={18}
+              width={15}
+              height={15}
             />
-            &nbsp;&nbsp; Grade S
+            &nbsp; Grade S
           </span>
         )}
       </RadioGroup.Option>
@@ -318,10 +318,10 @@ export function Grade() {
             <Image
               src="/images/grade-a.png"
               alt="Grade A"
-              width={18}
-              height={18}
+              width={15}
+              height={15}
             />
-            &nbsp;&nbsp; Grade A
+            &nbsp; Grade A
           </span>
         )}
       </RadioGroup.Option>
@@ -338,10 +338,10 @@ export function Grade() {
             <Image
               src="/images/grade-b.png"
               alt="Grade B"
-              width={18}
-              height={18}
+              width={15}
+              height={15}
             />
-            &nbsp;&nbsp; Grade B
+            &nbsp; Grade B
           </span>
         )}
       </RadioGroup.Option>
@@ -358,10 +358,10 @@ export function Grade() {
             <Image
               src="/images/grade-c.png"
               alt="Grade C"
-              width={18}
-              height={18}
+              width={15}
+              height={15}
             />
-            &nbsp;&nbsp; Grade C
+            &nbsp; Grade C
           </span>
         )}
       </RadioGroup.Option>
@@ -378,10 +378,10 @@ export function Grade() {
             <Image
               src="/images/grade-d.png"
               alt="Grade D"
-              width={18}
-              height={18}
+              width={15}
+              height={15}
             />
-            &nbsp;&nbsp; Grade D
+            &nbsp; Grade D
           </span>
         )}
       </RadioGroup.Option>
