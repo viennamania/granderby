@@ -5,7 +5,15 @@ import OwnedFeeds from '@/components/search/feeds-horse-owned';
 import ListedFeeds from '@/components/search/feeds-horse-listed';
 
 import { useDrawer } from '@/components/drawer-views/context';
-import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
+
+//////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
+
+import {
+  Filters,
+  GridSwitcher,
+  SortList,
+} from '@/components/search/filters-horse';
+
 import { OptionIcon } from '@/components/icons/option';
 
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
@@ -22,10 +30,12 @@ export default function Search() {
       title: 'Owned',
       path: 'owned',
     },
+    /*
     {
       title: 'Listed',
       path: 'listed',
     },
+    */
     /*
     {
       title: 'Portfolio',
@@ -67,9 +77,12 @@ export default function Search() {
                     {/*
                     <div className="hidden 3xl:block">
                       */}
+
+                    {/*
                     <div className=" 3xl:block">
                       <GridSwitcher />
                     </div>
+                    */}
 
                     {/*
                     <div className="hidden sm:block 2xl:hidden">
@@ -101,9 +114,11 @@ export default function Search() {
                   <div className="flex gap-6 3xl:gap-8 ">
                     <SortList />
 
+                    {/*
                     <div className="hidden 3xl:block">
                       <GridSwitcher />
                     </div>
+                    */}
 
                     <div className="hidden sm:block 2xl:hidden">
                       <Button
