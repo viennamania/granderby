@@ -23,6 +23,10 @@ export default async function handler(
   //res: NextApiResponse<Data>
   res: NextApiResponse
 ) {
+  ///const { method } = req.query;
+
+  console.log('req.query.id', req.query.id);
+
   if (req.query.id && String(req.query.id).substring(0, 2) === '0x') {
     const address = req.query.id;
 
