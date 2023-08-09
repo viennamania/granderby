@@ -265,7 +265,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
                 <span className="font-extrabold text-sky-100">
                   #{npcNames.nft1?.tokenId}
                 </span>{' '}
-                {npcNames.horse1}
+                {/*npcNames.horse1*/}
               </div>
             </div>
 
@@ -301,7 +301,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
                 <span className="font-extrabold text-sky-100">
                   #{npcNames.nft2?.tokenId}
                 </span>{' '}
-                {npcNames.horse2}
+                {/*npcNames.horse2*/}
               </div>
             </div>
 
@@ -337,7 +337,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
                 <span className="font-extrabold text-sky-100">
                   #{npcNames.nft3?.tokenId}
                 </span>{' '}
-                {npcNames.horse3}
+                {/*npcNames.horse3*/}
               </div>
             </div>
 
@@ -375,7 +375,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
                 <span className="font-extrabold text-sky-100">
                   #{npcNames.nft4?.tokenId}
                 </span>{' '}
-                {npcNames.horse4}
+                {/*npcNames.horse4*/}
               </div>
             </div>
 
@@ -410,7 +410,7 @@ export default function Race({ npcNames, flag, setFlag }: any) {
                 <span className="font-extrabold text-sky-100">
                   #{npcNames.nft5?.tokenId}
                 </span>{' '}
-                {npcNames.horse5}
+                {/*npcNames.horse5*/}
               </div>
             </div>
 
