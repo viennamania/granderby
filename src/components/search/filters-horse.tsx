@@ -205,7 +205,7 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            Grade-A
+            Grade A
           </span>
         )}
       </RadioGroup.Option>

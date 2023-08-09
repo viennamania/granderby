@@ -19,17 +19,6 @@ import HistoryTable from '@/components/race-history/history-table';
 
 import TransactionTable from '@/components/nft-transaction/transaction-table';
 
-import Image from '@/components/ui/image';
-import Link from 'next/link';
-
-import { Github } from '@/components/icons/brands/github';
-import { Instagram } from '@/components/icons/brands/instagram';
-import { Twitter } from '@/components/icons/brands/twitter';
-import { Check } from '@/components/icons/check';
-import { Copy } from '@/components/icons/copy';
-import { SearchIcon } from '@/components/icons/search';
-import AnchorLink from '@/components/ui/links/anchor-link';
-
 import { useRouter } from 'next/router';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
