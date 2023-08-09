@@ -15,6 +15,8 @@ import { Transition } from '@headlessui/react';
 import { ChevronDown } from '@/components/icons/chevron-down';
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
+import Image from 'next/image';
+
 export function GridSwitcher() {
   const { isGridCompact, setIsGridCompact } = useGridSwitcher();
 
@@ -67,6 +69,7 @@ export const sort = [
 
 export function SortList() {
   const [selectedItem, setSelectedItem] = useState(sort[0]);
+
   return (
     <div className="relative">
       <Listbox value={selectedItem} onChange={setSelectedItem}>
@@ -74,6 +77,7 @@ export function SortList() {
           {selectedItem.name}
           <ChevronDown className="ltr:ml-2 rtl:mr-2" />
         </Listbox.Button>
+
         <Transition
           enter="ease-out duration-200"
           enterFrom="opacity-0 translate-y-2"
@@ -164,7 +168,7 @@ export function Status() {
       onChange={setPlan}
       className="grid grid-cols-2 gap-2 p-5"
     >
-      <RadioGroup.Option value="buy-now">
+      <RadioGroup.Option value="grade-u">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -173,11 +177,12 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            Buy Now
+            Grade U
           </span>
         )}
       </RadioGroup.Option>
-      <RadioGroup.Option value="on-auction">
+
+      <RadioGroup.Option value="grade-s">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -186,11 +191,12 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            On Auction
+            Grade S
           </span>
         )}
       </RadioGroup.Option>
-      <RadioGroup.Option value="new">
+
+      <RadioGroup.Option value="grade-a">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -199,11 +205,12 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            New
+            Grade-A
           </span>
         )}
       </RadioGroup.Option>
-      <RadioGroup.Option value="has-offers">
+
+      <RadioGroup.Option value="grade-b">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -212,7 +219,167 @@ export function Status() {
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
           >
-            Has offers
+            Grade B
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="grade-c">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Grade C
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="grade-d">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Grade D
+          </span>
+        )}
+      </RadioGroup.Option>
+    </RadioGroup>
+  );
+}
+
+export function Grade() {
+  let [plan, setPlan] = useState('buy-now');
+
+  return (
+    <RadioGroup
+      value={plan}
+      onChange={setPlan}
+      className="grid grid-cols-2 gap-2 p-5"
+    >
+      <RadioGroup.Option value="grade-u">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-u.png"
+              alt="Grade U"
+              width={18}
+              height={18}
+            />
+            &nbsp;&nbsp; Grade U
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="grade-s">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-s.png"
+              alt="Grade S"
+              width={18}
+              height={18}
+            />
+            &nbsp;&nbsp; Grade S
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="grade-a">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-a.png"
+              alt="Grade A"
+              width={18}
+              height={18}
+            />
+            &nbsp;&nbsp; Grade-A
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="grade-b">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-b.png"
+              alt="Grade B"
+              width={18}
+              height={18}
+            />
+            &nbsp;&nbsp; Grade B
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="grade-c">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-c.png"
+              alt="Grade C"
+              width={18}
+              height={18}
+            />
+            &nbsp;&nbsp; Grade C
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="grade-d">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-d.png"
+              alt="Grade D"
+              width={18}
+              height={18}
+            />
+            &nbsp;&nbsp; Grade D
           </span>
         )}
       </RadioGroup.Option>
@@ -223,15 +390,25 @@ export function Status() {
 export function Filters() {
   return (
     <>
+      <Collapse label="Grades" initialOpen>
+        <Grade />
+      </Collapse>
+
+      {/*
       <Collapse label="Status" initialOpen>
         <Status />
       </Collapse>
+      */}
+
+      {/*
       <Collapse label="Price Range" initialOpen>
         <PriceRange />
       </Collapse>
+
       <Collapse label="Collection" initialOpen>
         <CollectionSelect onSelect={(value) => console.log(value)} />
       </Collapse>
+      */}
     </>
   );
 }
