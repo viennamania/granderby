@@ -70,6 +70,7 @@ export default function Feeds({ className }: { className?: string }) {
         `https://rickandmortyapi.com/api/character/?page=${pageParam}`
       ).then((result) => result.json()),
       */
+
       await alchemy.nft
         .getNftsForContract(nftDropContractAddressHorse, {
           pageKey: pageParam,
@@ -77,9 +78,31 @@ export default function Feeds({ className }: { className?: string }) {
         })
         .then((result) => {
           //result
-          ///console.log("result======>", result)
+          console.log('result======>', result);
+
           return result;
         }),
+
+    /*
+        await fetch('/api/nft/getHorses', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          //body: JSON.stringify({
+          //  method: 'getAll',
+          //}),
+        }).then((result) => {
+
+          async () => {
+
+            const data = await result.json();
+
+            console.log("result======>", data);
+
+            return data;
+          }
+
+        }),
+        */
 
     /*
       .finally((result:any) => {
@@ -103,72 +126,30 @@ export default function Feeds({ className }: { className?: string }) {
 
   ///console.log(data);
 
-  /*
-  useEffect(() => {
-    const main = async () => {
-      //Call the method to fetch metadata
-      const response = await alchemy.nft.getNftsForContract(
-        nftDropContractAddressHorse,
-        {
-          //pageKey: 'cursor',
-          pageSize: 10,
-        }
-      );
-
-      //console.log(response.pageKey);
-
-      setCursor(response.pageKey);
-
-      //Logging the response to the console
-
-      ///setHorses(response.nfts)
-
-      const NFTList = response.nfts.map((nft) => {
-        const { contract, title, tokenType, tokenId, description, media } = nft;
-
-        //console.log("mdia", media[0]);
-
-
-        return {
-          id: tokenId,
-          author: contract.address,
-          authorImage: AuthorImage,
-          image: media[0]?.thumbnail
-            ? media[0]?.thumbnail
-            : 'https://via.placeholder.com/500',
-          name: title,
-          collection: contract.openSea?.collectionName
-            ? contract.openSea?.collectionName
-            : '',
-          price: '0',
-
-
-        };
-      });
-
-      setHorses(NFTList);
-
-      ///setHorses([...horses, ...NFTList]);
-
-      ///setHorses([...horses, ...response.nfts]);
-
-      ///setHorses((horses) => [...horses, response.nfts]);
-
-      ///setHorses((horses) => [...horses, NFTList]);
-
-      //setHorses(horses.concat(response.nfts))
-
-      ///console.log(NFTList);
-    };
-
-    main();
-  }, [alchemy.nft]);
-
-  */
-
   //const { data } = useSWR(`/api/getNftsForCollection`, fetcher);
 
   //console.log(data);
+
+  /*
+  const getLast20 = async () => {
+    const response = await fetch('/api/nft/getHorses', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      //body: JSON.stringify({
+      //  method: 'getAll',
+      //}),
+    });
+    const data = await response.json();
+
+    console.log(data);
+
+    ////setLast20Game(data.all);
+  };
+
+  useEffect(() => {
+    getLast20();
+  }, []);
+  */
 
   return (
     <>
