@@ -70,6 +70,7 @@ import {
 } from '@thirdweb-dev/sdk';
 
 import {
+  tokenContractAddressUSDC,
   tokenContractAddressUSDT,
   tokenContractAddressGRD,
   marketplaceContractAddress,
@@ -114,17 +115,35 @@ const WalletPage: NextPageWithLayout<
 
   const address = useAddress();
 
-  const { contract: tokenContract } = useContract(
+  const { contract: tokenContractGRD } = useContract(
     tokenContractAddressGRD,
     'token'
   );
-  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+  const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
 
   const {
     mutate: transferTokens,
     isLoading,
     error,
-  } = useTransferToken(tokenContract);
+  } = useTransferToken(tokenContractGRD);
+
+  const { contract: tokenContractUSDT } = useContract(
+    tokenContractAddressUSDT,
+    'token'
+  );
+  const { data: tokenBalanceUSDT } = useTokenBalance(
+    tokenContractUSDT,
+    address
+  );
+
+  const { contract: tokenContractUSDC } = useContract(
+    tokenContractAddressUSDC,
+    'token'
+  );
+  const { data: tokenBalanceUSDC } = useTokenBalance(
+    tokenContractUSDC,
+    address
+  );
 
   const [toAddress, setToAddress] = useState('');
   const [amount, setAmount] = useState();
@@ -450,18 +469,32 @@ const WalletPage: NextPageWithLayout<
         </h3>
 
         {address ? (
-          <div className="mb-7 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            <b>
-              {tokenBalance === undefined ? (
-                <>Loading...</>
-              ) : (
-                <>{Number(tokenBalance?.displayValue).toFixed(2)}</>
-              )}
-            </b>{' '}
-            <span className="text-lg text-[#2b57a2]">
-              {tokenBalance?.symbol}
-            </span>
-          </div>
+          <>
+            <div className="mb-7 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+              <b>
+                {tokenBalanceGRD === undefined ? (
+                  <>Loading...</>
+                ) : (
+                  <>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</>
+                )}
+              </b>{' '}
+              <span className="text-lg text-[#2b57a2]">
+                {tokenBalanceGRD?.symbol}
+              </span>
+            </div>
+            <div className="mb-7 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+              <b>
+                {tokenBalanceUSDC === undefined ? (
+                  <>Loading...</>
+                ) : (
+                  <>{Number(tokenBalanceUSDC?.displayValue).toFixed(2)}</>
+                )}
+              </b>{' '}
+              <span className="text-lg text-[#2b57a2]">
+                {tokenBalanceUSDC?.symbol}
+              </span>
+            </div>
+          </>
         ) : (
           <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             <ConnectWallet theme="light" />
