@@ -136,50 +136,21 @@ const ProposalsPage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
-      <div className=" w-full">
-        {!address ? (
-          <>
-            {/*
-          <ConnectWallet theme="light" />
-        */}
-          </>
-        ) : (
-          <div className="mt-3 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 xl:mt-3">
-            <span>Current Balance</span>
-            <h3>
-              <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
-              {tokenBalance?.symbol}
-            </h3>
-          </div>
-        )}
-
-        {/*
-        <iframe
-          //className='w-full h-[600px]'
-
-          ///src="http://live.granderby.io"
-
-          src="https://granderby.io/redirect.html"
-          ///src="http://localhost:3000/redirect.html"
-
-          //src="https://www.google.com/search?q=%http://live.granderby.io"
-
-          //width="600px"
-
-          //style={{ with: '100%' }}
-          //frameborder="0"
-          //sandbox='allow-modal'
-          width={1100}
-          height={670}
-        ></iframe>
-        */}
-      </div>
-
       <iframe
         src="https://granderby.io/webgl.html"
-        width={1000}
-        height={500}
-        sandbox="allow-scripts allow-modal"
+        //width="100vw"
+        //height="100vh"
+        //sandbox="allow-scripts allow-modal"
+        //width: 100vw;
+        //height: 100vw;
+
+        //style="width: 100vw; height: 100vh; border: none;"
+        style={{
+          width: '100vw',
+          height: '100vh',
+          border: 'none',
+          margin: '0',
+        }}
       ></iframe>
 
       <footer>
