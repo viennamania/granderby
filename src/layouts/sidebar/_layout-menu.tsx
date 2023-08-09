@@ -105,7 +105,7 @@ export default function DrawerMenu() {
 
         <div className="flex flex-row items-center">
           <Image src={logo} alt="logo" width={24} height={24} className="" />
-          <span className="text-md ml-2">Granderby</span>
+          <span className="ml-2 text-lg">Granderby</span>
         </div>
 
         <div className="md:hidden">
