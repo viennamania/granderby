@@ -256,12 +256,14 @@ export function Status() {
 }
 
 export function Grade() {
-  let [plan, setPlan] = useState('buy-now');
+  let [grade, setGrade] = useState('grade-u');
+
+  console.log('Grade', grade);
 
   return (
     <RadioGroup
-      value={plan}
-      onChange={setPlan}
+      value={grade}
+      onChange={setGrade}
       className="grid grid-cols-2 gap-2 p-5"
     >
       <RadioGroup.Option value="grade-u">
