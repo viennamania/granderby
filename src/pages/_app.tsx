@@ -174,15 +174,15 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
         <ThirdwebProvider
           //queryClient={queryClient}
+          clientId={process.env.THIRDWEB_CLIENT_ID || ''}
           activeChain={Polygon}
-          clientId="6d0a3abfa7ad50324b419e1a4da4721c"
           supportedWallets={[
             walletConnect(),
 
             metamaskWallet(),
 
             paperWallet({
-              paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c', // granderby
+              paperClientId: process.env.PAPER_CLIENT_ID || '', // granderby
             }),
           ]}
           sdkOptions={{
