@@ -8,6 +8,15 @@ const withPWA = require('next-pwa')({
 });
 
 const nextConfig = withPWA({
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://granderby.io/api/:path*',
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

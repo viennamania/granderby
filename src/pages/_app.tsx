@@ -102,6 +102,9 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   }, [router.events])
   */
 
+  //console.log("process.env.THIRDWEB_CLIENT_ID", process.env.THIRDWEB_CLIENT_ID);
+  //console.log("process.env.PAPER_CLIENT_ID", process.env.PAPER_CLIENT_ID);
+
   return (
     <>
       <Head>
@@ -174,7 +177,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
         <ThirdwebProvider
           //queryClient={queryClient}
-          clientId={process.env.THIRDWEB_CLIENT_ID || ''}
+          //clientId={process.env.THIRDWEB_CLIENT_ID || ''}
+          clientId="79125a56ef0c1629d4863b6df0a43cce"
           activeChain={Polygon}
           supportedWallets={[
             walletConnect(),
@@ -182,7 +186,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
             metamaskWallet(),
 
             paperWallet({
-              paperClientId: process.env.PAPER_CLIENT_ID || '', // granderby
+              //paperClientId: process.env.PAPER_CLIENT_ID || '', // granderby
+              paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
             }),
           ]}
           sdkOptions={{
