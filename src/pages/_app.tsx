@@ -177,8 +177,9 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
         <ThirdwebProvider
           //queryClient={queryClient}
-          //clientId={process.env.THIRDWEB_CLIENT_ID || ''}
-          clientId="79125a56ef0c1629d4863b6df0a43cce"
+          clientId={process.env.THIRDWEB_CLIENT_ID || ''}
+          ///clientId="79125a56ef0c1629d4863b6df0a43cce"
+
           activeChain={Polygon}
           supportedWallets={[
             walletConnect(),

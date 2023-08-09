@@ -3,7 +3,7 @@ import cn from 'classnames';
 import type { NextPageWithLayout } from '@/types';
 
 import Link from 'next/link';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+
 import { useEffect, useState } from 'react';
 import Image from '@/components/ui/image';
 import Button from '@/components/ui/button';
@@ -20,30 +20,6 @@ import RootLayout from '@/layouts/_root-layout';
 
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
-
-import NFTCard from '@/components/nft/NFTCard';
-
-//import '@rainbow-me/rainbowkit/styles.css';
-import { ThirdwebProvider } from '@thirdweb-dev/react';
-import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
-
-import {
-  ConnectWallet,
-  useDisconnect,
-  ThirdwebNftMedia,
-  useAddress,
-  useContract,
-  useContractRead,
-  useOwnedNFTs,
-  useTokenBalance,
-  Web3Button,
-} from '@thirdweb-dev/react';
-
-import {
-  nftDropContractAddressHorse,
-  stakingContractAddressHorseAAA,
-  tokenContractAddressGRD,
-} from '../../config/contractAddresses';
 
 export type BlogPost = {
   title: string;
@@ -99,13 +75,6 @@ const MintPage: NextPageWithLayout = () => {
   const [loading, setLoading] = useState(true);
   const [hasNFT, setHasNFT] = useState(false);
   const [posts, setPosts] = useState<BlogPost[]>([]);
-
-  // Thirdweb Stuff
-  //const sdk = new ThirdwebSDK('mumbai');
-
-  //const sdk = new ThirdwebSDK('goerli');
-
-  const sdk = new ThirdwebSDK('polygon');
 
   const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!;
   const shareableLink = process.env.NEXT_PUBLIC_SHAREABLE_LINK!;

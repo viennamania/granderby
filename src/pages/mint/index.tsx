@@ -3,7 +3,6 @@ import cn from 'classnames';
 import type { NextPageWithLayout } from '@/types';
 
 import Link from 'next/link';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { useEffect, useState } from 'react';
 import Image from '@/components/ui/image';
 import Button from '@/components/ui/button';
@@ -98,13 +97,6 @@ const MintPage: NextPageWithLayout = () => {
   const [loading, setLoading] = useState(true);
   const [hasNFT, setHasNFT] = useState(false);
   const [posts, setPosts] = useState<BlogPost[]>([]);
-
-  // Thirdweb Stuff
-  //const sdk = new ThirdwebSDK('mumbai');
-
-  //const sdk = new ThirdwebSDK('goerli');
-
-  const sdk = new ThirdwebSDK('polygon');
 
   const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!;
   const shareableLink = process.env.NEXT_PUBLIC_SHAREABLE_LINK!;

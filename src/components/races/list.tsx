@@ -8,7 +8,10 @@ import { HorseIcon } from '@/components/icons/horse';
 
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 
-import { contractAddressRace } from '../../config/contractAddresses';
+import {
+  contractAddressRace,
+  thirdwebClientId,
+} from '@/config/contractAddresses';
 
 import { BigNumber, ethers } from 'ethers';
 
@@ -23,7 +26,9 @@ interface RaceListTypes {
   multiplier: string;
 }
 
-const sdk = new ThirdwebSDK('polygon');
+const sdk = new ThirdwebSDK('polygon', {
+  clientId: thirdwebClientId,
+});
 
 export default function RaceList({
   tokenid,

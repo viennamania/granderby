@@ -5,7 +5,6 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { NextPageWithLayout } from '@/types';
 
 import Link from 'next/link';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { useEffect, useState } from 'react';
 import Image from '@/components/ui/image';
 import Button from '@/components/ui/button';
@@ -158,21 +157,6 @@ const MintPage: NextPageWithLayout<
   const [hasNFT, setHasNFT] = useState(false);
 
   const [sdkClientSecret, setSdkClientSecret] = useState();
-
-  // Thirdweb Stuff
-  //const sdk = new ThirdwebSDK('mumbai');
-
-  //const sdk = new ThirdwebSDK('goerli');
-
-  /*
-  const sdk = new ThirdwebSDK('polygon');
-
-  const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!;
-  const shareableLink = process.env.NEXT_PUBLIC_SHAREABLE_LINK!;
-  const minimumBalance = 1;
-  const erc1155TokenId = 0;
-
-*/
 
   const contractAddress = nftDropContractAddressCoupon;
 

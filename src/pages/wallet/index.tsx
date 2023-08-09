@@ -70,6 +70,7 @@ import {
 } from '@thirdweb-dev/sdk';
 
 import {
+  thirdwebClientId,
   tokenContractAddressUSDC,
   tokenContractAddressUSDT,
   tokenContractAddressGRD,
@@ -81,10 +82,8 @@ import { BigNumber, ethers } from 'ethers';
 import styles from '@/styles/Home.module.css';
 import { add } from 'lodash';
 
-///import { ThirdwebSDK } from '@thirdweb-dev/sdk';
-
 const sdk = new ThirdwebSDK('polygon', {
-  clientId: '6d0a3abfa7ad50324b419e1a4da4721c',
+  clientId: thirdwebClientId,
 });
 
 /*
