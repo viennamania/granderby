@@ -33,7 +33,7 @@ function NftInfo({ nftMetadata }: any) {
       <div className="items-left invisible flex flex-col justify-between lg:visible">
         <Link
           className="text-md flex text-left capitalize text-blue-500 dark:text-white "
-          href={`/`}
+          href={`/horse`}
         >
           Granderby Horse NFT
         </Link>
