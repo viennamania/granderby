@@ -11,7 +11,9 @@ import { exit } from 'process';
 const settings = {
   //apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key.
 
-  apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key.
+  //apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key.
+
+  apiKey: process.env.ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
 
   network: Network.MATIC_MAINNET, // Replace with your network.
 };

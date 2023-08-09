@@ -63,23 +63,12 @@ import {
   marketplaceContractAddress,
 } from '@/config/contractAddresses';
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-  };
-};
-
-const ListingPage: NextPageWithLayout<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = () => {
+function SinglePrice(listingid: any) {
   const { layout } = useLayout();
 
   const router = useRouter();
 
-  // De-construct listingId out of the router.query.
-  // This means that if the user visits /listing/0 then the listingId will be 0.
-  // If the user visits /listing/1 then the listingId will be 1.
-  const { listingId } = router.query as { listingId: string };
+  const listingId = listingid.listingid;
 
   const address = useAddress();
 
@@ -518,9 +507,15 @@ const ListingPage: NextPageWithLayout<
       </>
     );
   }
+}
+
+const ListingPage: NextPageWithLayout = () => {
+  const router = useRouter();
+
+  return <SinglePrice listingid={router.query.listingid} />;
 };
 
-ListingPage.getLayout = function getLayout(page) {
+ListingPage.getLayout = function getLayout(page: any) {
   return <RootLayout>{page}</RootLayout>;
 };
 
