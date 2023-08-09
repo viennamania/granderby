@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 2516939096
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8d39a4ee22290b14df3c5a0b630d90ea
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 416cf1c9a539d7380605ed52b1d91266
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+Assets:
+- Assets/ArtistResources/Effects/Fire_Horse_Explosion_Offset.prefab
+- Assets/ArtistResources/Effects/Unicorn_Horse_Explosion_Offset.prefab
+Dependencies: []

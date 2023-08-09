@@ -1,0 +1,76 @@
+ManifestFileVersion: 0
+CRC: 708976020
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9dee5b60b6eb723b0d7fda7434224bde
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c8059cb602e0d5a359ac556ca26ad687
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0bbcf490ecd0f3441b55690b4e3eb9e3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8af6a441d511cbf44a7644f443eea712, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d81807633ea807d4c8e3fff7e10c6000, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a8ddb2735db0dd045901f9ad5fc86f4b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5b4aab042f393df4ab0c9cd9526b0054, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9d2c84154c85ec448a37cbabc48e50ed, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5a92e5c5fe9b3b64f95a3c6d6cd6108b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a52b3a06b7cf12444992537de9b49eb6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d948c9a7475bb8546bbf7c45f28e6160, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0f898868041d67d46b4996e184b5ee25, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d5a72e8895b79704eb1ae92ca4e19722, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3debc4a8a9eb0534792c9246d63e5998, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9b202fea542cfac43b87ef5b4ebda358, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c5fe1b8b8c169c64dad38bc3b94f2427, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 98834c6ee8cfd3344a07b16bdec36127, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 050d877e18b895f42bed82f1e97cfe5f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4703ab4f8404b4f47a13630c46144c78, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Lobby/BettingGroup/TypeD/TipInfoTypeD/RaceInfo.prefab
+Dependencies: []

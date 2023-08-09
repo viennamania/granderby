@@ -1,0 +1,16 @@
+{
+"companyName": "CRACLE",
+"productName": "CRACLE DERBY",
+"productVersion": "1.0.98.221",
+"dataUrl": "ClacleDerby230809.data.unityweb",
+"wasmCodeUrl": "ClacleDerby230809.wasm.code.unityweb",
+"wasmFrameworkUrl": "ClacleDerby230809.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.8f1"
+}

@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 2413976032
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3c08aa09884c241c27784600b9cedb79
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0e833c53c030f9e68d210bccd6829a98
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c5fe1b8b8c169c64dad38bc3b94f2427, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 65e72f9ded7c48744b1dd303a8a55607, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Modules/AutoClosePopup/AutoClosePopup.prefab
+Dependencies: []

@@ -1,0 +1,61 @@
+ManifestFileVersion: 0
+CRC: 1159571781
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c2e6c47a7a762ac07f49a94e92ec4b8a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 724ea0fceb4e38290461bd6491d895da
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d21dcc2386d650c4597f3633c75a1f98, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 418e42c7d0405cc48a7b83f63ea53bb3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6ce8ea4cd37f8bb4f8e606117c90833e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2a16748d9461eae46a725db9776d5390, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c38e2e0f7886e5d41a3d662c238e3675, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 496d94afc3f7b264bb86879bb3fccbeb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dbc9b6dfe5cf7764e80c079b7b560366, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 320
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundleFile/Cameras/Scenes/Singapore1000M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/HappyValley1200M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/HappyValley1000M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/Shatin1200M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/Singapore1200M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/Gwacheon1000M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/Gwacheon1200M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/Shatin1000M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/Forest1000M.prefab
+- Assets/AssetBundleFile/Cameras/Scenes/Halem1000M.prefab
+Dependencies: []
