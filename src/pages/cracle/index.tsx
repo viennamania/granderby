@@ -237,11 +237,12 @@ const ProposalsPage: NextPageWithLayout<
         }}
       ></iframe>
 
-      <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <div className="flex flex-col items-center justify-center gap-5">
-          <BetTables npcs={npcNames} />
-          <Search />
-        </div>
+      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <BetTables npcs={npcNames} />
+      </div>
+
+      <div className="mx-auto mt-10 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <Search />
       </div>
 
       <footer>
