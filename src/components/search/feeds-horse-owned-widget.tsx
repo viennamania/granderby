@@ -87,7 +87,7 @@ export default function Feeds({ className }: { className?: string }) {
           {isLoadingOwnedNfts && (
             <div className="flex h-60 flex-col justify-center ">
               <div className="flex justify-center">
-                <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+                <div className="h-15 w-15 animate-spin rounded-full border-b-2 border-gray-900"></div>
               </div>
             </div>
           )}
