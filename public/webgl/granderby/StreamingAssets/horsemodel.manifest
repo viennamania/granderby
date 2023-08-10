@@ -1,0 +1,62 @@
+ManifestFileVersion: 0
+CRC: 4068894932
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2c2d0c8a1e3f1846ba1dd3e1bfecf03b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 868cebd2344873c8ce63a3286ac303a4
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3665a3d270416114cb28a329697f325d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5269877533afff64898a7ba848fb2bb5, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+Assets:
+- Assets/ArtistResources/Characters/Models_02/Prefabs/Jocky_Horse_male_01.prefab
+- Assets/ArtistResources/Characters/Models_02/Prefabs/Ho_Jo_Small_NFT.prefab
+- Assets/ArtistResources/Characters/Models_02/Prefabs/Jocky_Horse_male_fire.prefab
+- Assets/ArtistResources/Characters/Models_02/Prefabs/Jocky_Horse_male_silver.prefab
+- Assets/ArtistResources/Characters/Models_02/Prefabs/Ho_Jo_Large_NFT.prefab
+- Assets/ArtistResources/Characters/Models_02/Prefabs/Jocky_Horse_male_unicorn.prefab
+- Assets/ArtistResources/Characters/Models_02/Prefabs/Ho_Jo_Medium_NFT.prefab
+Dependencies: []

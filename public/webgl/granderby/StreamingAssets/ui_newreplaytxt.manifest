@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+CRC: 3137701700
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c19f1fc3d0d45c605916cd36b14c14e5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: e7a612b9cedb1abeb96a2b0f554c8baa
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5a92e5c5fe9b3b64f95a3c6d6cd6108b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d948c9a7475bb8546bbf7c45f28e6160, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 077f012fd68ceb34fb8084ebf056b615, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Race/Replay/NewReplayTxt.prefab
+Dependencies: []

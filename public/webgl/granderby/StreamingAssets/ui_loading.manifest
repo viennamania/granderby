@@ -1,0 +1,62 @@
+ManifestFileVersion: 0
+CRC: 643723819
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 507a277afc179d446d9dc4e682f87903
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f0a77ed4e39bed24de22cd982e5b9020
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 44f054e2a2cbf6546abe933532a448bd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eb2702f26197d154ba116e26fcad2bc5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5a92e5c5fe9b3b64f95a3c6d6cd6108b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d948c9a7475bb8546bbf7c45f28e6160, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: df9bfb5c080dac24cbbc6c9f595ed413, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6fd6c9dc103f05f42afa8aab0c6fc529, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6c20815eb3063c24290a61b7020a1836, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 050d877e18b895f42bed82f1e97cfe5f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe8d4f3f3bd6c794a80709b4372e028b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Modules/Loading/LoadingScreen.prefab
+- Assets/UI/Modules/Loading/Shatin_Briefing.png
+- Assets/UI/Modules/Loading/Gwacheon_Briefing.png
+- Assets/UI/Modules/Loading/Singapore_Briefing.png
+- Assets/UI/Modules/Loading/HappyValley_Briefing.png
+Dependencies: []

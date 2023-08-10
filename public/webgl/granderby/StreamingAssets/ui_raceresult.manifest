@@ -1,0 +1,122 @@
+ManifestFileVersion: 0
+CRC: 3844388480
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 71de8475d7de8c62bc44cd03778f2b11
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1cb2567e389ceb67a04e1103b87e33db
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 84
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0bbcf490ecd0f3441b55690b4e3eb9e3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 84c82c1177d321f4abb3e4c45bd47697, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 924946d2c2317d643b888a6005fa37a6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a0c6f0732c7cbca4a82855523e78c475, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d778732491924dd48950a88e7f91e0e4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b8e51134437354b4fbd403220eabc4ed, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fd3710b460ed75c419709d43110ada2a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 949f1a2521612fa45b7cfa514f3cf54c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ce851d75f022c6b44b172ebe9bba9a8b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5a92e5c5fe9b3b64f95a3c6d6cd6108b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5a65e8d5958942c48b7725b9dfcceeb6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4b380b86f304e784c91437526bd90544, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 31ca67c63a60eaa46b116344cac909dc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 827f43d6ece9b294999380773e76300a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d948c9a7475bb8546bbf7c45f28e6160, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cace762b98df82840ba813d2f0bd9968, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c5fe1b8b8c169c64dad38bc3b94f2427, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1a3c1ecb0cfff2e4d9d70fbd9552f19a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0406c6ac58e334e4f87f6e326edece27, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 23a9d64e448327244acfd2c282e9ba7b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 050d877e18b895f42bed82f1e97cfe5f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 03ebc8ce9b2220f4398d3c9e6c2e168f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a0266af9e158a4429f8f0513a65e1a7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a1a803ef1be15cb44a36c0f8a2ec78b2, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Race/Result/AnimationV2/mission_marking/mission_marking_SkeletonData.asset
+- Assets/UI/Race/Result/AnimationV2/mission_marking/mission_marking.png
+- Assets/UI/Race/Result/AnimationV2/mission_marking/mission_marking.json
+- Assets/UI/Race/Result/AnimationV2/result_coin/coin_post_SkeletonData.asset
+- Assets/UI/Race/Result/AnimationV2/result_coin/coin_post_Material.mat
+- Assets/UI/Race/Result/AnimationV2/RankEffect/listeff_SkeletonData.asset
+- Assets/UI/Race/Result/AnimationV2/RankEffect/listeff.json
+- Assets/UI/Race/Result/AnimationV2/result_coin/coin_post_Atlas.asset
+- Assets/UI/Race/Result/AnimationV2/RankEffect/listeff_Material.mat
+- Assets/UI/Race/Result/AnimationV2/mission_marking/mission_marking_Material.mat
+- Assets/UI/Race/Result/RaceResultV3.prefab
+- Assets/UI/Race/Result/AnimationV2/mission_marking/mission_marking.atlas.txt
+- Assets/UI/Race/Result/AnimationV2/RankEffect/listeff.png
+- Assets/UI/Race/Result/AnimationV2/result_coin/coin_post.png
+- Assets/UI/Race/Result/AnimationV2/RankEffect/listeff.atlas.txt
+- Assets/UI/Race/Result/AnimationV2/result_coin/coin_post.json
+- Assets/UI/Race/Result/AnimationV2/result_coin/coin_post.atlas.txt
+- Assets/UI/Race/Result/AnimationV2/RankEffect/listeff_Atlas.asset
+- Assets/UI/Race/Result/AnimationV2/mission_marking/mission_marking_Atlas.asset
+Dependencies: []

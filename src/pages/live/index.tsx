@@ -1,7 +1,7 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { NextPageWithLayout } from '@/types';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import cn from 'classnames';
 import routes from '@/config/routes';
@@ -28,11 +28,22 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import phonePC from '@/assets-landing/images/img-app.png';
 import phoneMobile from '@/assets-landing/images/0_asset.png';
 
+import BetInputs from '@/components/horseRace/watchScreen/betInputs';
+
+import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
+
+import Search from '@/components/search/search-horse';
+
+import { useDrawer } from '@/components/drawer-views/context';
+
+//@ts-ignore
+import { Socket, io } from 'socket.io-client';
+
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
-} from '../../config/contractAddresses';
+} from '@/config/contractAddresses';
 
 import {
   ConnectWallet,
@@ -47,6 +58,14 @@ import {
 } from '@thirdweb-dev/react';
 
 import Head from 'next/head';
+
+import {
+  Filters,
+  GridSwitcher,
+  SortList,
+} from '@/components/search/filters-horse';
+
+import { OptionIcon } from '@/components/icons/option';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -63,12 +82,16 @@ const ProposalsPage: NextPageWithLayout<
 > = (props) => {
   const { title, image, description } = props;
 
+  const { openDrawer } = useDrawer();
+
   const router = useRouter();
   const { layout } = useLayout();
-  const { totalVote: totalActiveVote } = getVotesByStatus('active');
-  const { totalVote: totalOffChainVote } = getVotesByStatus('off-chain');
-  const { totalVote: totalExecutableVote } = getVotesByStatus('executable');
-  const { totalVote: totalPastVote } = getVotesByStatus('past');
+
+  const [npcNames, setNpcNames] = useState<any>([]);
+
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  const [status, setStatus] = useState<any>();
 
   const address = useAddress();
 
@@ -77,6 +100,80 @@ const ProposalsPage: NextPageWithLayout<
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  useEffect(() => {
+    socketInitializer();
+  }, []);
+
+  const socketInitializer = () => {
+    ///console.log("snailRace socketInitializer socket", socket);
+
+    if (socket) return;
+
+    const socketa = io(process.env.NEXT_PUBLIC_HORSE_RACE_SOCKET_URL as string);
+
+    setSocket(socketa);
+
+    socketa.on('status', (data: any) => {
+      console.log('socket status======', data);
+
+      setStatus(data);
+    });
+
+    /*
+    socketa.on('time', (data: any) => {
+      setTime(data);
+    });
+
+    socketa.on('horse1Rate', (data: any) => {
+      setHorse1Oran(data);
+    });
+    socketa.on('horse2Rate', (data: any) => {
+      setHorse2Oran(data);
+    });
+    socketa.on('horse3Rate', (data: any) => {
+      setHorse3Oran(data);
+    });
+    socketa.on('horse4Rate', (data: any) => {
+      setHorse4Oran(data);
+    });
+    socketa.on('horse5Rate', (data: any) => {
+      setHorse5Oran(data);
+    });
+    
+
+    socketa.on('flag', (data: any) => {
+      setFlag(data);
+    });
+    */
+
+    return () => {
+      socketa.disconnect();
+    };
+  };
+
+  useEffect(() => {
+    if (status == false) {
+      ////deleteCookie('horse');
+    }
+
+    async function getNpcNames() {
+      const npcNamesResponse = await fetch(
+        `/api/games/horseRace/settings/horseNames?method=all`
+      );
+      const response = await npcNamesResponse.json();
+
+      ///console.log('getNpcNames response', response);
+
+      //const data = useOwnedNFTs(nftDropContractHorse, address);
+
+      setNpcNames(response.npcNames[0]);
+
+      //npcNames.npcNames[0].nft1
+    }
+
+    getNpcNames();
+  }, [status]);
 
   {
     /*
@@ -136,22 +233,58 @@ const ProposalsPage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
-      <iframe
-        src="https://granderby.io/webgl.html"
-        //width="100vw"
-        //height="100vh"
-        //sandbox="allow-scripts allow-modal"
-        //width: 100vw;
-        //height: 100vw;
+      <div className="flex flex-wrap">
+        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          {/*
+export type DRAWER_VIEW =
+  | 'DASHBOARD_SIDEBAR'
+  | 'DRAWER_MENU'
+  | 'DRAWER_SEARCH'
+  | 'DRAWER_FILTER'
+  | 'DRAWER_PREVIEW_NFT';
+  */}
 
-        //style="width: 100vw; height: 100vh; border: none;"
-        style={{
-          width: '100vw',
-          height: '100vh',
-          border: 'none',
-          margin: '0',
-        }}
-      ></iframe>
+          <div className="flex w-full items-center justify-end">
+            <Button
+              shape="rounded"
+              size="small"
+              variant="ghost"
+              color="gray"
+              //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
+              onClick={() => openDrawer('DRAWER_SEARCH')}
+              className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+            >
+              <OptionIcon className="relative h-auto w-[18px]" />
+            </Button>
+          </div>
+
+          <iframe
+            src="https://granderby.io/webgl/granderby/index.html"
+            //width="100vw"
+            //height="100vh"
+            //sandbox="allow-scripts allow-modal"
+            //width: 100vw;
+            //height: 100vw;
+
+            //style="width: 100vw; height: 100vh; border: none;"
+            style={{
+              //width: '100vw',
+              width: '100%',
+              height: '100vh',
+              border: 'none',
+              margin: '0',
+            }}
+          ></iframe>
+        </div>
+
+        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <BetTables npcs={npcNames} />
+        </div>
+
+        <div className="mx-auto mt-10 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <Search />
+        </div>
+      </div>
 
       <footer>
         <div className="flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">

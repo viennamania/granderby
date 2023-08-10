@@ -1,0 +1,51 @@
+ManifestFileVersion: 0
+CRC: 2304031529
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8f48a78231e1ffa6f22e833b845e2402
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 416cf1c9a539d7380605ed52b1d91266
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+Assets:
+- Assets/Storm Effects/2 - Particles/Prefabs/Rain Mobile Heavy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Clouds Stormy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Rain Medium.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Tornado.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Snow Mobile Heavy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Wind Medium.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Rain Mobile Light.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Snow Mobile Medium.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Snow Medium Happy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Snow Heavy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Snow Medium.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Tornado Clouds.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Rain Mobile Medium.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Snow Mobile Light.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Clouds Medium.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Snow Light .prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Wind Light.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Rain Heavy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Clouds Light.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Wind Heavy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Clouds Heavy.prefab
+- Assets/Storm Effects/2 - Particles/Prefabs/Rain Light.prefab
+Dependencies: []

@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 2140787432
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c284d81223f39d5125530bffdb91fa1e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 44912aa95bf28c03affddc6817be15fe
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Fonts/Eng/Dharma Type - Bebas Neue Pro Bold.otf
+- Assets/UI/Fonts/Eng/Dharma Type - Bebas Neue Pro Regular.otf
+Dependencies: []

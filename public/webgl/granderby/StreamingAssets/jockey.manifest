@@ -1,0 +1,48 @@
+ManifestFileVersion: 0
+CRC: 1990001065
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 568af7de297bf57d6b800267b1da2ec1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ed26e3ad9f6be9c24f85f5f5b54339d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundleFile/Jockey/jockey_mask_01.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_06.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_07.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_15.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_27.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_26.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_04.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_20.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_13.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_09.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_10.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_02.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_25.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_14.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_24.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_03.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_08.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_28.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_16.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_17.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_31.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_30.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_22.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_18.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_32.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_12.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_21.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_19.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_05.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_29.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_23.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_33.tga
+- Assets/AssetBundleFile/Jockey/jockey_mask_11.tga
+Dependencies: []

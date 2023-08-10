@@ -1,0 +1,27 @@
+ManifestFileVersion: 0
+CRC: 2146726071
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3741bf4237607009f45a897e19abfccf
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ed26e3ad9f6be9c24f85f5f5b54339d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/Race/InRace/Image/H_RACE_N5.png
+- Assets/UI/Race/InRace/Image/H_RACE_N12.png
+- Assets/UI/Race/InRace/Image/H_RACE_N9.png
+- Assets/UI/Race/InRace/Image/H_RACE_N6.png
+- Assets/UI/Race/InRace/Image/H_RACE_N10.png
+- Assets/UI/Race/InRace/Image/H_RACE_N4.png
+- Assets/UI/Race/InRace/Image/H_RACE_N1.png
+- Assets/UI/Race/InRace/Image/H_RACE_N7.png
+- Assets/UI/Race/InRace/Image/H_RACE_N2.png
+- Assets/UI/Race/InRace/Image/H_RACE_N8.png
+- Assets/UI/Race/InRace/Image/H_RACE_N3.png
+- Assets/UI/Race/InRace/Image/H_RACE_N11.png
+Dependencies: []

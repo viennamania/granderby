@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 3394774231
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: cd86d4efca9a200c378a2746500fc619
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cc04f6558f44f8a1470e0bf46085327
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: c8759498c85c2ab4f87ec7a1d27b8db3, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundleFile/AssetData/LookDataList.asset
+Dependencies: []
