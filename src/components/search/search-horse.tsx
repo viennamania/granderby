@@ -8,6 +8,8 @@ import { useDrawer } from '@/components/drawer-views/context';
 
 //////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
 
+import Image from '@/components/ui/image';
+
 import {
   Filters,
   GridSwitcher,
@@ -50,9 +52,17 @@ export default function Search() {
 
   return (
     <>
-      <div className="m-3 flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
-        <span>Granderby Horse NFT</span>
-        <span className="text-sm">
+      <div className="mt-10 flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
+        <div className="justify-left flex flex-row items-center">
+          <Image
+            src="/images/logo.png"
+            alt="Granderby Horse NFT"
+            width={20}
+            height={20}
+          />
+          <span className="ml-3">Granderby Horse NFT</span>
+        </div>
+        <span className="mt-3 text-sm">
           Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
           Category Gaming
         </span>
