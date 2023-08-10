@@ -97,8 +97,7 @@ export default function BetInputs({
   inputs: any;
   balance: any;
 }) {
-  /*
-  console.log('BetInputs', {
+  console.log('BetInputsGranderby', {
     horse1,
     horse2,
     horse3,
@@ -109,7 +108,6 @@ export default function BetInputs({
     inputs,
     balance,
   });
-  */
 
   const [chosenNpc, setChosenNpc] = useState<any>(null);
   const [betAmount, setBetAmount] = useState<any>(0);
@@ -594,7 +592,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse1);
               setTokenid(BigNumber.from(0));
             }}
-            className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+            className={`gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
               chosenNpc === npcs?.horse1
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -630,6 +628,7 @@ export default function BetInputs({
                   #{npcs?.nft1?.tokenId}
                 </span>
               </div>
+
               {/*
               <span className="text-xs">{npcs?.horse1}</span>
               */}
@@ -643,7 +642,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse2);
               setTokenid(BigNumber.from(1));
             }}
-            className={`gold-btn h-20 w-44 border  border-white p-1 text-center  text-white ${
+            className={`gold-btn h-20 w-44 border  border-black p-1 text-center  text-black ${
               chosenNpc === npcs?.horse2
                 ? 'gold-btn-active '
                 : chosenNpc === 0
@@ -691,7 +690,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse3);
               setTokenid(BigNumber.from(2));
             }}
-            className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+            className={`gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
               chosenNpc === npcs?.horse3
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -739,7 +738,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse4);
               setTokenid(BigNumber.from(3));
             }}
-            className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+            className={`gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
               chosenNpc === npcs.horse4
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -789,7 +788,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse5);
               setTokenid(BigNumber.from(4));
             }}
-            className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+            className={` gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
               chosenNpc === npcs?.horse5
                 ? 'gold-btn-active'
                 : chosenNpc === 0

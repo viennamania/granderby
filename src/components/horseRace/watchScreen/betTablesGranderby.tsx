@@ -4,7 +4,7 @@ import { IHorseGame } from '../../../utils/horseRace/interfaces/horseGame';
 import Image from 'next/image';
 
 export default function BetTables({ npcs }: any) {
-  console.log('BetTables npcs====', npcs);
+  ////console.log('BetTables npcs====', npcs);
 
   const [games, setGames] = useState<any>();
   const [status, setStatus] = useState<any>();

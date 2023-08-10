@@ -28,6 +28,8 @@ import { useRouter } from 'next/router';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
+import { useDrawer } from '@/components/drawer-views/context';
+
 import {
   ConnectWallet,
   useDisconnect,
@@ -47,6 +49,8 @@ export default function Feeds({ className }: { className?: string }) {
   const router = useRouter();
 
   const address = useAddress();
+
+  const { openDrawer } = useDrawer();
 
   ////console.log('Feeds address======>', address);
 
@@ -85,10 +89,8 @@ export default function Feeds({ className }: { className?: string }) {
         */}
 
           {isLoadingOwnedNfts && (
-            <div className="flex h-60 flex-col justify-center ">
-              <div className="flex justify-center">
-                <div className="h-15 w-15 animate-spin rounded-full border-b-2 border-gray-900"></div>
-              </div>
+            <div className="flex flex-col justify-center ">
+              <div className="h-15 w-15 animate-spin rounded-full border-b-2 border-gray-900"></div>
             </div>
           )}
 
@@ -103,11 +105,8 @@ export default function Feeds({ className }: { className?: string }) {
             className="flex flex-wrap justify-center"
           >
             {ownedNfts?.length == 0 && (
-              <div className="flex h-60 flex-col justify-center ">
-                <div className="flex justify-center">
-                  <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
-                  You don't own any horses yet.
-                </div>
+              <div className="flex flex-col justify-center ">
+                You don't own any horses yet.
               </div>
             )}
 
@@ -120,7 +119,9 @@ export default function Feeds({ className }: { className?: string }) {
                   onClick={() =>
                     //setTokenid(nft.metadata.id.toString()),
                     //setIsOpen(true)
-                    router.push('/horse-details/' + nft?.metadata?.id)
+                    ///router.push('/horse-details/' + nft?.metadata?.id)
+
+                    openDrawer('DRAWER_PREVIEW_NFT')
                   }
                 >
                   {/*

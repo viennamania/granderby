@@ -132,6 +132,7 @@ const ProposalsPage: NextPageWithLayout<
     socketa.on('time', (data: any) => {
       setTime(data);
     });
+    */
 
     socketa.on('horse1Rate', (data: any) => {
       setHorse1Oran(data);
@@ -148,8 +149,8 @@ const ProposalsPage: NextPageWithLayout<
     socketa.on('horse5Rate', (data: any) => {
       setHorse5Oran(data);
     });
-    
 
+    /*
     socketa.on('flag', (data: any) => {
       setFlag(data);
     });
