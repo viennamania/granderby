@@ -92,15 +92,17 @@ export default function BetTables({ npcs }: any) {
 
   return (
     <>
-      <div className="mt-24 flex w-full flex-col items-center lg:w-2/3">
-        <div className="mb-2 flex w-full items-center justify-center rounded-lg text-2xl font-bold text-gray-200">
+      <div className="mt-0 flex w-full flex-col items-center lg:w-2/3">
+        <div className="mb-4 flex w-full items-center justify-center rounded-lg text-5xl font-bold text-yellow-500">
           {betAmountTotal}
         </div>
 
         <div className="grid w-full grid-cols-5 gap-1 rounded-lg text-gray-200 lg:grid-cols-5  lg:gap-3">
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="mb-2 flex w-full flex-col items-center justify-center">
-              <span className="text-sm text-yellow-500">{betAmount1}</span>{' '}
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount1}
+              </span>{' '}
             </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*
@@ -158,7 +160,9 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="mb-2 flex w-full flex-col items-center justify-center">
-              <span className="text-sm text-yellow-500">{betAmount2}</span>{' '}
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount2}
+              </span>{' '}
             </div>
 
             <div className="flex w-full flex-col items-center justify-center">
@@ -212,7 +216,9 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="mb-2 flex w-full flex-col items-center justify-center">
-              <span className="text-sm text-yellow-500">{betAmount3}</span>{' '}
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount3}
+              </span>{' '}
             </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*
@@ -265,7 +271,9 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="mb-2 flex w-full flex-col items-center justify-center">
-              <span className="text-sm text-yellow-500">{betAmount4}</span>{' '}
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount4}
+              </span>{' '}
             </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*
@@ -318,7 +326,9 @@ export default function BetTables({ npcs }: any) {
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="mb-2 flex w-full flex-col items-center justify-center">
-              <span className="text-sm text-yellow-500">{betAmount5}</span>{' '}
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount5}
+              </span>{' '}
             </div>
             <div className="flex w-full flex-col items-center justify-center">
               {/*

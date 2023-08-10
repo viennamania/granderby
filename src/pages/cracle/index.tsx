@@ -1,7 +1,7 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { NextPageWithLayout } from '@/types';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import cn from 'classnames';
 import routes from '@/config/routes';
@@ -28,7 +28,13 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import phonePC from '@/assets-landing/images/img-app.png';
 import phoneMobile from '@/assets-landing/images/0_asset.png';
 
+import BetInputs from '@/components/horseRace/watchScreen/betInputs';
+import BetTables from '@/components/horseRace/watchScreen/betTables';
+
 import Search from '@/components/search/search-horse';
+
+//@ts-ignore
+import { Socket, io } from 'socket.io-client';
 
 import {
   nftDropContractAddressHorse,
@@ -67,10 +73,12 @@ const ProposalsPage: NextPageWithLayout<
 
   const router = useRouter();
   const { layout } = useLayout();
-  const { totalVote: totalActiveVote } = getVotesByStatus('active');
-  const { totalVote: totalOffChainVote } = getVotesByStatus('off-chain');
-  const { totalVote: totalExecutableVote } = getVotesByStatus('executable');
-  const { totalVote: totalPastVote } = getVotesByStatus('past');
+
+  const [npcNames, setNpcNames] = useState<any>([]);
+
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  const [status, setStatus] = useState<any>();
 
   const address = useAddress();
 
@@ -79,6 +87,80 @@ const ProposalsPage: NextPageWithLayout<
     'token'
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  useEffect(() => {
+    socketInitializer();
+  }, []);
+
+  const socketInitializer = () => {
+    ///console.log("snailRace socketInitializer socket", socket);
+
+    if (socket) return;
+
+    const socketa = io(process.env.NEXT_PUBLIC_HORSE_RACE_SOCKET_URL as string);
+
+    setSocket(socketa);
+
+    socketa.on('status', (data: any) => {
+      console.log('socket status======', data);
+
+      setStatus(data);
+    });
+
+    /*
+    socketa.on('time', (data: any) => {
+      setTime(data);
+    });
+
+    socketa.on('horse1Rate', (data: any) => {
+      setHorse1Oran(data);
+    });
+    socketa.on('horse2Rate', (data: any) => {
+      setHorse2Oran(data);
+    });
+    socketa.on('horse3Rate', (data: any) => {
+      setHorse3Oran(data);
+    });
+    socketa.on('horse4Rate', (data: any) => {
+      setHorse4Oran(data);
+    });
+    socketa.on('horse5Rate', (data: any) => {
+      setHorse5Oran(data);
+    });
+    
+
+    socketa.on('flag', (data: any) => {
+      setFlag(data);
+    });
+    */
+
+    return () => {
+      socketa.disconnect();
+    };
+  };
+
+  useEffect(() => {
+    if (status == false) {
+      ////deleteCookie('horse');
+    }
+
+    async function getNpcNames() {
+      const npcNamesResponse = await fetch(
+        `/api/games/horseRace/settings/horseNames?method=all`
+      );
+      const response = await npcNamesResponse.json();
+
+      ///console.log('getNpcNames response', response);
+
+      //const data = useOwnedNFTs(nftDropContractHorse, address);
+
+      setNpcNames(response.npcNames[0]);
+
+      //npcNames.npcNames[0].nft1
+    }
+
+    getNpcNames();
+  }, [status]);
 
   {
     /*
@@ -156,7 +238,10 @@ const ProposalsPage: NextPageWithLayout<
       ></iframe>
 
       <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <Search />
+        <div className="flex flex-col items-center justify-center gap-5">
+          <BetTables npcs={npcNames} />
+          <Search />
+        </div>
       </div>
 
       <footer>
