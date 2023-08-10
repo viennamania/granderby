@@ -55,10 +55,11 @@ export default function Search() {
       <div className="mt-10 flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
         <div className="justify-left flex flex-row items-center">
           <Image
-            src="/images/logo.png"
+            src="/horseRace/Hrs_00006009.png"
             alt="Granderby Horse NFT"
-            width={20}
-            height={20}
+            width={28}
+            height={28}
+            className="rounded-full"
           />
           <span className="ml-3">Granderby Horse NFT</span>
         </div>
