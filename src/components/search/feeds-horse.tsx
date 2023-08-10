@@ -28,10 +28,14 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
+import { useDrawer } from '@/components/drawer-views/context';
+
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
+
+  const { openDrawer } = useDrawer();
 
   type NFT = {
     id: string;
@@ -209,7 +213,9 @@ export default function Feeds({ className }: { className?: string }) {
                       onClick={() =>
                         //setTokenid(nft.metadata.id.toString()),
                         //setIsOpen(true)
-                        router.push('/horse-details/' + nft?.tokenId)
+                        //router.push('/horse-details/' + nft?.tokenId)
+
+                        openDrawer('DRAWER_PREVIEW_NFT')
                       }
                     >
                       <Image
