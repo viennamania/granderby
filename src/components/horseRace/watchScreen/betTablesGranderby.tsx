@@ -92,7 +92,7 @@ export default function BetTables({ npcs }: any) {
 
   return (
     <>
-      <div className="mt-0 flex w-full flex-col items-center lg:w-2/3">
+      <div className="mt-20 flex w-full flex-col items-center lg:w-2/3">
         <div className="mb-4 flex w-full items-center justify-center rounded-lg text-5xl font-bold text-yellow-500">
           {betAmountTotal}
         </div>

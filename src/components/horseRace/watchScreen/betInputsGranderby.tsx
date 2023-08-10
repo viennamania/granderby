@@ -37,6 +37,11 @@ import { parseIneligibility } from '@/utils/parseIneligibility';
 
 import Image from 'next/image';
 
+import Button from '@/components/ui/button';
+import { OptionIcon } from '@/components/icons/option';
+
+import { useDrawer } from '@/components/drawer-views/context';
+
 /*
 import {
   ////contractConst,
@@ -113,6 +118,8 @@ export default function BetInputs({
   const [succ, setSucc] = useState(false);
   const [err, setErr] = useState(false);
   const [errMsg, setErrMsg] = useState<String>('');
+
+  const { openDrawer } = useDrawer();
 
   const handleClickSucc = () => {
     setSucc(true);
@@ -597,13 +604,26 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 1</span>
+
               <div className="flex flex-col items-center justify-center">
+                <Button
+                  shape="rounded"
+                  size="small"
+                  variant="ghost"
+                  color="gray"
+                  //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
+                  onClick={() => openDrawer('DRAWER_SEARCH')}
+                  className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                >
+                  <OptionIcon className="relative h-auto w-[18px]" />
+                </Button>
+
                 <Image
                   src={npcs?.media1?.thumbnail}
                   width={300}
                   height={300}
                   alt="pp"
-                  className="h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-2  h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -634,12 +654,24 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm">Line 2</span>
               <div className="flex flex-col items-center justify-center">
+                <Button
+                  shape="rounded"
+                  size="small"
+                  variant="ghost"
+                  color="gray"
+                  //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
+                  onClick={() => openDrawer('DRAWER_SEARCH')}
+                  className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                >
+                  <OptionIcon className="relative h-auto w-[18px]" />
+                </Button>
+
                 <Image
                   src={npcs?.media2?.thumbnail}
                   width={300}
                   height={300}
                   alt="pp"
-                  className="h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -670,12 +702,24 @@ export default function BetInputs({
             <div className="flex flex-col items-center justify-center">
               <span className="text-sm ">Line 3</span>
               <div className="flex flex-col items-center justify-center">
+                <Button
+                  shape="rounded"
+                  size="small"
+                  variant="ghost"
+                  color="gray"
+                  //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
+                  onClick={() => openDrawer('DRAWER_SEARCH')}
+                  className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                >
+                  <OptionIcon className="relative h-auto w-[18px]" />
+                </Button>
+
                 <Image
                   src={npcs?.media3?.thumbnail}
                   width={300}
                   height={300}
                   alt="pp"
-                  className="h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -707,12 +751,24 @@ export default function BetInputs({
               <span className="text-sm">Line 4</span>
 
               <div className="flex flex-col items-center justify-center">
+                <Button
+                  shape="rounded"
+                  size="small"
+                  variant="ghost"
+                  color="gray"
+                  //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
+                  onClick={() => openDrawer('DRAWER_SEARCH')}
+                  className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                >
+                  <OptionIcon className="relative h-auto w-[18px]" />
+                </Button>
+
                 <Image
                   src={npcs?.media4?.thumbnail}
                   width={300}
                   height={300}
                   alt="pp"
-                  className="h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -745,12 +801,24 @@ export default function BetInputs({
               <span className="text-sm">Line 5</span>
 
               <div className="flex flex-col items-center justify-center">
+                <Button
+                  shape="rounded"
+                  size="small"
+                  variant="ghost"
+                  color="gray"
+                  //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
+                  onClick={() => openDrawer('DRAWER_SEARCH')}
+                  className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                >
+                  <OptionIcon className="relative h-auto w-[18px]" />
+                </Button>
+
                 <Image
                   src={npcs?.media5?.thumbnail}
                   width={300}
                   height={300}
                   alt="pp"
-                  className="h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">

@@ -248,7 +248,8 @@ export type DRAWER_VIEW =
   | 'DRAWER_SEARCH'
   | 'DRAWER_FILTER'
   | 'DRAWER_PREVIEW_NFT';
-  */}
+
+
 
           <div className="flex w-full items-center justify-end">
             <Button
@@ -263,6 +264,7 @@ export type DRAWER_VIEW =
               <OptionIcon className="relative h-auto w-[18px]" />
             </Button>
           </div>
+            */}
 
           <iframe
             src="https://granderby.io/webgl/granderby/index.html"
@@ -301,9 +303,11 @@ export type DRAWER_VIEW =
           <BetTables npcs={npcNames} />
         </div>
 
+        {/*
         <div className="mx-auto mt-10 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
           <Search />
         </div>
+        */}
       </div>
 
       <footer>
