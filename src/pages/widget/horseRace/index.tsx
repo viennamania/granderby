@@ -127,11 +127,13 @@ const WidgetPage: NextPageWithLayout<
 
   const [status, setStatus] = useState<any>();
   const [time, setTime] = useState<any>(0);
+
   const [horse1Oran, setHorse1Oran] = useState<any>([]);
   const [horse2Oran, setHorse2Oran] = useState<any>([]);
   const [horse3Oran, setHorse3Oran] = useState<any>([]);
   const [horse4Oran, setHorse4Oran] = useState<any>([]);
   const [horse5Oran, setHorse5Oran] = useState<any>([]);
+
   const [flag, setFlag] = useState<any>(false);
   const [balance, setBalance] = useState<any>(0);
   const [flagLastWinner, setFlagLastWinner] = useState<any>(false);

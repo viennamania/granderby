@@ -28,7 +28,7 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import phonePC from '@/assets-landing/images/img-app.png';
 import phoneMobile from '@/assets-landing/images/0_asset.png';
 
-import BetInputs from '@/components/horseRace/watchScreen/betInputs';
+import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
 
 import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
 
@@ -88,6 +88,12 @@ const ProposalsPage: NextPageWithLayout<
   const { layout } = useLayout();
 
   const [npcNames, setNpcNames] = useState<any>([]);
+
+  const [horse1Oran, setHorse1Oran] = useState<any>([]);
+  const [horse2Oran, setHorse2Oran] = useState<any>([]);
+  const [horse3Oran, setHorse3Oran] = useState<any>([]);
+  const [horse4Oran, setHorse4Oran] = useState<any>([]);
+  const [horse5Oran, setHorse5Oran] = useState<any>([]);
 
   const [socket, setSocket] = useState<Socket | null>(null);
 
@@ -277,7 +283,21 @@ export type DRAWER_VIEW =
           ></iframe>
         </div>
 
-        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center gap-5 md:px-4 xl:gap-36 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <BetInputs
+            horse1={horse1Oran}
+            horse2={horse2Oran}
+            horse3={horse3Oran}
+            horse4={horse4Oran}
+            horse5={horse5Oran}
+            //user={user}
+            user={null}
+            npcs={npcNames}
+            //inputs={inputs}
+            inputs={null}
+            balance={0}
+          />
+
           <BetTables npcs={npcNames} />
         </div>
 
