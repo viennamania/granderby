@@ -28,6 +28,8 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import phonePC from '@/assets-landing/images/img-app.png';
 import phoneMobile from '@/assets-landing/images/0_asset.png';
 
+import Search from '@/components/search/search-horse';
+
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
@@ -152,6 +154,10 @@ const ProposalsPage: NextPageWithLayout<
           margin: '0',
         }}
       ></iframe>
+
+      <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <Search />
+      </div>
 
       <footer>
         <div className="flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
