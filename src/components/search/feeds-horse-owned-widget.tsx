@@ -54,7 +54,10 @@ export default function Feeds({ className }: { className?: string }) {
     nftDropContractAddressHorse,
     'nft-drop'
   );
-  const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+  const { data: ownedNfts, isLoading: isLoadingOwnedNfts } = useOwnedNFTs(
+    nftDropContract,
+    address
+  );
 
   /////console.log('Feeds ownedNfts======>', ownedNfts);
 
@@ -81,6 +84,14 @@ export default function Feeds({ className }: { className?: string }) {
           >
         */}
 
+          {isLoadingOwnedNfts && (
+            <div className="flex h-60 flex-col justify-center ">
+              <div className="flex justify-center">
+                <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+              </div>
+            </div>
+          )}
+
           <div
             //</>className={cn(
             //  'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
@@ -91,6 +102,15 @@ export default function Feeds({ className }: { className?: string }) {
             //)}
             className="flex flex-wrap justify-center"
           >
+            {ownedNfts?.length == 0 && (
+              <div className="flex h-60 flex-col justify-center ">
+                <div className="flex justify-center">
+                  <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+                  You don't own any horses yet.
+                </div>
+              </div>
+            )}
+
             {ownedNfts?.map((nft) => (
               <>
                 <div
@@ -103,20 +123,27 @@ export default function Feeds({ className }: { className?: string }) {
                     router.push('/horse-details/' + nft?.metadata?.id)
                   }
                 >
-                  <div className="flex text-xs font-semibold text-white">
-                    {nft?.metadata?.id}
+                  {/*
+                      flexable image size for mobile
+                    */}
+                  <div className="flex justify-center">
+                    <Image
+                      src={
+                        nft?.metadata?.image
+                          ? nft?.metadata?.image
+                          : '/default-nft.png'
+                      }
+                      alt="nft"
+                      height={60}
+                      width={60}
+                      loading="lazy"
+                      className="rounded-lg"
+                    />
                   </div>
 
-                  {/*
-                    <Image
-                      src={nft?.metadata?.image ? nft?.metadata?.image : '/default-nft.png' }
-                      alt='nft'
-                      height={25}
-                      width={25}
-                      loading='lazy'
-                      
-                    />
-                    */}
+                  <div className="m-2 flex text-xs font-semibold text-white">
+                    #{nft?.metadata?.id}
+                  </div>
                 </div>
               </>
             ))}

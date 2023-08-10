@@ -36,6 +36,8 @@ import Search from '@/components/search/search-horse';
 
 import { useDrawer } from '@/components/drawer-views/context';
 
+import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
+
 //@ts-ignore
 import { Socket, io } from 'socket.io-client';
 
@@ -248,10 +250,10 @@ export type DRAWER_VIEW =
   | 'DRAWER_SEARCH'
   | 'DRAWER_FILTER'
   | 'DRAWER_PREVIEW_NFT';
+*/}
 
-
-
-          <div className="flex w-full items-center justify-end">
+          <div className="flex w-full items-center justify-start">
+            {/*
             <Button
               shape="rounded"
               size="small"
@@ -263,8 +265,21 @@ export type DRAWER_VIEW =
             >
               <OptionIcon className="relative h-auto w-[18px]" />
             </Button>
-          </div>
             */}
+
+            {!address ? (
+              <>
+                <ConnectWallet theme="light" />
+                <h4 className="ml-5">
+                  to see your registered horses for racing
+                </h4>
+              </>
+            ) : (
+              <div className="">
+                <OwnedFeeds />
+              </div>
+            )}
+          </div>
 
           <iframe
             src="https://granderby.io/webgl/granderby/index.html"
