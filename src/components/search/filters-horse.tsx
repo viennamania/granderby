@@ -417,6 +417,7 @@ export function Filters() {
 
 export default function DrawerFilters() {
   const { closeDrawer } = useDrawer();
+
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
       <div className="flex h-20 items-center justify-between overflow-hidden px-6 py-4">
