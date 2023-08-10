@@ -220,29 +220,31 @@ const ProposalsPage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
-      <iframe
-        src="https://granderby.io/test/index.html"
-        //width="100vw"
-        //height="100vh"
-        //sandbox="allow-scripts allow-modal"
-        //width: 100vw;
-        //height: 100vw;
+      <div className="flex flex-wrap">
+        <iframe
+          src="https://granderby.io/test/index.html"
+          //width="100vw"
+          //height="100vh"
+          //sandbox="allow-scripts allow-modal"
+          //width: 100vw;
+          //height: 100vw;
 
-        //style="width: 100vw; height: 100vh; border: none;"
-        style={{
-          width: '100vw',
-          height: '100vh',
-          border: 'none',
-          margin: '0',
-        }}
-      ></iframe>
+          //style="width: 100vw; height: 100vh; border: none;"
+          style={{
+            width: '100vw',
+            height: '100vh',
+            border: 'none',
+            margin: '0',
+          }}
+        ></iframe>
 
-      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <BetTables npcs={npcNames} />
-      </div>
+        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <BetTables npcs={npcNames} />
+        </div>
 
-      <div className="mx-auto mt-10 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <Search />
+        <div className="mx-auto mt-10 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <Search />
+        </div>
       </div>
 
       <footer>
