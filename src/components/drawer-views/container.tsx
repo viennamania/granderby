@@ -13,6 +13,10 @@ const DrawerFilters = dynamic(
   () => import('@/components/search/filters-horse')
 );
 
+const DrawerHorseInfo = dynamic(
+  () => import('@/components/search/filters-horse-info')
+);
+
 const DrawerMenu = dynamic(() => import('@/layouts/sidebar/_layout-menu'));
 const PreviewContent = dynamic(
   () => import('@/components/create-nft/nft-preview-content')
@@ -26,6 +30,8 @@ function renderDrawerContent(view: DRAWER_VIEW | string) {
       return <DrawerFilters />;
     case 'DRAWER_PREVIEW_NFT':
       return <PreviewContent />;
+    case 'DRAWER_HORSE_INFO':
+      return <DrawerHorseInfo />;
     default:
       return <DrawerMenu />;
   }
