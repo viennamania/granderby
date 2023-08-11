@@ -90,9 +90,15 @@ export default function Feeds({ className }: { className?: string }) {
 
           {isLoadingOwnedNfts && (
             <span className="items-top mt-2 flex w-full flex-row justify-center gap-2">
-              <span className="text-gray-400">Loading your own horses...</span>
+              <h4 className="text-gray-400">Loading your own horses...</h4>
               <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
             </span>
+          )}
+
+          {ownedNfts?.length == 0 && (
+            <h4 className="flex flex-col justify-center ">
+              You don't own any horses yet.
+            </h4>
           )}
 
           <div
@@ -105,12 +111,6 @@ export default function Feeds({ className }: { className?: string }) {
             )}
             //className="flex flex-wrap justify-center"
           >
-            {ownedNfts?.length == 0 && (
-              <h4 className="flex flex-col justify-center ">
-                You don't own any horses yet.
-              </h4>
-            )}
-
             {ownedNfts?.map((nft) => (
               <>
                 <div

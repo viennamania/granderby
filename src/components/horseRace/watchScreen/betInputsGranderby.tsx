@@ -535,7 +535,7 @@ export default function BetInputs({
 
                 <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
               ) : (
-                <div className=" font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                <div className="text-xl font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
                   <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b> &nbsp;
                   {tokenBalance?.symbol}
                 </div>
