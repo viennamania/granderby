@@ -274,7 +274,7 @@ export type DRAWER_VIEW =
                 <div>
                   <ConnectWallet theme="light" />
                 </div>
-                <h3 className="">to see your registered horses for racing</h3>
+                <h4 className="">to see your registered horses for racing</h4>
               </div>
             ) : (
               <div className="flex flex-col  ">

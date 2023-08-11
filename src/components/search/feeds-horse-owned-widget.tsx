@@ -98,19 +98,19 @@ export default function Feeds({ className }: { className?: string }) {
           )}
 
           <div
-            //</>className={cn(
-            //  'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-            //  isGridCompact
-            //   ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-            //   : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-            // className
-            //)}
-            className="flex flex-wrap justify-center"
+            className={cn(
+              '2xl:grid-cols-15 grid grid-cols-5 gap-2 sm:grid-cols-5 md:grid-cols-10',
+              isGridCompact
+                ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+                : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+              className
+            )}
+            //className="flex flex-wrap justify-center"
           >
             {ownedNfts?.length == 0 && (
-              <div className="flex flex-col justify-center ">
+              <h4 className="flex flex-col justify-center ">
                 You don't own any horses yet.
-              </div>
+              </h4>
             )}
 
             {ownedNfts?.map((nft) => (
