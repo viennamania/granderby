@@ -270,26 +270,28 @@ export type DRAWER_VIEW =
             */}
 
             {!address ? (
-              <div className="flex w-full flex-col">
+              <div className="flex flex-col">
                 <div>
                   <ConnectWallet theme="light" />
                 </div>
-                <h4 className="ml-5">
-                  to see your registered horses for racing
-                </h4>
+                <h3 className="">to see your registered horses for racing</h3>
               </div>
             ) : (
-              <div className="flex flex-col">
+              <div className="flex flex-col  ">
+                {/*
+
                 {tokenBalanceIsLoading ? (
                   ////<span>Loading your token balance...</span>
 
                   <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
                 ) : (
-                  <div className="flex flex-row text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                  <div className=" font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
                     <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
                     &nbsp;{tokenBalance?.symbol}
                   </div>
                 )}
+
+                */}
 
                 <OwnedFeeds />
               </div>

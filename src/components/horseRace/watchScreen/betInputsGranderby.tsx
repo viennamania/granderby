@@ -41,6 +41,7 @@ import Button from '@/components/ui/button';
 import { OptionIcon } from '@/components/icons/option';
 
 import { useDrawer } from '@/components/drawer-views/context';
+import { add } from 'lodash';
 
 /*
 import {
@@ -108,6 +109,15 @@ export default function BetInputs({
     inputs,
     balance,
   });
+
+  const address = useAddress();
+
+  const { contract: tokenContract } = useContract(
+    tokenContractAddressGRD,
+    'token'
+  );
+  const { data: tokenBalance, isLoading: tokenBalanceIsLoading } =
+    useTokenBalance(tokenContract, address);
 
   const [chosenNpc, setChosenNpc] = useState<any>(null);
   const [betAmount, setBetAmount] = useState<any>(0);
@@ -490,32 +500,49 @@ export default function BetInputs({
       <div className="disabled flex w-full flex-col items-center justify-center gap-5 lg:w-2/3">
         {/* //? Input amount manuel */}
 
-        <div className="relative flex w-full items-center md:w-1/2">
-          <div className="absolute left-5 z-10">
-            {/*
-              <FaCoins className='fill-yellow-500' />
-              */}
-          </div>
-          <input
-            onChange={(e: any) => {
-              setBetAmount(e.target.value);
-            }}
-            value={betAmount === 0 ? '' : betAmount}
-            type="number"
-            disabled={placedBet}
-            placeholder="Enter your bet"
-            className="w-full rounded-lg border bg-transparent p-2 pl-20 text-white"
-          />
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setBetAmount(0);
-            }}
-            className="btn btn-xs btn-outline absolute right-5 z-10 border-gray-700"
-          >
-            Clear
-          </button>
-        </div>
+        {address && (
+          <>
+            <div className="relative flex w-full items-center md:w-1/2">
+              <div className="absolute left-5 z-10">
+                {/*
+                <FaCoins className='fill-yellow-500' />
+                */}
+              </div>
+              <input
+                onChange={(e: any) => {
+                  setBetAmount(e.target.value);
+                }}
+                value={betAmount === 0 ? '' : betAmount}
+                type="number"
+                disabled={placedBet}
+                placeholder="Enter your bet"
+                className="w-full rounded-lg border bg-transparent p-2 pl-20 font-bold text-black  disabled:opacity-70"
+              />
+              <button
+                disabled={placedBet}
+                onClick={() => {
+                  setBetAmount(0);
+                }}
+                className="btn btn-xs btn-outline absolute right-5 z-10 border-gray-700"
+              >
+                Clear
+              </button>
+            </div>
+
+            <div>
+              {tokenBalanceIsLoading ? (
+                ////<span>Loading your token balance...</span>
+
+                <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+              ) : (
+                <div className=" font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                  <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b> &nbsp;
+                  {tokenBalance?.symbol}
+                </div>
+              )}
+            </div>
+          </>
+        )}
 
         {/* //? Miktar Selector Buttons */}
 
