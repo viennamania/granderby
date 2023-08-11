@@ -11,12 +11,12 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 import { Network, Alchemy } from 'alchemy-sdk';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
 import useSWR from 'swr';
-import { fetcher } from '../../lib/utils';
+import { fetcher } from '@/lib/utils';
 
 import { StaticImageData } from 'next/image';
 import { OptionalPropertiesInput } from '@thirdweb-dev/sdk';
@@ -49,6 +49,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   //const [employees, setEmployees] = useState<Employee[]>([]);
 
+  /*
   const [horses, setHorses] = useState<NFT[]>([]);
 
   //const [cursor, setCursor] = useState<string | undefined>(undefined);
@@ -62,8 +63,11 @@ export default function Feeds({ className }: { className?: string }) {
 
   const alchemy = new Alchemy(settings);
 
+  */
+
   const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery(
     'infiniteCharacters',
+
     async ({
       ///pageParam = 1,
 
@@ -75,6 +79,7 @@ export default function Feeds({ className }: { className?: string }) {
       ).then((result) => result.json()),
       */
 
+      /*
       await alchemy.nft
         .getNftsForContract(nftDropContractAddressHorse, {
           pageKey: pageParam,
@@ -86,6 +91,28 @@ export default function Feeds({ className }: { className?: string }) {
 
           return result;
         }),
+        */
+
+      //const { data: nftcollection } = useSWR(`/api/getNftsForContract`, fetcher);
+
+      /*
+        await fetcher(`/api/getNftsForContract?pageKey=${pageParam}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+
+        }).then((result) => {
+
+          return result;
+        }),
+        */
+
+      await fetcher(
+        `/api/getNftsForContract?pageKey=${pageParam}&pageSize=30`
+      ).then((result) => {
+        //console.log("result======>", result);
+
+        return result;
+      }),
 
     /*
         await fetch('/api/nft/getHorses', {
@@ -130,9 +157,9 @@ export default function Feeds({ className }: { className?: string }) {
 
   ///console.log(data);
 
-  //const { data } = useSWR(`/api/getNftsForCollection`, fetcher);
+  //const { data: nftcollection } = useSWR(`/api/getNftsForContract`, fetcher);
 
-  //console.log(data);
+  //console.log(nftcollection);
 
   /*
   const getLast20 = async () => {
@@ -205,7 +232,7 @@ export default function Feeds({ className }: { className?: string }) {
           >
             {data?.pages.map((page) => (
               <>
-                {page.nfts?.map((nft) => (
+                {page.nfts?.map((nft: any) => (
                   <>
                     <div
                       key={nft?.tokenId}
@@ -219,11 +246,7 @@ export default function Feeds({ className }: { className?: string }) {
                       }
                     >
                       <Image
-                        src={
-                          nft?.media[0]?.gateway
-                            ? nft?.media[0]?.gateway
-                            : '/default-nft.png'
-                        }
+                        src={nft?.media ? nft?.media : '/default-nft.png'}
                         alt={nft?.title}
                         height={500}
                         width={500}

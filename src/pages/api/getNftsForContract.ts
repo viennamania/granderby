@@ -1,8 +1,13 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { Network, Alchemy } from 'alchemy-sdk';
 
-import { nftDropContractAddressHorse } from '../../config/contractAddresses';
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
+/*
 export default async function handler(req, res) {
+
+
   const { pageKey, pageSize } = JSON.parse(req.body);
 
   if (req.method !== 'POST') {
@@ -10,11 +15,18 @@ export default async function handler(req, res) {
     return;
   }
 
-  console.log(chain);
+*/
+
+export default async function handler(
+  req: NextApiRequest,
+  //res: NextApiResponse<Data>
+  res: NextApiResponse
+) {
+  const { pageKey, pageSize } = req.query;
 
   const settings = {
-    //apiKey: process.env.ALCHEMY_API_KEY,
-    apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH',
+    apiKey: process.env.ALCHEMY_API_KEY,
+    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH',
     network: Network.MATIC_MAINNET,
   };
   const alchemy = new Alchemy(settings);
@@ -25,8 +37,26 @@ export default async function handler(req, res) {
       {
         pageKey: pageKey ? pageKey : null,
         pageSize: pageSize ? pageSize : null,
+
+        //pageKey: pageKey ? pageKey : null,
+        //pageSize: pageSize ? pageSize : null,
       }
     );
+
+    {
+      /*
+    const nfts = await alchemy.nft.getNftsForContract(
+      nftDropContractAddressHorse,
+      {
+        pageKey: pageKey ? pageKey : null,
+        pageSize: pageSize ? pageSize : null,
+      }
+    );  
+    */
+    }
+
+    ////console.log('nfts', nfts);
+
     const formattedNfts = nfts.nfts.map((nft) => {
       const { contract, title, tokenType, tokenId, description, media } = nft;
 
