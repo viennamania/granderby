@@ -107,7 +107,8 @@ const ProposalsPage: NextPageWithLayout<
     tokenContractAddressGRD,
     'token'
   );
-  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+  const { data: tokenBalance, isLoading: tokenBalanceIsLoading } =
+    useTokenBalance(tokenContract, address);
 
   useEffect(() => {
     socketInitializer();
@@ -269,20 +270,33 @@ export type DRAWER_VIEW =
             */}
 
             {!address ? (
-              <div className="flex w-full flex-col items-center justify-center">
-                <ConnectWallet theme="light" />
+              <div className="flex w-full flex-col">
+                <div>
+                  <ConnectWallet theme="light" />
+                </div>
                 <h4 className="ml-5">
                   to see your registered horses for racing
                 </h4>
               </div>
             ) : (
-              <div className="">
+              <div className="flex flex-col">
+                {tokenBalanceIsLoading ? (
+                  ////<span>Loading your token balance...</span>
+
+                  <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                ) : (
+                  <div className="flex flex-row text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                    <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
+                    &nbsp;{tokenBalance?.symbol}
+                  </div>
+                )}
+
                 <OwnedFeeds />
               </div>
             )}
           </div>
 
-          <div className="flex w-full items-center justify-center  rounded-md bg-white">
+          <div className="mt-2 flex w-full items-center justify-center  rounded-md bg-white">
             <iframe
               src="https://granderby.io/webgl/granderby/index.html"
               //width="100vw"

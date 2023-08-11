@@ -6,6 +6,8 @@ import { ThemeProvider } from 'next-themes';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+import '@/styles/globals.css';
+
 /*
 import {
   QueryClient,

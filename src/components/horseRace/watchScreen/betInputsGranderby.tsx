@@ -489,99 +489,117 @@ export default function BetInputs({
 
       <div className="disabled flex w-full flex-col items-center justify-center gap-5 lg:w-2/3">
         {/* //? Input amount manuel */}
-        {/*
-                <div className='flex items-center w-full md:w-1/2 relative'>
-                    <div className='absolute left-5 z-10'> <FaCoins className='fill-yellow-500' /> </div>
-                    <input onChange={(e: any) => {
-                        setBetAmount(e.target.value)
-                    }}
-                        value={betAmount === 0 ? '' : betAmount}
-                        type="number"
-                        disabled={placedBet}
-                        placeholder='Enter your bet'
-                        className='w-full pl-20 rounded-lg p-2 bg-transparent border text-white' />
-                    <button
-                        disabled={placedBet}
-                        onClick={() => { setBetAmount(0) }}
-                        className='absolute right-5 z-10 btn btn-xs btn-outline border-gray-700'>Clear</button>
-                </div>
-                */}
+
+        <div className="relative flex w-full items-center md:w-1/2">
+          <div className="absolute left-5 z-10">
+            {/*
+              <FaCoins className='fill-yellow-500' />
+              */}
+          </div>
+          <input
+            onChange={(e: any) => {
+              setBetAmount(e.target.value);
+            }}
+            value={betAmount === 0 ? '' : betAmount}
+            type="number"
+            disabled={placedBet}
+            placeholder="Enter your bet"
+            className="w-full rounded-lg border bg-transparent p-2 pl-20 text-white"
+          />
+          <button
+            disabled={placedBet}
+            onClick={() => {
+              setBetAmount(0);
+            }}
+            className="btn btn-xs btn-outline absolute right-5 z-10 border-gray-700"
+          >
+            Clear
+          </button>
+        </div>
+
         {/* //? Miktar Selector Buttons */}
-        {/*
-                <div className='grid grid-cols-4 content-center md:flex w-full gap-3 items-center justify-center text-white'>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount + inputs.input1)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
-                        +{inputs.input1}
-                    </button>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount + inputs.input2)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
-                        +{inputs.input2}
-                    </button>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount + inputs.input3)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
-                        {
-                            inputs.input3
-                        }
-                    </button>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount + inputs.input4)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
-                        +{inputs.input4}
-                    </button>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount + inputs.input5)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
-                        +{inputs.input5}
-                    </button>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount + inputs.input6)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
-                        +{inputs.input6}
-                    </button>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount * 2)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'> x2 </button>
-                    <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(betAmount / 2)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'> /2 </button>
-                    {user && <button
-                        disabled={placedBet}
-                        onClick={() => {
-                            setBetAmount(balance - 0.00001)
-                        }}
-                        className='w-20 green-btn h-10 rounded-lg hidden md:block font-medium-repeat text-black border disabled:opacity-70'> Max </button>}
-                </div>
+
+        {/*}
+            <div className=' 
+              grid grid-cols-4 content-center md:flex w-full gap-3 items-center justify-center text-black
+            '>
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount + inputs?.input1)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg font-medium border disabled:opacity-70'>
+
+                    +{inputs?.input1}
+
+
+                </button>
+
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount + inputs?.input2)
+                    }}
+                    className='w-20 green-btn h-10 rounded-l font-medium border disabled:opacity-70'>
+                    +{inputs?.input2}
+                </button>
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount + inputs?.input3)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
+                    {
+                        inputs?.input3
+                    }
+                </button>
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount + inputs?.input4)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg font-medium border disabled:opacity-70'>
+                    +{inputs?.input4}
+                </button>
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount + inputs?.input5)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'>
+                    +{inputs?.input5}
+                </button>
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount + inputs?.input6)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'>
+                    +{inputs?.input6}
+                </button>
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount * 2)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'> x2 </button>
+                <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(betAmount / 2)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'> /2 </button>
+                {user && <button
+                    disabled={placedBet}
+                    onClick={() => {
+                        setBetAmount(balance - 0.00001)
+                    }}
+                    className='w-20 green-btn h-10 rounded-lg hidden md:block font-medium-repeat text-black border disabled:opacity-70'> Max </button>}
+            </div>
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="flex w-full flex-row items-center justify-center gap-3 text-xl  font-bold md:flex-row md:justify-around">
+        <div className="flex w-full flex-row items-center justify-center gap-3 text-2xl  font-bold md:flex-row md:justify-around">
           Entry
         </div>
 
@@ -600,7 +618,7 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center ">
               <span className="text-sm">Line 1</span>
 
               <div className="flex flex-col items-center justify-center">
@@ -621,7 +639,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -670,7 +688,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -718,7 +736,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -767,7 +785,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
@@ -817,7 +835,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
                 />
 
                 <span className=" text-sm text-sky-500 xl:text-2xl">
