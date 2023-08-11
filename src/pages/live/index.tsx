@@ -269,12 +269,12 @@ export type DRAWER_VIEW =
             */}
 
             {!address ? (
-              <>
+              <div className="flex w-full flex-col items-center justify-center">
                 <ConnectWallet theme="light" />
                 <h4 className="ml-5">
                   to see your registered horses for racing
                 </h4>
-              </>
+              </div>
             ) : (
               <div className="">
                 <OwnedFeeds />
@@ -282,26 +282,31 @@ export type DRAWER_VIEW =
             )}
           </div>
 
-          <iframe
-            src="https://granderby.io/webgl/granderby/index.html"
-            //width="100vw"
-            //height="100vh"
-            //sandbox="allow-scripts allow-modal"
-            //width: 100vw;
-            //height: 100vw;
+          <div className="flex w-full items-center justify-center  rounded-md bg-white">
+            <iframe
+              src="https://granderby.io/webgl/granderby/index.html"
+              //width="100vw"
+              //height="100vh"
+              //sandbox="allow-scripts allow-modal"
+              //width: 100vw;
+              //height: 100vw;
 
-            //style="width: 100vw; height: 100vh; border: none;"
-            style={{
-              //width: '100vw',
-              width: '100%',
-              height: '100vh',
-              border: 'none',
-              margin: '0',
-            }}
-          ></iframe>
+              //style="width: 100vw; height: 100vh; border: none;"
+              style={{
+                width: '100vw',
+                //width: '100%',
+                height: '100vh',
+                //height: '100%',
+                border: 'none',
+                margin: '0',
+                padding: '0',
+                overflow: 'hidden',
+              }}
+            ></iframe>
+          </div>
         </div>
 
-        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center gap-5 md:px-4 xl:gap-36 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <div className="mx-auto mt-5 flex w-full shrink-0 flex-col items-center justify-center gap-5 md:px-4 xl:gap-36 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
           <BetInputs
             horse1={horse1Oran}
             horse2={horse2Oran}

@@ -44,6 +44,7 @@ const nextConfig = withPWA({
       '6d0a3abfa7ad50324b419e1a4da4721c.ipfscdn.io',
       'randomuser.me',
       'res.cloudinary.com',
+      'bafybeialqcg4le2irtqqqcp2ea7yvy3yrmtuyn6rbdyarl247lfl7x44ce.ipfs.cf-ipfs.com',
     ],
   },
 
