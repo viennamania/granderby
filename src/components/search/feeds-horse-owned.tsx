@@ -54,9 +54,12 @@ export default function Feeds({ className }: { className?: string }) {
     nftDropContractAddressHorse,
     'nft-drop'
   );
-  const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+  const { data: ownedNfts, isLoading: isLoadingOwnedNfts } = useOwnedNFTs(
+    nftDropContract,
+    address
+  );
 
-  console.log('ownedNfts======>', ownedNfts);
+  ////console.log("ownedNfts======>", ownedNfts);
 
   /*
   const settings = {
@@ -201,79 +204,62 @@ export default function Feeds({ className }: { className?: string }) {
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center">
             <ConnectWallet theme="light" />
+            for your own horses
           </div>
         </>
       ) : (
         <>
-          {/*
-        {status === "success" && (
+          {
+            // If the listings are loading, show a loading message
+            isLoadingOwnedNfts ? (
+              <>
+                <div className="flex flex-col items-center justify-center ">
+                  <div className="text-xl">Loading your own horses...</div>
 
-          <InfiniteScroll
-            dataLength={data?.pages.length * 20}
-            next={fetchNextPage}
-            hasMore={hasNextPage ?? false}
-            loader={<h4>Loading...</h4>}
-          >
-        */}
-
-          <div
-            className={cn(
-              'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-              isGridCompact
-                ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-              className
-            )}
-          >
-            {/*
-              {data?.pages.map((page) => (
-              */}
-
-            <>
-              {/*
-                  {page.ownedNfts?.map((nft) => (
-                  */}
-
-              {ownedNfts?.map((nft) => (
-                <div
-                  key={nft?.metadata?.id}
-                  className="relative overflow-hidden rounded-lg bg-white shadow-lg"
-                  onClick={() =>
-                    //setTokenid(nft.metadata.id.toString()),
-                    //setIsOpen(true)
-                    router.push('/horse-details/' + nft?.metadata?.id)
-                  }
-                >
-                  <Image
-                    src={
-                      nft?.metadata?.image
-                        ? nft?.metadata?.image
-                        : '/default-nft.png'
-                    }
-                    alt="nft"
-                    height={500}
-                    width={500}
-                    loading="lazy"
-                  />
-                  <div className="m-2 w-full">
-                    <p className="text-md font-bold">{nft?.metadata?.name}</p>
-                  </div>
+                  <span className="items-top mt-10 flex h-screen w-full justify-center">
+                    <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                  </span>
                 </div>
-              ))}
-            </>
-
-            {/*
-
-              ))}
-              */}
-          </div>
-
-          {/*
-          </InfiniteScroll>
-
-        )}
-
-*/}
+              </>
+            ) : (
+              <div
+                className={cn(
+                  'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                  isGridCompact
+                    ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+                    : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                  className
+                )}
+              >
+                {ownedNfts?.map((nft) => (
+                  <div
+                    key={nft?.metadata?.id}
+                    className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                    onClick={() =>
+                      //setTokenid(nft.metadata.id.toString()),
+                      //setIsOpen(true)
+                      router.push('/horse-details/' + nft?.metadata?.id)
+                    }
+                  >
+                    <Image
+                      src={
+                        nft?.metadata?.image
+                          ? nft?.metadata?.image
+                          : '/default-nft.png'
+                      }
+                      alt="nft"
+                      height={500}
+                      width={500}
+                      loading="lazy"
+                    />
+                    <div className="m-2 w-full">
+                      <p className="text-md font-bold">{nft?.metadata?.name}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )
+          }
         </>
       )}
     </>

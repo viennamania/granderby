@@ -567,11 +567,11 @@ const MintPage: NextPageWithLayout<
         <div className="mb-3 mt-16">
           {!address ? (
             <>
-              <h4>to see your owned horses</h4>
+              <h4>to see your own horses</h4>
             </>
           ) : (
             <>
-              <h3>Your owned horses</h3>
+              <h3>your own horses</h3>
               <h4 className="">Registered horses are not listed</h4>
             </>
           )}

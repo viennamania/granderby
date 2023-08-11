@@ -607,11 +607,11 @@ const MintPage: NextPageWithLayout<
           {!address ? (
             <>
               <ConnectWallet />
-              <h4>to see your owned coupons</h4>
+              <h4>to see your own coupons</h4>
             </>
           ) : (
             <>
-              <h3>Your owned coupons</h3>
+              <h3>your own coupons</h3>
             </>
           )}
         </div>
