@@ -341,7 +341,7 @@ const ProposalsPage: NextPageWithLayout<
           </div>
         </div>
 
-        <div className=" items-top mt-2 flex w-full flex-row justify-center gap-2  rounded-md border  bg-black ">
+        <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
           <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white">
             nderby:granderby:granderby:granderby
           </div>
@@ -362,7 +362,7 @@ const ProposalsPage: NextPageWithLayout<
             />
           </div>
 
-          <div className="ml-0 mr-[200px]  hidden w-full items-center justify-center xl:flex  ">
+          <div className="ml-0 mr-[200px] flex w-full items-center justify-center  ">
             <iframe
               src="https://granderby.io/webgl/granderby/index.html"
               //width="100vw"
