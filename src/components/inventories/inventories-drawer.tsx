@@ -293,13 +293,13 @@ function ColorSwitcher() {
 }
 
 export default function InventoriesDrawer() {
-  const { isSettingsOpen, closeSettings } = useInventoriesDrawer();
+  const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
   return (
-    <Transition appear show={isSettingsOpen} as={Fragment}>
+    <Transition appear show={isInventoriesOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed inset-0 z-40 overflow-hidden"
-        onClose={closeSettings}
+        onClose={closeInventories}
       >
         <Transition.Child
           as={Fragment}
@@ -335,7 +335,7 @@ export default function InventoriesDrawer() {
                   shape="circle"
                   variant="transparent"
                   size="small"
-                  onClick={closeSettings}
+                  onClick={closeInventories}
                 >
                   <Close className="h-auto w-2.5" />
                 </Button>

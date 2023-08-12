@@ -8,7 +8,7 @@ import { LAYOUT_OPTIONS } from '@/lib/constants';
 import { useLayout } from '@/lib/hooks/use-layout';
 
 export default function InventoriesButton() {
-  const { opeSettings } = useInventoriesDrawer();
+  const { opeInventories } = useInventoriesDrawer();
   const [direction] = useLocalStorage<string>('criptic-direction');
   const [themeColor] = useLocalStorage<string>('criptic-color');
   useDirection(direction ? direction : 'ltr');
@@ -27,7 +27,7 @@ export default function InventoriesButton() {
       <div className="fixed top-1/2 z-40 -translate-y-1/2 ltr:right-0 rtl:left-0">
         <button
           className="flex h-12 w-12 items-center justify-center bg-white/80 text-gray-600 shadow-large backdrop-blur ltr:rounded-l-lg rtl:rounded-r-lg dark:bg-brand/80 dark:text-gray-200/70"
-          onClick={opeSettings}
+          onClick={opeInventories}
           title="Inventory"
         >
           <svg

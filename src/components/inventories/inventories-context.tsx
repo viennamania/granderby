@@ -2,12 +2,12 @@ import { atom, useAtom } from 'jotai';
 
 const inventoriesDrawerAtom = atom(false);
 export function useInventoriesDrawer() {
-  const [isSettingsOpen, setSettingOpen] = useAtom(inventoriesDrawerAtom);
-  const opeSettings = () => setSettingOpen(true);
-  const closeSettings = () => setSettingOpen(false);
+  const [isInventoriesOpen, setSettingOpen] = useAtom(inventoriesDrawerAtom);
+  const opeInventories = () => setSettingOpen(true);
+  const closeInventories = () => setSettingOpen(false);
   return {
-    isSettingsOpen,
-    opeSettings,
-    closeSettings,
+    isInventoriesOpen,
+    opeInventories,
+    closeInventories,
   };
 }

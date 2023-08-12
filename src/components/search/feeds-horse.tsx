@@ -16,7 +16,7 @@ import { use, useEffect, useState } from 'react';
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
 import useSWR from 'swr';
-import { fetcher } from '@/lib/utils';
+import { fetcher } from '../../lib/utils';
 
 import { StaticImageData } from 'next/image';
 import { OptionalPropertiesInput } from '@thirdweb-dev/sdk';
@@ -28,14 +28,10 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
-import { useDrawer } from '@/components/drawer-views/context';
-
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
-
-  const { openDrawer } = useDrawer();
 
   type NFT = {
     id: string;
@@ -54,6 +50,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   //const [cursor, setCursor] = useState<string | undefined>(undefined);
 
+
   const settings = {
     ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
 
@@ -62,50 +59,17 @@ export default function Feeds({ className }: { className?: string }) {
   };
 
   const alchemy = new Alchemy(settings);
-
   */
 
   const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery(
     'infiniteCharacters',
 
     async ({
-      ///pageParam = 1,
+      pageParam = 1,
 
-      pageParam = '',
+      //pageParam = '',
     }) =>
       /*
-      await fetch(
-        `https://rickandmortyapi.com/api/character/?page=${pageParam}`
-      ).then((result) => result.json()),
-      */
-
-      /*
-      await alchemy.nft
-        .getNftsForContract(nftDropContractAddressHorse, {
-          pageKey: pageParam,
-          pageSize: 40,
-        })
-        .then((result) => {
-          //result
-          console.log('result======>', result);
-
-          return result;
-        }),
-        */
-
-      //const { data: nftcollection } = useSWR(`/api/getNftsForContract`, fetcher);
-
-      /*
-        await fetcher(`/api/getNftsForContract?pageKey=${pageParam}`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-
-        }).then((result) => {
-
-          return result;
-        }),
-        */
-
       await fetcher(
         `/api/getNftsForContract?pageKey=${pageParam}&pageSize=30`
       ).then((result) => {
@@ -113,27 +77,34 @@ export default function Feeds({ className }: { className?: string }) {
 
         return result;
       }),
+      */
+
+      await fetcher(
+        '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20'
+      ).then((result) => {
+        //console.log("result======>", result);
+
+        return result;
+      }),
 
     /*
-        await fetch('/api/nft/getHorses', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          //body: JSON.stringify({
-          //  method: 'getAll',
-          //}),
-        }).then((result) => {
+      await fetch(
+        `https://rickandmortyapi.com/api/character/?page=${pageParam}`
+      ).then((result) => result.json()),
+      */
 
-          async () => {
-
-            const data = await result.json();
-
-            console.log("result======>", data);
-
-            return data;
-          }
-
+    /*
+      await alchemy.nft.getNftsForContract(
+        nftDropContractAddressHorse,
+        {
+          pageKey: pageParam,
+          pageSize: 40,
+        }
+      ).then((result) => { //result
+          ///console.log("result======>", result)
+          return result
         }),
-        */
+      */
 
     /*
       .finally((result:any) => {
@@ -155,138 +126,158 @@ export default function Feeds({ className }: { className?: string }) {
     }
   );
 
-  ///console.log(data);
-
-  //const { data: nftcollection } = useSWR(`/api/getNftsForContract`, fetcher);
-
-  //console.log(nftcollection);
-
   /*
-  const getLast20 = async () => {
-    const response = await fetch('/api/nft/getHorses', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      //body: JSON.stringify({
-      //  method: 'getAll',
-      //}),
-    });
-    const data = await response.json();
-
-    console.log(data);
-
-    ////setLast20Game(data.all);
-  };
-
   useEffect(() => {
-    getLast20();
+
+    const main = async () => {
+
+      await fetcher('/api/nft/getHorses').then((result) => {
+        console.log("result======>", result);
+      
+      });
+
+    };
+
+    main();
+
   }, []);
   */
 
+  /////console.log("status======>", status);
+
+  /*
+  useEffect(() => {
+    const main = async () => {
+      //Call the method to fetch metadata
+      const response = await alchemy.nft.getNftsForContract(
+        nftDropContractAddressHorse,
+        {
+          //pageKey: 'cursor',
+          pageSize: 10,
+        }
+      );
+
+      //console.log(response.pageKey);
+
+      setCursor(response.pageKey);
+
+      //Logging the response to the console
+
+      ///setHorses(response.nfts)
+
+      const NFTList = response.nfts.map((nft) => {
+        const { contract, title, tokenType, tokenId, description, media } = nft;
+
+        //console.log("mdia", media[0]);
+
+
+        return {
+          id: tokenId,
+          author: contract.address,
+          authorImage: AuthorImage,
+          image: media[0]?.thumbnail
+            ? media[0]?.thumbnail
+            : 'https://via.placeholder.com/500',
+          name: title,
+          collection: contract.openSea?.collectionName
+            ? contract.openSea?.collectionName
+            : '',
+          price: '0',
+
+
+        };
+      });
+
+      setHorses(NFTList);
+
+      ///setHorses([...horses, ...NFTList]);
+
+      ///setHorses([...horses, ...response.nfts]);
+
+      ///setHorses((horses) => [...horses, response.nfts]);
+
+      ///setHorses((horses) => [...horses, NFTList]);
+
+      //setHorses(horses.concat(response.nfts))
+
+      ///console.log(NFTList);
+    };
+
+    main();
+  }, [alchemy.nft]);
+
+  */
+
+  //const { data } = useSWR(`/api/getNftsForCollection`, fetcher);
+
+  //console.log(data);
+
   return (
     <>
-      {/*
-    <div
-      className={cn(
-        'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-        isGridCompact
-          ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-          : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-        className
-      )}
-    >
-    */}
+      {status === 'loading' && (
+        <>
+          <div className="flex flex-col items-center justify-center ">
+            <div className="text-xl">Loading horses...</div>
 
-      {/*
-      {horses.map((nft) => (
-        <NFTGrid
-          key={nft.id}
-          name={nft.name}
-          image={nft.image}
-          author={nft.author}
-          authorImage={nft.authorImage}
-          price={nft.price}
-          collection={nft.collection}
-        />
-      ))}
-      */}
+            <span className="items-top mt-10 flex h-screen w-full justify-center">
+              <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+            </span>
+          </div>
+        </>
+      )}
 
       {status === 'success' && (
         <InfiniteScroll
           dataLength={data?.pages.length * 20}
           next={fetchNextPage}
           hasMore={hasNextPage ?? false}
-          loader={<h4>Loading...</h4>}
+          loader={
+            <div className="mt-10 flex flex-col items-center justify-center ">
+              <div className="text-xl">Loading horses...</div>
+
+              <span className="items-top mt-10 flex h-screen w-full justify-center">
+                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+              </span>
+            </div>
+          }
         >
-          {/*
-          <div className='grid-container'>
-*/}
-
-          <div
-            className={cn(
-              'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-              isGridCompact
-                ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-              className
-            )}
-          >
-            {data?.pages.map((page) => (
-              <>
-                {page.nfts?.map((nft: any) => (
-                  <>
-                    <div
-                      key={nft?.tokenId}
-                      className="relative overflow-hidden rounded-lg bg-white shadow-lg"
-                      onClick={() =>
-                        //setTokenid(nft.metadata.id.toString()),
-                        //setIsOpen(true)
-                        //router.push('/horse-details/' + nft?.tokenId)
-
-                        openDrawer('DRAWER_PREVIEW_NFT')
-                      }
-                    >
-                      <Image
-                        src={nft?.media ? nft?.media : '/default-nft.png'}
-                        alt={nft?.title}
-                        height={500}
-                        width={500}
-                        loading="lazy"
-                      />
-                      <div className="m-2 w-full">
-                        <p className="text-md font-bold">{nft?.title}</p>
-                      </div>
-                    </div>
-
-                    {/*
-                {page.results.map((character) => (
-                  */}
-
-                    {/*
-                  <article key={nft?.id}>
-                    <img
-                      src={nft?.image}
-                      alt={nft?.name}
-                      height={250}
-                      loading='lazy'
-                      width={"100%"}
-                    />
-                    <div className='text'>
-                      <p>Name: {nft?.name}</p>
-
-                    </div>
-                  </article>
-                  */}
-                  </>
-                ))}
-              </>
-            ))}
-          </div>
+          {data?.pages.map((page) => (
+            <div
+              key={page.pageKey}
+              className={cn(
+                'mt-5 grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                isGridCompact
+                  ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+                  : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                className
+              )}
+            >
+              {page.nfts?.map((nft: any) => (
+                <div
+                  key={nft?.tokenId}
+                  className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                  onClick={() =>
+                    //setTokenid(nft.metadata.id.toString()),
+                    //setIsOpen(true)
+                    router.push('/horse-details/' + nft?.tokenId)
+                  }
+                >
+                  <Image
+                    src={nft?.media ? nft?.media : '/default-nft.png'}
+                    alt={nft?.title}
+                    height={500}
+                    width={500}
+                    loading="lazy"
+                  />
+                  <div className="m-2 w-full">
+                    <p className="text-md font-bold">{nft?.title}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
         </InfiniteScroll>
       )}
-
-      {/*
-    </div>
-    */}
     </>
   );
 }

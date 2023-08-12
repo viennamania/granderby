@@ -91,6 +91,46 @@ export const HorseModel =
 
 //export const getAllHorses = async (): Promise<IHorse[]> => {
 
-export const getAllHorses = async () => {
-  return await HorseModel.find().sort({ tokenId: -1 }).limit(10);
+/*
+3
+const result  = await findOne({color: "gray", "object.name":"apple" })
+*/
+/*
+{ 
+    "names": {
+        "$in": [
+            { "firstname": "Tom", "lastname": "Smith" }, 
+            { "firstname": "Bob", "lastname": "Smith" }  
+        ]
+    }
+}
+*/
+
+export const getAllHorses = async (pageNumber: number, pagination: number) => {
+  console.log('pageNumber', pageNumber);
+
+  const data = await HorseModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        trait_type: 'Grade',
+        value: 'D',
+      },
+    },
+  })
+    .sort({ tokenId: 1 })
+    .skip((pageNumber - 1) * pagination)
+    //limit is number of Records we want to display
+    .limit(pagination)
+    /*
+    .then(data => {
+
+      return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
+
+    })
+    */
+    .catch((err) => {
+      ////return err;
+    });
+
+  return { nfts: data, pageNumber: pageNumber + 1 };
 };

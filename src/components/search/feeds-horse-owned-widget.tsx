@@ -126,6 +126,7 @@ export default function Feeds({ className }: { className?: string }) {
             </>
           )}
 
+          {/*
           <div
             className={cn(
               '2xl:grid-cols-15 grid grid-cols-5 gap-2 sm:grid-cols-5 md:grid-cols-10',
@@ -150,9 +151,7 @@ export default function Feeds({ className }: { className?: string }) {
                     openDrawer('DRAWER_PREVIEW_NFT')
                   }
                 >
-                  {/*
-                      flexable image size for mobile
-                    */}
+        
                   <div className="flex justify-center">
                     <Image
                       src={
@@ -175,6 +174,7 @@ export default function Feeds({ className }: { className?: string }) {
               </>
             ))}
           </div>
+          */}
 
           {/*
           </InfiniteScroll>

@@ -52,7 +52,7 @@ export default function Inventory() {
 
   return (
     <>
-      <div className="m-3 flex flex-col text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">
+      <div className="m-3 flex flex-col text-xl font-bold text-gray-900 dark:text-white ">
         <div className="justify-left flex flex-row items-center">
           <Image
             src="/horseRace/Hrs_00006009.png"
@@ -66,26 +66,22 @@ export default function Inventory() {
         <span className="mt-3 text-sm">Items 3,645 · Created Jun 2023</span>
       </div>
 
-      <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
-        <div className="mt-10 hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700 2xl:block">
-          <Filters />
-        </div>
-
+      <div className="grid ">
         <div className="m-3 block">
           <ParamTab tabMenu={tabMenu}>
             {/* Total list of items */}
             <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+              <div className="">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
+                    <div className="flex gap-6  ">
                       <SortList />
 
-                      <div className="hidden 3xl:block">
+                      <div className="hidden ">
                         <GridSwitcher />
                       </div>
 
-                      <div className="hidden sm:block 2xl:hidden">
+                      <div className="hidden ">
                         <Button
                           shape="rounded"
                           size="small"
@@ -106,17 +102,17 @@ export default function Inventory() {
             </TabPanel>
 
             <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+              <div className="">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
+                    <div className="flex gap-6  ">
                       <SortList />
 
-                      <div className="hidden 3xl:block">
+                      <div className="hidden ">
                         <GridSwitcher />
                       </div>
 
-                      <div className="hidden sm:block 2xl:hidden">
+                      <div className="hidden ">
                         <Button
                           shape="rounded"
                           size="small"
@@ -169,7 +165,7 @@ export default function Inventory() {
           </ParamTab>
         </div>
 
-        <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
+        <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 ">
           <Button onClick={() => openDrawer('DRAWER_SEARCH')} fullWidth>
             Filters
           </Button>
