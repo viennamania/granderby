@@ -71,6 +71,9 @@ import {
 
 import { OptionIcon } from '@/components/icons/option';
 
+import dynamic from 'next/dynamic';
+import Loader from '@/components/ui/loader';
+
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
@@ -111,6 +114,18 @@ const ProposalsPage: NextPageWithLayout<
   );
   const { data: tokenBalance, isLoading: tokenBalanceIsLoading } =
     useTokenBalance(tokenContract, address);
+
+  function FallbackLoader() {
+    return (
+      <div className="fixed z-50 grid h-full w-full place-content-center">
+        <Loader variant="blink" />
+      </div>
+    );
+  }
+
+  const RetroLayout = dynamic(() => import('@/layouts/_retro'), {
+    loading: () => <FallbackLoader />,
+  });
 
   useEffect(() => {
     socketInitializer();
