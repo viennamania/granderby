@@ -497,7 +497,7 @@ export default function BetInputs({
         )
               */}
 
-      <div className="disabled flex w-full flex-col items-center justify-center gap-5 lg:w-2/3">
+      <div className="disabled items-center justify-center ">
         {/* //? Input amount manuel */}
 
         {address && (
@@ -535,7 +535,7 @@ export default function BetInputs({
 
                 <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
               ) : (
-                <div className="text-xl font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                <div className=" font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
                   <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b> &nbsp;
                   {tokenBalance?.symbol}
                 </div>
@@ -626,18 +626,18 @@ export default function BetInputs({
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="flex w-full flex-row items-center justify-center gap-3 text-2xl  font-bold md:flex-row md:justify-around">
-          Entry
+        <div className="flex items-center justify-center gap-3 text-2xl  font-bold ">
+          entry
         </div>
 
-        <div className="flex w-full flex-row items-center justify-center gap-3  text-xs md:flex-row md:justify-around">
+        <div className="block   items-center justify-center gap-3  text-xs ">
           <button
             disabled={placedBet}
             onClick={() => {
               setChosenNpc(npcs?.horse1);
               setTokenid(BigNumber.from(0));
             }}
-            className={`gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
+            className={`gold-btn block border border-black p-1 text-center text-black ${
               chosenNpc === npcs?.horse1
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -645,10 +645,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center ">
-              <span className="text-sm">Line 1</span>
-
-              <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center ">
+              <span className="text-sm">1</span>
+              <div className="block items-center justify-center">
+                {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -660,16 +660,17 @@ export default function BetInputs({
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
                 </Button>
+                */}
 
                 <Image
-                  src={npcs?.media1?.thumbnail}
+                  src={npcs?.media1?.thumbnail || '/horseRace/logo.png'}
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
-                <span className=" text-sm text-sky-500 xl:text-2xl">
+                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
                   #{npcs?.nft1?.tokenId}
                 </span>
               </div>
@@ -677,7 +678,9 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs?.horse1}</span>
               */}
+              {/*
               <span className="text-md font-bold">x{horse1}</span>
+              */}
             </div>
           </button>
 
@@ -687,7 +690,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse2);
               setTokenid(BigNumber.from(1));
             }}
-            className={`gold-btn h-20 w-44 border  border-black p-1 text-center  text-black ${
+            className={`gold-btn block border  border-black p-1 text-center  text-black ${
               chosenNpc === npcs?.horse2
                 ? 'gold-btn-active '
                 : chosenNpc === 0
@@ -695,9 +698,10 @@ export default function BetInputs({
                 : ''
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-sm">Line 2</span>
-              <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center">
+              <span className="text-sm">2</span>
+              <div className="block items-center justify-center">
+                {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -709,23 +713,26 @@ export default function BetInputs({
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
                 </Button>
+                */}
 
                 <Image
-                  src={npcs?.media2?.thumbnail}
+                  src={npcs?.media2?.thumbnail || '/horseRace/logo.png'}
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
-                <span className=" text-sm text-sky-500 xl:text-2xl">
+                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
                   #{npcs?.nft2?.tokenId}
                 </span>
               </div>
               {/*
               <span className="text-xs">{npcs.horse2}</span>
               */}
+              {/*
               <span className="text-md font-bold">x{horse2}</span>
+              */}
             </div>
           </button>
 
@@ -735,7 +742,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse3);
               setTokenid(BigNumber.from(2));
             }}
-            className={`gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
+            className={`gold-btn block border border-black p-1 text-center text-black ${
               chosenNpc === npcs?.horse3
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -743,9 +750,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-sm ">Line 3</span>
-              <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center">
+              <span className="text-sm ">3</span>
+              <div className="block items-center justify-center">
+                {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -757,23 +765,26 @@ export default function BetInputs({
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
                 </Button>
+                */}
 
                 <Image
-                  src={npcs?.media3?.thumbnail}
+                  src={npcs?.media3?.thumbnail || '/horseRace/logo.png'}
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
-                <span className=" text-sm text-sky-500 xl:text-2xl">
+                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
                   #{npcs?.nft3?.tokenId}
                 </span>
               </div>
               {/*
               <span className="text-xs">{npcs?.horse3}</span>
               */}
+              {/*
               <span className="text-md font-bold">x{horse3}</span>
+              */}
             </div>
           </button>
 
@@ -783,7 +794,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse4);
               setTokenid(BigNumber.from(3));
             }}
-            className={`gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
+            className={`gold-btn block border border-black p-1 text-center text-black ${
               chosenNpc === npcs.horse4
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -791,10 +802,11 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-sm">Line 4</span>
+            <div className="flex flex-row items-center justify-center">
+              <span className="text-sm">4</span>
 
               <div className="flex flex-col items-center justify-center">
+                {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -806,16 +818,17 @@ export default function BetInputs({
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
                 </Button>
+                */}
 
                 <Image
-                  src={npcs?.media4?.thumbnail}
+                  src={npcs?.media4?.thumbnail || '/horseRace/logo.png'}
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
-                <span className=" text-sm text-sky-500 xl:text-2xl">
+                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
                   #{npcs?.nft4?.tokenId}
                 </span>
               </div>
@@ -823,7 +836,9 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs?.horse4}</span>
               */}
+              {/*
               <span className="text-md font-bold">x{horse4}</span>
+              */}
             </div>
           </button>
 
@@ -833,7 +848,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse5);
               setTokenid(BigNumber.from(4));
             }}
-            className={` gold-btn h-20 w-44 border border-black p-1 text-center text-black ${
+            className={` gold-btn block border border-black p-1 text-center text-black ${
               chosenNpc === npcs?.horse5
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -841,10 +856,11 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-sm">Line 5</span>
+            <div className="flex flex-row items-center justify-center">
+              <span className="text-sm">5</span>
 
-              <div className="flex flex-col items-center justify-center">
+              <div className="block items-center justify-center">
+                {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -856,16 +872,17 @@ export default function BetInputs({
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
                 </Button>
+                */}
 
                 <Image
-                  src={npcs?.media5?.thumbnail}
+                  src={npcs?.media5?.thumbnail || '/horseRace/logo.png'}
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5 h-[45px] w-[45px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
-                <span className=" text-sm text-sky-500 xl:text-2xl">
+                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
                   #{npcs?.nft5?.tokenId}
                 </span>
               </div>
@@ -873,7 +890,9 @@ export default function BetInputs({
               {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
+              {/*
               <span className="text-md font-bold">x{horse5}</span>
+              */}
             </div>
           </button>
         </div>

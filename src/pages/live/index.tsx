@@ -298,44 +298,68 @@ export type DRAWER_VIEW =
             )}
           </div>
 
-          <div className="mt-2 flex w-full items-center justify-center  rounded-md bg-white">
-            <iframe
-              src="https://granderby.io/webgl/granderby/index.html"
-              //width="100vw"
-              //height="100vh"
-              //sandbox="allow-scripts allow-modal"
-              //width: 100vw;
-              //height: 100vw;
+          <div className=" items-top mt-2 flex w-full flex-row justify-center gap-2  rounded-md border  bg-black ">
+            <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white">
+              nderby:granderby:granderby:granderby
+            </div>
 
-              //style="width: 100vw; height: 100vh; border: none;"
-              style={{
-                width: '100vw',
-                //width: '100%',
-                height: '100vh',
-                //height: '100%',
-                border: 'none',
-                margin: '0',
-                padding: '0',
-                overflow: 'hidden',
-              }}
-            ></iframe>
+            <div className=" mr-[-50px] mt-10 items-center justify-center ">
+              <BetInputs
+                horse1={horse1Oran}
+                horse2={horse2Oran}
+                horse3={horse3Oran}
+                horse4={horse4Oran}
+                horse5={horse5Oran}
+                //user={user}
+                user={null}
+                npcs={npcNames}
+                //inputs={inputs}
+                inputs={null}
+                balance={0}
+              />
+            </div>
+
+            <div className="ml-0 mr-[200px] flex w-full items-center justify-center ">
+              <iframe
+                src="https://granderby.io/webgl/granderby/index.html"
+                //width="100vw"
+                //height="100vh"
+                //sandbox="allow-scripts allow-modal"
+                //width: 100vw;
+                //height: 100vw;
+
+                //style="width: 100vw; height: 100vh; border: none;"
+                style={{
+                  width: '100vw',
+                  //width: '100%',
+                  height: '100vh',
+                  //height: '100%',
+                  border: 'none',
+                  margin: '0',
+                  padding: '0',
+                  overflow: 'hidden',
+                }}
+              ></iframe>
+            </div>
           </div>
         </div>
 
         <div className="mx-auto mt-5 flex w-full shrink-0 flex-col items-center justify-center gap-5 md:px-4 xl:gap-36 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          <BetInputs
-            horse1={horse1Oran}
-            horse2={horse2Oran}
-            horse3={horse3Oran}
-            horse4={horse4Oran}
-            horse5={horse5Oran}
-            //user={user}
-            user={null}
-            npcs={npcNames}
-            //inputs={inputs}
-            inputs={null}
-            balance={0}
-          />
+          <div className="flex w-full items-center justify-center">
+            <BetInputs
+              horse1={horse1Oran}
+              horse2={horse2Oran}
+              horse3={horse3Oran}
+              horse4={horse4Oran}
+              horse5={horse5Oran}
+              //user={user}
+              user={null}
+              npcs={npcNames}
+              //inputs={inputs}
+              inputs={null}
+              balance={0}
+            />
+          </div>
 
           <BetTables npcs={npcNames} />
         </div>
