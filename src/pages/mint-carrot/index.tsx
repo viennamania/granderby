@@ -607,11 +607,11 @@ const MintPage: NextPageWithLayout<
         <div className="mb-3 mt-16">
           {!address ? (
             <>
-              <h4>to see your own horses</h4>
+              <h4>to see my own horses</h4>
             </>
           ) : (
             <>
-              <h3>your own horses</h3>
+              <h3>My own horses</h3>
               <h4 className="">Registered horses are not listed</h4>
             </>
           )}
@@ -854,7 +854,7 @@ const MintPage: NextPageWithLayout<
                           toast({
                           title: "Successfully minted",
                           description:
-                              "The NFT has been transferred to your wallet",
+                              "The NFT has been transferred to my wallet",
                           duration: 5000,
                           className: "bg-green-500",
                           });

@@ -154,7 +154,7 @@ const CreatePage: NextPageWithLayout = () => {
           {/* Form Section */}
           <div className={styles.collectionContainer}>
             <h1 className={styles.ourCollection}>
-              Upload your NFT to the marketplace:
+              Upload my NFT to the marketplace:
             </h1>
 
             {/* Toggle between direct listing and auction listing */}

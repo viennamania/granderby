@@ -310,14 +310,14 @@ const ProposalsPage: NextPageWithLayout<
                 <div>
                   <ConnectWallet theme="light" />
                 </div>
-                <h4 className="">to see your registered horses for racing</h4>
+                <h4 className="">to see my registered horses for racing</h4>
               </div>
             ) : (
               <div className="flex flex-col  ">
                 {/*
 
                 {tokenBalanceIsLoading ? (
-                  ////<span>Loading your token balance...</span>
+                  ////<span>Loading my token balance...</span>
 
                   <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
                 ) : (

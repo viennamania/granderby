@@ -509,9 +509,7 @@ const WalletPage: NextPageWithLayout<
         <div className=" flex flex-row items-center justify-center text-lime-600">
           {/* Form Section */}
           <div className={styles.collectionContainer}>
-            <div className="mb-2 text-lg">
-              Send your GRD to another address:
-            </div>
+            <div className="mb-2 text-lg">Send my GRD to another address:</div>
 
             {/* Toggle between direct listing and auction listing */}
             {/*

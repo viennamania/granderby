@@ -290,7 +290,7 @@ const MintPage: NextPageWithLayout<
         <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
   */}
 
-        <h3 className="mt-10">Own your jockey by minting</h3>
+        <h3 className="mt-10">Own my jockey by minting</h3>
 
         <LiveNftPricingSlider limits={4} />
 
@@ -346,11 +346,11 @@ const MintPage: NextPageWithLayout<
         <div className="mb-3 mt-16">
           {!address ? (
             <>
-              <h4>to see your own jockeys</h4>
+              <h4>to see my own jockeys</h4>
             </>
           ) : (
             <>
-              <h3>your own jockeys</h3>
+              <h3>My own jockeys</h3>
               <h4 className="">Registered jockeys are not listed</h4>
             </>
           )}

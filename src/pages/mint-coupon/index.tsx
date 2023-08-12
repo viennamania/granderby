@@ -607,11 +607,11 @@ const MintPage: NextPageWithLayout<
           {!address ? (
             <>
               <ConnectWallet />
-              <h4>to see your own coupons</h4>
+              <h4>to see my own coupons</h4>
             </>
           ) : (
             <>
-              <h3>your own coupons</h3>
+              <h3>my own coupons</h3>
             </>
           )}
         </div>
@@ -855,7 +855,7 @@ const MintPage: NextPageWithLayout<
                           toast({
                           title: "Successfully minted",
                           description:
-                              "The NFT has been transferred to your wallet",
+                              "The NFT has been transferred to my wallet",
                           duration: 5000,
                           className: "bg-green-500",
                           });
@@ -1067,7 +1067,7 @@ const MintPage: NextPageWithLayout<
                           toast({
                           title: "Successfully minted",
                           description:
-                              "The NFT has been transferred to your wallet",
+                              "The NFT has been transferred to my wallet",
                           duration: 5000,
                           className: "bg-green-500",
                           });
@@ -1279,7 +1279,7 @@ const MintPage: NextPageWithLayout<
                           toast({
                           title: "Successfully minted",
                           description:
-                              "The NFT has been transferred to your wallet",
+                              "The NFT has been transferred to my wallet",
                           duration: 5000,
                           className: "bg-green-500",
                           });
@@ -1491,7 +1491,7 @@ const MintPage: NextPageWithLayout<
                           toast({
                           title: "Successfully minted",
                           description:
-                              "The NFT has been transferred to your wallet",
+                              "The NFT has been transferred to my wallet",
                           duration: 5000,
                           className: "bg-green-500",
                           });
