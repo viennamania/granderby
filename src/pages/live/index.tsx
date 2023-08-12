@@ -313,7 +313,7 @@ const ProposalsPage: NextPageWithLayout<
                 <h4 className="">to see my registered horses for racing</h4>
               </div>
             ) : (
-              <div className="flex flex-col  ">
+              <div className=" hidden flex-col xl:flex ">
                 {/*
 
                 {tokenBalanceIsLoading ? (
@@ -329,9 +329,7 @@ const ProposalsPage: NextPageWithLayout<
 
                 */}
 
-                {/*
                 <OwnedFeeds />
-                */}
               </div>
             )}
           </div>

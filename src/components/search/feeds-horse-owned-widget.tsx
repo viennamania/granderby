@@ -43,9 +43,7 @@ import {
   Web3Button,
 } from '@thirdweb-dev/react';
 
-
 import Button from '@/components/ui/button';
-
 
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
@@ -101,30 +99,30 @@ export default function Feeds({ className }: { className?: string }) {
 
           {ownedNfts?.length == 0 && (
             <>
-            <h4 className="flex flex-col justify-center ">
-              You don't own any horses yet.
-            </h4>
-            <Button
-              className="w-full"
-              title="Go"
-              color="white"
-              shape="rounded"
-              variant="transparent"
-              size="large"
-              onClick={() => {
-                router.push('https://granderby.market/');
-              }}
-            >
-              <div className="flex flex-row items-center gap-2">
-                <Image
-                  src="/images/market.png"
-                  alt="market"
-                  width={34}
-                  height={34}
-                />
-                Granderby Market
-              </div>
-            </Button>
+              <h4 className="flex flex-col justify-center ">
+                You don't own any horses yet.
+              </h4>
+              <Button
+                className="w-full"
+                title="Go"
+                color="white"
+                shape="rounded"
+                variant="transparent"
+                size="large"
+                onClick={() => {
+                  router.push('https://granderby.market/');
+                }}
+              >
+                <div className="flex flex-row items-center gap-2">
+                  <Image
+                    src="/images/market.png"
+                    alt="market"
+                    width={34}
+                    height={34}
+                  />
+                  Granderby Market
+                </div>
+              </Button>
             </>
           )}
 
@@ -163,8 +161,8 @@ export default function Feeds({ className }: { className?: string }) {
                           : '/default-nft.png'
                       }
                       alt="nft"
-                      height={60}
-                      width={60}
+                      height={20}
+                      width={20}
                       loading="lazy"
                       className="rounded-lg"
                     />
