@@ -42,6 +42,8 @@ import { useDrawer } from '@/components/drawer-views/context';
 
 import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
 
+import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
+
 //@ts-ignore
 import { Socket, io } from 'socket.io-client';
 
@@ -129,6 +131,7 @@ const ProposalsPage: NextPageWithLayout<
   const [socket, setSocket] = useState<Socket | null>(null);
 
   const [status, setStatus] = useState<any>();
+  const [time, setTime] = useState<any>(0);
 
   const address = useAddress();
 
@@ -158,11 +161,9 @@ const ProposalsPage: NextPageWithLayout<
       setStatus(data);
     });
 
-    /*
     socketa.on('time', (data: any) => {
       setTime(data);
     });
-    */
 
     socketa.on('horse1Rate', (data: any) => {
       setHorse1Oran(data);
@@ -337,6 +338,16 @@ const ProposalsPage: NextPageWithLayout<
           <div className="flex w-full flex-row items-center justify-end  gap-2">
             <Explorers menu={CoinExplore} />
           </div>
+        </div>
+
+        <div className=" items-top flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
+          {time ? (
+            <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
+          ) : (
+            <div className="flex w-full items-center justify-center text-2xl font-bold">
+              Comming Soon...
+            </div>
+          )}
         </div>
 
         <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
