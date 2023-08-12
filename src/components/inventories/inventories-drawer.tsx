@@ -23,7 +23,7 @@ import { ClassicLayoutIcon } from '@/components/icons/classic-layout-icon';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
-import Search from '@/components/search/search-horse';
+import Inventory from '@/components/search/inventory-horse';
 
 const ColorPreset = [
   {
@@ -323,9 +323,9 @@ export default function InventoriesDrawer() {
           leaveTo="ltr:translate-x-full rtl:-translate-x-full"
         >
           <div className="fixed inset-y-0 w-80 max-w-full bg-white/95 shadow-[0_0_80px_rgba(17,24,39,0.2)] backdrop-blur ltr:right-0 rtl:left-0 dark:bg-dark/90">
-            <div className="h-full w-full">
+            <div className="h-full w-full ">
               <div className="flex h-16 items-center justify-between gap-6 border-b border-dashed border-gray-200 px-6 dark:border-gray-700">
-                <h3 className="text-base font-medium uppercase text-gray-900 dark:text-white">
+                <h3 className=" text-base font-medium uppercase text-gray-900 dark:text-white">
                   Inventory
                 </h3>
 
@@ -350,7 +350,7 @@ export default function InventoriesDrawer() {
                   <ColorSwitcher />
                   */}
 
-                  <Search />
+                  <Inventory />
                 </div>
               </Scrollbar>
             </div>

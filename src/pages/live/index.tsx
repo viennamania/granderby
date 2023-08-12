@@ -306,7 +306,7 @@ const ProposalsPage: NextPageWithLayout<
         <div className="flex w-full flex-row items-center justify-end gap-2">
           <div className="flex w-full items-center justify-start">
             {!address ? (
-              <div className="flex flex-col">
+              <div className="flex  flex-col xl:flex-row xl:gap-2  ">
                 <div>
                   <ConnectWallet theme="light" />
                 </div>
