@@ -41,9 +41,9 @@ function HeaderRightArea() {
       {/*
       <WalletConnect />
   */}
-      {/*
+      
       <ConnectWallet />
-*/}
+
     </div>
   );
 }

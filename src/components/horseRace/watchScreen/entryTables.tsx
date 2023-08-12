@@ -10,24 +10,16 @@ import {
   tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
+
+
 import {
   useTokenBalance,
-  ConnectWallet,
-  detectContractFeature,
-  useActiveClaimConditionForWallet,
+
   useAddress,
   useContract,
-  useContractMetadata,
-  useNFT,
-  useClaimConditions,
-  useClaimerProofs,
-  useClaimIneligibilityReasons,
-  useClaimedNFTSupply,
-  useUnclaimedNFTSupply,
-  Web3Button,
-  useOwnedNFTs,
-  ThirdwebNftMedia,
+
 } from '@thirdweb-dev/react';
+
 
 import { BigNumber, utils } from 'ethers';
 import { useMemo } from 'react';
@@ -77,7 +69,7 @@ const colors = {
 } as const;
 */
 
-export default function BetInputs({
+export default function entryTables({
   horse1,
   horse2,
   horse3,
@@ -209,11 +201,11 @@ export default function BetInputs({
     }
   };
 
-  const [tokenid, setTokenid] = useState<BigNumber>(BigNumber.from(0));
+  //const [tokenid, setTokenid] = useState<BigNumber>(BigNumber.from(0));
 
   ////console.log("contractMetadata", contractMetadata);
 
-  const { toast } = useToast();
+  //const { toast } = useToast();
   const theme = 'dark';
   //const root = window.document.documentElement;
   //root.classList.add(theme);
@@ -497,50 +489,12 @@ export default function BetInputs({
         )
               */}
 
-      <div className="disabled items-center justify-center  bg-white border rounded-lg p-20">
+      <div className="disabled items-center justify-center ">
         {/* //? Input amount manuel */}
 
         {address && (
           <>
-            <div className="relative  w-full items-center justify-center">
-              <div className="absolute left-5 z-10">
-                {/*
-                <FaCoins className='fill-yellow-500' />
-                */}
-              </div>
-              <input
-                onChange={(e: any) => {
-                  setBetAmount(e.target.value);
-                }}
-                value={betAmount === 0 ? '' : betAmount}
-                type="number"
-                disabled={placedBet}
-                placeholder="Enter your bet"
-                className="w-full rounded-lg border bg-transparent p-2 pl-20 font-bold text-black  disabled:opacity-70"
-              />
-              <button
-                disabled={placedBet}
-                onClick={() => {
-                  setBetAmount(0);
-                }}
-                className="btn btn-xs btn-outline absolute right-5 z-10 border-gray-700"
-              >
-                Clear
-              </button>
-            </div>
-
-            <div className='mt-5'>
-              {tokenBalanceIsLoading ? (
-                ////<span>Loading your token balance...</span>
-
-                <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-              ) : (
-                <div className=" text-lg font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-                  <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b> &nbsp;
-                  {tokenBalance?.symbol}
-                </div>
-              )}
-            </div>
+            
           </>
         )}
 
@@ -630,7 +584,7 @@ export default function BetInputs({
           entry
         </div>
 
-        <div className="flex flex-row   items-center justify-center gap-3  text-xs ">
+        <div className="block   items-center justify-center gap-3  text-xs ">
           <button
             disabled={placedBet}
             onClick={() => {
@@ -645,7 +599,7 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center ">
+            <div className="flex flex-row items-center justify-center ">
               <span className="text-sm">1</span>
               <div className="block items-center justify-center">
                 {/*
@@ -667,7 +621,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -698,7 +652,7 @@ export default function BetInputs({
                 : ''
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center">
               <span className="text-sm">2</span>
               <div className="block items-center justify-center">
                 {/*
@@ -720,7 +674,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -750,7 +704,7 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center">
               <span className="text-sm ">3</span>
               <div className="block items-center justify-center">
                 {/*
@@ -772,7 +726,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -802,7 +756,7 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center">
               <span className="text-sm">4</span>
 
               <div className="flex flex-col items-center justify-center">
@@ -825,7 +779,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -856,7 +810,7 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center">
               <span className="text-sm">5</span>
 
               <div className="block items-center justify-center">
@@ -879,7 +833,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[60px] xl:w-[60px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">

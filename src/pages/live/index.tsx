@@ -28,6 +28,8 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import phonePC from '@/assets-landing/images/img-app.png';
 import phoneMobile from '@/assets-landing/images/0_asset.png';
 
+import EntryTables from '@/components/horseRace/watchScreen/entryTables';
+
 import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
 
 import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
@@ -304,7 +306,7 @@ export type DRAWER_VIEW =
             </div>
 
             <div className=" mr-[-50px] mt-10 items-center justify-center ">
-              <BetInputs
+              <EntryTables
                 horse1={horse1Oran}
                 horse2={horse2Oran}
                 horse3={horse3Oran}
@@ -344,7 +346,7 @@ export type DRAWER_VIEW =
           </div>
         </div>
 
-        <div className="mx-auto mt-5 flex w-full shrink-0 flex-col items-center justify-center gap-5 md:px-4 xl:gap-36 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <div className="mx-auto mt-5 flex w-full shrink-0 flex-col md:flex-row items-center justify-center gap-5 md:px-4 xl:gap-5 xl:px-0 3xl:max-w-[1700px] 3xl:px-12">
           <div className="flex w-full items-center justify-center">
             <BetInputs
               horse1={horse1Oran}
@@ -361,7 +363,9 @@ export type DRAWER_VIEW =
             />
           </div>
 
+          <div className="mt-0 flex w-full items-top justify-center ">
           <BetTables npcs={npcNames} />
+          </div>
         </div>
 
         {/*
