@@ -340,7 +340,7 @@ const ProposalsPage: NextPageWithLayout<
           </div>
         </div>
 
-        <div className=" items-top flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
+        <div className="items-top mt-2 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
           {time ? (
             <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
           ) : (

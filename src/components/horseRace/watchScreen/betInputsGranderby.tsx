@@ -497,7 +497,7 @@ export default function BetInputs({
         )
               */}
 
-      <div className="disabled items-top justify-center  rounded-lg border bg-white p-10">
+      <div className="disabled items-top justify-center  rounded-lg border bg-white p-5">
         {/* //? Miktar Selector Buttons */}
 
         {/*}
