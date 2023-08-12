@@ -329,14 +329,14 @@ const ProposalsPage: NextPageWithLayout<
 
                 */}
 
+                {/*
                 <OwnedFeeds />
+                */}
               </div>
             )}
           </div>
 
           <div className="flex w-full flex-row items-center justify-end  gap-2">
-            <Explorers menu={CoinExplore} />
-            <Explorers menu={CoinExplore} />
             <Explorers menu={CoinExplore} />
           </div>
         </div>
@@ -362,7 +362,7 @@ const ProposalsPage: NextPageWithLayout<
             />
           </div>
 
-          <div className="ml-0 mr-[200px] flex w-full items-center justify-center ">
+          <div className="ml-0 mr-[200px]  hidden w-full items-center justify-center xl:flex  ">
             <iframe
               src="https://granderby.io/webgl/granderby/index.html"
               //width="100vw"

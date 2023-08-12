@@ -23,6 +23,8 @@ import { ClassicLayoutIcon } from '@/components/icons/classic-layout-icon';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
+import Search from '@/components/search/search-horse';
+
 const ColorPreset = [
   {
     label: 'Black',
@@ -310,6 +312,7 @@ export default function InventoriesDrawer() {
         >
           <Dialog.Overlay className="fixed inset-0 bg-gray-700 bg-opacity-0" />
         </Transition.Child>
+
         <Transition.Child
           as={Fragment}
           enter="transform transition ease-out duration-300"
@@ -325,6 +328,7 @@ export default function InventoriesDrawer() {
                 <h3 className="text-base font-medium uppercase text-gray-900 dark:text-white">
                   Inventory
                 </h3>
+
                 <Button
                   title="Close"
                   color="white"
@@ -339,10 +343,14 @@ export default function InventoriesDrawer() {
 
               <Scrollbar style={{ height: 'calc(100% - 64px)' }}>
                 <div className="pb-8">
+                  {/*
                   <ThemeSwitcher />
                   <LayoutSwitcher />
                   <DirectionSwitcher />
                   <ColorSwitcher />
+                  */}
+
+                  <Search />
                 </div>
               </Scrollbar>
             </div>
