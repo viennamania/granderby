@@ -105,6 +105,13 @@ const WatchPage: NextPageWithLayout<
   const [horse3Oran, setHorse3Oran] = useState<any>([]);
   const [horse4Oran, setHorse4Oran] = useState<any>([]);
   const [horse5Oran, setHorse5Oran] = useState<any>([]);
+  const [horse6Oran, setHorse6Oran] = useState<any>([]);
+  const [horse7Oran, setHorse7Oran] = useState<any>([]);
+  const [horse8Oran, setHorse8Oran] = useState<any>([]);
+  const [horse9Oran, setHorse9Oran] = useState<any>([]);
+  const [horse10Oran, setHorse10Oran] = useState<any>([]);
+
+  
   const [flag, setFlag] = useState<any>(false);
   const [balance, setBalance] = useState<any>(0);
 
@@ -147,6 +154,23 @@ const WatchPage: NextPageWithLayout<
     socketa.on('horse5Rate', (data: any) => {
       setHorse5Oran(data);
     });
+    socketa.on('horse6Rate', (data: any) => {
+      setHorse6Oran(data);
+    });
+    socketa.on('horse7Rate', (data: any) => {
+      setHorse7Oran(data);
+    });
+    socketa.on('horse8Rate', (data: any) => {
+      setHorse8Oran(data);
+    });
+    socketa.on('horse9Rate', (data: any) => {
+      setHorse9Oran(data);
+    } );
+    socketa.on('horse10Rate', (data: any) => {
+      setHorse10Oran(data);
+    } );
+
+    
 
     socketa.on('flag', (data: any) => {
       setFlag(data);

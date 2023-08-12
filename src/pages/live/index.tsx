@@ -127,6 +127,12 @@ const ProposalsPage: NextPageWithLayout<
   const [horse3Oran, setHorse3Oran] = useState<any>([]);
   const [horse4Oran, setHorse4Oran] = useState<any>([]);
   const [horse5Oran, setHorse5Oran] = useState<any>([]);
+  const [horse6Oran, setHorse6Oran] = useState<any>([]);
+  const [horse7Oran, setHorse7Oran] = useState<any>([]);
+  const [horse8Oran, setHorse8Oran] = useState<any>([]);
+  const [horse9Oran, setHorse9Oran] = useState<any>([]);
+  const [horse10Oran, setHorse10Oran] = useState<any>([]);
+
 
   const [socket, setSocket] = useState<Socket | null>(null);
 
@@ -180,6 +186,22 @@ const ProposalsPage: NextPageWithLayout<
     socketa.on('horse5Rate', (data: any) => {
       setHorse5Oran(data);
     });
+    socketa.on('horse6Rate', (data: any) => {
+      setHorse6Oran(data);
+    });
+    socketa.on('horse7Rate', (data: any) => {
+      setHorse7Oran(data);
+    });
+    socketa.on('horse8Rate', (data: any) => {
+      setHorse8Oran(data);
+    });
+    socketa.on('horse9Rate', (data: any) => {
+      setHorse9Oran(data);
+    });
+    socketa.on('horse10Rate', (data: any) => {
+      setHorse10Oran(data);
+    });
+
 
     /*
     socketa.on('flag', (data: any) => {
@@ -362,6 +384,11 @@ const ProposalsPage: NextPageWithLayout<
               horse3={horse3Oran}
               horse4={horse4Oran}
               horse5={horse5Oran}
+              horse6={horse6Oran}
+              horse7={horse7Oran}
+              horse8={horse8Oran}
+              horse9={horse9Oran}
+              horse10={horse10Oran}
               //user={user}
               user={null}
               npcs={npcNames}
@@ -404,6 +431,12 @@ const ProposalsPage: NextPageWithLayout<
             horse3={horse3Oran}
             horse4={horse4Oran}
             horse5={horse5Oran}
+            horse6={horse6Oran}
+            horse7={horse7Oran}
+            horse8={horse8Oran}
+            horse9={horse9Oran}
+            horse10={horse10Oran}
+
             //user={user}
             user={null}
             npcs={npcNames}

@@ -70,6 +70,11 @@ export default function BetInputs({
   horse3,
   horse4,
   horse5,
+  horse6,
+  horse7,
+  horse8,
+  horse9,
+  horse10,
   user,
   npcs,
   inputs,
@@ -80,6 +85,11 @@ export default function BetInputs({
   horse3: any;
   horse4: any;
   horse5: any;
+  horse6: any;
+  horse7: any;
+  horse8: any;
+  horse9: any;
+  horse10: any;
   user: IUser | null;
   npcs: any;
   inputs: any;
@@ -668,6 +678,7 @@ export default function BetInputs({
               <span className="text-sm">x {horse4}</span>
             </div>
           </button>
+
           <button
             disabled={placedBet}
             onClick={() => {
@@ -690,6 +701,129 @@ export default function BetInputs({
               <span className="text-sm">x {horse5}</span>
             </div>
           </button>
+
+          <button
+            disabled={placedBet}
+            onClick={() => {
+              setChosenNpc(npcs.horse6);
+              setTokenid(BigNumber.from(4));
+            }}
+            className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+              chosenNpc === npcs.horse6
+                ? 'gold-btn-active'
+                : chosenNpc === 0
+                ? 'bg-[#ffc000]'
+                : 'bg-transparent'
+            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <span className="text-sm">Line 6</span>
+              <div className="flex items-center justify-center">
+                <span>{npcs.horse6}</span>
+              </div>
+              <span className="text-sm">x {horse6}</span>
+            </div>
+          </button>
+
+
+          <button
+            disabled={placedBet}
+            onClick={() => {
+              setChosenNpc(npcs.horse7);
+              setTokenid(BigNumber.from(4));
+            }}
+            className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+              chosenNpc === npcs.horse7
+                ? 'gold-btn-active'
+                : chosenNpc === 0
+                ? 'bg-[#ffc000]'
+                : 'bg-transparent'
+            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <span className="text-sm">Line 7</span>
+              <div className="flex items-center justify-center">
+                <span>{npcs.horse7}</span>
+              </div>
+              <span className="text-sm">x {horse7}</span>
+            </div>
+          </button>
+
+
+
+          <button
+            disabled={placedBet}
+            onClick={() => {
+              setChosenNpc(npcs.horse8);
+              setTokenid(BigNumber.from(4));
+            }}
+            className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+              chosenNpc === npcs.horse8
+                ? 'gold-btn-active'
+                : chosenNpc === 0
+                ? 'bg-[#ffc000]'
+                : 'bg-transparent'
+            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <span className="text-sm">Line 8</span>
+              <div className="flex items-center justify-center">
+                <span>{npcs.horse8}</span>
+              </div>
+              <span className="text-sm">x {horse8}</span>
+            </div>
+          </button>
+
+
+          <button
+            disabled={placedBet}
+            onClick={() => {
+              setChosenNpc(npcs.horse9);
+              setTokenid(BigNumber.from(4));
+            }}
+            className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+              chosenNpc === npcs.horse9
+                ? 'gold-btn-active'
+                : chosenNpc === 0
+                ? 'bg-[#ffc000]'
+                : 'bg-transparent'
+            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <span className="text-sm">Line 9</span>
+              <div className="flex items-center justify-center">
+                <span>{npcs.horse9}</span>
+              </div>
+              <span className="text-sm">x {horse9}</span>
+            </div>
+          </button>
+
+
+          <button
+            disabled={placedBet}
+            onClick={() => {
+              setChosenNpc(npcs.horse10);
+              setTokenid(BigNumber.from(4));
+            }}
+            className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
+              chosenNpc === npcs.horse10
+                ? 'gold-btn-active'
+                : chosenNpc === 0
+                ? 'bg-[#ffc000]'
+                : 'bg-transparent'
+            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <span className="text-sm">Line 10</span>
+              <div className="flex items-center justify-center">
+                <span>{npcs.horse10}</span>
+              </div>
+              <span className="text-sm">x {horse10}</span>
+            </div>
+          </button>
+
+
+
         </div>
 
         {/* //? Place Bet Button */}
