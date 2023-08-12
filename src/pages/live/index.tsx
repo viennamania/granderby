@@ -13,7 +13,9 @@ import { ExportIcon } from '@/components/icons/export-icon';
 // static data
 import { getVotesByStatus } from '@/data/static/vote-data';
 import votePool from '@/assets/images/vote-pool.svg';
+
 import RootLayout from '@/layouts/_root-layout';
+
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
@@ -71,8 +73,30 @@ import {
 
 import { OptionIcon } from '@/components/icons/option';
 
-import dynamic from 'next/dynamic';
-import Loader from '@/components/ui/loader';
+import Sidebar from '@/layouts/sidebar/_expandable-right';
+//import Sidebar from '@/layouts/sidebar/_retro-right';
+
+import SidebarTwo from '@/layouts/sidebar/_retro-right';
+
+import InventoriesButton from '@/components/inventories/inventories-button';
+import InventoriesDrawer from '@/components/inventories/inventories-drawer';
+
+import { CoinExplore } from '@/data/static/coin-list';
+import Explorers from '@/components/cryptocurrency-pricing-table/explorers';
+
+/*
+      <Header className="ltr:xl:pl-72 rtl:xl:pr-72 ltr:2xl:pl-[320px] rtl:2xl:pr-[320px] ltr:3xl:pl-80 rtl:3xl:pr-80" />
+      <Sidebar className="z-40 hidden xl:block" />
+      <main
+        className={cn(
+          'min-h-[100vh] pt-4 pb-16 sm:pb-20 ltr:lg:pr-80 rtl:lg:pl-80 xl:pb-24 ltr:xl:pl-72 rtl:xl:pr-72 ltr:2xl:pl-80 rtl:2xl:pr-80 3xl:pt-0.5 ltr:3xl:pr-[350px] rtl:3xl:pl-[350px]',
+          contentClassName
+        )}
+      >
+        <div className="px-4 sm:px-6 lg:px-8 3xl:px-10">{children}</div>
+      </main>
+      <SidebarTwo className="ltr:right-0 ltr:left-auto rtl:left-0 rtl:right-auto  xl:block" />
+      */
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -114,18 +138,6 @@ const ProposalsPage: NextPageWithLayout<
   );
   const { data: tokenBalance, isLoading: tokenBalanceIsLoading } =
     useTokenBalance(tokenContract, address);
-
-  function FallbackLoader() {
-    return (
-      <div className="fixed z-50 grid h-full w-full place-content-center">
-        <Loader variant="blink" />
-      </div>
-    );
-  }
-
-  const RetroLayout = dynamic(() => import('@/layouts/_retro'), {
-    loading: () => <FallbackLoader />,
-  });
 
   useEffect(() => {
     socketInitializer();
@@ -260,19 +272,24 @@ const ProposalsPage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
-      <div className="flex flex-wrap">
-        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          {/*
-export type DRAWER_VIEW =
-  | 'DASHBOARD_SIDEBAR'
-  | 'DRAWER_MENU'
-  | 'DRAWER_SEARCH'
-  | 'DRAWER_FILTER'
-  | 'DRAWER_PREVIEW_NFT';
-*/}
+      {/*
+      <Sidebar className="z-40 hidden xl:block" />
+  */}
 
-          <div className="flex w-full items-center justify-start">
-            {/*
+      <InventoriesButton />
+      <InventoriesDrawer />
+
+      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        {/*
+            export type DRAWER_VIEW =
+              | 'DASHBOARD_SIDEBAR'
+              | 'DRAWER_MENU'
+              | 'DRAWER_SEARCH'
+              | 'DRAWER_FILTER'
+              | 'DRAWER_PREVIEW_NFT';
+            */}
+
+        {/*
             <Button
               shape="rounded"
               size="small"
@@ -286,6 +303,8 @@ export type DRAWER_VIEW =
             </Button>
             */}
 
+        <div className="flex w-full flex-row items-center justify-end gap-2">
+          <div className="flex w-full items-center justify-start">
             {!address ? (
               <div className="flex flex-col">
                 <div>
@@ -315,55 +334,20 @@ export type DRAWER_VIEW =
             )}
           </div>
 
-          <div className=" items-top mt-2 flex w-full flex-row justify-center gap-2  rounded-md border  bg-black ">
-            <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white">
-              nderby:granderby:granderby:granderby
-            </div>
-
-            <div className=" mr-[-50px] mt-10 items-center justify-center ">
-              <EntryTables
-                horse1={horse1Oran}
-                horse2={horse2Oran}
-                horse3={horse3Oran}
-                horse4={horse4Oran}
-                horse5={horse5Oran}
-                //user={user}
-                user={null}
-                npcs={npcNames}
-                //inputs={inputs}
-                inputs={null}
-                balance={0}
-              />
-            </div>
-
-            <div className="ml-0 mr-[200px] flex w-full items-center justify-center ">
-              <iframe
-                src="https://granderby.io/webgl/granderby/index.html"
-                //width="100vw"
-                //height="100vh"
-                //sandbox="allow-scripts allow-modal"
-                //width: 100vw;
-                //height: 100vw;
-
-                //style="width: 100vw; height: 100vh; border: none;"
-                style={{
-                  width: '100vw',
-                  //width: '100%',
-                  height: '100vh',
-                  //height: '100%',
-                  border: 'none',
-                  margin: '0',
-                  padding: '0',
-                  overflow: 'hidden',
-                }}
-              ></iframe>
-            </div>
+          <div className="flex w-full flex-row items-center justify-end  gap-2">
+            <Explorers menu={CoinExplore} />
+            <Explorers menu={CoinExplore} />
+            <Explorers menu={CoinExplore} />
           </div>
         </div>
 
-        <div className="items-top mx-auto mt-5 flex w-full shrink-0 flex-col justify-center gap-5 md:flex-row md:px-4 xl:gap-5 xl:px-0 3xl:max-w-[1700px] 3xl:px-12">
-          <div className="items-top flex w-full justify-center">
-            <BetInputs
+        <div className=" items-top mt-2 flex w-full flex-row justify-center gap-2  rounded-md border  bg-black ">
+          <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white">
+            nderby:granderby:granderby:granderby
+          </div>
+
+          <div className=" mr-[-50px] mt-10 items-center justify-center ">
+            <EntryTables
               horse1={horse1Oran}
               horse2={horse2Oran}
               horse3={horse3Oran}
@@ -378,17 +362,58 @@ export type DRAWER_VIEW =
             />
           </div>
 
-          <div className="items-top mt-0 flex w-full justify-center ">
-            <BetTables npcs={npcNames} />
+          <div className="ml-0 mr-[200px] flex w-full items-center justify-center ">
+            <iframe
+              src="https://granderby.io/webgl/granderby/index.html"
+              //width="100vw"
+              //height="100vh"
+              //sandbox="allow-scripts allow-modal"
+              //width: 100vw;
+              //height: 100vw;
+
+              //style="width: 100vw; height: 100vh; border: none;"
+              style={{
+                width: '100vw',
+                //width: '100%',
+                height: '100vh',
+                //height: '100%',
+                border: 'none',
+                margin: '0',
+                padding: '0',
+                overflow: 'hidden',
+              }}
+            ></iframe>
           </div>
         </div>
+      </div>
 
-        {/*
+      <div className="items-top mx-auto mt-5 flex w-full shrink-0 flex-col justify-center gap-5 md:flex-row md:px-4 xl:gap-5 xl:px-0 3xl:max-w-[1700px] 3xl:px-12">
+        <div className="items-top flex w-full justify-center">
+          <BetInputs
+            horse1={horse1Oran}
+            horse2={horse2Oran}
+            horse3={horse3Oran}
+            horse4={horse4Oran}
+            horse5={horse5Oran}
+            //user={user}
+            user={null}
+            npcs={npcNames}
+            //inputs={inputs}
+            inputs={null}
+            balance={0}
+          />
+        </div>
+
+        <div className="items-top mt-0 flex w-full justify-center ">
+          <BetTables npcs={npcNames} />
+        </div>
+      </div>
+
+      {/*
         <div className="mx-auto mt-10 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
           <Search />
         </div>
         */}
-      </div>
 
       <footer>
         <div className="flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">

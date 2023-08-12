@@ -18,8 +18,8 @@ import {
 
 import ModalsContainer from '@/components/modal-views/container';
 import DrawersContainer from '@/components/drawer-views/container';
-import SettingsButton from '@/components/settings/settings-button';
-import SettingsDrawer from '@/components/settings/settings-drawer';
+//import SettingsButton from '@/components/settings/settings-button';
+//import SettingsDrawer from '@/components/settings/settings-drawer';
 import { WalletProvider } from '@/lib/hooks/use-connect';
 
 import {
@@ -224,9 +224,11 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
           {/*
             <SettingsButton />
-    */}
+            */}
 
+          {/*}
           <SettingsDrawer />
+          */}
 
           <ModalsContainer />
           <DrawersContainer />

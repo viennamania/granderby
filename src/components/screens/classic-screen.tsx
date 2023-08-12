@@ -29,7 +29,7 @@ import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
   tokenContractAddressGRD,
-} from '../../config/contractAddresses';
+} from '@/config/contractAddresses';
 
 export default function ClassicScreen() {
   const address = useAddress();
