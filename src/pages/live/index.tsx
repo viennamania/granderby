@@ -346,8 +346,8 @@ export type DRAWER_VIEW =
           </div>
         </div>
 
-        <div className="mx-auto mt-5 flex w-full shrink-0 flex-col md:flex-row items-center justify-center gap-5 md:px-4 xl:gap-5 xl:px-0 3xl:max-w-[1700px] 3xl:px-12">
-          <div className="flex w-full items-center justify-center">
+        <div className="items-top mx-auto mt-5 flex w-full shrink-0 flex-col justify-center gap-5 md:flex-row md:px-4 xl:gap-5 xl:px-0 3xl:max-w-[1700px] 3xl:px-12">
+          <div className="items-top flex w-full justify-center">
             <BetInputs
               horse1={horse1Oran}
               horse2={horse2Oran}
@@ -363,8 +363,8 @@ export type DRAWER_VIEW =
             />
           </div>
 
-          <div className="mt-0 flex w-full items-top justify-center ">
-          <BetTables npcs={npcNames} />
+          <div className="items-top mt-0 flex w-full justify-center ">
+            <BetTables npcs={npcNames} />
           </div>
         </div>
 

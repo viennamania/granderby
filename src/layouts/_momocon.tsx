@@ -17,7 +17,7 @@ import routes from '@/config/routes';
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
 
-import { ConnectWallet } from '@thirdweb-dev/react';
+import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 
 function NotificationButton() {
   return (
@@ -34,6 +34,8 @@ function HeaderRightArea() {
   const isMounted = useIsMounted();
   const breakpoint = useBreakpoint();
   const { openDrawer, isOpen } = useDrawer();
+
+  const address = useAddress();
 
   return (
     <div className="order-last flex shrink-0 items-center">
@@ -62,9 +64,8 @@ function HeaderRightArea() {
         {/*
         <WalletConnect />
         */}
-        {/*
-        <ConnectWallet />
-      */}
+
+        {address && <ConnectWallet />}
       </div>
 
       <div className="flex items-center lg:hidden">

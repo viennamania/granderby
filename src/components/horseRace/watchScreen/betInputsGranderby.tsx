@@ -497,53 +497,7 @@ export default function BetInputs({
         )
               */}
 
-      <div className="disabled items-center justify-center  bg-white border rounded-lg p-20">
-        {/* //? Input amount manuel */}
-
-        {address && (
-          <>
-            <div className="relative  w-full items-center justify-center">
-              <div className="absolute left-5 z-10">
-                {/*
-                <FaCoins className='fill-yellow-500' />
-                */}
-              </div>
-              <input
-                onChange={(e: any) => {
-                  setBetAmount(e.target.value);
-                }}
-                value={betAmount === 0 ? '' : betAmount}
-                type="number"
-                disabled={placedBet}
-                placeholder="Enter your bet"
-                className="w-full rounded-lg border bg-transparent p-2 pl-20 font-bold text-black  disabled:opacity-70"
-              />
-              <button
-                disabled={placedBet}
-                onClick={() => {
-                  setBetAmount(0);
-                }}
-                className="btn btn-xs btn-outline absolute right-5 z-10 border-gray-700"
-              >
-                Clear
-              </button>
-            </div>
-
-            <div className='mt-5'>
-              {tokenBalanceIsLoading ? (
-                ////<span>Loading your token balance...</span>
-
-                <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-              ) : (
-                <div className=" text-lg font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-                  <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b> &nbsp;
-                  {tokenBalance?.symbol}
-                </div>
-              )}
-            </div>
-          </>
-        )}
-
+      <div className="disabled items-top justify-center  rounded-lg border bg-white p-20">
         {/* //? Miktar Selector Buttons */}
 
         {/*}
@@ -626,11 +580,11 @@ export default function BetInputs({
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="flex items-center justify-center gap-3 text-2xl  font-bold ">
+        <div className="mt-5 flex items-center justify-center gap-3 text-2xl  font-bold ">
           entry
         </div>
 
-        <div className="flex flex-row   items-center justify-center gap-3  text-xs ">
+        <div className="mt-2 flex flex-row   items-center justify-center gap-3  text-xs ">
           <button
             disabled={placedBet}
             onClick={() => {
@@ -667,7 +621,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[50] w-[50] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -720,7 +674,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[50] w-[50] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -772,7 +726,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[50] w-[50] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -825,7 +779,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[50px] w-[50px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -879,7 +833,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[25px] w-[25px] rounded-md xl:h-[150px] xl:w-[150px]"
+                  className=" mt-5  h-[50px] w-[50px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -896,6 +850,52 @@ export default function BetInputs({
             </div>
           </button>
         </div>
+
+        {/* //? Input amount manuel */}
+
+        {address && (
+          <>
+            <div className="relative  mt-10 w-full items-center justify-center">
+              <div className="absolute left-5 z-10">
+                {/*
+                <FaCoins className='fill-yellow-500' />
+                */}
+              </div>
+              <input
+                onChange={(e: any) => {
+                  setBetAmount(e.target.value);
+                }}
+                value={betAmount === 0 ? '' : betAmount}
+                type="number"
+                disabled={placedBet}
+                placeholder="Enter your bet"
+                className="w-full rounded-lg border bg-transparent p-2 pl-20  text-2xl font-bold text-black  disabled:opacity-70"
+              />
+              <button
+                disabled={placedBet}
+                onClick={() => {
+                  setBetAmount(0);
+                }}
+                className="btn btn-xs btn-outline absolute right-10  z-10 border-gray-700"
+              >
+                Clear
+              </button>
+            </div>
+
+            <div className="mt-5 flex w-full justify-end">
+              {tokenBalanceIsLoading ? (
+                ////<span>Loading your token balance...</span>
+
+                <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+              ) : (
+                <div className=" text-lg font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                  <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b> &nbsp;
+                  {tokenBalance?.symbol}
+                </div>
+              )}
+            </div>
+          </>
+        )}
       </div>
 
       {/*
