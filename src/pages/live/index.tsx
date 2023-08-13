@@ -133,7 +133,6 @@ const ProposalsPage: NextPageWithLayout<
   const [horse9Oran, setHorse9Oran] = useState<any>([]);
   const [horse10Oran, setHorse10Oran] = useState<any>([]);
 
-
   const [socket, setSocket] = useState<Socket | null>(null);
 
   const [status, setStatus] = useState<any>();
@@ -201,7 +200,6 @@ const ProposalsPage: NextPageWithLayout<
     socketa.on('horse10Rate', (data: any) => {
       setHorse10Oran(data);
     });
-
 
     /*
     socketa.on('flag', (data: any) => {
@@ -366,15 +364,15 @@ const ProposalsPage: NextPageWithLayout<
           {time ? (
             <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
           ) : (
-            <div className="flex w-full items-center justify-center text-2xl text-white font-bold">
-              Comming Soon...
+            <div className="flex w-full items-center justify-center text-2xl text-white ">
+              Under Maintenance
             </div>
           )}
         </div>
 
         <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
           <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white ">
-          HappyValley:HappyValley:HappyValley^^
+            HappyValley:HappyValley:HappyValley^^
           </div>
 
           <div className=" mr-[-50px] mt-10 items-center justify-center ">
@@ -436,7 +434,6 @@ const ProposalsPage: NextPageWithLayout<
             horse8={horse8Oran}
             horse9={horse9Oran}
             horse10={horse10Oran}
-
             //user={user}
             user={null}
             npcs={npcNames}
