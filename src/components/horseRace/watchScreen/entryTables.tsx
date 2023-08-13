@@ -1,24 +1,12 @@
 import { IUser } from '@/utils/interfaces/user-interface';
 import { Stack, Snackbar, Alert } from '@mui/material';
 import { getCookie, hasCookie, setCookie } from 'cookies-next';
+
 import { useState, useEffect } from 'react';
+
 ////import { FaCoins } from 'react-icons/fa';
 
-import {
-  ///nftDropContractAddressEntry,
-  nftDropContractAddressCar,
-  tokenContractAddressGRD,
-} from '@/config/contractAddresses';
 
-
-
-import {
-  useTokenBalance,
-
-  useAddress,
-  useContract,
-
-} from '@thirdweb-dev/react';
 
 
 import { BigNumber, utils } from 'ethers';
@@ -34,6 +22,22 @@ import { OptionIcon } from '@/components/icons/option';
 
 import { useDrawer } from '@/components/drawer-views/context';
 import { add } from 'lodash';
+
+
+import {
+  ///nftDropContractAddressEntry,
+  nftDropContractAddressCar,
+  tokenContractAddressGRD,
+} from '@/config/contractAddresses';
+
+import {
+  useAddress,
+  useTokenBalance,
+  ThirdwebNftMedia,
+  useContract,
+  useNFT,
+  Web3Button,
+} from '@thirdweb-dev/react';
 
 /*
 import {
@@ -68,6 +72,7 @@ const colors = {
   yellow: '#FBBF24',
 } as const;
 */
+
 
 export default function entryTables({
   horse1,
@@ -117,9 +122,14 @@ export default function entryTables({
     balance,
   });
 
+
+
+
+
   const address = useAddress();
 
-  const { contract: tokenContract } = useContract(
+
+  const { contract: tokenContract } = useContract (
     tokenContractAddressGRD,
     'token'
   );
@@ -1169,4 +1179,5 @@ export default function entryTables({
           */}
     </>
   );
+  
 }

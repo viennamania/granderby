@@ -5,6 +5,7 @@ import {
   useNFT,
   Web3Button,
 } from '@thirdweb-dev/react';
+
 import type { FC } from 'react';
 import {
   nftDropContractAddressHorse,
@@ -21,6 +22,7 @@ interface NFTCardProps {
 }
 
 const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
+
   const address = useAddress();
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
