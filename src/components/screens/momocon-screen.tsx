@@ -146,6 +146,7 @@ export default function MomoconScreen() {
                   size="lg"
                 />
 
+
                 {!address && (
                   <div className="mb-5 flex justify-center">
                     <ConnectWallet theme="dark" />

@@ -3,11 +3,15 @@ import type { NextPageWithLayout } from '@/types';
 import RootLayout from '@/layouts/_root-layout';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
+
 import ModernScreen from '@/components/screens/modern-screen';
+
+/*
 import MinimalScreen from '@/components/screens/minimal-screen';
 import ClassicScreen from '@/components/screens/classic-screen';
 import RetroScreen from '@/components/screens/retro-screen';
 import MomoconScreen from '@/components/screens/momocon-screen';
+*/
 
 import Head from 'next/head';
 
@@ -41,6 +45,7 @@ const HomePage: NextPageWithLayout<
   const { layout } = useLayout();
 
   // render morden screen/page
+  /*
   if (layout === LAYOUT_OPTIONS.MODERN) {
     return (
       <>
@@ -101,7 +106,9 @@ const HomePage: NextPageWithLayout<
       </>
     );
   }
+  */
 
+  /*
   // render minimal screen/page
   if (layout === LAYOUT_OPTIONS.MINIMAL) {
     return <MinimalScreen />;
@@ -178,6 +185,7 @@ const HomePage: NextPageWithLayout<
       </>
     );
   }
+  */
 
   // render default screen/page which is modern
   ///return <ModernScreen />;
@@ -210,7 +218,10 @@ const HomePage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
+      {/*
       <MomoconScreen />
+      */}
+      <ModernScreen />
 
       <footer>
         <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">

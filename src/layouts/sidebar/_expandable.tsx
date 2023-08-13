@@ -5,7 +5,9 @@ import cn from 'classnames';
 import AuthorCard from '@/components/ui/author-card';
 import Logo from '@/components/ui/logo';
 import LogoIcon from '@/components/ui/logo-icon';
+
 import { MenuItem } from '@/components/ui/collapsible-menu';
+
 import Scrollbar from '@/components/ui/scrollbar';
 import Button from '@/components/ui/button';
 import { useDrawer } from '@/components/drawer-views/context';
@@ -73,15 +75,15 @@ export default function Sidebar({ className }: { className?: string }) {
           <Logo />
         */}
 
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-2 items-center justify-center">
               <Image
                 src={logo}
                 alt="logo"
-                width={24}
-                height={24}
+                width={34}
+                height={34}
                 className=""
               />
-              <span>ssssGranderby</span>
+              <span className='font-bold'>Granderby</span>
             </div>
           </>
         )}

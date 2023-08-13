@@ -71,21 +71,17 @@ export default function AuthorCard({ image, name, role }: AuthorCardProps) {
         </>
       )}
 
+      {/*
       <div className="flex w-full justify-center ">
         <ConnectWallet
           theme="dark"
           //theme="light"
-          /*
-          detailsBtn={() => {
-            return (
-              <button className=''> Connect Wallet </button>
-            );
-          }}
-          */
+  
 
           //btnTitle="Connect Wallet"
         />
       </div>
+    */}
     </div>
   );
 }

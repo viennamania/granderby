@@ -300,7 +300,7 @@ const ProposalsPage: NextPageWithLayout<
       <InventoriesButton />
       <InventoriesDrawer />
 
-      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-6">
+      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
         {/*
             export type DRAWER_VIEW =
               | 'DASHBOARD_SIDEBAR'
@@ -370,12 +370,12 @@ const ProposalsPage: NextPageWithLayout<
           )}
         </div>
 
-
         <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
-          
-  
+          <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white ">
+            HappyValley:HappyValley:HappyValley^^
+          </div>
 
-          <div className=" ml-[70px] mt-10 items-center justify-center ">
+          <div className=" mr-[-50px] mt-10 items-center justify-center ">
             <EntryTables
               horse1={horse1Oran}
               horse2={horse2Oran}
@@ -396,7 +396,7 @@ const ProposalsPage: NextPageWithLayout<
             />
           </div>
 
-          <div className="ml-[-20px]  flex w-full items-center justify-center  ">
+          <div className="ml-0 mr-[215px] flex w-full items-center justify-center  ">
             <iframe
               src="https://granderby.io/webgl/granderby/index.html"
               //width="100vw"

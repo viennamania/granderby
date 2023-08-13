@@ -605,11 +605,11 @@ export default function entryTables({
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="mb-2 flex items-center justify-center gap-3 text-sm text-white  ">
+        <div className="mb-2 flex items-center justify-center  text-sm text-white  ">
           ENTRY
         </div>
 
-        <div className="  block   items-center justify-center gap-1  text-xs ">
+        <div className="  flex  flex-col   items-center justify-center gap-1  text-xs">
           <button
             disabled={placedBet}
             onClick={() => {

@@ -39,6 +39,7 @@ export default function RootLayout({
   // fix the `Hydration failed because the initial UI does not match` issue
   if (!isMounted) return null;
 
+  /*
   console.log('RootLayout======', layout);
 
   if (layout === LAYOUT_OPTIONS.MODERN) {
@@ -72,10 +73,16 @@ export default function RootLayout({
 
   // render default layout which is momocon
   return <MomoconLayout>{children}</MomoconLayout>;
+  */
+
+  return <ClassicLayout>{children}</ClassicLayout>;
+
 }
 
-{
   /*
+{
+
     <ModernLayout contentClassName={contentClassName}>{children}</ModernLayout>
-  */
+
 }
+  */
