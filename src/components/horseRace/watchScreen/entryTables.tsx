@@ -595,11 +595,11 @@ export default function entryTables({
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="flex items-center justify-center gap-3 text-2xl  font-bold ">
-          entry
+        <div className="mb-2 flex items-center justify-center gap-3 text-sm text-white  ">
+          ENTRY
         </div>
 
-        <div className="block   items-center justify-center gap-1  text-xs ">
+        <div className="  block   items-center justify-center gap-1  text-xs ">
           <button
             disabled={placedBet}
             onClick={() => {
@@ -615,7 +615,8 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center ">
-              <span className="text-sm">1</span>
+              
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -636,10 +637,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft1?.tokenId}
                 </span>
               </div>
@@ -668,7 +669,7 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">2</span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -689,10 +690,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft2?.tokenId}
                 </span>
               </div>
@@ -720,7 +721,7 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm ">3</span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -741,10 +742,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft3?.tokenId}
                 </span>
               </div>
@@ -772,7 +773,7 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">4</span>
+
 
               <div className="flex flex-col items-center justify-center">
                 {/*
@@ -794,10 +795,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft4?.tokenId}
                 </span>
               </div>
@@ -826,7 +827,7 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">5</span>
+
 
               <div className="block items-center justify-center">
                 {/*
@@ -848,10 +849,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft5?.tokenId}
                 </span>
               </div>
@@ -881,7 +882,7 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">6</span>
+
 
               <div className="block items-center justify-center">
                 {/*
@@ -903,10 +904,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft6?.tokenId}
                 </span>
               </div>
@@ -938,7 +939,7 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">7</span>
+
 
               <div className="block items-center justify-center">
                 {/*
@@ -960,10 +961,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft7?.tokenId}
                 </span>
               </div>
@@ -994,7 +995,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">8</span>
 
               <div className="block items-center justify-center">
                 {/*
@@ -1016,10 +1016,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft8?.tokenId}
                 </span>
               </div>
@@ -1049,7 +1049,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">9</span>
 
               <div className="block items-center justify-center">
                 {/*
@@ -1071,10 +1070,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft9?.tokenId}
                 </span>
               </div>
@@ -1103,7 +1102,7 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-              <span className="text-sm">10</span>
+
 
               <div className="block items-center justify-center">
                 {/*
@@ -1125,10 +1124,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-2  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-lg">
+                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
                   #{npcs?.nft10?.tokenId}
                 </span>
               </div>

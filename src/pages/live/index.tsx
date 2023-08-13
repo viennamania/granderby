@@ -366,15 +366,15 @@ const ProposalsPage: NextPageWithLayout<
           {time ? (
             <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
           ) : (
-            <div className="flex w-full items-center justify-center text-2xl font-bold">
+            <div className="flex w-full items-center justify-center text-2xl text-white font-bold">
               Comming Soon...
             </div>
           )}
         </div>
 
         <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
-          <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white">
-            nderby:granderby:granderby:granderby
+          <div className="flex w-[235px] rounded-md border bg-red-600 text-lg text-white ">
+          HappyValley:HappyValley:HappyValley^^
           </div>
 
           <div className=" mr-[-50px] mt-10 items-center justify-center ">
@@ -398,7 +398,7 @@ const ProposalsPage: NextPageWithLayout<
             />
           </div>
 
-          <div className="ml-0 mr-[200px] flex w-full items-center justify-center  ">
+          <div className="ml-0 mr-[215px] flex w-full items-center justify-center  ">
             <iframe
               src="https://granderby.io/webgl/granderby/index.html"
               //width="100vw"
