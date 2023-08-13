@@ -370,12 +370,8 @@ const ProposalsPage: NextPageWithLayout<
           )}
         </div>
 
-
         <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
-          
-  
-
-          <div className=" ml-[70px] mt-10 items-center justify-center ">
+          <div className=" ml-[130px] mt-10 items-center justify-center ">
             <EntryTables
               horse1={horse1Oran}
               horse2={horse2Oran}
@@ -396,12 +392,12 @@ const ProposalsPage: NextPageWithLayout<
             />
           </div>
 
-          <div className="ml-[-20px]  flex w-full items-center justify-center  ">
+          <div className="ml-[-20px] mr-[80px]  flex w-full items-center justify-center  ">
             <iframe
               src="https://granderby.io/webgl/granderby/index.html"
               //width="100vw"
               //height="100vh"
-              //sandbox="allow-scripts allow-modal"
+              sandbox="allow-scripts allow-modal"
               //width: 100vw;
               //height: 100vw;
 
