@@ -6,14 +6,9 @@ export default function ClassicLayout({
   children,
   contentClassName,
 }: React.PropsWithChildren<{ contentClassName?: string }>) {
-
   return (
-
-
-
-    <div className="ltr:xl:pl-24 rtl:xl:pr-24 ltr:2xl:pl-24 rtl:2xl:pr-28 ">
-
-    {/*
+    <div className="ltr:xl:pl-28 rtl:xl:pr-24 ltr:2xl:pl-28 rtl:2xl:pr-28 ">
+      {/*
     <div className="ltr:xl:pl-24 rtl:xl:pr-24 ltr:2xl:pl-28 rtl:2xl:pr-28 ">
     */}
 
@@ -22,7 +17,7 @@ export default function ClassicLayout({
       <main
         className={cn(
           ///'min-h-screen px-4 pt-4 pb-16 sm:px-6 sm:pb-20 lg:px-8 xl:pb-24 xl:pt-5 3xl:px-10',
-          'min-h-screen px-4 pt-4 pb-16 sm:px-6 sm:pb-0 lg:px-0 xl:pb-0 xl:pt-0 3xl:px-0',
+          'min-h-screen px-4 pb-16 pt-4 sm:px-6 sm:pb-0 lg:px-0 xl:pb-0 xl:pt-0 3xl:px-0',
           contentClassName
         )}
       >
