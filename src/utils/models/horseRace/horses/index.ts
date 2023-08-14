@@ -56,11 +56,22 @@ export const editHorseNames = async (
   horse7: string,
   horse8: string,
   horse9: string,
-  horse10: string,
+  horse10: string
 ) => {
   const newHorseNames = await HorsesModel.updateOne(
     {},
-    { horse1, horse2, horse3, horse4, horse5 },
+    {
+      horse1,
+      horse2,
+      horse3,
+      horse4,
+      horse5,
+      horse6,
+      horse7,
+      horse8,
+      horse9,
+      horse10,
+    },
     { upsert: true }
   );
   return newHorseNames;
@@ -76,11 +87,24 @@ export const updateHorseInputs = async (
   input7: number,
   input8: number,
   input9: number,
-  input10: number,
+  input10: number
 ) => {
   const newHorseInputs = await HorsesModel.updateOne(
     {},
-    { inputs: { input1, input2, input3, input4, input5, input6, input7, input8, input9, input10 } },
+    {
+      inputs: {
+        input1,
+        input2,
+        input3,
+        input4,
+        input5,
+        input6,
+        input7,
+        input8,
+        input9,
+        input10,
+      },
+    },
     { upsert: true }
   );
   return newHorseInputs;

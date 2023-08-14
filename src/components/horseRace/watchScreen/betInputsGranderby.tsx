@@ -83,6 +83,11 @@ export default function BetInputs({
   horse3,
   horse4,
   horse5,
+  horse6,
+  horse7,
+  horse8,
+  horse9,
+  horse10,
   user,
   npcs,
   inputs,
@@ -93,6 +98,11 @@ export default function BetInputs({
   horse3: any;
   horse4: any;
   horse5: any;
+  horse6: any;
+  horse7: any;
+  horse8: any;
+  horse9: any;
+  horse10: any;
   user: IUser | null;
   npcs: any;
   inputs: any;
@@ -104,6 +114,11 @@ export default function BetInputs({
     horse3,
     horse4,
     horse5,
+    horse6,
+    horse7,
+    horse8,
+    horse9,
+    horse10,
     user,
     npcs,
     inputs,
