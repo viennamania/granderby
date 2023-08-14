@@ -28,6 +28,8 @@ import { useRouter } from 'next/router';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
+import Button from '../ui/button/button';
+
 import {
   ConnectWallet,
   useDisconnect,
@@ -260,6 +262,35 @@ export default function Feeds({ className }: { className?: string }) {
               </div>
             )
           }
+
+          {ownedNfts?.length == 0 && (
+            <>
+              <h4 className="flex flex-col justify-center ">
+                You don't own any horses yet.
+              </h4>
+              <Button
+                className="w-full"
+                title="Go"
+                color="white"
+                shape="rounded"
+                variant="transparent"
+                size="large"
+                onClick={() => {
+                  router.push('https://granderby.market/');
+                }}
+              >
+                <div className="flex flex-row items-center gap-2">
+                  <Image
+                    src="/images/market.png"
+                    alt="market"
+                    width={34}
+                    height={34}
+                  />
+                  Granderby Market
+                </div>
+              </Button>
+            </>
+          )}
         </>
       )}
     </>
