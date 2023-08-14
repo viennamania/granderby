@@ -371,6 +371,10 @@ export default function ModernScreen() {
       </div>
           */}
 
+      <div className="mt-10 flex flex-row items-center justify-center">
+        {address && <ConnectWallet theme="dark" />}
+      </div>
+
       <div className="mb-10 flex flex-row">
         <div className="btn-wrap w-full ">
           <button className="btn-app">
