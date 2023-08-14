@@ -10,7 +10,7 @@ import Scrollbar from '@/components/ui/scrollbar';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useDirection } from '@/lib/hooks/use-direction';
 import { useThemeColor } from '@/lib/hooks/use-theme-color';
-import { useInventoriesDrawer } from './entries-context';
+import { useEntriesDrawer } from './entries-context';
 import { Close } from '@/components/icons/close';
 import { Sun } from '@/components/icons/sun';
 import { Moon } from '@/components/icons/moon';
@@ -24,6 +24,10 @@ import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
 import Inventory from '@/components/search/inventory-horse';
+
+import EntryTables from '@/components/horseRace/watchScreen/entryTables';
+
+import { useState } from 'react';
 
 const ColorPreset = [
   {
@@ -292,14 +296,30 @@ function ColorSwitcher() {
   );
 }
 
-export default function InventoriesDrawer() {
-  const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
+export default function EntriesDrawer() {
+  const { isEntriesOpen, closeEntries } = useEntriesDrawer();
+
+
+
+  const [npcNames, setNpcNames] = useState<any>([]);
+
+  const [horse1Oran, setHorse1Oran] = useState<any>([]);
+  const [horse2Oran, setHorse2Oran] = useState<any>([]);
+  const [horse3Oran, setHorse3Oran] = useState<any>([]);
+  const [horse4Oran, setHorse4Oran] = useState<any>([]);
+  const [horse5Oran, setHorse5Oran] = useState<any>([]);
+  const [horse6Oran, setHorse6Oran] = useState<any>([]);
+  const [horse7Oran, setHorse7Oran] = useState<any>([]);
+  const [horse8Oran, setHorse8Oran] = useState<any>([]);
+  const [horse9Oran, setHorse9Oran] = useState<any>([]);
+  const [horse10Oran, setHorse10Oran] = useState<any>([]);
+
   return (
-    <Transition appear show={isInventoriesOpen} as={Fragment}>
+    <Transition appear show={isEntriesOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed inset-0 z-40 overflow-hidden"
-        onClose={closeInventories}
+        onClose={closeEntries}
       >
         <Transition.Child
           as={Fragment}
@@ -316,17 +336,17 @@ export default function InventoriesDrawer() {
         <Transition.Child
           as={Fragment}
           enter="transform transition ease-out duration-300"
-          enterFrom="ltr:translate-x-full rtl:-translate-x-full"
+          enterFrom="-translate-x-full"
           enterTo="translate-x-0"
           leave="transform transition ease-in duration-300"
           leaveFrom="translate-x-0"
-          leaveTo="ltr:translate-x-full rtl:-translate-x-full"
+          leaveTo="-translate-x-full"
         >
-          <div className="fixed inset-y-0 w-80 max-w-full bg-white/95 shadow-[0_0_80px_rgba(17,24,39,0.2)] backdrop-blur ltr:right-0 rtl:left-0 dark:bg-dark/90">
+          <div className="fixed inset-y-0 w-80 max-w-full bg-white/95 shadow-[0_0_80px_rgba(17,24,39,0.2)] backdrop-blur left-0 dark:bg-dark/90">
             <div className="h-full w-full ">
               <div className="flex h-16 items-center justify-between gap-6 border-b border-dashed border-gray-200 px-6 dark:border-gray-700">
-                <h3 className=" text-base font-medium uppercase text-gray-900 dark:text-white">
-                  Inventory
+                <h3 className="mt-5 text-base font-medium uppercase text-gray-900 dark:text-white">
+                  Entries Search
                 </h3>
 
                 <Button
@@ -335,14 +355,14 @@ export default function InventoriesDrawer() {
                   shape="circle"
                   variant="transparent"
                   size="small"
-                  onClick={closeInventories}
+                  onClick={closeEntries}
                 >
                   <Close className="h-auto w-2.5" />
                 </Button>
               </div>
 
               <Scrollbar style={{ height: 'calc(100% - 64px)' }}>
-                <div className="pb-8">
+                <div className="pb-3">
                   {/*
                   <ThemeSwitcher />
                   <LayoutSwitcher />
@@ -350,7 +370,135 @@ export default function InventoriesDrawer() {
                   <ColorSwitcher />
                   */}
 
+                  {/*
                   <Inventory />
+                  */}
+
+
+                  <div className="flex flex-row gap-3 items-center justify-center">
+
+                    <div className="flex flex-col gap-3 items-center justify-center">
+                 
+                      <EntryTables
+                        horse1={horse1Oran}
+                        horse2={horse2Oran}
+                        horse3={horse3Oran}
+                        horse4={horse4Oran}
+                        horse5={horse5Oran}
+                        horse6={horse6Oran}
+                        horse7={horse7Oran}
+                        horse8={horse8Oran}
+                        horse9={horse9Oran}
+                        horse10={horse10Oran}
+                        //user={user}
+                        user={null}
+                        npcs={npcNames}
+                        //inputs={inputs}
+                        inputs={null}
+                        balance={0}
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-3 items-center justify-center">
+      
+                      <EntryTables
+                        horse1={horse1Oran}
+                        horse2={horse2Oran}
+                        horse3={horse3Oran}
+                        horse4={horse4Oran}
+                        horse5={horse5Oran}
+                        horse6={horse6Oran}
+                        horse7={horse7Oran}
+                        horse8={horse8Oran}
+                        horse9={horse9Oran}
+                        horse10={horse10Oran}
+                        //user={user}
+                        user={null}
+                        npcs={npcNames}
+                        //inputs={inputs}
+                        inputs={null}
+                        balance={0}
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-3 items-center justify-center">
+
+                      <EntryTables
+                        horse1={horse1Oran}
+                        horse2={horse2Oran}
+                        horse3={horse3Oran}
+                        horse4={horse4Oran}
+                        horse5={horse5Oran}
+                        horse6={horse6Oran}
+                        horse7={horse7Oran}
+                        horse8={horse8Oran}
+                        horse9={horse9Oran}
+                        horse10={horse10Oran}
+                        //user={user}
+                        user={null}
+                        npcs={npcNames}
+                        //inputs={inputs}
+                        inputs={null}
+                        balance={0}
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-3 items-center justify-center">
+
+                      <EntryTables
+                        horse1={horse1Oran}
+                        horse2={horse2Oran}
+                        horse3={horse3Oran}
+                        horse4={horse4Oran}
+                        horse5={horse5Oran}
+                        horse6={horse6Oran}
+                        horse7={horse7Oran}
+                        horse8={horse8Oran}
+                        horse9={horse9Oran}
+                        horse10={horse10Oran}
+                        //user={user}
+                        user={null}
+                        npcs={npcNames}
+                        //inputs={inputs}
+                        inputs={null}
+                        balance={0}
+                      />
+                    </div>
+
+
+                    <div className="flex flex-col gap-3 items-center justify-center">
+
+                      <EntryTables
+                        horse1={horse1Oran}
+                        horse2={horse2Oran}
+                        horse3={horse3Oran}
+                        horse4={horse4Oran}
+                        horse5={horse5Oran}
+                        horse6={horse6Oran}
+                        horse7={horse7Oran}
+                        horse8={horse8Oran}
+                        horse9={horse9Oran}
+                        horse10={horse10Oran}
+                        //user={user}
+                        user={null}
+                        npcs={npcNames}
+                        //inputs={inputs}
+                        inputs={null}
+                        balance={0}
+                      />
+                    </div>
+
+
+
+
+
+
+
+                  </div>
+
+
+
+
                 </div>
               </Scrollbar>
             </div>

@@ -80,8 +80,13 @@ import Sidebar from '@/layouts/sidebar/_expandable-right';
 
 import SidebarTwo from '@/layouts/sidebar/_retro-right';
 
+/*
 import InventoriesButton from '@/components/inventories/inventories-button';
 import InventoriesDrawer from '@/components/inventories/inventories-drawer';
+*/
+
+import EntriesButton from '@/components/entries/entries-button';
+import EntriesDrawer from '@/components/entries/entries-drawer';
 
 import { CoinExplore } from '@/data/static/coin-list';
 import Explorers from '@/components/cryptocurrency-pricing-table/explorers';
@@ -301,6 +306,12 @@ const ProposalsPage: NextPageWithLayout<
       <InventoriesButton />
       <InventoriesDrawer />
 */}
+
+      <div className='hidden xl:block'>
+      <EntriesButton/>
+      <EntriesDrawer />
+      </div>
+
 
       <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-6">
         {/*

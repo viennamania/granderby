@@ -3,33 +3,51 @@ import { useRouter } from 'next/router';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useDirection } from '@/lib/hooks/use-direction';
 import { useThemeColor } from '@/lib/hooks/use-theme-color';
-import { useInventoriesDrawer } from './entries-context';
+import { useEntriesDrawer } from './entries-context';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 import { useLayout } from '@/lib/hooks/use-layout';
+import { IMAGES_MANIFEST } from 'next/dist/shared/lib/constants';
 
-export default function InventoriesButton() {
-  const { opeInventories } = useInventoriesDrawer();
-  const [direction] = useLocalStorage<string>('criptic-direction');
+import Image from 'next/image';
+
+
+export default function EntriesButton() {
+
+  const { opeEntries } = useEntriesDrawer();
+  
+  ///const [direction] = useLocalStorage<string>('criptic-direction');
+
+  const direction = 'ltr';
+  ///const direction = 'rtl';
+
   const [themeColor] = useLocalStorage<string>('criptic-color');
+
   useDirection(direction ? direction : 'ltr');
+
+
   useThemeColor(themeColor ? themeColor : '#14161a');
   // set layout based on query param
   const router = useRouter();
   const { query } = router;
   const selectedLayout = query?.layout && (query.layout as string);
   const { setLayout } = useLayout();
+
   useEffect(() => {
     setLayout(selectedLayout ?? LAYOUT_OPTIONS.MODERN);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query?.layout]);
+
+
   return (
     <>
-      <div className="fixed top-1/2 z-40 -translate-y-1/2 ltr:right-0 rtl:left-0">
+      <div className="fixed top-1/2 z-40 -translate-y-1/2 left-0">
         <button
-          className="flex h-12 w-12 items-center justify-center bg-white/80 text-gray-600 shadow-large backdrop-blur ltr:rounded-l-lg rtl:rounded-r-lg dark:bg-brand/80 dark:text-gray-200/70"
-          onClick={opeInventories}
+          className="flex h-12 w-12 items-center justify-center bg-white/80 text-gray-600 shadow-large backdrop-blur rounded-r-lg dark:bg-brand/80 dark:text-gray-200/70"
+          onClick={opeEntries}
           title="Inventory"
         >
+
+          {/*
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -60,10 +78,20 @@ export default function InventoriesButton() {
               fill="currentColor"
             />
           </svg>
+
           <span className="absolute right-1 top-1 flex h-3 w-3 items-center justify-center">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-80"></span>
             <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
           </span>
+          */}
+
+          <Image
+            src="/horseRace/entries.gif"
+            alt="entries"
+            width={50}
+            height={50}
+          />
+
         </button>
       </div>
     </>

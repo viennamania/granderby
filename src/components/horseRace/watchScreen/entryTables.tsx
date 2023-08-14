@@ -605,8 +605,8 @@ export default function entryTables({
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="mb-2 flex items-center justify-center  text-sm text-white  ">
-          ENTRY
+        <div className="mt-10 mb-2 flex items-center justify-center  text-sm text-white  ">
+          E-258
         </div>
 
         <div className="  flex  flex-col   items-center justify-center gap-1  text-xs">
