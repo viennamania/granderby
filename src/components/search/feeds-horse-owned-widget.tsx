@@ -96,7 +96,6 @@ export default function Feeds({ className }: { className?: string }) {
               <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
             </span>
           )}
-
           {ownedNfts?.length == 0 && (
             <>
               <h4 className="flex flex-col justify-center ">
