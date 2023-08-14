@@ -29,6 +29,8 @@ import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
 //@ts-ignore
 import { Socket, io } from 'socket.io-client';
 
+import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
+
 import {
   ConnectWallet,
   useDisconnect,
@@ -266,12 +268,14 @@ export default function ModernScreen() {
               </div>
             ) : (
               <>
+                {/*
                 <Avatar
                   image={AuthorImage}
                   alt="Author"
                   className="mx-auto mb-6"
                   size="lg"
                 />
+                */}
 
                 {/*
                 <div className="mb-5 flex justify-center">
@@ -280,12 +284,19 @@ export default function ModernScreen() {
             */}
 
                 <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+                  My Horses
+                </h3>
+                <OwnedFeeds />
+
+                {/*
+                <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
                   My Balance
                 </h3>
                 <div className="mb-7 text-center font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
                   <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
                   {tokenBalance?.symbol}
                 </div>
+
 
                 <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
                   Claimable Rewards (Horse)
@@ -314,6 +325,7 @@ export default function ModernScreen() {
                   </b>{' '}
                   {tokenBalance?.symbol}
                 </div>
+                */}
 
                 {/*
                 <TopupButton />
