@@ -379,7 +379,7 @@ const ProposalsPage: NextPageWithLayout<
             <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
           ) : (
             <div className="flex w-full items-center justify-center text-2xl text-white ">
-              Under Maintenance
+              Game loading...
             </div>
           )}
         </div>

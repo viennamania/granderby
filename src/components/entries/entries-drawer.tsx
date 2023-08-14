@@ -299,8 +299,6 @@ function ColorSwitcher() {
 export default function EntriesDrawer() {
   const { isEntriesOpen, closeEntries } = useEntriesDrawer();
 
-
-
   const [npcNames, setNpcNames] = useState<any>([]);
 
   const [horse1Oran, setHorse1Oran] = useState<any>([]);
@@ -342,11 +340,11 @@ export default function EntriesDrawer() {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <div className="fixed inset-y-0 w-80 max-w-full bg-white/95 shadow-[0_0_80px_rgba(17,24,39,0.2)] backdrop-blur left-0 dark:bg-dark/90">
+          <div className="fixed inset-y-0 left-0 w-80 max-w-full bg-white/95 shadow-[0_0_80px_rgba(17,24,39,0.2)] backdrop-blur dark:bg-dark/90">
             <div className="h-full w-full ">
               <div className="flex h-16 items-center justify-between gap-6 border-b border-dashed border-gray-200 px-6 dark:border-gray-700">
                 <h3 className="mt-5 text-base font-medium uppercase text-gray-900 dark:text-white">
-                  Entries Search
+                  Search Entry
                 </h3>
 
                 <Button
@@ -374,11 +372,8 @@ export default function EntriesDrawer() {
                   <Inventory />
                   */}
 
-
-                  <div className="flex flex-row gap-3 items-center justify-center">
-
-                    <div className="flex flex-col gap-3 items-center justify-center">
-                 
+                  <div className="flex flex-row items-center justify-center gap-3">
+                    <div className="flex flex-col items-center justify-center gap-3">
                       <EntryTables
                         horse1={horse1Oran}
                         horse2={horse2Oran}
@@ -399,8 +394,7 @@ export default function EntriesDrawer() {
                       />
                     </div>
 
-                    <div className="flex flex-col gap-3 items-center justify-center">
-      
+                    <div className="flex flex-col items-center justify-center gap-3">
                       <EntryTables
                         horse1={horse1Oran}
                         horse2={horse2Oran}
@@ -421,8 +415,7 @@ export default function EntriesDrawer() {
                       />
                     </div>
 
-                    <div className="flex flex-col gap-3 items-center justify-center">
-
+                    <div className="flex flex-col items-center justify-center gap-3">
                       <EntryTables
                         horse1={horse1Oran}
                         horse2={horse2Oran}
@@ -443,8 +436,7 @@ export default function EntriesDrawer() {
                       />
                     </div>
 
-                    <div className="flex flex-col gap-3 items-center justify-center">
-
+                    <div className="flex flex-col items-center justify-center gap-3">
                       <EntryTables
                         horse1={horse1Oran}
                         horse2={horse2Oran}
@@ -465,9 +457,7 @@ export default function EntriesDrawer() {
                       />
                     </div>
 
-
-                    <div className="flex flex-col gap-3 items-center justify-center">
-
+                    <div className="flex flex-col items-center justify-center gap-3">
                       <EntryTables
                         horse1={horse1Oran}
                         horse2={horse2Oran}
@@ -487,18 +477,7 @@ export default function EntriesDrawer() {
                         balance={0}
                       />
                     </div>
-
-
-
-
-
-
-
                   </div>
-
-
-
-
                 </div>
               </Scrollbar>
             </div>

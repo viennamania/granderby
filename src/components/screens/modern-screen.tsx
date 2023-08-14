@@ -25,6 +25,7 @@ import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 //images
 import AuthorImage from '@/assets/images/author.jpg';
 
+import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
 import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
 import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
 
@@ -53,7 +54,7 @@ import {
   stakingContractAddressHorseAAA,
   stakingContractAddressJockey,
   tokenContractAddressGRD,
-} from '../../config/contractAddresses';
+} from '@/config/contractAddresses';
 
 import { BigNumber, ethers } from 'ethers';
 
@@ -241,6 +242,16 @@ export default function ModernScreen() {
 
           <LiveNftPricingSlider limits={4} />
 
+          <div className="items-top mt-2 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
+            {time ? (
+              <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
+            ) : (
+              <div className="flex w-full items-center justify-center text-2xl text-white ">
+                Game loading...
+              </div>
+            )}
+          </div>
+
           <div className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
             <BetInputs
               horse1={horse1Oran}
@@ -263,6 +274,9 @@ export default function ModernScreen() {
           </div>
           <div className="items-top mt-5 flex w-full justify-center ">
             <BetTables npcs={npcNames} />
+          </div>
+          <div className="mt-10 flex flex-row items-center justify-center">
+            {address && <ConnectWallet theme="dark" />}
           </div>
         </div>
 
@@ -372,10 +386,6 @@ export default function ModernScreen() {
         </div>
       </div>
           */}
-
-      <div className="mt-10 flex flex-row items-center justify-center">
-        {address && <ConnectWallet theme="dark" />}
-      </div>
 
       <div className="mb-10 flex flex-row">
         <div className="btn-wrap w-full ">
