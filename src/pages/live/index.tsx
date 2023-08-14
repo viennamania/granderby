@@ -397,7 +397,7 @@ const ProposalsPage: NextPageWithLayout<
               src="https://granderby.io/webgl/granderby/index.html"
               //width="100vw"
               //height="100vh"
-              sandbox="allow-scripts allow-modal"
+              //////sandbox="allow-scripts allow-modal"
               //width: 100vw;
               //height: 100vw;
 

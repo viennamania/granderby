@@ -75,11 +75,12 @@ export default function RootLayout({
   return <MomoconLayout>{children}</MomoconLayout>;
   */
 
-  return <ClassicLayout>{children}</ClassicLayout>;
+  ///return <ClassicLayout>{children}</ClassicLayout>;
 
+  return <MomoconLayout>{children}</MomoconLayout>;
 }
 
-  /*
+/*
 {
 
     <ModernLayout contentClassName={contentClassName}>{children}</ModernLayout>
