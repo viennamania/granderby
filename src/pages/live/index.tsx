@@ -307,11 +307,10 @@ const ProposalsPage: NextPageWithLayout<
       <InventoriesDrawer />
 */}
 
-      <div className='hidden xl:block'>
-      <EntriesButton/>
-      <EntriesDrawer />
+      <div className="hidden xl:block">
+        <EntriesButton />
+        <EntriesDrawer />
       </div>
-
 
       <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-6">
         {/*
@@ -340,11 +339,13 @@ const ProposalsPage: NextPageWithLayout<
         <div className="flex w-full flex-row items-center justify-end gap-2">
           <div className="flex w-full items-center justify-start">
             {!address ? (
-              <div className="flex  flex-col xl:flex-row xl:gap-2  ">
+              <div className="flex flex-row items-center justify-center gap-2 ">
                 <div>
                   <ConnectWallet theme="light" />
                 </div>
-                <h4 className="">to see my registered horses for racing</h4>
+                <div className=" text-sm xl:text-xl xl:font-bold">
+                  to see my registered horses for racing
+                </div>
               </div>
             ) : (
               <div className=" hidden flex-col xl:flex ">
