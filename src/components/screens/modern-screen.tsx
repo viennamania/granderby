@@ -26,6 +26,8 @@ import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 import AuthorImage from '@/assets/images/author.jpg';
 
 import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
+import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
+
 //@ts-ignore
 import { Socket, io } from 'socket.io-client';
 
@@ -256,6 +258,9 @@ export default function ModernScreen() {
               inputs={null}
               balance={0}
             />
+          </div>
+          <div className="items-top mt-5 flex w-full justify-center ">
+            <BetTables npcs={npcNames} />
           </div>
         </div>
 
