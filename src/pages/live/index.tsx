@@ -344,7 +344,7 @@ const ProposalsPage: NextPageWithLayout<
                   <ConnectWallet theme="light" />
                 </div>
                 <div className=" text-sm xl:text-xl xl:font-bold">
-                  to see my registered horses for racing
+                  to see my registered horses
                 </div>
               </div>
             ) : (
