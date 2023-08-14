@@ -102,8 +102,6 @@ export default function BetInputs({
   inputs: any;
   balance: any;
 }) {
- 
-
   const [chosenNpc, setChosenNpc] = useState<any>(null);
   const [betAmount, setBetAmount] = useState<any>(0);
   const [placedBet, setPlacedBet] = useState<any>(false);
@@ -578,7 +576,7 @@ export default function BetInputs({
           Entry
         </div>
 
-        <div className="flex w-full flex-row items-center justify-center gap-3  text-xs md:flex-row md:justify-around">
+        <div className="flex w-full flex-row items-center justify-center gap-3  text-xs  ">
           <button
             disabled={placedBet}
             onClick={() => {

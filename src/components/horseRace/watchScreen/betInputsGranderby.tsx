@@ -497,7 +497,7 @@ export default function BetInputs({
         )
               */}
 
-      <div className="disabled items-top justify-center  rounded-lg border bg-white p-5">
+      <div className="disabled items-top justify-center  rounded-lg  bg-white p-5">
         {/* //? Miktar Selector Buttons */}
 
         {/*}
@@ -591,7 +591,7 @@ export default function BetInputs({
               setChosenNpc(npcs?.horse1);
               setTokenid(BigNumber.from(0));
             }}
-            className={`gold-btn block border border-black p-1 text-center text-black ${
+            className={`gold-btn  border border-black p-1 text-center text-black ${
               chosenNpc === npcs?.horse1
                 ? 'gold-btn-active'
                 : chosenNpc === 0
@@ -601,7 +601,7 @@ export default function BetInputs({
           >
             <div className="flex flex-col items-center justify-center ">
               <span className="text-sm">1</span>
-              <div className="block items-center justify-center">
+              <div className=" items-center justify-center">
                 {/*
                 <Button
                   shape="rounded"

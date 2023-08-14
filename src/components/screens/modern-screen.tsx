@@ -25,6 +25,8 @@ import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 //images
 import AuthorImage from '@/assets/images/author.jpg';
 
+import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
+
 import {
   ConnectWallet,
   useDisconnect,
@@ -101,6 +103,19 @@ export default function ModernScreen() {
     loadClaimableRewards();
   }, [address, stakingContractJockey]);
 
+  const [npcNames, setNpcNames] = useState<any>([]);
+
+  const [horse1Oran, setHorse1Oran] = useState<any>([]);
+  const [horse2Oran, setHorse2Oran] = useState<any>([]);
+  const [horse3Oran, setHorse3Oran] = useState<any>([]);
+  const [horse4Oran, setHorse4Oran] = useState<any>([]);
+  const [horse5Oran, setHorse5Oran] = useState<any>([]);
+  const [horse6Oran, setHorse6Oran] = useState<any>([]);
+  const [horse7Oran, setHorse7Oran] = useState<any>([]);
+  const [horse8Oran, setHorse8Oran] = useState<any>([]);
+  const [horse9Oran, setHorse9Oran] = useState<any>([]);
+  const [horse10Oran, setHorse10Oran] = useState<any>([]);
+
   return (
     <>
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
@@ -124,10 +139,31 @@ export default function ModernScreen() {
         */}
 
           <LiveNftPricingSlider limits={4} />
+
+          <div className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
+            <BetInputs
+              horse1={horse1Oran}
+              horse2={horse2Oran}
+              horse3={horse3Oran}
+              horse4={horse4Oran}
+              horse5={horse5Oran}
+              horse6={horse6Oran}
+              horse7={horse7Oran}
+              horse8={horse8Oran}
+              horse9={horse9Oran}
+              horse10={horse10Oran}
+              //user={user}
+              user={null}
+              npcs={npcNames}
+              //inputs={inputs}
+              inputs={null}
+              balance={0}
+            />
+          </div>
         </div>
 
-        <div className="mt-10 w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
-          <div className="flex h-full flex-col justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
+        <div className="mt-5 w-full  sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
+          <div className="justify-top flex h-full flex-col items-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
             {!address ? (
               <div className="flex flex-col justify-center">
                 <ConnectWallet theme="light" />
@@ -223,7 +259,7 @@ export default function ModernScreen() {
       </div>
           */}
 
-      <div className="flex flex-row ">
+      <div className="mb-10 flex flex-row">
         <div className="btn-wrap w-full ">
           <button className="btn-app">
             <Image src={IcoApple} alt="" width={100} height={100} />
