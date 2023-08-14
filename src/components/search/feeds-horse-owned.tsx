@@ -204,7 +204,7 @@ export default function Feeds({ className }: { className?: string }) {
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center">
             <ConnectWallet theme="light" />
-            for your own horses
+            for my own horses
           </div>
         </>
       ) : (
@@ -214,7 +214,7 @@ export default function Feeds({ className }: { className?: string }) {
             isLoadingOwnedNfts ? (
               <>
                 <div className="flex flex-col items-center justify-center ">
-                  <div className="text-xl">Loading your own horses...</div>
+                  <div className="text-xl">Loading my own horses...</div>
 
                   <span className="items-top mt-10 flex h-screen w-full justify-center">
                     <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>

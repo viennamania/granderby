@@ -92,7 +92,7 @@ export default function Feeds({ className }: { className?: string }) {
 
           {isLoadingOwnedNfts && (
             <span className="items-top mt-2 flex w-full flex-row justify-center gap-2">
-              <h4 className="text-gray-400">Loading your own horses...</h4>
+              <h4 className="text-gray-400">Loading my own horses...</h4>
               <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
             </span>
           )}

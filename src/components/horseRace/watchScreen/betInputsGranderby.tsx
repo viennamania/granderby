@@ -884,7 +884,7 @@ export default function BetInputs({
 
             <div className="mt-5 flex w-full justify-end">
               {tokenBalanceIsLoading ? (
-                ////<span>Loading your token balance...</span>
+                ////<span>Loading my token balance...</span>
 
                 <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
               ) : (
