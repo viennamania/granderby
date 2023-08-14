@@ -24,12 +24,14 @@ export default function Search() {
   const { openDrawer } = useDrawer();
 
   const tabMenu = [
+    /*
     {
       title: 'Items',
       path: 'items',
     },
+    */
     {
-      title: 'Owned',
+      title: 'Own',
       path: 'owned',
     },
     /*
@@ -77,6 +79,7 @@ export default function Search() {
         <div className="m-3 block">
           <ParamTab tabMenu={tabMenu}>
             {/* Total list of items */}
+            {/*
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
@@ -107,6 +110,9 @@ export default function Search() {
                 <Feeds />
               </div>
             </TabPanel>
+            */}
+
+            {/* Owned items */}
 
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">

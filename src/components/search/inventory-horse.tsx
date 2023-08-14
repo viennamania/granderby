@@ -27,12 +27,14 @@ export default function Inventory() {
   const { openDrawer } = useDrawer();
 
   const tabMenu = [
+    /*
     {
       title: 'Items',
       path: 'items',
     },
+    */
     {
-      title: 'Owned',
+      title: 'Own',
       path: 'owned',
     },
     /*
@@ -73,6 +75,7 @@ export default function Inventory() {
         <div className="m-3 block">
           <ParamTab tabMenu={tabMenu}>
             {/* Total list of items */}
+            {/*
             <TabPanel className="focus:outline-none  ">
               <div className="">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
@@ -103,6 +106,9 @@ export default function Inventory() {
                 <Feeds />
               </div>
             </TabPanel>
+            */}
+
+            {/* Own */}
 
             <TabPanel className="focus:outline-none  ">
               <div className="">

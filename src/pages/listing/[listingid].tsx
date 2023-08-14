@@ -356,7 +356,7 @@ function SinglePrice(listingid: any) {
 
           <div className={styles.rightListing}>
             <p>
-              Owned by{' '}
+              Own by{' '}
               <b>
                 {/*
               {directListing.sellerAddress?.slice(0, 6) +
