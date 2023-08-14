@@ -584,7 +584,7 @@ export default function BetInputs({
           entry
         </div>
 
-        <div className="mt-2 flex flex-row   items-center justify-center gap-3  text-xs ">
+        <div className="mt-2 flex flex-row   items-center justify-between gap-3  text-xs ">
           <button
             disabled={placedBet}
             onClick={() => {
@@ -621,7 +621,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[50] w-[50] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-5  h-[50px] w-[50px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -674,7 +674,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[50] w-[50] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-5  h-[50px] w-[50px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
@@ -726,7 +726,7 @@ export default function BetInputs({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" mt-5  h-[50] w-[50] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-5  h-[50px] w-[50px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
                 <span className=" text-sm font-bold text-sky-500 xl:text-lg">
