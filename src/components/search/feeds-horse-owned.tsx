@@ -226,73 +226,104 @@ export default function Feeds({ className }: { className?: string }) {
                 </div>
               </>
             ) : (
-              <div
-                className={cn(
-                  'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-                  isGridCompact
-                    ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                    : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-                  className
-                )}
-              >
-                {ownedNfts?.map((nft) => (
-                  <div
-                    key={nft?.metadata?.id}
-                    className="relative overflow-hidden rounded-lg bg-white shadow-lg"
-                    onClick={() =>
-                      //setTokenid(nft.metadata.id.toString()),
-                      //setIsOpen(true)
-                      router.push('/horse-details/' + nft?.metadata?.id)
-                    }
-                  >
-                    <Image
-                      src={
-                        nft?.metadata?.image
-                          ? nft?.metadata?.image
-                          : '/default-nft.png'
-                      }
-                      alt="nft"
-                      height={500}
-                      width={500}
-                      loading="lazy"
-                    />
-                    <div className="m-2 w-full">
-                      <p className="text-md font-bold">{nft?.metadata?.name}</p>
-                    </div>
+              <>
+                {ownedNfts?.length == 0 ? (
+                  <>
+                    <h4 className="flex flex-col justify-center ">
+                      You don't own any horses yet.
+                    </h4>
+                    <Button
+                      className="w-full"
+                      title="Go"
+                      color="white"
+                      shape="rounded"
+                      variant="transparent"
+                      size="large"
+                      onClick={() => {
+                        router.push('https://granderby.market/');
+                      }}
+                    >
+                      <div className="flex flex-row items-center gap-2">
+                        <Image
+                          src="/images/market.png"
+                          alt="market"
+                          width={34}
+                          height={34}
+                        />
+                        Granderby Market
+                      </div>
+                    </Button>
+                  </>
+                ) : (
+                  <div className="mb-2">
+                    <h4 className="flex flex-col justify-center ">
+                      I have {ownedNfts?.length} horses.
+                    </h4>
+                    <Button
+                      className="w-full"
+                      title="Go"
+                      color="white"
+                      shape="rounded"
+                      variant="transparent"
+                      size="large"
+                      onClick={() => {
+                        router.push('/mint-carrot');
+                      }}
+                    >
+                      <div className="flex flex-row items-center gap-2">
+                        <Image
+                          src="/horseRace/3338carrots.png"
+                          alt="breed"
+                          width={48}
+                          height={48}
+                        />
+                        Try to breed them.
+                      </div>
+                    </Button>
                   </div>
-                ))}
-              </div>
+                )}
+
+                <div
+                  className={cn(
+                    'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                    isGridCompact
+                      ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+                      : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                    className
+                  )}
+                >
+                  {ownedNfts?.map((nft) => (
+                    <div
+                      key={nft?.metadata?.id}
+                      className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                      onClick={() =>
+                        //setTokenid(nft.metadata.id.toString()),
+                        //setIsOpen(true)
+                        router.push('/horse-details/' + nft?.metadata?.id)
+                      }
+                    >
+                      <Image
+                        src={
+                          nft?.metadata?.image
+                            ? nft?.metadata?.image
+                            : '/default-nft.png'
+                        }
+                        alt="nft"
+                        height={500}
+                        width={500}
+                        loading="lazy"
+                      />
+                      <div className="m-2 w-full">
+                        <p className="text-md font-bold">
+                          {nft?.metadata?.name}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )
           }
-
-          {ownedNfts?.length == 0 && (
-            <>
-              <h4 className="flex flex-col justify-center ">
-                You don't own any horses yet.
-              </h4>
-              <Button
-                className="w-full"
-                title="Go"
-                color="white"
-                shape="rounded"
-                variant="transparent"
-                size="large"
-                onClick={() => {
-                  router.push('https://granderby.market/');
-                }}
-              >
-                <div className="flex flex-row items-center gap-2">
-                  <Image
-                    src="/images/market.png"
-                    alt="market"
-                    width={34}
-                    height={34}
-                  />
-                  Granderby Market
-                </div>
-              </Button>
-            </>
-          )}
         </>
       )}
     </>
