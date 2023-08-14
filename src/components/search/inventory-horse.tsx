@@ -1,6 +1,9 @@
 import Button from '@/components/ui/button';
 
-import Feeds from '@/components/search/feeds-horse';
+////import Feeds from '@/components/search/feeds-horse';
+
+import Feeds from '@/components/search/feeds-horse-inventory';
+
 import OwnedFeeds from '@/components/search/feeds-horse-owned';
 import ListedFeeds from '@/components/search/feeds-horse-listed';
 
