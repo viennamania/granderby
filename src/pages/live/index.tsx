@@ -297,8 +297,10 @@ const ProposalsPage: NextPageWithLayout<
       <Sidebar className="z-40 hidden xl:block" />
   */}
 
+      {/*
       <InventoriesButton />
       <InventoriesDrawer />
+*/}
 
       <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-6">
         {/*
