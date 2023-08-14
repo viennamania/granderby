@@ -26,6 +26,8 @@ import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 import AuthorImage from '@/assets/images/author.jpg';
 
 import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
+//@ts-ignore
+import { Socket, io } from 'socket.io-client';
 
 import {
   ConnectWallet,
@@ -115,6 +117,99 @@ export default function ModernScreen() {
   const [horse8Oran, setHorse8Oran] = useState<any>([]);
   const [horse9Oran, setHorse9Oran] = useState<any>([]);
   const [horse10Oran, setHorse10Oran] = useState<any>([]);
+
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  const [status, setStatus] = useState<any>();
+  const [time, setTime] = useState<any>(0);
+
+  useEffect(() => {
+    socketInitializer();
+  }, []);
+
+  const socketInitializer = () => {
+    ///console.log("snailRace socketInitializer socket", socket);
+
+    if (socket) return;
+
+    const socketa = io(process.env.NEXT_PUBLIC_HORSE_RACE_SOCKET_URL as string);
+
+    setSocket(socketa);
+
+    socketa.on('status', (data: any) => {
+      console.log('socket status======', data);
+
+      setStatus(data);
+    });
+
+    socketa.on('time', (data: any) => {
+      setTime(data);
+    });
+
+    socketa.on('horse1Rate', (data: any) => {
+      setHorse1Oran(data);
+    });
+    socketa.on('horse2Rate', (data: any) => {
+      setHorse2Oran(data);
+    });
+    socketa.on('horse3Rate', (data: any) => {
+      setHorse3Oran(data);
+    });
+    socketa.on('horse4Rate', (data: any) => {
+      setHorse4Oran(data);
+    });
+    socketa.on('horse5Rate', (data: any) => {
+      setHorse5Oran(data);
+    });
+    socketa.on('horse6Rate', (data: any) => {
+      setHorse6Oran(data);
+    });
+    socketa.on('horse7Rate', (data: any) => {
+      setHorse7Oran(data);
+    });
+    socketa.on('horse8Rate', (data: any) => {
+      setHorse8Oran(data);
+    });
+    socketa.on('horse9Rate', (data: any) => {
+      setHorse9Oran(data);
+    });
+    socketa.on('horse10Rate', (data: any) => {
+      setHorse10Oran(data);
+    });
+
+    /*
+    socketa.on('flag', (data: any) => {
+      setFlag(data);
+    });
+    */
+
+    return () => {
+      socketa.disconnect();
+    };
+  };
+
+  useEffect(() => {
+    if (status == false) {
+      ////deleteCookie('horse');
+    }
+
+    async function getNpcNames() {
+      const npcNamesResponse = await fetch(
+        `/api/games/horseRace/settings/horseNames?method=all`
+      );
+      const response = await npcNamesResponse.json();
+
+      ///console.log('getNpcNames response', response);
+
+      //const data = useOwnedNFTs(nftDropContractHorse, address);
+
+      setNpcNames(response.npcNames[0]);
+
+      //npcNames.npcNames[0].nft1
+    }
+
+    getNpcNames();
+  }, [status]);
 
   return (
     <>
