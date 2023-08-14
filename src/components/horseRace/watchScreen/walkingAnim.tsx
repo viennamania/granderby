@@ -14,27 +14,30 @@ export default function WalkingAdnim({ time, npcSrc }: any) {
   return (
     <>
       <div className="  flex w-full flex-col items-center justify-center">
-        <div className="justify-top flex w-full items-center">
-          {/*
-                    <lottie-player
-                        id="firstLottie"
-                        ref={ref}
-                        autoplay
-                        loop
-                        mode="normal"
-                        src={npcSrc}
-                        style={{ width: "300px", height: "300px" }}
-                    ></lottie-player>
-                    */}
+        {time && time === -1 && (
+          <div className="justify-top flex w-full items-center">
+            {/*
+                      <lottie-player
+                          id="firstLottie"
+                          ref={ref}
+                          autoplay
+                          loop
+                          mode="normal"
+                          src={npcSrc}
+                          style={{ width: "300px", height: "300px" }}
+                      ></lottie-player>
+                      */}
 
-          <Image
-            src="/horseRace/at1.gif"
-            width={80}
-            height={80}
-            alt="horse"
-            className="rounded-lg"
-          />
-        </div>
+            <Image
+              src="/horseRace/at1.gif"
+              width={80}
+              height={80}
+              alt="horse"
+              className="rounded-lg"
+            />
+          </div>
+        )}
+
         {/*
                 {time && <p className="text-xl text-white">Last {time} seconds for bets</p>}
                 */}
