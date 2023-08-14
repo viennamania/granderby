@@ -599,7 +599,7 @@ export default function BetInputs({
           entry
         </div>
 
-        <div className="xl:grid-flow-cols-10 mt-2  grid grid-cols-5 items-center   justify-center gap-1 text-xs  lg:grid-cols-10 ">
+        <div className="mt-2 grid  grid-cols-5 items-center justify-center   gap-1 text-xs xl:grid-cols-10  ">
           <button
             disabled={placedBet}
             onClick={() => {
@@ -636,7 +636,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1   rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -689,7 +689,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1   rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -741,7 +741,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1   rounded-md "
                 />
 
                 <span className=" text-xs  text-sky-500 xl:text-lg">
@@ -794,7 +794,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1  rounded-md "
                 />
 
                 <span className=" text-xs  text-sky-500 xl:text-lg">
@@ -848,7 +848,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1  rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -902,7 +902,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1  rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -956,7 +956,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1  rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -1010,7 +1010,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1  rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -1064,7 +1064,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1 rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -1118,7 +1118,7 @@ export default function BetInputs({
                   width={100}
                   height={100}
                   alt="pp"
-                  className=" mt-1  h-[35px] w-[35px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className=" mt-1 rounded-md "
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">

@@ -97,7 +97,7 @@ export default function Feeds({ className }: { className?: string }) {
             </span>
           )}
 
-          {ownedNfts?.length == 0 && (
+          {ownedNfts?.length == 0 ? (
             <>
               <h4 className="flex flex-col justify-center ">
                 You don't own any horses yet.
@@ -121,6 +121,33 @@ export default function Feeds({ className }: { className?: string }) {
                     height={34}
                   />
                   Granderby Market
+                </div>
+              </Button>
+            </>
+          ) : (
+            <>
+              <h4 className="flex flex-col justify-center ">
+                I have {ownedNfts?.length} horses.
+              </h4>
+              <Button
+                className="w-full"
+                title="Go"
+                color="white"
+                shape="rounded"
+                variant="transparent"
+                size="large"
+                onClick={() => {
+                  router.push('/mint-carrot');
+                }}
+              >
+                <div className="flex flex-row items-center gap-2">
+                  <Image
+                    src="/horseRace/3338carrots.png"
+                    alt="market"
+                    width={48}
+                    height={48}
+                  />
+                  Try to breed them.
                 </div>
               </Button>
             </>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-import { IHorseGame } from '../../../utils/horseRace/interfaces/horseGame';
+import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 import Image from 'next/image';
+import { set } from 'lodash';
 
 export default function BetTables({ npcs }: any) {
   ////console.log('BetTables npcs====', npcs);
@@ -17,6 +18,11 @@ export default function BetTables({ npcs }: any) {
   const [betAmount3, setBetAmount3] = useState<any>(0);
   const [betAmount4, setBetAmount4] = useState<any>(0);
   const [betAmount5, setBetAmount5] = useState<any>(0);
+  const [betAmount6, setBetAmount6] = useState<any>(0);
+  const [betAmount7, setBetAmount7] = useState<any>(0);
+  const [betAmount8, setBetAmount8] = useState<any>(0);
+  const [betAmount9, setBetAmount9] = useState<any>(0);
+  const [betAmount10, setBetAmount10] = useState<any>(0);
 
   useEffect(() => {
     socketInitializer();
@@ -60,6 +66,11 @@ export default function BetTables({ npcs }: any) {
     setBetAmount3(0);
     setBetAmount4(0);
     setBetAmount5(0);
+    setBetAmount6(0);
+    setBetAmount7(0);
+    setBetAmount8(0);
+    setBetAmount9(0);
+    setBetAmount10(0);
 
     games?.map((game: IHorseGame, i: number) => {
       if (game.selectedSide === npcs.horse1) {
@@ -82,6 +93,21 @@ export default function BetTables({ npcs }: any) {
         setBetAmount5((prev: any) => prev + game.betAmount);
 
         setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse6) {
+        setBetAmount6((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse7) {
+        setBetAmount7((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse8) {
+        setBetAmount8((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse9) {
+        setBetAmount9((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcs.horse10) {
+        setBetAmount10((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
       }
     });
   };
@@ -92,12 +118,12 @@ export default function BetTables({ npcs }: any) {
 
   return (
     <>
-      <div className="mt-0 flex w-full flex-col items-center  lg:w-2/3">
-        <div className="mb-4 flex w-full items-center justify-center rounded-lg text-5xl font-bold text-yellow-500">
+      <div className="mt-0 flex w-full flex-col items-center  ">
+        <div className="mb-2 flex w-full items-center justify-center rounded-lg text-5xl font-bold text-yellow-500">
           {betAmountTotal}
         </div>
 
-        <div className="grid w-full grid-cols-5 gap-1 rounded-lg text-gray-200 lg:grid-cols-5  lg:gap-3">
+        <div className="grid w-full grid-cols-5 gap-1 rounded-lg pl-10 pr-10 text-gray-200 xl:grid-cols-10 xl:gap-1">
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
             <div className="mb-2 flex w-full flex-col items-center justify-center">
               <span className="text-lg font-bold text-yellow-500">
@@ -349,6 +375,281 @@ export default function BetTables({ npcs }: any) {
             <ul className="mt-2 flex list-disc flex-col gap-2">
               {games?.map((game: IHorseGame, i: number) => {
                 if (game.selectedSide === npcs.horse5) {
+                  return (
+                    <li key={i} className="flex items-center gap-1">
+                      {/*
+                      <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
+                        <Image
+                          src={game.img}
+                          width={100}
+                          height={100}
+                          style={{
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                          }}
+                          alt="pp"
+                          className="h-[15px] w-[15px] rounded-full"
+                        />
+                      </div>
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
+                      </span>
+                      <span className="text-right text-sm text-yellow-500">
+                        {game.betAmount}
+                      </span>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+
+          <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount6}
+              </span>{' '}
+            </div>
+            <div className="flex w-full flex-col items-center justify-center">
+              {/*
+              <div className=" mb-2 w-full border-black  text-center text-sm ">
+                <span className=" text-sky-500">#{npcs.nft5}</span>
+              </div>
+              */}
+              {/*
+              <Image
+                src={npcs?.media5?.thumbnail}
+                width={100}
+                height={100}
+                alt="pp"
+                className="h-[45px] w-[45px] rounded-md"
+              />
+              */}
+            </div>
+            <ul className="mt-2 flex list-disc flex-col gap-2">
+              {games?.map((game: IHorseGame, i: number) => {
+                if (game.selectedSide === npcs.horse6) {
+                  return (
+                    <li key={i} className="flex items-center gap-1">
+                      {/*
+                      <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
+                        <Image
+                          src={game.img}
+                          width={100}
+                          height={100}
+                          style={{
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                          }}
+                          alt="pp"
+                          className="h-[15px] w-[15px] rounded-full"
+                        />
+                      </div>
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
+                      </span>
+                      <span className="text-right text-sm text-yellow-500">
+                        {game.betAmount}
+                      </span>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+
+          <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount7}
+              </span>{' '}
+            </div>
+            <div className="flex w-full flex-col items-center justify-center">
+              {/*
+              <div className=" mb-2 w-full border-black  text-center text-sm ">
+                <span className=" text-sky-500">#{npcs.nft5}</span>
+              </div>
+              */}
+              {/*
+              <Image
+                src={npcs?.media5?.thumbnail}
+                width={100}
+                height={100}
+                alt="pp"
+                className="h-[45px] w-[45px] rounded-md"
+              />
+              */}
+            </div>
+            <ul className="mt-2 flex list-disc flex-col gap-2">
+              {games?.map((game: IHorseGame, i: number) => {
+                if (game.selectedSide === npcs.horse7) {
+                  return (
+                    <li key={i} className="flex items-center gap-1">
+                      {/*
+                      <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
+                        <Image
+                          src={game.img}
+                          width={100}
+                          height={100}
+                          style={{
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                          }}
+                          alt="pp"
+                          className="h-[15px] w-[15px] rounded-full"
+                        />
+                      </div>
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
+                      </span>
+                      <span className="text-right text-sm text-yellow-500">
+                        {game.betAmount}
+                      </span>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+
+          <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount8}
+              </span>{' '}
+            </div>
+            <div className="flex w-full flex-col items-center justify-center">
+              {/*
+              <div className=" mb-2 w-full border-black  text-center text-sm ">
+                <span className=" text-sky-500">#{npcs.nft5}</span>
+              </div>
+              */}
+              {/*
+              <Image
+                src={npcs?.media5?.thumbnail}
+                width={100}
+                height={100}
+                alt="pp"
+                className="h-[45px] w-[45px] rounded-md"
+              />
+              */}
+            </div>
+            <ul className="mt-2 flex list-disc flex-col gap-2">
+              {games?.map((game: IHorseGame, i: number) => {
+                if (game.selectedSide === npcs.horse8) {
+                  return (
+                    <li key={i} className="flex items-center gap-1">
+                      {/*
+                      <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
+                        <Image
+                          src={game.img}
+                          width={100}
+                          height={100}
+                          style={{
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                          }}
+                          alt="pp"
+                          className="h-[15px] w-[15px] rounded-full"
+                        />
+                      </div>
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
+                      </span>
+                      <span className="text-right text-sm text-yellow-500">
+                        {game.betAmount}
+                      </span>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+
+          <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount9}
+              </span>{' '}
+            </div>
+            <div className="flex w-full flex-col items-center justify-center">
+              {/*
+              <div className=" mb-2 w-full border-black  text-center text-sm ">
+                <span className=" text-sky-500">#{npcs.nft5}</span>
+              </div>
+              */}
+              {/*
+              <Image
+                src={npcs?.media5?.thumbnail}
+                width={100}
+                height={100}
+                alt="pp"
+                className="h-[45px] w-[45px] rounded-md"
+              />
+              */}
+            </div>
+            <ul className="mt-2 flex list-disc flex-col gap-2">
+              {games?.map((game: IHorseGame, i: number) => {
+                if (game.selectedSide === npcs.horse9) {
+                  return (
+                    <li key={i} className="flex items-center gap-1">
+                      {/*
+                      <div className="flex h-[15px] w-[15px] flex-col items-center justify-center">
+                        <Image
+                          src={game.img}
+                          width={100}
+                          height={100}
+                          style={{
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                          }}
+                          alt="pp"
+                          className="h-[15px] w-[15px] rounded-full"
+                        />
+                      </div>
+                      */}
+                      <span className="w-5 text-xs">
+                        {`${game.username.slice(0, 3)}...`}
+                      </span>
+                      <span className="text-right text-sm text-yellow-500">
+                        {game.betAmount}
+                      </span>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+
+          <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
+            <div className="mb-2 flex w-full flex-col items-center justify-center">
+              <span className="text-lg font-bold text-yellow-500">
+                {betAmount10}
+              </span>{' '}
+            </div>
+            <div className="flex w-full flex-col items-center justify-center">
+              {/*
+              <div className=" mb-2 w-full border-black  text-center text-sm ">
+                <span className=" text-sky-500">#{npcs.nft5}</span>
+              </div>
+              */}
+              {/*
+              <Image
+                src={npcs?.media5?.thumbnail}
+                width={100}
+                height={100}
+                alt="pp"
+                className="h-[45px] w-[45px] rounded-md"
+              />
+              */}
+            </div>
+            <ul className="mt-2 flex list-disc flex-col gap-2">
+              {games?.map((game: IHorseGame, i: number) => {
+                if (game.selectedSide === npcs.horse10) {
                   return (
                     <li key={i} className="flex items-center gap-1">
                       {/*

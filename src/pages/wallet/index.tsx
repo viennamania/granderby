@@ -641,10 +641,12 @@ const WalletPage: NextPageWithLayout<
         <TransactionTable />
       </div>
 
-      <iframe
-        className="mt-10 h-[500px] w-full border"
-        src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c"
-      />
+      {address && (
+        <iframe
+          className="mt-10 h-[500px] w-full border"
+          src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c"
+        />
+      )}
 
       {/*
       <Web3Button
