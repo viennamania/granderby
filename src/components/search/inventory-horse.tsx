@@ -34,9 +34,14 @@ export default function Inventory() {
     },
     */
     {
-      title: 'Own',
-      path: 'owned',
+      title: 'Horse',
+      path: 'horse',
     },
+    {
+      title: 'Jokey',
+      path: 'jockey',
+    },
+
     /*
     {
       title: 'Listed',
@@ -57,6 +62,7 @@ export default function Inventory() {
 
   return (
     <>
+      {/*
       <div className="m-3 flex flex-col text-xl font-bold text-gray-900 dark:text-white ">
         <div className="justify-left flex flex-row items-center">
           <Image
@@ -70,6 +76,7 @@ export default function Inventory() {
         </div>
         <span className="mt-3 text-sm">Items 3,645 · Created Jun 2023</span>
       </div>
+      */}
 
       <div className="grid ">
         <div className="m-3 block">
@@ -167,18 +174,22 @@ export default function Inventory() {
                     </div>
                   </div>
                 </div>
-
+                {/*
                 <ListedFeeds />
+                */}
+                <OwnedFeeds />
               </div>
             </TabPanel>
           </ParamTab>
         </div>
 
+        {/*
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 ">
           <Button onClick={() => openDrawer('DRAWER_SEARCH')} fullWidth>
             Filters
           </Button>
         </div>
+                */}
       </div>
     </>
   );

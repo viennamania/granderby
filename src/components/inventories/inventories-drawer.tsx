@@ -326,7 +326,7 @@ export default function InventoriesDrawer() {
             <div className="h-full w-full ">
               <div className=" flex h-16 flex-row items-center justify-between gap-6 border-b border-dashed border-gray-200 px-6 dark:border-gray-700">
                 <h3 className="mt-5 text-base font-medium uppercase text-gray-900 dark:text-white">
-                  Inventory
+                  My inventory
                 </h3>
 
                 <Button

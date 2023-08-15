@@ -1217,7 +1217,7 @@ export default function BetInputs({
           ) : (
             <div className="mt-5 flex w-full flex-col justify-center">
               <ConnectWallet theme="light" />
-              <span>to see my GRD balance</span>
+              <span className="text-lg">to see my GRD balance</span>
             </div>
           )}
         </>

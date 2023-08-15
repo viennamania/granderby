@@ -591,7 +591,7 @@ export default function EntryTables({
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="mb-2 mt-10 flex items-center justify-center  text-sm text-white  ">
+        <div className="mb-2 mt-0 flex items-center justify-center  rounded-sm bg-gray-200 p-1 text-sm text-black  ">
           E-258
         </div>
 
@@ -637,7 +637,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft1?.tokenId}
                 </span>
               </div>
@@ -692,7 +692,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs  text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft2?.tokenId}
                 </span>
               </div>
@@ -746,7 +746,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs  text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft3?.tokenId}
                 </span>
               </div>
@@ -800,7 +800,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft4?.tokenId}
                 </span>
               </div>
@@ -855,7 +855,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs  text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft5?.tokenId}
                 </span>
               </div>
@@ -910,7 +910,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs  text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft6?.tokenId}
                 </span>
               </div>
@@ -1020,7 +1020,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft8?.tokenId}
                 </span>
               </div>
@@ -1075,7 +1075,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft9?.tokenId}
                 </span>
               </div>
@@ -1130,7 +1130,7 @@ export default function EntryTables({
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-lg">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft10?.tokenId}
                 </span>
               </div>
