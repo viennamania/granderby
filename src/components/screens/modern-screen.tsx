@@ -272,9 +272,12 @@ export default function ModernScreen() {
               balance={0}
             />
           </div>
+          {/*
           <div className="items-top mt-5 flex w-full justify-center ">
             <BetTables npcs={npcNames} />
           </div>
+          */}
+
           <div className="mt-10 flex flex-row items-center justify-center">
             {address && <ConnectWallet theme="dark" />}
           </div>
