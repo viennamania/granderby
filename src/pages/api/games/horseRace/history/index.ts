@@ -27,7 +27,7 @@ export default async function handler(
   }
 
   if (method === 'getAll10') {
-    const all = await getHorseHistory10();
+    const all = await getHorseHistory();
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
     return res.status(200).json({ status: true, all });
   }
