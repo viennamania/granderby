@@ -246,7 +246,16 @@ export default function ModernScreen() {
 
           <LiveNftPricingSlider limits={4} />
 
-          <div className="items-top mt-10 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
+          <div className="justify-left mt-5 flex w-full items-center ">
+            <Image
+              src="/horseRace/racecourse_happy_valley.png"
+              alt="raceTrack"
+              width={150}
+              height={150}
+            />
+          </div>
+
+          <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
             {time ? (
               <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
             ) : (
