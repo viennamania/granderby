@@ -246,7 +246,7 @@ export default function ModernScreen() {
 
           <LiveNftPricingSlider limits={4} />
 
-          <div className="items-top mt-2 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
+          <div className="items-top mt-10 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
             {time ? (
               <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
             ) : (
@@ -256,7 +256,7 @@ export default function ModernScreen() {
             )}
           </div>
 
-          <div className="flex flex-col items-center justify-center rounded-lg bg-white p-2 shadow-card dark:bg-light-dark xl:p-8">
+          <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-2 shadow-card dark:bg-light-dark xl:p-8">
             <EntryTables
               horse1={horse1Oran}
               horse2={horse2Oran}
@@ -282,7 +282,7 @@ export default function ModernScreen() {
           </div>
           */}
 
-          <div className="mt-10 flex flex-row items-center justify-center">
+          <div className="mt-0 flex flex-row items-center justify-center">
             {address && <ConnectWallet theme="dark" />}
           </div>
         </div>
