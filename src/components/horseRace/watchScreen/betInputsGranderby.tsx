@@ -42,6 +42,7 @@ import { OptionIcon } from '@/components/icons/option';
 
 import { useDrawer } from '@/components/drawer-views/context';
 import { add } from 'lodash';
+import Wallet from '@/components/wallet/wallet';
 
 /*
 import {
@@ -616,7 +617,7 @@ export default function BetInputs({
           >
             <div
               className="flex flex-col items-center justify-center"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
               <span className="text-sm">1</span>
               <div className=" items-center justify-center">
@@ -627,7 +628,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -670,7 +671,10 @@ export default function BetInputs({
                 : ''
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">2</span>
               <div className=" items-center justify-center">
                 {/*
@@ -680,7 +684,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -722,7 +726,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm ">3</span>
               <div className=" items-center justify-center">
                 {/*
@@ -732,7 +739,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -774,7 +781,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">4</span>
 
               <div className="flex flex-col items-center justify-center">
@@ -785,7 +795,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -828,7 +838,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">5</span>
 
               <div className=" items-center justify-center">
@@ -839,7 +852,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -882,7 +895,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">6</span>
 
               <div className=" items-center justify-center">
@@ -893,7 +909,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -936,7 +952,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">7</span>
 
               <div className=" items-center justify-center">
@@ -947,7 +966,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -990,7 +1009,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">8</span>
 
               <div className=" items-center justify-center">
@@ -1001,7 +1023,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -1044,7 +1066,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">9</span>
 
               <div className=" items-center justify-center">
@@ -1055,7 +1080,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -1098,7 +1123,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">10</span>
 
               <div className=" items-center justify-center">
@@ -1109,7 +1137,7 @@ export default function BetInputs({
                   variant="ghost"
                   color="gray"
                   //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                  //onClick={() => openDrawer('DRAWER_HORSE_INFO')}
                   className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
@@ -1141,35 +1169,39 @@ export default function BetInputs({
 
         {/* //? Input amount manuel */}
 
+        {/*
         {address && (
-          <>
-            <div className="relative  mt-10 w-full items-center justify-center">
-              <div className="absolute left-5 z-10">
-                {/*
+          */}
+
+        <>
+          <div className="relative  mt-10 w-full items-center justify-center">
+            <div className="absolute left-5 z-10">
+              {/*
                 <FaCoins className='fill-yellow-500' />
                 */}
-              </div>
-              <input
-                onChange={(e: any) => {
-                  setBetAmount(e.target.value);
-                }}
-                value={betAmount === 0 ? '' : betAmount}
-                type="number"
-                disabled={placedBet}
-                placeholder="Enter your bet"
-                className="w-full rounded-lg border bg-transparent p-2 pl-20  text-2xl font-bold text-black  disabled:opacity-70"
-              />
-              <button
-                disabled={placedBet}
-                onClick={() => {
-                  setBetAmount(0);
-                }}
-                className="btn btn-xs btn-outline absolute right-10  z-10 border-gray-700"
-              >
-                Clear
-              </button>
             </div>
+            <input
+              onChange={(e: any) => {
+                setBetAmount(e.target.value);
+              }}
+              value={betAmount === 0 ? '' : betAmount}
+              type="number"
+              disabled={placedBet}
+              placeholder="Enter your bet"
+              className="w-full rounded-lg border bg-transparent p-2 pl-20  text-2xl font-bold text-black  disabled:opacity-70"
+            />
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setBetAmount(0);
+              }}
+              className="btn btn-xs btn-outline absolute right-10  z-10 border-gray-700"
+            >
+              Clear
+            </button>
+          </div>
 
+          {address ? (
             <div className="mt-5 flex w-full justify-end">
               {tokenBalanceIsLoading ? (
                 ////<span>Loading my token balance...</span>
@@ -1182,8 +1214,17 @@ export default function BetInputs({
                 </div>
               )}
             </div>
-          </>
+          ) : (
+            <div className="mt-5 flex w-full flex-col justify-center">
+              <ConnectWallet theme="light" />
+              <span>to see my GRD balance</span>
+            </div>
+          )}
+        </>
+
+        {/*
         )}
+              */}
       </div>
 
       {/*

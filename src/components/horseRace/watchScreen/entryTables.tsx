@@ -610,7 +610,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center ">
+            <div
+              className="flex flex-row items-center justify-center "
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -631,7 +634,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -662,7 +665,10 @@ export default function EntryTables({
                 : ''
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -683,7 +689,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs  text-sky-500 xl:text-lg">
@@ -713,7 +719,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -734,7 +743,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs  text-sky-500 xl:text-lg">
@@ -764,7 +773,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="flex flex-col items-center justify-center">
                 {/*
                 <Button
@@ -785,7 +797,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -816,7 +828,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -837,7 +852,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs  text-sky-500 xl:text-lg">
@@ -868,7 +883,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -889,7 +907,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs  text-sky-500 xl:text-lg">
@@ -920,7 +938,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -941,7 +962,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-sm">
@@ -972,7 +993,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -993,7 +1017,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -1024,7 +1048,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1045,7 +1072,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">
@@ -1076,7 +1103,10 @@ export default function EntryTables({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-row items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1097,7 +1127,7 @@ export default function EntryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
+                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
 
                 <span className=" text-xs text-sky-500 xl:text-lg">

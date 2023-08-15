@@ -385,7 +385,7 @@ const ProposalsPage: NextPageWithLayout<
         </div>
 
         <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
-          <div className=" ml-[130px] mt-10 items-center justify-center ">
+          <div className=" ml-[140px] mt-10 w-[50px] items-center justify-center ">
             <EntryTables
               horse1={horse1Oran}
               horse2={horse2Oran}
