@@ -515,7 +515,7 @@ export default function BetInputs({
       <div className="disabled items-top justify-center  rounded-lg  bg-white p-5">
         {/* //? Miktar Selector Buttons */}
 
-        {/*}
+        {/*
             <div className=' 
               grid grid-cols-4 content-center md:flex w-full gap-3 items-center justify-center text-black
             '>
@@ -592,7 +592,7 @@ export default function BetInputs({
                     }}
                     className='w-20 green-btn h-10 rounded-lg hidden md:block font-medium-repeat text-black border disabled:opacity-70'> Max </button>}
             </div>
-                */}
+            */}
 
         {/* //? Horse Select Buttons */}
         <div className="mt-0 flex items-center justify-center gap-3 text-2xl  font-bold ">
@@ -614,7 +614,10 @@ export default function BetInputs({
                 : 'bg-transparent'
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
-            <div className="flex flex-col items-center justify-center ">
+            <div
+              className="flex flex-col items-center justify-center"
+              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+            >
               <span className="text-sm">1</span>
               <div className=" items-center justify-center">
                 {/*

@@ -6,9 +6,6 @@ import { useState, useEffect } from 'react';
 
 ////import { FaCoins } from 'react-icons/fa';
 
-
-
-
 import { BigNumber, utils } from 'ethers';
 import { useMemo } from 'react';
 import { HeadingImage } from '@/components/HeadingImage';
@@ -22,7 +19,6 @@ import { OptionIcon } from '@/components/icons/option';
 
 import { useDrawer } from '@/components/drawer-views/context';
 import { add } from 'lodash';
-
 
 import {
   ///nftDropContractAddressEntry,
@@ -73,8 +69,7 @@ const colors = {
 } as const;
 */
 
-
-export default function entryTables({
+export default function EntryTables({
   horse1,
   horse2,
   horse3,
@@ -122,14 +117,9 @@ export default function entryTables({
     balance,
   });
 
-
-
-
-
   const address = useAddress();
 
-
-  const { contract: tokenContract } = useContract (
+  const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,
     'token'
   );
@@ -517,11 +507,7 @@ export default function entryTables({
       <div className="disabled items-center justify-center ">
         {/* //? Input amount manuel */}
 
-        {address && (
-          <>
-            
-          </>
-        )}
+        {address && <></>}
 
         {/* //? Miktar Selector Buttons */}
 
@@ -605,11 +591,11 @@ export default function entryTables({
                 */}
 
         {/* //? Horse Select Buttons */}
-        <div className="mt-10 mb-2 flex items-center justify-center  text-sm text-white  ">
+        <div className="mb-2 mt-10 flex items-center justify-center  text-sm text-white  ">
           E-258
         </div>
 
-        <div className="  flex  flex-col   items-center justify-center gap-1  text-xs">
+        <div className="  flex  flex-wrap   items-center justify-center gap-1  text-xs">
           <button
             disabled={placedBet}
             onClick={() => {
@@ -625,8 +611,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center ">
-              
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -647,10 +631,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs text-sky-500 xl:text-lg">
                   #{npcs?.nft1?.tokenId}
                 </span>
               </div>
@@ -679,7 +663,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -700,10 +683,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs  text-sky-500 xl:text-lg">
                   #{npcs?.nft2?.tokenId}
                 </span>
               </div>
@@ -731,7 +714,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -752,10 +734,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs  text-sky-500 xl:text-lg">
                   #{npcs?.nft3?.tokenId}
                 </span>
               </div>
@@ -783,8 +765,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
-
               <div className="flex flex-col items-center justify-center">
                 {/*
                 <Button
@@ -805,10 +785,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs text-sky-500 xl:text-lg">
                   #{npcs?.nft4?.tokenId}
                 </span>
               </div>
@@ -837,8 +817,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -859,10 +837,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs  text-sky-500 xl:text-lg">
                   #{npcs?.nft5?.tokenId}
                 </span>
               </div>
@@ -875,7 +853,6 @@ export default function entryTables({
               */}
             </div>
           </button>
-
 
           <button
             disabled={placedBet}
@@ -892,8 +869,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -914,10 +889,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs  text-sky-500 xl:text-lg">
                   #{npcs?.nft6?.tokenId}
                 </span>
               </div>
@@ -930,9 +905,6 @@ export default function entryTables({
               */}
             </div>
           </button>
-
-
-
 
           <button
             disabled={placedBet}
@@ -949,8 +921,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -971,10 +941,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs text-sky-500 xl:text-sm">
                   #{npcs?.nft7?.tokenId}
                 </span>
               </div>
@@ -987,8 +957,6 @@ export default function entryTables({
               */}
             </div>
           </button>
-
-
 
           <button
             disabled={placedBet}
@@ -1005,7 +973,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1026,10 +993,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className="  h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className="  h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs text-sky-500 xl:text-lg">
                   #{npcs?.nft8?.tokenId}
                 </span>
               </div>
@@ -1042,7 +1009,6 @@ export default function entryTables({
               */}
             </div>
           </button>
-
 
           <button
             disabled={placedBet}
@@ -1059,7 +1025,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1080,10 +1045,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs text-sky-500 xl:text-lg">
                   #{npcs?.nft9?.tokenId}
                 </span>
               </div>
@@ -1112,8 +1077,6 @@ export default function entryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div className="flex flex-row items-center justify-center">
-
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1134,10 +1097,10 @@ export default function entryTables({
                   width={300}
                   height={300}
                   alt="pp"
-                  className=" h-[25px] w-[25px] rounded-md xl:h-[40px] xl:w-[40px]"
+                  className=" h-[25px] w-[25px] rounded-md xl:h-[80px] xl:w-[80px]"
                 />
 
-                <span className=" text-sm font-bold text-sky-500 xl:text-sm">
+                <span className=" text-xs text-sky-500 xl:text-lg">
                   #{npcs?.nft10?.tokenId}
                 </span>
               </div>
@@ -1150,8 +1113,6 @@ export default function entryTables({
               */}
             </div>
           </button>
-
-
         </div>
       </div>
 
@@ -1179,5 +1140,4 @@ export default function entryTables({
           */}
     </>
   );
-  
 }

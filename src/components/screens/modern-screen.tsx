@@ -26,7 +26,11 @@ import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 import AuthorImage from '@/assets/images/author.jpg';
 
 import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
-import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
+
+//import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
+
+import EntryTables from '@/components/horseRace/watchScreen/entryTables';
+
 import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
 
 //@ts-ignore
@@ -252,8 +256,8 @@ export default function ModernScreen() {
             )}
           </div>
 
-          <div className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
-            <BetInputs
+          <div className="flex flex-col items-center justify-center rounded-lg bg-white p-2 shadow-card dark:bg-light-dark xl:p-8">
+            <EntryTables
               horse1={horse1Oran}
               horse2={horse2Oran}
               horse3={horse3Oran}

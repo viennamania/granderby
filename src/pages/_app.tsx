@@ -21,6 +21,9 @@ import DrawersContainer from '@/components/drawer-views/container';
 //import SettingsButton from '@/components/settings/settings-button';
 //import SettingsDrawer from '@/components/settings/settings-drawer';
 
+import EntriesButton from '@/components/entries/entries-button';
+import EntriesDrawer from '@/components/entries/entries-drawer';
+
 import InventoriesButton from '@/components/inventories/inventories-button';
 import InventoriesDrawer from '@/components/inventories/inventories-drawer';
 
@@ -235,6 +238,9 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           {/*}
           <SettingsDrawer />
           */}
+
+          <EntriesButton />
+          <EntriesDrawer />
 
           <InventoriesButton />
           <InventoriesDrawer />
