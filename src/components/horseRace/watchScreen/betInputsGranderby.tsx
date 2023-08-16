@@ -631,7 +631,10 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">1</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                1
+              </span>
+
               <div className=" items-center justify-center">
                 <Image
                   src={npcs?.media1?.thumbnail || '/horseRace/logo.png'}
@@ -685,7 +688,10 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">2</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                2
+              </span>
+
               <div className=" items-center justify-center">
                 {/*
                 <Button
@@ -752,7 +758,10 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm ">3</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                3
+              </span>
+
               <div className=" items-center justify-center">
                 {/*
                 <Button
@@ -819,7 +828,9 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">4</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                4
+              </span>
 
               <div className="flex flex-col items-center justify-center">
                 {/*
@@ -888,7 +899,9 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">5</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                5
+              </span>
 
               <div className=" items-center justify-center">
                 {/*
@@ -957,7 +970,9 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">6</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                6
+              </span>
 
               <div className=" items-center justify-center">
                 {/*
@@ -1026,7 +1041,9 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">7</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                7
+              </span>
 
               <div className=" items-center justify-center">
                 {/*
@@ -1095,7 +1112,9 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">8</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                8
+              </span>
 
               <div className=" items-center justify-center">
                 {/*
@@ -1164,7 +1183,9 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">9</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                9
+              </span>
 
               <div className=" items-center justify-center">
                 {/*
@@ -1233,7 +1254,9 @@ export default function BetInputs({
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="text-sm">10</span>
+              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
+                10
+              </span>
 
               <div className=" items-center justify-center">
                 {/*

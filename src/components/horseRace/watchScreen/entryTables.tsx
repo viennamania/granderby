@@ -611,10 +611,10 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-col items-center  justify-center xl:flex-row "
+              className="flex flex-col items-center justify-center  xl:flex-row  "
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 w-8 items-center justify-center bg-red-500 text-xs  text-yellow-500 ">
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
                 1
               </span>
 
@@ -670,9 +670,13 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                2
+              </span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -724,9 +728,12 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                3
+              </span>
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -778,9 +785,12 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                4
+              </span>
               <div className="flex flex-col items-center justify-center">
                 {/*
                 <Button
@@ -833,9 +843,13 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                5
+              </span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -888,9 +902,13 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                6
+              </span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -943,9 +961,13 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                7
+              </span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -998,9 +1020,13 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                8
+              </span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1053,9 +1079,12 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                9
+              </span>
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1108,9 +1137,13 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center"
+              className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
+                10
+              </span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
