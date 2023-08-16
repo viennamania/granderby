@@ -38,6 +38,8 @@ import { Socket, io } from 'socket.io-client';
 
 import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
 
+import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby';
+
 //import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
 import {
@@ -317,7 +319,7 @@ export default function ModernScreen() {
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
-      <div className="flex flex-wrap">
+      <div className="mb-20 flex flex-wrap">
         {!address && (
           <>
             <video
@@ -355,11 +357,15 @@ export default function ModernScreen() {
             </Link>
           </div>
 
+          <div className="border bg-green-500">
+            <LastWinners npcs={npcNames} />
+          </div>
+
           <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
             {time ? (
               <>
                 {time === -1 ? (
-                  <div className="mt-5 flex flex-row gap-1">
+                  <div className="mt-0 flex flex-row gap-1">
                     {horses
 
                       .sort((a: any, b: any) => a.progress - b.progress)
@@ -367,13 +373,13 @@ export default function ModernScreen() {
                         return (
                           <div
                             key={index}
-                            className={`flex w-1/5 flex-col rounded-md p-2 md:h-32 md:border-[2px] xl:w-1/5 ${
+                            className={`flex w-1/5 flex-col items-center justify-center rounded-md p-2 md:h-32 xl:w-1/5 ${
                               selectedHorse === horse.name
                                 ? 'bg-green-500'
                                 : null
                             }`}
                           >
-                            <div className="w-15 flex-row items-center justify-center rounded-md bg-white text-center">
+                            <div className="flex-row items-center justify-center rounded-md bg-white p-2 text-center">
                               #{horse.nft}
                             </div>
 
