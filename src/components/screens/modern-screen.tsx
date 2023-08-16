@@ -36,9 +36,9 @@ import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
 //@ts-ignore
 import { Socket, io } from 'socket.io-client';
 
-//import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
+import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
 
-import OwnedFeeds from '@/components/search/feeds-horse-owned';
+//import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
 import {
   ConnectWallet,
