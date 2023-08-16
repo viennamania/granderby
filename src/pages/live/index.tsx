@@ -369,9 +369,11 @@ const ProposalsPage: NextPageWithLayout<
             )}
           </div>
 
+          {/*
           <div className="flex w-full flex-row items-center justify-end  gap-2">
             <Explorers menu={CoinExplore} />
           </div>
+          */}
         </div>
 
         <div className="justify-left mt-5 flex w-full items-center ">

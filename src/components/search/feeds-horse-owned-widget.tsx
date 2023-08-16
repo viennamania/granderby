@@ -125,32 +125,57 @@ export default function Feeds({ className }: { className?: string }) {
               </Button>
             </>
           ) : (
-            <>
+            <div className="flex w-full flex-col items-center justify-center">
               <h4 className="flex flex-col justify-center ">
                 I have {ownedNfts?.length} horses.
               </h4>
-              <Button
-                className="w-full"
-                title="Go"
-                color="white"
-                shape="rounded"
-                variant="transparent"
-                size="large"
-                onClick={() => {
-                  router.push('/mint-carrot');
-                }}
-              >
-                <div className="flex flex-row items-center gap-2">
-                  <Image
-                    src="/horseRace/3338carrots.png"
-                    alt="market"
-                    width={48}
-                    height={48}
-                  />
-                  Try to breed them.
-                </div>
-              </Button>
-            </>
+
+              <div className="flex flex-row items-center justify-center">
+                <Button
+                  className="flex"
+                  title="Go"
+                  color="white"
+                  shape="rounded"
+                  variant="transparent"
+                  size="small"
+                  onClick={() => {
+                    router.push('/mint-carrot');
+                  }}
+                >
+                  <div className="flex flex-row items-center">
+                    <Image
+                      src="/horseRace/3338carrots.png"
+                      alt="market"
+                      width={28}
+                      height={28}
+                    />
+                    &nbsp;Try to register them.
+                  </div>
+                </Button>
+
+                <Button
+                  className="flex"
+                  title="Go"
+                  color="white"
+                  shape="rounded"
+                  variant="transparent"
+                  size="small"
+                  onClick={() => {
+                    router.push('/mint-carrot');
+                  }}
+                >
+                  <div className="flex flex-row items-center">
+                    <Image
+                      src="/horseRace/3338carrots.png"
+                      alt="market"
+                      width={28}
+                      height={28}
+                    />
+                    &nbsp;Try to breed them.
+                  </div>
+                </Button>
+              </div>
+            </div>
           )}
 
           {/*
