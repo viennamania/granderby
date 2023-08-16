@@ -224,7 +224,7 @@ export default function ModernScreen() {
   }, [status]);
 
   return (
-    <>
+    <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
       <div className="flex flex-wrap">
@@ -308,6 +308,40 @@ export default function ModernScreen() {
               <div className="flex flex-col justify-center">
                 <ConnectWallet theme="light" />
                 <h3> to experience the GRANDERBY service</h3>
+
+                <div className="mt-5 hidden  flex-row items-center justify-center p-5 xl:flex ">
+                  <Image
+                    src="/horseRace/mobile-app.png"
+                    alt="mobile-app"
+                    width={300}
+                    height={1000}
+                    className="rounded-lg"
+                  />
+                </div>
+
+                <div className="btn-wrap flex w-full flex-col items-center justify-center gap-5">
+                  <button className="btn-app ">
+                    <Image
+                      src={IcoApple}
+                      alt="apple"
+                      width={300}
+                      height={100}
+                      className="w-full"
+                    />
+                    Download App
+                  </button>
+
+                  <button className="btn-app ">
+                    <Image
+                      src={IcoAndroid}
+                      alt="android"
+                      width={300}
+                      height={100}
+                      className="w-full"
+                    />
+                    Download App
+                  </button>
+                </div>
               </div>
             ) : (
               <>
@@ -328,7 +362,7 @@ export default function ModernScreen() {
                 <div className="mb-5 flex justify-center">
                   <ConnectWallet theme="dark" />
                 </div>
-            */}
+              */}
 
                 <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
                   My horses
@@ -413,19 +447,6 @@ export default function ModernScreen() {
         </div>
       </div>
           */}
-
-      <div className="mb-10 flex flex-row">
-        <div className="btn-wrap w-full ">
-          <button className="btn-app">
-            <Image src={IcoApple} alt="" width={100} height={100} />
-            Download App
-          </button>
-          <button className="btn-app">
-            <Image src={IcoAndroid} alt="" width={100} height={100} />
-            Download App
-          </button>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }

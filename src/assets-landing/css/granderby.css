@@ -160,7 +160,7 @@ h4{ font-size: 1.625em; font-family: 'SUIT'; font-weight: 600; line-height:40px;
 .btn-wrap{ margin-top:40px;}
 .btn-wrap .btn-app{ display: inline-flex; align-items: center; background-color:#000; color: #fff; font-weight: 600; border-radius: .5rem; padding:20px 30px;}
 .btn-wrap .btn-app img{ margin:0 8px; width:24px; height: 24px;}
-.btn-wrap .btn-app + .btn-app{ margin-left: 20px;}
+.btn-wrap .btn-app + .btn-app{ margin-left: 0px;}
 
 /* 폰 이이미지 */
 .mobile-wrap{ position: absolute; width: 976px; height: 100vh; top:50%; left: 50%; transform: translate( -50%, -356px ); z-index: 5; }
