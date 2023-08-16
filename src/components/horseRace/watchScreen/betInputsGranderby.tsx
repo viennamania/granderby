@@ -178,76 +178,78 @@ export default function BetInputs({
   const placeBet = async () => {
     //if (user) {
 
-    if (betAmount > Number(tokenBalance?.displayValue)) {
-      //setErrMsg('You don`t have enough money to bet this amount');
-      //handleClickErr();
+    if (address) {
+      if (betAmount > Number(tokenBalance?.displayValue)) {
+        //setErrMsg('You don`t have enough money to bet this amount');
+        //handleClickErr();
 
-      alert('You don`t have enough money to bet this amount');
+        alert('You don`t have enough money to bet this amount');
 
-      return;
-    }
-    if (betAmount === 0) {
-      //setErrMsg('You need to enter a bet amount');
-      //handleClickErr();
+        return;
+      }
+      if (betAmount === 0) {
+        //setErrMsg('You need to enter a bet amount');
+        //handleClickErr();
 
-      alert('You need to enter a bet amount');
+        alert('You need to enter a bet amount');
 
-      return;
-    }
-    if (betAmount < 0) {
-      //setErrMsg('You cannot bet a negative amount');
-      //handleClickErr();
+        return;
+      }
+      if (betAmount < 0) {
+        //setErrMsg('You cannot bet a negative amount');
+        //handleClickErr();
 
-      alert('You cannot bet a negative amount');
+        alert('You cannot bet a negative amount');
 
-      return;
-    }
-    if (chosenNpc === null) {
-      //setErrMsg('You need to select a horse to bet');
-      //handleClickErr();
+        return;
+      }
+      if (chosenNpc === null) {
+        //setErrMsg('You need to select a horse to bet');
+        //handleClickErr();
 
-      alert('You need to select a horse to bet');
+        alert('You need to select a horse to bet');
 
-      return;
-    }
+        return;
+      }
 
-    const formInputs = {
-      method: 'newGame',
+      const formInputs = {
+        method: 'newGame',
 
-      //userToken: getCookie('token'),
+        //userToken: getCookie('token'),
 
-      userToken: address,
+        userToken: address,
 
-      img: 'aaa',
-      username: address,
-      betAmount: betAmount,
-      selectedSide: chosenNpc,
-    };
+        img: 'aaa',
+        username: address,
+        betAmount: betAmount,
+        selectedSide: chosenNpc,
+      };
 
-    const res = await fetch('/api/games/horseRace/game', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formInputs),
-    });
-    const data = await res.json();
+      const res = await fetch('/api/games/horseRace/game', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formInputs),
+      });
+      const data = await res.json();
 
-    if (data.message === 'Success') {
-      //handleClickSucc();
+      if (data.message === 'Success') {
+        //handleClickSucc();
 
-      setCookie('horse', chosenNpc);
+        setCookie('horse', chosenNpc);
 
-      setPlacedBet(true);
+        setPlacedBet(true);
+      } else {
+        //setErrMsg('You have already placed a bet');
+        //handleClickErr();
+
+        alert('You have already placed a bet');
+      }
     } else {
-      //setErrMsg('You have already placed a bet');
-      //handleClickErr();
+      //  setErrMsg('You need to login to place a bet');
+      //  handleClickErr();
 
-      alert('You have already placed a bet');
+      alert('You need to connect wallet to place a bet');
     }
-
-    //} else {
-    //  setErrMsg('You need to login to place a bet');
-    //  handleClickErr();
-    //}
   };
 
   const [tokenid, setTokenid] = useState<BigNumber>(BigNumber.from(0));
