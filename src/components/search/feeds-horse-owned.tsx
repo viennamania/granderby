@@ -285,7 +285,7 @@ export default function Feeds({ className }: { className?: string }) {
 
                 <div
                   className={cn(
-                    'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                    'grid grid-cols-4 gap-2 sm:grid-cols-4 md:grid-cols-4',
                     isGridCompact
                       ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
                       : '3xl:!grid-cols-3 4xl:!grid-cols-4',
@@ -309,13 +309,13 @@ export default function Feeds({ className }: { className?: string }) {
                             : '/default-nft.png'
                         }
                         alt="nft"
-                        height={500}
-                        width={500}
+                        height={100}
+                        width={100}
                         loading="lazy"
                       />
-                      <div className="m-2 w-full">
-                        <p className="text-md font-bold">
-                          {nft?.metadata?.name}
+                      <div className="m-0 w-full items-center justify-center bg-gray-100">
+                        <p className="mr-2  text-right  text-sm text-sky-500 ">
+                          #{nft?.metadata?.id}
                         </p>
                       </div>
                     </div>
