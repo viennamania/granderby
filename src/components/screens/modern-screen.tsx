@@ -362,7 +362,7 @@ export default function ModernScreen() {
             </Link>
           </div>
 
-          <div className="border bg-green-500">
+          <div className=" rounded-md  bg-black">
             <LastWinners npcs={npcNames} />
           </div>
 

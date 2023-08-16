@@ -15,7 +15,7 @@ export default function LastWinnersPage({ npcs }: any) {
     });
     const data = await response.json();
 
-    console.log('getSonKazananlar data====', data);
+    ///console.log('getSonKazananlar data====', data);
 
     setSonKazananlar(data.lastGame);
   };
@@ -25,7 +25,7 @@ export default function LastWinnersPage({ npcs }: any) {
   }, []);
 
   return (
-    <div className="absolute right-5 top-20 flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
+    <div className=" flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
 
       <div className="">
@@ -36,10 +36,12 @@ export default function LastWinnersPage({ npcs }: any) {
                 key={item.line}
                 className="flex items-center justify-start gap-2"
               >
-                <p className=" text-left  text-sm text-green-500">
-                  Rank{item.line} -{' '}
-                  <span className="text-sky-500">#{item.nft?.tokenId}</span>{' '}
-                  {item.horse}
+                <p className=" grid  grid-flow-col  text-left  text-sm text-green-500">
+                  <span className="w-12">Rank{item.line}</span>
+                  <span className=" mr-3 w-12 text-right text-sky-500">
+                    #{item.nft?.tokenId}
+                  </span>
+                  <span>{item.horse}</span>
                 </p>
 
                 {/*
