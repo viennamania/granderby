@@ -44,9 +44,11 @@ export default function WalkingAdnim({ time, npcSrc }: any) {
 
         {time && time === -1 && (
           <div className="item-center flex w-full justify-center gap-1 bg-transparent  text-white">
+            {/*
             <div className="glow-text font-lg p-2 text-white ">
               <span className="text-6xl font-bold">Comming Soon...</span>
             </div>
+            */}
           </div>
         )}
 

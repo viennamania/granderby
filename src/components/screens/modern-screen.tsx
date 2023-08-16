@@ -135,6 +135,76 @@ export default function ModernScreen() {
   const [status, setStatus] = useState<any>();
   const [time, setTime] = useState<any>(0);
 
+  const [horses, setHorses] = useState<any>([]);
+
+  const [progress1, setProgress1] = useState<any>(0);
+  const [progress2, setProgress2] = useState<any>(0);
+  const [progress3, setProgress3] = useState<any>(0);
+  const [progress4, setProgress4] = useState<any>(0);
+  const [progress5, setProgress5] = useState<any>(0);
+
+  const [selectedHorse, setSelectedHorse] = useState<any>(null);
+
+  setTimeout(() => {
+    setHorses([
+      {
+        id: 1,
+        progress: progress1,
+        name: `${npcNames.horse1}`,
+        nft: `${npcNames.nft1?.tokenId}`,
+        media: `${
+          npcNames.media1?.thumbnail ||
+          //'/images/logo.png'
+          `/horseRace/${npcNames.nft1?.contract}.png`
+        }`,
+      },
+      {
+        id: 2,
+        progress: progress2,
+        name: `${npcNames.horse2}`,
+        nft: `${npcNames.nft2?.tokenId}`,
+        media: `${
+          npcNames.media2?.thumbnail ||
+          //'/images/logo.png'
+          `/horseRace/${npcNames.nft2?.contract}.png`
+        }`,
+      },
+      {
+        id: 3,
+        progress: progress3,
+        name: `${npcNames.horse3}`,
+        nft: `${npcNames.nft3?.tokenId}`,
+        media: `${
+          npcNames.media3?.thumbnail ||
+          //'/images/logo.png'
+          `/horseRace/${npcNames.nft3?.contract}.png`
+        }`,
+      },
+      {
+        id: 4,
+        progress: progress4,
+        name: `${npcNames.horse4}`,
+        nft: `${npcNames.nft4?.tokenId}`,
+        media: `${
+          npcNames.media4?.thumbnail ||
+          //'/images/logo.png'
+          `/horseRace/${npcNames.nft4?.contract}.png`
+        }`,
+      },
+      {
+        id: 5,
+        progress: progress5,
+        name: `${npcNames.horse5}`,
+        nft: `${npcNames.nft5?.tokenId}`,
+        media: `${
+          npcNames.media5?.thumbnail ||
+          //'/images/logo.png'
+          `/horseRace/${npcNames.nft5?.contract}.png`
+        }`,
+      },
+    ]);
+  }, 40);
+
   useEffect(() => {
     socketInitializer();
   }, []);
@@ -194,6 +264,26 @@ export default function ModernScreen() {
       setFlag(data);
     });
     */
+
+    socketa.on('horse1', (data: any) => {
+      setProgress1(data);
+    });
+
+    socketa.on('horse2', (data: any) => {
+      setProgress2(data);
+    });
+
+    socketa.on('horse3', (data: any) => {
+      setProgress3(data);
+    });
+
+    socketa.on('horse4', (data: any) => {
+      setProgress4(data);
+    });
+
+    socketa.on('horse5', (data: any) => {
+      setProgress5(data);
+    });
 
     return () => {
       socketa.disconnect();
@@ -267,7 +357,45 @@ export default function ModernScreen() {
 
           <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
             {time ? (
-              <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
+              <>
+                {time === -1 ? (
+                  <div className="mt-5 flex flex-row gap-1">
+                    {horses
+
+                      .sort((a: any, b: any) => a.progress - b.progress)
+                      .map((horse: any, index: number) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`flex w-1/5 flex-col rounded-md p-2 md:h-32 md:border-[2px] xl:w-1/5 ${
+                              selectedHorse === horse.name
+                                ? 'bg-green-500'
+                                : null
+                            }`}
+                          >
+                            <div className="w-15 flex-row items-center justify-center rounded-md bg-white text-center">
+                              #{horse.nft}
+                            </div>
+
+                            <div className="mt-2 w-full flex-col items-center justify-center  md:flex">
+                              <Image
+                                //src={`/npcRace/at${horse.id}.gif`}
+
+                                src={horse.media}
+                                width="40"
+                                height="40"
+                                alt={'at'}
+                                className="rounded-lg"
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                ) : (
+                  <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
+                )}
+              </>
             ) : (
               <div className="flex w-full items-center justify-center text-2xl text-white ">
                 Loading game...
