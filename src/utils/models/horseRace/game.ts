@@ -39,6 +39,7 @@ export const newGameHorse = async (
   selectedSide: string
 ) => {
   const games = await HorseGame.findOne({ userId: userId });
+
   if (games) {
     return { success: false, message: 'User already in game' };
   }
@@ -49,6 +50,8 @@ export const newGameHorse = async (
     betAmount,
     selectedSide,
   });
+
+  /*
   const user = await User.findOne({ _id: userId });
 
   if (user) {
@@ -63,6 +66,7 @@ export const newGameHorse = async (
   } else {
     return { success: false, message: 'User not found' };
   }
+  */
 
   await game.save();
   return { success: true, game };

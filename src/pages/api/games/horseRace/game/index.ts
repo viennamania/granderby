@@ -16,11 +16,16 @@ export default async function handler(
 
   if (method === 'newGame') {
     const { userToken, username, img, betAmount, selectedSide } = req.body;
+
+    /*
     if (!userToken || !username || !img || !betAmount || !selectedSide) {
       res.status(400).json({ message: 'Bad Request' });
       return;
     }
     const { _id: userId } = await authFromServer(userToken);
+    */
+
+    const userId = userToken;
 
     const addedGame = await newGameHorse(
       userId,

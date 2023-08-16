@@ -176,53 +176,78 @@ export default function BetInputs({
   };
 
   const placeBet = async () => {
-    if (user) {
-      if (betAmount > balance) {
-        setErrMsg('You don`t have enough money to bet this amount');
-        handleClickErr();
-        return;
-      }
-      if (betAmount === 0) {
-        setErrMsg('You need to enter a bet amount');
-        handleClickErr();
-        return;
-      }
-      if (betAmount < 0) {
-        setErrMsg('You cannot bet a negative amount');
-        handleClickErr();
-        return;
-      }
-      if (chosenNpc === null) {
-        setErrMsg('You need to select a horse to bet');
-        handleClickErr();
-        return;
-      }
-      const formInputs = {
-        method: 'newGame',
-        userToken: getCookie('token'),
-        img: user.img,
-        username: user?.username,
-        betAmount: betAmount,
-        selectedSide: chosenNpc,
-      };
-      const res = await fetch('/api/games/horseRace/game', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formInputs),
-      });
-      const data = await res.json();
-      if (data.message === 'Success') {
-        handleClickSucc();
-        setCookie('horse', chosenNpc);
-        setPlacedBet(true);
-      } else {
-        setErrMsg('You have already placed a bet');
-        handleClickErr();
-      }
-    } else {
-      setErrMsg('You need to login to place a bet');
-      handleClickErr();
+    //if (user) {
+
+    if (betAmount > Number(tokenBalance?.displayValue)) {
+      //setErrMsg('You don`t have enough money to bet this amount');
+      //handleClickErr();
+
+      alert('You don`t have enough money to bet this amount');
+
+      return;
     }
+    if (betAmount === 0) {
+      //setErrMsg('You need to enter a bet amount');
+      //handleClickErr();
+
+      alert('You need to enter a bet amount');
+
+      return;
+    }
+    if (betAmount < 0) {
+      //setErrMsg('You cannot bet a negative amount');
+      //handleClickErr();
+
+      alert('You cannot bet a negative amount');
+
+      return;
+    }
+    if (chosenNpc === null) {
+      //setErrMsg('You need to select a horse to bet');
+      //handleClickErr();
+
+      alert('You need to select a horse to bet');
+
+      return;
+    }
+
+    const formInputs = {
+      method: 'newGame',
+
+      //userToken: getCookie('token'),
+
+      userToken: address,
+
+      img: 'aaa',
+      username: address,
+      betAmount: betAmount,
+      selectedSide: chosenNpc,
+    };
+
+    const res = await fetch('/api/games/horseRace/game', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formInputs),
+    });
+    const data = await res.json();
+
+    if (data.message === 'Success') {
+      //handleClickSucc();
+
+      setCookie('horse', chosenNpc);
+
+      setPlacedBet(true);
+    } else {
+      //setErrMsg('You have already placed a bet');
+      //handleClickErr();
+
+      alert('You have already placed a bet');
+    }
+
+    //} else {
+    //  setErrMsg('You need to login to place a bet');
+    //  handleClickErr();
+    //}
   };
 
   const [tokenid, setTokenid] = useState<BigNumber>(BigNumber.from(0));
@@ -496,23 +521,6 @@ export default function BetInputs({
 
   return (
     <>
-      {/*
-        //hasCookie('horse') &&
-        address && (
-          <div className="item-center flex w-full justify-center gap-1 bg-transparent text-xl text-white">
-            <div className="glow-text p-2 font-medium text-white ">
-              {chosenNpc && betAmount ? (
-                <div>
-                  You choose {chosenNpc ?? ' '} and bet {betAmount ?? ' '}
-                </div>
-              ) : (
-                <div>You choose {chosenNpc ?? ' '}</div>
-              )}
-            </div>
-          </div>
-        )
-              */}
-
       <div className="disabled items-top justify-center  rounded-lg  bg-white p-5">
         {/* //? Miktar Selector Buttons */}
 
@@ -1286,14 +1294,22 @@ export default function BetInputs({
           </button>
         </div>
 
-        {/* //? Input amount manuel */}
-
-        {/*
         {address && (
-          */}
+          <div className="item-center mt-5 flex w-full justify-center gap-1 bg-transparent text-xl text-black">
+            <div className="glow-text p-2 font-medium text-black ">
+              {chosenNpc && betAmount ? (
+                <div>
+                  You choose {chosenNpc ?? ' '} and bet {betAmount ?? ' '}GRD
+                </div>
+              ) : (
+                <div>You choose {chosenNpc ?? ' '}</div>
+              )}
+            </div>
+          </div>
+        )}
 
         <>
-          <div className="relative  mt-10 w-full items-center justify-center">
+          <div className="relative  mt-2 w-full items-center justify-center">
             <div className="absolute left-5 z-10">
               {/*
                 <FaCoins className='fill-yellow-500' />
@@ -1319,6 +1335,16 @@ export default function BetInputs({
               Clear
             </button>
           </div>
+
+          {/* //? Place Bet Button */}
+
+          <button
+            disabled={placedBet}
+            onClick={placeBet}
+            className="emerald-btn mt-5 w-32 p-2 transition-all duration-300 disabled:bg-transparent disabled:text-white disabled:opacity-50 disabled:shadow-none"
+          >
+            Place Bet
+          </button>
 
           {address ? (
             <div className="mt-5 flex w-full justify-end">
@@ -1346,7 +1372,7 @@ export default function BetInputs({
               */}
       </div>
 
-      {/*
+      {/*}
       <Stack spacing={2} sx={{ width: '100%' }}>
         <Snackbar open={succ} autoHideDuration={6000} onClose={handleCloseSucc}>
           <Alert
@@ -1367,7 +1393,7 @@ export default function BetInputs({
           </Alert>
         </Snackbar>
       </Stack>
-          */}
+            */}
     </>
   );
 }
