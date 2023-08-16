@@ -611,9 +611,13 @@ export default function EntryTables({
             } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
           >
             <div
-              className="flex flex-row items-center justify-center "
+              className="flex flex-col items-center  justify-center xl:flex-row "
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
+              <span className=" mb-1 w-8 items-center justify-center bg-red-500 text-xs  text-yellow-500 ">
+                1
+              </span>
+
               <div className="block items-center justify-center">
                 {/*
                 <Button
