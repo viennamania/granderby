@@ -290,13 +290,9 @@ export default function ModernScreen() {
             <BetTables npcs={npcNames} />
           </div>
           */}
-
-          <div className="mt-0 flex flex-row items-center justify-center">
-            {address && <ConnectWallet theme="dark" />}
-          </div>
         </div>
 
-        <div className="mt-5 w-full  sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
+        <div className="mt-3 w-full  sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
           <div className="justify-top flex h-full flex-col items-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
             {!address ? (
               <div className="flex flex-col justify-center">
@@ -305,6 +301,10 @@ export default function ModernScreen() {
               </div>
             ) : (
               <>
+                <div className="mb-5 flex flex-row items-center justify-center xl:hidden">
+                  <ConnectWallet theme="dark" />
+                </div>
+
                 {/*
                 <Avatar
                   image={AuthorImage}

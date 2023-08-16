@@ -348,7 +348,7 @@ const ProposalsPage: NextPageWithLayout<
                 </div>
               </div>
             ) : (
-              <div className=" hidden flex-col xl:flex ">
+              <div className="flex flex-col ">
                 {/*
 
                 {tokenBalanceIsLoading ? (
