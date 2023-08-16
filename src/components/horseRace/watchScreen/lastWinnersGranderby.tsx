@@ -22,7 +22,7 @@ export default function LastWinnersPage({ npcs }: any) {
 
   useEffect(() => {
     getSonKazananlar();
-  }, []);
+  }, [npcs]);
 
   return (
     <div className=" flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
@@ -31,6 +31,8 @@ export default function LastWinnersPage({ npcs }: any) {
       <div className="">
         {sonKazananlar &&
           sonKazananlar.placements.map((item: any) => {
+            if (item.line > 3) return;
+
             return (
               <div
                 key={item.line}
