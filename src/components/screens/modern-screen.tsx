@@ -332,7 +332,7 @@ export default function ModernScreen() {
           </>
         )}
 
-        <div className="mt-5 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
+        <div className="  mt-5 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
           {/*
           <AssetSlider coins={assetSlideData} />
         */}
@@ -347,12 +347,17 @@ export default function ModernScreen() {
               height={150}
             />
 
-            <Link className="hidden xl:block" href="/live">
+            <Link
+              className="hidden  h-[30px] flex-row items-center justify-center rounded-lg bg-black xl:flex"
+              href="/live"
+            >
+              <span className="ml-5 text-white">Click for bet</span>
               <Image
                 src="/horseRace/live.gif"
                 alt="live"
                 width={100}
                 height={100}
+                className="mb-2"
               />
             </Link>
           </div>
