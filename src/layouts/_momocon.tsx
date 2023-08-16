@@ -13,6 +13,7 @@ import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import { useDrawer } from '@/components/drawer-views/context';
 import { useWindowScroll } from '@/lib/hooks/use-window-scroll';
 import routes from '@/config/routes';
+import { useRouter } from 'next/router';
 
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
@@ -36,6 +37,8 @@ function HeaderRightArea() {
   const { openDrawer, isOpen } = useDrawer();
 
   const address = useAddress();
+
+  const router = useRouter();
 
   return (
     <div className="order-last flex shrink-0 items-center">
@@ -90,6 +93,8 @@ export function Header() {
   const windowScroll = useWindowScroll();
   const { openDrawer, isOpen } = useDrawer();
 
+  const router = useRouter();
+
   return (
     <nav
       className={cn(
@@ -114,7 +119,10 @@ export function Header() {
           <Logo />
       */}
 
-          <div className="flex flex-row items-center justify-center gap-2">
+          <div
+            className="flex flex-row items-center justify-center gap-2"
+            onClick={() => router.push(routes.home)}
+          >
             <Image src={logo} alt="logo" width={30} height={30} className="" />
             <span className="ml-1 text-lg font-bold">Granderby</span>
           </div>

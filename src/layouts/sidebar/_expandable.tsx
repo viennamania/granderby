@@ -75,7 +75,10 @@ export default function Sidebar({ className }: { className?: string }) {
           <Logo />
         */}
 
-            <div className="flex flex-row gap-2 items-center justify-center">
+            <div
+              className="flex flex-row items-center justify-center gap-2"
+              onClick={() => router.push(routes.home)}
+            >
               <Image
                 src={logo}
                 alt="logo"
@@ -83,7 +86,7 @@ export default function Sidebar({ className }: { className?: string }) {
                 height={34}
                 className=""
               />
-              <span className='font-bold'>Granderby</span>
+              <span className="font-bold">Granderby</span>
             </div>
           </>
         )}

@@ -14,9 +14,14 @@ import AuthorImage from '@/assets/images/author.jpg';
 
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
+import routes from '@/config/routes';
+
+import { useRouter } from 'next/router';
 
 export default function Sidebar({ className }: { className?: string }) {
   const { closeDrawer } = useDrawer();
+
+  const router = useRouter();
 
   return (
     <aside
@@ -30,7 +35,10 @@ export default function Sidebar({ className }: { className?: string }) {
         <Logo />
       */}
 
-        <div className="flex flex-row items-center justify-center gap-2">
+        <div
+          className="flex flex-row items-center justify-center gap-2"
+          onClick={() => router.push(routes.home)}
+        >
           <Image src={logo} alt="logo" width={24} height={24} className="" />
           <span className="text-lg font-bold">Granderby</span>
         </div>
