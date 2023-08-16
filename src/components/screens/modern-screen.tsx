@@ -65,6 +65,7 @@ import { BigNumber, ethers } from 'ethers';
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
 import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
+import Link from 'next/link';
 
 export default function ModernScreen() {
   const address = useAddress();
@@ -253,6 +254,15 @@ export default function ModernScreen() {
               width={150}
               height={150}
             />
+
+            <Link className="hidden xl:block" href="/live">
+              <Image
+                src="/horseRace/live.gif"
+                alt="live"
+                width={100}
+                height={100}
+              />
+            </Link>
           </div>
 
           <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
