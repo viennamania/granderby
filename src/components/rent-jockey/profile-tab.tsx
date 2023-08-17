@@ -20,7 +20,7 @@ import {
   stakingContractAddressJockey,
   tokenContractAddressGRD,
   marketplaceContractAddress,
-} from '../../config/contractAddresses';
+} from '@/config/contractAddresses';
 
 import { useEffect, useState } from 'react';
 

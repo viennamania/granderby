@@ -50,7 +50,6 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             </>
           )}
 
-          {/*
           <Web3Button
             theme="light"
             action={(contract) =>
@@ -58,9 +57,8 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             }
             contractAddress={stakingContractAddressJockey}
           >
-            Unregister from field
+            Unregister
           </Web3Button>
-          */}
         </div>
       )}
     </>
