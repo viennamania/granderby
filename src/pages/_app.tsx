@@ -144,6 +144,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <title>Granderby - powered by MOMOCON</title>
       </Head>
 
+      {/*
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
@@ -162,6 +163,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           `,
         }}
       />
+*/}
 
       <QueryClientProvider client={queryClient}>
         {/*
@@ -204,7 +206,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
             gasless: {
               openzeppelin: {
                 /////relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
-                relayUrl:
+                relayerUrl:
                   'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
               },
             },
