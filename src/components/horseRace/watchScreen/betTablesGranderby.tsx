@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
 import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 import Image from 'next/image';
-import { set } from 'lodash';
+import { get, set } from 'lodash';
+import { time } from 'console';
+
+//@ts-ignore
+import { Socket, io } from 'socket.io-client';
 
 export default function BetTables({ npcs }: any) {
   ////console.log('BetTables npcs====', npcs);
 
+  const [socket, setSocket] = useState<Socket | null>(null);
+
   const [games, setGames] = useState<any>();
   const [status, setStatus] = useState<any>();
+  const [time, setTime] = useState<any>(0);
+
   const [winner, setWinner] = useState<any>();
 
   const [betAmountTotal, setBetAmountTotal] = useState<any>(0);
@@ -29,20 +36,33 @@ export default function BetTables({ npcs }: any) {
   }, []);
 
   const socketInitializer = () => {
-    const socket = io(`${process.env.NEXT_PUBLIC_HORSE_RACE_SOCKET_URL}`, {
-      transports: ['websocket'],
-    });
-    socket.on('connect', () => {
-      console.log('socket connected=====================');
-    });
-    socket.on('status', (data: any) => {
-      //console.log('status data====', data);
+    ///console.log("snailRace socketInitializer socket", socket);
+
+    if (socket) return;
+
+    const socketa = io(process.env.NEXT_PUBLIC_HORSE_RACE_SOCKET_URL as string);
+
+    setSocket(socketa);
+
+    socketa.on('status', (data: any) => {
+      console.log('socket status======', data);
 
       setStatus(data);
     });
-    socket.on('winner', (data: any) => {
-      setWinner(data);
+
+    socketa.on('time', (data: any) => {
+      setTime(data);
     });
+
+    /*
+    socketa.on('flag', (data: any) => {
+      setFlag(data);
+    });
+    */
+
+    return () => {
+      socketa.disconnect();
+    };
   };
 
   const getGames = async () => {
@@ -118,15 +138,24 @@ export default function BetTables({ npcs }: any) {
     //getGames();
 
     const interval = setInterval(() => {
-      getGames();
+      /*
+      if (time !== -1) {
+        getGames();
+      }
+      */
+
+      if (status === false) {
+        getGames();
+      }
     }, 10000);
 
     //return () => clearInterval(interval);
   }, [npcs]);
 
   useEffect(() => {
+    ///if (time  === -1) {
     if (status === true) {
-      console.log('status true====', status);
+      console.log('time==== ===========  -1');
 
       setBetAmountTotal(0);
 
@@ -140,8 +169,12 @@ export default function BetTables({ npcs }: any) {
       setBetAmount8(0);
       setBetAmount9(0);
       setBetAmount10(0);
+
+      setGames([]);
+    } else {
+      console.log('time====', time);
     }
-  }, [status]);
+  }, [time]);
 
   return (
     <>

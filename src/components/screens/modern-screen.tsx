@@ -400,7 +400,32 @@ export default function ModernScreen() {
 
   useEffect(() => {
     //getGames();
-  });
+
+    const interval = setInterval(() => {
+      getGames();
+    }, 10000);
+
+    //return () => clearInterval(interval);
+  }, [npcNames]);
+
+  useEffect(() => {
+    if (status === true) {
+      console.log('status true====', status);
+
+      setBetAmountTotal(0);
+
+      setBetAmount1(0);
+      setBetAmount2(0);
+      setBetAmount3(0);
+      setBetAmount4(0);
+      setBetAmount5(0);
+      setBetAmount6(0);
+      setBetAmount7(0);
+      setBetAmount8(0);
+      setBetAmount9(0);
+      setBetAmount10(0);
+    }
+  }, [status]);
 
   return (
     <div className="mb-10">
@@ -533,11 +558,9 @@ export default function ModernScreen() {
             <BetTables npcs={npcNames} />
             */}
 
-            {/*
             <div className="mb-2 flex w-full items-center justify-center rounded-lg text-5xl font-bold text-yellow-500">
-              {betAmountTotal}
+              Total Bet: {betAmountTotal}
             </div>
-            */}
           </div>
         </div>
 
