@@ -69,6 +69,8 @@ import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider'
 import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 import Link from 'next/link';
 
+import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
+
 export default function ModernScreen() {
   const address = useAddress();
 
@@ -146,6 +148,20 @@ export default function ModernScreen() {
   const [progress5, setProgress5] = useState<any>(0);
 
   const [selectedHorse, setSelectedHorse] = useState<any>(null);
+
+  const [games, setGames] = useState<any>();
+  const [betAmountTotal, setBetAmountTotal] = useState<any>(0);
+
+  const [betAmount1, setBetAmount1] = useState<any>(0);
+  const [betAmount2, setBetAmount2] = useState<any>(0);
+  const [betAmount3, setBetAmount3] = useState<any>(0);
+  const [betAmount4, setBetAmount4] = useState<any>(0);
+  const [betAmount5, setBetAmount5] = useState<any>(0);
+  const [betAmount6, setBetAmount6] = useState<any>(0);
+  const [betAmount7, setBetAmount7] = useState<any>(0);
+  const [betAmount8, setBetAmount8] = useState<any>(0);
+  const [betAmount9, setBetAmount9] = useState<any>(0);
+  const [betAmount10, setBetAmount10] = useState<any>(0);
 
   setTimeout(() => {
     setHorses([
@@ -315,6 +331,77 @@ export default function ModernScreen() {
     getNpcNames();
   }, [status]);
 
+  const getGames = async () => {
+    const res = await fetch('/api/games/horseRace/game', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getGames',
+      }),
+    });
+    const data = await res.json();
+
+    ////console.log("getGames data====", data);
+
+    setGames(data.games);
+
+    setBetAmountTotal(0);
+
+    setBetAmount1(0);
+    setBetAmount2(0);
+    setBetAmount3(0);
+    setBetAmount4(0);
+    setBetAmount5(0);
+    setBetAmount6(0);
+    setBetAmount7(0);
+    setBetAmount8(0);
+    setBetAmount9(0);
+    setBetAmount10(0);
+
+    games?.map((game: IHorseGame, i: number) => {
+      if (game.selectedSide === npcNames.horse1) {
+        setBetAmount1((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse2) {
+        setBetAmount2((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse3) {
+        setBetAmount3((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse4) {
+        setBetAmount4((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse5) {
+        setBetAmount5((prev: any) => prev + game.betAmount);
+
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse6) {
+        setBetAmount6((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse7) {
+        setBetAmount7((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse8) {
+        setBetAmount8((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse9) {
+        setBetAmount9((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      } else if (game.selectedSide === npcNames.horse10) {
+        setBetAmount10((prev: any) => prev + game.betAmount);
+        setBetAmountTotal((prev: any) => prev + game.betAmount);
+      }
+    });
+  };
+
+  useEffect(() => {
+    //getGames();
+  });
+
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
@@ -440,11 +527,18 @@ export default function ModernScreen() {
               balance={0}
             />
           </div>
-          {/*
+
           <div className="items-top mt-5 flex w-full justify-center ">
+            {/*
             <BetTables npcs={npcNames} />
+            */}
+
+            {/*
+            <div className="mb-2 flex w-full items-center justify-center rounded-lg text-5xl font-bold text-yellow-500">
+              {betAmountTotal}
+            </div>
+            */}
           </div>
-          */}
         </div>
 
         <div className="mt-3 w-full  sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
