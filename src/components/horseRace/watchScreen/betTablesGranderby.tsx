@@ -113,7 +113,11 @@ export default function BetTables({ npcs }: any) {
   };
 
   useEffect(() => {
-    getGames();
+    //getGames();
+
+    const interval = setInterval(() => {
+      getGames();
+    }, 10000);
   });
 
   return (
