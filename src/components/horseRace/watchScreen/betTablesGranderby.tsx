@@ -55,10 +55,11 @@ export default function BetTables({ npcs }: any) {
     });
     const data = await res.json();
 
-    ////console.log("getGames data====", data);
+    console.log('getGames data====', data);
 
     setGames(data.games);
 
+    /*
     setBetAmountTotal(0);
 
     setBetAmount1(0);
@@ -71,6 +72,7 @@ export default function BetTables({ npcs }: any) {
     setBetAmount8(0);
     setBetAmount9(0);
     setBetAmount10(0);
+    */
 
     games?.map((game: IHorseGame, i: number) => {
       if (game.selectedSide === npcs.horse1) {
@@ -118,7 +120,28 @@ export default function BetTables({ npcs }: any) {
     const interval = setInterval(() => {
       getGames();
     }, 10000);
-  });
+
+    //return () => clearInterval(interval);
+  }, [npcs]);
+
+  useEffect(() => {
+    if (status === true) {
+      console.log('status true====', status);
+
+      setBetAmountTotal(0);
+
+      setBetAmount1(0);
+      setBetAmount2(0);
+      setBetAmount3(0);
+      setBetAmount4(0);
+      setBetAmount5(0);
+      setBetAmount6(0);
+      setBetAmount7(0);
+      setBetAmount8(0);
+      setBetAmount9(0);
+      setBetAmount10(0);
+    }
+  }, [status]);
 
   return (
     <>
