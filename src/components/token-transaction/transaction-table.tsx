@@ -171,7 +171,7 @@ const COLUMNS = [
     Cell: ({ cell: { value } }) => (
       <div className="-tracking-[1px] ltr:text-right rtl:text-left">
         <strong className="mb-0.5 flex justify-end text-2xl font-bold md:mb-1.5 md:text-2xl xl:text-3xl 3xl:text-3xl">
-          {Number(value.balance).toFixed(2)}
+          {Number(value).toFixed(2)}
 
           {/*
           <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2">
@@ -356,13 +356,8 @@ export default function TransactionTable(
 
           ///address: transaction.to,
 
-          amount: {
-            ///balance: transaction.value,
-            //balance: Math.round(parseFloat(transaction.value) * (10 ** 18)),
-            balance: ethers.utils.formatEther(transaction.value),
+          amount: ethers.utils.formatEther(transaction.amount),
 
-            usdBalance: '11,032.24',
-          },
           status: 'Completed',
           tx_hash: transaction.tx_hash,
         };
@@ -398,6 +393,8 @@ export default function TransactionTable(
         const transactions = [] as any;
 
         data.data.transactions?.map((transaction: any) => {
+          //console.log("transaction", transaction);
+
           const transactionData = {
             id: transaction._id,
 
@@ -414,13 +411,8 @@ export default function TransactionTable(
 
             ///address: transaction.to,
 
-            amount: {
-              ///balance: transaction.value,
-              //balance: Math.round(parseFloat(transaction.value) * (10 ** 18)),
-              balance: ethers.utils.formatEther(transaction.value),
+            amount: ethers.utils.formatEther(String(transaction.amount)),
 
-              usdBalance: '11,032.24',
-            },
             status: 'Completed',
             tx_hash: transaction.tx_hash,
           };

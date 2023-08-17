@@ -117,6 +117,7 @@ const WalletPage: NextPageWithLayout<
     tokenContractAddressGRD,
     'token'
   );
+
   const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
 
   const {
