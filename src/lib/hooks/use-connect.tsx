@@ -52,7 +52,7 @@ export const WalletProvider = ({ children }: { children: ReactNode }) => {
 
   const getBalance = async (provider: any, walletAddress: string) => {
     const walletBalance = await provider.getBalance(walletAddress);
-    const balanceInEth = ethers.utils.formatEther(walletBalance);
+    const balanceInEth = ethers.utils.formatEther(String(walletBalance));
     setBalance(balanceInEth);
   };
 

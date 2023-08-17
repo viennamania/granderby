@@ -356,7 +356,7 @@ export default function TransactionTable(
 
           ///address: transaction.to,
 
-          amount: ethers.utils.formatEther(transaction.amount),
+          amount: ethers.utils.formatEther(String(transaction.amount)),
 
           status: 'Completed',
           tx_hash: transaction.tx_hash,
@@ -365,7 +365,7 @@ export default function TransactionTable(
         transactions.push(transactionData);
       });
 
-      console.log('transactions: ', transactions);
+      ///////console.log('transactions: ', transactions);
 
       setTransactions(transactions);
     }
@@ -420,7 +420,7 @@ export default function TransactionTable(
           transactions.push(transactionData);
         });
 
-        console.log('transactions: ', transactions);
+        ////console.log('transactions: ', transactions);
 
         setTransactions(transactions);
       }
