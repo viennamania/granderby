@@ -100,6 +100,7 @@ export default function EntryTables({
   inputs: any;
   balance: any;
 }) {
+  /*
   console.log('BetInputsGranderby', {
     horse1,
     horse2,
@@ -116,6 +117,7 @@ export default function EntryTables({
     inputs,
     balance,
   });
+  */
 
   const address = useAddress();
 

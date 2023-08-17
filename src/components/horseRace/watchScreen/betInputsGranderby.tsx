@@ -109,6 +109,7 @@ export default function BetInputs({
   inputs: any;
   balance: any;
 }) {
+  /*
   console.log('BetInputsGranderby', {
     horse1,
     horse2,
@@ -125,6 +126,7 @@ export default function BetInputs({
     inputs,
     balance,
   });
+  */
 
   const address = useAddress();
 
