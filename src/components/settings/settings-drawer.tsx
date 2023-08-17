@@ -9,7 +9,9 @@ import { RadioGroup } from '@/components/ui/radio-group';
 import Scrollbar from '@/components/ui/scrollbar';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useDirection } from '@/lib/hooks/use-direction';
+
 import { useThemeColor } from '@/lib/hooks/use-theme-color';
+
 import { useSettingsDrawer } from '@/components/settings/settings-context';
 import { Close } from '@/components/icons/close';
 import { Sun } from '@/components/icons/sun';
@@ -262,7 +264,9 @@ function ColorSwitcher() {
     'criptic-color',
     '#323743'
   );
+
   useThemeColor(themeColor ? themeColor : '#323743');
+
   return (
     <div className="px-6 pt-8">
       <h4 className="mb-4 text-sm font-medium text-gray-900 dark:text-white">

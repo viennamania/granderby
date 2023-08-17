@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+
 import cn from 'classnames';
+
 import {
   useTable,
   useResizeColumns,
@@ -21,16 +23,117 @@ import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 
 import { useAddress } from '@thirdweb-dev/react';
-import { add } from 'lodash';
+import { add, set } from 'lodash';
+
+import { tr } from 'date-fns/locale';
+import { array } from 'yup';
+
+import { ethers } from 'ethers';
+
+import { HistoryIcon } from '@/components/icons/history';
+import { Refresh } from '@/components/icons/refresh';
+
+import moment from 'moment';
+
+/*
+export const TransactionData = [
+  {
+    id: 0,
+    transactionType: 'Receive',
+    createdAt: '2023-07-18 11:32:20',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '32.2231345',
+      usdBalance: '11,032.24',
+    },
+  },
+  {
+    id: 1,
+    transactionType: 'Send',
+    createdAt: '2023-07-16 16:28:42',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '43.534',
+      usdBalance: '1,032.24',
+    },
+  },
+  {
+    id: 2,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 06:20:20',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '645.45',
+      usdBalance: '21,032.24',
+    },
+  },
+  {
+    id: 3,
+    transactionType: 'Send',
+    createdAt: '2023-07-15 02:43:25',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '1225.634',
+      usdBalance: '1,232.24',
+    },
+  },
+  {
+    id: 4,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 02:43:25',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '43.5422',
+      usdBalance: '9,032.24',
+    },
+  },
+  {
+    id: 5,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 02:43:25',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '18443.24245',
+      usdBalance: '31,032.24',
+    },
+  },
+  {
+    id: 6,
+    transactionType: 'Receive',
+    createdAt: '2023-07-15 17:33:28',
+    //symbol: 'BTC',
+    status: 'Completed',
+    address: '0x0898hshiw36...',
+    amount: {
+      balance: '422.24245',
+      usdBalance: '31,032.24',
+    },
+  },
+];
+*/
 
 const COLUMNS = [
+  /*
   {
     //Header: 'ID',
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">ID</div>,
     accessor: 'id',
-    minWidth: 40,
-    maxWidth: 50,
+    minWidth: 100,
+    maxWidth: 100,
   },
+  */
   /*
   {
     Header: 'Type',
@@ -48,18 +151,18 @@ const COLUMNS = [
         {value === 'Send' ? (
           <div className="-tracking-[1px] ">
             <LongArrowRight className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-gray-600 dark:text-gray-400">{value}</span>
+            <span className="text-orange-600  dark:text-gray-400">{value}</span>
           </div>
         ) : (
           <div className="-tracking-[1px]">
             <LongArrowLeft className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-gray-600 dark:text-gray-400">{value}</span>
+            <span className="text-green-600 dark:text-gray-400">{value}</span>
           </div>
         )}
       </div>
     ),
-    minWidth: 40,
-    maxWidth: 40,
+    minWidth: 70,
+    maxWidth: 70,
   },
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Amount</div>,
@@ -67,11 +170,14 @@ const COLUMNS = [
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="-tracking-[1px] ltr:text-right rtl:text-left">
-        <strong className="mb-0.5 flex justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
+        <strong className="mb-0.5 flex justify-end text-2xl font-bold md:mb-1.5 md:text-2xl xl:text-3xl 3xl:text-3xl">
           {Number(value.balance).toFixed(2)}
+
+          {/*
           <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2">
-            GRD
+            ROM
           </span>
+          */}
         </strong>
         {/*
         <span className="text-gray-600 dark:text-gray-400">
@@ -81,7 +187,7 @@ const COLUMNS = [
       </div>
     ),
     minWidth: 100,
-    maxWidth: 200,
+    maxWidth: 100,
   },
   /*
   {
@@ -100,7 +206,9 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">{value}</div>
+      <div className="ltr:text-right rtl:text-left">
+        {moment(value).local().format('YYYY-MM-DD HH:mm:ss')}
+      </div>
     ),
     minWidth: 100,
     maxWidth: 130,
@@ -112,11 +220,16 @@ const COLUMNS = [
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="flex items-center justify-end">
-        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" /> {value}
+        {value == '0x0000000000000000000000000000000000000000'
+          ? 'Drops'
+          : value.length > 10
+          ? //? value.substring(0, 10) + '...'
+            value
+          : value}
       </div>
     ),
-    minWidth: 90,
-    maxWidth: 150,
+    minWidth: 400,
+    maxWidth: 400,
   },
 
   {
@@ -131,11 +244,47 @@ const COLUMNS = [
     minWidth: 70,
     maxWidth: 100,
   },
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Tx Hash</div>,
+    accessor: 'tx_hash',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div
+        className="flex items-center justify-end"
+        onClick={() => {
+          window.open(
+            `https://bscscan.com/tx/${value}`,
+            '_blank' // <- This is what makes it open in a new window.
+          );
+        }}
+      >
+        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+        {value == '0x0000000000000000000000000000000000000000'
+          ? 'Drops'
+          : value.length > 10
+          ? value.substring(0, 10) + '...'
+          : value}
+      </div>
+    ),
+    minWidth: 90,
+    maxWidth: 150,
+  },
 ];
 
-export default function TransactionTable() {
-  const data = React.useMemo(() => TransactionData, []);
+export default function TransactionTable(
+  contractAddress: string
+  ///address : string,
+) {
+  /////console.log('TransactionTable contractAddress: ', contractAddress);
+
+  ///const data = React.useMemo(() => TransactionData, []);
+
+  //const data = React.useMemo(() => transactionData, [ ]);
+
   const columns = React.useMemo(() => COLUMNS, []);
+
+  const [transactions, setTransactions] = React.useState([]);
 
   const address = useAddress();
 
@@ -155,8 +304,9 @@ export default function TransactionTable() {
     {
       // @ts-ignore
       columns,
-      data,
-      initialState: { pageSize: 5 },
+      //data,
+      data: transactions,
+      initialState: { pageSize: 10 },
     },
     useSortBy,
     useResizeColumns,
@@ -166,13 +316,169 @@ export default function TransactionTable() {
 
   const { pageIndex } = state;
 
+  const pageKey = '1';
+  const pageSize = '50';
+
+  const getTransactions = async () => {
+    if (address) {
+      // post to api to get transactions
+      const formInputs = {
+        pageKey: pageKey,
+        pageSize: pageSize,
+        contract: contractAddress,
+        address: address,
+      };
+
+      const res = await fetch('/api/ft/transactions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formInputs),
+      });
+
+      const data = await res.json();
+
+      const transactions = [] as any;
+
+      data.data.transactions?.map((transaction: any) => {
+        const transactionData = {
+          id: transaction._id,
+
+          transactionType:
+            transaction.from === address.toLowerCase() ? 'Send' : 'Receive',
+          //transactionType: "Send",
+
+          createdAt: transaction.block_signed_at,
+
+          address:
+            transaction.from === address.toLowerCase()
+              ? transaction.to
+              : transaction.from,
+
+          ///address: transaction.to,
+
+          amount: {
+            ///balance: transaction.value,
+            //balance: Math.round(parseFloat(transaction.value) * (10 ** 18)),
+            balance: ethers.utils.formatEther(transaction.value),
+
+            usdBalance: '11,032.24',
+          },
+          status: 'Completed',
+          tx_hash: transaction.tx_hash,
+        };
+
+        transactions.push(transactionData);
+      });
+
+      console.log('transactions: ', transactions);
+
+      setTransactions(transactions);
+    }
+  };
+
+  useEffect(() => {
+    const getTransactions = async () => {
+      if (address) {
+        // post to api to get transactions
+        const formInputs = {
+          pageKey: pageKey,
+          pageSize: pageSize,
+          contract: contractAddress,
+          address: address,
+        };
+
+        const res = await fetch('/api/ft/transactions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formInputs),
+        });
+
+        const data = await res.json();
+
+        const transactions = [] as any;
+
+        data.data.transactions?.map((transaction: any) => {
+          const transactionData = {
+            id: transaction._id,
+
+            transactionType:
+              transaction.from === address.toLowerCase() ? 'Send' : 'Receive',
+            //transactionType: "Send",
+
+            createdAt: transaction.block_signed_at,
+
+            address:
+              transaction.from === address.toLowerCase()
+                ? transaction.to
+                : transaction.from,
+
+            ///address: transaction.to,
+
+            amount: {
+              ///balance: transaction.value,
+              //balance: Math.round(parseFloat(transaction.value) * (10 ** 18)),
+              balance: ethers.utils.formatEther(transaction.value),
+
+              usdBalance: '11,032.24',
+            },
+            status: 'Completed',
+            tx_hash: transaction.tx_hash,
+          };
+
+          transactions.push(transactionData);
+        });
+
+        console.log('transactions: ', transactions);
+
+        setTransactions(transactions);
+      }
+    };
+
+    /*
+    let timer1 = setTimeout(() => getTransactions(), 10000);
+
+    // this will clear Timeout
+    // when component unmount like in willComponentUnmount
+    // and show will not change to true
+    return () => {
+      clearTimeout(timer1);
+    };
+    */
+
+    getTransactions();
+
+    setTimeout(() => {
+      getTransactions();
+    }, 10000);
+  }, [address]);
+
   return (
     <div className="">
       <div className="rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
-        <div className="flex flex-col items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 md:flex-row">
-          <h2 className="mb-3 shrink-0 text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
-            Transaction History
-          </h2>
+        <div className="flex flex-row items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 ">
+          <div className="flex items-center justify-start gap-2">
+            <HistoryIcon className="h-6 w-6" />
+
+            <div className="   text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+              Transaction History
+            </div>
+          </div>
+
+          {/* reload button */}
+          <div className="flex items-center justify-center gap-2">
+            <Button
+              onClick={() => {
+                getTransactions();
+              }}
+              title="Reload"
+              shape="circle"
+              variant="transparent"
+              size="small"
+              className="text-gray-700 dark:text-white"
+            >
+              <Refresh className="h-auto w-4 rtl:rotate-180" />
+            </Button>
+          </div>
         </div>
       </div>
 

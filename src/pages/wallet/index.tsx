@@ -49,6 +49,8 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 import styles2 from '@/styles/EWallet.module.css';
 
+import { GrdIcon } from '@/components/icons/grd-icon';
+
 import {
   ConnectWallet,
   useDisconnect,
@@ -70,7 +72,6 @@ import {
 } from '@thirdweb-dev/sdk';
 
 import {
-  thirdwebClientId,
   tokenContractAddressUSDC,
   tokenContractAddressUSDT,
   tokenContractAddressGRD,
@@ -81,10 +82,6 @@ import { BigNumber, ethers } from 'ethers';
 
 import styles from '@/styles/Home.module.css';
 import { add } from 'lodash';
-
-const sdk = new ThirdwebSDK('polygon', {
-  clientId: thirdwebClientId,
-});
 
 /*
 const readOnlySdk = new ThirdwebSDK("goerli", {
@@ -111,6 +108,8 @@ const WalletPage: NextPageWithLayout<
   const { Canvas } = useQRCode();
 
   const router = useRouter();
+
+  const [isSending, setIsSending] = useState(false);
 
   const address = useAddress();
 
@@ -284,105 +283,45 @@ const WalletPage: NextPageWithLayout<
     );
   }
 
-  async function handleTransferToken(e: any) {
-    try {
-      // Prevent page from refreshing
-      e.preventDefault();
-
-      let transactionResult: undefined | TransactionResult = undefined;
-
-      ///transactionResult = await transferToken(toAddress, amount);
-
-      const txResult = await sdk.wallet.transfer(toAddress, amount);
-
-      console.log('txResult', txResult);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   async function transferToken(toAddress: string, amount: number) {
+    if (toAddress === '') {
+      alert(`🌊 Please enter a valid address`);
+      return;
+    }
+
+    if (amount === undefined || amount === 0) {
+      alert(`🌊 Please enter a valid amount`);
+      return;
+    }
+
+    setIsSending(true);
+
     try {
-      const transaction = await tokenContract?.erc20.transfer(
+      const transaction = await tokenContractGRD?.erc20.transfer(
         toAddress,
         amount
       );
 
-      return transaction;
-    } catch (error) {
-      console.error(error);
-    }
-  }
+      console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 
-  // This function gets called when the form is submitted.
-  async function handleCreateListing(e: any) {
-    try {
-      // Prevent page from refreshing
-      e.preventDefault();
+      //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 
-      // Store the result of either the direct listing creation or the auction listing creation
-      let transactionResult: undefined | TransactionResult = undefined;
+      alert(`🌊 Successfully transfered!`);
 
-      // De-construct data from form submission
-      const { listingType, contractAddress, tokenId, price } =
-        e.target.elements;
+      setIsSending(false);
 
-      /*
-      // Depending on the type of listing selected, call the appropriate function
-      // For Direct Listings:
-      if (listingType.value === 'directListing') {
-        transactionResult = await createDirectListing(
-          contractAddress.value,
-          tokenId.value,
-          price.value
-        );
-      }
+      setAmount(0);
+      setToAddress('');
 
-      // For Auction Listings:
-      if (listingType.value === 'auctionListing') {
-        transactionResult = await createAuctionListing(
-          contractAddress.value,
-          tokenId.value,
-          price.value
-        );
-      }
-      */
-
-      console.log('transactionResult', transactionResult);
-
-      // If the transaction succeeds, take the user back to the homepage to view their listing!
-      if (transactionResult) {
-        router.push(routes.marketplace);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function createDirectListing(
-    contractAddress: string,
-    tokenId: string,
-    price: string
-  ) {
-    try {
-      const transaction =
-        await contractMarketplace?.directListings.createListing({
-          assetContractAddress: contractAddress, // Contract Address of the NFT
-          tokenId: tokenId, // Token ID of the NFT.
-          //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
-          pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
-          currencyContractAddress: NATIVE_TOKEN_ADDRESS, // NATIVE_TOKEN_ADDRESS is the crpyto curency that is native to the network. i.e. Goerli ETH.
-          //listingDurationInSeconds: 60 * 60 * 24 * 7, // When the auction will be closed and no longer accept bids (1 Week)
-          //quantity: 1, // How many of the NFTs are being listed (useful for ERC 1155 tokens)
-          startTimestamp: new Date(), // When the listing will start
-          endTimestamp: new Date(
-            new Date().getTime() + 7 * 24 * 60 * 60 * 1000
-          ), // Optional - when the listing should end (default is 7 days from now)
-        });
+      //router.reload();
 
       return transaction;
     } catch (error) {
       console.error(error);
+
+      alert(`🌊 Failed to send transaction with hash: ${error}`);
+
+      setIsSending(false);
     }
   }
 
@@ -401,14 +340,8 @@ const WalletPage: NextPageWithLayout<
         description="Granderby - NFT Marketplace for the people, by the people."
       />
 
-      <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
-        <Image
-          src={authorData?.cover_image?.thumbnail}
-          placeholder="blur"
-          fill
-          className="object-cover"
-          alt="Cover Image"
-        />
+      <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-sky-600 pb-5 pt-5 text-white">
+        <div className="text-2xl font-bold">GRD Wallet</div>
       </div>
 
       <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
@@ -426,8 +359,6 @@ const WalletPage: NextPageWithLayout<
           */}
 
             <div className="mt-5 flex flex-col items-center justify-center">
-              <ConnectWallet theme="dark" />
-
               <div className="mb-5 mt-5 flex flex-row items-center justify-center gap-3">
                 <span className=" text-sm">{address}</span>
 
@@ -468,32 +399,42 @@ const WalletPage: NextPageWithLayout<
         </h3>
 
         {address ? (
-          <>
-            <div className="mb-7 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-              <b>
-                {tokenBalanceGRD === undefined ? (
-                  <>Loading...</>
-                ) : (
-                  <>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</>
-                )}
-              </b>{' '}
-              <span className="text-lg text-[#2b57a2]">
-                {tokenBalanceGRD?.symbol}
-              </span>
+          <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+            <GrdIcon className="h-auto w-5 lg:w-auto" />
+            <b>
+              {tokenBalanceGRD === undefined ? (
+                <>Loading...</>
+              ) : (
+                <div className="m-5 text-5xl font-bold xl:text-7xl">
+                  {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+                </div>
+              )}
+            </b>{' '}
+            <span className="text-lg text-[#2b57a2] ">
+              {tokenBalanceGRD?.symbol}
+            </span>
+            {/* reload button */}
+            {/*
+            <div className="flex items-center justify-center gap-2">
+              <Button
+                onClick={() => {
+                  ///getTransactions();
+
+
+                  //router.reload();                  
+                  
+                }}
+                title="Reload"
+                shape="circle"
+                variant="transparent"
+                size="small"
+                className="text-gray-700 dark:text-white"
+              >
+                <Refresh className="h-auto w-4 rtl:rotate-180" />
+              </Button>
             </div>
-            <div className="mb-7 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-              <b>
-                {tokenBalanceUSDC === undefined ? (
-                  <>Loading...</>
-                ) : (
-                  <>{Number(tokenBalanceUSDC?.displayValue).toFixed(2)}</>
-                )}
-              </b>{' '}
-              <span className="text-lg text-[#2b57a2]">
-                {tokenBalanceUSDC?.symbol}
-              </span>
-            </div>
-          </>
+            */}
+          </div>
         ) : (
           <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             <ConnectWallet theme="light" />
@@ -501,11 +442,7 @@ const WalletPage: NextPageWithLayout<
         )}
       </div>
 
-      {/*
       <form onSubmit={(e) => handleTransferToken(e)}>
-        */}
-
-      <form>
         <div className=" flex flex-row items-center justify-center text-lime-600">
           {/* Form Section */}
           <div className={styles.collectionContainer}>
@@ -546,7 +483,7 @@ const WalletPage: NextPageWithLayout<
 
             {/* NFT Contract Address Field */}
             <input
-              className="mb-2 w-full text-lime-600"
+              className="mb-2 w-full text-black"
               type="text"
               name="toAddress"
               placeholder="To Address"
@@ -556,7 +493,10 @@ const WalletPage: NextPageWithLayout<
               }}
             />
 
-            <button onClick={showModal2} className={styles.button}>
+            <button
+              onClick={showModal2}
+              className="m-5 text-xl font-bold text-blue-600"
+            >
               Scan
             </button>
 
@@ -564,7 +504,7 @@ const WalletPage: NextPageWithLayout<
 
             {/* Sale Price For Listing Field */}
             <input
-              className=" w-full text-right text-3xl font-bold text-lime-600"
+              className=" w-full text-right text-5xl font-bold text-lime-600"
               type="number"
               name="amount"
               placeholder="0"
@@ -574,12 +514,23 @@ const WalletPage: NextPageWithLayout<
                 else if (Number(e.target.value) === 0) setAmount(undefined);
                 else if (Number(e.target.value) < 0) setAmount(undefined);
                 else if (
-                  Number(e.target.value) > Number(tokenBalance?.displayValue)
-                )
-                  setAmount(Number(tokenBalance?.displayValue));
-                else setAmount(Number(e.target.value));
+                  Number(e.target.value) > Number(tokenBalanceGRD?.displayValue)
+                ) {
+                  setAmount(Number(tokenBalanceGRD?.displayValue));
+                } else {
+                  setAmount(Number(e.target.value));
+                }
               }}
             />
+
+            {address && (
+              <div className="mb-3 text-lg">
+                {(
+                  Number(tokenBalanceGRD?.displayValue) - (amount || 0)
+                ).toFixed(2)}{' '}
+                {tokenBalanceGRD?.symbol} left
+              </div>
+            )}
 
             {/*}
             <button
@@ -591,66 +542,107 @@ const WalletPage: NextPageWithLayout<
             </button>
             */}
 
-            {address && (
+            {address ? (
               <div className="mt-5 flex flex-row justify-center">
-                {/*}
-                <button
-                  type="submit"
-                  className={styles.mainButton}
-                  style={{ marginTop: 32, borderStyle: 'none' }}
-                  onClick={(e) => handleTransferToken(e)}
-                >
-                  Transfer ({amount} GRD)
-                </button>
-                  */}
+                {/*{isTransferTokensLoading ? (*/}
+
+                {isSending ? (
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <div className="animate-spin">
+                      <GrdIcon className="h-35 w-35" />
+                    </div>
+                    <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                      <span>
+                        Sending {amount} {tokenBalanceGRD?.symbol} to
+                      </span>
+                      <span className="text-xs">{toAddress}</span>
+                      <span>Please wait...</span>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <Web3Button
+                      theme="light"
+                      contractAddress={tokenContractAddressGRD}
+                      action={(contract) => {
+                        //contract?.call('withdraw', [[nft.metadata.id]])
+                        //contract?.call('withdraw', [[nft.metadata.id]])
+                        //contract.erc1155.claim(0, 1);
+
+                        ///contract.erc20.transfer(toAddress, amount);
+
+                        transferToken(toAddress, amount);
+
+                        /*
+                          transferTokens({
+                            to: toAddress, // Address to transfer to
+                            amount: amount, // Amount to transfer
+                          })
+                          */
+                      }}
+                      onSuccess={() => {
+                        //setAmount(0);
+                        //setToAddress('');
+
+                        console.log(`🌊 Successfully transfered!`);
+                        //alert('Successfully transfered!');
+
+                        //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                        //handleClickSucc();
+                      }}
+                      onError={(error) => {
+                        console.error('Failed to transfer', error);
+                        alert('Failed to transfer');
+                        //setErrMsgSnackbar('Failed to transfer');
+                        //handleClickErr();
+                      }}
+                    >
+                      Transfer ({amount} GRD)
+                    </Web3Button>
+                  </>
+                )}
 
                 {/*
-                <Web3Button
-                  theme="light"
-                  contractAddress={tokenContractAddressUSDT}
-                  action={(contract) => {
-                    //contract?.call('withdraw', [[nft.metadata.id]])
-                    //contract?.call('withdraw', [[nft.metadata.id]])
-                    //contract.erc1155.claim(0, 1);
-                    contract.erc20.transfer(toAddress, amount);
-                  }}
-                  onSuccess={() => {
-                    console.log(`🌊 Successfully transfered!`);
-                    alert('Successfully transfered!');
-
-                    //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                    //handleClickSucc();
-                  }}
-                  onError={(error) => {
-                    console.error('Failed to transfer', error);
-                    alert('Failed to transfer');
-                    //setErrMsgSnackbar('Failed to transfer');
-                    //handleClickErr();
-                  }}
-                >
-                  Transfer ({amount} USDT)
-                </Web3Button>
-                  */}
+                <div className="ml-5 flex items-center justify-center">
+                  {isTransferTokensLoading && (
+                    <div className="animate-spin">
+                      <GRDIcon className="h-10 w-10" />
+                    </div>
+                  )}
+                </div>
+                <div className="ml-2">
+                
+                  {transferTokensError && (
+                    <div className="text-red-500">{transferTokensError}</div>
+                  )}
+               
+                  
+                </div>
+                   */}
               </div>
+            ) : (
+              <></>
             )}
           </div>
         </div>
       </form>
 
       <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <TransactionTable />
+        <TransactionTable {...{ contractAddress: tokenContractAddressGRD }} />
       </div>
 
+      {/*
       {address && (
         <iframe
           className="mt-10 h-[500px] w-full border"
           src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c"
         />
       )}
+      */}
 
       {/*
       <Web3Button
-        contractAddress={tokenContractAddressROM}
+        contractAddress={tokenContractAddressGRD}
         action={() =>
           transferTokens({
             to: "0xb6012B608DB2ad15e4Fb53d8AD2A2A8B6805F1a2", // Address to transfer to

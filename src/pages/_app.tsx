@@ -88,8 +88,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   /******* */
 
-  ///const [queryClient] = useState(() => new QueryClient());
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
+  ////const queryClient = new QueryClient();
 
   const clientId =
     process.env.NEXT_PUBLIC_CLIENT_ID === undefined
@@ -144,48 +144,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <title>Granderby - powered by MOMOCON</title>
       </Head>
 
-      {/*
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gtag.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
-*/}
-
       <QueryClientProvider client={queryClient}>
-        {/*
-      <ThemeProvider
-        attribute="class"
-        enableSystem={false}
-        defaultTheme="light"
-      >
-      */}
-
-        {/*
-
-        <PaperEmbeddedWalletProvider
-          appName="Paper RainbowKit Provider"
-          walletOptions={{
-            clientId: clientId,
-            ///chain: 'Mumbai',
-            chain: 'Goerli',
-          }}
-        >
-        */}
-
         <ThirdwebProvider
           //queryClient={queryClient}
           ///clientId={process.env.THIRDWEB_CLIENT_ID || ''}
@@ -221,9 +180,6 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
               */
           }}
         >
-          {/*
-            <WalletProvider>
-      */}
           {/* <div className={`${firaCode.variable} font-body`}> */}
 
           <Analytics />
@@ -249,20 +205,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
           <ModalsContainer />
           <DrawersContainer />
-
-          {/* </div> */}
-
-          {/*
-            </WalletProvider>
-    */}
         </ThirdwebProvider>
-
-        {/*   
-        </PaperEmbeddedWalletProvider>
-      */}
-        {/*
-      </ThemeProvider>
-      */}
       </QueryClientProvider>
     </>
   );

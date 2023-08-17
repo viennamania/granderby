@@ -10,11 +10,9 @@ import { IMAGES_MANIFEST } from 'next/dist/shared/lib/constants';
 
 import Image from 'next/image';
 
-
 export default function EntriesButton() {
-
   const { opeEntries } = useEntriesDrawer();
-  
+
   ///const [direction] = useLocalStorage<string>('criptic-direction');
 
   const direction = 'ltr';
@@ -24,8 +22,8 @@ export default function EntriesButton() {
 
   useDirection(direction ? direction : 'ltr');
 
-
   useThemeColor(themeColor ? themeColor : '#14161a');
+
   // set layout based on query param
   const router = useRouter();
   const { query } = router;
@@ -37,16 +35,14 @@ export default function EntriesButton() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query?.layout]);
 
-
   return (
     <>
-      <div className="fixed top-1/2 z-40 -translate-y-1/2 left-0">
+      <div className="fixed left-0 top-1/2 z-40 -translate-y-1/2">
         <button
-          className="flex h-12 w-12 items-center justify-center bg-white/80 text-gray-600 shadow-large backdrop-blur rounded-r-lg dark:bg-brand/80 dark:text-gray-200/70"
+          className="flex h-12 w-12 items-center justify-center rounded-r-lg bg-white/80 text-gray-600 shadow-large backdrop-blur dark:bg-brand/80 dark:text-gray-200/70"
           onClick={opeEntries}
           title="Inventory"
         >
-
           {/*
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +87,6 @@ export default function EntriesButton() {
             width={50}
             height={50}
           />
-
         </button>
       </div>
     </>
