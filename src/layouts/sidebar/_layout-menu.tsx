@@ -21,9 +21,11 @@ import { ConnectWallet } from '@thirdweb-dev/react';
 
 export function MenuItems() {
   const router = useRouter();
+
   const {
     query: { layout },
   } = router;
+
   return (
     <div className="flex items-center xl:px-10 2xl:px-14 3xl:px-16">
       {menuItems.map((item, index) => (
@@ -32,6 +34,7 @@ export function MenuItems() {
             <div className="relative mx-4 first:ml-0 last:mr-0">
               <Menu>
                 <Menu.Button className="flex items-center text-sm font-medium uppercase text-gray-600 transition hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                  <span className="mr-2">{item.icon}</span>
                   {item.name}
                   <span className="z-[1] transition-transform duration-200 ltr:ml-3 rtl:mr-3">
                     <ChevronDown />
@@ -81,9 +84,10 @@ export function MenuItems() {
                   },
                 }),
               }}
-              className="mx-3 text-[13px] font-medium uppercase text-gray-600 transition first:ml-0 last:mr-0 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white 2xl:mx-3 2xl:text-sm 3xl:mx-4"
+              className="mx-3 flex text-[13px] font-medium uppercase text-gray-600 transition first:ml-0 last:mr-0 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white 2xl:mx-3 2xl:text-sm 3xl:mx-4"
               activeClassName="!text-gray-900 dark:!text-white"
             >
+              <span className="mr-2">{item.icon}</span>
               {item.name}
             </ActiveLink>
           )}

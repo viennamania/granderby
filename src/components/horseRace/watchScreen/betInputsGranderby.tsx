@@ -609,7 +609,7 @@ export default function BetInputs({
 
         {/* //? Horse Select Buttons */}
         <div className="mt-0 flex items-center justify-center gap-3 text-2xl  font-bold ">
-          entry
+          Entry & Odds
         </div>
 
         <div className="mt-2 grid  grid-cols-5 items-center justify-center   gap-1 text-xs xl:grid-cols-10  ">

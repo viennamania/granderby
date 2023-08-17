@@ -12,7 +12,10 @@ import { PlusCircle } from '@/components/icons/plus-circle';
 import { CompassIcon } from '@/components/icons/compass';
 
 import { LivePricing } from '@/components/icons/live-pricing';
+
 import { Ranking } from '@/components/icons/ranking';
+
+import { Live } from '@/components/icons/live-icon';
 
 import { RaceIcon } from '@/components/icons/race-icon';
 
@@ -31,8 +34,8 @@ export const menuItems = [
   */
 
   {
-    name: 'LIVE',
-    icon: <Ranking />,
+    name: '',
+    icon: <Live />,
     href: routes.live,
   },
 
