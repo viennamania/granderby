@@ -33,6 +33,8 @@ import {
   Web3Button,
 } from '@thirdweb-dev/react';
 
+import { RaceIcon } from '@/components/icons/race-icon';
+
 function NftInfo({ nftMetadata }: any) {
   ///console.log('nftMetadata', nftMetadata);
 
@@ -102,6 +104,45 @@ function NftInfo({ nftMetadata }: any) {
     }
   }
 
+  const [toAddress, setToAddress] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  async function transferNft(id: string, toAddress: string) {
+    if (id === undefined) {
+      alert(`🌊 Please enter a valid tokenId`);
+      return;
+    }
+
+    if (toAddress === '') {
+      alert(`🌊 Please enter a valid address`);
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      const transaction = await nftDropContract?.erc721.transfer(toAddress, id);
+
+      console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+
+      //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+
+      alert(`🌊 Successfully transfered!`);
+
+      setIsSending(false);
+
+      setToAddress('');
+
+      return transaction;
+    } catch (error) {
+      console.error(error);
+
+      alert(`🌊 Failed to send transaction with hash: ${error}`);
+
+      setIsSending(false);
+    }
+  }
+
   return (
     <div className="px-5 pb-0 lg:mt-0">
       <div className="items-left invisible flex flex-col justify-between lg:visible">
@@ -117,7 +158,7 @@ function NftInfo({ nftMetadata }: any) {
 
         <div className="mt-5 flex items-center gap-4 ">
           <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
-            Own by
+            Owned by
           </div>
           <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
             {nftMetadata?.owner === address ? (
@@ -130,25 +171,97 @@ function NftInfo({ nftMetadata }: any) {
       </div>
 
       {nftMetadata?.owner === address && (
-        <div className="mt-5 flex flex-row items-center justify-start gap-2">
-          <Web3Button
-            theme="light"
-            contractAddress={stakingContractAddressHorseAAA}
-            action={() => stakeNft(nftMetadata?.metadata?.id)}
-          >
-            Register
-          </Web3Button>
-          <span>for horse recording</span>
-          {/*
-          <Web3Button
-            theme="light"
-            contractAddress={marketplaceContractAddress}
-            action={() => sellNft(nft.metadata.id)}
-          >
-            Sell
-          </Web3Button>
-          */}
-        </div>
+        <>
+          <div className="mt-5 flex flex-row items-center justify-start gap-2">
+            <Web3Button
+              theme="light"
+              contractAddress={stakingContractAddressHorseAAA}
+              action={() => stakeNft(nftMetadata?.metadata?.id)}
+            >
+              Register
+            </Web3Button>
+            <span>for horse recording</span>
+            {/*
+            <Web3Button
+              theme="light"
+              contractAddress={marketplaceContractAddress}
+              action={() => sellNft(nft.metadata.id)}
+            >
+              Sell
+            </Web3Button>
+            */}
+          </div>
+
+          <div className="mt-2 flex flex-row items-center justify-center gap-2">
+            <div className=" flex flex-row justify-center">
+              {/*{isTransferTokensLoading ? (*/}
+
+              {isSending ? (
+                <div className="flex flex-row items-center justify-center gap-2">
+                  <div className="animate-spin">
+                    <RaceIcon className="h-35 w-35" />
+                  </div>
+                  <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                    <span>Sending #{nftMetadata?.metadata?.id} to</span>
+                    <span>Please wait...</span>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Web3Button
+                    theme="light"
+                    contractAddress={nftDropContractAddressHorse}
+                    action={() => {
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract.erc1155.claim(0, 1);
+
+                      ///contract.erc20.transfer(toAddress, amount);
+
+                      transferNft(nftMetadata?.metadata?.id, toAddress);
+
+                      /*
+                        transferTokens({
+                          to: toAddress, // Address to transfer to
+                          amount: amount, // Amount to transfer
+                        })
+                        */
+                    }}
+                    onSuccess={() => {
+                      //setAmount(0);
+                      //setToAddress('');
+
+                      console.log(`🌊 Successfully transfered!`);
+                      //alert('Successfully transfered!');
+
+                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                      //handleClickSucc();
+                    }}
+                    onError={(error) => {
+                      console.error('Failed to transfer', error);
+                      alert('Failed to transfer');
+                      //setErrMsgSnackbar('Failed to transfer');
+                      //handleClickErr();
+                    }}
+                  >
+                    Transfer
+                  </Web3Button>
+                </>
+              )}
+            </div>
+
+            <input
+              className=" w-full text-black"
+              type="text"
+              name="toAddress"
+              placeholder="To Address"
+              value={toAddress}
+              onChange={(e) => {
+                setToAddress(e.target.value);
+              }}
+            />
+          </div>
+        </>
       )}
 
       <PriceHistoryTable />

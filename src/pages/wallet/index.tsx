@@ -443,7 +443,7 @@ const WalletPage: NextPageWithLayout<
         )}
       </div>
 
-      <form onSubmit={(e) => handleTransferToken(e)}>
+      <form>
         <div className=" flex flex-row items-center justify-center text-lime-600">
           {/* Form Section */}
           <div className={styles.collectionContainer}>
@@ -503,7 +503,6 @@ const WalletPage: NextPageWithLayout<
 
             <div className="mb-3 text-lg"></div>
 
-            {/* Sale Price For Listing Field */}
             <input
               className=" w-full text-right text-5xl font-bold text-lime-600"
               type="number"
