@@ -4,6 +4,8 @@ import Feeds from '@/components/search/feeds-horse';
 import OwnedFeeds from '@/components/search/feeds-horse-owned';
 import ListedFeeds from '@/components/search/feeds-horse-listed';
 
+import StakedFeeds from '@/components/search/feeds-horse-staked';
+
 import { useDrawer } from '@/components/drawer-views/context';
 
 //////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
@@ -31,8 +33,8 @@ export default function Search() {
     },
     */
     {
-      title: 'Own',
-      path: 'owned',
+      title: 'Registered',
+      path: 'registered',
     },
     /*
     {
@@ -141,7 +143,7 @@ export default function Search() {
                   </div>
                 </div>
 
-                <OwnedFeeds />
+                <StakedFeeds />
               </div>
             </TabPanel>
 

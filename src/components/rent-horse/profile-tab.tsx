@@ -25,7 +25,7 @@ import {
   tokenContractAddressGRD,
   marketplaceContractAddress,
   marketplaceContractAddressChaoscube,
-} from '../../config/contractAddresses';
+} from '@/config/contractAddresses';
 
 import { useEffect, useState } from 'react';
 
