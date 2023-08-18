@@ -15,6 +15,24 @@ import Link from 'next/link';
 
 import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
 
+import {
+  nftDropContractAddressHorse,
+  stakingContractAddressHorseAAA,
+  marketplaceContractAddress,
+} from '@/config/contractAddresses';
+
+import {
+  ConnectWallet,
+  useDisconnect,
+  ThirdwebNftMedia,
+  useAddress,
+  useContract,
+  useContractRead,
+  useOwnedNFTs,
+  useTokenBalance,
+  Web3Button,
+} from '@thirdweb-dev/react';
+
 function NftInfo({ nftMetadata }: any) {
   ///console.log('nftMetadata', nftMetadata);
 
@@ -28,8 +46,64 @@ function NftInfo({ nftMetadata }: any) {
     }, 2500);
   }
 
+  const address = useAddress();
+
+  const { contract: nftDropContract } = useContract(
+    nftDropContractAddressHorse,
+    'nft-drop'
+  );
+
+  const { contract: contractStaking, isLoading } = useContract(
+    stakingContractAddressHorseAAA
+  );
+
+  // Connect to our marketplace contract via the useContract hook
+  const { contract: contractMarketplace } = useContract(
+    marketplaceContractAddress,
+    //'marketplace',
+    'marketplace-v3'
+  );
+
+  async function stakeNft(id: string) {
+    if (!address) return;
+
+    const isApproved = await nftDropContract?.isApproved(
+      address,
+      stakingContractAddressHorseAAA
+    );
+
+    //onsole.log('isApproved', isApproved);
+
+    if (!isApproved) {
+      const data = await nftDropContract?.setApprovalForAll(
+        stakingContractAddressHorseAAA,
+        true
+      );
+
+      alert(data);
+    }
+
+    const data = await contractStaking?.call('stake', [[id]]);
+
+    //console.log('staking data', data);
+
+    if (data) {
+      alert('Your request has been sent successfully');
+      /*
+      setSuccessMsgSnackbar('Your request has been sent successfully');
+      handleClickSucc();
+      */
+    } else {
+      alert(data);
+      /*
+      setErrMsgSnackbar(data);
+      handleClickErr();
+      */
+    }
+  }
+
   return (
-    <div className="px-5 pb-10 lg:mt-0">
+    <div className="px-5 pb-0 lg:mt-0">
       <div className="items-left invisible flex flex-col justify-between lg:visible">
         <Link
           className="text-md flex text-left capitalize text-blue-500 dark:text-white "
@@ -43,13 +117,39 @@ function NftInfo({ nftMetadata }: any) {
 
         <div className="mt-5 flex items-center gap-4 ">
           <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
-            Owned by
+            Own by
           </div>
           <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-            {nftMetadata?.owner.substring(0, 6)}...
+            {nftMetadata?.owner === address ? (
+              <div className="text-xl font-bold text-blue-600">Me</div>
+            ) : (
+              <span>{nftMetadata?.owner.substring(0, 6)}...</span>
+            )}
           </div>
         </div>
       </div>
+
+      {nftMetadata?.owner === address && (
+        <div className="mt-5 flex flex-row items-center justify-start gap-2">
+          <Web3Button
+            theme="light"
+            contractAddress={stakingContractAddressHorseAAA}
+            action={() => stakeNft(nftMetadata?.metadata?.id)}
+          >
+            Register
+          </Web3Button>
+          <span>for horse recording</span>
+          {/*
+          <Web3Button
+            theme="light"
+            contractAddress={marketplaceContractAddress}
+            action={() => sellNft(nft.metadata.id)}
+          >
+            Sell
+          </Web3Button>
+          */}
+        </div>
+      )}
 
       <PriceHistoryTable />
 

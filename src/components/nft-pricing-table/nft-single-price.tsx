@@ -45,6 +45,7 @@ import Link from 'next/link';
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
 import {
+  useAddress,
   ThirdwebNftMedia,
   useContract,
   useNFT,
@@ -110,6 +111,8 @@ export default function NftSinglePrice({
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
   const { data: nft } = useNFT(contract, tokenid);
+
+  const address = useAddress();
 
   //console.log('nft', nft);
 
@@ -308,7 +311,13 @@ export default function NftSinglePrice({
                         Owned by
                       </div>
                       <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                        {nft?.owner.substring(0, 6)}...
+                        {nft?.owner === address ? (
+                          <div className="text-xl font-bold text-blue-600">
+                            Me
+                          </div>
+                        ) : (
+                          <span>{nft?.owner.substring(0, 6)}...</span>
+                        )}
                       </div>
                     </div>
                   </div>
