@@ -1,7 +1,11 @@
-import { connectMongo } from '@/utils/services/database';
 import { models, model, Schema } from 'mongoose';
 
-connectMongo();
+///import { connectMongo } from '@/utils/services/database';
+////connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 export const RouletteSettingsModel =
   models.RouletteSettings ||

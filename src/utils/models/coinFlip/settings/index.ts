@@ -1,6 +1,11 @@
-import { connectMongo } from '@/utils/services/database';
 import { model, models, Schema } from 'mongoose';
-connectMongo();
+
+/////import { connectMongo } from '@/utils/services/database';
+///////connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 export const CoinSettingsModel =
   models.CoinSettings ||

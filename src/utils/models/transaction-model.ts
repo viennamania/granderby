@@ -62,11 +62,14 @@ export const horseCount = async () => {
 
 import { ITransaction } from '../interfaces/transaction-interface';
 
-import { connectMongo } from '@/utils/services/database';
-
 import { Schema, models, model } from 'mongoose';
 
-connectMongo();
+////////import { connectMongo } from '@/utils/services/database';
+///////////connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 /*
 /*

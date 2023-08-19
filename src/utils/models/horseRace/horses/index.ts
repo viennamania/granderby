@@ -1,7 +1,11 @@
-import { connectMongo } from '@/utils/services/database';
 import { Schema, model, models } from 'mongoose';
 
-connectMongo();
+///import { connectMongo } from '@/utils/services/database';
+////connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 export const HorsesModel =
   models.Horses ||

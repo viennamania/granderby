@@ -2,10 +2,10 @@ import { Schema, models, model } from 'mongoose';
 import { User } from '../user-model';
 import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 
-import { connectMongo } from '@/utils/services/database';
-import dbConnect from '@/lib/db/dbConnect';
-
+/////////////import { connectMongo } from '@/utils/services/database';
 ///connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
 
 dbConnect();
 

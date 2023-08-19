@@ -1,8 +1,12 @@
-import { connectMongo } from '@/utils/services/database';
 import { Schema, model, models } from 'mongoose';
 import { getUser } from '../user-model';
 
-connectMongo();
+////import { connectMongo } from '@/utils/services/database';
+/////connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 export const withdrawRequestSchema = new Schema({
   userId: {

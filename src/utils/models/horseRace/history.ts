@@ -1,8 +1,13 @@
 import { IHorseHistory } from '@/utils/horseRace/interfaces/horseHistory';
-import { connectMongo } from '@/utils/services/database';
+
 import { Schema, models, model } from 'mongoose';
 
-connectMongo();
+/////import { connectMongo } from '@/utils/services/database';
+//////connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 const HorseHistorySchema = new Schema({
   date: {

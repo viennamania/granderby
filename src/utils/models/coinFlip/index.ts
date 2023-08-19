@@ -1,9 +1,14 @@
 import WinLost from '@/utils/coinFlip/enums/winLost.enum';
 import ICoinFlip from '@/utils/coinFlip/interfaces/game.interface';
-import { connectMongo } from '@/utils/services/database';
+
 import mongoose, { model, models, Schema } from 'mongoose';
 
-connectMongo();
+//////////import { connectMongo } from '@/utils/services/database';
+/////////connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 export const CoinFlip =
   models.CoinFlip ||
