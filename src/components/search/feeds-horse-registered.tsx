@@ -233,7 +233,7 @@ export default function Feeds({ className }: { className?: string }) {
         // If the listings are loading, show a loading message
         isLoadingStakedTokens ? (
           <div className="mb-10 w-full items-center justify-center">
-            <div className="text-2xl">Loading my staked horses...</div>
+            <div className="text-2xl">Loading my registered horses...</div>
           </div>
         ) : (
           <div
