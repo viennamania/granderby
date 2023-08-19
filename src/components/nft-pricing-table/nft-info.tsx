@@ -55,9 +55,16 @@ function NftInfo({ nftMetadata }: any) {
     'nft-drop'
   );
 
-  const { contract: contractStaking, isLoading } = useContract(
-    stakingContractAddressHorseAAA
+  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
+    useContract(stakingContractAddressHorseAAA);
+
+  const { data: stakerAddress, isLoading } = useContractRead(
+    contractStaking,
+    'stakerAddress',
+    [nftMetadata?.metadata?.id]
   );
+
+  ///console.log("stakerAddress", stakerAddress);
 
   // Connect to our marketplace contract via the useContract hook
   const { contract: contractMarketplace } = useContract(
@@ -147,7 +154,7 @@ function NftInfo({ nftMetadata }: any) {
     <div className="px-5 pb-0 lg:mt-0">
       <div className="items-left invisible flex flex-col justify-between lg:visible">
         <Link
-          className="text-md flex text-left capitalize text-blue-500 dark:text-white "
+          className="flex text-left text-lg capitalize text-blue-500 dark:text-white "
           href={`/horse`}
         >
           Granderby Horse NFT
@@ -156,17 +163,35 @@ function NftInfo({ nftMetadata }: any) {
           {nftMetadata?.metadata?.name}
         </div>
 
+        {/* owned by */}
         <div className="mt-5 flex items-center gap-4 ">
           <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
             Owned by
           </div>
           <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-            {nftMetadata?.owner === address ? (
-              <div className="text-xl font-bold text-blue-600">Me</div>
+            {stakerAddress &&
+            stakerAddress === '0x0000000000000000000000000000000000000000' ? (
+              <>
+                {nftMetadata?.owner === address ? (
+                  <div className="text-xl font-bold text-blue-600">Me</div>
+                ) : (
+                  <span>{nftMetadata?.owner.substring(0, 6)}...</span>
+                )}
+              </>
             ) : (
-              <span>{nftMetadata?.owner.substring(0, 6)}...</span>
+              <>
+                {stakerAddress && stakerAddress === address ? (
+                  <div className="text-xl font-bold text-blue-600">Me</div>
+                ) : (
+                  <span>{stakerAddress?.substring(0, 6)}...</span>
+                )}
+              </>
             )}
           </div>
+
+          {stakerAddress !== '0x0000000000000000000000000000000000000000' && (
+            <div className="text-xl text-black">Staked</div>
+          )}
         </div>
       </div>
 

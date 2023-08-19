@@ -42,7 +42,10 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import Link from 'next/link';
 
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+import {
+  nftDropContractAddressHorse,
+  stakingContractAddressHorseAAA,
+} from '@/config/contractAddresses';
 
 import {
   useAddress,
@@ -50,6 +53,7 @@ import {
   useContract,
   useNFT,
   Web3Button,
+  useContractRead,
 } from '@thirdweb-dev/react';
 
 interface RadioOptionProps {
@@ -108,13 +112,24 @@ export default function NftSinglePrice({
   const formattedDate = format(new Date(date * 1000), 'MMMM d, yyyy hh:mma');
   const { layout } = useLayout();
 
+  const address = useAddress();
+
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
   const { data: nft } = useNFT(contract, tokenid);
 
-  const address = useAddress();
+  console.log('nft', nft);
 
-  //console.log('nft', nft);
+  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
+    useContract(stakingContractAddressHorseAAA);
+
+  const { data: stakerAddress, isLoading } = useContractRead(
+    contractStaking,
+    'stakerAddress',
+    [tokenid]
+  );
+
+  console.log('stakerAddress', stakerAddress);
 
   const handleOnChange = (value: string) => {
     setStatus(value);
@@ -297,7 +312,7 @@ export default function NftSinglePrice({
                     <Bitcoin className="h-auto w-7 lg:w-9" />
                     */}
                     <Link
-                      className=" text-md text-left capitalize text-blue-500 dark:text-white "
+                      className=" text-left text-lg capitalize text-blue-500 dark:text-white "
                       href={`/horse`}
                     >
                       Granderby Horse NFT
@@ -306,19 +321,41 @@ export default function NftSinglePrice({
                       {nft?.metadata?.name}
                     </div>
 
+                    {/* owned by */}
                     <div className="mt-5 flex items-center gap-4 ">
                       <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
                         Owned by
                       </div>
                       <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                        {nft?.owner === address ? (
-                          <div className="text-xl font-bold text-blue-600">
-                            Me
-                          </div>
+                        {stakerAddress &&
+                        stakerAddress ===
+                          '0x0000000000000000000000000000000000000000' ? (
+                          <>
+                            {nft?.owner === address ? (
+                              <div className="text-xl font-bold text-blue-600">
+                                Me
+                              </div>
+                            ) : (
+                              <span>{nft?.owner?.substring(0, 6)}...</span>
+                            )}
+                          </>
                         ) : (
-                          <span>{nft?.owner.substring(0, 6)}...</span>
+                          <>
+                            {stakerAddress && stakerAddress === address ? (
+                              <div className="text-xl font-bold text-blue-600">
+                                Me
+                              </div>
+                            ) : (
+                              <span>{stakerAddress?.substring(0, 6)}...</span>
+                            )}
+                          </>
                         )}
                       </div>
+
+                      {stakerAddress !==
+                        '0x0000000000000000000000000000000000000000' && (
+                        <div className="text-xl text-black">Staked</div>
+                      )}
                     </div>
                   </div>
 
