@@ -1,4 +1,5 @@
 import { editHorseNames, getHorseNames } from '@/utils/models/npcRace/horses';
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Network, Alchemy } from 'alchemy-sdk';
 ///import { nftDropContractAddressHorse } from '@/config/contractAddresses';
@@ -149,35 +150,45 @@ export default async function handler(
 
     //Object.assign(resNpcNames, npcNames);
 
-    await alchemy.nft
-      .getNftMetadata(npcNames[0].nft1.contract, npcNames[0].nft1.tokenId)
-      .then((response) => {
-        resNpcNames[0].media1 = response.media[0];
-      });
+    if (npcNames[0].nft1.contract && npcNames[0].nft1.tokenId) {
+      await alchemy.nft
+        .getNftMetadata(npcNames[0].nft1.contract, npcNames[0].nft1.tokenId)
+        .then((response) => {
+          resNpcNames[0].media1 = response.media[0];
+        });
+    }
 
-    await alchemy.nft
-      .getNftMetadata(npcNames[0].nft2.contract, npcNames[0].nft2.tokenId)
-      .then((response) => {
-        resNpcNames[0].media2 = response.media[0];
-      });
+    if (npcNames[0].nft2.contract && npcNames[0].nft2.tokenId) {
+      await alchemy.nft
+        .getNftMetadata(npcNames[0].nft2.contract, npcNames[0].nft2.tokenId)
+        .then((response) => {
+          resNpcNames[0].media2 = response.media[0];
+        });
+    }
 
-    await alchemy.nft
-      .getNftMetadata(npcNames[0].nft3.contract, npcNames[0].nft3.tokenId)
-      .then((response) => {
-        resNpcNames[0].media3 = response.media[0];
-      });
+    if (npcNames[0].nft3.contract && npcNames[0].nft3.tokenId) {
+      await alchemy.nft
+        .getNftMetadata(npcNames[0].nft3.contract, npcNames[0].nft3.tokenId)
+        .then((response) => {
+          resNpcNames[0].media3 = response.media[0];
+        });
+    }
 
-    await alchemy.nft
-      .getNftMetadata(npcNames[0].nft4.contract, npcNames[0].nft4.tokenId)
-      .then((response) => {
-        resNpcNames[0].media4 = response.media[0];
-      });
+    if (npcNames[0].nft4.contract && npcNames[0].nft4.tokenId) {
+      await alchemy.nft
+        .getNftMetadata(npcNames[0].nft4.contract, npcNames[0].nft4.tokenId)
+        .then((response) => {
+          resNpcNames[0].media4 = response.media[0];
+        });
+    }
 
-    await alchemy.nft
-      .getNftMetadata(npcNames[0].nft5.contract, npcNames[0].nft5.tokenId)
-      .then((response) => {
-        resNpcNames[0].media5 = response.media[0];
-      });
+    if (npcNames[0].nft5.contract && npcNames[0].nft5.tokenId) {
+      await alchemy.nft
+        .getNftMetadata(npcNames[0].nft5.contract, npcNames[0].nft5.tokenId)
+        .then((response) => {
+          resNpcNames[0].media5 = response.media[0];
+        });
+    }
 
     //console.log('npcNames[0].nft6', npcNames[0].nft6);
 
@@ -250,8 +261,30 @@ export default async function handler(
   }
 
   if (method === 'set') {
-    const { horse1, horse2, horse3, horse4, horse5 } = req.body;
-    const result = await editHorseNames(horse1, horse2, horse3, horse4, horse5);
+    const {
+      horse1,
+      horse2,
+      horse3,
+      horse4,
+      horse5,
+      horse6,
+      horse7,
+      horse8,
+      horse9,
+      horse10,
+    } = req.body;
+    const result = await editHorseNames(
+      horse1,
+      horse2,
+      horse3,
+      horse4,
+      horse5,
+      horse6,
+      horse7,
+      horse8,
+      horse9,
+      horse10
+    );
     return res.status(200).json({ status: true, result });
   }
 
