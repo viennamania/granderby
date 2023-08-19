@@ -16,11 +16,12 @@ import type { FC } from 'react';
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
-} from '../../config/contractAddresses';
+} from '@/config/contractAddresses';
 
 import styles from '../../styles/Home.module.css';
 
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface NFTCardProps {
   tokenId: number;
@@ -31,6 +32,8 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   const { data: nft } = useNFT(contract, tokenId);
 
   const { layout } = useLayout();
+
+  const router = useRouter();
 
   return (
     <>
@@ -72,6 +75,11 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                 width={500}
                 height={500}
                 className="rounded-lg"
+                onClick={() =>
+                  //setTokenid(nft.metadata.id.toString()),
+                  //setIsOpen(true)
+                  router.push('/horse-details/' + nft?.metadata?.id)
+                }
               />
             </>
           )}

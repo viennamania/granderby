@@ -289,6 +289,20 @@ function NftInfo({ nftMetadata }: any) {
         </>
       )}
 
+      {stakerAddress && stakerAddress === address && (
+        <div className="mt-2">
+          <Web3Button
+            theme="light"
+            action={(contract) =>
+              contract?.call('withdraw', [[nftMetadata?.metadata?.id]])
+            }
+            contractAddress={stakingContractAddressHorseAAA}
+          >
+            Unregister
+          </Web3Button>
+        </div>
+      )}
+
       <PriceHistoryTable />
 
       {/*
