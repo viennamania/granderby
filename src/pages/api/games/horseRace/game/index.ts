@@ -41,20 +41,20 @@ export default async function handler(
   }
 
   if (method === 'getGames') {
-    /*
     const games = await getHorseGames();
 
     if (games) {
       return res.status(200).json({ message: 'Success', games });
     }
     return res.status(400).json({ message: 'Action Failed' });
-    */
 
     // for bug fix
 
+    /*
     const games = {};
 
     return res.status(200).json({ message: 'Success', games });
+    */
   }
 
   if (method === 'deleteGames') {
