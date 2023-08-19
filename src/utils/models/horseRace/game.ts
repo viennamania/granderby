@@ -74,10 +74,12 @@ export const newGameHorse = async (
 
 export const getHorseGames = async () => {
   let games: IHorseGame[];
+
   games = await HorseGame.find({})
     .sort({ _id: -1 })
     .select('-userId')
     .select('-_id');
+
   return games;
 };
 
