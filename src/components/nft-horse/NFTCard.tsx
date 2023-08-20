@@ -9,6 +9,8 @@ import {
   useContract,
   useNFT,
   Web3Button,
+  useContractRead,
+  useAddress,
 } from '@thirdweb-dev/react';
 
 import type { FC } from 'react';
@@ -28,12 +30,23 @@ interface NFTCardProps {
 }
 
 const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
+  const address = useAddress();
+
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
   const { data: nft } = useNFT(contract, tokenId);
 
   const { layout } = useLayout();
 
   const router = useRouter();
+
+  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
+    useContract(stakingContractAddressHorseAAA);
+
+  const { data: stakerAddress, isLoading } = useContractRead(
+    contractStaking,
+    'stakerAddress',
+    [tokenId]
+  );
 
   return (
     <>
@@ -82,6 +95,14 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                 }
               />
             </>
+          )}
+
+          <div className="flex text-xs text-white">
+            OWNER: {stakerAddress.substring(0, 10)}...
+          </div>
+
+          {address && address === stakerAddress && (
+            <div className="text-xl font-bold text-white">My horse</div>
           )}
 
           {/*
