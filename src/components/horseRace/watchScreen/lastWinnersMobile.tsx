@@ -28,7 +28,7 @@ export default function LastWinnersMobilePage({ npcs }: any) {
     <div className="absolute right-5 top-20 flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
 
-      <div className="">
+      <div className="flex flex-row">
         {sonKazananlar &&
           sonKazananlar.placements.map((item: any) => {
             return (
@@ -63,6 +63,15 @@ export default function LastWinnersMobilePage({ npcs }: any) {
               </div>
             );
           })}
+
+        <div>
+          <Image
+            src={sonKazananlar.placements[0].nft}
+            width={200}
+            height={200}
+            alt="winner"
+          />
+        </div>
       </div>
     </div>
   );

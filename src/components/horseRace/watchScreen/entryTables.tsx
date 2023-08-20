@@ -931,10 +931,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                6
-              </span>
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -963,6 +959,10 @@ export default function EntryTables({
                 </span>
               </div>
 
+              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                6
+              </span>
+
               {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
@@ -990,10 +990,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                7
-              </span>
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1022,6 +1018,10 @@ export default function EntryTables({
                 </span>
               </div>
 
+              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                7
+              </span>
+
               {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
@@ -1049,10 +1049,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                8
-              </span>
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1081,6 +1077,10 @@ export default function EntryTables({
                 </span>
               </div>
 
+              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                8
+              </span>
+
               {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
@@ -1108,9 +1108,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                9
-              </span>
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1139,6 +1136,10 @@ export default function EntryTables({
                 </span>
               </div>
 
+              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                9
+              </span>
+
               {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
@@ -1166,10 +1167,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                10
-              </span>
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -1197,6 +1194,10 @@ export default function EntryTables({
                   #{npcs?.nft10?.tokenId}
                 </span>
               </div>
+
+              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                10
+              </span>
 
               {/*
               <span className="text-xs">{npcs?.horse5}</span>

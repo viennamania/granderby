@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
+import NFTCard from '@/components//nft-horse/NFTCard';
+
 export default function LastWinnersPage({ npcs }: any) {
   const [sonKazananlar, setSonKazananlar] = useState<any>();
 
@@ -15,7 +17,7 @@ export default function LastWinnersPage({ npcs }: any) {
     });
     const data = await response.json();
 
-    ///console.log('getSonKazananlar data====', data);
+    //console.log('getSonKazananlar data====', data);
 
     setSonKazananlar(data.lastGame);
   };
@@ -25,10 +27,10 @@ export default function LastWinnersPage({ npcs }: any) {
   }, [npcs]);
 
   return (
-    <div className=" flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
+    <div className=" flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
 
-      <div className="">
+      <div className="grid grid-cols-3 gap-10">
         {sonKazananlar &&
           sonKazananlar.placements.map((item: any) => {
             if (item.line > 3) return;
@@ -38,13 +40,23 @@ export default function LastWinnersPage({ npcs }: any) {
                 key={item.line}
                 className="flex items-center justify-start gap-2"
               >
-                <p className=" grid  grid-flow-col  text-left  text-sm text-green-500">
+                <div className=" flex flex-col gap-1  text-left  text-sm text-green-500">
                   <span className="w-12">Rank{item.line}</span>
+
+                  {/*
                   <span className=" mr-3 w-12 text-right text-sky-500">
                     #{item.nft?.tokenId}
                   </span>
                   <span>{item.horse}</span>
-                </p>
+                  */}
+
+                  <div className=" flex">
+                    <NFTCard
+                      tokenId={item.nft?.tokenId}
+                      key={item.nft?.tokenId}
+                    />
+                  </div>
+                </div>
 
                 {/*
                 <Image
