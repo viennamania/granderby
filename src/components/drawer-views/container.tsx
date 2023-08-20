@@ -23,7 +23,9 @@ const PreviewContent = dynamic(
   () => import('@/components/create-nft/nft-preview-content')
 );
 
-function renderDrawerContent(view: DRAWER_VIEW | string) {
+function renderDrawerContent(view: DRAWER_VIEW | string, tokenid: any) {
+  ///console.log("renderDrawerContent tokenid", tokenid);
+
   switch (view) {
     case 'DASHBOARD_SIDEBAR':
       return <Sidebar />;
@@ -33,14 +35,16 @@ function renderDrawerContent(view: DRAWER_VIEW | string) {
       return <PreviewContent />;
 
     case 'DRAWER_HORSE_INFO':
-      return <DrawerHorseInfo tokenid="10" />;
+      return <DrawerHorseInfo tokenid={tokenid.tokenid} />;
 
     default:
       return <DrawerMenu />;
   }
 }
 
-export default function DrawersContainer() {
+export default function DrawersContainer(tokenid: any) {
+  ///console.log("DrawersContainer tokenid", tokenid);
+
   const router = useRouter();
   const { view, isOpen, closeDrawer } = useDrawer();
 
@@ -82,7 +86,7 @@ export default function DrawersContainer() {
           leaveTo="-translate-x-full"
         >
           <div className="fixed inset-y-0 left-0 flex w-full max-w-full xs:w-auto">
-            {view && renderDrawerContent(view)}
+            {view && renderDrawerContent(view, tokenid)}
           </div>
         </Transition.Child>
       </Dialog>

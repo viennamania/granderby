@@ -101,6 +101,8 @@ export default function NftSinglePrice({
   isOpen,
   setIsOpen,
 }: NftDrawerProps) {
+  //console.log("NftSinglePrice tokenid", tokenid);
+
   const [price, setPrice] = useState(6.2);
   const [date, setDate] = useState(1624147200);
   const [status, setStatus] = useState('Month');
@@ -118,7 +120,7 @@ export default function NftSinglePrice({
 
   const { data: nft } = useNFT(contract, tokenid);
 
-  console.log('nft', nft);
+  ///console.log('nft.metadata.name', nft?.metadata.name);
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
@@ -129,7 +131,7 @@ export default function NftSinglePrice({
     [tokenid]
   );
 
-  console.log('stakerAddress', stakerAddress);
+  ///console.log('stakerAddress', stakerAddress);
 
   const handleOnChange = (value: string) => {
     setStatus(value);

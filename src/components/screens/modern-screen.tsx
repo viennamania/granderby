@@ -607,7 +607,7 @@ export default function ModernScreen() {
               </div>
             ) : (
               <>
-                <div className="mb-5 flex flex-row items-center justify-center xl:hidden">
+                <div className="mb-5 flex flex-row items-center justify-center ">
                   <ConnectWallet theme="dark" />
                 </div>
 

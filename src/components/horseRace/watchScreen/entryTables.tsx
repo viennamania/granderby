@@ -35,6 +35,8 @@ import {
   Web3Button,
 } from '@thirdweb-dev/react';
 
+import DrawersContainer from '@/components/drawer-views/container';
+
 /*
 import {
   ////contractConst,
@@ -137,6 +139,8 @@ export default function EntryTables({
   const [errMsg, setErrMsg] = useState<String>('');
 
   const { openDrawer } = useDrawer();
+
+  const [selectedTokenid, setSelectedTokenid] = useState<String>('100');
 
   const handleClickSucc = () => {
     setSucc(true);
@@ -489,6 +493,8 @@ export default function EntryTables({
 
   return (
     <>
+      <DrawersContainer tokenid={selectedTokenid} />
+
       {/*
         //hasCookie('horse') &&
         address && (

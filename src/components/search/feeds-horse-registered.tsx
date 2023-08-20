@@ -255,43 +255,45 @@ export default function Feeds({ className }: { className?: string }) {
 
   return (
     <div className="felx flex-col">
-      <div className="mt-2 flex flex-col items-center justify-center gap-0 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 ">
-        <span>Claimable Rewards</span>
-        <div className="text-lg font-bold">
-          <b>
-            {!claimableRewards
-              ? 'Loading...'
-              : Number(ethers.utils.formatUnits(claimableRewards, 18)).toFixed(
-                  2
-                )}
-          </b>{' '}
-          {tokenBalance?.symbol}
+      {address && (
+        <div className="mt-2 flex flex-col items-center justify-center gap-0 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 ">
+          <span>Claimable Rewards</span>
+          <div className="text-lg font-bold">
+            <b>
+              {!claimableRewards
+                ? 'Loading...'
+                : Number(
+                    ethers.utils.formatUnits(claimableRewards, 18)
+                  ).toFixed(2)}
+            </b>{' '}
+            {tokenBalance?.symbol}
+          </div>
+
+          <Web3Button
+            theme="light"
+            //colorMode="dark"
+            //accentColor="#5204BF"
+            contractAddress={stakingContractAddressHorseAAA}
+            action={async (contract) => {
+              try {
+                const tx = await contract.call('claimRewards');
+                //console.log(tx);
+                alert('Rewards Claimed!');
+
+                const stakeInfo = await stakingContract?.call('getStakeInfo', [
+                  address,
+                ]);
+                ////const stakeInfo = await contract?.call("getStakeInfo", );
+                setClaimableRewards(stakeInfo[1]);
+              } catch (e) {
+                console.log(e);
+              }
+            }}
+          >
+            Claim Rewards
+          </Web3Button>
         </div>
-
-        <Web3Button
-          theme="light"
-          //colorMode="dark"
-          //accentColor="#5204BF"
-          contractAddress={stakingContractAddressHorseAAA}
-          action={async (contract) => {
-            try {
-              const tx = await contract.call('claimRewards');
-              //console.log(tx);
-              alert('Rewards Claimed!');
-
-              const stakeInfo = await stakingContract?.call('getStakeInfo', [
-                address,
-              ]);
-              ////const stakeInfo = await contract?.call("getStakeInfo", );
-              setClaimableRewards(stakeInfo[1]);
-            } catch (e) {
-              console.log(e);
-            }
-          }}
-        >
-          Claim Rewards
-        </Web3Button>
-      </div>
+      )}
 
       {
         // If the listings are loading, show a loading message

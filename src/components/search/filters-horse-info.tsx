@@ -265,7 +265,7 @@ export function Status() {
 export function Grade() {
   let [grade, setGrade] = useState('grade-u');
 
-  console.log('Grade', grade);
+  ///console.log('Grade', grade);
 
   return (
     <RadioGroup
@@ -397,7 +397,7 @@ export function Grade() {
 }
 
 export function Filters(tokenid: any) {
-  console.log('Filters tokenid', tokenid);
+  ///console.log('Filters tokenid', tokenid);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -437,7 +437,7 @@ export function Filters(tokenid: any) {
 }
 
 export default function DrawerHorseInfo(tokenid: any) {
-  console.log('DrawerHorseInfo=== tokenid', tokenid);
+  ///console.log('DrawerHorseInfo=== tokenid', tokenid);
 
   const { closeDrawer } = useDrawer();
 
