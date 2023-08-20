@@ -614,7 +614,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center  xl:flex-row  "
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*

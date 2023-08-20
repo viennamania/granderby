@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Dialog } from '@/components/ui/dialog';
 import { Transition } from '@/components/ui/transition';
 import { DRAWER_VIEW, useDrawer } from '@/components/drawer-views/context';
+
 // dynamic imports
 const Sidebar = dynamic(() => import('@/layouts/sidebar/_default'));
 
@@ -30,8 +31,10 @@ function renderDrawerContent(view: DRAWER_VIEW | string) {
       return <DrawerFilters />;
     case 'DRAWER_PREVIEW_NFT':
       return <PreviewContent />;
+
     case 'DRAWER_HORSE_INFO':
-      return <DrawerHorseInfo />;
+      return <DrawerHorseInfo tokenid="10" />;
+
     default:
       return <DrawerMenu />;
   }

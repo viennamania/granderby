@@ -8,14 +8,23 @@ export type DRAWER_VIEW =
   | 'DRAWER_PREVIEW_NFT'
   | 'DRAWER_HORSE_INFO';
 
-const drawerAtom = atom({ isOpen: false, view: 'DASHBOARD_SIDEBAR' });
+const drawerAtom = atom({
+  isOpen: false,
+  view: 'DASHBOARD_SIDEBAR',
+  tokenid: null,
+});
 
 export function useDrawer() {
   const [state, setState] = useAtom(drawerAtom);
-  const openDrawer = (view: DRAWER_VIEW) => {
-    setState({ ...state, isOpen: true, view });
+
+  const openDrawer = (view: DRAWER_VIEW, tokenid: any) => {
+    ///console.log("useDrawer openDrawer tokenid", tokenid);
+
+    setState({ ...state, isOpen: true, view, tokenid: tokenid });
   };
+
   const closeDrawer = () => setState({ ...state, isOpen: false });
+
   return {
     ...state,
     openDrawer,

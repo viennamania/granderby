@@ -11,7 +11,9 @@ import CoinTabs from '@/components/cryptocurrency-pricing-table/coin-tabs';
 import TopCoin from '@/components/cryptocurrency-pricing-table/top-coin';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
+
 import InfoDrawer from '@/components/cryptocurrency-pricing-table/info-drawer';
+
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 

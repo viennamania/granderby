@@ -202,6 +202,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           <InventoriesDrawer />
 
           <ModalsContainer />
+
           <DrawersContainer />
         </ThirdwebProvider>
       </QueryClientProvider>

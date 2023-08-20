@@ -17,6 +17,10 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 import Image from 'next/image';
 
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
+
+import NftInfo from '@/components/nft-pricing-table/nft-info';
+
 export function GridSwitcher() {
   const { isGridCompact, setIsGridCompact } = useGridSwitcher();
 
@@ -111,6 +115,7 @@ export function SortList() {
 
 export function PriceRange() {
   let [range, setRange] = useState({ min: 0, max: 1000 });
+
   function handleRangeChange(value: any) {
     setRange({
       min: value[0],
@@ -163,6 +168,7 @@ export function PriceRange() {
 
 export function Status() {
   let [plan, setPlan] = useState('buy-now');
+
   return (
     <RadioGroup
       value={plan}
@@ -390,9 +396,23 @@ export function Grade() {
   );
 }
 
-export function Filters() {
+export function Filters(tokenid: any) {
+  console.log('Filters tokenid', tokenid);
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
+      <NftSinglePrice
+        tokenid={tokenid.tokenid}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+
+      {/*
+      <NftInfo nftMetadata={nftMetadata} />
+  */}
+
       <Collapse label="Grades" initialOpen>
         <Grade />
       </Collapse>
@@ -403,7 +423,6 @@ export function Filters() {
       </Collapse>
       */}
 
-      {/*
       <Collapse label="Price Range" initialOpen>
         <PriceRange />
       </Collapse>
@@ -411,19 +430,20 @@ export function Filters() {
       <Collapse label="Collection" initialOpen>
         <CollectionSelect onSelect={(value) => console.log(value)} />
       </Collapse>
-      */}
     </>
   );
 }
 
-export default function DrawerFilters() {
+export default function DrawerHorseInfo(tokenid: any) {
+  console.log('DrawerHorseInfo=== tokenid', tokenid);
+
   const { closeDrawer } = useDrawer();
 
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
       <div className="flex h-20 items-center justify-between overflow-hidden px-6 py-4">
         <h2 className="text-xl font-medium uppercase tracking-wider text-gray-900 dark:text-white">
-          Information
+          Information -
         </h2>
         <Button
           shape="circle"
@@ -434,11 +454,13 @@ export default function DrawerFilters() {
           <Close className="h-auto w-3" />
         </Button>
       </div>
+
       <Scrollbar style={{ height: 'calc(100% - 96px)' }}>
         <div className="px-6 pb-20 pt-1">
-          <Filters />
+          <Filters tokenid={tokenid.tokenid} />
         </div>
       </Scrollbar>
+
       <div className="absolute bottom-4 left-0 z-10 w-full px-6">
         <Button fullWidth onClick={closeDrawer}>
           DONE
