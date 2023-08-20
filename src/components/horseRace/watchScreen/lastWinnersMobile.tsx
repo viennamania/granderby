@@ -63,15 +63,6 @@ export default function LastWinnersMobilePage({ npcs }: any) {
               </div>
             );
           })}
-
-        <div>
-          <Image
-            src={sonKazananlar.placements[0].nft}
-            width={200}
-            height={200}
-            alt="winner"
-          />
-        </div>
       </div>
     </div>
   );
