@@ -2,7 +2,7 @@ import { Schema, models, model } from 'mongoose';
 import { INpc } from '../interfaces/npc-interface';
 
 //import { connectMongo } from '../services/database';
-import clientPromise from '@/lib/mongodb';
+/////import clientPromise from '@/lib/mongodb';
 
 import { getCoinConvert } from './settings-model';
 
@@ -319,7 +319,7 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
 export const getAllNpcs = async () => {
   ///const users: INpc[] = (await Npc.find({ status: true })) as INpc[];
 
-  const users: INpc[] = (await Npc.find({})) as INpc[];
+  const users: INpc[] = (await NpcModel.find({})) as INpc[];
 
   if (users) {
     return { success: true, users };
@@ -329,7 +329,7 @@ export const getAllNpcs = async () => {
 };
 
 export const airdrop = async (amount: any) => {
-  const users: INpc[] = (await Npc.find({ status: true })) as INpc[];
+  const users: INpc[] = (await NpcModel.find({ status: true })) as INpc[];
   if (users) {
     users.forEach(async (user) => {
       user.deposit += amount;
@@ -353,7 +353,7 @@ export const updateNpc = async (
   maticBalance: number,
   walletAddress: string
 ) => {
-  const updatedUser: INpc = (await Npc.findOneAndUpdate(
+  const updatedUser: INpc = (await NpcModel.findOneAndUpdate(
     { _id: _id },
     {
       username: username,
@@ -375,9 +375,9 @@ export const updateNpc = async (
 };
 
 export const deleteNpc = async (_id: string) => {
-  const check = await Npc.findOne({ _id: _id });
+  const check = await NpcModel.findOne({ _id: _id });
 
-  const pasifUser: INpc = (await Npc.findOneAndUpdate(
+  const pasifUser: INpc = (await NpcModel.findOneAndUpdate(
     { _id: _id },
     {
       status: false,
@@ -394,7 +394,7 @@ export const deleteNpc = async (_id: string) => {
 };
 
 export const makeDepositMatic = async (_id: string, amount: number) => {
-  const updatedUser: INpc = (await Npc.findOneAndUpdate(
+  const updatedUser: INpc = (await NpcModel.findOneAndUpdate(
     { _id: _id },
     {
       $inc: { maticBalance: amount },
@@ -408,7 +408,7 @@ export const makeDepositMatic = async (_id: string, amount: number) => {
 };
 
 export const makeDepositCoin = async (_id: string, amount: number) => {
-  const user = await Npc.findOne({ _id: _id });
+  const user = await NpcModel.findOne({ _id: _id });
   if (!user) {
     return { success: false, message: 'User not found' };
   }
@@ -423,7 +423,7 @@ export const makeDepositCoin = async (_id: string, amount: number) => {
 };
 
 export const makeDepositToken = async (_id: string, amount: number) => {
-  const updatedUser: INpc = (await Npc.findOneAndUpdate(
+  const updatedUser: INpc = (await NpcModel.findOneAndUpdate(
     { _id: _id },
     {
       $inc: { deposit: amount },
@@ -437,7 +437,7 @@ export const makeDepositToken = async (_id: string, amount: number) => {
 };
 
 export const makeWinDepositCoin = async (_id: string, amount: number) => {
-  const user = await Npc.findOne({ _id: _id });
+  const user = await NpcModel.findOne({ _id: _id });
   if (!user) {
     return { success: false, message: 'User not found' };
   }
@@ -447,7 +447,7 @@ export const makeWinDepositCoin = async (_id: string, amount: number) => {
 };
 
 export const swapToMatic = async (_id: string, amount: number) => {
-  const user = await Npc.findOne({ _id: _id });
+  const user = await NpcModel.findOne({ _id: _id });
   if (!user) {
     return { success: false, message: 'User not found' };
   }
@@ -461,32 +461,8 @@ export const swapToMatic = async (_id: string, amount: number) => {
   return { success: true, user };
 };
 
-export const makeWithdrawCoin = async (_id: string, amount: number) => {
-  const user = await Npc.findOne({ _id: _id });
-  if (!user) {
-    return { success: false, message: 'User not found' };
-  }
-
-  user.deposit -= amount;
-  await user.save();
-  return { success: true, user };
-};
-
-export const makeWithdrawMatic = async (_id: string, amount: number) => {
-  const user = await Npc.findOne({ _id: _id });
-  if (!user) {
-    return { success: false, message: 'User not found' };
-  }
-  if (user.maticBalance < amount) {
-    return { success: false, message: 'Not Enough Matic' };
-  }
-  user.maticBalance -= amount;
-  await user.save();
-  return { success: true, user };
-};
-
 export const getNpcBalance = async (_id: string) => {
-  const userBalance = await Npc.findOne({ _id: _id });
+  const userBalance = await NpcModel.findOne({ _id: _id });
   if (!userBalance) {
     return { success: false, message: 'User not found' };
   }
@@ -494,7 +470,7 @@ export const getNpcBalance = async (_id: string) => {
 };
 
 export const changePassword = async (_id: string, pass: string) => {
-  const user = await Npc.findOne({ _id: _id });
+  const user = await NpcModel.findOne({ _id: _id });
   if (!user) {
     return { success: false, message: 'User not found' };
   }
@@ -504,13 +480,13 @@ export const changePassword = async (_id: string, pass: string) => {
 };
 
 export const changeNpcImage = async (_id: string, filepath: string) => {
-  const user: INpc = (await Npc.findByIdAndUpdate(_id, {
+  const user: INpc = (await NpcModel.findByIdAndUpdate(_id, {
     $set: { img: filepath },
   })) as INpc;
   return user;
 };
 
 export const npcCount = async () => {
-  const count = await Npc.countDocuments({ status: true });
+  const count = await NpcModel.countDocuments({ status: true });
   return count;
 };
