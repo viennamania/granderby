@@ -17,7 +17,7 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 import Image from 'next/image';
 
-import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price-drawer';
 
 import NftInfo from '@/components/nft-pricing-table/nft-info';
 
@@ -423,6 +423,7 @@ export function Filters(tokenid: any) {
       </Collapse>
       */}
 
+      {/*
       <Collapse label="Price Range" initialOpen>
         <PriceRange />
       </Collapse>
@@ -430,6 +431,7 @@ export function Filters(tokenid: any) {
       <Collapse label="Collection" initialOpen>
         <CollectionSelect onSelect={(value) => console.log(value)} />
       </Collapse>
+    */}
     </>
   );
 }
