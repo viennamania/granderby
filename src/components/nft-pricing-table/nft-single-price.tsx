@@ -114,9 +114,12 @@ export default function NftSinglePrice({
 
   const address = useAddress();
 
-  const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+  const { contract: nftDropContract } = useContract(
+    nftDropContractAddressHorse,
+    'nft-drop'
+  );
 
-  const { data: nft } = useNFT(contract, tokenid);
+  const { data: nft } = useNFT(nftDropContract, tokenid);
 
   console.log('nft', nft);
 
@@ -148,6 +151,44 @@ export default function NftSinglePrice({
         break;
     }
   };
+
+  async function stakeNft(id: string) {
+    if (!address) return;
+
+    const isApproved = await nftDropContract?.isApproved(
+      address,
+      stakingContractAddressHorseAAA
+    );
+
+    //onsole.log('isApproved', isApproved);
+
+    if (!isApproved) {
+      const data = await nftDropContract?.setApprovalForAll(
+        stakingContractAddressHorseAAA,
+        true
+      );
+
+      alert(data);
+    }
+
+    const data = await contractStaking?.call('stake', [[id]]);
+
+    //console.log('staking data', data);
+
+    if (data) {
+      alert('Your horse has been registered successfully');
+      /*
+      setSuccessMsgSnackbar('Your request has been sent successfully');
+      handleClickSucc();
+      */
+    } else {
+      alert(data);
+      /*
+      setErrMsgSnackbar(data);
+      handleClickErr();
+      */
+    }
+  }
 
   return (
     <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
@@ -307,16 +348,7 @@ export default function NftSinglePrice({
             <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
               <span className="flex items-center gap-2.5">
                 <span className="items-left flex flex-col gap-2.5 ">
-                  <div className="items-left flex flex-col justify-center lg:invisible">
-                    {/*
-                    <Bitcoin className="h-auto w-7 lg:w-9" />
-                    */}
-                    <Link
-                      className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                      href={`/horse`}
-                    >
-                      Granderby Horse NFT
-                    </Link>
+                  <div className="items-left flex flex-col justify-center ">
                     <div className="text-left text-3xl font-bold capitalize text-black dark:text-white">
                       {nft?.metadata?.name}
                     </div>
@@ -352,9 +384,34 @@ export default function NftSinglePrice({
                         )}
                       </div>
 
+                      {stakerAddress &&
+                        stakerAddress ===
+                          '0x0000000000000000000000000000000000000000' &&
+                        nft?.owner === address && (
+                          <Web3Button
+                            theme="light"
+                            contractAddress={stakingContractAddressHorseAAA}
+                            action={() => stakeNft(nft?.metadata?.id || '')}
+                          >
+                            Register
+                          </Web3Button>
+                        )}
+
                       {stakerAddress !==
-                        '0x0000000000000000000000000000000000000000' && (
-                        <div className="text-xl text-black">Registered</div>
+                        '0x0000000000000000000000000000000000000000' && <></>}
+
+                      {stakerAddress && stakerAddress === address && (
+                        <div className="mt-2">
+                          <Web3Button
+                            theme="light"
+                            action={(contract) =>
+                              contract?.call('withdraw', [[nft?.metadata?.id]])
+                            }
+                            contractAddress={stakingContractAddressHorseAAA}
+                          >
+                            Unregister
+                          </Web3Button>
+                        </div>
                       )}
                     </div>
                   </div>

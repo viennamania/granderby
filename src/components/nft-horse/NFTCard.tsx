@@ -54,26 +54,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   return (
     <>
       {nft && (
-        <div className="mb-5 flex flex-col items-center  justify-center gap-3">
-          <div className="flex flex-row items-center justify-center gap-2">
-            <h5>#{nft?.metadata?.id}</h5>
-            {/*
-            <AnchorLink
-              href={{
-                pathname: routes.horseDetails,
-                ...(layout !== LAYOUT_OPTIONS.MODERN && {
-                  query: {
-                    layout,
-                  },
-                }),
-              }}
-              className="cursor-pointer rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-brand dark:!bg-gray-700 dark:text-white"
-            >
-              <ExternalLink className="dark:text-white" />
-            </AnchorLink>
-            */}
-          </div>
-
+        <div className="mb-0 flex flex-col items-center  justify-center gap-0">
           {nft?.metadata && (
             <>
               {/*
@@ -91,34 +72,16 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                 width={100}
                 height={100}
                 className="rounded-lg"
-                onClick={() =>
-                  //setTokenid(nft.metadata.id.toString()),
-                  //setIsOpen(true)
-                  router.push('/horse-details/' + nft?.metadata?.id)
-                }
+                // onClick={() =>
+                //setTokenid(nft.metadata.id.toString()),
+                //setIsOpen(true)
+                //router.push('/horse-details/' + nft?.metadata?.id)
+                //}
               />
             </>
           )}
 
-          <div className="flex text-xs text-white">
-            OWNER: {stakerAddress?.substring(0, 10)}...
-          </div>
-
-          {address && address === stakerAddress && (
-            <div className="text-xl font-bold text-white">My horse</div>
-          )}
-
-          {/*
-          <Web3Button
-            theme="light"
-            action={(contract) =>
-              contract?.call('withdraw', [[nft.metadata.id]])
-            }
-            contractAddress={stakingContractAddressHorseAAA}
-          >
-            Unregister from field
-          </Web3Button>
-            */}
+          <h5>#{nft?.metadata?.id}</h5>
         </div>
       )}
     </>

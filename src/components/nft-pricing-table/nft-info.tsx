@@ -152,71 +152,8 @@ function NftInfo({ nftMetadata }: any) {
 
   return (
     <div className="px-5 pb-0 lg:mt-0">
-      <div className="items-left invisible flex flex-col justify-between lg:visible">
-        <Link
-          className="flex text-left text-lg capitalize text-blue-500 dark:text-white "
-          href={`/horse`}
-        >
-          Granderby Horse NFT
-        </Link>
-        <div className="text-left text-3xl font-bold capitalize text-black dark:text-white">
-          {nftMetadata?.metadata?.name}
-        </div>
-
-        {/* owned by */}
-        <div className="mt-5 flex items-center gap-4 ">
-          <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
-            Owned by
-          </div>
-          <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-            {stakerAddress &&
-            stakerAddress === '0x0000000000000000000000000000000000000000' ? (
-              <>
-                {nftMetadata?.owner === address ? (
-                  <div className="text-xl font-bold text-blue-600">Me</div>
-                ) : (
-                  <span>{nftMetadata?.owner.substring(0, 6)}...</span>
-                )}
-              </>
-            ) : (
-              <>
-                {stakerAddress && stakerAddress === address ? (
-                  <div className="text-xl font-bold text-blue-600">Me</div>
-                ) : (
-                  <span>{stakerAddress?.substring(0, 6)}...</span>
-                )}
-              </>
-            )}
-          </div>
-
-          {stakerAddress !== '0x0000000000000000000000000000000000000000' && (
-            <div className="text-xl text-black">Registered</div>
-          )}
-        </div>
-      </div>
-
       {nftMetadata?.owner === address && (
         <>
-          <div className="mt-5 flex flex-row items-center justify-start gap-2">
-            <Web3Button
-              theme="light"
-              contractAddress={stakingContractAddressHorseAAA}
-              action={() => stakeNft(nftMetadata?.metadata?.id)}
-            >
-              Register
-            </Web3Button>
-            <span>for horse recording</span>
-            {/*
-            <Web3Button
-              theme="light"
-              contractAddress={marketplaceContractAddress}
-              action={() => sellNft(nft.metadata.id)}
-            >
-              Sell
-            </Web3Button>
-            */}
-          </div>
-
           <div className="mt-2 flex flex-row items-center justify-center gap-2">
             <div className=" flex flex-row justify-center">
               {/*{isTransferTokensLoading ? (*/}
@@ -287,20 +224,6 @@ function NftInfo({ nftMetadata }: any) {
             />
           </div>
         </>
-      )}
-
-      {stakerAddress && stakerAddress === address && (
-        <div className="mt-2">
-          <Web3Button
-            theme="light"
-            action={(contract) =>
-              contract?.call('withdraw', [[nftMetadata?.metadata?.id]])
-            }
-            contractAddress={stakingContractAddressHorseAAA}
-          >
-            Unregister
-          </Web3Button>
-        </div>
       )}
 
       <PriceHistoryTable />

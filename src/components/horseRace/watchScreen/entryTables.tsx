@@ -679,7 +679,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*
@@ -742,7 +744,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*
@@ -805,7 +809,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId)
+              }
             >
               <div className="flex flex-col items-center justify-center">
                 {/*
@@ -868,7 +874,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*
@@ -931,7 +939,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*
@@ -990,7 +1000,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*
@@ -1049,7 +1061,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*
@@ -1108,7 +1122,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*
@@ -1167,7 +1183,9 @@ export default function EntryTables({
           >
             <div
               className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+              onClick={() =>
+                openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId)
+              }
             >
               <div className="block items-center justify-center">
                 {/*

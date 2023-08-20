@@ -30,6 +30,7 @@ import {
   nftDropContractAddressHorse,
   marketplaceContractAddress,
   stakingContractAddressHorseAAA,
+  tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
 import {
@@ -47,7 +48,7 @@ import {
 } from '@thirdweb-dev/react';
 
 import { LAYOUT_OPTIONS } from '@/lib/constants';
-import NFTCard from '../nft-horse/NFTCard';
+import NFTCard from '@/components/nft-horse/NFTCard';
 import { BigNumber, ethers } from 'ethers';
 import { useLayout } from '@/lib/hooks/use-layout';
 
@@ -87,6 +88,31 @@ export default function Feeds({ className }: { className?: string }) {
 
   const { data: stakedTokens, isLoading: isLoadingStakedTokens } =
     useContractRead(stakingContract, 'getStakeInfo', [address]);
+
+  const { contract: tokenContract } = useContract(
+    tokenContractAddressGRD,
+    'token'
+  );
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  const [stakedNftBalanceAAA, setStakedNftBalanceAAA] = useState<BigNumber>();
+  const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
+
+  useEffect(() => {
+    if (!stakingContract || !address) return;
+
+    async function loadClaimableRewards() {
+      const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
+
+      ////console.log("staeInfo", stakeInfo[0].length);
+
+      setStakedNftBalanceAAA(stakeInfo[0].length);
+
+      setClaimableRewards(stakeInfo[1]);
+    }
+
+    loadClaimableRewards();
+  }, [address, stakingContract]);
 
   ////console.log("stakedTokens",stakedTokens );
 
@@ -228,17 +254,55 @@ export default function Feeds({ className }: { className?: string }) {
   //console.log(data);
 
   return (
-    <>
+    <div className="felx flex-col">
+      <div className="mt-2 flex flex-col items-center justify-center gap-0 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 ">
+        <span>Claimable Rewards</span>
+        <div className="text-lg font-bold">
+          <b>
+            {!claimableRewards
+              ? 'Loading...'
+              : Number(ethers.utils.formatUnits(claimableRewards, 18)).toFixed(
+                  2
+                )}
+          </b>{' '}
+          {tokenBalance?.symbol}
+        </div>
+
+        <Web3Button
+          theme="light"
+          //colorMode="dark"
+          //accentColor="#5204BF"
+          contractAddress={stakingContractAddressHorseAAA}
+          action={async (contract) => {
+            try {
+              const tx = await contract.call('claimRewards');
+              //console.log(tx);
+              alert('Rewards Claimed!');
+
+              const stakeInfo = await stakingContract?.call('getStakeInfo', [
+                address,
+              ]);
+              ////const stakeInfo = await contract?.call("getStakeInfo", );
+              setClaimableRewards(stakeInfo[1]);
+            } catch (e) {
+              console.log(e);
+            }
+          }}
+        >
+          Claim Rewards
+        </Web3Button>
+      </div>
+
       {
         // If the listings are loading, show a loading message
         isLoadingStakedTokens ? (
-          <div className="mb-10 w-full items-center justify-center">
+          <div className="mb-10 mt-5 w-full items-center justify-center">
             <div className="text-2xl">Loading my registered horses...</div>
           </div>
         ) : (
           <div
             className={cn(
-              'grid grid-cols-3 gap-4 xs:grid-cols-3  lg:grid-cols-4 lg:gap-5 xl:gap-6 3xl:grid-cols-5 4xl:grid-cols-5 ',
+              'mt-5 grid grid-cols-4 gap-2  ',
               layout === LAYOUT_OPTIONS.RETRO
                 ? 'md:grid-cols-2'
                 : 'md:grid-cols-4'
@@ -246,14 +310,20 @@ export default function Feeds({ className }: { className?: string }) {
           >
             {stakedTokens &&
               stakedTokens[0]?.map((stakedToken: BigNumber) => (
-                <NFTCard
-                  tokenId={stakedToken.toNumber()}
+                <div
                   key={stakedToken.toString()}
-                />
+                  className="block"
+                  onClick={() => router.push('/horse-details/' + stakedToken)}
+                >
+                  <NFTCard
+                    tokenId={stakedToken.toNumber()}
+                    key={stakedToken.toString()}
+                  />
+                </div>
               ))}
           </div>
         )
       }
-    </>
+    </div>
   );
 }

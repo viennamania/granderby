@@ -7,6 +7,8 @@ import Feeds from '@/components/search/feeds-horse-inventory';
 import OwnedFeeds from '@/components/search/feeds-horse-owned';
 import ListedFeeds from '@/components/search/feeds-horse-listed';
 
+import RegisteredFeeds from '@/components/search/feeds-horse-registered';
+
 import { useDrawer } from '@/components/drawer-views/context';
 
 //////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
@@ -34,12 +36,12 @@ export default function Inventory() {
     },
     */
     {
-      title: 'Horse',
-      path: 'horse',
+      title: 'Owned',
+      path: 'owned',
     },
     {
-      title: 'Jokey',
-      path: 'jockey',
+      title: 'Registered',
+      path: 'registered',
     },
 
     /*
@@ -134,7 +136,7 @@ export default function Inventory() {
                           size="small"
                           variant="ghost"
                           color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH')}
+                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
                           className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                         >
                           <OptionIcon className="relative h-auto w-[18px]" />
@@ -165,7 +167,7 @@ export default function Inventory() {
                           size="small"
                           variant="ghost"
                           color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH')}
+                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
                           className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                         >
                           <OptionIcon className="relative h-auto w-[18px]" />
@@ -177,7 +179,10 @@ export default function Inventory() {
                 {/*
                 <ListedFeeds />
                 */}
+                {/*
                 <OwnedFeeds />
+                */}
+                <RegisteredFeeds />
               </div>
             </TabPanel>
           </ParamTab>

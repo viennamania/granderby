@@ -294,6 +294,7 @@ function ColorSwitcher() {
 
 export default function InventoriesDrawer() {
   const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
+
   return (
     <Transition appear show={isInventoriesOpen} as={Fragment}>
       <Dialog

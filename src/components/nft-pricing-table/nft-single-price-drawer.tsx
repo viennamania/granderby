@@ -307,13 +307,13 @@ export default function NftSinglePrice({
             <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
               <span className="flex items-center gap-2.5">
                 <span className="items-left flex flex-col gap-2.5 ">
-                  <div className="items-left flex flex-col justify-center lg:invisible">
+                  <div className="items-left flex flex-col justify-center ">
                     <div className="text-left text-xl font-bold capitalize text-black dark:text-white">
                       {nft?.metadata?.name}
                     </div>
 
                     {/* owned by */}
-                    <div className="mt-5 flex items-center gap-4 ">
+                    <div className="mt-5 flex flex-col items-center gap-4 ">
                       <div className=" text-sm tracking-wider text-[#6B7280]">
                         Owned by
                       </div>

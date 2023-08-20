@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 import NFTCard from '@/components//nft-horse/NFTCard';
 
+import { useDrawer } from '@/components/drawer-views/context';
+
 export default function LastWinnersPage({ npcs }: any) {
   const [sonKazananlar, setSonKazananlar] = useState<any>();
 
@@ -25,6 +27,8 @@ export default function LastWinnersPage({ npcs }: any) {
   useEffect(() => {
     getSonKazananlar();
   }, [npcs]);
+
+  const { openDrawer } = useDrawer();
 
   return (
     <div className=" flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
@@ -50,7 +54,12 @@ export default function LastWinnersPage({ npcs }: any) {
                   <span>{item.horse}</span>
                   */}
 
-                  <div className=" flex">
+                  <div
+                    className=" flex"
+                    onClick={() =>
+                      openDrawer('DRAWER_HORSE_INFO', item.nft?.tokenId)
+                    }
+                  >
                     <NFTCard
                       tokenId={item.nft?.tokenId}
                       key={item.nft?.tokenId}
