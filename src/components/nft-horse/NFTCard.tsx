@@ -54,9 +54,9 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   return (
     <>
       {nft && (
-        <div className="mb-5 flex flex-col items-center justify-center gap-3">
+        <div className="mb-5 flex flex-col items-center  justify-center gap-3">
           <div className="flex flex-row items-center justify-center gap-2">
-            <h5>{nft?.metadata?.name}</h5>
+            <h5>#{nft?.metadata?.id}</h5>
             {/*
             <AnchorLink
               href={{
@@ -74,7 +74,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             */}
           </div>
 
-          {nft.metadata && (
+          {nft?.metadata && (
             <>
               {/*
             <ThirdwebNftMedia
