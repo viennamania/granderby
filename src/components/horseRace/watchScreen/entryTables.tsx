@@ -641,8 +641,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media1?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -706,8 +706,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media2?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -771,8 +771,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media3?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -836,8 +836,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media4?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -901,8 +901,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media5?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -966,8 +966,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media6?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -1027,8 +1027,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media7?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -1088,8 +1088,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media8?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -1149,8 +1149,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media9?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />
@@ -1210,8 +1210,8 @@ export default function EntryTables({
 
                 <Image
                   src={npcs?.media10?.thumbnail || '/horseRace/logo.png'}
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   alt="pp"
                   className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                 />

@@ -371,9 +371,9 @@ const ProposalsPage: NextPageWithLayout<
         </div>
         */}
 
-        {/*
-        <LastWinnersPage npcs={npcNames} />
-      */}
+        <div className="w-[300px] rounded-lg bg-black">
+          <LastWinnersPage npcs={npcNames} />
+        </div>
 
         <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
           <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />

@@ -296,11 +296,11 @@ export default function Feeds({ className }: { className?: string }) {
                     <div
                       key={nft?.metadata?.id}
                       className="relative overflow-hidden rounded-lg bg-white shadow-lg"
-                      onClick={() =>
+                      onClick={() => {
                         //setTokenid(nft.metadata.id.toString()),
-                        //setIsOpen(true)
-                        router.push('/horse-details/' + nft?.metadata?.id)
-                      }
+                        //setIsOpen(false);
+                        router.push('/horse-details/' + nft?.metadata?.id);
+                      }}
                     >
                       <Image
                         src={

@@ -401,7 +401,7 @@ const WalletPage: NextPageWithLayout<
 
         {address ? (
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            <GrdIcon className="h-auto w-5 lg:w-auto" />
+            <GrdIcon className="h-auto w-8 lg:w-auto" />
             <b>
               {tokenBalanceGRD === undefined ? (
                 <>Loading...</>

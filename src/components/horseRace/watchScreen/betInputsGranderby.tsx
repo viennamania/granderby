@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import {
   ///nftDropContractAddressEntry,
   nftDropContractAddressCar,
-  tokenContractAddressGRD,
+  tokenContractAddressUSDT,
 } from '@/config/contractAddresses';
 
 import {
@@ -134,7 +134,7 @@ export default function BetInputs({
   const address = useAddress();
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddressGRD,
+    tokenContractAddressUSDT,
     'token'
   );
   const { data: tokenBalance, isLoading: tokenBalanceIsLoading } =
@@ -643,14 +643,18 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
-                1
-              </span>
+              <Image
+                src={'/horseRace/bib_gui_0.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
 
               <div className=" items-center justify-center">
                 <Image
@@ -701,14 +705,18 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
-                2
-              </span>
+              <Image
+                src={'/horseRace/bib_gui_1.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
 
               <div className=" items-center justify-center">
                 {/*
@@ -772,14 +780,18 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
-                3
-              </span>
+              <Image
+                src={'/horseRace/bib_gui_2.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
 
               <div className=" items-center justify-center">
                 {/*
@@ -843,14 +855,18 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
-                4
-              </span>
+              <Image
+                src={'/horseRace/bib_gui_3.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
 
               <div className="flex flex-col items-center justify-center">
                 {/*
@@ -915,14 +931,18 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
 
-              <span className="mt-1 h-5 w-5 bg-red-500 text-sm text-white">
-                5
-              </span>
+              <Image
+                src={'/horseRace/bib_gui_4.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
 
               <div className=" items-center justify-center">
                 {/*
@@ -987,7 +1007,7 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
@@ -1059,7 +1079,7 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
@@ -1131,7 +1151,7 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
@@ -1203,7 +1223,7 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
@@ -1275,7 +1295,7 @@ export default function BetInputs({
                 onClick={() =>
                   openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId)
                 }
-                className=" !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none xl:hidden"
+                className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
               </Button>
@@ -1326,10 +1346,10 @@ export default function BetInputs({
             <div className="glow-text p-2 font-medium text-black ">
               {chosenNpc && betAmount ? (
                 <div>
-                  You choose {chosenNpc ?? ' '} and bet {betAmount ?? ' '}GRD
+                  You choose #{chosenNpc ?? ' '} and bet {betAmount ?? ' '}USDT
                 </div>
               ) : (
-                <div>You choose {chosenNpc ?? ' '}</div>
+                <div>You choose #{chosenNpc ?? ' '}</div>
               )}
             </div>
           </div>
@@ -1389,7 +1409,7 @@ export default function BetInputs({
           ) : (
             <div className="mt-5 flex w-full flex-col justify-center">
               <ConnectWallet theme="light" />
-              <span className="text-lg">to see my GRD balance</span>
+              <span className="text-lg">to see my USDT balance</span>
             </div>
           )}
         </>

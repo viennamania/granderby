@@ -49,7 +49,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 import styles2 from '@/styles/EWallet.module.css';
 
-import { GrdIcon } from '@/components/icons/grd-icon';
+import { Usdc } from '@/components/icons/usdc';
 
 import {
   ConnectWallet,
@@ -394,7 +394,7 @@ const WalletPage: NextPageWithLayout<
 
         {address ? (
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            <GrdIcon className="h-auto w-5 lg:w-auto" />
+            <Usdc className="h-auto w-8 lg:w-auto" />
             <b>
               {tokenBalanceUSDC === undefined ? (
                 <>Loading...</>
@@ -543,7 +543,7 @@ const WalletPage: NextPageWithLayout<
                 {isSending ? (
                   <div className="flex flex-row items-center justify-center gap-2">
                     <div className="animate-spin">
-                      <GrdIcon className="h-35 w-35" />
+                      <Usdc className="h-35 w-35" />
                     </div>
                     <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
                       <span>
@@ -567,12 +567,10 @@ const WalletPage: NextPageWithLayout<
 
                         transferToken(toAddress, amount);
 
-                        /*
-                          transferTokens({
-                            to: toAddress, // Address to transfer to
-                            amount: amount, // Amount to transfer
-                          })
-                          */
+                        //transferTokens({
+                        //  to: toAddress, // Address to transfer to
+                        //  amount: amount, // Amount to transfer
+                        //})
                       }}
                       onSuccess={() => {
                         //setAmount(0);

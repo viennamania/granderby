@@ -75,24 +75,9 @@ export default function BetTables({ npcs }: any) {
     });
     const data = await res.json();
 
-    ////console.log('getGames data====', data);
+    console.log('getGames data====', data);
 
     setGames(data.games);
-
-    /*
-    setBetAmountTotal(0);
-
-    setBetAmount1(0);
-    setBetAmount2(0);
-    setBetAmount3(0);
-    setBetAmount4(0);
-    setBetAmount5(0);
-    setBetAmount6(0);
-    setBetAmount7(0);
-    setBetAmount8(0);
-    setBetAmount9(0);
-    setBetAmount10(0);
-    */
 
     games?.map((game: IHorseGame, i: number) => {
       if (game.selectedSide === npcs.horse1) {
@@ -135,7 +120,7 @@ export default function BetTables({ npcs }: any) {
   };
 
   useEffect(() => {
-    //getGames();
+    getGames();
 
     const interval = setInterval(() => {
       /*
@@ -146,12 +131,26 @@ export default function BetTables({ npcs }: any) {
 
       if (status === false) {
         getGames();
-      }
-    }, 10000);
+      } else {
+        setBetAmountTotal(0);
 
-    //return () => clearInterval(interval);
+        setBetAmount1(0);
+        setBetAmount2(0);
+        setBetAmount3(0);
+        setBetAmount4(0);
+        setBetAmount5(0);
+        setBetAmount6(0);
+        setBetAmount7(0);
+        setBetAmount8(0);
+        setBetAmount9(0);
+        setBetAmount10(0);
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [npcs]);
 
+  /*
   useEffect(() => {
     ///if (time  === -1) {
     if (status === true) {
@@ -175,6 +174,7 @@ export default function BetTables({ npcs }: any) {
       console.log('time====', time);
     }
   }, [time]);
+  */
 
   return (
     <>
@@ -185,9 +185,14 @@ export default function BetTables({ npcs }: any) {
 
         <div className="grid w-full grid-cols-5 gap-1 rounded-lg pl-10 pr-10 text-gray-200 xl:grid-cols-10 xl:gap-1">
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
-            <span className=" h-5 w-5 bg-red-500 text-center text-sm text-white">
-              1
-            </span>
+            <Image
+              src={'/horseRace/bib_gui_0.png'}
+              width="40"
+              height="40"
+              alt={'at'}
+              className=" xl:w-[100px] "
+            />
+
             <div className="mb-2 flex w-full flex-col items-center justify-center">
               <span className="text-lg font-bold text-yellow-500">
                 {betAmount1}
@@ -248,9 +253,13 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
-            <span className=" h-5 w-5 bg-red-500 text-center text-sm text-white">
-              2
-            </span>
+            <Image
+              src={'/horseRace/bib_gui_1.png'}
+              width="40"
+              height="40"
+              alt={'at'}
+              className=" xl:w-[100px] "
+            />
             <div className="mb-2 flex w-full flex-col items-center justify-center">
               <span className="text-lg font-bold text-yellow-500">
                 {betAmount2}
@@ -307,9 +316,13 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
-            <span className=" h-5 w-5 bg-red-500 text-center text-sm text-white">
-              3
-            </span>
+            <Image
+              src={'/horseRace/bib_gui_2.png'}
+              width="40"
+              height="40"
+              alt={'at'}
+              className=" xl:w-[100px] "
+            />
             <div className="mb-2 flex w-full flex-col items-center justify-center">
               <span className="text-lg font-bold text-yellow-500">
                 {betAmount3}
@@ -365,9 +378,13 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
-            <span className=" h-5 w-5 bg-red-500 text-center text-sm text-white">
-              4
-            </span>
+            <Image
+              src={'/horseRace/bib_gui_3.png'}
+              width="40"
+              height="40"
+              alt={'at'}
+              className=" xl:w-[100px] "
+            />
             <div className="mb-2 flex w-full flex-col items-center justify-center">
               <span className="text-lg font-bold text-yellow-500">
                 {betAmount4}
@@ -423,9 +440,13 @@ export default function BetTables({ npcs }: any) {
           </div>
 
           <div className="flex max-h-[300px] w-full flex-col items-center overflow-y-hidden rounded-lg border border-black bg-[#16171c] p-2">
-            <span className=" h-5 w-5 bg-red-500 text-center text-sm text-white">
-              5
-            </span>
+            <Image
+              src={'/horseRace/bib_gui_4.png'}
+              width="40"
+              height="40"
+              alt={'at'}
+              className=" xl:w-[100px] "
+            />
 
             <div className="mb-2 flex w-full flex-col items-center justify-center">
               <span className="text-lg font-bold text-yellow-500">
