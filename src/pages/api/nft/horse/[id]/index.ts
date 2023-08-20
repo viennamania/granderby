@@ -396,6 +396,7 @@ export default async function handler(
 
   ////const textureKye = 'Hrs_00000001';
   const textureKey = imagesrc.slice(0, -4);
+
   const npc = await getNpcFromTextureKey(textureKey);
 
   if (npc.success) {

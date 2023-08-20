@@ -8,6 +8,10 @@ import { getCoinConvert } from './settings-model';
 
 //connectMongo();
 
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
+
 const NpcSchema = new Schema({
   /*
   username: {
@@ -203,9 +207,9 @@ const NpcSchema = new Schema({
   },
 });
 
-export const Npc = models.Horseextend || model('Horseextend', NpcSchema);
+export const NpcModel = models.Horseextend || model('Horseextend', NpcSchema);
 
-console.log('Npc', Npc);
+//console.log('Npc', Npc);
 
 export const newNpc = async (
   username: string,
@@ -214,11 +218,11 @@ export const newNpc = async (
   walletAddress: string,
   bonus: number
 ) => {
-  const checkUser = await Npc.findOne({ email: email });
+  const checkUser = await NpcModel.findOne({ email: email });
   if (checkUser) {
     return { success: false, message: 'User already exists' };
   }
-  const user = new Npc({
+  const user = new NpcModel({
     username: username,
     email: email,
     pass: pass,
@@ -229,7 +233,7 @@ export const newNpc = async (
 };
 
 export const loginNpc = async (email: string) => {
-  const user = await Npc.findOne({ email: email });
+  const user = await NpcModel.findOne({ email: email });
   if (!user) {
     return { success: false, message: 'User not found' };
   }
@@ -244,7 +248,7 @@ export const loginNpc = async (email: string) => {
 };
 
 export const getNpc = async (_id: string) => {
-  const user = await Npc.findOne({ _id: _id });
+  const user = await NpcModel.findOne({ _id: _id });
   if (user) {
     return { success: true, user };
   } else {
@@ -253,7 +257,7 @@ export const getNpc = async (_id: string) => {
 };
 
 export const getNpcFromEmail = async (email: string) => {
-  const user = await Npc.findOne({ email: email });
+  const user = await NpcModel.findOne({ email: email });
   if (user) {
     return { success: true, user };
   } else {
@@ -262,7 +266,7 @@ export const getNpcFromEmail = async (email: string) => {
 };
 
 export const getNpcFromTextureKey = async (textureKye: string) => {
-  console.log('getNpcFromTextureKey', textureKye);
+  ////console.log('getNpcFromTextureKey', textureKye);
 
   /*
   ///console.log("getNpcFromTextureKey", textureKye);
@@ -280,6 +284,7 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
   }
   */
 
+  /*
   const client = await clientPromise;
 
   /////console.log('client', client);
@@ -289,6 +294,14 @@ export const getNpcFromTextureKey = async (textureKye: string) => {
   const user = await db
     .collection('horseextends')
     .findOne({ TEXTURE_KEY: textureKye });
+
+  */
+
+  const user = await NpcModel.findOne({
+    TEXTURE_KEY: textureKye,
+  }).catch((err) => {
+    ////return err;
+  });
 
   /////console.log("user", user);
 

@@ -33,7 +33,10 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   const address = useAddress();
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+
   const { data: nft } = useNFT(contract, tokenId);
+
+  ///console.log("NFTCard nft", nft);
 
   const { layout } = useLayout();
 
@@ -53,7 +56,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
       {nft && (
         <div className="mb-5 flex flex-col items-center justify-center gap-3">
           <div className="flex flex-row items-center justify-center gap-2">
-            <h5>{nft.metadata.name}</h5>
+            <h5>{nft?.metadata?.name}</h5>
             {/*
             <AnchorLink
               href={{
@@ -83,10 +86,10 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
 
               <Image
                 //src={nft.media[0].thumbnail}
-                src={nft.metadata.image ? nft.metadata.image : ''}
+                src={nft?.metadata?.image ? nft?.metadata?.image : ''}
                 alt={'alt'}
-                width={500}
-                height={500}
+                width={100}
+                height={100}
                 className="rounded-lg"
                 onClick={() =>
                   //setTokenid(nft.metadata.id.toString()),
@@ -98,7 +101,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
           )}
 
           <div className="flex text-xs text-white">
-            OWNER: {stakerAddress.substring(0, 10)}...
+            OWNER: {stakerAddress?.substring(0, 10)}...
           </div>
 
           {address && address === stakerAddress && (
