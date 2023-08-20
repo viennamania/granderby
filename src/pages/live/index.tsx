@@ -92,6 +92,8 @@ import EntriesDrawer from '@/components/entries/entries-drawer';
 import { CoinExplore } from '@/data/static/coin-list';
 import Explorers from '@/components/cryptocurrency-pricing-table/explorers';
 
+import LastWinnersPage from '@/components/horseRace/watchScreen/lastWinnersGranderby';
+
 /*
       <Header className="ltr:xl:pl-72 rtl:xl:pr-72 ltr:2xl:pl-[320px] rtl:2xl:pr-[320px] ltr:3xl:pl-80 rtl:3xl:pr-80" />
       <Sidebar className="z-40 hidden xl:block" />
@@ -368,6 +370,10 @@ const ProposalsPage: NextPageWithLayout<
           />
         </div>
         */}
+
+        {/*
+        <LastWinnersPage npcs={npcNames} />
+      */}
 
         <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
           <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />

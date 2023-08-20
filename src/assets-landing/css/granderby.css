@@ -505,7 +505,7 @@ h4{ font-size: 1.625em; font-family: 'SUIT'; font-weight: 600; line-height:40px;
 	body{  font-size: 11px !important;}	
 	#header .header-wrap{ padding: 0 10px;}
 	#intro .title-wrap .btn-wrap{ bottom: 0; display: flex; }
-	.btn-wrap .btn-app{ width: 50%; border-radius: 0; padding: 2em 1em; font-size: 1em; justify-content: center;}
+	.btn-wrap .btn-app{ width: 80%; border-radius: .5rem; padding: 2em 1em; font-size: 1em; justify-content: center;}
 	.btn-wrap .btn-app + .btn-app{ margin: 0; border-left: 1px solid #fff;}
 	#howto{ height: 1300px;}
 	

@@ -616,10 +616,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center  xl:flex-row  "
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                1
-              </span>
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -648,6 +644,14 @@ export default function EntryTables({
                 </span>
               </div>
 
+              <Image
+                src={'/horseRace/bib_gui_0.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
+
               {/*
               <span className="text-xs">{npcs?.horse1}</span>
               */}
@@ -675,10 +679,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                2
-              </span>
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -706,6 +706,15 @@ export default function EntryTables({
                   #{npcs?.nft2?.tokenId}
                 </span>
               </div>
+
+              <Image
+                src={'/horseRace/bib_gui_1.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
+
               {/*
               <span className="text-xs">{npcs.horse2}</span>
               */}
@@ -733,9 +742,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                3
-              </span>
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -763,6 +769,15 @@ export default function EntryTables({
                   #{npcs?.nft3?.tokenId}
                 </span>
               </div>
+
+              <Image
+                src={'/horseRace/bib_gui_2.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
+
               {/*
               <span className="text-xs">{npcs?.horse3}</span>
               */}
@@ -790,9 +805,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                4
-              </span>
               <div className="flex flex-col items-center justify-center">
                 {/*
                 <Button
@@ -821,6 +833,14 @@ export default function EntryTables({
                 </span>
               </div>
 
+              <Image
+                src={'/horseRace/bib_gui_3.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
+
               {/*
               <span className="text-xs">{npcs?.horse4}</span>
               */}
@@ -848,10 +868,6 @@ export default function EntryTables({
               className="flex flex-col items-center justify-center xl:flex-row"
               onClick={() => openDrawer('DRAWER_HORSE_INFO')}
             >
-              <span className=" mb-1 h-5 w-5 items-center justify-center bg-red-500 text-xs  text-white ">
-                5
-              </span>
-
               <div className="block items-center justify-center">
                 {/*
                 <Button
@@ -879,6 +895,14 @@ export default function EntryTables({
                   #{npcs?.nft5?.tokenId}
                 </span>
               </div>
+
+              <Image
+                src={'/horseRace/bib_gui_4.png'}
+                width="40"
+                height="40"
+                alt={'at'}
+                className=" xl:w-[100px] "
+              />
 
               {/*
               <span className="text-xs">{npcs?.horse5}</span>

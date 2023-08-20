@@ -325,6 +325,8 @@ export default function ModernScreen() {
 
       setNpcNames(response.npcNames[0]);
 
+      ///console.log("npcnNames", response.npcNames[0]);
+
       //npcNames.npcNames[0].nft1
     }
 
@@ -481,13 +483,16 @@ export default function ModernScreen() {
 
                             <div className="mt-2 w-full flex-col items-center justify-center  md:flex">
                               <Image
-                                //src={`/npcRace/at${horse.id}.gif`}
-
-                                src={horse.media}
-                                width="40"
-                                height="40"
+                                //src={horse.media}
+                                src={
+                                  '/horseRace/bib_gui_' +
+                                  (horse.id - 1) +
+                                  '.png'
+                                }
+                                width="80"
+                                height="80"
                                 alt={'at'}
-                                className="rounded-lg"
+                                className=" xl:w-[150px] "
                               />
                             </div>
                           </div>
@@ -577,7 +582,7 @@ export default function ModernScreen() {
                 </div>
 
                 <div className="btn-wrap flex w-full flex-col items-center justify-center gap-5">
-                  <button className="btn-app ">
+                  <button className="btn-app flex ">
                     <Image
                       src={IcoApple}
                       alt="apple"
@@ -585,10 +590,10 @@ export default function ModernScreen() {
                       height={100}
                       className="w-full"
                     />
-                    Download App
+                    <div className="flex">Download App</div>
                   </button>
 
-                  <button className="btn-app ">
+                  <button className="btn-app  ">
                     <Image
                       src={IcoAndroid}
                       alt="android"
@@ -596,7 +601,7 @@ export default function ModernScreen() {
                       height={100}
                       className="w-full"
                     />
-                    Download App
+                    <div className="flex">Download App</div>
                   </button>
                 </div>
               </div>

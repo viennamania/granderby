@@ -75,7 +75,7 @@ export default function BetTables({ npcs }: any) {
     });
     const data = await res.json();
 
-    console.log('getGames data====', data);
+    ////console.log('getGames data====', data);
 
     setGames(data.games);
 
