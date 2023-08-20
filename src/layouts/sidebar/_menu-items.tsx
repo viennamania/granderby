@@ -10,6 +10,8 @@ import { ExchangeIcon } from '@/components/icons/exchange';
 import { VoteIcon } from '@/components/icons/vote-icon';
 import { PlusCircle } from '@/components/icons/plus-circle';
 import { CompassIcon } from '@/components/icons/compass';
+import { Usdc } from '@/components/icons/usdc';
+import { GrdIcon } from '@/components/icons/grd-icon';
 
 import { LivePricing } from '@/components/icons/live-pricing';
 
@@ -124,12 +126,6 @@ export const menuItems = [
   */
 
   {
-    name: 'WALLET',
-    icon: <ProfileIcon />,
-    href: routes.wallet,
-  },
-
-  {
     name: 'ASSETS',
     icon: <FarmIcon />,
     href: routes.rentHorse,
@@ -162,6 +158,24 @@ export const menuItems = [
         href: routes.rentTRVC,
       },
       */
+    ],
+  },
+
+  {
+    name: 'WALLET',
+    icon: <FarmIcon />,
+    href: routes.walletUsdc,
+    dropdownItems: [
+      {
+        name: 'USDC',
+        icon: <Usdc />,
+        href: routes.walletUsdc,
+      },
+      {
+        name: 'GRD',
+        icon: <GrdIcon />,
+        href: routes.walletGrd,
+      },
     ],
   },
 

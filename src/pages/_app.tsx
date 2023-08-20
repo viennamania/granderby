@@ -195,8 +195,10 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           <SettingsDrawer />
           */}
 
+          {/*
           <EntriesButton />
           <EntriesDrawer />
+          */}
 
           <InventoriesButton />
           <InventoriesDrawer />

@@ -558,9 +558,11 @@ export default function ModernScreen() {
             <BetTables npcs={npcNames} />
             */}
 
+            {/*
             <div className="mb-2 flex w-full items-center justify-center rounded-lg text-3xl font-bold text-yellow-500">
               Total bet: {betAmountTotal}
             </div>
+            */}
           </div>
         </div>
 

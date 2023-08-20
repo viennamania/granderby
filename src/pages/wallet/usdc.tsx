@@ -74,7 +74,6 @@ import {
 import {
   tokenContractAddressUSDC,
   tokenContractAddressUSDT,
-  tokenContractAddressGRD,
   marketplaceContractAddress,
 } from '@/config/contractAddresses';
 
@@ -113,18 +112,21 @@ const WalletPage: NextPageWithLayout<
 
   const address = useAddress();
 
-  const { contract: tokenContractGRD } = useContract(
-    tokenContractAddressGRD,
+  const { contract: tokenContractUSDC } = useContract(
+    tokenContractAddressUSDC,
     'token'
   );
 
-  const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
+  const { data: tokenBalanceUSDC } = useTokenBalance(
+    tokenContractUSDC,
+    address
+  );
 
   const {
     mutate: transferTokens,
     isLoading,
     error,
-  } = useTransferToken(tokenContractGRD);
+  } = useTransferToken(tokenContractUSDC);
 
   const { contract: tokenContractUSDT } = useContract(
     tokenContractAddressUSDT,
@@ -132,15 +134,6 @@ const WalletPage: NextPageWithLayout<
   );
   const { data: tokenBalanceUSDT } = useTokenBalance(
     tokenContractUSDT,
-    address
-  );
-
-  const { contract: tokenContractUSDC } = useContract(
-    tokenContractAddressUSDC,
-    'token'
-  );
-  const { data: tokenBalanceUSDC } = useTokenBalance(
-    tokenContractUSDC,
     address
   );
 
@@ -298,7 +291,7 @@ const WalletPage: NextPageWithLayout<
     setIsSending(true);
 
     try {
-      const transaction = await tokenContractGRD?.erc20.transfer(
+      const transaction = await tokenContractUSDC?.erc20.transfer(
         toAddress,
         amount
       );
@@ -342,7 +335,7 @@ const WalletPage: NextPageWithLayout<
       />
 
       <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-sky-600 pb-5 pt-5 text-white">
-        <div className="text-2xl font-bold">Crypto Wallet</div>
+        <div className="text-2xl font-bold">USDC Wallet</div>
       </div>
 
       <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
@@ -403,16 +396,16 @@ const WalletPage: NextPageWithLayout<
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             <GrdIcon className="h-auto w-5 lg:w-auto" />
             <b>
-              {tokenBalanceGRD === undefined ? (
+              {tokenBalanceUSDC === undefined ? (
                 <>Loading...</>
               ) : (
                 <div className="m-5 text-5xl font-bold xl:text-7xl">
-                  {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+                  {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
                 </div>
               )}
             </b>{' '}
             <span className="text-lg text-[#2b57a2] ">
-              {tokenBalanceGRD?.symbol}
+              {tokenBalanceUSDC?.symbol}
             </span>
             {/* reload button */}
             {/*
@@ -447,7 +440,7 @@ const WalletPage: NextPageWithLayout<
         <div className=" flex flex-row items-center justify-center text-lime-600">
           {/* Form Section */}
           <div className={styles.collectionContainer}>
-            <div className="mb-2 text-lg">Send my GRD to another address:</div>
+            <div className="mb-2 text-lg">Send my USDC to another address:</div>
 
             {/* Toggle between direct listing and auction listing */}
             {/*
@@ -514,9 +507,10 @@ const WalletPage: NextPageWithLayout<
                 else if (Number(e.target.value) === 0) setAmount(undefined);
                 else if (Number(e.target.value) < 0) setAmount(undefined);
                 else if (
-                  Number(e.target.value) > Number(tokenBalanceGRD?.displayValue)
+                  Number(e.target.value) >
+                  Number(tokenBalanceUSDC?.displayValue)
                 ) {
-                  setAmount(Number(tokenBalanceGRD?.displayValue));
+                  setAmount(Number(tokenBalanceUSDC?.displayValue));
                 } else {
                   setAmount(Number(e.target.value));
                 }
@@ -526,9 +520,9 @@ const WalletPage: NextPageWithLayout<
             {address && (
               <div className="mb-3 text-lg">
                 {(
-                  Number(tokenBalanceGRD?.displayValue) - (amount || 0)
+                  Number(tokenBalanceUSDC?.displayValue) - (amount || 0)
                 ).toFixed(2)}{' '}
-                {tokenBalanceGRD?.symbol} left
+                {tokenBalanceUSDC?.symbol} left
               </div>
             )}
 
@@ -553,7 +547,7 @@ const WalletPage: NextPageWithLayout<
                     </div>
                     <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
                       <span>
-                        Sending {amount} {tokenBalanceGRD?.symbol} to
+                        Sending {amount} {tokenBalanceUSDC?.symbol} to
                       </span>
                       <span className="text-xs">{toAddress}</span>
                       <span>Please wait...</span>
@@ -563,7 +557,7 @@ const WalletPage: NextPageWithLayout<
                   <>
                     <Web3Button
                       theme="light"
-                      contractAddress={tokenContractAddressGRD}
+                      contractAddress={tokenContractAddressUSDC}
                       action={(contract) => {
                         //contract?.call('withdraw', [[nft.metadata.id]])
                         //contract?.call('withdraw', [[nft.metadata.id]])
@@ -597,7 +591,7 @@ const WalletPage: NextPageWithLayout<
                         //handleClickErr();
                       }}
                     >
-                      Transfer ({amount} GRD)
+                      Transfer ({amount} USDC)
                     </Web3Button>
                   </>
                 )}
@@ -606,7 +600,7 @@ const WalletPage: NextPageWithLayout<
                 <div className="ml-5 flex items-center justify-center">
                   {isTransferTokensLoading && (
                     <div className="animate-spin">
-                      <GRDIcon className="h-10 w-10" />
+                      <USDCIcon className="h-10 w-10" />
                     </div>
                   )}
                 </div>
@@ -628,7 +622,7 @@ const WalletPage: NextPageWithLayout<
       </form>
 
       <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <TransactionTable {...{ contractAddress: tokenContractAddressGRD }} />
+        <TransactionTable {...{ contractAddress: tokenContractAddressUSDC }} />
       </div>
 
       {/*
@@ -642,7 +636,7 @@ const WalletPage: NextPageWithLayout<
 
       {/*
       <Web3Button
-        contractAddress={tokenContractAddressGRD}
+        contractAddress={tokenContractAddressUSDC}
         action={() =>
           transferTokens({
             to: "0xb6012B608DB2ad15e4Fb53d8AD2A2A8B6805F1a2", // Address to transfer to

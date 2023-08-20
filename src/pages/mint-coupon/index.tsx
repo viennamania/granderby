@@ -115,8 +115,8 @@ const MintPage: NextPageWithLayout<
   const { layout } = useLayout();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddressCoupon,
-    'nft-drop'
+    nftDropContractAddressCoupon
+    //'nft-drop'
   );
 
   const { contract: tokenContract } = useContract(
@@ -135,7 +135,7 @@ const MintPage: NextPageWithLayout<
 
   const contractMetadata = useContractMetadata(contractQuery.contract);
 
-  console.log('contractMetadata', contractMetadata);
+  //console.log('contractMetadata', contractMetadata);
 
   const { toast } = useToast();
   const theme = 'dark';
@@ -151,11 +151,13 @@ const MintPage: NextPageWithLayout<
     address || ''
   );
 
-  console.log('ownedNfts', { ownedNfts });
+  ////console.log('ownedNfts', { ownedNfts });
 
   const [quantity, setQuantity] = useState(1);
 
-  const claimConditions = useClaimConditions(contractQuery.contract, tokenid);
+  const claimConditions = useClaimConditions(contractQuery.contract, 0);
+
+  console.log('claimConditions===', claimConditions);
 
   /*
   const activeClaimCondition = useActiveClaimConditionForWallet(
@@ -583,6 +585,7 @@ const MintPage: NextPageWithLayout<
         </div>
         */}
 
+        {/*
         <div className="mb-3 mt-16">
           {!address ? (
             <>
@@ -595,6 +598,7 @@ const MintPage: NextPageWithLayout<
             </>
           )}
         </div>
+          */}
 
         <div className="grid grid-cols-3 gap-2">
           {ownedNfts?.map((nft) => (
@@ -814,7 +818,7 @@ const MintPage: NextPageWithLayout<
                       }}
                       */
 
-                        theme={theme}
+                        theme="light"
                         action={(cntr) => cntr.erc1155.claim(tokenid, quantity)}
                         isDisabled={!canClaim || buttonLoading}
                         onError={(err) => {

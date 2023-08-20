@@ -35,7 +35,9 @@ const routes = {
   charts: '/charts',
 
   profile: '/profile',
-  wallet: '/wallet',
+
+  walletGrd: '/wallet/grd',
+  walletUsdc: '/wallet/usdc',
 
   portfolio: '/profile?view=portfolio',
   history: '/profile?view=history',
