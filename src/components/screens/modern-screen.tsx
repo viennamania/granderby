@@ -453,38 +453,13 @@ export default function ModernScreen() {
 
           <LiveNftPricingSlider limits={4} />
 
-          <div className="justify-left mt-5 flex w-full items-center ">
-            {/*
-            <Image
-              src="/horseRace/racecourse_happy_valley.png"
-              alt="raceTrack"
-              width={150}
-              height={150}
-            />
-            */}
-
-            <Link
-              className="hidden  h-[30px] flex-row items-center justify-center rounded-lg bg-black xl:flex"
-              href="/live"
-            >
-              <span className="ml-5 text-white">Click for bet</span>
-              <Image
-                src="/horseRace/live.gif"
-                alt="live"
-                width={100}
-                height={100}
-                className="mb-2"
-              />
-            </Link>
-          </div>
-
-          <div className="mt-5 rounded-md  bg-black">
+          <div className="mt-10 rounded-md  bg-black">
             <LastWinners npcs={npcNames} />
           </div>
 
           <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
             {time ? (
-              <>
+              <div className="w-full">
                 {time === -1 ? (
                   <div className="mt-0 flex flex-row gap-1">
                     {horses
@@ -522,12 +497,28 @@ export default function ModernScreen() {
                 ) : (
                   <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
                 )}
-              </>
+              </div>
             ) : (
               <div className="flex w-full items-center justify-center text-2xl text-white ">
                 Loading game...
               </div>
             )}
+
+            <div className=" flex flex-row  items-center justify-end ">
+              <Link
+                className="hidden h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
+                href="/live"
+              >
+                <Image
+                  src="/horseRace/live.gif"
+                  alt="live"
+                  width={100}
+                  height={30}
+                  className="mb-1"
+                />
+                <span className="mr-2 text-white">for bet</span>
+              </Link>
+            </div>
           </div>
 
           <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-2 shadow-card dark:bg-light-dark xl:p-8">
@@ -573,7 +564,7 @@ export default function ModernScreen() {
             {!address ? (
               <div className="flex flex-col justify-center">
                 <ConnectWallet theme="light" />
-                <h3> to experience the GRANDERBY service</h3>
+                <h5> to experience the GRANDERBY</h5>
 
                 <div className="mt-5 hidden  flex-row items-center justify-center p-5 xl:flex ">
                   <Image
