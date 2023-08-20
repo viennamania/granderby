@@ -14,7 +14,8 @@ import { ExportIcon } from '@/components/icons/export-icon';
 import { getVotesByStatus } from '@/data/static/vote-data';
 import votePool from '@/assets/images/vote-pool.svg';
 
-import RootLayout from '@/layouts/_root-layout';
+////import RootLayout from '@/layouts/_root-layout';
+import RootLayout from '@/layouts/_root-layout-live';
 
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';

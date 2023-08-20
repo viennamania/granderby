@@ -34,8 +34,8 @@ export const menuItems = [
   */
 
   {
-    name: '',
-    icon: <Live />,
+    name: 'LIVE',
+    icon: <Ranking />,
     href: routes.live,
   },
 

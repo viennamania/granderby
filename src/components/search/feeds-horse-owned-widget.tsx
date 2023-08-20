@@ -130,7 +130,7 @@ export default function Feeds({ className }: { className?: string }) {
                 I have {ownedNfts?.length} horses.
               </h4>
 
-              <div className="flex flex-row items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
                 <Button
                   className="flex"
                   title="Go"

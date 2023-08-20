@@ -218,10 +218,6 @@ const HomePage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
-      {/*
-      <MomoconScreen />
-      */}
-
       <ModernScreen />
 
       <footer>

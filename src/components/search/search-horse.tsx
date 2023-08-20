@@ -72,10 +72,6 @@ export default function Search() {
           />
           <span className="ml-3">Granderby Horse NFT</span>
         </div>
-        <span className="mt-3 text-sm">
-          Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
-          Category Gaming
-        </span>
       </div>
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
