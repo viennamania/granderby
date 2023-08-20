@@ -313,7 +313,7 @@ const ProposalsPage: NextPageWithLayout<
       <EntriesDrawer />
       */}
 
-      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-6">
+      <div className=" mx-auto flex w-full shrink-0 flex-col  items-center  justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-6">
         {/*
             export type DRAWER_VIEW =
               | 'DASHBOARD_SIDEBAR'
@@ -337,6 +337,7 @@ const ProposalsPage: NextPageWithLayout<
             </Button>
             */}
 
+        {/*
         <div className="flex w-full flex-row items-center justify-end gap-2">
           <div className="flex w-full items-center justify-start">
             {!address ? (
@@ -350,34 +351,15 @@ const ProposalsPage: NextPageWithLayout<
               </div>
             ) : (
               <div className="flex flex-col ">
-                {/*
-
-                {tokenBalanceIsLoading ? (
-                  ////<span>Loading my token balance...</span>
-
-                  <span className="relative flex h-5 w-5 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-                ) : (
-                  <div className=" font-medium tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-                    <b>{Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
-                    &nbsp;{tokenBalance?.symbol}
-                  </div>
-                )}
-
-                */}
-
                 <OwnedFeeds />
               </div>
             )}
           </div>
-
-          {/*
-          <div className="flex w-full flex-row items-center justify-end  gap-2">
-            <Explorers menu={CoinExplore} />
-          </div>
-          */}
         </div>
+        */}
 
-        <div className="justify-left mt-5 flex w-full items-center ">
+        {/*
+        <div className="justify-left mt-0 flex w-full items-center ">
           <Image
             src="/horseRace/racecourse_happy_valley.png"
             alt="raceTrack"
@@ -385,8 +367,13 @@ const ProposalsPage: NextPageWithLayout<
             height={150}
           />
         </div>
+        */}
 
-        <div className="items-top mt-2 flex  w-full flex-col justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
+        <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
+          <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />
+        </div>
+
+        <div className="items-top mt-0 flex  w-full flex-col justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
           {time ? (
             <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
           ) : (
@@ -396,7 +383,7 @@ const ProposalsPage: NextPageWithLayout<
           )}
         </div>
 
-        <div className=" items-top mt-2  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
+        <div className=" items-top mt-0  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
           <div className=" ml-[140px] mt-10 w-[50px] items-center justify-center ">
             <EntryTables
               horse1={horse1Oran}

@@ -597,7 +597,7 @@ export default function EntryTables({
           E-258
         </div>
 
-        <div className="  flex  flex-wrap  items-center justify-center gap-1  text-xs">
+        <div className="  grid  grid-cols-5  items-center justify-center gap-1  text-xs">
           <button
             disabled={placedBet}
             onClick={() => {

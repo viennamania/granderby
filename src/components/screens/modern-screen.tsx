@@ -454,12 +454,14 @@ export default function ModernScreen() {
           <LiveNftPricingSlider limits={4} />
 
           <div className="justify-left mt-5 flex w-full items-center ">
+            {/*
             <Image
               src="/horseRace/racecourse_happy_valley.png"
               alt="raceTrack"
               width={150}
               height={150}
             />
+            */}
 
             <Link
               className="hidden  h-[30px] flex-row items-center justify-center rounded-lg bg-black xl:flex"
@@ -476,7 +478,7 @@ export default function ModernScreen() {
             </Link>
           </div>
 
-          <div className=" rounded-md  bg-black">
+          <div className="mt-5 rounded-md  bg-black">
             <LastWinners npcs={npcNames} />
           </div>
 
