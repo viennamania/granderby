@@ -190,7 +190,7 @@ function NftInfo({ nftMetadata }: any) {
           </div>
 
           {stakerAddress !== '0x0000000000000000000000000000000000000000' && (
-            <div className="text-xl text-black">Staked</div>
+            <div className="text-xl text-black">Registered</div>
           )}
         </div>
       </div>

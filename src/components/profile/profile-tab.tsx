@@ -164,7 +164,7 @@ export default function ProfileTab() {
   return (
     <ParamTab tabMenu={tabMenu}>
       <TabPanel className="focus:outline-none  ">
-        <h2 className="flex justify-center ">Your Staked NFTs</h2>
+        <h2 className="flex justify-center ">Your Registered NFTs</h2>
 
         <div
           className={cn(
