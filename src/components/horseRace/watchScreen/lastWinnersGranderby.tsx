@@ -19,7 +19,7 @@ export default function LastWinnersPage({ npcs }: any) {
     });
     const data = await response.json();
 
-    //console.log('getSonKazananlar data====', data);
+    ///console.log('getSonKazananlar data winPrize ====', data?.lastGame?.winPrize);
 
     setSonKazananlar(data.lastGame);
   };
@@ -33,6 +33,10 @@ export default function LastWinnersPage({ npcs }: any) {
   return (
     <div className=" flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
+
+      <div className="text-xl font-bold">
+        Win Prize: {sonKazananlar?.winPrize}
+      </div>
 
       <div className="grid grid-cols-3 gap-10">
         {sonKazananlar &&
@@ -55,7 +59,7 @@ export default function LastWinnersPage({ npcs }: any) {
                   */}
 
                   <div
-                    className=" flex"
+                    className=" flex "
                     onClick={() =>
                       openDrawer('DRAWER_HORSE_INFO', item.nft?.tokenId)
                     }
