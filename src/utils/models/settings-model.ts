@@ -1,7 +1,12 @@
 import { model, models, Schema } from 'mongoose';
-import { connectMongo } from '../services/database';
 
-connectMongo();
+///import { connectMongo } from '../services/database';
+
+///connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 const SettingsSchema = new Schema({
   requestType: {

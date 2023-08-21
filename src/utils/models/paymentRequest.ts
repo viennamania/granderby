@@ -1,7 +1,12 @@
 import mongoose, { model, models, Schema } from 'mongoose';
-import { connectMongo } from '../services/database';
 
-connectMongo();
+//import { connectMongo } from '../services/database';
+
+///connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 export const paymentRequestSchema = new Schema({
   userID: {

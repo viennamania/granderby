@@ -1,9 +1,14 @@
 import { Schema, models, model } from 'mongoose';
 import { IUser } from '../interfaces/user-interface';
-import { connectMongo } from '../services/database';
+
 import { getCoinConvert } from './settings-model';
 
-connectMongo();
+///import { connectMongo } from '../services/database';
+///connectMongo();
+
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
 
 const UserSchema = new Schema({
   username: {

@@ -2,6 +2,8 @@ import cn from 'classnames';
 
 import AuthorCard from '@/components/ui/author-card';
 
+import AdCard from '@/components/ui/ad-card';
+
 import Logo from '@/components/ui/logo';
 import { MenuItem } from '@/components/ui/collapsible-menu';
 import Scrollbar from '@/components/ui/scrollbar';
@@ -59,7 +61,12 @@ export default function Sidebar({ className }: { className?: string }) {
 
       <Scrollbar style={{ height: 'calc(100% - 96px)' }}>
         <div className="px-6 pb-5 2xl:px-8">
+          {/*
           <AuthorCard image={AuthorImage} name="Unknown" role="user" />
+        */}
+          {/*
+          <AdCard image={AuthorImage} name="Unknown" role="user" />
+        */}
 
           <div className="mt-12">
             {menuItems.map((item, index) => (
