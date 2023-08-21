@@ -254,7 +254,7 @@ export default function Feeds({ className }: { className?: string }) {
   //console.log(data);
 
   return (
-    <>
+    <div className=" h-screen ">
       {!address ? (
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg">
@@ -340,6 +340,6 @@ export default function Feeds({ className }: { className?: string }) {
           }
         </div>
       )}
-    </>
+    </div>
   );
 }
