@@ -206,7 +206,7 @@ export default function Feeds({ className }: { className?: string }) {
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg">
             <ConnectWallet theme="light" />
-            to see my own horses
+            to see my owned horses
           </div>
         </>
       ) : (
