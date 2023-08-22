@@ -15,6 +15,10 @@ import Link from 'next/link';
 
 import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
 
+import Image from 'next/image';
+import Button from '@/components/ui/button/button';
+import { useRouter } from 'next/router';
+
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
@@ -47,6 +51,8 @@ function NftInfo({ nftMetadata }: any) {
       setCopyButtonStatus(copyButtonStatus);
     }, 2500);
   }
+
+  const router = useRouter();
 
   const address = useAddress();
 
@@ -223,6 +229,28 @@ function NftInfo({ nftMetadata }: any) {
               }}
             />
           </div>
+
+          <Button
+            className="mt-5 flex"
+            title="Go"
+            color="white"
+            shape="rounded"
+            variant="transparent"
+            size="small"
+            onClick={() => {
+              router.push('https://granderby.market/');
+            }}
+          >
+            <div className="flex flex-row gap-2">
+              <Image
+                src="/images/market.png"
+                alt="market"
+                width={24}
+                height={24}
+              />
+              <span className="text-lg font-bold">Marketplace</span>
+            </div>
+          </Button>
         </>
       )}
 

@@ -201,7 +201,7 @@ export default function Feeds({ className }: { className?: string }) {
   //console.log(data);
 
   return (
-    <div className="h-screen">
+    <div className="">
       {!address ? (
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg">
@@ -309,8 +309,8 @@ export default function Feeds({ className }: { className?: string }) {
                             : '/default-nft.png'
                         }
                         alt="nft"
-                        height={100}
-                        width={100}
+                        height={200}
+                        width={200}
                         loading="lazy"
                       />
                       <div className="m-0 w-full items-center justify-center bg-gray-100">
