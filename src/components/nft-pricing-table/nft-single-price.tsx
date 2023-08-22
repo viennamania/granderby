@@ -104,7 +104,7 @@ export function Grade() {
   return (
     <RadioGroup
       value={grade}
-      onChange={setGrade}
+      //onChange={setGrade}
       className="grid grid-cols-2 gap-2 p-5"
     >
       <RadioGroup.Option value="grade-u">
