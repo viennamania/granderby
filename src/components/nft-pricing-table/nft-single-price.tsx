@@ -255,7 +255,9 @@ export default function NftSinglePrice({
 
   const { data: nft } = useNFT(nftDropContract, tokenid);
 
-  console.log('nft', nft);
+  //console.log('nft', nft);
+
+  const attributes: any = nft?.metadata?.attributes;
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
@@ -483,6 +485,13 @@ export default function NftSinglePrice({
               <span className="flex items-center gap-2.5">
                 <span className="items-left flex flex-col gap-2.5 ">
                   <div className="items-left flex flex-col justify-center ">
+                    <Link
+                      className=" text-left text-lg capitalize text-blue-500 dark:text-white "
+                      href={`/horse`}
+                    >
+                      Granderby Horse NFT
+                    </Link>
+
                     <div className="text-left text-3xl font-bold capitalize text-black dark:text-white">
                       {nft?.metadata?.name}
                     </div>
@@ -567,6 +576,35 @@ export default function NftSinglePrice({
             </div>
 
             <Grade />
+
+            {/* nft attributes details */}
+            <div className="mt-5 grid  grid-cols-3 items-start justify-between gap-2  ">
+              {attributes?.map((attribute: any) => (
+                //nft?.metadata?.attributes?.map((attribute:any) => (
+                <div key={attribute?.trait_type}>
+                  <div
+                    className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+                   lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                  >
+                    <span
+                      className={cn(
+                        'flex ',
+                        toggleCoin ? 'flex-row-reverse' : 'flex-row'
+                      )}
+                    >
+                      <span>{attribute?.trait_type}</span>
+                    </span>
+
+                    <span className="text-sm  font-semibold xl:text-lg">
+                      {attribute?.value?.toString().length < 8
+                        ? attribute?.value?.toString()
+                        : attribute?.value?.toString().substring(0, 8)}
+                      ...
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
             {/*
             <div className="mt-5 flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
