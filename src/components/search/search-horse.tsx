@@ -33,7 +33,7 @@ export default function Search() {
       title: 'Items',
       path: 'items',
     },
-
+    /*
     {
       title: 'Owned',
       path: 'owned',
@@ -42,7 +42,7 @@ export default function Search() {
       title: 'Registgered',
       path: 'registered',
     },
-
+    */
     /*
     {
       title: 'Listed',
