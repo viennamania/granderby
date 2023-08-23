@@ -256,7 +256,9 @@ function NftInfo({ tokenid }: any) {
         </>
       )}
 
+      {/*
       <PriceHistoryTable />
+          */}
 
       {/*
       <div className="mt-[10px] flex items-center gap-4">

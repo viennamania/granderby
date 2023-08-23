@@ -662,7 +662,9 @@ export default function NftSinglePrice({
               </span>
             </div>
 
+            {/*
             <Grade />
+            */}
 
             {/* nft attributes details */}
             <div className="mt-5 grid  grid-cols-3 items-start justify-between gap-2  ">
