@@ -250,20 +250,22 @@ export default function Feeds({ className }: { className?: string }) {
 
         const items = await alchemy.nft.getNftsForOwner(address);
         // Print NFTs
-        console.log(items);
+        ////console.log(items);
 
         // find nfts
         items?.ownedNfts?.map((item: any) => {
+          /*
           console.log('nft?.contract?.address', item?.contract?.address);
           console.log(
             'nftDropContractAddressNpc',
             nftDropContractAddressNpc.toLowerCase()
           );
+          */
 
           if (
             item?.contract?.address === nftDropContractAddressNpc.toLowerCase()
           ) {
-            console.log('nft=====', item);
+            ////console.log('nft=====', item);
 
             nfts.push(item);
           }
