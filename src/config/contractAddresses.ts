@@ -46,9 +46,13 @@ export const nftDropContractAddressTrump =
 
 ///export const stakingContractAddressHorseAAA = '0xE0DC3d4cB15614f4be1C469AF494c9261a0495a5';
 
-// Happy Valley Racecourse for Horse
+// Happy Valley Racecourse for Granderby Horse
 export const stakingContractAddressHorseAAA =
   '0xF8b219c425B7Ef110917Bd61AD65D68a6db6A407';
+
+// Happy Valley Racecourse for Derby Stars Horse
+export const stakingContractAddressHorseDerbyStars =
+  '0x3788dF4Ea7749236a3BEacE08d5334f97395C8EA';
 
 //Kyoto Racecourse for Horse
 export const stakingContractAddressHorseBBB =
