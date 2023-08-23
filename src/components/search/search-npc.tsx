@@ -72,7 +72,7 @@ export default function Search() {
             height={28}
             className="rounded-full"
           />
-          <span className="ml-3">Granderby Horse NFT</span>
+          <span className="ml-3">Derby Stars NFT</span>
         </div>
       </div>
 
