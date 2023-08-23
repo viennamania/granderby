@@ -97,14 +97,14 @@ interface NftDrawerProps {
 }
 
 export function Grade() {
-  let [grade, setGrade] = useState('grade-u');
+  let [grade, setGrade] = useState('');
 
-  console.log('Grade', grade);
+  ///console.log('Grade', grade);
 
   return (
     <RadioGroup
       value={grade}
-      //onChange={setGrade}
+      ///onChange={setGrade}
       className="grid grid-cols-2 gap-2 p-5"
     >
       <RadioGroup.Option value="grade-u">

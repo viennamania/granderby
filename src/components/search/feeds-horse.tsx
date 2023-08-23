@@ -28,10 +28,16 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
+
+  const [filtersGrade] = useLocalStorage<string>('filters-grade');
+
+  console.log('feeds-horse filters-grade', filtersGrade);
 
   type NFT = {
     id: string;
@@ -43,23 +49,9 @@ export default function Feeds({ className }: { className?: string }) {
     price: string;
   };
 
-  //const [employees, setEmployees] = useState<Employee[]>([]);
-
-  /*
-  const [horses, setHorses] = useState<NFT[]>([]);
-
-  //const [cursor, setCursor] = useState<string | undefined>(undefined);
-
-
-  const settings = {
-    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
-
-    apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
-    network: Network.MATIC_MAINNET, // Replace with your network.
-  };
-
-  const alchemy = new Alchemy(settings);
-  */
+  useEffect(() => {
+    console.log('userEfftct filtersGrade', filtersGrade);
+  }, [filtersGrade]);
 
   const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery(
     'infiniteCharacters',
@@ -80,7 +72,11 @@ export default function Feeds({ className }: { className?: string }) {
       */
 
       await fetcher(
-        '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20'
+        '/api/nft/getHorses?grade=' +
+          filtersGrade +
+          '&pageNumber=' +
+          pageParam +
+          '&pageSize=20'
       ).then((result) => {
         //console.log("result======>", result);
 

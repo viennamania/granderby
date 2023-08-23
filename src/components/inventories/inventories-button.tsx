@@ -9,7 +9,9 @@ import { useLayout } from '@/lib/hooks/use-layout';
 
 export default function InventoriesButton() {
   const { opeInventories } = useInventoriesDrawer();
+
   const [direction] = useLocalStorage<string>('criptic-direction');
+
   const [themeColor] = useLocalStorage<string>('criptic-color');
   useDirection(direction ? direction : 'ltr');
   useThemeColor(themeColor ? themeColor : '#14161a');

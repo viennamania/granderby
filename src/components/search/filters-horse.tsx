@@ -17,6 +17,8 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 import Image from 'next/image';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 export function GridSwitcher() {
   const { isGridCompact, setIsGridCompact } = useGridSwitcher();
 
@@ -256,17 +258,34 @@ export function Status() {
 }
 
 export function Grade() {
-  let [grade, setGrade] = useState('grade-u');
+  //let [grade, setGrade] = useState('U');
 
-  console.log('Grade', grade);
+  ///console.log("grade====", grade);
+
+  const [filtersGrade, setFiltersGrade] = useLocalStorage<string>(
+    'filters-grade',
+    'U'
+  );
+
+  console.log('filters-horse grade', filtersGrade);
+
+  //setGrade('A');
+
+  ///setFiltersGrade(grade);
 
   return (
     <RadioGroup
-      value={grade}
-      onChange={setGrade}
+      value={
+        //grade
+        filtersGrade
+      }
+      onChange={
+        //setGrade
+        setFiltersGrade
+      }
       className="grid grid-cols-2 gap-2 p-5"
     >
-      <RadioGroup.Option value="grade-u">
+      <RadioGroup.Option value="U">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -286,7 +305,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-s">
+      <RadioGroup.Option value="S">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -306,7 +325,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-a">
+      <RadioGroup.Option value="A">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -326,7 +345,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-b">
+      <RadioGroup.Option value="B">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -346,7 +365,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-c">
+      <RadioGroup.Option value="C">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -366,7 +385,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-d">
+      <RadioGroup.Option value="D">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${

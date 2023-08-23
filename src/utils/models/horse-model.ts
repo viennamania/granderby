@@ -109,14 +109,19 @@ const result  = await findOne({color: "gray", "object.name":"apple" })
 }
 */
 
-export const getAllHorses = async (pageNumber: number, pagination: number) => {
-  console.log('pageNumber', pageNumber);
+export const getAllHorses = async (
+  pageNumber: number,
+  pagination: number,
+  grade: string
+) => {
+  console.log('getAllHorses pageNumber', pageNumber);
+  console.log('getAllHorses grade', grade);
 
   const data = await HorseModel.find({
     'nft.rawMetadata.attributes': {
       $elemMatch: {
         trait_type: 'Grade',
-        value: 'D',
+        value: grade,
       },
     },
   })

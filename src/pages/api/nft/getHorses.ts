@@ -12,11 +12,11 @@ export default async function handler(
   //res: NextApiResponse<Data>
   res: NextApiResponse
 ) {
-  const { pageNumber, pageSize } = req.query;
+  const { grade, pageNumber, pageSize } = req.query;
 
   var nfts = [] as any;
 
-  const data = await getAllHorses(Number(pageNumber), Number(pageSize));
+  const data = await getAllHorses(Number(pageNumber), Number(pageSize), grade);
 
   ////console.log('data', data);
 
@@ -26,7 +26,7 @@ export default async function handler(
 
   ////console.log('nfts', nfts);
 
-  const formattedNfts = nfts.map((nft: any) => {
+  const formattedNfts = nfts?.map((nft: any) => {
     const {
       contract,
       title,
