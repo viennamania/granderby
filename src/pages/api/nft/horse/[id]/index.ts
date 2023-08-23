@@ -52,8 +52,34 @@ export default async function handler(
     const nfts = [];
 
     for (var k = 0; k < response.ownedNfts.length; k++) {
+      ///console.log("response.ownedNfts[k]", response.ownedNfts[k]);
+
+      /*
+      response.ownedNfts[k].contract
+      response.ownedNfts[k].tokenId
+      response.ownedNfts[k].title
+      response.ownedNfts[k].description
+      response.ownedNfts[k].media[0].gateway
+      response.ownedNfts[k].media[9].thumbnail
+      response.ownedNfts[k].rawMetadata?.attributes
+      */
+
+      nfts.push({
+        tokenid: response.ownedNfts[k].tokenId,
+        image: response.ownedNfts[k].media[0].thumbnail,
+        attributes: response.ownedNfts[k].rawMetadata?.attributes,
+      });
+
+      /*
       if (response.ownedNfts[k].tokenUri?.gateway) {
+
+        console.log ("response.ownedNfts[k].tokenUri?.gateway", response.ownedNfts[k].tokenUri?.gateway);
+
+
+
         const res = await fetch(response.ownedNfts[k].tokenUri?.gateway!);
+
+
         const responseJson = await res.json();
 
         //console.log("responseJson", responseJson.attributes[0].value);
@@ -95,11 +121,11 @@ export default async function handler(
           ],
         });
       }
+      */
     }
 
     const nftData = {
       address: address,
-
       nfts: nfts,
     };
 

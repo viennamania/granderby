@@ -385,7 +385,7 @@ export default function Feeds({ className }: { className?: string }) {
                       onClick={() => {
                         //setTokenid(nft.metadata.id.toString()),
                         //setIsOpen(false);
-                        router.push('/horse-details/' + nft?.tokenId);
+                        router.push('/npc-details/' + nft?.tokenId);
                       }}
                     >
                       <Image
@@ -395,12 +395,12 @@ export default function Feeds({ className }: { className?: string }) {
                             : '/default-nft.png'
                         }
                         alt="nft"
-                        height={200}
-                        width={200}
+                        height={300}
+                        width={300}
                         loading="lazy"
                       />
-                      <div className="m-0 w-full items-center justify-center bg-gray-100">
-                        <p className="mr-2  text-right  text-sm text-sky-500 ">
+                      <div className="w-full items-center justify-center bg-gray-100 p-2">
+                        <p className="  text-right  text-sm text-sky-500 ">
                           #{nft?.tokenId}
                         </p>
                       </div>
