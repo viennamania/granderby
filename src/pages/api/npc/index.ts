@@ -1,18 +1,6 @@
 import { getJwtSecretKey } from '@/utils/auth';
-import {
-  newNpc,
-  loginNpc,
-  getNpc,
-  getNpcFromEmail,
-  getNpcFromTextureKey,
-  getAllNpcs,
-  updateNpc,
-  deleteNpc,
-  getNpcBalance,
-  airdrop,
-  changePassword,
-  npcCount,
-} from '@/utils/models/npc-model';
+import { getNpcFromTextureKey, getAllNpcs } from '@/utils/models/npc-model';
+
 import { authFromServer } from '@/utils/services/useAuth';
 import { SignJWT } from 'jose';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -24,6 +12,7 @@ export default async function handler(
 ) {
   const { method } = req.query;
 
+  /*
   if (method === 'getOneFromEmail') {
     //const { _id } = req.body;
     const email = 'creath.park@gmail.com';
@@ -35,7 +24,11 @@ export default async function handler(
     res
       .status(200)
       .json({ status: true, message: 'User found', user: user.user });
-  } else if (method === 'getOneFromTextureKey') {
+
+  }
+  */
+
+  if (method === 'getOneFromTextureKey') {
     //const { _id } = req.body;
     const textureKye = 'Hrs_00000001';
     const user = await getNpcFromTextureKey(textureKye);
@@ -46,33 +39,15 @@ export default async function handler(
     res
       .status(200)
       .json({ status: true, message: 'User found', user: user.user });
-  } else if (method === 'create') {
+  }
+
+  /*
+  if (method === 'create') {
     const { username, email, pass1, pass2, walletAddress, bonus } = req.body;
 
     if (!username || !email || !pass1 || !pass2 || !walletAddress) {
       return res.status(400).json({ status: false, message: 'Missing data' });
     }
-
-    /*
-    if (!email.includes("@") || !email.includes(".")) {
-      return res
-        .status(200)
-        .json({ status: false, message: "Your email is invalid" });
-    }
-
-    if (pass1 !== pass2) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Passwords do not match" });
-    }
-
-    if (pass1.length < 6) {
-      return res.status(400).json({
-        status: false,
-        message: "Password must be at least 6 characters",
-      });
-    }
-    */
 
     let pass = pass1;
 
@@ -137,7 +112,9 @@ export default async function handler(
       .status(200)
       .json({ status: true, message: 'User found', user: user.user });
   }
+  */
 
+  /*
   if (method === 'getAll') {
     const users = await getAllNpcs();
     if (!users.success) {
@@ -251,4 +228,5 @@ export default async function handler(
     }
     return res.status(200).json({ status: true, count: count });
   }
+  */
 }

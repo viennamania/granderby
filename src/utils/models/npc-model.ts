@@ -142,3 +142,59 @@ export const getAllNpcs = async (
 
   return { nfts: data, pageNumber: pageNumber + 1 };
 };
+
+/*
+
+horseextends
+*/
+
+export const getNpcFromTextureKey = async (textureKye: string) => {
+  ////console.log('getNpcFromTextureKey', textureKye);
+
+  /*
+  ///console.log("getNpcFromTextureKey", textureKye);
+
+  const user = await Npc.findOne({ TEXTURE_KEY: textureKye });
+
+  ////const user = await Npc.findOne({ texture_key: textureKye});
+
+  //const user = await Npc.findOne({ _id: "64c1e28568445fe469888f13"});
+
+  if (user) {
+    return { success: true, user };
+  } else {
+    return { success: false, message: 'User not found' };
+  }
+  */
+
+  /*
+  const client = await clientPromise;
+
+  /////console.log('client', client);
+
+  const db = client.db('granderby');
+
+  const user = await db
+    .collection('horseextends')
+    .findOne({ TEXTURE_KEY: textureKye });
+
+  */
+
+  const user = await NpcModel.findOne({
+    TEXTURE_KEY: textureKye,
+  }).catch((err) => {
+    ////return err;
+  });
+
+  /////console.log("user", user);
+
+  // 특단의 조치를 취하기로
+  /////const res = client.close();
+  //////console.log('res', res);
+
+  if (user) {
+    return { success: true, user };
+  } else {
+    return { success: false, message: 'User not found' };
+  }
+};
