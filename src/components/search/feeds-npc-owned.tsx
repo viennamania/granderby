@@ -208,14 +208,6 @@ export default function Feeds({ className }: { className?: string }) {
 
   const [npcs, setNpcs] = useState<any>([]);
 
-  const settings = {
-    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
-
-    ///apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
-    apiKey: process.env.ALCHEMY_API_KEY,
-    network: Network.MATIC_MAINNET, // Replace with your network.
-  };
-
   type NFT = {
     id: string;
     author: string;
@@ -236,6 +228,16 @@ export default function Feeds({ className }: { className?: string }) {
 
   ////const nfts = await alchemy.nft.getNftsForOwner("elanhapern.eth");
 
+  const settings = {
+    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
+
+    ///apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
+    apiKey: process.env.ALCHEMY_API_KEY,
+    network: Network.MATIC_MAINNET, // Replace with your network.
+  };
+
+  const alchemy = new Alchemy(settings);
+
   useEffect(() => {
     const main = async () => {
       // Get all NFTs
@@ -243,16 +245,6 @@ export default function Feeds({ className }: { className?: string }) {
         setIsLoadingOwnedNfts(true);
 
         const nfts: any = [];
-
-        const settings = {
-          ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
-
-          ///apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
-          apiKey: process.env.ALCHEMY_API_KEY,
-          network: Network.MATIC_MAINNET, // Replace with your network.
-        };
-
-        const alchemy = new Alchemy(settings);
 
         const items = await alchemy.nft.getNftsForOwner(address);
         // Print NFTs

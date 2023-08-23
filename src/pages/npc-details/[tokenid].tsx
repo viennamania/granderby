@@ -1,4 +1,4 @@
-import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price-npc';
 
 import RootLayout from '@/layouts/_root-layout';
 import { NextPageWithLayout } from '@/types';
@@ -23,7 +23,7 @@ import TransactionTable from '@/components/nft-transaction/transaction-table';
 
 import { useRouter } from 'next/router';
 
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+import { nftDropContractAddressNpc } from '@/config/contractAddresses';
 
 import {
   ThirdwebNftMedia,
@@ -36,13 +36,23 @@ import { get } from 'http';
 import { set } from 'date-fns';
 
 function SinglePrice(tokenid: any) {
+  console.log('SinglePrice tokenid============', tokenid);
+
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
   const isMounted = useIsMounted();
   const breakpoint = useBreakpoint();
 
-  const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+  /*
+  const { contract } = useContract(
+    nftDropContractAddressNpc,
+    'nft-drop'
+  );
   const { data: nftMetadata } = useNFT(contract, tokenid.tokenid);
+
+
+  console.log("nftMetadata", nftMetadata);
+  */
 
   return (
     <>
@@ -68,7 +78,9 @@ function SinglePrice(tokenid: any) {
             </h2>
             */}
 
+            {/*
             <NftInfo nftMetadata={nftMetadata} />
+          */}
 
             {/*
             <div>
@@ -90,7 +102,9 @@ function SinglePrice(tokenid: any) {
       </div>
 
       <div className="mt-0">
+        {/*
         <TransactionTable />
+          */}
 
         {/*
         <HistoryTable />
@@ -109,7 +123,7 @@ function SinglePrice(tokenid: any) {
 const AssetSinglePrice: NextPageWithLayout = () => {
   const router = useRouter();
 
-  console.log('id======', router.query.tokenid);
+  console.log(' AssetSinglePrice id======', router.query.tokenid);
 
   return <SinglePrice tokenid={router.query.tokenid} />;
 };
