@@ -1,492 +1,144 @@
+/*
 import { Schema, models, model } from 'mongoose';
-import { INpc } from '../interfaces/npc-interface';
+
+import { IHorse } from '../interfaces/horse-interface';
+
 
 //import { connectMongo } from '../services/database';
-/////import clientPromise from '@/lib/mongodb';
+import clientPromise from '@/lib/mongodb';
 
-import { getCoinConvert } from './settings-model';
+////import { getCoinConvert } from './settings-model';
 
 //connectMongo();
+
+const HorseSchema = new Schema({
+  tokenId: {
+    type: String,
+    required: true,
+    default: false,
+  },
+  contract: {
+    type: String,
+    required: true,
+    default: false,
+  },
+  nft: {
+    type: Object,
+    required: true,
+    default: false,
+  },
+});
+
+
+export const Nft_horse = models.Nft_horse || model('nft_horse', HorseSchema);
+
+//console.log('Nft_horse', Nft_horse);
+
+
+
+export const getAllHorses = async () => {
+
+  const horses: IHorse[] = (await Nft_horse.find({})) as IHorse[];
+
+  console.log('horses', horses);
+
+  if (horses) {
+    return { success: true, horses: horses };
+  } else {
+    return { success: false, message: 'horses not found' };
+  }
+};
+
+
+
+export const horseCount = async () => {
+  const count = await Nft_horse.countDocuments({ status: true });
+  return count;
+};
+
+*/
+
+//import { IHorseHistory } from '@/utils/horseRace/interfaces/horseHistory';
+
+import { IHorse } from '../interfaces/horse-interface';
+
+import { Schema, models, model } from 'mongoose';
+
+/////////import { connectMongo } from '@/utils/services/database';
+/////////connectMongo();
 
 import dbConnect from '@/lib/db/dbConnect';
 
 dbConnect();
 
-const NpcSchema = new Schema({
-  /*
-  username: {
+const HorseSchema = new Schema({
+  tokenId: {
     type: String,
     required: true,
-    unique: true,
-    trim: true,
-    minlength: 3,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    minlength: 3,
-  },
-  pass: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 3,
-  },
-  deposit: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  img: {
-    type: String,
-    required: true,
-    default: `${process.env.API_URL}/images/users/default.gif`,
-  },
-  admin: {
-    type: Boolean,
-    required: false,
     default: false,
   },
-  newPassToken: {
-    type: String,
-    required: false,
-    default: '',
-  },
-  maticBalance: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  walletAddress: {
+  contract: {
     type: String,
     required: true,
-    default: '',
+    default: false,
   },
-  status: {
-    type: Boolean,
-    default: true,
-  },
-  */
-
-  TEXTURE_KEY: {
-    type: String,
+  nft: {
+    type: Object,
     required: true,
-    default: '',
-  },
-  HORSEBODY: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEMANE: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSETAIL: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEBODYMASK: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEHEADMASK: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSELEGMASK: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEMANEMASK: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSETAILMASK: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEBODYACC: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEHEADACC: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSELEGACC: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSESIZE: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEBODYCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEMANECOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSETAILCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEBODYMASKCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEHEADMASKCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSELEGMASKCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEMANEMASKCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSETAILMASKCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEBODYACCCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSEHEADACCCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  HORSELEGACCCOLOR: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  COMMENT: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  GRADE: {
-    type: String,
-    required: true,
-    default: '',
-  },
-  WORLD: {
-    type: String,
-    required: true,
-    default: '',
+    default: false,
   },
 });
 
-export const NpcModel = models.Horseextend || model('Horseextend', NpcSchema);
+export const NpcModel =
+  models.nfthorse || model<IHorse>('nfthorse', HorseSchema);
 
-//console.log('Npc', Npc);
+//export const getAllHorses = async (): Promise<IHorse[]> => {
 
-export const newNpc = async (
-  username: string,
-  email: string,
-  pass: string,
-  walletAddress: string,
-  bonus: number
-) => {
-  const checkUser = await NpcModel.findOne({ email: email });
-  if (checkUser) {
-    return { success: false, message: 'User already exists' };
-  }
-  const user = new NpcModel({
-    username: username,
-    email: email,
-    pass: pass,
-    walletAddress: walletAddress,
-    deposit: bonus,
-  });
-  return await user.save();
-};
-
-export const loginNpc = async (email: string) => {
-  const user = await NpcModel.findOne({ email: email });
-  if (!user) {
-    return { success: false, message: 'User not found' };
-  }
-  if (!user.status) {
-    return { success: false, message: 'User Banned' };
-  }
-  if (user) {
-    return { success: true, user };
-  } else {
-    return { success: false, message: 'User not found' };
-  }
-};
-
-export const getNpc = async (_id: string) => {
-  const user = await NpcModel.findOne({ _id: _id });
-  if (user) {
-    return { success: true, user };
-  } else {
-    return { success: false, message: 'User not found' };
-  }
-};
-
-export const getNpcFromEmail = async (email: string) => {
-  const user = await NpcModel.findOne({ email: email });
-  if (user) {
-    return { success: true, user };
-  } else {
-    return { success: false, message: 'User not found' };
-  }
-};
-
-export const getNpcFromTextureKey = async (textureKye: string) => {
-  ////console.log('getNpcFromTextureKey', textureKye);
-
-  /*
-  ///console.log("getNpcFromTextureKey", textureKye);
-
-  const user = await Npc.findOne({ TEXTURE_KEY: textureKye });
-
-  ////const user = await Npc.findOne({ texture_key: textureKye});
-
-  //const user = await Npc.findOne({ _id: "64c1e28568445fe469888f13"});
-
-  if (user) {
-    return { success: true, user };
-  } else {
-    return { success: false, message: 'User not found' };
-  }
-  */
-
-  /*
-  const client = await clientPromise;
-
-  /////console.log('client', client);
-
-  const db = client.db('granderby');
-
-  const user = await db
-    .collection('horseextends')
-    .findOne({ TEXTURE_KEY: textureKye });
-
-  */
-
-  const user = await NpcModel.findOne({
-    TEXTURE_KEY: textureKye,
-  }).catch((err) => {
-    ////return err;
-  });
-
-  /////console.log("user", user);
-
-  // 특단의 조치를 취하기로
-  /////const res = client.close();
-  //////console.log('res', res);
-
-  if (user) {
-    return { success: true, user };
-  } else {
-    return { success: false, message: 'User not found' };
-  }
-};
-
-export const getAllNpcs = async () => {
-  ///const users: INpc[] = (await Npc.find({ status: true })) as INpc[];
-
-  const users: INpc[] = (await NpcModel.find({})) as INpc[];
-
-  if (users) {
-    return { success: true, users };
-  } else {
-    return { success: false, message: 'Users not found' };
-  }
-};
-
-export const airdrop = async (amount: any) => {
-  const users: INpc[] = (await NpcModel.find({ status: true })) as INpc[];
-  if (users) {
-    users.forEach(async (user) => {
-      user.deposit += amount;
-      await user.save();
-    });
-    return { success: true, users };
-  } else {
-    return { success: false, message: 'Users not found' };
-  }
-};
-
-export const updateNpc = async (
-  _id: string,
-  username: string,
-  email: string,
-  pass: string,
-  deposit: number,
-  img: string,
-  admin: boolean,
-  newPassToken: string,
-  maticBalance: number,
-  walletAddress: string
-) => {
-  const updatedUser: INpc = (await NpcModel.findOneAndUpdate(
-    { _id: _id },
-    {
-      username: username,
-      email: email,
-      pass: pass,
-      deposit: deposit,
-      img: img,
-      admin: admin,
-      newPassToken: newPassToken,
-      maticBalance: maticBalance,
-      walletAddress: walletAddress,
-    },
-    { new: true }
-  )) as INpc;
-  if (updatedUser) {
-    return { success: true, updatedUser };
-  }
-  return { success: false, message: 'User not found' };
-};
-
-export const deleteNpc = async (_id: string) => {
-  const check = await NpcModel.findOne({ _id: _id });
-
-  const pasifUser: INpc = (await NpcModel.findOneAndUpdate(
-    { _id: _id },
-    {
-      status: false,
-    },
-    { new: true }
-  )) as INpc;
-  if (pasifUser) {
-    if (check.admin) {
-      return { success: false, message: 'Admin can not be deleted' };
+/*
+3
+const result  = await findOne({color: "gray", "object.name":"apple" })
+*/
+/*
+{ 
+    "names": {
+        "$in": [
+            { "firstname": "Tom", "lastname": "Smith" }, 
+            { "firstname": "Bob", "lastname": "Smith" }  
+        ]
     }
-    return { success: true, pasifUser };
-  }
-  return { success: false, message: 'User not found' };
-};
+}
+*/
 
-export const makeDepositMatic = async (_id: string, amount: number) => {
-  const updatedUser: INpc = (await NpcModel.findOneAndUpdate(
-    { _id: _id },
-    {
-      $inc: { maticBalance: amount },
+export const getAllNpcs = async (
+  pageNumber: number,
+  pagination: number,
+  grade: string
+) => {
+  console.log('getAllNpcs pageNumber', pageNumber);
+  console.log('getAllNpcs grade', grade);
+
+  const data = await NpcModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        trait_type: 'Grade',
+        value: grade,
+      },
     },
-    { new: true }
-  )) as INpc;
-  if (updatedUser) {
-    return { success: true, updatedUser };
-  }
-  return { success: false, message: 'User not found' };
-};
+  })
+    .sort({ tokenId: 1 })
+    .skip((pageNumber - 1) * pagination)
+    //limit is number of Records we want to display
+    .limit(pagination)
+    /*
+    .then(data => {
 
-export const makeDepositCoin = async (_id: string, amount: number) => {
-  const user = await NpcModel.findOne({ _id: _id });
-  if (!user) {
-    return { success: false, message: 'User not found' };
-  }
-  const coin = await getCoinConvert();
-  if (user.maticBalance < amount) {
-    return { success: false, message: `Not Enough ${coin.coin}` };
-  }
-  user.deposit += amount * coin.multiplier;
-  user.maticBalance -= amount;
-  await user.save();
-  return { success: true, user };
-};
+      return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
 
-export const makeDepositToken = async (_id: string, amount: number) => {
-  const updatedUser: INpc = (await NpcModel.findOneAndUpdate(
-    { _id: _id },
-    {
-      $inc: { deposit: amount },
-    },
-    { new: true }
-  )) as INpc;
-  if (updatedUser) {
-    return { success: true, updatedUser };
-  }
-  return { success: false, message: 'User not found' };
-};
+    })
+    */
+    .catch((err) => {
+      ////return err;
+    });
 
-export const makeWinDepositCoin = async (_id: string, amount: number) => {
-  const user = await NpcModel.findOne({ _id: _id });
-  if (!user) {
-    return { success: false, message: 'User not found' };
-  }
-  user.deposit = user.deposit + amount;
-  await user.save();
-  return { success: true, user };
-};
-
-export const swapToMatic = async (_id: string, amount: number) => {
-  const user = await NpcModel.findOne({ _id: _id });
-  if (!user) {
-    return { success: false, message: 'User not found' };
-  }
-  const coin = await getCoinConvert();
-  if (user.deposit < amount) {
-    return { success: false, message: `Not Enough ${coin.coin}` };
-  }
-  user.deposit -= amount;
-  user.maticBalance += amount / coin.multiplier;
-  await user.save();
-  return { success: true, user };
-};
-
-export const getNpcBalance = async (_id: string) => {
-  const userBalance = await NpcModel.findOne({ _id: _id });
-  if (!userBalance) {
-    return { success: false, message: 'User not found' };
-  }
-  return { success: true, userBalance: userBalance.deposit };
-};
-
-export const changePassword = async (_id: string, pass: string) => {
-  const user = await NpcModel.findOne({ _id: _id });
-  if (!user) {
-    return { success: false, message: 'User not found' };
-  }
-  user.pass = pass;
-  await user.save();
-  return { success: true, user };
-};
-
-export const changeNpcImage = async (_id: string, filepath: string) => {
-  const user: INpc = (await NpcModel.findByIdAndUpdate(_id, {
-    $set: { img: filepath },
-  })) as INpc;
-  return user;
-};
-
-export const npcCount = async () => {
-  const count = await NpcModel.countDocuments({ status: true });
-  return count;
+  return { nfts: data, pageNumber: pageNumber + 1 };
 };
