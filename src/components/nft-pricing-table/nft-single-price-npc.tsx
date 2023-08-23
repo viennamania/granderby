@@ -250,12 +250,12 @@ export default function NftSinglePrice({
 
   const address = useAddress();
 
-  /*
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressNpc,
     'nft-drop'
   );
 
+  /*
   const { data: nft } = useNFT(nftDropContract, tokenid);
 
   console.log('nft=====', nft);
@@ -284,23 +284,29 @@ export default function NftSinglePrice({
     const main = async () => {
       // getNftMetadata(npcNames[0].nft1.contract, npcNames[0].nft1.tokenId)
 
-      const response = await alchemy.nft.getNftMetadata(
+      const response = await alchemy.nft?.getNftMetadata(
         nftDropContractAddressNpc,
         tokenid
       );
 
       ///console.log('getNftMetadata response=', response);
 
-      setNft(response);
+      if (response) {
+        setNft(response);
+      }
 
-      const owners: any = await alchemy.nft.getOwnersForNft(
+      const owners: any = await alchemy.nft?.getOwnersForNft(
         nftDropContractAddressNpc,
         tokenid
       );
 
-      ///console.log("owners===", owners);
+      console.log('owners==============', owners);
 
-      setOwner(owners?.[0]);
+      console.log('owner=====', owners?.owners[0]);
+
+      if (owners?.owners) {
+        setOwner(owners?.[0]);
+      }
 
       /*
       //Call the method to fetch metadata
@@ -369,14 +375,14 @@ export default function NftSinglePrice({
 
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddressHorseAAA
+      stakingContractAddressHorseDerbyStars
     );
 
     //onsole.log('isApproved', isApproved);
 
     if (!isApproved) {
       const data = await nftDropContract?.setApprovalForAll(
-        stakingContractAddressHorseAAA,
+        stakingContractAddressHorseDerbyStars,
         true
       );
 
@@ -603,18 +609,21 @@ export default function NftSinglePrice({
                         )}
                       </div>
 
-                      {stakerAddress &&
-                        stakerAddress ===
-                          '0x0000000000000000000000000000000000000000' &&
-                        owner === address && (
-                          <Web3Button
-                            theme="light"
-                            contractAddress={stakingContractAddressHorseAAA}
-                            action={() => stakeNft(nft?.tokenId || '')}
-                          >
-                            Register
-                          </Web3Button>
-                        )}
+                      {
+                        //stakerAddress &&
+                        //stakerAddress === '0x0000000000000000000000000000000000000000' &&
+                        // owner === address && (
+                        <Web3Button
+                          theme="light"
+                          contractAddress={
+                            stakingContractAddressHorseDerbyStars
+                          }
+                          action={() => stakeNft(nft?.tokenId || '')}
+                        >
+                          Register
+                        </Web3Button>
+                        //)
+                      }
 
                       {stakerAddress !==
                         '0x0000000000000000000000000000000000000000' && <></>}
@@ -626,7 +635,9 @@ export default function NftSinglePrice({
                             action={(contract) =>
                               contract?.call('withdraw', [[nft?.tokenId]])
                             }
-                            contractAddress={stakingContractAddressHorseAAA}
+                            contractAddress={
+                              stakingContractAddressHorseDerbyStars
+                            }
                           >
                             Unregister
                           </Web3Button>
