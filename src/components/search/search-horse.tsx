@@ -23,6 +23,8 @@ import { OptionIcon } from '@/components/icons/option';
 
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 
+import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
+
 export default function Search() {
   const { openDrawer } = useDrawer();
 
@@ -31,6 +33,7 @@ export default function Search() {
       title: 'Items',
       path: 'items',
     },
+    /*
     {
       title: 'Owned',
       path: 'owned',
@@ -39,6 +42,7 @@ export default function Search() {
       title: 'Registgered',
       path: 'registered',
     },
+    */
     /*
     {
       title: 'Listed',
@@ -59,7 +63,7 @@ export default function Search() {
 
   return (
     <>
-      <div className="mt-10 flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
+      <div className=" flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
         <div className="justify-left flex flex-row items-center">
           <Image
             src="/horseRace/Hrs_00006009.png"
@@ -70,6 +74,10 @@ export default function Search() {
           />
           <span className="ml-3">Granderby Horse NFT</span>
         </div>
+      </div>
+
+      <div className="felx m-5">
+        <LiveNftPricingSlider limits={4} />
       </div>
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
@@ -98,7 +106,7 @@ export default function Search() {
                           size="small"
                           variant="ghost"
                           color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH')}
+                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
                           className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                         >
                           <OptionIcon className="relative h-auto w-[18px]" />
@@ -172,9 +180,6 @@ export default function Search() {
                   </div>
                 </div>
 
-                {/*
-                <ListedFeeds />
-                */}
                 <RegisteredFeeds />
               </div>
             </TabPanel>
@@ -182,7 +187,7 @@ export default function Search() {
         </div>
 
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
-          <Button onClick={() => openDrawer('DRAWER_SEARCH')} fullWidth>
+          <Button onClick={() => openDrawer('DRAWER_SEARCH', '')} fullWidth>
             Filters
           </Button>
         </div>
