@@ -148,45 +148,215 @@ export const getAllNpcs = async (
 horseextends
 */
 
+const HorseextendSchema = new Schema({
+  /*
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    minlength: 3,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    minlength: 3,
+  },
+  pass: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3,
+  },
+  deposit: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  img: {
+    type: String,
+    required: true,
+    default: `${process.env.API_URL}/images/users/default.gif`,
+  },
+  admin: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  newPassToken: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  maticBalance: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  walletAddress: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  status: {
+    type: Boolean,
+    default: true,
+  },
+  */
+
+  TEXTURE_KEY: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEBODY: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEMANE: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSETAIL: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEBODYMASK: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEHEADMASK: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSELEGMASK: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEMANEMASK: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSETAILMASK: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEBODYACC: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEHEADACC: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSELEGACC: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSESIZE: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEBODYCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEMANECOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSETAILCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEBODYMASKCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEHEADMASKCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSELEGMASKCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEMANEMASKCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSETAILMASKCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEBODYACCCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSEHEADACCCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  HORSELEGACCCOLOR: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  COMMENT: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  GRADE: {
+    type: String,
+    required: true,
+    default: '',
+  },
+  WORLD: {
+    type: String,
+    required: true,
+    default: '',
+  },
+});
+
+export const HorseextendModel =
+  models.Horseextend || model('Horseextend', HorseextendSchema);
+
 export const getNpcFromTextureKey = async (textureKye: string) => {
   ////console.log('getNpcFromTextureKey', textureKye);
 
-  /*
-  ///console.log("getNpcFromTextureKey", textureKye);
-
-  const user = await Npc.findOne({ TEXTURE_KEY: textureKye });
-
-  ////const user = await Npc.findOne({ texture_key: textureKye});
-
-  //const user = await Npc.findOne({ _id: "64c1e28568445fe469888f13"});
-
-  if (user) {
-    return { success: true, user };
-  } else {
-    return { success: false, message: 'User not found' };
-  }
-  */
-
-  /*
-  const client = await clientPromise;
-
-  /////console.log('client', client);
-
-  const db = client.db('granderby');
-
-  const user = await db
-    .collection('horseextends')
-    .findOne({ TEXTURE_KEY: textureKye });
-
-  */
-
-  const user = await NpcModel.findOne({
+  const user = await HorseextendModel.findOne({
     TEXTURE_KEY: textureKye,
   }).catch((err) => {
     ////return err;
   });
 
-  /////console.log("user", user);
+  //console.log("textureKye", textureKye);
+  //console.log("user", user);
 
   // 특단의 조치를 취하기로
   /////const res = client.close();
