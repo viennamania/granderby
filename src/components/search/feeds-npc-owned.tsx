@@ -53,6 +53,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   console.log('address======>', address);
 
+  /*
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressNpc,
     'nft-drop'
@@ -64,6 +65,9 @@ export default function Feeds({ className }: { className?: string }) {
   );
 
   console.log('ownedNfts======>', ownedNfts);
+  */
+
+  const [isLoadingOwnedNfts, setIsLoadingOwnedNfts] = useState(true);
 
   /*
   const settings = {
@@ -236,6 +240,8 @@ export default function Feeds({ className }: { className?: string }) {
     const main = async () => {
       // Get all NFTs
       if (address) {
+        setIsLoadingOwnedNfts(true);
+
         const nfts: any = [];
 
         const settings = {
@@ -272,6 +278,8 @@ export default function Feeds({ className }: { className?: string }) {
         });
 
         setNpcs(nfts);
+
+        setIsLoadingOwnedNfts(false);
       }
     };
 
