@@ -81,17 +81,16 @@ export const getHorseGames = async () => {
 
   // for test
 
+  /*
   games = await HorseGame.find({})
     .sort({ _id: -1 })
     .select('-userId')
     .select('-_id');
+    */
 
-  /*
   //console.log("games", games);
-  
 
   games = [];
-  */
 
   return games;
 };
