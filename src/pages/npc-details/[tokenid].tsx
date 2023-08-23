@@ -4,7 +4,7 @@ import RootLayout from '@/layouts/_root-layout';
 import { NextPageWithLayout } from '@/types';
 import React, { useEffect, useState } from 'react';
 
-import NftInfo from '@/components/nft-pricing-table/nft-info';
+import NftInfo from '@/components/nft-pricing-table/nft-info-npc';
 
 import { CoinConverter } from '@/components/ui/transact-coin';
 import CoinTabs from '@/components/cryptocurrency-pricing-table/coin-tabs';
@@ -78,9 +78,7 @@ function SinglePrice(tokenid: any) {
             </h2>
             */}
 
-            {/*
-            <NftInfo nftMetadata={nftMetadata} />
-          */}
+            <NftInfo tokenid={tokenid.tokenid} />
 
             {/*
             <div>
