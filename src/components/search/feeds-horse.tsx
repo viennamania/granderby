@@ -261,12 +261,12 @@ export default function Feeds({ className }: { className?: string }) {
                   <Image
                     src={nft?.media ? nft?.media : '/default-nft.png'}
                     alt={nft?.title}
-                    height={500}
-                    width={500}
+                    height={200}
+                    width={200}
                     loading="lazy"
                   />
-                  <div className="m-2 w-full">
-                    <p className="text-md font-bold">{nft?.title}</p>
+                  <div className="m-2 w-full items-center justify-center">
+                    <p className="text-xs font-bold">{nft?.title}</p>
                   </div>
                 </div>
               ))}

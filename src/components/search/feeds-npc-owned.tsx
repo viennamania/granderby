@@ -67,8 +67,6 @@ export default function Feeds({ className }: { className?: string }) {
   console.log('ownedNfts======>', ownedNfts);
   */
 
-  const [isLoadingOwnedNfts, setIsLoadingOwnedNfts] = useState(true);
-
   /*
   const settings = {
     ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
@@ -207,6 +205,7 @@ export default function Feeds({ className }: { className?: string }) {
   //console.log(data);
 
   const [npcs, setNpcs] = useState<any>([]);
+  const [isLoadingOwnedNfts, setIsLoadingOwnedNfts] = useState(true);
 
   type NFT = {
     id: string;

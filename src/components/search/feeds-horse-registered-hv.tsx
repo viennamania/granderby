@@ -26,12 +26,7 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
-import {
-  nftDropContractAddressHorse,
-  marketplaceContractAddress,
-  stakingContractAddressHorseAAA,
-  tokenContractAddressGRD,
-} from '@/config/contractAddresses';
+import { stakingContractAddressHorseAAA } from '@/config/contractAddresses';
 
 import {
   ConnectWallet,
@@ -63,6 +58,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   const { layout } = useLayout();
 
+  /*
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
     'nft-drop'
@@ -70,7 +66,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   //////const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
 
-  /*
+
   const { contract: marketplace } = useContract(
     marketplaceContractAddress,
     'marketplace-v3'
@@ -81,16 +77,19 @@ export default function Feeds({ className }: { className?: string }) {
     isLoading: loadingListings,
     error,
   } = useValidDirectListings(marketplace);
-
-  ///console.log('directListings======>', directListings);
   */
 
+  ///console.log('directListings======>', directListings);
+
+  /*
   const { contract: stakingContract, isLoading: isLoadingStakingContract } =
     useContract(stakingContractAddressHorseAAA);
 
   const { data: stakedTokens, isLoading: isLoadingStakedTokens } =
     useContractRead(stakingContract, 'getStakeInfo', [address]);
+  */
 
+  /*  
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,
     'token'
@@ -115,6 +114,7 @@ export default function Feeds({ className }: { className?: string }) {
 
     loadClaimableRewards();
   }, [address, stakingContract]);
+  */
 
   ////console.log("stakedTokens",stakedTokens );
 
@@ -255,17 +255,44 @@ export default function Feeds({ className }: { className?: string }) {
 
   //console.log(data);
 
+  const settings = {
+    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
+
+    ///apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
+    apiKey: process.env.ALCHEMY_API_KEY,
+    network: Network.MATIC_MAINNET, // Replace with your network.
+  };
+
+  const alchemy = new Alchemy(settings);
+
+  const [npcs, setNpcs] = useState<any>([]);
+  const [isLoadingNpcs, setIsLoadingNpcs] = useState(true);
+
+  useEffect(() => {
+    const main = async () => {
+      // Get all NFTs
+      if (stakingContractAddressHorseAAA) {
+        setIsLoadingNpcs(true);
+
+        const items = await alchemy.nft.getNftsForOwner(
+          stakingContractAddressHorseAAA
+        );
+
+        ///console.log("npcs", items?.ownedNfts);
+
+        setNpcs(items?.ownedNfts);
+
+        setIsLoadingNpcs(false);
+      }
+    };
+
+    main();
+  }, []);
+
   return (
     <div className=" h-screen ">
-      {!address ? (
-        <>
-          <div className="flex h-40 w-full flex-col items-center justify-center text-lg">
-            <ConnectWallet theme="light" />
-            to see my registered horses
-          </div>
-        </>
-      ) : (
-        <div className="felx flex-col">
+      <div className="flex flex-col">
+        {/*
           {address && (
             <div className="mt-2 flex flex-col items-center justify-center gap-0 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 ">
               <span>Claimable Rewards</span>
@@ -306,42 +333,56 @@ export default function Feeds({ className }: { className?: string }) {
               </Web3Button>
             </div>
           )}
+          */}
 
-          {
-            // If the listings are loading, show a loading message
-            isLoadingStakedTokens ? (
-              <div className="mb-10 mt-5 w-full items-center justify-center">
-                <div className="text-2xl">Loading my registered horses...</div>
-              </div>
-            ) : (
-              <div
-                className={cn(
-                  'mt-5 grid grid-cols-4 gap-2  ',
-                  layout === LAYOUT_OPTIONS.RETRO
-                    ? 'md:grid-cols-2'
-                    : 'md:grid-cols-4'
-                )}
-              >
-                {stakedTokens &&
-                  stakedTokens[0]?.map((stakedToken: BigNumber) => (
-                    <div
-                      key={stakedToken.toString()}
-                      className="block"
-                      onClick={() =>
-                        router.push('/horse-details/' + stakedToken)
+        {
+          // If the listings are loading, show a loading message
+          isLoadingNpcs ? (
+            <div className="mb-10 mt-5 w-full items-center justify-center">
+              <div className="text-2xl">Loading registered horses...</div>
+            </div>
+          ) : (
+            <div
+              className={cn(
+                'mt-5 grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                isGridCompact
+                  ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+                  : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                className
+              )}
+            >
+              {npcs &&
+                //stakedTokens[0]?.map((stakedToken: BigNumber) => (
+                npcs?.map((nft: any) => (
+                  <div
+                    key={nft?.tokenId}
+                    className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                    onClick={() =>
+                      //setTokenid(nft.metadata.id.toString()),
+                      //setIsOpen(true)
+                      router.push('/horse-details/' + nft?.tokenId)
+                    }
+                  >
+                    <Image
+                      src={
+                        nft?.media[0]?.gateway
+                          ? nft?.media[0]?.gateway
+                          : '/default-nft.png'
                       }
-                    >
-                      <NFTCard
-                        tokenId={stakedToken.toNumber()}
-                        key={stakedToken.toString()}
-                      />
+                      alt={nft?.title}
+                      height={200}
+                      width={200}
+                      loading="lazy"
+                    />
+                    <div className="m-2 w-full items-center justify-center">
+                      <p className="text-xs font-bold">{nft?.title}</p>
                     </div>
-                  ))}
-              </div>
-            )
-          }
-        </div>
-      )}
+                  </div>
+                ))}
+            </div>
+          )
+        }
+      </div>
     </div>
   );
 }

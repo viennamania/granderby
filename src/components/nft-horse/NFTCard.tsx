@@ -69,8 +69,8 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                 //src={nft.media[0].thumbnail}
                 src={nft?.metadata?.image ? nft?.metadata?.image : ''}
                 alt={'alt'}
-                width={100}
-                height={100}
+                width={200}
+                height={200}
                 className="rounded-lg"
                 // onClick={() =>
                 //setTokenid(nft.metadata.id.toString()),

@@ -5,7 +5,7 @@ import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
 //import ListedFeeds from '@/components/search/feeds-horse-listed';
 
-import RegisteredFeeds from '@/components/search/feeds-horse-registered';
+import RegisteredFeeds from '@/components/search/feeds-horse-registered-hv';
 
 import { useDrawer } from '@/components/drawer-views/context';
 
@@ -38,11 +38,12 @@ export default function Search() {
       title: 'Owned',
       path: 'owned',
     },
+    */
     {
       title: 'Registgered',
       path: 'registered',
     },
-    */
+
     /*
     {
       title: 'Listed',
@@ -121,7 +122,7 @@ export default function Search() {
             </TabPanel>
 
             {/* Owned items */}
-
+            {/*
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
@@ -139,7 +140,7 @@ export default function Search() {
                           size="small"
                           variant="ghost"
                           color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH')}
+                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
                           className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                         >
                           <OptionIcon className="relative h-auto w-[18px]" />
@@ -152,6 +153,7 @@ export default function Search() {
                 <OwnedFeeds />
               </div>
             </TabPanel>
+            */}
 
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
@@ -170,7 +172,7 @@ export default function Search() {
                           size="small"
                           variant="ghost"
                           color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH')}
+                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
                           className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
                         >
                           <OptionIcon className="relative h-auto w-[18px]" />
