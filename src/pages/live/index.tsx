@@ -94,6 +94,9 @@ import Explorers from '@/components/cryptocurrency-pricing-table/explorers';
 
 import LastWinnersPage from '@/components/horseRace/watchScreen/lastWinnersGranderby';
 
+import Collapse from '@/components/ui/collapse-last-winners';
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 /*
       <Header className="ltr:xl:pl-72 rtl:xl:pr-72 ltr:2xl:pl-[320px] rtl:2xl:pr-[320px] ltr:3xl:pl-80 rtl:3xl:pr-80" />
       <Sidebar className="z-40 hidden xl:block" />
@@ -267,6 +270,8 @@ const ProposalsPage: NextPageWithLayout<
 */
   }
 
+  const [lastWinersIsOpen] = useLocalStorage('last-winners-isopen');
+
   return (
     <>
       <NextSeo
@@ -371,9 +376,11 @@ const ProposalsPage: NextPageWithLayout<
         </div>
         */}
 
-        <div className="w-[300px] rounded-lg bg-black">
-          <LastWinnersPage npcs={npcNames} />
-        </div>
+        <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
+          <div className="m-3 w-[300px] rounded-lg bg-black">
+            <LastWinnersPage npcs={npcNames} />
+          </div>
+        </Collapse>
 
         <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
           <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />

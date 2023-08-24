@@ -71,6 +71,9 @@ import Link from 'next/link';
 
 import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 
+import Collapse from '@/components/ui/collapse-last-winners';
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 export default function ModernScreen() {
   const address = useAddress();
 
@@ -431,13 +434,15 @@ export default function ModernScreen() {
   }, [status]);
   */
 
+  const [lastWinersIsOpen] = useLocalStorage('last-winners-isopen');
+
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
       <div className="mb-20 flex flex-wrap">
         {!address && (
-          <>
+          <Collapse label="Granderby Racing" initialOpen={true}>
             <video
               id="intro-video"
               src="/mov/intro.mp4"
@@ -445,7 +450,7 @@ export default function ModernScreen() {
               autoPlay
               className="rounded-lg"
             ></video>
-          </>
+          </Collapse>
         )}
 
         <div className="  mt-5 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
@@ -453,11 +458,17 @@ export default function ModernScreen() {
           <AssetSlider coins={assetSlideData} />
         */}
 
-          <LiveNftPricingSlider limits={4} />
+          <Collapse label="Live Pricing" initialOpen={true}>
+            <div className="m-5 p-5">
+              <LiveNftPricingSlider limits={4} />
+            </div>
+          </Collapse>
 
-          <div className="mt-10 rounded-md  bg-black">
-            <LastWinners npcs={npcNames} />
-          </div>
+          <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
+            <div className=" rounded-md  bg-black">
+              <LastWinners npcs={npcNames} />
+            </div>
+          </Collapse>
 
           <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
             {time ? (

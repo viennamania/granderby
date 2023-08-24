@@ -32,7 +32,9 @@ export default function LastWinnersPage({ npcs }: any) {
 
   return (
     <div className=" flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
+      {/*
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
+      */}
 
       <div className="text-xl font-bold">
         Win Prize: {sonKazananlar?.winPrize}
@@ -58,7 +60,7 @@ export default function LastWinnersPage({ npcs }: any) {
                   <span>{item.horse}</span>
                   */}
 
-                  <div
+                  <button
                     className=" flex "
                     onClick={() =>
                       openDrawer('DRAWER_HORSE_INFO', item.nft?.tokenId)
@@ -68,7 +70,7 @@ export default function LastWinnersPage({ npcs }: any) {
                       tokenId={item.nft?.tokenId}
                       key={item.nft?.tokenId}
                     />
-                  </div>
+                  </button>
                 </div>
 
                 {/*
