@@ -64,10 +64,20 @@ export default async function handler(
       response.ownedNfts[k].rawMetadata?.attributes
       */
 
+      var textureKeyValue = '';
+
+      response.ownedNfts[k].rawMetadata?.attributes?.forEach((element) => {
+        if (element.trait_type === 'textureKey') {
+          textureKeyValue = element.value;
+        }
+      });
+
       nfts.push({
+        name: response.ownedNfts[k].title,
         tokenid: response.ownedNfts[k].tokenId,
         image: response.ownedNfts[k].media[0].thumbnail,
-        attributes: response.ownedNfts[k].rawMetadata?.attributes,
+        ///attributes: response.ownedNfts[k].rawMetadata?.attributes,
+        textureKey: textureKeyValue,
       });
 
       /*
@@ -422,6 +432,8 @@ export default async function handler(
 
   ////const textureKye = 'Hrs_00000001';
   const textureKey = imagesrc.slice(0, -4);
+
+  attributes.push({ trait_type: 'textureKey', value: textureKey });
 
   const npc = await getNpcFromTextureKey(textureKey);
 
