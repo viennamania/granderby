@@ -117,6 +117,26 @@ export const getAllHorses = async (
   console.log('getAllHorses pageNumber', pageNumber);
   console.log('getAllHorses grade', grade);
 
+  if (grade === '') {
+    const data = await HorseModel.find({})
+      .sort({ tokenId: 1 })
+      .skip((pageNumber - 1) * pagination)
+      //limit is number of Records we want to display
+      .limit(pagination)
+      /*
+      .then(data => {
+  
+        return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
+  
+      })
+      */
+      .catch((err) => {
+        ////return err;
+      });
+
+    return { nfts: data, pageNumber: pageNumber + 1 };
+  }
+
   const data = await HorseModel.find({
     'nft.rawMetadata.attributes': {
       $elemMatch: {

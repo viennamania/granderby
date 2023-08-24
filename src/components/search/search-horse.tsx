@@ -34,6 +34,9 @@ export default function Search() {
 
   const [livePricingIsOpen] = useLocalStorage('live-pricing-isopen', true);
 
+  const [filtersGrade, setFilterGrade] =
+    useLocalStorage<string>('filters-grade');
+
   const tabMenu = [
     {
       title: 'Items',
@@ -99,10 +102,24 @@ export default function Search() {
         <div className="m-3 block">
           <ParamTab tabMenu={tabMenu}>
             {/* Total list of items */}
-
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
+                  <div>
+                    {filtersGrade && (
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="text-xl font-bold">Grade:</div>
+                        <div className="text-xl font-bold">{filtersGrade}</div>
+                        <button
+                          className="text-xl font-bold"
+                          onClick={() => setFilterGrade('')}
+                        >
+                          X
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
                   <div className="items-right flex w-full justify-end">
                     <div className="flex gap-6 3xl:gap-8 ">
                       <SortList />

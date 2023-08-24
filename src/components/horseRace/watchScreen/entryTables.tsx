@@ -18,7 +18,7 @@ import Button from '@/components/ui/button';
 import { OptionIcon } from '@/components/icons/option';
 
 import { useDrawer } from '@/components/drawer-views/context';
-import { add } from 'lodash';
+import { add, set } from 'lodash';
 
 import {
   ///nftDropContractAddressEntry,
@@ -489,6 +489,27 @@ export default function EntryTables({
       claimConditions.data,
     ]
   );
+  */
+
+  /*
+  const [npcsNew, setNpcsNew] = useState<any>(null);
+
+  useEffect(() => {
+
+    if (npcs?.horse1 === npcsNew?.horse1) {
+
+    } else {
+
+      setNpcsNew(null);
+
+
+      setTimeout(() => {
+        setNpcsNew(npcs);
+      }, 1000);
+
+    }
+
+  }, [npcs]);
   */
 
   return (

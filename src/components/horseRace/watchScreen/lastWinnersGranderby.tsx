@@ -22,16 +22,20 @@ export default function LastWinnersPage({ npcs }: any) {
 
     ///console.log('getSonKazananlar data  ====', data);
 
-    if (data?.lastGame === sonKazananlar) return;
+    if (
+      data &&
+      data?.lastGame?.placements[0]?.nft?.tokenId ===
+        sonKazananlar?.placements[0]?.nft?.tokenId
+    )
+      return;
 
     setSonKazananlar(undefined);
-    setSonKazananlar(data.lastGame);
 
-    /*
+    //setSonKazananlar(data.lastGame);
+
     setTimeout(() => {
       setSonKazananlar(data.lastGame);
     }, 1000);
-    */
   };
 
   useEffect(() => {
