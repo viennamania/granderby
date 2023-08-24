@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-/////import { getAllHorses } from '@/utils/models/horse-model';
+///import { getAllHorses } from '@/utils/models/horse-model';
 
 import { getAllNpcs } from '@/utils/models/npc-model';
 
@@ -18,7 +18,9 @@ export default async function handler(
 
   var nfts = [] as any;
 
-  const data = await getAllHorses(Number(pageNumber), Number(pageSize), grade);
+  ///const data = await getAllHorses(Number(pageNumber), Number(pageSize), grade);
+
+  const data = await getAllNpcs(Number(pageNumber), Number(pageSize), grade);
 
   ////console.log('data', data);
 
