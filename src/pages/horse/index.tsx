@@ -109,12 +109,14 @@ const RentPage: NextPageWithLayout<
           <Search />
         </div>
 
+        {/*
         <div className="flex items-center justify-center">
           <div className="flex flex-col items-center justify-center">
             <div className="text-center text-2xl font-bold">Coming Soon</div>
             <div className="text-center text-xl font-bold">Rent your horse</div>
           </div>
         </div>
+          */}
 
         {/*
         <footer>
