@@ -495,137 +495,107 @@ export default function EntryTables({
     <>
       <DrawersContainer tokenid={selectedTokenid} />
 
-      {/*
-        //hasCookie('horse') &&
-        address && (
-          <div className="item-center flex w-full justify-center gap-1 bg-transparent text-xl text-white">
-            <div className="glow-text p-2 font-medium text-white ">
-              {chosenNpc && betAmount ? (
-                <div>
-                  You choose {chosenNpc ?? ' '} and bet {betAmount ?? ' '}
-                </div>
-              ) : (
-                <div>You choose {chosenNpc ?? ' '}</div>
-              )}
-            </div>
-          </div>
-        )
-              */}
-
-      <div className="disabled items-center justify-center ">
+      <div className="disabled flex w-full  flex-col  items-center justify-center  ">
         {/* //? Input amount manuel */}
 
         {address && <></>}
 
-        {/* //? Miktar Selector Buttons */}
-
-        {/*}
-            <div className=' 
-              grid grid-cols-4 content-center md:flex w-full gap-3 items-center justify-center text-black
-            '>
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount + inputs?.input1)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg font-medium border disabled:opacity-70'>
-
-                    +{inputs?.input1}
-
-
-                </button>
-
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount + inputs?.input2)
-                    }}
-                    className='w-20 green-btn h-10 rounded-l font-medium border disabled:opacity-70'>
-                    +{inputs?.input2}
-                </button>
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount + inputs?.input3)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg text-white font-medium border disabled:opacity-70'>
-                    {
-                        inputs?.input3
-                    }
-                </button>
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount + inputs?.input4)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg font-medium border disabled:opacity-70'>
-                    +{inputs?.input4}
-                </button>
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount + inputs?.input5)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'>
-                    +{inputs?.input5}
-                </button>
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount + inputs?.input6)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'>
-                    +{inputs?.input6}
-                </button>
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount * 2)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'> x2 </button>
-                <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(betAmount / 2)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg  font-medium border disabled:opacity-70'> /2 </button>
-                {user && <button
-                    disabled={placedBet}
-                    onClick={() => {
-                        setBetAmount(balance - 0.00001)
-                    }}
-                    className='w-20 green-btn h-10 rounded-lg hidden md:block font-medium-repeat text-black border disabled:opacity-70'> Max </button>}
-            </div>
-                */}
-
         {/* //? Horse Select Buttons */}
-        <div className="mb-2 mt-0 flex items-center justify-center  rounded-sm bg-gray-200 p-1 text-sm text-black  ">
+        <div className="  mb-2 mt-0 flex w-full items-center justify-center  rounded-sm bg-black p-1 text-sm font-bold text-white ">
           E-258
         </div>
 
-        <div className="  grid  grid-cols-5  items-center justify-center gap-1  text-xs">
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse1);
-              //setTokenid(BigNumber.from(0));
-            }}
-            className={`gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse1
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center  xl:flex-row  "
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId)
-              }
+        {npcs && (
+          <div className=" grid  w-full  grid-cols-5  items-center justify-center gap-1  text-xs">
+            {npcs?.horse1 && (
+              <button
+                disabled={placedBet}
+                onClick={() => {
+                  setChosenNpc(npcs?.horse1);
+                  //setTokenid(BigNumber.from(0));
+                }}
+                className={`gold-btn block border border-black p-1 text-center text-black ${
+                  chosenNpc === npcs?.horse1
+                    ? 'gold-btn-active'
+                    : chosenNpc === 0
+                    ? 'bg-[#ffc000]'
+                    : 'bg-transparent'
+                } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+              >
+                <div
+                  className="flex flex-col items-center justify-center  xl:flex-row  "
+                  onClick={() =>
+                    openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId)
+                  }
+                >
+                  <div className="block items-center justify-center">
+                    {/*
+                  <Button
+                    shape="rounded"
+                    size="small"
+                    variant="ghost"
+                    color="gray"
+                    //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
+                    onClick={() => openDrawer('DRAWER_HORSE_INFO')}
+                    className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                  >
+                    <OptionIcon className="relative h-auto w-[18px]" />
+                  </Button>
+                  */}
+
+                    <Image
+                      src={npcs?.media1?.thumbnail || '/horseRace/logo.png'}
+                      width={100}
+                      height={100}
+                      alt="pp"
+                      className="  rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                    />
+
+                    <span className=" xl:text-md text-sm text-sky-500">
+                      #{npcs?.nft1?.tokenId}
+                    </span>
+                  </div>
+
+                  <Image
+                    src={'/horseRace/bib_gui_0.png'}
+                    width="40"
+                    height="40"
+                    alt={'at'}
+                    className=" xl:w-[100px] "
+                  />
+
+                  {/*
+                <span className="text-xs">{npcs?.horse1}</span>
+                */}
+                  {/*
+                <span className="text-md font-bold">x{horse1}</span>
+                */}
+                </div>
+              </button>
+            )}
+
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse2);
+                //setTokenid(BigNumber.from(1));
+              }}
+              className={`gold-btn block border  border-black p-1 text-center  text-black ${
+                chosenNpc === npcs?.horse2
+                  ? 'gold-btn-active '
+                  : chosenNpc === 0
+                  ? ''
+                  : ''
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -639,123 +609,58 @@ export default function EntryTables({
                 </Button>
                 */}
 
+                  <Image
+                    src={npcs?.media2?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
+
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft2?.tokenId}
+                  </span>
+                </div>
+
                 <Image
-                  src={npcs?.media1?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  src={'/horseRace/bib_gui_1.png'}
+                  width="40"
+                  height="40"
+                  alt={'at'}
+                  className=" xl:w-[100px] "
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft1?.tokenId}
-                </span>
-              </div>
-
-              <Image
-                src={'/horseRace/bib_gui_0.png'}
-                width="40"
-                height="40"
-                alt={'at'}
-                className=" xl:w-[100px] "
-              />
-
-              {/*
-              <span className="text-xs">{npcs?.horse1}</span>
-              */}
-              {/*
-              <span className="text-md font-bold">x{horse1}</span>
-              */}
-            </div>
-          </button>
-
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse2);
-              //setTokenid(BigNumber.from(1));
-            }}
-            className={`gold-btn block border  border-black p-1 text-center  text-black ${
-              chosenNpc === npcs?.horse2
-                ? 'gold-btn-active '
-                : chosenNpc === 0
-                ? ''
-                : ''
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId)
-              }
-            >
-              <div className="block items-center justify-center">
                 {/*
-                <Button
-                  shape="rounded"
-                  size="small"
-                  variant="ghost"
-                  color="gray"
-                  //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                  onClick={() => openDrawer('DRAWER_HORSE_INFO')}
-                  className=" !h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                >
-                  <OptionIcon className="relative h-auto w-[18px]" />
-                </Button>
-                */}
-
-                <Image
-                  src={npcs?.media2?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
-                />
-
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft2?.tokenId}
-                </span>
-              </div>
-
-              <Image
-                src={'/horseRace/bib_gui_1.png'}
-                width="40"
-                height="40"
-                alt={'at'}
-                className=" xl:w-[100px] "
-              />
-
-              {/*
               <span className="text-xs">{npcs.horse2}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse2}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse3);
-              //setTokenid(BigNumber.from(2));
-            }}
-            className={`gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse3
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse3);
+                //setTokenid(BigNumber.from(2));
+              }}
+              className={`gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs?.horse3
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -769,58 +674,58 @@ export default function EntryTables({
                 </Button>
                 */}
 
+                  <Image
+                    src={npcs?.media3?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className="  rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
+
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft3?.tokenId}
+                  </span>
+                </div>
+
                 <Image
-                  src={npcs?.media3?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  src={'/horseRace/bib_gui_2.png'}
+                  width="40"
+                  height="40"
+                  alt={'at'}
+                  className=" xl:w-[100px] "
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft3?.tokenId}
-                </span>
-              </div>
-
-              <Image
-                src={'/horseRace/bib_gui_2.png'}
-                width="40"
-                height="40"
-                alt={'at'}
-                className=" xl:w-[100px] "
-              />
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse3}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse3}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse4);
-              //setTokenid(BigNumber.from(3));
-            }}
-            className={`gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs.horse4
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse4);
+                //setTokenid(BigNumber.from(3));
+              }}
+              className={`gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs.horse4
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="flex flex-col items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId)
+                }
+              >
+                <div className="flex flex-col items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -834,58 +739,58 @@ export default function EntryTables({
                 </Button>
                 */}
 
+                  <Image
+                    src={npcs?.media4?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
+
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft4?.tokenId}
+                  </span>
+                </div>
+
                 <Image
-                  src={npcs?.media4?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  src={'/horseRace/bib_gui_3.png'}
+                  width="40"
+                  height="40"
+                  alt={'at'}
+                  className=" xl:w-[100px] "
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft4?.tokenId}
-                </span>
-              </div>
-
-              <Image
-                src={'/horseRace/bib_gui_3.png'}
-                width="40"
-                height="40"
-                alt={'at'}
-                className=" xl:w-[100px] "
-              />
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse4}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse4}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse5);
-              //setTokenid(BigNumber.from(4));
-            }}
-            className={` gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse5
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse5);
+                //setTokenid(BigNumber.from(4));
+              }}
+              className={` gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs?.horse5
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -899,58 +804,58 @@ export default function EntryTables({
                 </Button>
                 */}
 
+                  <Image
+                    src={npcs?.media5?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className="  rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
+
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft5?.tokenId}
+                  </span>
+                </div>
+
                 <Image
-                  src={npcs?.media5?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  src={'/horseRace/bib_gui_4.png'}
+                  width="40"
+                  height="40"
+                  alt={'at'}
+                  className=" xl:w-[100px] "
                 />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft5?.tokenId}
-                </span>
-              </div>
-
-              <Image
-                src={'/horseRace/bib_gui_4.png'}
-                width="40"
-                height="40"
-                alt={'at'}
-                className=" xl:w-[100px] "
-              />
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse6);
-              //setTokenid(BigNumber.from(4));
-            }}
-            className={` gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse6
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse6);
+                //setTokenid(BigNumber.from(4));
+              }}
+              className={` gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs?.horse6
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -964,54 +869,54 @@ export default function EntryTables({
                 </Button>
                 */}
 
-                <Image
-                  src={npcs?.media6?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
-                />
+                  <Image
+                    src={npcs?.media6?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft6?.tokenId}
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft6?.tokenId}
+                  </span>
+                </div>
+
+                <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                  6
                 </span>
-              </div>
 
-              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
-                6
-              </span>
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse7);
-              //setTokenid(BigNumber.from(4));
-            }}
-            className={` gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse7
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse7);
+                //setTokenid(BigNumber.from(4));
+              }}
+              className={` gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs?.horse7
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -1025,54 +930,54 @@ export default function EntryTables({
                 </Button>
                 */}
 
-                <Image
-                  src={npcs?.media7?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
-                />
+                  <Image
+                    src={npcs?.media7?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft7?.tokenId}
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft7?.tokenId}
+                  </span>
+                </div>
+
+                <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                  7
                 </span>
-              </div>
 
-              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
-                7
-              </span>
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse8);
-              //setTokenid(BigNumber.from(4));
-            }}
-            className={` gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse8
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse8);
+                //setTokenid(BigNumber.from(4));
+              }}
+              className={` gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs?.horse8
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -1086,54 +991,54 @@ export default function EntryTables({
                 </Button>
                 */}
 
-                <Image
-                  src={npcs?.media8?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
-                />
+                  <Image
+                    src={npcs?.media8?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft8?.tokenId}
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft8?.tokenId}
+                  </span>
+                </div>
+
+                <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                  8
                 </span>
-              </div>
 
-              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
-                8
-              </span>
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse9);
-              //setTokenid(BigNumber.from(4));
-            }}
-            className={` gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse9
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse9);
+                //setTokenid(BigNumber.from(4));
+              }}
+              className={` gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs?.horse9
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -1147,54 +1052,54 @@ export default function EntryTables({
                 </Button>
                 */}
 
-                <Image
-                  src={npcs?.media9?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
-                />
+                  <Image
+                    src={npcs?.media9?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft9?.tokenId}
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft9?.tokenId}
+                  </span>
+                </div>
+
+                <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                  9
                 </span>
-              </div>
 
-              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
-                9
-              </span>
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
-            </div>
-          </button>
+              </div>
+            </button>
 
-          <button
-            disabled={placedBet}
-            onClick={() => {
-              setChosenNpc(npcs?.horse10);
-              //setTokenid(BigNumber.from(4));
-            }}
-            className={` gold-btn block border border-black p-1 text-center text-black ${
-              chosenNpc === npcs?.horse10
-                ? 'gold-btn-active'
-                : chosenNpc === 0
-                ? 'bg-[#ffc000]'
-                : 'bg-transparent'
-            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-          >
-            <div
-              className="flex flex-col items-center justify-center xl:flex-row"
-              onClick={() =>
-                openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId)
-              }
+            <button
+              disabled={placedBet}
+              onClick={() => {
+                setChosenNpc(npcs?.horse10);
+                //setTokenid(BigNumber.from(4));
+              }}
+              className={` gold-btn block border border-black p-1 text-center text-black ${
+                chosenNpc === npcs?.horse10
+                  ? 'gold-btn-active'
+                  : chosenNpc === 0
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
             >
-              <div className="block items-center justify-center">
-                {/*
+              <div
+                className="flex flex-col items-center justify-center xl:flex-row"
+                onClick={() =>
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId)
+                }
+              >
+                <div className="block items-center justify-center">
+                  {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -1208,32 +1113,33 @@ export default function EntryTables({
                 </Button>
                 */}
 
-                <Image
-                  src={npcs?.media10?.thumbnail || '/horseRace/logo.png'}
-                  width={100}
-                  height={100}
-                  alt="pp"
-                  className="  h-[38px] w-[38px] rounded-md md:h-full md:w-full xl:h-full xl:w-full"
-                />
+                  <Image
+                    src={npcs?.media10?.thumbnail || '/horseRace/logo.png'}
+                    width={100}
+                    height={100}
+                    alt="pp"
+                    className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
+                  />
 
-                <span className=" text-xs text-sky-500 xl:text-sm">
-                  #{npcs?.nft10?.tokenId}
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft10?.tokenId}
+                  </span>
+                </div>
+
+                <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
+                  10
                 </span>
-              </div>
 
-              <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
-                10
-              </span>
-
-              {/*
+                {/*
               <span className="text-xs">{npcs?.horse5}</span>
               */}
-              {/*
+                {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
-            </div>
-          </button>
-        </div>
+              </div>
+            </button>
+          </div>
+        )}
       </div>
 
       {/*
