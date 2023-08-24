@@ -19,7 +19,7 @@ export default function LastWinnersPage({ npcs }: any) {
     });
     const data = await response.json();
 
-    ///console.log('getSonKazananlar data winPrize ====', data?.lastGame?.winPrize);
+    ///console.log('getSonKazananlar data  ====', data);
 
     setSonKazananlar(data.lastGame);
   };
@@ -70,6 +70,15 @@ export default function LastWinnersPage({ npcs }: any) {
                       tokenId={item.nft?.tokenId}
                       key={item.nft?.tokenId}
                     />
+
+                    {/*
+                    <Image
+                      src={item.nft?.image}
+                      width={200}
+                      height={200}
+                      alt="winner"
+                    />
+                    */}
                   </button>
                 </div>
 

@@ -54,7 +54,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   return (
     <>
       {nft && (
-        <div className="mb-0 flex flex-col items-center  justify-center gap-0">
+        <div className=" flex flex-col items-center  justify-center gap-3">
           {nft?.metadata && (
             <>
               {/*
