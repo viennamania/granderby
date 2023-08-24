@@ -40,7 +40,7 @@ export default function Search() {
     },
     */
     {
-      title: 'Registgered',
+      title: 'Registered',
       path: 'registered',
     },
 
