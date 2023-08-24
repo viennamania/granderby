@@ -91,7 +91,7 @@ export default async function handler(
         tokenid: response.ownedNfts[k].tokenId,
         //image: response.ownedNfts[k].media[0].thumbnail,
         ///attributes: response.ownedNfts[k].rawMetadata?.attributes,
-        textureKey: textureKeyValue,
+        texturekey: textureKeyValue,
       });
 
       /*
