@@ -11,8 +11,6 @@ export default function LastWinnersPage({ npcs }: any) {
 
   // last game winners
   const getSonKazananlar = async () => {
-    setSonKazananlar(undefined);
-
     const response = await fetch('/api/games/horseRace/history', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -24,9 +22,16 @@ export default function LastWinnersPage({ npcs }: any) {
 
     ///console.log('getSonKazananlar data  ====', data);
 
+    if (data?.lastGame === sonKazananlar) return;
+
+    setSonKazananlar(undefined);
+    setSonKazananlar(data.lastGame);
+
+    /*
     setTimeout(() => {
       setSonKazananlar(data.lastGame);
     }, 1000);
+    */
   };
 
   useEffect(() => {

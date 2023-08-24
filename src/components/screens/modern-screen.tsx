@@ -537,7 +537,7 @@ export default function ModernScreen() {
             </div>
           </div>
 
-          <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-2 shadow-card dark:bg-light-dark xl:p-8">
+          <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-5 shadow-card dark:bg-light-dark ">
             <div className="mb-1 text-center text-lg text-black xl:text-2xl">
               My horses <span className="font-bold text-red-500">RUN</span>, I{' '}
               <span className="font-bold text-blue-500">EARN</span> !{' '}
