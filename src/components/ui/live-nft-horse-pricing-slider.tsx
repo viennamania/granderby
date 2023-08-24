@@ -7,6 +7,8 @@ import cn from 'classnames';
 import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 import Image from '@/components/ui/image';
 
+import { useRouter } from 'next/router';
+
 type Price = {
   name: number;
   value: number;
@@ -39,13 +41,18 @@ export function LivePricingFeed({
   prices,
   isBorder,
 }: LivePriceFeedProps) {
+  const router = useRouter();
+
   return (
     <div
       className={cn(
         'flex items-center gap-4 rounded-lg bg-white p-5 shadow-[0_8px_16px_rgba(17,24,39,0.05)] dark:bg-light-dark lg:flex-row'
       )}
     >
-      <div className="w-full flex-col">
+      <button
+        className="w-full flex-col"
+        onClick={() => router.push('/horse-details/' + id)}
+      >
         <div className="mb-3 flex items-center">
           <div className="h-[34px] w-[34px]">
             <Image
@@ -96,7 +103,7 @@ export function LivePricingFeed({
             {change}
           </span>
         </div>
-      </div>
+      </button>
 
       <div
         className="h-20 w-full overflow-hidden"

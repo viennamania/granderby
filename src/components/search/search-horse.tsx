@@ -13,6 +13,8 @@ import { useDrawer } from '@/components/drawer-views/context';
 
 import Image from '@/components/ui/image';
 
+import Collapse from '@/components/ui/collapse-live-pricing';
+
 import {
   Filters,
   GridSwitcher,
@@ -25,8 +27,12 @@ import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 export default function Search() {
   const { openDrawer } = useDrawer();
+
+  const [livePricingIsOpen] = useLocalStorage('live-pricing-isopen', true);
 
   const tabMenu = [
     {
@@ -77,8 +83,12 @@ export default function Search() {
         </div>
       </div>
 
-      <div className="felx m-5">
-        <LiveNftPricingSlider limits={4} />
+      <div className="mb-5 mt-5 flex">
+        <Collapse label="Live Pricing" initialOpen={livePricingIsOpen}>
+          <div className="m-5 p-5">
+            <LiveNftPricingSlider limits={4} />
+          </div>
+        </Collapse>
       </div>
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">

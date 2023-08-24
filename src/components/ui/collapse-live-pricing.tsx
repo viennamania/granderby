@@ -15,29 +15,41 @@ export default function Collapse({
   children,
   initialOpen = false,
 }: React.PropsWithChildren<CollapseProps>) {
-  let [isOpen, setIsOpen] = useState(false);
+  const [livePricingIsOpen, setLivePricingIsOpen] = useLocalStorage(
+    'live-pricing-isopen'
+  );
+
+  ////let [isOpen, setIsOpen] = useState(livePricingIsOpen);
+
   const [ref, { height }] = useMeasure<HTMLDivElement>();
 
+  /*
   useEffect(() => {
     initialOpen && setIsOpen(true);
   }, [initialOpen]);
+  */
+
+  ////const [livePricingInitialOpen] = useLocalStorage('live-pricing-initialOpen');
+  //setIsOpen(livePricingInitialOpen);
 
   return (
     <div
       className={`ease-[cubic-bezier(0.33, 1, 0.68, 1)] relative mb-5 overflow-hidden rounded-lg bg-white shadow-card transition-all duration-[350ms] last:mb-0 hover:shadow-transaction dark:bg-light-dark ${
-        isOpen ? 'shadow-transaction' : 'shadow-card'
+        livePricingIsOpen ? 'shadow-transaction' : 'shadow-card'
       }`}
-      style={{ height: isOpen ? 54 + height : 54 }}
+      style={{ height: livePricingIsOpen ? 54 + height : 54 }}
     >
       <button
         className="flex h-13 w-full items-center justify-between px-5 py-2 text-sm font-medium uppercase tracking-wider text-gray-900 dark:text-white"
-        onClick={() => setIsOpen(!isOpen)}
+        //onClick={() => setIsOpen(!isOpen)}
+
+        onClick={() => setLivePricingIsOpen(!livePricingIsOpen)}
       >
         {label}
 
         <span
           className={`shrink-0 transition-transform duration-200 ltr:ml-4 rtl:mr-4 ${
-            isOpen ? 'rotate-45' : ''
+            livePricingIsOpen ? 'rotate-45' : ''
           }`}
         >
           <Plus className="" />
@@ -46,7 +58,9 @@ export default function Collapse({
 
       <div
         className={`border-t border-dashed ${
-          isOpen ? 'border-gray-200 dark:border-gray-700' : 'border-transparent'
+          livePricingIsOpen
+            ? 'border-gray-200 dark:border-gray-700'
+            : 'border-transparent'
         }`}
         ref={ref}
       >
