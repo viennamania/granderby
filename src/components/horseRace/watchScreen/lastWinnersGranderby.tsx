@@ -6,6 +6,8 @@ import NFTCard from '@/components//nft-horse/NFTCard';
 import { useDrawer } from '@/components/drawer-views/context';
 import { set } from 'lodash';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 export default function LastWinnersPage({ npcs }: any) {
   const [sonKazananlar, setSonKazananlar] = useState<any>();
 
@@ -44,6 +46,10 @@ export default function LastWinnersPage({ npcs }: any) {
 
   const { openDrawer } = useDrawer();
 
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
   return (
     <div className=" flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
       {/*
@@ -76,9 +82,10 @@ export default function LastWinnersPage({ npcs }: any) {
 
                   <button
                     className=" flex "
-                    onClick={() =>
-                      openDrawer('DRAWER_HORSE_INFO', item.nft?.tokenId)
-                    }
+                    onClick={() => {
+                      setDrawerHorseInfoTokenId(item.nft?.tokenId);
+                      openDrawer('DRAWER_HORSE_INFO', item.nft?.tokenId);
+                    }}
                   >
                     <NFTCard
                       tokenId={item.nft?.tokenId}

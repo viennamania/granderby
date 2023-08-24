@@ -71,6 +71,8 @@ const colors = {
 } as const;
 */
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 export default function EntryTables({
   horse1,
   horse2,
@@ -512,6 +514,10 @@ export default function EntryTables({
   }, [npcs]);
   */
 
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
   return (
     <>
       <DrawersContainer tokenid={selectedTokenid} />
@@ -545,9 +551,10 @@ export default function EntryTables({
               >
                 <div
                   className="flex flex-col items-center justify-center  xl:flex-row  "
-                  onClick={() =>
-                    openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId)
-                  }
+                  onClick={() => {
+                    setDrawerHorseInfoTokenId(npcs?.nft1?.tokenId);
+                    openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId);
+                  }}
                 >
                   <div className="block items-center justify-center">
                     {/*
@@ -611,9 +618,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft2?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*
@@ -676,9 +684,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft3?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*
@@ -741,9 +750,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft4?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId);
+                }}
               >
                 <div className="flex flex-col items-center justify-center">
                   {/*
@@ -806,9 +816,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft5?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*
@@ -871,9 +882,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft6?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*
@@ -932,9 +944,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft7?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*
@@ -993,9 +1006,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft8?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*
@@ -1054,9 +1068,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft9?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*
@@ -1115,9 +1130,10 @@ export default function EntryTables({
             >
               <div
                 className="flex flex-col items-center justify-center xl:flex-row"
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft10?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId);
+                }}
               >
                 <div className="block items-center justify-center">
                   {/*

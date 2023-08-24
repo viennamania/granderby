@@ -45,6 +45,8 @@ import { useDrawer } from '@/components/drawer-views/context';
 import { add } from 'lodash';
 import Wallet from '@/components/wallet/wallet';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 /*
 import {
   ////contractConst,
@@ -264,6 +266,10 @@ export default function BetInputs({
   const { toast } = useToast();
   const theme = 'dark';
 
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
   return (
     <>
       <div className="disabled items-top justify-center  rounded-lg  bg-white p-5">
@@ -299,9 +305,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft1?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -361,9 +368,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft2?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -436,9 +444,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft3?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -511,9 +520,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft4?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -587,9 +597,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft5?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -663,9 +674,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft6?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft6?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -735,9 +747,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft7?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft7?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -807,9 +820,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft8?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft8?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -879,9 +893,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft9?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft9?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />
@@ -951,9 +966,10 @@ export default function BetInputs({
                 variant="ghost"
                 color="gray"
                 //onClick={() => openDrawer('DRAWER_PREVIEW_NFT')}
-                onClick={() =>
-                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId)
-                }
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(npcs?.nft10?.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', npcs?.nft10?.tokenId);
+                }}
                 className=" mb-1 !h-5 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
               >
                 <OptionIcon className="relative h-auto w-[18px]" />

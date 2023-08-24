@@ -21,6 +21,8 @@ import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price-draw
 
 import NftInfo from '@/components/nft-pricing-table/nft-info';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 export function GridSwitcher() {
   const { isGridCompact, setIsGridCompact } = useGridSwitcher();
 
@@ -441,6 +443,8 @@ export default function DrawerHorseInfo(tokenid: any) {
 
   const { closeDrawer } = useDrawer();
 
+  const [drawerHorseInfoTokenId] = useLocalStorage('drawer-horse-info-tokenid');
+
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
       <div className="flex h-20 items-center justify-between overflow-hidden px-6 py-4">
@@ -459,7 +463,7 @@ export default function DrawerHorseInfo(tokenid: any) {
 
       <Scrollbar style={{ height: 'calc(100% - 96px)' }}>
         <div className="px-6 pb-20 pt-1">
-          <Filters tokenid={tokenid.tokenid} />
+          <Filters tokenid={drawerHorseInfoTokenId} />
         </div>
       </Scrollbar>
 
