@@ -49,6 +49,8 @@ export default async function handler(
       contractAddresses: [nftDropContractAddressHorse],
     });
 
+    //console.log('response', response);
+
     const nfts = [];
 
     for (var k = 0; k < response.ownedNfts.length; k++) {
@@ -60,22 +62,34 @@ export default async function handler(
       response.ownedNfts[k].title
       response.ownedNfts[k].description
       response.ownedNfts[k].media[0].gateway
-      response.ownedNfts[k].media[9].thumbnail
+      response.ownedNfts[k].media[0].thumbnail
       response.ownedNfts[k].rawMetadata?.attributes
       */
 
-      var textureKeyValue = '';
+      //console.log("response.ownedNfts[k].rawMetadata?.image", response.ownedNfts[k].rawMetadata?.image?.substring(50,-3));
 
+      //"image":"https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00020186.png"
+
+      const image = response.ownedNfts[k].rawMetadata?.image;
+      var textureKeyValue = image?.substring(
+        image.length - 16,
+        image.length - 4
+      );
+
+      ///console.log("textureKeyValue", textureKeyValue);
+
+      /*
       response.ownedNfts[k].rawMetadata?.attributes?.forEach((element) => {
         if (element.trait_type === 'textureKey') {
           textureKeyValue = element.value;
         }
       });
+      */
 
       nfts.push({
         name: response.ownedNfts[k].title,
         tokenid: response.ownedNfts[k].tokenId,
-        image: response.ownedNfts[k].media[0].thumbnail,
+        //image: response.ownedNfts[k].media[0].thumbnail,
         ///attributes: response.ownedNfts[k].rawMetadata?.attributes,
         textureKey: textureKeyValue,
       });
