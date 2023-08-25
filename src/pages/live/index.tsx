@@ -377,7 +377,7 @@ const ProposalsPage: NextPageWithLayout<
         */}
 
         <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
-          <div className="m-3 w-[300px] rounded-lg bg-black">
+          <div className="m-0 rounded-lg bg-black">
             <LastWinnersPage npcs={npcNames} />
           </div>
         </Collapse>

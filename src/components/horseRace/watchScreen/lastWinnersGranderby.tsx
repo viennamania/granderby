@@ -51,16 +51,16 @@ export default function LastWinnersPage({ npcs }: any) {
   );
 
   return (
-    <div className=" flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md lg:flex">
+    <div className=" flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 p-5 text-white backdrop-blur-md ">
       {/*
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
       */}
 
-      <div className="text-xl font-bold">
+      <div className="text-xl font-bold ">
         Win Prize: {sonKazananlar?.winPrize}
       </div>
 
-      <div className="grid grid-cols-3 gap-10">
+      <div className=" flex flex-row items-center justify-center gap-5 ">
         {sonKazananlar &&
           sonKazananlar.placements.map((item: any) => {
             if (item.line > 3) return;
@@ -68,9 +68,9 @@ export default function LastWinnersPage({ npcs }: any) {
             return (
               <div
                 key={item.line}
-                className="flex items-center justify-start gap-2"
+                className="flex w-full items-center justify-center gap-2"
               >
-                <div className=" flex flex-col gap-1  text-left  text-sm text-green-500">
+                <div className=" flex flex-col gap-1 text-left  text-sm text-green-500">
                   <span className="w-12">Rank{item.line}</span>
 
                   {/*
@@ -81,7 +81,7 @@ export default function LastWinnersPage({ npcs }: any) {
                   */}
 
                   <button
-                    className=" flex h-[120px] w-[120px]"
+                    className=" flex "
                     onClick={() => {
                       setDrawerHorseInfoTokenId(item.nft?.tokenId);
                       openDrawer('DRAWER_HORSE_INFO', item.nft?.tokenId);
