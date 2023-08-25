@@ -4,10 +4,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y, Pagination, Autoplay } from 'swiper';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import cn from 'classnames';
-import { priceFeedData } from '@/data/static/nft-horse-price-feed';
+
 import Image from '@/components/ui/image';
 
 import { useRouter } from 'next/router';
+
+import { useDrawer } from '@/components/drawer-views/context';
+
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
+import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 
 type Price = {
   name: number;
@@ -43,6 +49,12 @@ export function LivePricingFeed({
 }: LivePriceFeedProps) {
   const router = useRouter();
 
+  const { openDrawer } = useDrawer();
+
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
   return (
     <div
       className={cn(
@@ -51,23 +63,27 @@ export function LivePricingFeed({
     >
       <button
         className="w-full flex-col"
-        onClick={() => router.push('/horse-details/' + id)}
+        //onClick={() => router.push('/horse-details/' + id)}
+        onClick={() => {
+          setDrawerHorseInfoTokenId(id);
+          openDrawer('DRAWER_HORSE_INFO', id);
+        }}
       >
         <div className="mb-3 flex items-center">
-          <div className="h-[34px] w-[34px]">
+          <div className="h-[54px] w-[54px]">
             <Image
               src={logo}
               alt={name}
-              width={100}
-              height={100}
-              className="rounded-full"
+              width={200}
+              height={200}
+              className="rounded-md"
             />
           </div>
           {/*icon*/}
 
           <div className="flex flex-col">
             <h4 className="text-sm font-medium text-gray-900 ltr:ml-3 rtl:mr-3 dark:text-white">
-              NFT # {id}
+              # {id}
             </h4>
             <h4 className="text-sm font-medium text-gray-900 ltr:ml-3 rtl:mr-3 dark:text-white">
               {name}

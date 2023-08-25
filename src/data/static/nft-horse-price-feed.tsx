@@ -14,12 +14,18 @@ import { RaceIcon } from '@/components/icons/race-icon';
 import { PowerIcon } from '@/components/icons/power';
 
 ///import HorseImage1 from '@/assets/images/nft/Hrs_00006000.png';
-const HorseImage1 = '/images/NFT/nft_01.jpg';
-const HorseImage2 = '/images/NFT/nft_02.jpg';
-const HorseImage3 = '/images/NFT/nft_03.jpg';
-const HorseImage4 = '/images/NFT/nft_04.jpg';
-const HorseImage5 = '/images/NFT/nft_05.jpg';
-const HorseImage6 = '/images/NFT/nft_06.jpg';
+const HorseImage1 =
+  'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00100224.png';
+const HorseImage2 =
+  'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00200345.png';
+const HorseImage3 =
+  'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00020173.png';
+const HorseImage4 =
+  'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00100224.png';
+const HorseImage5 =
+  'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00100113.png';
+const HorseImage6 =
+  'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00200432.png';
 
 export const priceFeedData = [
   {
