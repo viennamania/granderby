@@ -6,9 +6,16 @@ import Feeds from '@/components/search/feeds-horse-inventory';
 
 import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
-import ListedFeeds from '@/components/search/feeds-horse-listed';
+///import ListedFeeds from '@/components/search/feeds-horse-listed';
 
-import RegisteredFeeds from '@/components/search/feeds-horse-registered';
+import RegisteredFeeds from './feeds-horse-registered';
+
+import RegisteredFeedsDS from './feeds-horse-registered-ds';
+
+import {
+  stakingContractAddressHorseAAA,
+  stakingContractAddressHorseDerbyStars,
+} from '@/config/contractAddresses';
 
 import { useDrawer } from '@/components/drawer-views/context';
 
@@ -42,7 +49,11 @@ export default function Inventory() {
     },
     {
       title: 'Registered',
-      path: 'registered',
+      path: 'stable-a',
+    },
+    {
+      title: 'DS',
+      path: 'stable-b',
     },
 
     /*
@@ -127,11 +138,12 @@ export default function Inventory() {
                     <div className="flex gap-6  ">
                       <SortList />
 
+                      {/*
                       <div className="hidden ">
                         <GridSwitcher />
                       </div>
 
-                      {/*
+                      
                       <div className="hidden ">
                         <Button
                           shape="rounded"
@@ -160,6 +172,7 @@ export default function Inventory() {
                     <div className="flex gap-6 3xl:gap-8 ">
                       <SortList />
 
+                      {/*
                       <div className="hidden 3xl:block">
                         <GridSwitcher />
                       </div>
@@ -176,16 +189,45 @@ export default function Inventory() {
                           <OptionIcon className="relative h-auto w-[18px]" />
                         </Button>
                       </div>
+                      */}
                     </div>
                   </div>
                 </div>
-                {/*
-                <ListedFeeds />
-                */}
-                {/*
-                <OwnedFeeds />
-                */}
+
                 <RegisteredFeeds />
+              </div>
+            </TabPanel>
+
+            <TabPanel className="focus:outline-none  ">
+              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+                <div className="relative z-10 mb-6 flex items-center justify-between ">
+                  <div className="items-right flex w-full justify-end">
+                    <div className="flex gap-6 3xl:gap-8 ">
+                      <SortList />
+
+                      {/*
+                      <div className="hidden 3xl:block">
+                        <GridSwitcher />
+                      </div>
+
+                     
+                      <div className="hidden sm:block 2xl:hidden">
+                        <Button
+                          shape="rounded"
+                          size="small"
+                          variant="ghost"
+                          color="gray"
+                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                        >
+                          <OptionIcon className="relative h-auto w-[18px]" />
+                        </Button>
+                      </div>
+                      */}
+                    </div>
+                  </div>
+                </div>
+                <RegisteredFeedsDS />
               </div>
             </TabPanel>
           </ParamTab>

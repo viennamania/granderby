@@ -27,9 +27,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import {
-  nftDropContractAddressHorse,
-  marketplaceContractAddress,
-  stakingContractAddressHorseAAA,
+  nftDropContractAddressHorseDerbyStars,
+  stakingContractAddressHorseDerbyStars,
   tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
@@ -54,7 +53,11 @@ import { useLayout } from '@/lib/hooks/use-layout';
 
 import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
 
-export default function RegisteredFeeds({ className }: { className?: string }) {
+export default function RegisteredFeedsDS({
+  className,
+}: {
+  className?: string;
+}) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
@@ -66,7 +69,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
   const { layout } = useLayout();
 
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddressHorse,
+    nftDropContractAddressHorseDerbyStars,
     'nft-drop'
   );
 
@@ -88,7 +91,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
   */
 
   const { contract: stakingContract, isLoading: isLoadingStakingContract } =
-    useContract(stakingContractAddressHorseAAA, 'staking');
+    useContract(stakingContractAddressHorseDerbyStars, 'staking');
 
   const { data: stakedTokens, isLoading: isLoadingStakedTokens } =
     useContractRead(stakingContract, 'getStakeInfo', [address]);
@@ -290,7 +293,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
                   theme="light"
                   //colorMode="dark"
                   //accentColor="#5204BF"
-                  contractAddress={stakingContractAddressHorseAAA}
+                  contractAddress={stakingContractAddressHorseDerbyStars}
                   action={async (contract) => {
                     try {
                       const tx = await contract.call('claimRewards');
