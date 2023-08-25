@@ -81,7 +81,7 @@ export default function LastWinnersPage({ npcs }: any) {
                   */}
 
                   <button
-                    className=" flex "
+                    className=" flex h-[120px] w-[120px]"
                     onClick={() => {
                       setDrawerHorseInfoTokenId(item.nft?.tokenId);
                       openDrawer('DRAWER_HORSE_INFO', item.nft?.tokenId);
