@@ -57,6 +57,9 @@ import {
   useContractRead,
 } from '@thirdweb-dev/react';
 
+import { useModal } from '@/components/modal-views/context';
+import Button from '@/components/ui/button';
+
 interface RadioOptionProps {
   value: string;
 }
@@ -151,6 +154,8 @@ export default function NftSinglePrice({
         break;
     }
   };
+
+  const { openModal } = useModal();
 
   return (
     <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark ">
@@ -311,8 +316,19 @@ export default function NftSinglePrice({
               <span className="flex items-center gap-2.5">
                 <span className="items-left flex flex-col gap-2.5 ">
                   <div className="items-left flex flex-col justify-center ">
-                    <div className="text-md text-left font-bold capitalize text-black dark:text-white">
-                      {nft?.metadata?.name}
+                    <div className="flex flex-row items-center justify-between gap-2.5">
+                      <div className="text-md text-left font-bold capitalize text-black dark:text-white">
+                        {nft?.metadata?.name}
+                      </div>
+                      <Button
+                        shape="rounded"
+                        variant="solid"
+                        color="gray"
+                        className="dark:bg-gray-800"
+                        onClick={() => openModal('SHARE_VIEW')}
+                      >
+                        SHARE
+                      </Button>
                     </div>
 
                     {/* owned by */}

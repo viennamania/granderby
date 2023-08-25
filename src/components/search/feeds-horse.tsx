@@ -28,7 +28,12 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
+import { useDrawer } from '@/components/drawer-views/context';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
+import { useModal } from '@/components/modal-views/context';
+
+import Button from '@/components/ui/button';
 
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
@@ -208,6 +213,14 @@ export default function Feeds({ className }: { className?: string }) {
 
   //console.log(data);
 
+  const { openDrawer } = useDrawer();
+
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
+  const { openModal } = useModal();
+
   return (
     <>
       {status === 'loading' && (
@@ -237,6 +250,36 @@ export default function Feeds({ className }: { className?: string }) {
             </div>
           }
         >
+          {/*
+            switch (view) {
+    case 'SEARCH_VIEW':
+      return <SearchView />;
+    case 'SHARE_VIEW':
+      return <ShareView />;
+    case 'WALLET_CONNECT_VIEW':
+      return <SelectWallet />;
+    case 'PROFILE_INFO_VIEW':
+      return <ProfileInfo />;
+    case 'FOLLOWING_VIEW':
+      return <Followers />;
+    case 'FOLLOWERS_VIEW':
+      return <Followers />;
+    case 'NFT_PREVIEW':
+      return <PreviewContent />;
+    default:
+      return null;
+  }
+        */}
+
+          {/*
+        <Button
+          onClick={() => openModal('NFT_PREVIEW')}
+          className={cn('shadow-main hover:shadow-large', className)}
+        >
+          CONNECT
+        </Button>
+        */}
+
           {data?.pages.map((page) => (
             <div
               key={page.pageKey}
@@ -255,8 +298,14 @@ export default function Feeds({ className }: { className?: string }) {
                   onClick={() =>
                     //setTokenid(nft.metadata.id.toString()),
                     //setIsOpen(true)
+
                     router.push('/horse-details/' + nft?.tokenId)
                   }
+                  onMouseOver={() => {
+                    //alert("onMouseOver");
+                    //setDrawerHorseInfoTokenId(nft?.tokenId);
+                    //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
+                  }}
                 >
                   <Image
                     src={nft?.media ? nft?.media : '/default-nft.png'}

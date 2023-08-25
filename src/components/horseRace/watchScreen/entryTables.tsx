@@ -17,7 +17,6 @@ import Image from 'next/image';
 import Button from '@/components/ui/button';
 import { OptionIcon } from '@/components/icons/option';
 
-import { useDrawer } from '@/components/drawer-views/context';
 import { add, set } from 'lodash';
 
 import {
@@ -34,8 +33,6 @@ import {
   useNFT,
   Web3Button,
 } from '@thirdweb-dev/react';
-
-import DrawersContainer from '@/components/drawer-views/container';
 
 /*
 import {
@@ -70,6 +67,10 @@ const colors = {
   yellow: '#FBBF24',
 } as const;
 */
+
+import { useDrawer } from '@/components/drawer-views/context';
+
+//import DrawersContainer from '@/components/drawer-views/container';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
@@ -520,7 +521,9 @@ export default function EntryTables({
 
   return (
     <>
+      {/*
       <DrawersContainer tokenid={selectedTokenid} />
+      */}
 
       <div className="disabled flex w-full  flex-col  items-center justify-center  ">
         {/* //? Input amount manuel */}
