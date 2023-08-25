@@ -153,7 +153,7 @@ export default function NftSinglePrice({
   };
 
   return (
-    <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
+    <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark ">
       {layout === LAYOUT_OPTIONS.RETRO ? (
         <div>
           <div className="flex justify-between gap-4 sm:gap-8 md:items-start lg:flex-row lg:items-center lg:gap-4">
@@ -305,22 +305,22 @@ export default function NftSinglePrice({
           </div>
         </div>
       ) : (
-        <div className=" flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
+        <div className=" flex flex-col items-center justify-between  gap-2 lg:flex-row">
           <div>
             <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
               <span className="flex items-center gap-2.5">
                 <span className="items-left flex flex-col gap-2.5 ">
                   <div className="items-left flex flex-col justify-center ">
-                    <div className="text-left text-xl font-bold capitalize text-black dark:text-white">
+                    <div className="text-md text-left font-bold capitalize text-black dark:text-white">
                       {nft?.metadata?.name}
                     </div>
 
                     {/* owned by */}
-                    <div className="mt-5 flex flex-col items-center gap-4 ">
-                      <div className=" text-sm tracking-wider text-[#6B7280]">
+                    <div className="mt-5 flex flex-row items-center gap-4 ">
+                      <div className=" text-xs tracking-wider text-[#6B7280]">
                         Owned by
                       </div>
-                      <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                      <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                         {stakerAddress &&
                         stakerAddress ===
                           '0x0000000000000000000000000000000000000000' ? (

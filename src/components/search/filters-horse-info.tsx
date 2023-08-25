@@ -264,18 +264,14 @@ export function Status() {
   );
 }
 
-export function Grade() {
-  let [grade, setGrade] = useState('grade-u');
-
-  ///console.log('Grade', grade);
-
+export function Grade(grade: any) {
   return (
     <RadioGroup
       value={grade}
-      onChange={setGrade}
+      //onChange={setGrade}
       className="grid grid-cols-2 gap-2 p-5"
     >
-      <RadioGroup.Option value="grade-u">
+      <RadioGroup.Option value="U">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -295,7 +291,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-s">
+      <RadioGroup.Option value="S">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -315,7 +311,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-a">
+      <RadioGroup.Option value="A">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -335,7 +331,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-b">
+      <RadioGroup.Option value="B">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -355,7 +351,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-c">
+      <RadioGroup.Option value="C">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -375,7 +371,7 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-d">
+      <RadioGroup.Option value="D">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -415,9 +411,7 @@ export function Filters(tokenid: any) {
       <NftInfo nftMetadata={nftMetadata} />
   */}
 
-      <Collapse label="Grades" initialOpen>
-        <Grade />
-      </Collapse>
+      <Grade grade="U" />
 
       {/*
       <Collapse label="Status" initialOpen>
@@ -446,7 +440,7 @@ export default function DrawerHorseInfo(tokenid: any) {
   const [drawerHorseInfoTokenId] = useLocalStorage('drawer-horse-info-tokenid');
 
   return (
-    <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
+    <div className="relative w-full max-w-full bg-white dark:bg-dark   xs:w-96 ">
       <div className="flex h-20 items-center justify-between overflow-hidden px-6 py-4">
         <h2 className="text-xl font-medium uppercase tracking-wider text-gray-900 dark:text-white">
           Information
