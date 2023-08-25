@@ -5,6 +5,7 @@ import Button from '@/components/ui/button';
 import Feeds from '@/components/search/feeds-horse-inventory';
 
 import OwnedFeeds from '@/components/search/feeds-horse-owned';
+
 import ListedFeeds from '@/components/search/feeds-horse-listed';
 
 import RegisteredFeeds from '@/components/search/feeds-horse-registered';
@@ -130,6 +131,7 @@ export default function Inventory() {
                         <GridSwitcher />
                       </div>
 
+                      {/*
                       <div className="hidden ">
                         <Button
                           shape="rounded"
@@ -142,6 +144,7 @@ export default function Inventory() {
                           <OptionIcon className="relative h-auto w-[18px]" />
                         </Button>
                       </div>
+                      */}
                     </div>
                   </div>
                 </div>

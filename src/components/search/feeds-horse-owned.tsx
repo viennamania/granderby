@@ -43,6 +43,8 @@ import {
   Web3Button,
 } from '@thirdweb-dev/react';
 
+import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
+
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
@@ -200,6 +202,8 @@ export default function Feeds({ className }: { className?: string }) {
 
   //console.log(data);
 
+  const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
+
   return (
     <div className="">
       {!address ? (
@@ -298,7 +302,10 @@ export default function Feeds({ className }: { className?: string }) {
                       className="relative overflow-hidden rounded-lg bg-white shadow-lg"
                       onClick={() => {
                         //setTokenid(nft.metadata.id.toString()),
-                        //setIsOpen(false);
+
+                        //////setIsOpen(false);
+
+                        closeInventories();
                         router.push('/horse-details/' + nft?.metadata?.id);
                       }}
                     >

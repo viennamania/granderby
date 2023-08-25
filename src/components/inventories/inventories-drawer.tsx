@@ -10,7 +10,9 @@ import Scrollbar from '@/components/ui/scrollbar';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useDirection } from '@/lib/hooks/use-direction';
 import { useThemeColor } from '@/lib/hooks/use-theme-color';
+
 import { useInventoriesDrawer } from './inventories-context';
+
 import { Close } from '@/components/icons/close';
 import { Sun } from '@/components/icons/sun';
 import { Moon } from '@/components/icons/moon';

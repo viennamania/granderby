@@ -52,6 +52,8 @@ import NFTCard from '@/components/nft-horse/NFTCard';
 import { BigNumber, ethers } from 'ethers';
 import { useLayout } from '@/lib/hooks/use-layout';
 
+import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
+
 export default function Feeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
@@ -255,6 +257,8 @@ export default function Feeds({ className }: { className?: string }) {
 
   //console.log(data);
 
+  const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
+
   return (
     <div className=" h-screen ">
       {!address ? (
@@ -327,9 +331,10 @@ export default function Feeds({ className }: { className?: string }) {
                     <div
                       key={stakedToken.toString()}
                       className="block"
-                      onClick={() =>
-                        router.push('/horse-details/' + stakedToken)
-                      }
+                      onClick={() => {
+                        closeInventories();
+                        router.push('/horse-details/' + stakedToken);
+                      }}
                     >
                       <NFTCard
                         tokenId={stakedToken.toNumber()}
