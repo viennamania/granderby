@@ -209,7 +209,11 @@ export default function Feeds({ className }: { className?: string }) {
       {!address ? (
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg">
-            <ConnectWallet theme="light" />
+            <ConnectWallet
+              theme="light"
+
+              ///onClick={() => closeInventories()}
+            />
             to see my owned horses
           </div>
         </>

@@ -73,6 +73,8 @@ import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 import Collapse from '@/components/ui/collapse-last-winners';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
+import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
+
 export default function ModernScreen() {
   const address = useAddress();
 
@@ -458,10 +460,21 @@ export default function ModernScreen() {
         */}
 
           <Collapse label="Live Pricing" initialOpen={true}>
-            <div className="m-5 p-5">
+            <div className="p-5">
               <LiveNftPricingSlider limits={4} />
             </div>
           </Collapse>
+
+          {/*
+          <Collapse label="Live Pricing" initialOpen={true}>
+            <div className="m-5 p-5">
+
+
+              <CryptoCurrencyPricingSkeleton />
+
+            </div>
+          </Collapse>
+          */}
 
           <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
             <div className=" rounded-md  bg-black">
@@ -537,7 +550,7 @@ export default function ModernScreen() {
           </div>
 
           <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-5 shadow-card dark:bg-light-dark ">
-            <div className="mb-1 text-center text-lg text-black xl:text-2xl">
+            <div className="mb-1 text-center text-sm text-black xl:text-lg">
               My horses <span className="font-bold text-red-500">RUN</span>, I{' '}
               <span className="font-bold text-blue-500">EARN</span> !{' '}
               <span className="text-block text-xs ">©</span>

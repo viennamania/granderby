@@ -61,8 +61,6 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
 
   const address = useAddress();
 
-  console.log('address======>', address);
-
   const { layout } = useLayout();
 
   const { contract: nftDropContract } = useContract(
@@ -88,7 +86,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
   */
 
   const { contract: stakingContract, isLoading: isLoadingStakingContract } =
-    useContract(stakingContractAddressHorseAAA, 'staking');
+    useContract(stakingContractAddressHorseAAA);
 
   const { data: stakedTokens, isLoading: isLoadingStakedTokens } =
     useContractRead(stakingContract, 'getStakeInfo', [address]);

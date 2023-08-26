@@ -296,7 +296,7 @@ export default function NftSinglePrice({
       stakingContractAddressHorseAAA
     );
 
-    //onsole.log('isApproved', isApproved);
+    console.log('isApproved', isApproved);
 
     if (!isApproved) {
       const data = await nftDropContract?.setApprovalForAll(
@@ -309,7 +309,7 @@ export default function NftSinglePrice({
 
     const data = await contractStaking?.call('stake', [[id]]);
 
-    //console.log('staking data', data);
+    console.log('staking data=====', data);
 
     if (data) {
       alert('Your horse has been registered successfully');

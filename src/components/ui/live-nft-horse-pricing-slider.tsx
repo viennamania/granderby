@@ -58,39 +58,48 @@ export function LivePricingFeed({
   return (
     <div
       className={cn(
-        'flex items-center gap-4 rounded-lg bg-white p-5 shadow-[0_8px_16px_rgba(17,24,39,0.05)] dark:bg-light-dark lg:flex-row'
+        'flex flex-row items-center gap-4 rounded-lg bg-white p-5 shadow-[0_8px_16px_rgba(17,24,39,0.05)] dark:bg-light-dark '
       )}
     >
       <button
-        className="w-full flex-col"
+        //className="w-full flex-col"
+
+        className={`gold-btn block border border-black p-1 text-center text-black ${
+          id === '0'
+            ? 'gold-btn-active'
+            : id === '1000'
+            ? 'bg-[#ffc000]'
+            : 'bg-transparent'
+        } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
         //onClick={() => router.push('/horse-details/' + id)}
         onClick={() => {
           setDrawerHorseInfoTokenId(id);
           openDrawer('DRAWER_HORSE_INFO', id);
         }}
       >
-        <div className="mb-3 flex items-center">
-          <div className="h-[54px] w-[54px]">
-            <Image
-              src={logo}
-              alt={name}
-              width={200}
-              height={200}
-              className="rounded-md"
-            />
-          </div>
+        <div className="flex flex-col items-center justify-center">
+          <Image
+            src={logo}
+            alt={name}
+            width={200}
+            height={200}
+            className="rounded-md"
+          />
+
           {/*icon*/}
 
-          <div className="flex flex-col">
-            <h4 className="text-sm font-medium text-gray-900 ltr:ml-3 rtl:mr-3 dark:text-white">
+          <div className="mt-2 flex flex-col items-center justify-center">
+            <h4 className="text-sm font-medium text-gray-900  dark:text-white">
               # {id}
             </h4>
-            <h4 className="text-sm font-medium text-gray-900 ltr:ml-3 rtl:mr-3 dark:text-white">
+            <h4 className="text-sm font-medium text-gray-900  dark:text-white">
               {name}
             </h4>
           </div>
         </div>
+      </button>
 
+      <div className="flex w-full flex-col justify-between">
         <div className="mb-2 text-sm font-medium tracking-tighter text-gray-900 dark:text-white lg:text-lg 2xl:text-xl 3xl:text-2xl">
           {balance}
           <span className="ml-3">{symbol}</span>
@@ -119,38 +128,44 @@ export function LivePricingFeed({
             {change}
           </span>
         </div>
-      </button>
 
-      <div
-        className="h-20 w-full overflow-hidden"
-        data-hello={isChangePositive ? '#22c55e' : '#D6455D'}
-      >
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={prices}>
-            <defs>
-              <linearGradient id={`${name}-${id}`} x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="0%"
-                  stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
-                  stopOpacity={0.5}
-                />
-                <stop
-                  offset="100%"
-                  stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-            <Area
-              type="linear"
-              dataKey="value"
-              stroke={isChangePositive ? '#22c55e' : '#D6455D'}
-              strokeWidth={2.5}
-              fill={`url(#${`${name}-${id}`})`}
-              dot={false}
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+        <div
+          className="h-20 w-full overflow-hidden"
+          data-hello={isChangePositive ? '#22c55e' : '#D6455D'}
+        >
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={prices}>
+              <defs>
+                <linearGradient
+                  id={`${name}-${id}`}
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
+                    stopOpacity={0.5}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+              </defs>
+              <Area
+                type="linear"
+                dataKey="value"
+                stroke={isChangePositive ? '#22c55e' : '#D6455D'}
+                strokeWidth={2.5}
+                fill={`url(#${`${name}-${id}`})`}
+                dot={false}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

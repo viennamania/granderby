@@ -350,7 +350,7 @@ export default function NftSinglePrice({
     [tokenid]
   );
 
-  console.log('stakerAddress', stakerAddress);
+  console.log('stakerAddress====', stakerAddress);
 
   const handleOnChange = (value: string) => {
     setStatus(value);
@@ -373,25 +373,34 @@ export default function NftSinglePrice({
   async function stakeNft(id: string) {
     if (!address) return;
 
+    ///console.log('stakeNft id', id);
+
     const isApproved = await nftDropContract?.isApproved(
       address,
       stakingContractAddressHorseDerbyStars
     );
 
-    //onsole.log('isApproved', isApproved);
+    console.log('isApproved', isApproved);
 
-    if (!isApproved) {
+    if (isApproved !== true) {
+      /*
       const data = await nftDropContract?.setApprovalForAll(
         stakingContractAddressHorseDerbyStars,
         true
       );
+      */
 
-      alert(data);
+      const data = await nftDropContract?.erc721.setApprovalForAll(
+        stakingContractAddressHorseDerbyStars,
+        true
+      );
+
+      console.log('setApprovalForAll result=', data);
     }
 
     const data = await contractStaking?.call('stake', [[id]]);
 
-    //console.log('staking data', data);
+    console.log('staking data', data);
 
     if (data) {
       alert('Your horse has been registered successfully');
