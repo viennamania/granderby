@@ -463,6 +463,23 @@ export default function ModernScreen() {
             <div className="p-5">
               <LiveNftPricingSlider limits={4} />
             </div>
+            {/*
+            <div className='w-full items-center justify-center'>
+              <Link
+                className="hidden h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
+                href="/live"
+              >
+                <Image
+                  src="/horseRace/live.gif"
+                  alt="live"
+                  width={100}
+                  height={30}
+                  className="mb-1"
+                />
+                <span className="mr-2 text-white">for bet</span>
+              </Link>
+            </div>
+            */}
           </Collapse>
 
           {/*
@@ -480,6 +497,7 @@ export default function ModernScreen() {
             <div className=" rounded-md  bg-black">
               <LastWinners npcs={npcNames} />
             </div>
+            <div></div>
           </Collapse>
 
           <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">

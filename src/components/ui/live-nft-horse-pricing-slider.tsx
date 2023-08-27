@@ -64,7 +64,7 @@ export function LivePricingFeed({
       <button
         //className="w-full flex-col"
 
-        className={`gold-btn block border border-black p-1 text-center text-black ${
+        className={`gold-btn flex border border-black p-1 text-center text-black ${
           id === '0'
             ? 'gold-btn-active'
             : id === '1000'
@@ -77,20 +77,20 @@ export function LivePricingFeed({
           openDrawer('DRAWER_HORSE_INFO', id);
         }}
       >
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex w-[80px] flex-col items-center justify-center">
           <Image
             src={logo}
             alt={name}
             width={200}
             height={200}
-            className="rounded-md"
+            className="rounded-md "
           />
 
           {/*icon*/}
 
           <div className="mt-2 flex flex-col items-center justify-center">
             <h4 className="text-sm font-medium text-gray-900  dark:text-white">
-              # {id}
+              #{id}
             </h4>
             <h4 className="text-sm font-medium text-gray-900  dark:text-white">
               {name}
