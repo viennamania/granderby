@@ -4,6 +4,7 @@ import type { NextPageWithLayout } from '@/types';
 import RootLayout from '@/layouts/_root-layout';
 
 import BetInputs from '@/components/horseRace/watchScreen/betInputs';
+
 import BetTables from '@/components/horseRace/watchScreen/betTables';
 
 import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
@@ -208,7 +209,7 @@ const WidgetPage: NextPageWithLayout<
     });
     socketa.on('horse8Rate', (data: any) => {
       setHorse8Oran(data);
-    } );
+    });
     socketa.on('horse9Rate', (data: any) => {
       setHorse9Oran(data);
     });
@@ -343,30 +344,30 @@ const WidgetPage: NextPageWithLayout<
                                 </div>
                                 */}
 
-                <BetInputs
-                  horse1={horse1Oran}
-                  horse2={horse2Oran}
-                  horse3={horse3Oran}
-                  horse4={horse4Oran}
-                  horse5={horse5Oran}
-                  horse6={horse6Oran}
-                  horse7={horse7Oran}
-                  horse8={horse8Oran}
-                  horse9={horse9Oran}
-                  horse10={horse10Oran}
-                  //user={user}
-                  user={null}
-                  npcs={npcNames}
-                  //inputs={inputs}
-                  inputs={null}
-                  balance={balance}
-                />
+                <div className="mt-10 flex w-full flex-col items-center justify-center gap-5 p-2 lg:flex-row ">
+                  <BetInputs
+                    horse1={horse1Oran}
+                    horse2={horse2Oran}
+                    horse3={horse3Oran}
+                    horse4={horse4Oran}
+                    horse5={horse5Oran}
+                    horse6={horse6Oran}
+                    horse7={horse7Oran}
+                    horse8={horse8Oran}
+                    horse9={horse9Oran}
+                    horse10={horse10Oran}
+                    //user={user}
+                    user={null}
+                    npcs={npcNames}
+                    //inputs={inputs}
+                    inputs={null}
+                    balance={balance}
+                  />
+                </div>
 
-                {/*
-              <div className="flex w-full flex-col items-center justify-center gap-5 p-2 lg:flex-row "></div>
-              */}
-
-                <BetTables npcs={npcNames} />
+                <div className="mt-20 flex w-full flex-col items-center justify-center gap-5 p-2 lg:flex-row ">
+                  <BetTables npcs={npcNames} />
+                </div>
               </>
             ) : (
               <>

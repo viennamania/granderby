@@ -37,6 +37,9 @@ import { parseIneligibility } from '@/utils/parseIneligibility';
 
 import Image from 'next/image';
 
+import { useDrawer } from '@/components/drawer-views/context';
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 /*
 import {
   ////contractConst,
@@ -459,6 +462,12 @@ export default function BetInputs({
   );
   */
 
+  const { openDrawer } = useDrawer();
+
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
   return (
     <>
       {/*
@@ -579,9 +588,16 @@ export default function BetInputs({
         <div className="flex w-full flex-row items-center justify-center gap-3  text-xs  ">
           <button
             disabled={placedBet}
+            /*
             onClick={() => {
               setChosenNpc(npcs?.horse1);
               setTokenid(BigNumber.from(0));
+            }}
+            */
+
+            onClick={() => {
+              setDrawerHorseInfoTokenId(npcs?.nft1?.tokenId);
+              openDrawer('DRAWER_HORSE_INFO', npcs?.nft1?.tokenId);
             }}
             className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
               chosenNpc === npcs?.horse1
@@ -601,6 +617,7 @@ export default function BetInputs({
                   alt="pp"
                   className="h-[45px] w-[45px] rounded-md"
                 />
+
                 <Image
                   src={`/horseRace/${npcs?.nft1?.contract}.png`}
                   width={100}
@@ -613,6 +630,7 @@ export default function BetInputs({
                   #{npcs?.nft1?.tokenId}
                 </span>
               </div>
+
               {/*
               <span className="text-xs">{npcs?.horse1}</span>
               */}
@@ -622,9 +640,15 @@ export default function BetInputs({
 
           <button
             disabled={placedBet}
+            /*
             onClick={() => {
               setChosenNpc(npcs?.horse2);
               setTokenid(BigNumber.from(1));
+            }}
+            */
+            onClick={() => {
+              setDrawerHorseInfoTokenId(npcs?.nft2?.tokenId);
+              openDrawer('DRAWER_HORSE_INFO', npcs?.nft2?.tokenId);
             }}
             className={`gold-btn h-20 w-44 border  border-white p-1 text-center  text-white ${
               chosenNpc === npcs?.horse2
@@ -664,9 +688,15 @@ export default function BetInputs({
 
           <button
             disabled={placedBet}
+            /*
             onClick={() => {
               setChosenNpc(npcs?.horse3);
               setTokenid(BigNumber.from(2));
+            }}
+            */
+            onClick={() => {
+              setDrawerHorseInfoTokenId(npcs?.nft3?.tokenId);
+              openDrawer('DRAWER_HORSE_INFO', npcs?.nft3?.tokenId);
             }}
             className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
               chosenNpc === npcs?.horse3
@@ -706,9 +736,15 @@ export default function BetInputs({
 
           <button
             disabled={placedBet}
+            /*
             onClick={() => {
               setChosenNpc(npcs?.horse4);
               setTokenid(BigNumber.from(3));
+            }}
+            */
+            onClick={() => {
+              setDrawerHorseInfoTokenId(npcs?.nft4?.tokenId);
+              openDrawer('DRAWER_HORSE_INFO', npcs?.nft4?.tokenId);
             }}
             className={`gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
               chosenNpc === npcs.horse4
@@ -748,9 +784,15 @@ export default function BetInputs({
 
           <button
             disabled={placedBet}
+            /*
             onClick={() => {
               setChosenNpc(npcs?.horse5);
               setTokenid(BigNumber.from(4));
+            }}
+            */
+            onClick={() => {
+              setDrawerHorseInfoTokenId(npcs?.nft5?.tokenId);
+              openDrawer('DRAWER_HORSE_INFO', npcs?.nft5?.tokenId);
             }}
             className={` gold-btn h-20 w-44 border border-white p-1 text-center text-white ${
               chosenNpc === npcs?.horse5

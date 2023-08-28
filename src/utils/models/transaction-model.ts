@@ -139,6 +139,7 @@ export const getAllTransactions = async (
   contract: object,
   address: string
 ) => {
+  /*
   console.log('getAllTransactions pageNumber', pageNumber);
   console.log('getAllTransactions pagination', pagination);
   console.log('getAllTransactions contract', contract);
@@ -148,6 +149,7 @@ export const getAllTransactions = async (
     'getAllTransactions contractAddress',
     contract?.contractAddress.toLowerCase()
   );
+  */
 
   /*
   const data = await TransactionModel.find({

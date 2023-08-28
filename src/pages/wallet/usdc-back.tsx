@@ -49,7 +49,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 import styles2 from '@/styles/EWallet.module.css';
 
-import { GrdIcon } from '@/components/icons/grd-icon';
+import { Usdc } from '@/components/icons/usdc';
 
 import {
   ConnectWallet,
@@ -73,10 +73,9 @@ import {
 } from '@thirdweb-dev/sdk';
 
 import {
-  thirdwebClientId,
+  //thirdwebClientId,
   tokenContractAddressUSDC,
   tokenContractAddressUSDT,
-  tokenContractAddressGRD,
   marketplaceContractAddress,
 } from '@/config/contractAddresses';
 
@@ -89,13 +88,6 @@ import { add } from 'lodash';
 const readOnlySdk = new ThirdwebSDK("goerli", {
   clientId: "YOUR_CLIENT_ID", // Use client id if using on the client side, get it from dashboard settings
   secretKey: "YOUR_SECRET_KEY", // Use secret key if using on the server, get it from dashboard settings
-});
-*/
-
-/*
-const sdk = new ThirdwebSDK('polygon', {
-  clientId: "79125a56ef0c1629d4863b6df0a43cce",
-  secretKey: "S8C-YQE74bYt9yQEAaBRKQRBy-9wqsGsMIO04vxPEO7XwoFoUXu82kCOTPMGkCkfwerg5M0_-8dt1bwaGvsyOg",
 });
 */
 
@@ -122,14 +114,21 @@ const WalletPage: NextPageWithLayout<
 
   const address = useAddress();
 
-  /*
-  const { contract: tokenContractGRD } = useContract(
-    tokenContractAddressGRD,
+  const { contract: tokenContractUSDC } = useContract(
+    tokenContractAddressUSDC,
     'token'
   );
 
-  const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
-  */
+  const { data: tokenBalanceUSDC } = useTokenBalance(
+    tokenContractUSDC,
+    address
+  );
+
+  const {
+    mutate: transferTokens,
+    isLoading,
+    error,
+  } = useTransferToken(tokenContractUSDC);
 
   /*
   const { contract: tokenContractUSDT } = useContract(
@@ -141,21 +140,6 @@ const WalletPage: NextPageWithLayout<
     address
   );
   */
-
-  const { contract: tokenContractUSDC } = useContract(
-    tokenContractAddressUSDC,
-    'token'
-  );
-  const { data: tokenBalanceUSDC } = useTokenBalance(
-    tokenContractUSDC,
-    address
-  );
-
-  const {
-    mutate: transferTokens,
-    isLoading,
-    error,
-  } = useTransferToken(tokenContractUSDC);
 
   const [toAddress, setToAddress] = useState('');
   const [amount, setAmount] = useState();
@@ -268,6 +252,8 @@ const WalletPage: NextPageWithLayout<
 
   const signer = useSigner();
 
+  //console.log('signer', signer);
+
   // render retro layout profile
   if (layout === LAYOUT_OPTIONS.RETRO) {
     return (
@@ -313,73 +299,42 @@ const WalletPage: NextPageWithLayout<
     setIsSending(true);
 
     try {
-      //const signer = sdk.wallet.getSigner();
-
-      /*
       if (signer === undefined) {
-        alert(`🌊 Please connect your wallet`);
+        alert(`🌊 Please connect wallet`);
         return;
       }
-      */
 
       /*
-      const sdk = ThirdwebSDK.fromSigner(signer, {
-        chainId: ChainId.Polygon,
-        clientId: "79125a56ef0c1629d4863b6df0a43cce",
-        secretKey: "S8C-YQE74bYt9yQEAaBRKQRBy-9wqsGsMIO04vxPEO7XwoFoUXu82kCOTPMGkCkfwerg5M0_-8dt1bwaGvsyOg",
-        //gasless: {
-        //  relayer: 'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
-       // }
+      const sdk = new ThirdwebSDK('polygon', {
+        clientId: thirdwebClientId,
       });
       */
 
-      /*
+      console.log('signer', signer);
+
       const sdk = ThirdwebSDK.fromSigner(signer, {
         chainId: ChainId.Polygon,
-        clientId: "79125a56ef0c1629d4863b6df0a43cce", // Use client id if using on the client side, get it from dashboard settings
-        secretKey: "S8C-YQE74bYt9yQEAaBRKQRBy-9wqsGsMIO04vxPEO7XwoFoUXu82kCOTPMGkCkfwerg5M0_-8dt1bwaGvsyOg", // Use secret key if using on the server, get it from dashboard settings
+        clientId: thirdwebClientId,
+        gasless: {
+          relayer:
+            'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
+        },
       });
-      
-
 
       console.log('sdk', sdk);
-      
-      
+
       const contract = await sdk.getContract(tokenContractAddressUSDC);
 
-      console.log('contract====', contract);
-      */
+      //console.log('contract', contract);
 
-      /*
       const transaction = await contract.erc20.transfer(toAddress, amount);
-      */
 
       /*
-      const transaction = await contract.call(
-        "transfer", // Name of your function as it is on the smart contract
-        // Arguments to your function, in the same order they are on your smart contract
-        
-        [
-          toAddress, // e.g. Argument 1
-          "2000000", // e.g. Argument 2
-        ],
-        
-      );
-      */
-      /*
-      const transaction = await contract.call(
-        "name",
-      );
-      */
-
-      console.log('signer====', signer);
-
       const transaction = await tokenContractUSDC?.erc20.transfer(
         toAddress,
         amount
       );
-
-      console.log('transaction====', transaction);
+      */
 
       console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 
@@ -479,7 +434,7 @@ const WalletPage: NextPageWithLayout<
 
         {address ? (
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            <GrdIcon className="h-auto w-8 lg:w-auto" />
+            <Usdc className="h-auto w-8 lg:w-auto" />
             <b>
               {tokenBalanceUSDC === undefined ? (
                 <>Loading...</>
@@ -521,14 +476,13 @@ const WalletPage: NextPageWithLayout<
         )}
       </div>
 
-      <div>
-        <div className=" flex flex-row items-center justify-center text-lime-600">
-          {/* Form Section */}
-          <div className={styles.collectionContainer}>
-            <div className="mb-2 text-lg">Send my USDC to another address:</div>
+      <div className=" flex flex-row items-center justify-center text-lime-600">
+        {/* Form Section */}
+        <div className={styles.collectionContainer}>
+          <div className="mb-2 text-lg">Send my USDC to another address:</div>
 
-            {/* Toggle between direct listing and auction listing */}
-            {/*
+          {/* Toggle between direct listing and auction listing */}
+          {/*
             <div className={styles.listingTypeContainer}>
               <input
                 type="radio"
@@ -560,58 +514,57 @@ const WalletPage: NextPageWithLayout<
             </div>
             */}
 
-            {/* NFT Contract Address Field */}
-            <input
-              className="mb-2 w-full text-black"
-              type="text"
-              name="toAddress"
-              placeholder="To Address"
-              value={toAddress}
-              onChange={(e) => {
-                setToAddress(e.target.value);
-              }}
-            />
+          {/* NFT Contract Address Field */}
+          <input
+            className="mb-2 w-full text-black"
+            type="text"
+            name="toAddress"
+            placeholder="To Address"
+            value={toAddress}
+            onChange={(e) => {
+              setToAddress(e.target.value);
+            }}
+          />
 
-            <button
-              onClick={showModal2}
-              className="m-5 text-xl font-bold text-blue-600"
-            >
-              Scan
-            </button>
+          <button
+            onClick={showModal2}
+            className="m-5 text-xl font-bold text-blue-600"
+          >
+            Scan
+          </button>
 
-            <div className="mb-3 text-lg"></div>
+          <div className="mb-3 text-lg"></div>
 
-            <input
-              className=" w-full text-right text-5xl font-bold text-lime-600"
-              type="number"
-              name="amount"
-              placeholder="0"
-              value={amount}
-              onChange={(e) => {
-                if (e.target.value === null) setAmount(undefined);
-                else if (Number(e.target.value) === 0) setAmount(undefined);
-                else if (Number(e.target.value) < 0) setAmount(undefined);
-                else if (
-                  Number(e.target.value) >
-                  Number(tokenBalanceUSDC?.displayValue)
-                ) {
-                  setAmount(Number(tokenBalanceUSDC?.displayValue));
-                } else {
-                  setAmount(Number(e.target.value));
-                }
-              }}
-            />
+          <input
+            className=" w-full text-right text-5xl font-bold text-lime-600"
+            type="number"
+            name="amount"
+            placeholder="0"
+            value={amount}
+            onChange={(e) => {
+              if (e.target.value === null) setAmount(undefined);
+              else if (Number(e.target.value) === 0) setAmount(undefined);
+              else if (Number(e.target.value) < 0) setAmount(undefined);
+              else if (
+                Number(e.target.value) > Number(tokenBalanceUSDC?.displayValue)
+              ) {
+                setAmount(Number(tokenBalanceUSDC?.displayValue));
+              } else {
+                setAmount(Number(e.target.value));
+              }
+            }}
+          />
 
-            {address && (
-              <div className="mb-3 text-lg">
-                {(
-                  Number(tokenBalanceUSDC?.displayValue) - (amount || 0)
-                ).toFixed(2)}{' '}
-                {tokenBalanceUSDC?.symbol} left
-              </div>
-            )}
+          {address && (
+            <div className="mb-3 text-lg">
+              {(Number(tokenBalanceUSDC?.displayValue) - (amount || 0)).toFixed(
+                2
+              )}{' '}
+              {tokenBalanceUSDC?.symbol} left
+            </div>
+          )}
 
-            {/*}
+          {/*}
             <button
               type="submit"
               className={styles.mainButton}
@@ -621,75 +574,69 @@ const WalletPage: NextPageWithLayout<
             </button>
             */}
 
-            {address ? (
-              <div className="mt-5 flex flex-row justify-center">
-                {/*{isTransferTokensLoading ? (*/}
+          {address ? (
+            <div className="mt-5 flex flex-row justify-center">
+              {/*{isTransferTokensLoading ? (*/}
 
-                {isSending ? (
-                  <div className="flex flex-row items-center justify-center gap-2">
-                    <div className="animate-spin">
-                      <GrdIcon className="h-35 w-35" />
-                    </div>
-                    <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                      <span>
-                        Sending {amount} {tokenBalanceGRD?.symbol} to
-                      </span>
-                      <span className="text-xs">{toAddress}</span>
-                      <span>Please wait...</span>
-                    </div>
+              {isSending ? (
+                <div className="flex flex-row items-center justify-center gap-2">
+                  <div className="animate-spin">
+                    <Usdc className="h-35 w-35" />
                   </div>
-                ) : (
-                  <>
-                    <Web3Button
-                      theme="light"
-                      contractAddress={tokenContractAddressUSDC}
-                      action={(contract) => {
-                        //contract?.call('withdraw', [[nft.metadata.id]])
-                        //contract?.call('withdraw', [[nft.metadata.id]])
-                        //contract.erc1155.claim(0, 1);
+                  <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                    <span>
+                      Sending {amount} {tokenBalanceUSDC?.symbol} to
+                    </span>
+                    <span className="text-xs">{toAddress}</span>
+                    <span>Please wait...</span>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Web3Button
+                    theme="light"
+                    contractAddress={tokenContractAddressUSDC}
+                    action={(contract) => {
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract.erc1155.claim(0, 1);
 
-                        ///contract.erc20.transfer(toAddress, amount);
+                      ///contract.erc20.transfer(toAddress, amount);
 
-                        //transferToken(toAddress, amount);
-                        transferTokens({
-                          to: toAddress, // Address to transfer to
-                          amount: amount, // Amount to transfer
-                        });
+                      transferToken(toAddress, amount);
 
-                        /*
-                          transferTokens({
-                            to: toAddress, // Address to transfer to
-                            amount: amount, // Amount to transfer
-                          })
-                          */
-                      }}
-                      onSuccess={() => {
-                        //setAmount(0);
-                        //setToAddress('');
+                      //transferTokens({
+                      //  to: toAddress, // Address to transfer to
+                      //  amount: amount, // Amount to transfer
+                      //})
+                    }}
+                    onSuccess={() => {
+                      //setAmount(0);
+                      //setToAddress('');
 
-                        console.log(`🌊 Successfully transfered!`);
-                        //alert('Successfully transfered!');
+                      console.log(`🌊 Successfully transfered!`);
+                      //alert('Successfully transfered!');
 
-                        //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                        //handleClickSucc();
-                      }}
-                      onError={(error) => {
-                        console.error('Failed to transfer', error);
-                        alert('Failed to transfer');
-                        //setErrMsgSnackbar('Failed to transfer');
-                        //handleClickErr();
-                      }}
-                    >
-                      Transfer ({amount} GRD)
-                    </Web3Button>
-                  </>
-                )}
+                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                      //handleClickSucc();
+                    }}
+                    onError={(error) => {
+                      console.error('Failed to transfer', error);
+                      alert('Failed to transfer');
+                      //setErrMsgSnackbar('Failed to transfer');
+                      //handleClickErr();
+                    }}
+                  >
+                    Transfer ({amount} USDC)
+                  </Web3Button>
+                </>
+              )}
 
-                {/*
+              {/*
                 <div className="ml-5 flex items-center justify-center">
                   {isTransferTokensLoading && (
                     <div className="animate-spin">
-                      <GRDIcon className="h-10 w-10" />
+                      <USDCIcon className="h-10 w-10" />
                     </div>
                   )}
                 </div>
@@ -702,28 +649,29 @@ const WalletPage: NextPageWithLayout<
                   
                 </div>
                    */}
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 
       <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <TransactionTable {...{ contractAddress: tokenContractAddressGRD }} />
+        <TransactionTable {...{ contractAddress: tokenContractAddressUSDC }} />
       </div>
 
+      {/*
       {address && (
         <iframe
           className="mt-10 h-[500px] w-full border"
           src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c"
         />
       )}
+      */}
 
       {/*
       <Web3Button
-        contractAddress={tokenContractAddressGRD}
+        contractAddress={tokenContractAddressUSDC}
         action={() =>
           transferTokens({
             to: "0xb6012B608DB2ad15e4Fb53d8AD2A2A8B6805F1a2", // Address to transfer to
