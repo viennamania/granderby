@@ -113,11 +113,11 @@ export default function Search() {
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="xl:hidden">
+                  <div className="flex flex-row gap-2">
                     {selectedGradesStorage?.map((grade, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-center gap-2"
+                        className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-2 py-1 dark:border-gray-700"
                       >
                         <div className="text-sm font-bold">Grade:</div>
                         <div className="text-sm font-bold">{grade}</div>

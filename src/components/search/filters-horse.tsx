@@ -22,6 +22,7 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 import Image from 'next/image';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+import { lowerCase } from 'lodash';
 
 export function GridSwitcher() {
   const { isGridCompact, setIsGridCompact } = useGridSwitcher();
@@ -451,7 +452,7 @@ export function GradeMultiple() {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-2 p-3 xl:grid-cols-2">
+    <div className="grid grid-cols-2 gap-2 p-3  ">
       {/*
         <Listbox
           as="div"
@@ -582,7 +583,7 @@ export function GradeMultiple() {
               }`}
             >
               <Image
-                src={`/images/grade-${grade}.png`}
+                src={`/images/grade-${lowerCase(grade)}.png`}
                 alt={grade}
                 width={20}
                 height={20}
