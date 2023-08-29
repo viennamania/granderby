@@ -118,22 +118,7 @@ export default function Search() {
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div>
-                    {/*
-                    {filtersGrade && (
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="text-xl font-bold">Grade:</div>
-                        <div className="text-xl font-bold">{filtersGrade}</div>
-                        <button
-                          className="text-xl font-bold"
-                          onClick={() => setFilterGrade('')}
-                        >
-                          X
-                        </button>
-                      </div>
-                    )}
-                    */}
-
+                  <div className="xl:hidden">
                     {selectedGradesStorage?.map((grade, index) => (
                       <div
                         key={index}
@@ -141,8 +126,9 @@ export default function Search() {
                       >
                         <div className="text-sm font-bold">Grade:</div>
                         <div className="text-sm font-bold">{grade}</div>
+
                         <button
-                          className="text-sm font-bold"
+                          className="text-sm font-bold  "
                           onClick={() => {
                             const temp = selectedGradesStorage.filter(
                               (item) => item !== grade

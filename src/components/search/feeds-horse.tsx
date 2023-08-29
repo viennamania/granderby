@@ -130,7 +130,7 @@ export default function Feeds({ className }: { className?: string }) {
     ///console.log('userEfftct filtersGrade====', filtersGrade);
 
     refetch();
-  }, [filtersGrade, refetch]);
+  }, [selectedGradesStorage, refetch]);
 
   /*
   useEffect(() => {
@@ -317,8 +317,8 @@ export default function Feeds({ className }: { className?: string }) {
                   <Image
                     src={nft?.media ? nft?.media : '/default-nft.png'}
                     alt={nft?.title}
-                    height={200}
-                    width={200}
+                    height={250}
+                    width={250}
                     loading="lazy"
                   />
                   <div className="m-2 w-full items-center justify-center">

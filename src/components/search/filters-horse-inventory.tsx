@@ -170,7 +170,7 @@ export function Status() {
       onChange={setPlan}
       className="grid grid-cols-2 gap-2 p-5"
     >
-      <RadioGroup.Option value="grade-u">
+      <RadioGroup.Option value="grade-U">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -184,7 +184,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-s">
+      <RadioGroup.Option value="grade-S">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -198,7 +198,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-a">
+      <RadioGroup.Option value="grade-A">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -212,7 +212,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-b">
+      <RadioGroup.Option value="grade-B">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -226,7 +226,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-c">
+      <RadioGroup.Option value="grade-C">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -240,7 +240,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-d">
+      <RadioGroup.Option value="grade-D">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -295,7 +295,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-u.png"
+              src="/images/grade-U.png"
               alt="Grade U"
               width={15}
               height={15}
@@ -315,7 +315,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-s.png"
+              src="/images/grade-S.png"
               alt="Grade S"
               width={15}
               height={15}
@@ -335,7 +335,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-a.png"
+              src="/images/grade-A.png"
               alt="Grade A"
               width={15}
               height={15}
@@ -355,7 +355,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-b.png"
+              src="/images/grade-B.png"
               alt="Grade B"
               width={15}
               height={15}
@@ -375,7 +375,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-c.png"
+              src="/images/grade-C.png"
               alt="Grade C"
               width={15}
               height={15}
@@ -395,7 +395,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-d.png"
+              src="/images/grade-D.png"
               alt="Grade D"
               width={15}
               height={15}
