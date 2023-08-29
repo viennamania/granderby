@@ -28,7 +28,7 @@ export function GridSwitcher() {
       >
         {!isGridCompact && (
           <motion.span
-            className="absolute left-0 right-0 bottom-0 h-full w-full bg-brand shadow-large"
+            className="absolute bottom-0 left-0 right-0 h-full w-full bg-brand shadow-large"
             layoutId="gridSwitchIndicator"
           />
         )}
@@ -43,7 +43,7 @@ export function GridSwitcher() {
       >
         {isGridCompact && (
           <motion.span
-            className="absolute left-0 right-0 bottom-0 h-full w-full  bg-brand shadow-large"
+            className="absolute bottom-0 left-0 right-0 h-full w-full  bg-brand shadow-large"
             layoutId="gridSwitchIndicator"
           />
         )}
@@ -234,7 +234,7 @@ export function Filters() {
 export default function DrawerFilters() {
   const { closeDrawer } = useDrawer();
   return (
-    <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
+    <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-72">
       <div className="flex h-20 items-center justify-between overflow-hidden px-6 py-4">
         <h2 className="text-xl font-medium uppercase tracking-wider text-gray-900 dark:text-white">
           Filters
@@ -253,7 +253,7 @@ export default function DrawerFilters() {
           <Filters />
         </div>
       </Scrollbar>
-      <div className="absolute left-0 bottom-4 z-10 w-full px-6">
+      <div className="absolute bottom-4 left-0 z-10 w-full px-6">
         <Button fullWidth onClick={closeDrawer}>
           DONE
         </Button>
