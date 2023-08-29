@@ -47,9 +47,14 @@ export default function Feeds({ className }: { className?: string }) {
 
   console.log('feeds-horse filters-grade', filtersGrade);
 
-  const [selectedGradesStorage] = useLocalStorage('selected-grades');
+  const [selectedGradesStorage, setSelectedGradesStorage] =
+    useLocalStorage('selected-grades');
 
   console.log('feeds-horse selectedGradesStorage', selectedGradesStorage);
+
+  if (selectedGradesStorage === undefined) {
+    setSelectedGradesStorage([]);
+  }
 
   // useLocalStrage change event
 
