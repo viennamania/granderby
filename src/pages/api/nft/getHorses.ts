@@ -14,13 +14,18 @@ export default async function handler(
 ) {
   const { pageNumber, pageSize } = req.query;
 
-  const { grades } = req.body;
+  const { grades, sort } = req.body;
 
   ///console.log('getHorses grades', grades);
 
   var nfts = [] as any;
 
-  const data = await getAllHorses(Number(pageNumber), Number(pageSize), grades);
+  const data = await getAllHorses(
+    Number(pageNumber),
+    Number(pageSize),
+    grades,
+    sort
+  );
 
   ///console.log('getHorses data====', data);
 

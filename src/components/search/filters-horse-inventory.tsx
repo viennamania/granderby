@@ -59,6 +59,7 @@ export function GridSwitcher() {
 }
 
 export const sort = [
+  /*
   { id: 1, name: 'Date Minted: Newest' }, // mint date
   { id: 2, name: 'Date Minted: Oldest' },
 
@@ -67,6 +68,10 @@ export const sort = [
 
   //{ id: 3, name: 'Ending: Soonest' },
   //{ id: 4, name: 'Ending: Latest' },
+  */
+
+  { id: 1, name: 'Token ID: Ascending' }, // tokenid
+  { id: 2, name: 'Token ID: Descending' },
 ];
 
 export function SortList() {

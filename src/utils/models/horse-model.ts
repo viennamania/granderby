@@ -73,7 +73,7 @@ dbConnect();
 
 const HorseSchema = new Schema({
   tokenId: {
-    type: String,
+    type: Number,
     required: true,
     default: false,
   },
@@ -112,15 +112,19 @@ const result  = await findOne({color: "gray", "object.name":"apple" })
 export const getAllHorses = async (
   pageNumber: number,
   pagination: number,
-  grades: string
+  grades: string,
+  sort: string
 ) => {
   console.log('getAllHorses pageNumber', pageNumber);
   console.log('getAllHorses pagination', pagination);
   console.log('getAllHorses grade', grades);
+  console.log('getAllHorses sort', sort);
 
   if (grades.length === 0) {
     const data = await HorseModel.find({})
+
       .sort({ tokenId: 1 })
+
       .skip((pageNumber - 1) * pagination)
       //limit is number of Records we want to display
       .limit(pagination)
@@ -148,6 +152,12 @@ export const getAllHorses = async (
     },
   })
     .sort({ tokenId: 1 })
+    .collation({ locale: 'en_US', numericOrdering: true })
+
+    // sort number in descending order
+
+    //.sort(function (a, b) {return b.tokenId - a.tokenId;})
+
     .skip((pageNumber - 1) * pagination)
     //limit is number of Records we want to display
     .limit(pagination)

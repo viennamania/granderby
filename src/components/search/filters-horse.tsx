@@ -64,6 +64,7 @@ export function GridSwitcher() {
 }
 
 export const sort = [
+  /*
   { id: 1, name: 'Date Minted: Newest' }, // mint date
   { id: 2, name: 'Date Minted: Oldest' },
 
@@ -72,10 +73,21 @@ export const sort = [
 
   //{ id: 3, name: 'Ending: Soonest' },
   //{ id: 4, name: 'Ending: Latest' },
+  */
+
+  { id: 1, name: 'Token ID: Ascending' }, // tokenid
+  { id: 2, name: 'Token ID: Descending' },
 ];
 
 export function SortList() {
-  const [selectedItem, setSelectedItem] = useState(sort[0]);
+  const [selectedGSortStorage, setSelectedSortStorage] =
+    useLocalStorage('selected-sort');
+
+  if (!selectedGSortStorage) {
+    setSelectedSortStorage(sort[0]);
+  }
+
+  const [selectedItem, setSelectedItem] = useState(selectedGSortStorage);
 
   return (
     <div className="relative">
@@ -96,17 +108,21 @@ export function SortList() {
           <Listbox.Options className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-lg bg-white p-3 shadow-large dark:bg-light-dark sm:w-full">
             {sort.map((item) => (
               <Listbox.Option key={item.id} value={item}>
-                {({ selected }) => (
-                  <div
-                    className={`block cursor-pointer rounded-lg px-3 py-2 text-xs font-medium text-gray-900 transition dark:text-white sm:text-sm  ${
-                      selected
-                        ? 'my-1 bg-gray-100 dark:bg-gray-800'
-                        : 'hover:bg-gray-50 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    {item.name}
-                  </div>
-                )}
+                {({ selected }) => {
+                  ////setSelectedSortStorage(item);
+
+                  return (
+                    <div
+                      className={`block cursor-pointer rounded-lg px-3 py-2 text-xs font-medium text-gray-900 transition dark:text-white sm:text-sm  ${
+                        selected
+                          ? 'my-1 bg-gray-100 dark:bg-gray-800'
+                          : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      {item.name}
+                    </div>
+                  );
+                }}
               </Listbox.Option>
             ))}
           </Listbox.Options>
@@ -420,11 +436,12 @@ export function GradeMultiple() {
 
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
-  //setSelectedGrades(selectedGradesStorage);
+
+  if (!selectedGradesStorage) {
+    setSelectedGradesStorage(['U', 'S', 'A', 'B', 'C', 'D']);
+  }
 
   const [selectedGrades, setSelectedGrades] = useState(selectedGradesStorage);
-
-  //setSelectedGrades(['U', 'S', 'A', 'B', 'C', 'D']);
 
   function isSelected(value: any) {
     return selectedGrades.find((el) => el === value) ? true : false;

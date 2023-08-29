@@ -46,11 +46,13 @@ export default function Feeds({ className }: { className?: string }) {
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
 
-  console.log('feeds-horse selectedGradesStorage=====', selectedGradesStorage);
+  ///console.log('feeds-horse selectedGradesStorage=====', selectedGradesStorage);
 
   if (selectedGradesStorage === undefined) {
     setSelectedGradesStorage([]);
   }
+
+  ///const [selectedGSortStorage, setSelectedSortStorage] = useLocalStorage('selected-sort');
 
   // useLocalStrage change event
 
@@ -81,6 +83,7 @@ export default function Feeds({ className }: { className?: string }) {
             body: JSON.stringify({
               ///grades: selectedGradesStorage,
               grades: selectedGradesStorage ?? [],
+              //sort: selectedGSortStorage,
             }),
           }
         ).then((result) => {
@@ -102,6 +105,10 @@ export default function Feeds({ className }: { className?: string }) {
     );
 
   useEffect(() => {
+    console.log(
+      'feeds-horse useEffect selectedGradesStorage=====',
+      selectedGradesStorage
+    );
     refetch();
   }, [selectedGradesStorage, refetch]);
 
