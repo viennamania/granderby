@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Slider from 'rc-slider';
+
 import { RadioGroup } from '@/components/ui/radio-group';
+
+import { Combobox } from '@headlessui/react';
+
 import Collapse from '@/components/ui/collapse';
 import CollectionSelect from '@/components/ui/collection-select-list';
 import { useDrawer } from '@/components/drawer-views/context';
@@ -262,10 +266,15 @@ export function Grade() {
 
   ///console.log("grade====", grade);
 
+  /*
   const [filtersGrade, setFiltersGrade] = useLocalStorage<string>(
     'filters-grade',
     'D'
   );
+  */
+  const [filtersGrade, setFiltersGrade] =
+    useLocalStorage<string>('filters-grade');
+  setFiltersGrade('D');
 
   console.log('filters-horse grade', filtersGrade);
 
@@ -408,12 +417,178 @@ export function Grade() {
   );
 }
 
+const grade = ['U', 'S', 'A', 'B', 'C', 'D'];
+
+export function GradeMutiple() {
+  //const [selectedGrade, setSelectedGrade] = useLocalStorage(
+  //  'selected-grade',
+  //);
+  ///setSelectedGrade(['U', 'S', 'A', 'B', 'C', 'D']);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [selectedGradesStorage, setSelectedGradesStorage] =
+    useLocalStorage('selected-grades');
+  //setSelectedGrades(selectedGradesStorage);
+
+  const [selectedGrades, setSelectedGrades] = useState(selectedGradesStorage);
+
+  //setSelectedGrades(['U', 'S', 'A', 'B', 'C', 'D']);
+
+  function isSelected(value: any) {
+    return selectedGrades.find((el) => el === value) ? true : false;
+  }
+
+  function handleSelect(value: any) {
+    if (!isSelected(value)) {
+      const selectedGradesUpdated = [
+        ...selectedGrades,
+        grade.find((el) => el === value),
+      ];
+      setSelectedGrades(selectedGradesUpdated);
+      setSelectedGradesStorage(selectedGradesUpdated);
+    } else {
+      handleDeselect(value);
+    }
+    setIsOpen(true);
+  }
+
+  function handleDeselect(value: any) {
+    const selectedGradesUpdated = selectedGrades.filter((el) => el !== value);
+    setSelectedGrades(selectedGradesUpdated);
+    setSelectedGradesStorage(selectedGradesUpdated);
+    setIsOpen(true);
+  }
+
+  return (
+    <div className="flex items-center justify-center p-3">
+      <div className="mx-auto w-full max-w-xs">
+        <Listbox
+          as="div"
+          className="space-y-1"
+          value={selectedGrades}
+          onChange={(value) => handleSelect(value)}
+          open={isOpen}
+        >
+          {() => (
+            <>
+              <Listbox.Label className="block text-sm font-medium leading-5 text-gray-700">
+                Grade
+              </Listbox.Label>
+
+              <div className="relative">
+                <span className="inline-block w-full rounded-md shadow-sm">
+                  <Listbox.Button
+                    className="focus:shadow-outline-blue relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out focus:border-blue-300 focus:outline-none sm:text-sm sm:leading-5"
+                    onClick={() => setIsOpen(!isOpen)}
+                    open={isOpen}
+                  >
+                    <span className="block truncate">
+                      {selectedGrades.length < 1
+                        ? 'Select grades'
+                        : `Selected grades (${selectedGrades.length})`}
+                    </span>
+                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                      <svg
+                        className="h-5 w-5 text-gray-400"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M7 7l3-3 3 3m0 6l-3 3-3-3"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </Listbox.Button>
+                </span>
+
+                <Transition
+                  unmount={false}
+                  show={isOpen}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                  className="absolute mt-1 w-full rounded-md bg-white shadow-lg"
+                >
+                  <Listbox.Options
+                    static
+                    className="shadow-xs max-h-60 overflow-auto rounded-md py-1 text-base leading-6 focus:outline-none sm:text-sm sm:leading-5"
+                  >
+                    {grade.map((grade) => {
+                      const selected = isSelected(grade);
+                      return (
+                        <Listbox.Option key={grade} value={grade}>
+                          {({ active }) => (
+                            <div
+                              className={`${
+                                active
+                                  ? 'bg-blue-600 text-white'
+                                  : 'text-gray-900'
+                              } relative cursor-default select-none py-2 pl-8 pr-4`}
+                            >
+                              <span
+                                className={`${
+                                  selected ? 'font-semibold' : 'font-normal'
+                                } block truncate`}
+                              >
+                                Grade {grade}
+                              </span>
+                              {selected && (
+                                <span
+                                  className={`${
+                                    active ? 'text-white' : 'text-blue-600'
+                                  } absolute inset-y-0 left-0 flex items-center pl-1.5`}
+                                >
+                                  <svg
+                                    className="h-5 w-5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </Listbox.Option>
+                      );
+                    })}
+                  </Listbox.Options>
+                </Transition>
+                <div className="pt-1 text-sm">
+                  {selectedGrades.length > 0 && (
+                    <>Selected grades: {selectedGrades.join(', ')}</>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </Listbox>
+      </div>
+    </div>
+  );
+}
+
 export function Filters() {
   return (
     <>
+      {/*
       <Collapse label="Grades" initialOpen>
-        <Grade />
+      */}
+      <GradeMutiple />
+
+      {/*
       </Collapse>
+      */}
 
       {/*
       <Collapse label="Status" initialOpen>

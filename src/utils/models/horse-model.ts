@@ -112,12 +112,13 @@ const result  = await findOne({color: "gray", "object.name":"apple" })
 export const getAllHorses = async (
   pageNumber: number,
   pagination: number,
-  grade: string
+  grades: string
 ) => {
   console.log('getAllHorses pageNumber', pageNumber);
-  console.log('getAllHorses grade', grade);
+  console.log('getAllHorses pagination', pagination);
+  console.log('getAllHorses grade', grades);
 
-  if (grade === '') {
+  if (grades.length === 0) {
     const data = await HorseModel.find({})
       .sort({ tokenId: 1 })
       .skip((pageNumber - 1) * pagination)
@@ -141,7 +142,8 @@ export const getAllHorses = async (
     'nft.rawMetadata.attributes': {
       $elemMatch: {
         trait_type: 'Grade',
-        value: grade,
+        //value: grades,
+        value: { $in: grades },
       },
     },
   })
@@ -159,6 +161,8 @@ export const getAllHorses = async (
     .catch((err) => {
       ////return err;
     });
+
+  //console.log('data', data);
 
   return { nfts: data, pageNumber: pageNumber + 1 };
 };

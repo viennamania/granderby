@@ -12,13 +12,17 @@ export default async function handler(
   //res: NextApiResponse<Data>
   res: NextApiResponse
 ) {
-  const { grade, pageNumber, pageSize } = req.query;
+  const { pageNumber, pageSize } = req.query;
+
+  const { grades } = req.body;
+
+  ///console.log('getHorses grades', grades);
 
   var nfts = [] as any;
 
-  const data = await getAllHorses(Number(pageNumber), Number(pageSize), grade);
+  const data = await getAllHorses(Number(pageNumber), Number(pageSize), grades);
 
-  ////console.log('data', data);
+  ///console.log('getHorses data====', data);
 
   nfts = data.nfts;
 

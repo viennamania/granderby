@@ -47,6 +47,10 @@ export default function Feeds({ className }: { className?: string }) {
 
   console.log('feeds-horse filters-grade', filtersGrade);
 
+  const [selectedGradesStorage] = useLocalStorage('selected-grades');
+
+  console.log('feeds-horse selectedGradesStorage', selectedGradesStorage);
+
   // useLocalStrage change event
 
   type NFT = {
@@ -59,6 +63,17 @@ export default function Feeds({ className }: { className?: string }) {
     price: string;
   };
 
+  /*
+      const res = await fetch('/api/games/horseRace/game', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getGames',
+      }),
+    });
+    const data = await res.json();
+    */
+
   const { data, status, fetchNextPage, hasNextPage, refetch } =
     useInfiniteQuery(
       'infiniteCharacters',
@@ -68,20 +83,32 @@ export default function Feeds({ className }: { className?: string }) {
 
         //pageParam = '',
       }) =>
+        /*
         await fetcher(
           '/api/nft/getHorses?grade=' +
             filtersGrade +
             '&pageNumber=' +
             pageParam +
             '&pageSize=20'
-        ).then((result) => {
-          //console.log("result======>", result);
 
-          return result;
+          */
+
+        await fetch(
+          '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              grades: selectedGradesStorage,
+            }),
+          }
+        ).then((result) => {
+          return result.json();
         }),
       {
         getNextPageParam: (lastPage, pages) => {
-          //console.log("lastPage======>", lastPage);
+          ////console.log(" feeds-horse  lastPage======>", lastPage);
+
           //console.log("pages======>", pages);
 
           if (lastPage.pageKey) {

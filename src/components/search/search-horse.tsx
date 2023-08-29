@@ -47,6 +47,9 @@ export default function Search() {
 
   console.log('search-horse filtersGrade=====', filtersGrade);
 
+  const [selectedGradesStorage, setSelectedGradesStorage] =
+    useLocalStorage('selected-grades');
+
   const tabMenu = [
     {
       title: 'Items',
@@ -128,6 +131,27 @@ export default function Search() {
                         </button>
                       </div>
                     )}
+
+                    {selectedGradesStorage.map((grade, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-center gap-2"
+                      >
+                        <div className="text-sm font-bold">Grade:</div>
+                        <div className="text-sm font-bold">{grade}</div>
+                        <button
+                          className="text-sm font-bold"
+                          onClick={() => {
+                            const temp = selectedGradesStorage.filter(
+                              (item) => item !== grade
+                            );
+                            setSelectedGradesStorage(temp);
+                          }}
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="items-right flex w-full justify-end">
