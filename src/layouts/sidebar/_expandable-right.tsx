@@ -47,7 +47,7 @@ export default function Sidebar({ className }: { className?: string }) {
       onMouseLeave={() => setOpen(false)}
       className={cn(
         open
-          ? 'border-0 shadow-expand xs:w-80 xl:w-72 2xl:w-80 '
+          ? 'border-0 shadow-expand xs:w-72 xl:w-72 2xl:w-80 '
           : 'w-24 border-l border-dashed border-gray-200 2xl:w-28',
         'right-0 top-0 z-40 h-full w-full  max-w-full bg-body duration-200  dark:border-gray-700 dark:bg-dark xl:fixed',
         className

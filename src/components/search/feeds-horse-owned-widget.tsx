@@ -45,7 +45,7 @@ import {
 
 import Button from '@/components/ui/button';
 
-export default function Feeds({ className }: { className?: string }) {
+export default function OwnedFeeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();

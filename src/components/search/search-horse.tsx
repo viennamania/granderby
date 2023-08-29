@@ -1,11 +1,11 @@
 import Button from '@/components/ui/button';
 
-import Feeds from '@/components/search/feeds-horse';
+import Feeds from './feeds-horse';
 import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
-//import ListedFeeds from '@/components/search/feeds-horse-listed';
+//import ListedFeeds from '.feeds-horse-listed';
 
-import RegisteredFeeds from '@/components/search/feeds-horse-registered-hv';
+import RegisteredFeeds from './feeds-horse-registered-hv';
 
 import { useDrawer } from '@/components/drawer-views/context';
 

@@ -26,9 +26,12 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
-
-import Button from '../ui/button/button';
+import {
+  nftDropContractAddressHorse,
+  marketplaceContractAddress,
+  stakingContractAddressHorseAAA,
+  tokenContractAddressGRD,
+} from '@/config/contractAddresses';
 
 import {
   ConnectWallet,
@@ -41,29 +44,79 @@ import {
   useTokenBalance,
   useNFTBalance,
   Web3Button,
+  useValidDirectListings,
 } from '@thirdweb-dev/react';
+
+import { LAYOUT_OPTIONS } from '@/lib/constants';
+import NFTCard from '@/components/nft-horse/NFTCard';
+import { BigNumber, ethers } from 'ethers';
+import { useLayout } from '@/lib/hooks/use-layout';
 
 import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
 
-export default function OwnedFeeds({ className }: { className?: string }) {
+export default function RegisteredFeeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
 
   const address = useAddress();
 
-  console.log('address======>', address);
+  const { layout } = useLayout();
 
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
     'nft-drop'
   );
-  const { data: ownedNfts, isLoading: isLoadingOwnedNfts } = useOwnedNFTs(
-    nftDropContract,
-    address
+
+  //////const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+
+  /*
+  const { contract: marketplace } = useContract(
+    marketplaceContractAddress,
+    'marketplace-v3'
   );
 
-  ////console.log("ownedNfts======>", ownedNfts);
+  const {
+    data: directListings,
+    isLoading: loadingListings,
+    error,
+  } = useValidDirectListings(marketplace);
+
+  ///console.log('directListings======>', directListings);
+  */
+
+  const { contract: stakingContract, isLoading: isLoadingStakingContract } =
+    useContract(stakingContractAddressHorseAAA);
+
+  const { data: stakedTokens, isLoading: isLoadingStakedTokens } =
+    useContractRead(stakingContract, 'getStakeInfo', [address]);
+
+  const { contract: tokenContract } = useContract(
+    tokenContractAddressGRD,
+    'token'
+  );
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  const [stakedNftBalanceAAA, setStakedNftBalanceAAA] = useState<BigNumber>();
+  const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
+
+  useEffect(() => {
+    if (!stakingContract || !address) return;
+
+    async function loadClaimableRewards() {
+      const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
+
+      ////console.log("staeInfo", stakeInfo[0].length);
+
+      setStakedNftBalanceAAA(stakeInfo[0].length);
+
+      setClaimableRewards(stakeInfo[1]);
+    }
+
+    loadClaimableRewards();
+  }, [address, stakingContract]);
+
+  ////console.log("stakedTokens",stakedTokens );
 
   /*
   const settings = {
@@ -205,137 +258,95 @@ export default function OwnedFeeds({ className }: { className?: string }) {
   const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
 
   return (
-    <div className="">
+    <div className=" h-screen ">
       {!address ? (
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg">
-            <ConnectWallet
-              theme="light"
-
-              ///onClick={() => closeInventories()}
-            />
-            to see my owned horses
+            <ConnectWallet theme="light" />
+            to see my registered horses
           </div>
         </>
       ) : (
-        <>
+        <div className="felx flex-col">
+          {address && (
+            <div className="mt-2 flex flex-col items-center justify-center gap-0 text-sm font-medium tracking-tighter text-gray-600 dark:text-gray-400 ">
+              <span>Claimable Rewards</span>
+              <div className="text-lg font-bold">
+                <b>
+                  {!claimableRewards
+                    ? 'Loading...'
+                    : Number(
+                        ethers.utils.formatUnits(claimableRewards, 18)
+                      ).toFixed(2)}
+                </b>{' '}
+                {tokenBalance?.symbol}
+              </div>
+
+              {Number(ethers.utils.formatUnits(claimableRewards || 0, 18)) >
+                1 && (
+                <Web3Button
+                  theme="light"
+                  //colorMode="dark"
+                  //accentColor="#5204BF"
+                  contractAddress={stakingContractAddressHorseAAA}
+                  action={async (contract) => {
+                    try {
+                      const tx = await contract.call('claimRewards');
+                      //console.log(tx);
+                      alert('Rewards Claimed!');
+
+                      const stakeInfo = await stakingContract?.call(
+                        'getStakeInfo',
+                        [address]
+                      );
+                      ////const stakeInfo = await contract?.call("getStakeInfo", );
+                      setClaimableRewards(stakeInfo[1]);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  }}
+                >
+                  Claim Rewards
+                </Web3Button>
+              )}
+            </div>
+          )}
+
           {
             // If the listings are loading, show a loading message
-            isLoadingOwnedNfts ? (
-              <>
-                <div className="flex flex-col items-center justify-center ">
-                  <div className="text-xl text-gray-400">
-                    Loading my own horses...
-                  </div>
-
-                  <span className="items-top mt-10 flex h-screen w-full justify-center">
-                    <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-                  </span>
-                </div>
-              </>
+            isLoadingStakedTokens ? (
+              <div className="mb-10 mt-5 w-full items-center justify-center">
+                <div className="text-2xl">Loading my registered horses...</div>
+              </div>
             ) : (
-              <>
-                {ownedNfts?.length == 0 ? (
-                  <>
-                    <h4 className="flex flex-col justify-center ">
-                      You don't own any horses yet.
-                    </h4>
-                    <Button
-                      className="w-full"
-                      title="Go"
-                      color="white"
-                      shape="rounded"
-                      variant="transparent"
-                      size="large"
-                      onClick={() => {
-                        router.push('https://granderby.market/');
-                      }}
-                    >
-                      <div className="flex flex-row items-center gap-2">
-                        <Image
-                          src="/images/market.png"
-                          alt="market"
-                          width={34}
-                          height={34}
-                        />
-                        Granderby Market
-                      </div>
-                    </Button>
-                  </>
-                ) : (
-                  <div className="mb-2">
-                    <h4 className="flex flex-col justify-center ">
-                      I have {ownedNfts?.length} horses.
-                    </h4>
-                    <Button
-                      className="w-full"
-                      title="Go"
-                      color="white"
-                      shape="rounded"
-                      variant="transparent"
-                      size="large"
-                      onClick={() => {
-                        router.push('/mint-carrot');
-                      }}
-                    >
-                      <div className="flex flex-row items-center gap-2">
-                        <Image
-                          src="/horseRace/3338carrots.png"
-                          alt="breed"
-                          width={48}
-                          height={48}
-                        />
-                        Try to breed them.
-                      </div>
-                    </Button>
-                  </div>
+              <div
+                className={cn(
+                  'mt-5 grid grid-cols-4 gap-2  ',
+                  layout === LAYOUT_OPTIONS.RETRO
+                    ? 'md:grid-cols-2'
+                    : 'md:grid-cols-4'
                 )}
-
-                <div
-                  className={cn(
-                    'grid grid-cols-4 gap-2 sm:grid-cols-4 md:grid-cols-4',
-                    isGridCompact
-                      ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                      : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-                    className
-                  )}
-                >
-                  {ownedNfts?.map((nft) => (
+              >
+                {stakedTokens &&
+                  stakedTokens[0]?.map((stakedToken: BigNumber) => (
                     <div
-                      key={nft?.metadata?.id}
-                      className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                      key={stakedToken.toString()}
+                      className="block"
                       onClick={() => {
-                        //setTokenid(nft.metadata.id.toString()),
-
-                        //////setIsOpen(false);
-
                         closeInventories();
-                        router.push('/horse-details/' + nft?.metadata?.id);
+                        router.push('/horse-details/' + stakedToken);
                       }}
                     >
-                      <Image
-                        src={
-                          nft?.metadata?.image
-                            ? nft?.metadata?.image
-                            : '/default-nft.png'
-                        }
-                        alt="nft"
-                        height={200}
-                        width={200}
-                        loading="lazy"
+                      <NFTCard
+                        tokenId={stakedToken.toNumber()}
+                        key={stakedToken.toString()}
                       />
-                      <div className="m-0 w-full items-center justify-center bg-gray-100">
-                        <p className="mr-2  text-right  text-sm text-sky-500 ">
-                          #{nft?.metadata?.id}
-                        </p>
-                      </div>
                     </div>
                   ))}
-                </div>
-              </>
+              </div>
             )
           }
-        </>
+        </div>
       )}
     </div>
   );

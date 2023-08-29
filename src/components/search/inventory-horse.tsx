@@ -4,38 +4,34 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
-import OwnedFeeds from '@/components/search/feeds-horse-owned';
+import OwnedFeeds from './feeds-horse-owned-inventory';
 
 ///import ListedFeeds from '@/components/search/feeds-horse-listed';
 
-import RegisteredFeeds from './feeds-horse-registered';
+import RegisteredFeeds from './feeds-horse-registered-inventory';
 
-import RegisteredFeedsDS from './feeds-horse-registered-ds';
+//import RegisteredFeedsDS from './feeds-horse-registered-ds';
 
 import {
   stakingContractAddressHorseAAA,
   stakingContractAddressHorseDerbyStars,
 } from '@/config/contractAddresses';
 
-import { useDrawer } from '@/components/drawer-views/context';
-
 //////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
 
 import Image from '@/components/ui/image';
 
 import {
-  Filters,
-  GridSwitcher,
+  //Filters,
+  //GridSwitcher,
   SortList,
-} from '@/components/search/filters-horse';
+} from './filters-horse-inventory';
 
 import { OptionIcon } from '@/components/icons/option';
 
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 
 export default function Inventory() {
-  const { openDrawer } = useDrawer();
-
   const tabMenu = [
     /*
     {
@@ -45,16 +41,18 @@ export default function Inventory() {
     */
     {
       title: 'Owned',
-      path: 'owned',
+      path: 'owned-inventory',
     },
     {
       title: 'Registered',
       path: 'stable-a',
     },
+    /*
     {
       title: 'DS',
       path: 'stable-b',
     },
+    */
 
     /*
     {
@@ -198,6 +196,7 @@ export default function Inventory() {
               </div>
             </TabPanel>
 
+            {/*
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
@@ -205,31 +204,14 @@ export default function Inventory() {
                     <div className="flex gap-6 3xl:gap-8 ">
                       <SortList />
 
-                      {/*
-                      <div className="hidden 3xl:block">
-                        <GridSwitcher />
-                      </div>
-
-                     
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                      */}
+        
                     </div>
                   </div>
                 </div>
                 <RegisteredFeedsDS />
               </div>
             </TabPanel>
+            */}
           </ParamTab>
         </div>
 
