@@ -104,7 +104,8 @@ export default function Feeds({ className }: { className?: string }) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              grades: selectedGradesStorage,
+              ///grades: selectedGradesStorage,
+              grades: selectedGradesStorage ?? [],
             }),
           }
         ).then((result) => {

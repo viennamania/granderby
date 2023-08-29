@@ -119,6 +119,7 @@ export default function Search() {
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div>
+                    {/*
                     {filtersGrade && (
                       <div className="flex items-center justify-center gap-2">
                         <div className="text-xl font-bold">Grade:</div>
@@ -131,6 +132,7 @@ export default function Search() {
                         </button>
                       </div>
                     )}
+                    */}
 
                     {selectedGradesStorage?.map((grade, index) => (
                       <div
