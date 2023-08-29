@@ -132,7 +132,7 @@ export default function Search() {
                       </div>
                     )}
 
-                    {selectedGradesStorage.map((grade, index) => (
+                    {selectedGradesStorage?.map((grade, index) => (
                       <div
                         key={index}
                         className="flex items-center justify-center gap-2"
