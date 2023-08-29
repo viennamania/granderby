@@ -29,6 +29,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { useDrawer } from '@/components/drawer-views/context';
+
+//import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import { useModal } from '@/components/modal-views/context';
@@ -44,6 +47,8 @@ export default function Feeds({ className }: { className?: string }) {
 
   console.log('feeds-horse filters-grade', filtersGrade);
 
+  // useLocalStrage change event
+
   type NFT = {
     id: string;
     author: string;
@@ -54,78 +59,45 @@ export default function Feeds({ className }: { className?: string }) {
     price: string;
   };
 
-  useEffect(() => {
-    console.log('userEfftct filtersGrade', filtersGrade);
-  }, [filtersGrade]);
+  const { data, status, fetchNextPage, hasNextPage, refetch } =
+    useInfiniteQuery(
+      'infiniteCharacters',
 
-  const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    'infiniteCharacters',
+      async ({
+        pageParam = 1,
 
-    async ({
-      pageParam = 1,
+        //pageParam = '',
+      }) =>
+        await fetcher(
+          '/api/nft/getHorses?grade=' +
+            filtersGrade +
+            '&pageNumber=' +
+            pageParam +
+            '&pageSize=20'
+        ).then((result) => {
+          //console.log("result======>", result);
 
-      //pageParam = '',
-    }) =>
-      /*
-      await fetcher(
-        `/api/getNftsForContract?pageKey=${pageParam}&pageSize=30`
-      ).then((result) => {
-        //console.log("result======>", result);
-
-        return result;
-      }),
-      */
-
-      await fetcher(
-        '/api/nft/getHorses?grade=' +
-          filtersGrade +
-          '&pageNumber=' +
-          pageParam +
-          '&pageSize=20'
-      ).then((result) => {
-        //console.log("result======>", result);
-
-        return result;
-      }),
-
-    /*
-      await fetch(
-        `https://rickandmortyapi.com/api/character/?page=${pageParam}`
-      ).then((result) => result.json()),
-      */
-
-    /*
-      await alchemy.nft.getNftsForContract(
-        nftDropContractAddressHorse,
-        {
-          pageKey: pageParam,
-          pageSize: 40,
-        }
-      ).then((result) => { //result
-          ///console.log("result======>", result)
-          return result
+          return result;
         }),
-      */
+      {
+        getNextPageParam: (lastPage, pages) => {
+          //console.log("lastPage======>", lastPage);
+          //console.log("pages======>", pages);
 
-    /*
-      .finally((result:any) => {
-        pageParam = result.pageKey;
-      }),
-      */
+          if (lastPage.pageKey) {
+            return lastPage.pageKey;
+          } else {
+            return undefined;
+          }
+        },
+      }
+    );
 
-    {
-      getNextPageParam: (lastPage, pages) => {
-        //console.log("lastPage======>", lastPage);
-        //console.log("pages======>", pages);
+  useEffect(() => {
+    ///console.log('userEfftct filtersGrade====', filtersGrade);
 
-        if (lastPage.pageKey) {
-          return lastPage.pageKey;
-        } else {
-          return undefined;
-        }
-      },
-    }
-  );
+    refetch();
+  }, [filtersGrade, refetch]);
 
   /*
   useEffect(() => {
@@ -213,6 +185,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   //console.log(data);
 
+  /*
   const { openDrawer } = useDrawer();
 
   const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
@@ -220,6 +193,7 @@ export default function Feeds({ className }: { className?: string }) {
   );
 
   const { openModal } = useModal();
+  */
 
   return (
     <>

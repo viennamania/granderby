@@ -29,13 +29,23 @@ import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider'
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
+import { useEffect } from 'react';
+import { set } from 'lodash';
+
 export default function Search() {
   const { openDrawer } = useDrawer();
 
-  const [livePricingIsOpen] = useLocalStorage('live-pricing-isopen', true);
+  ///const [livePricingIsOpen] = useLocalStorage('live-pricing-isopen', true);
+
+  const [livePricingIsOpen, setLivePricingOpen] = useLocalStorage(
+    'live-pricing-isopen'
+  );
+  setLivePricingOpen(true);
 
   const [filtersGrade, setFilterGrade] =
     useLocalStorage<string>('filters-grade');
+
+  console.log('search-horse filtersGrade=====', filtersGrade);
 
   const tabMenu = [
     {
