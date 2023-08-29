@@ -238,7 +238,7 @@ export default function Feeds({ className }: { className?: string }) {
 
       {status === 'success' && (
         <InfiniteScroll
-          dataLength={data?.pages.length * 20}
+          dataLength={data?.pages?.length * 20}
           next={fetchNextPage}
           hasMore={hasNextPage ?? false}
           loader={
