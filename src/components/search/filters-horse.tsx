@@ -262,16 +262,6 @@ export function Status() {
 }
 
 export function Grade() {
-  //let [grade, setGrade] = useState('U');
-
-  ///console.log("grade====", grade);
-
-  /*
-  const [filtersGrade, setFiltersGrade] = useLocalStorage<string>(
-    'filters-grade',
-    'D'
-  );
-  */
   const [filtersGrade, setFiltersGrade] =
     useLocalStorage<string>('filters-grade');
   setFiltersGrade('D');
@@ -419,7 +409,7 @@ export function Grade() {
 
 const grade = ['U', 'S', 'A', 'B', 'C', 'D'];
 
-export function GradeMutiple() {
+export function GradeMultiple() {
   //const [selectedGrade, setSelectedGrade] = useLocalStorage(
   //  'selected-grade',
   //);
@@ -610,7 +600,7 @@ export function Filters() {
   return (
     <>
       <Collapse label="Grades" initialOpen>
-        <GradeMutiple />
+        <GradeMultiple />
       </Collapse>
 
       {/*

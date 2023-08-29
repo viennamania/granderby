@@ -262,10 +262,8 @@ export function Grade() {
 
   ///console.log("grade====", grade);
 
-  const [filtersGrade, setFiltersGrade] = useLocalStorage<string>(
-    'filters-grade',
-    'D'
-  );
+  const [filtersGrade, setFiltersGrade] =
+    useLocalStorage<string>('filters-grade');
 
   console.log('filters-horse grade', filtersGrade);
 

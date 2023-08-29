@@ -42,11 +42,6 @@ export default function Search() {
   );
   setLivePricingOpen(true);
 
-  const [filtersGrade, setFilterGrade] =
-    useLocalStorage<string>('filters-grade');
-
-  console.log('search-horse filtersGrade=====', filtersGrade);
-
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
 

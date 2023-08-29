@@ -43,14 +43,10 @@ export default function Feeds({ className }: { className?: string }) {
 
   const router = useRouter();
 
-  const [filtersGrade] = useLocalStorage<string>('filters-grade');
-
-  console.log('feeds-horse filters-grade', filtersGrade);
-
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
 
-  console.log('feeds-horse selectedGradesStorage', selectedGradesStorage);
+  console.log('feeds-horse selectedGradesStorage=====', selectedGradesStorage);
 
   if (selectedGradesStorage === undefined) {
     setSelectedGradesStorage([]);
@@ -68,17 +64,6 @@ export default function Feeds({ className }: { className?: string }) {
     price: string;
   };
 
-  /*
-      const res = await fetch('/api/games/horseRace/game', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        method: 'getGames',
-      }),
-    });
-    const data = await res.json();
-    */
-
   const { data, status, fetchNextPage, hasNextPage, refetch } =
     useInfiniteQuery(
       'infiniteCharacters',
@@ -88,16 +73,6 @@ export default function Feeds({ className }: { className?: string }) {
 
         //pageParam = '',
       }) =>
-        /*
-        await fetcher(
-          '/api/nft/getHorses?grade=' +
-            filtersGrade +
-            '&pageNumber=' +
-            pageParam +
-            '&pageSize=20'
-
-          */
-
         await fetch(
           '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
           {
@@ -127,106 +102,8 @@ export default function Feeds({ className }: { className?: string }) {
     );
 
   useEffect(() => {
-    ///console.log('userEfftct filtersGrade====', filtersGrade);
-
     refetch();
   }, [selectedGradesStorage, refetch]);
-
-  /*
-  useEffect(() => {
-
-    const main = async () => {
-
-      await fetcher('/api/nft/getHorses').then((result) => {
-        console.log("result======>", result);
-      
-      });
-
-    };
-
-    main();
-
-  }, []);
-  */
-
-  /////console.log("status======>", status);
-
-  /*
-  useEffect(() => {
-    const main = async () => {
-      //Call the method to fetch metadata
-      const response = await alchemy.nft.getNftsForContract(
-        nftDropContractAddressHorse,
-        {
-          //pageKey: 'cursor',
-          pageSize: 10,
-        }
-      );
-
-      //console.log(response.pageKey);
-
-      setCursor(response.pageKey);
-
-      //Logging the response to the console
-
-      ///setHorses(response.nfts)
-
-      const NFTList = response.nfts.map((nft) => {
-        const { contract, title, tokenType, tokenId, description, media } = nft;
-
-        //console.log("mdia", media[0]);
-
-
-        return {
-          id: tokenId,
-          author: contract.address,
-          authorImage: AuthorImage,
-          image: media[0]?.thumbnail
-            ? media[0]?.thumbnail
-            : 'https://via.placeholder.com/500',
-          name: title,
-          collection: contract.openSea?.collectionName
-            ? contract.openSea?.collectionName
-            : '',
-          price: '0',
-
-
-        };
-      });
-
-      setHorses(NFTList);
-
-      ///setHorses([...horses, ...NFTList]);
-
-      ///setHorses([...horses, ...response.nfts]);
-
-      ///setHorses((horses) => [...horses, response.nfts]);
-
-      ///setHorses((horses) => [...horses, NFTList]);
-
-      //setHorses(horses.concat(response.nfts))
-
-      ///console.log(NFTList);
-    };
-
-    main();
-  }, [alchemy.nft]);
-
-  */
-
-  //const { data } = useSWR(`/api/getNftsForCollection`, fetcher);
-
-  //console.log(data);
-
-  /*
-  const { openDrawer } = useDrawer();
-
-  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
-    'drawer-horse-info-tokenid'
-  );
-
-  const { openModal } = useModal();
-  */
 
   return (
     <>
