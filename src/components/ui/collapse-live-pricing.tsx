@@ -10,7 +10,7 @@ interface CollapseProps {
   initialOpen?: boolean;
 }
 
-export default function Collapse({
+export default function CollapseLivePricing({
   label,
   children,
   initialOpen = false,
@@ -18,6 +18,10 @@ export default function Collapse({
   const [livePricingIsOpen, setLivePricingIsOpen] = useLocalStorage(
     'live-pricing-isopen'
   );
+
+  if (livePricingIsOpen === undefined) {
+    setLivePricingIsOpen(true);
+  }
 
   ////let [isOpen, setIsOpen] = useState(livePricingIsOpen);
 

@@ -191,7 +191,7 @@ export function Status() {
       onChange={setPlan}
       className="grid grid-cols-2 gap-2 p-5"
     >
-      <RadioGroup.Option value="grade-U">
+      <RadioGroup.Option value="grade-u">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -205,7 +205,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-S">
+      <RadioGroup.Option value="grade-s">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -219,7 +219,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-A">
+      <RadioGroup.Option value="grade-a">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -233,7 +233,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-B">
+      <RadioGroup.Option value="grade-b">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -247,7 +247,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-C">
+      <RadioGroup.Option value="grade-c">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -261,7 +261,7 @@ export function Status() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-D">
+      <RadioGroup.Option value="grade-d">
         {({ checked }) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
@@ -311,7 +311,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-U.png"
+              src="/images/grade-u.png"
               alt="Grade U"
               width={15}
               height={15}
@@ -331,7 +331,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-S.png"
+              src="/images/grade-s.png"
               alt="Grade S"
               width={15}
               height={15}
@@ -351,7 +351,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-A.png"
+              src="/images/grade-a.png"
               alt="Grade A"
               width={15}
               height={15}
@@ -371,7 +371,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-B.png"
+              src="/images/grade-b.png"
               alt="Grade B"
               width={15}
               height={15}
@@ -391,7 +391,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-C.png"
+              src="/images/grade-c.png"
               alt="Grade C"
               width={15}
               height={15}
@@ -411,7 +411,7 @@ export function Grade() {
             }`}
           >
             <Image
-              src="/images/grade-D.png"
+              src="/images/grade-d.png"
               alt="Grade D"
               width={15}
               height={15}
@@ -458,14 +458,14 @@ export function GradeMultiple() {
     } else {
       handleDeselect(value);
     }
-    setIsOpen(true);
+    //setIsOpen(true);
   }
 
   function handleDeselect(value: any) {
     const selectedGradesUpdated = selectedGrades.filter((el) => el !== value);
     setSelectedGrades(selectedGradesUpdated);
     setSelectedGradesStorage(selectedGradesUpdated);
-    setIsOpen(true);
+    //setIsOpen(true);
   }
 
   return (
@@ -625,7 +625,7 @@ export function Filters() {
       <Collapse label="Status" initialOpen>
         <Status />
       </Collapse>
-      */}
+  */}
 
       {/*
       <Collapse label="Price Range" initialOpen>

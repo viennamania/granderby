@@ -13,7 +13,7 @@ import { useDrawer } from '@/components/drawer-views/context';
 
 import Image from '@/components/ui/image';
 
-import Collapse from '@/components/ui/collapse-live-pricing';
+import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 
 import {
   Filters,
@@ -37,10 +37,12 @@ export default function Search() {
 
   ///const [livePricingIsOpen] = useLocalStorage('live-pricing-isopen', true);
 
+  /*
   const [livePricingIsOpen, setLivePricingOpen] = useLocalStorage(
     'live-pricing-isopen'
   );
   setLivePricingOpen(true);
+  */
 
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
@@ -95,11 +97,11 @@ export default function Search() {
       </div>
 
       <div className="mb-5 mt-5 flex">
-        <Collapse label="Live Pricing" initialOpen={livePricingIsOpen}>
+        <CollapseLivePricing label="Live Pricing">
           <div className="m-5 p-5">
             <LiveNftPricingSlider limits={4} />
           </div>
-        </Collapse>
+        </CollapseLivePricing>
       </div>
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
@@ -113,7 +115,7 @@ export default function Search() {
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="flex flex-row gap-2">
+                  <div className="flex flex-col gap-2 xl:flex-row">
                     {selectedGradesStorage
                       //.sort(function(a:any, b:any) {return a - b})
                       // sort grades

@@ -10,7 +10,7 @@ interface CollapseProps {
   initialOpen?: boolean;
 }
 
-export default function Collapse({
+export default function CollapseLastWinners({
   label,
   children,
   initialOpen = false,
@@ -18,6 +18,10 @@ export default function Collapse({
   const [lastWinersIsOpen, setLastWinersIsOpen] = useLocalStorage(
     'last-winners-isopen'
   );
+
+  if (lastWinersIsOpen === undefined) {
+    setLastWinersIsOpen(true);
+  }
 
   ////let [isOpen, setIsOpen] = useState(livePricingIsOpen);
 

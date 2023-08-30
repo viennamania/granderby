@@ -70,7 +70,10 @@ import Link from 'next/link';
 
 import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 
-import Collapse from '@/components/ui/collapse-last-winners';
+import Collapse from '@/components/ui/collapse';
+import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
+import CollapseLastWinners from '@/components/ui/collapse-last-winners';
+
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
@@ -435,8 +438,6 @@ export default function ModernScreen() {
   }, [status]);
   */
 
-  const [lastWinersIsOpen] = useLocalStorage('last-winners-isopen');
-
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
@@ -459,7 +460,7 @@ export default function ModernScreen() {
           <AssetSlider coins={assetSlideData} />
         */}
 
-          <Collapse label="Live Pricing" initialOpen={true}>
+          <CollapseLivePricing label="Live Pricing">
             <div className="p-5">
               <LiveNftPricingSlider limits={4} />
             </div>
@@ -480,7 +481,7 @@ export default function ModernScreen() {
               </Link>
             </div>
             */}
-          </Collapse>
+          </CollapseLivePricing>
 
           {/*
           <Collapse label="Live Pricing" initialOpen={true}>
@@ -493,12 +494,12 @@ export default function ModernScreen() {
           </Collapse>
           */}
 
-          <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
+          <CollapseLastWinners label="Last Race Winners">
             <div className=" rounded-md  bg-black">
               <LastWinners npcs={npcNames} />
             </div>
             <div></div>
-          </Collapse>
+          </CollapseLastWinners>
 
           <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
             {time ? (

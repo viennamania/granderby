@@ -17,6 +17,7 @@ import Image from '@/components/ui/image';
 
 import { Refresh } from '@/components/icons/refresh';
 import { RadioGroup } from '@/components/ui/radio-group';
+import Collapse from '@/components/ui/collapse';
 
 import { motion } from 'framer-motion';
 import {
@@ -59,6 +60,136 @@ import {
 
 import { useModal } from '@/components/modal-views/context';
 import Button from '@/components/ui/button';
+
+function Grade(grade: any) {
+  return (
+    <RadioGroup
+      value={grade}
+      //onChange={setGrade}
+      className="grid grid-cols-2 gap-2 p-5"
+    >
+      <RadioGroup.Option value="U">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-u.png"
+              alt="Grade U"
+              width={15}
+              height={15}
+            />
+            &nbsp; Grade U
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="S">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-s.png"
+              alt="Grade S"
+              width={15}
+              height={15}
+            />
+            &nbsp; Grade S
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="A">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-a.png"
+              alt="Grade A"
+              width={15}
+              height={15}
+            />
+            &nbsp; Grade A
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="B">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-b.png"
+              alt="Grade B"
+              width={15}
+              height={15}
+            />
+            &nbsp; Grade B
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="C">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-c.png"
+              alt="Grade C"
+              width={15}
+              height={15}
+            />
+            &nbsp; Grade C
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="D">
+        {({ checked }) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checked
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            <Image
+              src="/images/grade-d.png"
+              alt="Grade D"
+              width={15}
+              height={15}
+            />
+            &nbsp; Grade D
+          </span>
+        )}
+      </RadioGroup.Option>
+    </RadioGroup>
+  );
+}
 
 interface RadioOptionProps {
   value: string;
@@ -369,21 +500,35 @@ export default function NftSinglePrice({
                     </div>
                   </div>
 
-                  <Image
-                    //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                    src={
-                      nft?.metadata?.image
-                        ? nft?.metadata?.image
-                        : '/default-nft.png'
-                    }
-                    alt="nft"
-                    width={1024}
-                    height={1024}
-                    className=" rounded-lg "
-                  />
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <Image
+                      //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
+                      src={
+                        nft?.metadata?.image
+                          ? nft?.metadata?.image
+                          : '/default-nft.png'
+                      }
+                      alt="nft"
+                      width={500}
+                      height={500}
+                      className=" rounded-lg "
+                    />
+
+                    {/*
+                    <div>
+                    <Collapse label="Grade" initialOpen={true}>
+                      <Grade grade={'S'} />
+                    </Collapse>
+                    </div>
+                    */}
+                  </div>
                 </span>
               </span>
             </div>
+
+            <Collapse label="Grade" initialOpen={true}>
+              <Grade grade={'S'} />
+            </Collapse>
 
             {/*
             <div className="mt-5 flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
