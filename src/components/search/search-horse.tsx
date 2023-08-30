@@ -47,6 +47,10 @@ export default function Search() {
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
 
+  if (!selectedGradesStorage) {
+    setSelectedGradesStorage([]);
+  }
+
   const tabMenu = [
     {
       title: 'Items',
@@ -141,7 +145,7 @@ export default function Search() {
                           <button
                             className="text-sm font-bold  "
                             onClick={() => {
-                              const temp = selectedGradesStorage.filter(
+                              const temp = selectedGradesStorage?.filter(
                                 (item) => item !== grade
                               );
                               setSelectedGradesStorage(temp);
