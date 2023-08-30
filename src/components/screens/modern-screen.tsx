@@ -70,7 +70,7 @@ import Link from 'next/link';
 
 import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 
-import Collapse from '@/components/ui/collapse';
+import CollapseIntroVideo from '@/components/ui/collapse-intro-video';
 import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import CollapseLastWinners from '@/components/ui/collapse-last-winners';
 
@@ -444,7 +444,7 @@ export default function ModernScreen() {
 
       <div className="mb-20 flex flex-wrap">
         {!address && (
-          <Collapse label="Granderby Racing" initialOpen={true}>
+          <CollapseIntroVideo label="Introduction" initialOpen={true}>
             <video
               id="intro-video"
               src="/mov/intro.mp4"
@@ -452,7 +452,7 @@ export default function ModernScreen() {
               autoPlay
               className="rounded-lg"
             ></video>
-          </Collapse>
+          </CollapseIntroVideo>
         )}
 
         <div className="  mt-5 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
