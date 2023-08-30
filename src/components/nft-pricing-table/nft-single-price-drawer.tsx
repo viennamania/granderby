@@ -62,6 +62,35 @@ import { useModal } from '@/components/modal-views/context';
 import Button from '@/components/ui/button';
 
 function Grade(grade: any) {
+  var valueGrade = '';
+
+  if (grade?.grade?.length > 35) {
+    console.log('Grade grade.grade[35]====', grade?.grade[35]);
+
+    valueGrade = grade?.grade[35];
+  }
+
+  var checkedS = false;
+  var checkedU = false;
+  var checkedA = false;
+  var checkedB = false;
+  var checkedC = false;
+  var checkedD = false;
+
+  if (valueGrade === 'S') {
+    checkedS = true;
+  } else if (valueGrade === 'U') {
+    checkedU = true;
+  } else if (valueGrade === 'A') {
+    checkedA = true;
+  } else if (valueGrade === 'B') {
+    checkedB = true;
+  } else if (valueGrade === 'C') {
+    checkedC = true;
+  } else if (valueGrade === 'D') {
+    checkedD = true;
+  }
+
   return (
     <RadioGroup
       value={grade}
@@ -69,10 +98,15 @@ function Grade(grade: any) {
       className="grid grid-cols-2 gap-2 p-5"
     >
       <RadioGroup.Option value="U">
-        {({ checked }) => (
+        {(
+          {
+            //checked
+            //checked = valueGrade === 'U' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedU
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -89,10 +123,14 @@ function Grade(grade: any) {
       </RadioGroup.Option>
 
       <RadioGroup.Option value="S">
-        {({ checked }) => (
+        {(
+          {
+            //checked = valueGrade === 'S' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedS
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -109,10 +147,14 @@ function Grade(grade: any) {
       </RadioGroup.Option>
 
       <RadioGroup.Option value="A">
-        {({ checked }) => (
+        {(
+          {
+            //checked
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedA
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -129,10 +171,14 @@ function Grade(grade: any) {
       </RadioGroup.Option>
 
       <RadioGroup.Option value="B">
-        {({ checked }) => (
+        {(
+          {
+            //checked = valueGrade === 'B' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedB
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -149,10 +195,14 @@ function Grade(grade: any) {
       </RadioGroup.Option>
 
       <RadioGroup.Option value="C">
-        {({ checked }) => (
+        {(
+          {
+            ///checked = valueGrade === 'C' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedC
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -169,10 +219,16 @@ function Grade(grade: any) {
       </RadioGroup.Option>
 
       <RadioGroup.Option value="D">
-        {({ checked }) => (
+        {(
+          {
+            //const check = valueGrade === 'D' ? true : false,
+            ///var check = false;
+            ////var check = valueGrade === 'D' ? true : false
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedD
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -287,6 +343,21 @@ export default function NftSinglePrice({
   };
 
   const { openModal } = useModal();
+
+  const [attributeGrade, setAttributeGrade] = useState(null);
+
+  useEffect(() => {
+    const grade = nft?.metadata?.attributes?.map((attribute: any) => {
+      ///console.log('attribute', attribute);
+      if (attribute.trait_type === 'Grade') {
+        console.log('attribute.value', attribute.value);
+
+        return attribute.value;
+      }
+    });
+
+    setAttributeGrade(grade);
+  }, [nft?.metadata?.attributes]);
 
   return (
     <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark ">
@@ -527,7 +598,23 @@ export default function NftSinglePrice({
             </div>
 
             <Collapse label="Grade" initialOpen={true}>
-              <Grade grade={'S'} />
+              <Grade
+                grade={
+                  /*
+                  nft?.metadata?.attributes?.map((attribute: any) => {
+                    ///console.log('attribute', attribute);
+                    if (attribute.trait_type === 'Grade') {
+                      
+                      console.log('attribute.value', attribute.value);
+
+                      return attribute.value;
+                    }
+                  })
+                  */
+
+                  attributeGrade
+                }
+              />
             </Collapse>
 
             {/*
