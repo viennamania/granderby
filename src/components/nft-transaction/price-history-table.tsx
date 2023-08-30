@@ -28,6 +28,131 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { tr } from 'date-fns/locale';
 import { array } from 'yup';
 
+import { ArrowUp } from '@/components/icons/arrow-up';
+import {
+  XAxis,
+  Tooltip,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  BarChart,
+  CartesianGrid,
+  Bar,
+} from 'recharts';
+
+///import { priceFeedData } from '@/data/static/price-feed';
+import { priceFeedData } from '@/data/static/nft-horse-price-feed';
+
+type Price = {
+  name: number;
+  value: number;
+};
+
+type LivePriceFeedProps = {
+  id: string;
+  name: string;
+  symbol: string;
+  icon: React.ReactElement;
+  balance: string;
+  usdBalance: string;
+  logo: string;
+  change: string;
+  isChangePositive: boolean;
+  isBorder?: boolean;
+  prices: Price[];
+};
+
+function LivePricingFeed({
+  id,
+  name,
+  symbol,
+  icon,
+  balance,
+  usdBalance,
+  logo,
+  change,
+  isChangePositive,
+  prices,
+  isBorder,
+}: LivePriceFeedProps) {
+  return (
+    <div
+      className={cn(
+        'flex flex-row items-center gap-4 rounded-lg bg-white p-5 shadow-[0_8px_16px_rgba(17,24,39,0.05)] dark:bg-light-dark '
+      )}
+    >
+      <div className="flex w-full flex-col justify-between">
+        <div className="mb-2 text-sm font-medium tracking-tighter text-gray-900 dark:text-white lg:text-lg 2xl:text-xl 3xl:text-2xl">
+          {balance}
+          <span className="ml-3">{symbol}</span>
+        </div>
+
+        <div className="flex items-center text-xs font-medium 2xl:text-sm">
+          <span
+            className="truncate tracking-tighter text-gray-600 ltr:mr-5 rtl:ml-5 dark:text-gray-400 2xl:w-24 3xl:w-auto"
+            title={`${usdBalance} USD`}
+          >
+            {usdBalance} USD
+          </span>
+
+          <span
+            className={`flex items-center  ${
+              isChangePositive ? 'text-green-500' : 'text-red-500'
+            }`}
+          >
+            <span
+              className={`ltr:mr-2 rtl:ml-2 ${
+                !isChangePositive ? 'rotate-180' : ''
+              }`}
+            >
+              <ArrowUp />
+            </span>
+            {change}
+          </span>
+        </div>
+
+        <div
+          className="h-20 w-full overflow-hidden"
+          data-hello={isChangePositive ? '#22c55e' : '#D6455D'}
+        >
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={prices}>
+              <defs>
+                <linearGradient
+                  id={`${name}-${id}`}
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
+                    stopOpacity={0.5}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+              </defs>
+              <Area
+                type="linear"
+                dataKey="value"
+                stroke={isChangePositive ? '#22c55e' : '#D6455D'}
+                strokeWidth={2.5}
+                fill={`url(#${`${name}-${id}`})`}
+                dot={false}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /*
 export const TransactionData = [
   {
@@ -352,6 +477,8 @@ export default function PriceHistoryTable() {
 
   return (
     <div className="m-5 rounded-lg border">
+      <LivePricingFeed {...priceFeedData[0]} />
+
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
         <div className="flex flex-col items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 md:flex-row">
           <h2 className="sm:text-md mb-3 shrink-0 text-lg font-medium uppercase text-black dark:text-white md:mb-0 md:text-xl">

@@ -158,101 +158,101 @@ function NftInfo({ nftMetadata }: any) {
 
   return (
     <div className="px-5 pb-0 lg:mt-0">
-      {nftMetadata?.owner === address && (
-        <>
-          <div className="mt-2 flex flex-row items-center justify-center gap-2">
-            <div className=" flex flex-row justify-center">
-              {/*{isTransferTokensLoading ? (*/}
+      {/*{nftMetadata?.owner === address && (*/}
+      <>
+        <div className="mt-2 flex flex-row items-center justify-center gap-2">
+          <div className=" flex flex-row justify-center">
+            {/*{isTransferTokensLoading ? (*/}
 
-              {isSending ? (
-                <div className="flex flex-row items-center justify-center gap-2">
-                  <div className="animate-spin">
-                    <RaceIcon className="h-35 w-35" />
-                  </div>
-                  <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                    <span>Sending #{nftMetadata?.metadata?.id} to</span>
-                    <span>Please wait...</span>
-                  </div>
+            {isSending ? (
+              <div className="flex flex-row items-center justify-center gap-2">
+                <div className="animate-spin">
+                  <RaceIcon className="h-35 w-35" />
                 </div>
-              ) : (
-                <>
-                  <Web3Button
-                    theme="light"
-                    contractAddress={nftDropContractAddressHorse}
-                    action={() => {
-                      //contract?.call('withdraw', [[nft.metadata.id]])
-                      //contract?.call('withdraw', [[nft.metadata.id]])
-                      //contract.erc1155.claim(0, 1);
+                <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                  <span>Sending #{nftMetadata?.metadata?.id} to</span>
+                  <span>Please wait...</span>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Web3Button
+                  theme="light"
+                  contractAddress={nftDropContractAddressHorse}
+                  action={() => {
+                    //contract?.call('withdraw', [[nft.metadata.id]])
+                    //contract?.call('withdraw', [[nft.metadata.id]])
+                    //contract.erc1155.claim(0, 1);
 
-                      ///contract.erc20.transfer(toAddress, amount);
+                    ///contract.erc20.transfer(toAddress, amount);
 
-                      transferNft(nftMetadata?.metadata?.id, toAddress);
+                    transferNft(nftMetadata?.metadata?.id, toAddress);
 
-                      /*
+                    /*
                         transferTokens({
                           to: toAddress, // Address to transfer to
                           amount: amount, // Amount to transfer
                         })
                         */
-                    }}
-                    onSuccess={() => {
-                      //setAmount(0);
-                      //setToAddress('');
+                  }}
+                  onSuccess={() => {
+                    //setAmount(0);
+                    //setToAddress('');
 
-                      console.log(`🌊 Successfully transfered!`);
-                      //alert('Successfully transfered!');
+                    console.log(`🌊 Successfully transfered!`);
+                    //alert('Successfully transfered!');
 
-                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                      //handleClickSucc();
-                    }}
-                    onError={(error) => {
-                      console.error('Failed to transfer', error);
-                      alert('Failed to transfer');
-                      //setErrMsgSnackbar('Failed to transfer');
-                      //handleClickErr();
-                    }}
-                  >
-                    Transfer
-                  </Web3Button>
-                </>
-              )}
-            </div>
-
-            <input
-              className=" w-full text-black"
-              type="text"
-              name="toAddress"
-              placeholder="To Address"
-              value={toAddress}
-              onChange={(e) => {
-                setToAddress(e.target.value);
-              }}
-            />
+                    //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                    //handleClickSucc();
+                  }}
+                  onError={(error) => {
+                    console.error('Failed to transfer', error);
+                    alert('Failed to transfer');
+                    //setErrMsgSnackbar('Failed to transfer');
+                    //handleClickErr();
+                  }}
+                >
+                  Transfer
+                </Web3Button>
+              </>
+            )}
           </div>
 
-          <Button
-            className="mt-5 flex"
-            title="Go"
-            color="white"
-            shape="rounded"
-            variant="transparent"
-            size="small"
-            onClick={() => {
-              router.push('https://granderby.market/');
+          <input
+            className=" w-full text-black"
+            type="text"
+            name="toAddress"
+            placeholder="To Address"
+            value={toAddress}
+            onChange={(e) => {
+              setToAddress(e.target.value);
             }}
-          >
-            <div className="flex flex-row gap-2">
-              <Image
-                src="/images/market.png"
-                alt="market"
-                width={24}
-                height={24}
-              />
-              <span className="text-lg font-bold">Marketplace</span>
-            </div>
-          </Button>
-        </>
-      )}
+          />
+        </div>
+
+        <Button
+          className="mt-5 flex"
+          title="Go"
+          color="white"
+          shape="rounded"
+          variant="transparent"
+          size="small"
+          onClick={() => {
+            router.push('https://granderby.market/');
+          }}
+        >
+          <div className="flex flex-row gap-2">
+            <Image
+              src="/images/market.png"
+              alt="market"
+              width={24}
+              height={24}
+            />
+            <span className="text-lg font-bold">Marketplace</span>
+          </div>
+        </Button>
+      </>
+      {/*)} */}
 
       <PriceHistoryTable />
 
