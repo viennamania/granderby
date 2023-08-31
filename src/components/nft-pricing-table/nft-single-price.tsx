@@ -45,6 +45,8 @@ import Link from 'next/link';
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
+  marketplaceContractAddress,
+  tokenContractAddressUSDC,
 } from '@/config/contractAddresses';
 
 import {
@@ -54,6 +56,8 @@ import {
   useNFT,
   Web3Button,
   useContractRead,
+  useValidDirectListings,
+  useTokenBalance,
 } from '@thirdweb-dev/react';
 
 interface RadioOptionProps {
@@ -269,6 +273,40 @@ export default function NftSinglePrice({
   );
 
   console.log('stakerAddress', stakerAddress);
+
+  const { contract: marketplace } = useContract(
+    marketplaceContractAddress,
+    'marketplace-v3'
+  );
+
+  const {
+    data: directListings,
+    isLoading: loadingListings,
+    error,
+  } = useValidDirectListings(marketplace);
+
+  const [directListing, setDirectListing] = useState<any>(null);
+
+  useEffect(() => {
+    if (directListings) {
+      directListings.map((listing: any) => {
+        if (listing.tokenId == tokenid) {
+          //setListingId(listing.id);
+
+          setDirectListing(listing);
+
+          return;
+        }
+      });
+    }
+  }, [directListings, tokenid]);
+
+  const { contract: tokenContractUSDC } = useContract(
+    tokenContractAddressUSDC,
+    'token'
+  );
+  const { data: tokenBalanceUSDC, isLoading: isLoadingTokenBalanceUSDC } =
+    useTokenBalance(tokenContractUSDC, address);
 
   const handleOnChange = (value: string) => {
     setStatus(value);
@@ -558,6 +596,70 @@ export default function NftSinglePrice({
                       )}
                     </div>
                   </div>
+
+                  {!directListing || directListing.quantity === '0' ? (
+                    <>
+                      <div className="flex flex-row  items-center justify-center gap-5">
+                        <div className="text-xl font-bold xl:text-2xl">
+                          <b>Not for sale</b>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
+                      <div className="text-xl font-bold xl:text-2xl">
+                        {/*
+                          <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
+                          {directListing.buyoutCurrencyValuePerToken.symbol}
+                              */}
+                        <span>Sell Price:&nbsp;</span>
+                        <b>
+                          {directListing?.currencyValuePerToken.displayValue}
+                        </b>{' '}
+                        {directListing?.currencyValuePerToken.symbol}
+                      </div>
+                      <div className="text-sm font-bold xl:text-lg">
+                        Last price:&nbsp;
+                        {directListing?.currencyValuePerToken.displayValue - 6}{' '}
+                        {directListing?.currencyValuePerToken.symbol}
+                      </div>
+
+                      <div className="text-xl font-bold xl:text-2xl">
+                        <Web3Button
+                          theme="light"
+                          action={(contract) =>
+                            //contract?.call('withdraw', [[nftMetadata?.tokenId]])
+                            //buyNft()
+                            alert('NFT bought successfully!')
+                          }
+                          contractAddress={marketplaceContractAddress}
+                        >
+                          <span className="flex items-center gap-2">
+                            {/*<InfoIcon className="h-3 w-3" /> */} Buy
+                          </span>
+                        </Web3Button>
+                        &nbsp;&nbsp;for Buy Now
+                      </div>
+
+                      {address && (
+                        <div className=" flex flex-row items-center justify-center  gap-2">
+                          <span className="text-md  xl:text-xl">
+                            My Balance:
+                          </span>
+
+                          {isLoadingTokenBalanceUSDC && (
+                            <div className=" text-md  xl:text-xl">
+                              Loading...
+                            </div>
+                          )}
+                          <div className="text-md  xl:text-xl">
+                            {tokenBalanceUSDC?.displayValue}{' '}
+                            {tokenBalanceUSDC?.symbol}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   <Image
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
