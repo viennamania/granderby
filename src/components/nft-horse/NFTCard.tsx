@@ -56,7 +56,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
       {nft && (
         <div className=" flex flex-col items-center  justify-center gap-3">
           {nft?.metadata && (
-            <>
+            <div className=" w-28  xl:w-36">
               {/*
             <ThirdwebNftMedia
               metadata={nft.metadata}
@@ -69,8 +69,8 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                 //src={nft.media[0].thumbnail}
                 src={nft?.metadata?.image ? nft?.metadata?.image : ''}
                 alt={'alt'}
-                width={90}
-                height={90}
+                width={200}
+                height={200}
                 className="rounded-lg"
                 // onClick={() =>
                 //setTokenid(nft.metadata.id.toString()),
@@ -78,11 +78,12 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                 //router.push('/horse-details/' + nft?.metadata?.id)
                 //}
               />
-            </>
+            </div>
           )}
 
-          <h5>#{nft?.metadata?.id}</h5>
-          <span className="text-xs">#{nft?.metadata?.name}</span>
+          <div className="text-sm text-blue-600">#{nft?.metadata?.id}</div>
+
+          <span className="text-xs ">{nft?.metadata?.name}</span>
         </div>
       )}
     </>
