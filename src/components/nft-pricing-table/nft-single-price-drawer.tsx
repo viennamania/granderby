@@ -1,4 +1,4 @@
-import { useState, Fragment, useEffect } from 'react';
+import { useState, Fragment, useEffect, use } from 'react';
 import { format } from 'date-fns';
 import cn from 'classnames';
 import {
@@ -472,6 +472,35 @@ export default function NftSinglePrice({
     setAttributeGrade(grade);
   }, [nft?.metadata?.attributes]);
 
+  const [indexPriceFeedData, setIndexPriceFeedData] = useState(0);
+
+  useEffect(() => {
+    const grade = nft?.metadata?.attributes?.map((attribute: any) => {
+      ///console.log('attribute', attribute);
+      if (attribute.trait_type === 'Grade') {
+        console.log('attribute.value', attribute.value);
+
+        return attribute.value;
+      }
+    });
+
+    if (grade === 'S') {
+      setIndexPriceFeedData(0);
+    } else if (grade === 'U') {
+      setIndexPriceFeedData(1);
+    } else if (grade === 'A') {
+      setIndexPriceFeedData(2);
+    } else if (grade === 'B') {
+      setIndexPriceFeedData(3);
+    } else if (grade === 'C') {
+      setIndexPriceFeedData(4);
+    } else if (grade === 'D') {
+      setIndexPriceFeedData(5);
+    }
+
+    console.log('indexPriceFeedData', indexPriceFeedData);
+  }, [nft?.metadata?.attributes]);
+
   return (
     <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark ">
       {layout === LAYOUT_OPTIONS.RETRO ? (
@@ -684,7 +713,7 @@ export default function NftSinglePrice({
                     </div>
                   </div>
 
-                  <LivePricingFeed {...priceFeedData[0]} />
+                  <LivePricingFeed {...priceFeedData[indexPriceFeedData]} />
 
                   <div className="flex flex-row items-center justify-center gap-2">
                     <Image

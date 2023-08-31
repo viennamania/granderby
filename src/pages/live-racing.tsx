@@ -98,7 +98,7 @@ function CoinPrices() {
   */}
 
       <div className="mb-10 ">
-        <LiveNftPricingSlider limits={4} />
+        <LiveNftPricingSlider limits={2} />
       </div>
 
       <div className="mb-10 ">

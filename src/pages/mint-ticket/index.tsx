@@ -548,7 +548,7 @@ const MintPage: NextPageWithLayout<
   */}
 
         {/*
-        <LiveNftPricingSlider limits={4} />
+        <LiveNftPricingSlider limits={2} />
         */}
 
         <div className=" mt-10 flex flex-row justify-center">

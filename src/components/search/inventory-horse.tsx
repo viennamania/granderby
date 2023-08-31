@@ -45,7 +45,7 @@ export default function Inventory() {
     },
     {
       title: 'Registered',
-      path: 'stable-a',
+      path: 'registered-inventory',
     },
     /*
     {
@@ -193,6 +193,10 @@ export default function Inventory() {
                 </div>
 
                 <RegisteredFeeds />
+
+                {/*
+                      <OwnedFeeds />
+*/}
               </div>
             </TabPanel>
 
@@ -221,7 +225,7 @@ export default function Inventory() {
             Filters
           </Button>
         </div>
-                */}
+        */}
       </div>
     </>
   );

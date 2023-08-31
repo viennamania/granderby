@@ -462,7 +462,7 @@ export default function ModernScreen() {
 
           <CollapseLivePricing label="Live Pricing">
             <div className="p-5">
-              <LiveNftPricingSlider limits={4} />
+              <LiveNftPricingSlider limits={2} />
             </div>
             {/*
             <div className='w-full items-center justify-center'>

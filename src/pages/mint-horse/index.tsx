@@ -508,7 +508,7 @@ const MintPage: NextPageWithLayout<
         <h3 className="mt-10">Own my horses by minting</h3>
 
         {/*
-        <LiveNftPricingSlider limits={4} />
+        <LiveNftPricingSlider limits={2} />
         */}
 
         <div className=" mt-10 flex flex-row justify-center">

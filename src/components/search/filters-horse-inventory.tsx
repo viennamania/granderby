@@ -116,6 +116,7 @@ export function SortList() {
   );
 }
 
+/*
 export function PriceRange() {
   let [range, setRange] = useState({ min: 0, max: 1000 });
   function handleRangeChange(value: any) {
@@ -138,6 +139,7 @@ export function PriceRange() {
   }
   return (
     <div className="p-5">
+
       <div className="mb-4 grid grid-cols-2 gap-2">
         <input
           className="h-9 rounded-lg border-gray-200 text-sm text-gray-900 outline-none focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-gray-500"
@@ -155,6 +157,7 @@ export function PriceRange() {
           min={range.min}
         />
       </div>
+
       <Slider
         range
         min={0}
@@ -166,6 +169,7 @@ export function PriceRange() {
     </div>
   );
 }
+*/
 
 export function Status() {
   let [plan, setPlan] = useState('buy-now');

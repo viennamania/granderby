@@ -127,7 +127,7 @@ export default function MomoconScreen() {
           <AssetSlider coins={assetSlideData} />
           */}
 
-          <LiveNftPricingSlider limits={4} />
+          <LiveNftPricingSlider limits={2} />
         </div>
 
         <div className="mt-10 w-full sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
@@ -145,7 +145,6 @@ export default function MomoconScreen() {
                   className="mx-auto mb-6"
                   size="lg"
                 />
-
 
                 {!address && (
                   <div className="mb-5 flex justify-center">
