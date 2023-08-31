@@ -17,6 +17,7 @@ import Image from '@/components/ui/image';
 
 import { Refresh } from '@/components/icons/refresh';
 import { RadioGroup } from '@/components/ui/radio-group';
+import Collapse from '@/components/ui/collapse';
 import { motion } from 'framer-motion';
 import {
   weeklyComparison,
@@ -58,6 +59,9 @@ import {
   useContractRead,
   useValidDirectListings,
   useTokenBalance,
+  useNetworkMismatch,
+  useNetwork,
+  ChainId,
 } from '@thirdweb-dev/react';
 
 interface RadioOptionProps {
@@ -100,22 +104,52 @@ interface NftDrawerProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export function Grade() {
-  let [grade, setGrade] = useState('');
+function Grade(grade: any) {
+  var valueGrade = '';
 
-  ///console.log('Grade', grade);
+  if (grade?.grade?.length > 35) {
+    console.log('Grade grade.grade[35]====', grade?.grade[35]);
+
+    valueGrade = grade?.grade[35];
+  }
+
+  var checkedS = false;
+  var checkedU = false;
+  var checkedA = false;
+  var checkedB = false;
+  var checkedC = false;
+  var checkedD = false;
+
+  if (valueGrade === 'S') {
+    checkedS = true;
+  } else if (valueGrade === 'U') {
+    checkedU = true;
+  } else if (valueGrade === 'A') {
+    checkedA = true;
+  } else if (valueGrade === 'B') {
+    checkedB = true;
+  } else if (valueGrade === 'C') {
+    checkedC = true;
+  } else if (valueGrade === 'D') {
+    checkedD = true;
+  }
 
   return (
     <RadioGroup
       value={grade}
-      ///onChange={setGrade}
+      //onChange={setGrade}
       className="grid grid-cols-2 gap-2 p-5"
     >
-      <RadioGroup.Option value="grade-u">
-        {({ checked }) => (
+      <RadioGroup.Option value="U">
+        {(
+          {
+            //checked
+            //checked = valueGrade === 'U' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedU
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -131,11 +165,15 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-s">
-        {({ checked }) => (
+      <RadioGroup.Option value="S">
+        {(
+          {
+            //checked = valueGrade === 'S' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedS
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -151,11 +189,15 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-a">
-        {({ checked }) => (
+      <RadioGroup.Option value="A">
+        {(
+          {
+            //checked
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedA
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -171,11 +213,15 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-b">
-        {({ checked }) => (
+      <RadioGroup.Option value="B">
+        {(
+          {
+            //checked = valueGrade === 'B' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedB
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -191,11 +237,15 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-c">
-        {({ checked }) => (
+      <RadioGroup.Option value="C">
+        {(
+          {
+            ///checked = valueGrade === 'C' ? true : false,
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedC
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -211,11 +261,17 @@ export function Grade() {
         )}
       </RadioGroup.Option>
 
-      <RadioGroup.Option value="grade-d">
-        {({ checked }) => (
+      <RadioGroup.Option value="D">
+        {(
+          {
+            //const check = valueGrade === 'D' ? true : false,
+            ///var check = false;
+            ////var check = valueGrade === 'D' ? true : false
+          }
+        ) => (
           <span
             className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
-              checked
+              checkedD
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
             }`}
@@ -261,7 +317,22 @@ export default function NftSinglePrice({
 
   //console.log('nft', nft);
 
-  const attributes: any = nft?.metadata?.attributes;
+  ///const attributes: any = nft?.metadata?.attributes;
+
+  const [attributeGrade, setAttributeGrade] = useState(null);
+
+  useEffect(() => {
+    const grade = nft?.metadata?.attributes?.map((attribute: any) => {
+      ///console.log('attribute', attribute);
+      if (attribute.trait_type === 'Grade') {
+        console.log('attribute.value', attribute.value);
+
+        return attribute.value;
+      }
+    });
+
+    setAttributeGrade(grade);
+  }, [nft?.metadata?.attributes]);
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
@@ -361,6 +432,42 @@ export default function NftSinglePrice({
       setErrMsgSnackbar(data);
       handleClickErr();
       */
+    }
+  }
+
+  // Hooks to detect user is on the right network and switch them if they are not
+  const networkMismatch = useNetworkMismatch();
+  const [, switchNetwork] = useNetwork();
+
+  async function buyNft() {
+    try {
+      // Ensure user is on the correct network
+
+      if (networkMismatch) {
+        switchNetwork && switchNetwork(ChainId.Polygon);
+        return;
+      }
+
+      // Simple one-liner for buying the NFT
+      /*
+        await marketplace?.buyFromListing(listingId.listingId, 1);
+        */
+
+      // The ID of the listing you want to buy from
+      //const listingId = 0;
+      // Quantity of the asset you want to buy
+      const quantityDesired = 1;
+
+      await marketplace?.directListings?.buyFromListing(
+        directListing?.listingId,
+        quantityDesired,
+        address
+      );
+
+      alert('NFT bought successfully!');
+    } catch (error) {
+      console.error(error);
+      alert(error);
     }
   }
 
@@ -625,13 +732,12 @@ export default function NftSinglePrice({
                         {directListing?.currencyValuePerToken.symbol}
                       </div>
 
-                      <div className="text-xl font-bold xl:text-2xl">
+                      <div className="text-sm font-bold xl:text-xl">
                         <Web3Button
                           theme="light"
                           action={(contract) =>
                             //contract?.call('withdraw', [[nftMetadata?.tokenId]])
-                            //buyNft()
-                            alert('NFT bought successfully!')
+                            buyNft()
                           }
                           contractAddress={marketplaceContractAddress}
                         >
@@ -678,7 +784,25 @@ export default function NftSinglePrice({
               </span>
             </div>
 
-            <Grade />
+            <Collapse label="Grade" initialOpen={true}>
+              <Grade
+                grade={
+                  /*
+                  nft?.metadata?.attributes?.map((attribute: any) => {
+                    ///console.log('attribute', attribute);
+                    if (attribute.trait_type === 'Grade') {
+                      
+                      console.log('attribute.value', attribute.value);
+
+                      return attribute.value;
+                    }
+                  })
+                  */
+
+                  attributeGrade
+                }
+              />
+            </Collapse>
 
             {/* nft attributes details */}
             {/*
