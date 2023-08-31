@@ -46,7 +46,7 @@ export default async function handler(
       rawMetadata,
     } = nft.nft;
 
-    //console.log('rawMetadata', rawMetadata);
+    console.log('rawMetadata', rawMetadata);
 
     return {
       contract: contract.address,
@@ -58,7 +58,7 @@ export default async function handler(
       verified: contract.openSea?.safelistRequestStatus,
       tokenType,
       tokenId,
-      title,
+      title: rawMetadata.name ? rawMetadata.name : title,
       description,
       format: media[0]?.format ? media[0]?.format : 'png',
 
