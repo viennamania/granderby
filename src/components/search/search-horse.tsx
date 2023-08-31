@@ -103,7 +103,7 @@ export default function Search() {
       <div className="mb-5 mt-5 flex">
         <CollapseLivePricing label="Live Pricing">
           <div className="m-5 p-5">
-            <LiveNftPricingSlider limits={2} />
+            <LiveNftPricingSlider limits={3} />
           </div>
         </CollapseLivePricing>
       </div>
