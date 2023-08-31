@@ -369,6 +369,9 @@ export default function Feeds({ className }: { className?: string }) {
                       router.push('/horse-details/' + nft?.tokenId);
                     }}
                   >
+                    <div className="m-2 flex items-center justify-start">
+                      <p className="text-sm font-bold">#{nft?.tokenId}</p>
+                    </div>
                     <Image
                       src={
                         nft?.media[0]?.gateway

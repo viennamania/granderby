@@ -46,7 +46,7 @@ export default async function handler(
       rawMetadata,
     } = nft.nft;
 
-    console.log('rawMetadata', rawMetadata);
+    ////console.log('rawMetadata', rawMetadata);
 
     return {
       contract: contract.address,
