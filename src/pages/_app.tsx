@@ -116,7 +116,10 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      {/*
       <Head>
+
+        
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1 maximum-scale=1"
@@ -142,7 +145,10 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <meta name="twitter:image" content="/intro-bg.png"></meta>
 
         <title>Granderby - powered by MOMOCON</title>
+
+
       </Head>
+      */}
 
       <QueryClientProvider client={queryClient}>
         <ThirdwebProvider

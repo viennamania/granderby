@@ -620,7 +620,8 @@ export default function NftSinglePrice({
                       </div>
                       <div className="text-sm font-bold xl:text-lg">
                         Last price:&nbsp;
-                        {directListing?.currencyValuePerToken.displayValue - 6}{' '}
+                        {directListing?.currencyValuePerToken.displayValue -
+                          6}{' '}
                         {directListing?.currencyValuePerToken.symbol}
                       </div>
 

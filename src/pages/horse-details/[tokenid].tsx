@@ -1,8 +1,11 @@
 import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
 
+import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import RootLayout from '@/layouts/_root-layout';
 import { NextPageWithLayout } from '@/types';
 import React, { useEffect, useState } from 'react';
+
+import Head from 'next/head';
 
 import NftInfo from '@/components/nft-pricing-table/nft-info';
 
@@ -43,6 +46,8 @@ function SinglePrice(tokenid: any) {
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
   const { data: nftMetadata } = useNFT(contract, tokenid.tokenid);
+
+  console.log('nftMetadata======>', nftMetadata);
 
   return (
     <>
@@ -106,12 +111,75 @@ function SinglePrice(tokenid: any) {
   );
 }
 
-const AssetSinglePrice: NextPageWithLayout = () => {
+//// GetStaticPaths
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { tokenid: '1' } }],
+    fallback: true,
+
+    /*
+    paths: [
+      { params: { tokenid: '1' } },
+      { params: { tokenid: '2' } },
+      { params: { tokenid: '3' } },
+      { params: { tokenid: '4' } },
+      { params: { tokenid: '5' } },
+      { params: { tokenid: '6' } },
+      { params: { tokenid: '7' } },
+    ],
+    fallback: true,
+    */
+  };
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      title: 'Granderby - #1234',
+      description: 'powered by MOMOCON',
+      image: '/images/logo.png',
+      //image: {nftMetadata?.metadata?.image},
+    },
+  };
+};
+
+const AssetSinglePrice: NextPageWithLayout<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = (props) => {
+  const { title, description, image } = props;
+
   const router = useRouter();
 
   console.log('id======', router.query.tokenid);
 
-  return <SinglePrice tokenid={router.query.tokenid} />;
+  return (
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 maximum-scale=1"
+        />
+        <meta property="og:type" content="website"></meta>
+
+        <meta property="og:site_name" content="GRANDERBY"></meta>
+
+        <meta property="og:image:width" content="1400"></meta>
+        <meta property="og:image:height" content="1400"></meta>
+
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:description" content={description}></meta>
+        <meta property="og:image" content={image}></meta>
+
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:image" content={image}></meta>
+
+        <title>{title}</title>
+      </Head>
+
+      <SinglePrice tokenid={router.query.tokenid} />
+    </>
+  );
 };
 
 AssetSinglePrice.getLayout = function getLayout(page: any) {
