@@ -14,10 +14,13 @@ import Explorers from '@/components/cryptocurrency-pricing-table/explorers';
 import Link from 'next/link';
 
 import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
+import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
 
 import Image from 'next/image';
 import Button from '@/components/ui/button/button';
 import { useRouter } from 'next/router';
+
+import Collapse from '@/components/ui/collapse';
 
 import {
   nftDropContractAddressHorse,
@@ -254,7 +257,13 @@ function NftInfo({ nftMetadata }: any) {
       </>
       {/*)} */}
 
-      <PriceHistoryTable />
+      <Collapse label="Price History" initialOpen={true}>
+        <PriceHistoryTable nftMetadata={nftMetadata} />
+      </Collapse>
+
+      <Collapse label="Race History" initialOpen={true}>
+        <RaceHistoryTable />
+      </Collapse>
 
       {/*
       <div className="mt-[10px] flex items-center gap-4">

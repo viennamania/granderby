@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 
@@ -41,7 +41,7 @@ import {
 } from 'recharts';
 
 ///import { priceFeedData } from '@/data/static/price-feed';
-import { priceFeedData } from '@/data/static/nft-horse-price-feed';
+import { raceFeedData } from '@/data/static/nft-horse-race-feed';
 
 type Price = {
   name: number;
@@ -356,13 +356,7 @@ const COLUMNS = [
   },
 ];
 
-export default function PriceHistoryTable(
-  //nftMetadata: any
-
-  { nftMetadata }: { nftMetadata?: any }
-) {
-  //console.log('PriceHistoryTable nftMetadata: ', nftMetadata);
-
+export default function RaceHistoryTable() {
   //const data = React.useMemo(() => transactionData, [ ]);
 
   const columns = React.useMemo(() => COLUMNS, []);
@@ -481,53 +475,17 @@ export default function PriceHistoryTable(
     //}, [address]);
   }, []);
 
-  const [attributeGrade, setAttributeGrade] = useState(null);
-
-  const [priceFeedDataIndex, setPriceFeedDataIndex] = useState(0);
-
-  useEffect(() => {
-    var grade = null;
-
-    nftMetadata?.metadata?.attributes?.map((attribute: any) => {
-      ///console.log('attribute', attribute);
-      if (attribute.trait_type === 'Grade') {
-        //console.log('attribute.value', attribute.value);
-
-        grade = attribute.value;
-        return;
-      }
-    });
-
-    setAttributeGrade(grade);
-
-    console.log('grade', grade);
-
-    if (grade === 'U') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'S') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'A') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'B') {
-      setPriceFeedDataIndex(2);
-    } else if (grade === 'C') {
-      setPriceFeedDataIndex(2);
-    } else if (grade === 'D') {
-      setPriceFeedDataIndex(0);
-    } else {
-      setPriceFeedDataIndex(0);
-    }
-  }, [nftMetadata?.metadata?.attributes]);
-
   return (
     <div>
-      <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
+      {/*
+      <LivePricingFeed {...raceFeedData[0]} />
+      */}
 
       {/*
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
         <div className="flex flex-col items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 md:flex-row">
           <h2 className="sm:text-md mb-3 shrink-0 text-lg font-medium uppercase text-black dark:text-white md:mb-0 md:text-xl">
-            Price History
+            Race History
           </h2>
         </div>
       </div>
