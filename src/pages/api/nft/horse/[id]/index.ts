@@ -431,6 +431,8 @@ export default async function handler(
 
   //const asset = imagesrc.substring(-3);
 
+  var name = '';
+
   const attributes = [];
 
   attributes.push({ trait_type: 'Speed', value: speed });
@@ -451,7 +453,17 @@ export default async function handler(
 
   const npc = await getNpcFromTextureKey(textureKey);
 
+  ///console.log('npc', npc);
+
   if (npc.success) {
+    if (npc.user?.COMMENT !== '') {
+      name = npc.user?.COMMENT;
+    } else {
+      name = 'Granderby Horse #' + req.query.id;
+    }
+
+    ///console.log('name', name);
+
     let horseMane = '';
     if (npc.user?.HORSEMANE === 'Ho_Mo_04_01_Mane') {
       horseMane = 'Long Mane';
@@ -648,7 +660,7 @@ export default async function handler(
   if (req.query.id === '0') {
     const nftData = {
       id: req.query.id,
-      name: 'Granderby Horse #' + req.query.id,
+      name: name,
       description: 'Granderby NFT Horses',
       //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
       image: imagesrcUrl,
@@ -683,7 +695,7 @@ export default async function handler(
   } else {
     const nftData = {
       id: req.query.id,
-      name: 'Granderby Horse #' + req.query.id,
+      name: name,
       description: 'Granderby NFT Horses',
       //image: 'https://granderby.io/nft/horse/Hrs_00006000.png',
       image: imagesrcUrl,

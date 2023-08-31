@@ -235,7 +235,7 @@ function NftInfo({ nftMetadata }: any) {
           </div>
         )}
 
-        <div className="ml-2 mt-2 flex flex-row items-center justify-start gap-2">
+        <div className="ml-2 mt-2 flex flex-row items-center justify-between gap-2">
           <div className=" flex flex-row justify-center">Data Source:</div>
           <Button
             className=" flex"
@@ -263,7 +263,7 @@ function NftInfo({ nftMetadata }: any) {
           <PriceHistoryTable nftMetadata={nftMetadata} />
         </Collapse>
 
-        <div className="ml-2 mt-2 flex flex-row items-center justify-start gap-2">
+        <div className="ml-2 mt-2 flex flex-row items-center justify-between gap-2">
           <div className=" flex flex-row justify-center">Data Source:</div>
           <Button
             className=" flex"

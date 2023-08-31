@@ -136,7 +136,7 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      title: 'Granderby - #1234',
+      title: 'Granderby',
       description: 'powered by MOMOCON',
       image: '/images/logo.png',
       //image: {nftMetadata?.metadata?.image},
@@ -174,7 +174,7 @@ const AssetSinglePrice: NextPageWithLayout<
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:image" content={image}></meta>
 
-        <title>{title}</title>
+        <title>{router.query.tokenid}</title>
       </Head>
 
       <SinglePrice tokenid={router.query.tokenid} />
