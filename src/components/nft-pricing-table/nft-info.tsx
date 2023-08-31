@@ -252,10 +252,9 @@ function NftInfo({ nftMetadata }: any) {
               <Image
                 src="/images/market.png"
                 alt="market"
-                width={24}
-                height={24}
+                width={34}
+                height={34}
               />
-              <span className="text-lg font-bold">Marketplace</span>
             </div>
           </Button>
         </div>
@@ -281,10 +280,9 @@ function NftInfo({ nftMetadata }: any) {
               <Image
                 src="/images/inkent.jpeg"
                 alt="market"
-                width={84}
+                width={74}
                 height={10}
               />
-              <span className="text-lg font-bold">Inkent</span>
             </div>
           </Button>
         </div>
