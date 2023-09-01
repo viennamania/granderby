@@ -63,6 +63,7 @@ import {
   useNetworkMismatch,
   useNetwork,
   ChainId,
+  ConnectWallet,
 } from '@thirdweb-dev/react';
 import { set } from 'lodash';
 
@@ -425,7 +426,7 @@ export default function NftSinglePrice({
 
           setDirectListing(listing);
 
-          console.log('nft-single-price listing', listing);
+          ////console.log('nft-single-price listing', listing);
 
           return;
         }
@@ -520,7 +521,7 @@ export default function NftSinglePrice({
       const quantityDesired = 1;
 
       await marketplace?.directListings?.buyFromListing(
-        directListing?.listingId,
+        directListing?.id,
         quantityDesired,
         address
       );
@@ -742,7 +743,7 @@ export default function NftSinglePrice({
                           <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
                             Not registered
                           </div>
-                          {address && (
+                          {address && address === nft?.owner && (
                             <Web3Button
                               theme="light"
                               contractAddress={stakingContractAddressHorseAAA}
@@ -759,7 +760,7 @@ export default function NftSinglePrice({
                         '0x0000000000000000000000000000000000000000' && (
                         <div className="mt-2 flex items-center gap-4 ">
                           <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                            Registered to
+                            Registered by
                           </div>
                           <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                             <span>
@@ -789,91 +790,117 @@ export default function NftSinglePrice({
                     )}
                   </div>
 
-                  {!directListing || directListing.quantity === '0' ? (
-                    <div className="m-3 flex flex-row  items-center justify-center gap-5">
+                  {loadingListings ? (
+                    <div className="mt-5 flex flex-col items-center justify-center gap-5">
                       <div className="text-xl font-bold xl:text-2xl">
-                        <b>Not for sale </b>
+                        <b>Loading sale...</b>
                       </div>
                     </div>
                   ) : (
-                    <div className="m-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
-                      <div className="text-xl font-bold xl:text-2xl">
-                        {/*
-                          <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
-                          {directListing.buyoutCurrencyValuePerToken.symbol}
-                              */}
-                        <span>Sell Price:&nbsp;</span>
-                        <b>
-                          {directListing?.currencyValuePerToken.displayValue}
-                        </b>{' '}
-                        {directListing?.currencyValuePerToken.symbol}
-                      </div>
-                      <div className="text-sm font-bold xl:text-lg">
-                        Last price:&nbsp;
-                        {directListing?.currencyValuePerToken.displayValue -
-                          6}{' '}
-                        {directListing?.currencyValuePerToken.symbol}
-                      </div>
+                    <>
+                      {!directListing || directListing.quantity === '0' ? (
+                        <div className="m-3 flex flex-row  items-center justify-center gap-5">
+                          <div className="text-xl font-bold xl:text-2xl">
+                            <b>Not for sale </b>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="m-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
+                          <div className="text-xl font-bold xl:text-2xl">
+                            {/*
+                              <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
+                              {directListing.buyoutCurrencyValuePerToken.symbol}
+                                  */}
+                            <span>Sell Price:&nbsp;</span>
+                            <b>
+                              {
+                                directListing?.currencyValuePerToken
+                                  .displayValue
+                              }
+                            </b>{' '}
+                            {directListing?.currencyValuePerToken.symbol}
+                          </div>
+                          <div className="text-sm font-bold xl:text-lg">
+                            Last price:&nbsp;
+                            {directListing?.currencyValuePerToken.displayValue -
+                              6}{' '}
+                            {directListing?.currencyValuePerToken.symbol}
+                          </div>
 
-                      {address && address === nft?.owner && (
-                        <Web3Button
-                          theme="light"
-                          action={(contract) =>
-                            //contract?.call('withdraw', [[nft?.metadata?.id]])
-                            //contract?.call('cancel', [[directListing?.id]])
-
-                            contract?.directListings.cancelListing(
-                              directListing?.id
-                            )
-                          }
-                          contractAddress={marketplaceContractAddress}
-                        >
-                          <span className="flex items-center gap-2">
-                            {/*<InfoIcon className="h-3 w-3" /> */} Cancel Sale
-                          </span>
-                        </Web3Button>
-                      )}
-
-                      {address && address !== nft?.owner && (
-                        <>
-                          <div className="text-sm font-bold xl:text-xl">
+                          {address && address === nft?.owner && (
                             <Web3Button
                               theme="light"
                               action={(contract) =>
-                                //contract?.call('withdraw', [[nftMetadata?.tokenId]])
-                                buyNft()
+                                //contract?.call('withdraw', [[nft?.metadata?.id]])
+                                //contract?.call('cancel', [[directListing?.id]])
+
+                                contract?.directListings.cancelListing(
+                                  directListing?.id
+                                )
                               }
                               contractAddress={marketplaceContractAddress}
                             >
                               <span className="flex items-center gap-2">
-                                {/*<InfoIcon className="h-3 w-3" /> */} Buy
+                                {/*<InfoIcon className="h-3 w-3" /> */} Cancel
+                                Sale
                               </span>
                             </Web3Button>
-                            {!address && (
+                          )}
+
+                          {!address && (
+                            <div className="flex flex-row items-center justify-center">
+                              <ConnectWallet
+                                theme="light"
+                                className="text-sm font-bold xl:text-xl"
+                              />
                               <span className="text-sm font-bold xl:text-xl">
                                 &nbsp;&nbsp;for Buy Now
                               </span>
-                            )}
-                          </div>
-
-                          <div className=" flex flex-row items-center justify-center  gap-2">
-                            <span className="text-md  xl:text-xl">
-                              My Balance:
-                            </span>
-
-                            {isLoadingTokenBalanceUSDC && (
-                              <div className=" text-md  xl:text-xl">
-                                Loading...
-                              </div>
-                            )}
-                            <div className="text-md  xl:text-xl">
-                              {tokenBalanceUSDC?.displayValue}{' '}
-                              {tokenBalanceUSDC?.symbol}
                             </div>
-                          </div>
-                        </>
+                          )}
+
+                          {address && address !== nft?.owner && (
+                            <>
+                              <div className="text-sm font-bold xl:text-xl">
+                                <Web3Button
+                                  theme="light"
+                                  action={(contract) =>
+                                    //contract?.call('withdraw', [[nftMetadata?.tokenId]])
+                                    buyNft()
+                                  }
+                                  contractAddress={marketplaceContractAddress}
+                                >
+                                  <span className="flex items-center gap-2">
+                                    {/*<InfoIcon className="h-3 w-3" /> */} Buy
+                                  </span>
+                                </Web3Button>
+                                {!address && (
+                                  <span className="text-sm font-bold xl:text-xl">
+                                    &nbsp;&nbsp;for Buy Now
+                                  </span>
+                                )}
+                              </div>
+
+                              <div className=" flex flex-row items-center justify-center  gap-2">
+                                <span className="text-md  xl:text-xl">
+                                  My Balance:
+                                </span>
+
+                                {isLoadingTokenBalanceUSDC && (
+                                  <div className=" text-md  xl:text-xl">
+                                    Loading...
+                                  </div>
+                                )}
+                                <div className="text-md  xl:text-xl">
+                                  {tokenBalanceUSDC?.displayValue}{' '}
+                                  {tokenBalanceUSDC?.symbol}
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
                       )}
-                    </div>
+                    </>
                   )}
 
                   {/*
