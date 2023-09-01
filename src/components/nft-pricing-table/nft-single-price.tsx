@@ -802,9 +802,9 @@ export default function NftSinglePrice({
                           {stakerAddress &&
                             stakerAddress ===
                               '0x0000000000000000000000000000000000000000' && (
-                              <div className="mt-3 flex flex-row items-center gap-4 ">
-                                <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                                  Not registered
+                              <div className="mt-0 flex flex-row items-center gap-4 ">
+                                <div className="text-sm font-bold xl:text-lg">
+                                  <b>Not registered </b>
                                 </div>
                                 {address && address === nft?.owner && (
                                   <Web3Button
@@ -848,7 +848,7 @@ export default function NftSinglePrice({
                             )}
 
                           {stakerAddress && stakerAddress === address && (
-                            <div className="mt-2 ">
+                            <div className="mt-0 ">
                               <Web3Button
                                 theme="light"
                                 action={(contract) =>
@@ -868,7 +868,7 @@ export default function NftSinglePrice({
                   </div>
 
                   {loadingListings ? (
-                    <div className="mt-0 flex flex-col items-center justify-center gap-5">
+                    <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                       <div className="text-xl font-bold xl:text-2xl">
                         <b>Loading sale...</b>
                       </div>
@@ -877,7 +877,7 @@ export default function NftSinglePrice({
                     <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                       {!directListing || directListing.quantity === '0' ? (
                         <>
-                          <div className="text-xl font-bold xl:text-2xl">
+                          <div className="text-sm font-bold xl:text-lg">
                             <b>Not for sale </b>
                           </div>
 
@@ -911,29 +911,34 @@ export default function NftSinglePrice({
                             &nbsp;USDC
                           </div>
 
-                          <div className=" flex flex-row items-center justify-start gap-2">
-                            <Web3Button
-                              theme="light"
-                              contractAddress={marketplaceContractAddress}
-                              action={() => sellNft(nft?.metadata?.id)}
-                            >
-                              Sell
-                            </Web3Button>
+                          {address === nft?.owner &&
+                            address !== stakerAddress && (
+                              <div className=" flex flex-row items-center justify-start gap-2">
+                                <Web3Button
+                                  theme="light"
+                                  contractAddress={marketplaceContractAddress}
+                                  action={() =>
+                                    sellNft(nft?.metadata?.id || '')
+                                  }
+                                >
+                                  Sell
+                                </Web3Button>
 
-                            <input
-                              className=" w-full text-black"
-                              type="number"
-                              name="price"
-                              placeholder="Price"
-                              value={price}
-                              onChange={(e) => {
-                                setPrice(Number(e.target.value));
-                              }}
-                            />
-                            <span className="ml-2 text-xl font-bold text-blue-600">
-                              USDC
-                            </span>
-                          </div>
+                                <input
+                                  className=" w-full text-black"
+                                  type="number"
+                                  name="price"
+                                  placeholder="Price"
+                                  value={price}
+                                  onChange={(e) => {
+                                    setPrice(e.target.value as any);
+                                  }}
+                                />
+                                <span className="ml-2 text-xl font-bold text-blue-600">
+                                  USDC
+                                </span>
+                              </div>
+                            )}
                         </>
                       ) : (
                         <>
