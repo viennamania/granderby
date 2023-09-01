@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 92,
   "assetBundleInfoDic": {
     "announce": {
       "name": "announce",
@@ -43,8 +43,8 @@
     },
     "horsemodel": {
       "name": "horsemodel",
-      "version": "9a1d9a374a4dd2732eaf25d0582400ce",
-      "size": 85541810
+      "version": "2c2d0c8a1e3f1846ba1dd3e1bfecf03b",
+      "size": 85517933
     },
     "horsepreviewtyped": {
       "name": "horsepreviewtyped",
@@ -168,8 +168,8 @@
     },
     "ui_raceminimap": {
       "name": "ui_raceminimap",
-      "version": "e84a42006bc3f83f27a1812cad419169",
-      "size": 295629
+      "version": "13952f9b663bd2eba14c795bd50401d7",
+      "size": 295631
     },
     "ui_racerankinfo": {
       "name": "ui_racerankinfo",
