@@ -416,7 +416,7 @@ export default function RaceHistoryTable() {
 
       const data = await res.json();
 
-      console.log('getTransactions data: ', data);
+      ///console.log('getTransactions data: ', data);
 
       /*
          {

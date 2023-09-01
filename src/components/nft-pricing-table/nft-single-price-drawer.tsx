@@ -175,6 +175,7 @@ function LivePricingFeed({
 }
 
 function Grade(grade: any) {
+  /*
   var valueGrade = '';
 
   if (grade?.grade?.length > 35) {
@@ -182,6 +183,7 @@ function Grade(grade: any) {
 
     valueGrade = grade?.grade[35];
   }
+  */
 
   var checkedS = false;
   var checkedU = false;
@@ -190,17 +192,17 @@ function Grade(grade: any) {
   var checkedC = false;
   var checkedD = false;
 
-  if (valueGrade === 'S') {
+  if (grade === 'S') {
     checkedS = true;
-  } else if (valueGrade === 'U') {
+  } else if (grade === 'U') {
     checkedU = true;
-  } else if (valueGrade === 'A') {
+  } else if (grade === 'A') {
     checkedA = true;
-  } else if (valueGrade === 'B') {
+  } else if (grade === 'B') {
     checkedB = true;
-  } else if (valueGrade === 'C') {
+  } else if (grade === 'C') {
     checkedC = true;
-  } else if (valueGrade === 'D') {
+  } else if (grade === 'D') {
     checkedD = true;
   }
 

@@ -422,7 +422,7 @@ export default function PriceHistoryTable(
 
       const data = await res.json();
 
-      console.log('getTransactions data: ', data);
+      //console.log('getTransactions data: ', data);
 
       /*
          {

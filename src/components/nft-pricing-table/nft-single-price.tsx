@@ -108,6 +108,7 @@ interface NftDrawerProps {
 }
 
 function Grade(grade: any) {
+  /*
   var valueGrade = '';
 
   if (grade?.grade?.length > 35) {
@@ -115,6 +116,7 @@ function Grade(grade: any) {
 
     valueGrade = grade?.grade[35];
   }
+  */
 
   var checkedS = false;
   var checkedU = false;
@@ -123,17 +125,17 @@ function Grade(grade: any) {
   var checkedC = false;
   var checkedD = false;
 
-  if (valueGrade === 'S') {
+  if (grade === 'S') {
     checkedS = true;
-  } else if (valueGrade === 'U') {
+  } else if (grade === 'U') {
     checkedU = true;
-  } else if (valueGrade === 'A') {
+  } else if (grade === 'A') {
     checkedA = true;
-  } else if (valueGrade === 'B') {
+  } else if (grade === 'B') {
     checkedB = true;
-  } else if (valueGrade === 'C') {
+  } else if (grade === 'C') {
     checkedC = true;
-  } else if (valueGrade === 'D') {
+  } else if (grade === 'D') {
     checkedD = true;
   }
 
@@ -378,17 +380,23 @@ export default function NftSinglePrice({
   const [attributeGrade, setAttributeGrade] = useState(null);
 
   useEffect(() => {
-    const grade = nft?.metadata?.attributes?.map((attribute: any) => {
+    setAttributeGrade(null);
+
+    nft?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
       if (attribute.trait_type === 'Grade') {
         ///console.log('attribute.value', attribute.value);
 
-        return attribute.value;
+        setAttributeGrade(attribute.value);
+
+        return;
+
+        //return attribute.value;
       }
     });
-
-    setAttributeGrade(grade);
   }, [nft?.metadata?.attributes]);
+
+  console.log('attributeGrade', attributeGrade);
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
@@ -768,10 +776,12 @@ export default function NftSinglePrice({
                               ...
                             </span>
                           </div>
+                          {/*
                           <div className="flex flex-col text-xs">
                             <span>1.8 GRD</span>
                             <span>per Hour</span>
                           </div>
+                          */}
                         </div>
                       )}
 
@@ -797,15 +807,45 @@ export default function NftSinglePrice({
                       </div>
                     </div>
                   ) : (
-                    <>
+                    <div className="m-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
                       {!directListing || directListing.quantity === '0' ? (
-                        <div className="m-3 flex flex-row  items-center justify-center gap-5">
+                        <>
                           <div className="text-xl font-bold xl:text-2xl">
                             <b>Not for sale </b>
                           </div>
-                        </div>
+
+                          <div className="text-sm font-bold xl:text-lg">
+                            Last price:&nbsp;
+                            {attributeGrade === 'S' && (
+                              <span className="text-sm font-bold xl:text-lg">
+                                1000
+                              </span>
+                            )}
+                            {attributeGrade === 'A' && (
+                              <span className="text-sm font-bold xl:text-lg">
+                                800
+                              </span>
+                            )}
+                            {attributeGrade === 'B' && (
+                              <span className="text-sm font-bold xl:text-lg">
+                                600
+                              </span>
+                            )}
+                            {attributeGrade === 'C' && (
+                              <span className="text-sm font-bold xl:text-lg">
+                                200
+                              </span>
+                            )}
+                            {attributeGrade === 'D' && (
+                              <span className="text-sm font-bold xl:text-lg">
+                                100
+                              </span>
+                            )}
+                            &nbsp;USDC
+                          </div>
+                        </>
                       ) : (
-                        <div className="m-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
+                        <>
                           <div className="text-xl font-bold xl:text-2xl">
                             {/*
                               <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
@@ -820,6 +860,7 @@ export default function NftSinglePrice({
                             </b>{' '}
                             {directListing?.currencyValuePerToken.symbol}
                           </div>
+
                           <div className="text-sm font-bold xl:text-lg">
                             Last price:&nbsp;
                             {directListing?.currencyValuePerToken.displayValue -
@@ -898,16 +939,10 @@ export default function NftSinglePrice({
                               </div>
                             </>
                           )}
-                        </div>
+                        </>
                       )}
-                    </>
+                    </div>
                   )}
-
-                  {/*
-                  <div className="text-sm font-bold xl:text-lg">
-                    Last price:&nbsp;152 USDC
-                  </div>
-                  */}
 
                   <Image
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
