@@ -2,7 +2,9 @@ import {
   newHorseHistory,
   getHorseHistory,
   getHorseLastHistory,
+  getHorseHistoryByTokenId,
 } from '@/utils/models/npcRace/history10';
+
 import { NextApiResponse } from 'next';
 import { NextApiRequest } from 'next';
 
@@ -42,5 +44,14 @@ export default async function handler(
     } else {
       return res.status(200).json({ status: true, lastGame });
     }
+  }
+
+  if (method === 'getAllByTokenId') {
+    const { tokenId } = req.body;
+
+    const all = await getHorseHistoryByTokenId(tokenId);
+
+    if (!all) return res.status(400).json({ status: false, message: 'Error' });
+    return res.status(200).json({ status: true, all });
   }
 }

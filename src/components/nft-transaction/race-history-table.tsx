@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -9,6 +9,7 @@ import {
   useSortBy,
   usePagination,
 } from 'react-table';
+
 import Button from '@/components/ui/button';
 import Scrollbar from '@/components/ui/scrollbar';
 import { ChevronDown } from '@/components/icons/chevron-down';
@@ -247,8 +248,8 @@ const COLUMNS = [
     //Header: 'ID',
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">ID</div>,
     accessor: 'id',
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 80,
+    maxWidth: 80,
   },
   /*
   {
@@ -258,6 +259,7 @@ const COLUMNS = [
     maxWidth: 40,
   },
   */
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Type</div>,
     accessor: 'transactionType',
@@ -280,6 +282,7 @@ const COLUMNS = [
     minWidth: 40,
     maxWidth: 40,
   },
+  */
 
   /*
   {
@@ -320,48 +323,55 @@ const COLUMNS = [
     Cell: ({ cell: { value } }) => (
       <div className="ltr:text-right rtl:text-left">{value}</div>
     ),
-    minWidth: 100,
-    maxWidth: 130,
+    minWidth: 80,
+    maxWidth: 80,
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Address</div>,
-    accessor: 'address',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Rank</div>,
+    accessor: 'rank',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-end">
-        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-        {value == '0x0000000000000000000000000000000000000000'
-          ? 'Drops'
-          : value.length > 10
-          ? value.substring(0, 10) + '...'
-          : value}
-      </div>
-    ),
-    minWidth: 90,
-    maxWidth: 150,
-  },
-
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Status</div>,
-    accessor: 'status',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="font-bold text-green-600 ltr:text-right rtl:text-left">
+      <div className="text-2xl font-bold text-green-600 ltr:text-right rtl:text-left">
         {value}
       </div>
     ),
     minWidth: 70,
     maxWidth: 100,
   },
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">placements</div>,
+    accessor: 'placements',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="flex items-center justify-end">
+        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+        {value}
+        {/*
+        {value == '0x0000000000000000000000000000000000000000'
+          ? 'Drops'
+          : value.length > 10
+          ? value.substring(0, 10) + '...'
+          : value}
+    */}
+      </div>
+    ),
+    minWidth: 250,
+    maxWidth: 250,
+  },
 ];
 
-export default function RaceHistoryTable() {
+export default function RaceHistoryTable(tokenId: any) {
+  //console.log('RaceHistoryTable tokenId: ', tokenId?.tokenId);
+
   //const data = React.useMemo(() => transactionData, [ ]);
 
   const columns = React.useMemo(() => COLUMNS, []);
 
-  const [transactions, setTransactions] = React.useState([]);
+  const [transactions, setTransactions] = useState([]);
+
+  const [raceHistory, setRaceHistory] = useState([]);
 
   const address = useAddress();
 
@@ -382,8 +392,9 @@ export default function RaceHistoryTable() {
       // @ts-ignore
       columns,
       //data,
-      data: transactions,
-      initialState: { pageSize: 5 },
+      //data: transactions,
+      data: raceHistory,
+      initialState: { pageSize: 20 },
     },
     useSortBy,
     useResizeColumns,
@@ -394,9 +405,12 @@ export default function RaceHistoryTable() {
   const { pageIndex } = state;
 
   const pageKey = '1';
-  const pageSize = '10';
+  const pageSize = '20';
 
+  /*
   useEffect(() => {
+
+
     const getTransactions = async () => {
       //if (address) {
 
@@ -418,22 +432,7 @@ export default function RaceHistoryTable() {
 
       ///console.log('getTransactions data: ', data);
 
-      /*
-         {
-      blockNum: '0x2bdb72c',
-      uniqueId: '0x16829eebbf7552840016bf10235d596f643d4fbb69655ef54ccf52f64ea88b34:log:25',
-      hash: '0x16829eebbf7552840016bf10235d596f643d4fbb69655ef54ccf52f64ea88b34',
-      from: '0x6271117e328c1720bae5d4cca95eda7554bcfa70',
-      to: '0x15fd1e771828260182b318ef812660badf207fba',
-      value: 33,
-      erc721TokenId: null,
-      erc1155Metadata: null,
-      tokenId: null,
-      asset: 'ROM',
-      category: 'erc20',
-      rawContract: [Object]
-    },
-    */
+
 
       ///setTransers(data.transfers);
 
@@ -474,6 +473,88 @@ export default function RaceHistoryTable() {
 
     //}, [address]);
   }, []);
+
+  */
+
+  ///const [last20Game, setLast20Game] = useState<any>();
+
+  const getLast20 = async () => {
+    const response = await fetch('/api/games/horseRace/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getAllByTokenId',
+        tokenId: tokenId?.tokenId,
+      }),
+    });
+    const data = await response.json();
+    ///setLast20Game(data.all);
+
+    ///console.log('data.all: ', data.all);
+
+    const raceHistoryData = [] as any;
+
+    data?.all?.map((item: any) => {
+      const placements =
+        '#' +
+        item.placements[0]?.nft?.tokenId +
+        ' #' +
+        item.placements[1]?.nft?.tokenId +
+        ' #' +
+        item.placements[2]?.nft?.tokenId +
+        ' #' +
+        item.placements[3]?.nft?.tokenId +
+        ' #' +
+        item.placements[4]?.nft?.tokenId +
+        ' #' +
+        item.placements[5]?.nft?.tokenId +
+        ' #' +
+        item.placements[6]?.nft?.tokenId +
+        ' #' +
+        item.placements[7]?.nft?.tokenId +
+        ' #' +
+        item.placements[8]?.nft?.tokenId +
+        ' #' +
+        item.placements[9]?.nft?.tokenId;
+
+      var line = '';
+
+      item.placements.map((placement: any) => {
+        if (placement.nft?.tokenId == tokenId?.tokenId) {
+          line = placement.line;
+          return;
+        }
+      });
+
+      const raceData = {
+        id: item._id.substring(0, 6),
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: item.nft?.title,
+        createdAt: item.date,
+
+        //address: transfer.from === address ? transfer.to : transfer.from,
+        placements: placements,
+
+        amount: {
+          balance: item.nft?.tokenId,
+          usdBalance: '11,032.24',
+        },
+        rank: line,
+      };
+
+      //console.log('raceData: ', raceData);
+
+      ////setTransers((transfers) => [...transfers, transactionData]);
+
+      raceHistoryData.push(raceData);
+    });
+
+    setRaceHistory(raceHistoryData);
+  };
+
+  useEffect(() => {
+    getLast20();
+  }, [tokenId.tokenId]);
 
   return (
     <div>
@@ -540,32 +621,37 @@ export default function RaceHistoryTable() {
                 {...getTableBodyProps()}
                 className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
               >
-                {address && (
+                {/*{address && (
                   <>
-                    {page.map((row, idx) => {
-                      prepareRow(row);
-                      return (
-                        <tr
-                          {...row.getRowProps()}
-                          key={idx}
-                          className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
-                        >
-                          {row.cells.map((cell, idx) => {
-                            return (
-                              <td
-                                {...cell.getCellProps()}
-                                key={idx}
-                                className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
-                              >
-                                {cell.render('Cell')}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    })}
+
+                */}
+                {page.map((row, idx) => {
+                  prepareRow(row);
+                  return (
+                    <tr
+                      {...row.getRowProps()}
+                      key={idx}
+                      className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                    >
+                      {row.cells.map((cell, idx) => {
+                        return (
+                          <td
+                            {...cell.getCellProps()}
+                            key={idx}
+                            className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                          >
+                            {cell.render('Cell')}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+
+                {/*
                   </>
                 )}
+                */}
               </tbody>
             </table>
           </div>

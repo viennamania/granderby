@@ -288,7 +288,7 @@ function NftInfo({ nftMetadata }: any) {
         </div>
 
         <Collapse label="Race History" initialOpen={true}>
-          <RaceHistoryTable />
+          <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
         </Collapse>
       </div>
 
