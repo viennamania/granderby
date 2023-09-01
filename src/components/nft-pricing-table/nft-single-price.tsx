@@ -806,19 +806,22 @@ export default function NftSinglePrice({
                                 <div className="text-sm font-bold xl:text-lg">
                                   <b>Not registered </b>
                                 </div>
-                                {address && address === nft?.owner && (
-                                  <Web3Button
-                                    theme="light"
-                                    contractAddress={
-                                      stakingContractAddressHorseAAA
-                                    }
-                                    action={() =>
-                                      stakeNft(nft?.metadata?.id || '')
-                                    }
-                                  >
-                                    Register
-                                  </Web3Button>
-                                )}
+
+                                {address &&
+                                  address === nft?.owner &&
+                                  !directListing && (
+                                    <Web3Button
+                                      theme="light"
+                                      contractAddress={
+                                        stakingContractAddressHorseAAA
+                                      }
+                                      action={() =>
+                                        stakeNft(nft?.metadata?.id || '')
+                                      }
+                                    >
+                                      Register
+                                    </Web3Button>
+                                  )}
                               </div>
                             )}
 
