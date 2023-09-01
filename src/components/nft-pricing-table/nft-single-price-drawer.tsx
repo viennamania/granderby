@@ -661,10 +661,13 @@ export default function NftSinglePrice({
                 <span className="items-left flex flex-col gap-2.5 ">
                   <div className="items-left flex flex-col justify-center ">
                     <div className="flex flex-row items-center justify-between gap-2.5">
-                      <div className="text-md text-left font-bold capitalize text-black dark:text-white">
-                        {nft?.metadata?.name}
+                      <div className="text-left text-lg font-bold capitalize text-black dark:text-white">
+                        #{nft?.metadata?.id} {nft?.metadata?.name}
                       </div>
+
+                      {/*
                       <Button
+                        size="small"
                         shape="rounded"
                         variant="solid"
                         color="gray"
@@ -673,11 +676,12 @@ export default function NftSinglePrice({
                       >
                         SHARE
                       </Button>
+                      */}
                     </div>
 
                     {/* owned by */}
                     <div className="mt-5 flex flex-row items-center gap-4 ">
-                      <div className=" text-xs tracking-wider text-[#6B7280]">
+                      <div className="flex w-28 flex-wrap text-xs tracking-wider text-[#6B7280]">
                         Owned by
                       </div>
                       <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
@@ -690,7 +694,7 @@ export default function NftSinglePrice({
                                 Me
                               </div>
                             ) : (
-                              <span>{nft?.owner?.substring(0, 6)}...</span>
+                              <span>{nft?.owner?.substring(0, 10)}...</span>
                             )}
                           </>
                         ) : (
@@ -700,15 +704,32 @@ export default function NftSinglePrice({
                                 Me
                               </div>
                             ) : (
-                              <span>{stakerAddress?.substring(0, 6)}...</span>
+                              <span>{stakerAddress?.substring(0, 10)}...</span>
                             )}
                           </>
                         )}
                       </div>
+                    </div>
 
-                      {stakerAddress !==
-                        '0x0000000000000000000000000000000000000000' && (
-                        <div className="text-sm text-black">Registered</div>
+                    {/* registered by */}
+                    <div className="mt-1 flex flex-row items-center gap-4 ">
+                      {stakerAddress ===
+                      '0x0000000000000000000000000000000000000000' ? (
+                        <div className=" text-xs tracking-wider text-[#6B7280]">
+                          Not registered
+                        </div>
+                      ) : (
+                        <>
+                          <div className="flex w-28 flex-wrap text-xs tracking-wider text-[#6B7280]">
+                            Registered by
+                          </div>
+                          <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                            <span>
+                              {stakingContractAddressHorseAAA?.substring(0, 10)}
+                              ...
+                            </span>
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>
