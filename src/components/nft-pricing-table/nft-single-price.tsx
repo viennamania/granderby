@@ -108,6 +108,8 @@ interface NftDrawerProps {
 }
 
 function Grade(grade: any) {
+  //console.log('grade===', grade);
+
   /*
   var valueGrade = '';
 
@@ -125,17 +127,17 @@ function Grade(grade: any) {
   var checkedC = false;
   var checkedD = false;
 
-  if (grade === 'S') {
+  if (grade?.grade === 'S') {
     checkedS = true;
-  } else if (grade === 'U') {
+  } else if (grade?.grade === 'U') {
     checkedU = true;
-  } else if (grade === 'A') {
+  } else if (grade?.grade === 'A') {
     checkedA = true;
-  } else if (grade === 'B') {
+  } else if (grade?.grade === 'B') {
     checkedB = true;
-  } else if (grade === 'C') {
+  } else if (grade?.grade === 'C') {
     checkedC = true;
-  } else if (grade === 'D') {
+  } else if (grade?.grade === 'D') {
     checkedD = true;
   }
 
@@ -961,23 +963,7 @@ export default function NftSinglePrice({
             </div>
 
             <Collapse label="Grade" initialOpen={true}>
-              <Grade
-                grade={
-                  /*
-                  nft?.metadata?.attributes?.map((attribute: any) => {
-                    ///console.log('attribute', attribute);
-                    if (attribute.trait_type === 'Grade') {
-                      
-                      console.log('attribute.value', attribute.value);
-
-                      return attribute.value;
-                    }
-                  })
-                  */
-
-                  attributeGrade
-                }
-              />
+              <Grade {...{ grade: attributeGrade }} />
             </Collapse>
 
             {/*
