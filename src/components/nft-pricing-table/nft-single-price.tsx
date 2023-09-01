@@ -763,9 +763,13 @@ export default function NftSinglePrice({
                           </div>
                           <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                             <span>
-                              {stakingContractAddressHorseAAA?.substring(0, 10)}
+                              {stakingContractAddressHorseAAA?.substring(0, 6)}
                               ...
                             </span>
+                          </div>
+                          <div className="flex flex-col text-xs">
+                            <span>1.8 GRD</span>
+                            <span>per Hour</span>
                           </div>
                         </div>
                       )}
@@ -871,6 +875,12 @@ export default function NftSinglePrice({
                       )}
                     </div>
                   )}
+
+                  {/*
+                  <div className="text-sm font-bold xl:text-lg">
+                    Last price:&nbsp;152 USDC
+                  </div>
+                  */}
 
                   <Image
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
