@@ -637,13 +637,13 @@ export default function NftSinglePrice({
                       Granderby Horse NFT
                     </Link>
 
-                    <div className="text-left text-3xl font-bold capitalize text-black dark:text-white">
-                      {nft?.metadata?.name}
+                    <div className="text-left text-xl font-bold capitalize text-black dark:text-white xl:text-2xl">
+                      #{nft?.metadata?.id} {nft?.metadata?.name}
                     </div>
 
                     {/* owned by */}
                     <div className="mt-5 flex items-center gap-4 ">
-                      <div className="w-[100px] text-sm tracking-wider text-[#6B7280]">
+                      <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
                         Owned by
                       </div>
                       <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
@@ -656,7 +656,7 @@ export default function NftSinglePrice({
                                 Me
                               </div>
                             ) : (
-                              <span>{nft?.owner?.substring(0, 6)}...</span>
+                              <span>{nft?.owner?.substring(0, 10)}...</span>
                             )}
                           </>
                         ) : (
@@ -666,7 +666,7 @@ export default function NftSinglePrice({
                                 Me
                               </div>
                             ) : (
-                              <span>{stakerAddress?.substring(0, 6)}...</span>
+                              <span>{stakerAddress?.substring(0, 10)}...</span>
                             )}
                           </>
                         )}
@@ -676,20 +676,22 @@ export default function NftSinglePrice({
                         stakerAddress ===
                           '0x0000000000000000000000000000000000000000' &&
                         nft?.owner === address && (
-                          <Web3Button
-                            theme="light"
-                            contractAddress={stakingContractAddressHorseAAA}
-                            action={() => stakeNft(nft?.metadata?.id || '')}
-                          >
-                            Register
-                          </Web3Button>
+                          <div className="mt-2 ">
+                            <Web3Button
+                              theme="light"
+                              contractAddress={stakingContractAddressHorseAAA}
+                              action={() => stakeNft(nft?.metadata?.id || '')}
+                            >
+                              Register
+                            </Web3Button>
+                          </div>
                         )}
 
                       {stakerAddress !==
                         '0x0000000000000000000000000000000000000000' && <></>}
 
                       {stakerAddress && stakerAddress === address && (
-                        <div className="mt-2">
+                        <div className="mt-2 ">
                           <Web3Button
                             theme="light"
                             action={(contract) =>
@@ -702,18 +704,43 @@ export default function NftSinglePrice({
                         </div>
                       )}
                     </div>
+
+                    {/* registered by */}
+                    {stakerAddress &&
+                      stakerAddress ===
+                        '0x0000000000000000000000000000000000000000' && (
+                        <div className="mt-2 flex items-center gap-4 ">
+                          <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                            Not registered
+                          </div>
+                        </div>
+                      )}
+
+                    {stakerAddress &&
+                      stakerAddress !==
+                        '0x0000000000000000000000000000000000000000' && (
+                        <div className="mt-2 flex items-center gap-4 ">
+                          <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                            Registered by
+                          </div>
+                          <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                            <span>
+                              {stakingContractAddressHorseAAA?.substring(0, 10)}
+                              ...
+                            </span>
+                          </div>
+                        </div>
+                      )}
                   </div>
 
                   {!directListing || directListing.quantity === '0' ? (
-                    <>
-                      <div className="flex flex-row  items-center justify-center gap-5">
-                        <div className="text-xl font-bold xl:text-2xl">
-                          <b>Not for sale</b>
-                        </div>
+                    <div className="m-3 flex flex-row  items-center justify-center gap-5">
+                      <div className="text-xl font-bold xl:text-2xl">
+                        <b>Not for sale </b>
                       </div>
-                    </>
+                    </div>
                   ) : (
-                    <div className="flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
+                    <div className="m-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
                       <div className="text-xl font-bold xl:text-2xl">
                         {/*
                           <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}

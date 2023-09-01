@@ -285,7 +285,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
               </div>
 
               {Number(ethers.utils.formatUnits(claimableRewards || 0, 18)) >
-                1 && (
+                0 && (
                 <Web3Button
                   theme="light"
                   //colorMode="dark"
