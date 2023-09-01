@@ -47,7 +47,7 @@ function SinglePrice(tokenid: any) {
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
   const { data: nftMetadata } = useNFT(contract, tokenid.tokenid);
 
-  console.log('nftMetadata======>', nftMetadata);
+  ///console.log('nftMetadata======>', nftMetadata);
 
   return (
     <>
