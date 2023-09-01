@@ -19,6 +19,7 @@ import { Refresh } from '@/components/icons/refresh';
 import { RadioGroup } from '@/components/ui/radio-group';
 import Collapse from '@/components/ui/collapse';
 import { motion } from 'framer-motion';
+import Slider from 'rc-slider';
 import {
   weeklyComparison,
   monthlyComparison,
@@ -109,7 +110,7 @@ function Grade(grade: any) {
   var valueGrade = '';
 
   if (grade?.grade?.length > 35) {
-    console.log('Grade grade.grade[35]====', grade?.grade[35]);
+    //console.log('Grade grade.grade[35]====', grade?.grade[35]);
 
     valueGrade = grade?.grade[35];
   }
@@ -291,6 +292,59 @@ function Grade(grade: any) {
   );
 }
 
+function PriceRange() {
+  let [range, setRange] = useState({ min: 0, max: 1000 });
+
+  function handleRangeChange(value: any) {
+    setRange({
+      min: value[0],
+      max: value[1],
+    });
+  }
+  function handleMaxChange(max: number) {
+    setRange({
+      ...range,
+      max: max || range.min,
+    });
+  }
+  function handleMinChange(min: number) {
+    setRange({
+      ...range,
+      min: min || 0,
+    });
+  }
+
+  return (
+    <div className="p-5">
+      <div className="mb-4 grid grid-cols-2 gap-2">
+        <input
+          className="h-9 rounded-lg border-gray-200 text-sm text-gray-900 outline-none focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-gray-500"
+          type="number"
+          value={range.min}
+          onChange={(e) => handleMinChange(parseInt(e.target.value))}
+          min="0"
+          max={range.max}
+        />
+        <input
+          className="h-9 rounded-lg border-gray-200 text-sm text-gray-900 outline-none focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-gray-500"
+          type="number"
+          value={range.max}
+          onChange={(e) => handleMaxChange(parseInt(e.target.value))}
+          min={range.min}
+        />
+      </div>
+      <Slider
+        range
+        min={0}
+        max={1000}
+        value={[range.min, range.max]}
+        allowCross={false}
+        onChange={(value) => handleRangeChange(value)}
+      />
+    </div>
+  );
+}
+
 export default function NftSinglePrice({
   tokenid,
   isOpen,
@@ -326,7 +380,7 @@ export default function NftSinglePrice({
     const grade = nft?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
       if (attribute.trait_type === 'Grade') {
-        console.log('attribute.value', attribute.value);
+        ///console.log('attribute.value', attribute.value);
 
         return attribute.value;
       }
@@ -344,7 +398,7 @@ export default function NftSinglePrice({
     [tokenid]
   );
 
-  console.log('stakerAddress', stakerAddress);
+  //console.log('stakerAddress', stakerAddress);
 
   const { contract: marketplace } = useContract(
     marketplaceContractAddress,
@@ -357,7 +411,7 @@ export default function NftSinglePrice({
     error,
   } = useValidDirectListings(marketplace);
 
-  console.log('nft-single-price directListings======>', directListings);
+  //console.log('nft-single-price directListings======>', directListings);
 
   const [directListing, setDirectListing] = useState<any>(null);
 
@@ -678,48 +732,23 @@ export default function NftSinglePrice({
                           </>
                         )}
                       </div>
-
-                      {stakerAddress &&
-                        stakerAddress ===
-                          '0x0000000000000000000000000000000000000000' &&
-                        nft?.owner === address && (
-                          <div className="mt-2 ">
-                            <Web3Button
-                              theme="light"
-                              contractAddress={stakingContractAddressHorseAAA}
-                              action={() => stakeNft(nft?.metadata?.id || '')}
-                            >
-                              Register
-                            </Web3Button>
-                          </div>
-                        )}
-
-                      {stakerAddress !==
-                        '0x0000000000000000000000000000000000000000' && <></>}
-
-                      {stakerAddress && stakerAddress === address && (
-                        <div className="mt-2 ">
-                          <Web3Button
-                            theme="light"
-                            action={(contract) =>
-                              contract?.call('withdraw', [[nft?.metadata?.id]])
-                            }
-                            contractAddress={stakingContractAddressHorseAAA}
-                          >
-                            Unregister
-                          </Web3Button>
-                        </div>
-                      )}
                     </div>
 
                     {/* registered by */}
                     {stakerAddress &&
                       stakerAddress ===
                         '0x0000000000000000000000000000000000000000' && (
-                        <div className="mt-2 flex items-center gap-4 ">
+                        <div className="mt-3 flex flex-row items-center gap-4 ">
                           <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
                             Not registered
                           </div>
+                          <Web3Button
+                            theme="light"
+                            contractAddress={stakingContractAddressHorseAAA}
+                            action={() => stakeNft(nft?.metadata?.id || '')}
+                          >
+                            Register
+                          </Web3Button>
                         </div>
                       )}
 
@@ -728,7 +757,7 @@ export default function NftSinglePrice({
                         '0x0000000000000000000000000000000000000000' && (
                         <div className="mt-2 flex items-center gap-4 ">
                           <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                            Registered by
+                            Registered to
                           </div>
                           <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                             <span>
@@ -738,6 +767,20 @@ export default function NftSinglePrice({
                           </div>
                         </div>
                       )}
+
+                    {stakerAddress && stakerAddress === address && (
+                      <div className="mt-2 ">
+                        <Web3Button
+                          theme="light"
+                          action={(contract) =>
+                            contract?.call('withdraw', [[nft?.metadata?.id]])
+                          }
+                          contractAddress={stakingContractAddressHorseAAA}
+                        >
+                          Unregister
+                        </Web3Button>
+                      </div>
+                    )}
                   </div>
 
                   {!directListing || directListing.quantity === '0' ? (
@@ -862,6 +905,12 @@ export default function NftSinglePrice({
                 }
               />
             </Collapse>
+
+            {/*
+            <Collapse label="Speed" initialOpen={true}>
+              <PriceRange />
+            </Collapse>
+            */}
 
             {/* nft attributes details */}
             {/*
