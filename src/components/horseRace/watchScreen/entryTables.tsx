@@ -124,6 +124,8 @@ export default function EntryTables({
   });
   */
 
+  //console.log("npcs", npcs);
+
   const address = useAddress();
 
   const { contract: tokenContract } = useContract(
@@ -583,7 +585,7 @@ export default function EntryTables({
                     />
 
                     <span className=" xl:text-md text-sm text-sky-500">
-                      #{npcs?.nft1?.tokenId}
+                      #{npcs?.nft1?.tokenId} {npcs?.nft1?.name}
                     </span>
                   </div>
 

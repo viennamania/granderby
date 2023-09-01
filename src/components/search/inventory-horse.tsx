@@ -164,7 +164,7 @@ export default function Inventory() {
             </TabPanel>
 
             <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+              <div className="">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div className="items-right flex w-full justify-end">
                     <div className="flex gap-6 3xl:gap-8 ">

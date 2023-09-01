@@ -48,7 +48,9 @@ import {
 } from '@thirdweb-dev/react';
 
 import { LAYOUT_OPTIONS } from '@/lib/constants';
+
 import NFTCard from '@/components/nft-horse/NFTCard';
+
 import { BigNumber, ethers } from 'ethers';
 import { useLayout } from '@/lib/hooks/use-layout';
 
@@ -321,10 +323,10 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
             ) : (
               <div
                 className={cn(
-                  'mt-5 grid grid-cols-4 gap-2  ',
+                  'mt-5 grid grid-cols-2 gap-2  ',
                   layout === LAYOUT_OPTIONS.RETRO
                     ? 'md:grid-cols-2'
-                    : 'md:grid-cols-4'
+                    : 'md:grid-cols-2'
                 )}
               >
                 {stakedTokens &&
