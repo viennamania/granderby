@@ -355,7 +355,7 @@ export default function NftSinglePrice({
   isOpen,
   setIsOpen,
 }: NftDrawerProps) {
-  const [price, setPrice] = useState(6.2);
+  const [price, setPrice] = useState(null);
   const [date, setDate] = useState(1624147200);
   const [status, setStatus] = useState('Month');
   const [chartData, setChartData] = useState(monthlyComparison);
@@ -400,7 +400,7 @@ export default function NftSinglePrice({
 
   console.log('attributeGrade', attributeGrade);
 
-  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
+  const { contract: contractStaking, isLoading: isLoadingStaking } =
     useContract(stakingContractAddressHorseAAA);
 
   const { data: stakerAddress, isLoading } = useContractRead(
@@ -540,6 +540,50 @@ export default function NftSinglePrice({
     } catch (error) {
       console.error(error);
       alert(error);
+    }
+  }
+
+  async function sellNft(id: string) {
+    if (!address) return;
+
+    if (!price) {
+      alert('Please enter price');
+      return;
+    }
+
+    /*
+    const isApproved = await nftDropContract?.isApproved(
+      address,
+      stakingContractAddressHorseAAA
+    );
+
+    if (!isApproved) {
+      await nftDropContract?.setApprovalForAll(stakingContractAddressHorseAAA, true);
+    }
+
+    const data = await stakingContract?.call('stake', [id]);
+    */
+
+    //console.log("data",data);
+
+    try {
+      const transaction = await marketplace?.directListings.createListing({
+        assetContractAddress: nftDropContractAddressHorse, // Contract Address of the NFT
+        tokenId: id, // Token ID of the NFT.
+        //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+        pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+        ///currencyContractAddress: NATIVE_TOKEN_ADDRESS, // NATIVE_TOKEN_ADDRESS is the crpyto curency that is native to the network. i.e. Goerli ETH.
+        currencyContractAddress: tokenContractAddressUSDC,
+
+        //listingDurationInSeconds: 60 * 60 * 24 * 7, // When the auction will be closed and no longer accept bids (1 Week)
+        //quantity: 1, // How many of the NFTs are being listed (useful for ERC 1155 tokens)
+        startTimestamp: new Date(), // When the listing will start
+        endTimestamp: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000), // Optional - when the listing should end (default is 7 days from now)
+      });
+
+      return transaction;
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -746,70 +790,91 @@ export default function NftSinglePrice({
                     </div>
 
                     {/* registered by */}
-                    {stakerAddress &&
-                      stakerAddress ===
-                        '0x0000000000000000000000000000000000000000' && (
-                        <div className="mt-3 flex flex-row items-center gap-4 ">
-                          <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                            Not registered
+                    <div className="mt-5 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+                      {isLoadingStaking ? (
+                        <div className="mt-0 flex flex-col items-center justify-center gap-5">
+                          <div className="text-xl font-bold xl:text-2xl">
+                            <b>Loading register...</b>
                           </div>
-                          {address && address === nft?.owner && (
-                            <Web3Button
-                              theme="light"
-                              contractAddress={stakingContractAddressHorseAAA}
-                              action={() => stakeNft(nft?.metadata?.id || '')}
-                            >
-                              Register
-                            </Web3Button>
+                        </div>
+                      ) : (
+                        <>
+                          {stakerAddress &&
+                            stakerAddress ===
+                              '0x0000000000000000000000000000000000000000' && (
+                              <div className="mt-3 flex flex-row items-center gap-4 ">
+                                <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                                  Not registered
+                                </div>
+                                {address && address === nft?.owner && (
+                                  <Web3Button
+                                    theme="light"
+                                    contractAddress={
+                                      stakingContractAddressHorseAAA
+                                    }
+                                    action={() =>
+                                      stakeNft(nft?.metadata?.id || '')
+                                    }
+                                  >
+                                    Register
+                                  </Web3Button>
+                                )}
+                              </div>
+                            )}
+
+                          {stakerAddress &&
+                            stakerAddress !==
+                              '0x0000000000000000000000000000000000000000' && (
+                              <div className="mt-2 flex items-center gap-4 ">
+                                <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                                  Registered by
+                                </div>
+                                <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                                  <span>
+                                    {stakingContractAddressHorseAAA?.substring(
+                                      0,
+                                      6
+                                    )}
+                                    ...
+                                  </span>
+                                </div>
+                                {/*
+                                  <div className="flex flex-col text-xs">
+                                    <span>1.8 GRD</span>
+                                    <span>per Hour</span>
+                                  </div>
+                                  */}
+                              </div>
+                            )}
+
+                          {stakerAddress && stakerAddress === address && (
+                            <div className="mt-2 ">
+                              <Web3Button
+                                theme="light"
+                                action={(contract) =>
+                                  contract?.call('withdraw', [
+                                    [nft?.metadata?.id],
+                                  ])
+                                }
+                                contractAddress={stakingContractAddressHorseAAA}
+                              >
+                                Unregister
+                              </Web3Button>
+                            </div>
                           )}
-                        </div>
+                        </>
                       )}
-
-                    {stakerAddress &&
-                      stakerAddress !==
-                        '0x0000000000000000000000000000000000000000' && (
-                        <div className="mt-2 flex items-center gap-4 ">
-                          <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                            Registered by
-                          </div>
-                          <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                            <span>
-                              {stakingContractAddressHorseAAA?.substring(0, 6)}
-                              ...
-                            </span>
-                          </div>
-                          {/*
-                          <div className="flex flex-col text-xs">
-                            <span>1.8 GRD</span>
-                            <span>per Hour</span>
-                          </div>
-                          */}
-                        </div>
-                      )}
-
-                    {stakerAddress && stakerAddress === address && (
-                      <div className="mt-2 ">
-                        <Web3Button
-                          theme="light"
-                          action={(contract) =>
-                            contract?.call('withdraw', [[nft?.metadata?.id]])
-                          }
-                          contractAddress={stakingContractAddressHorseAAA}
-                        >
-                          Unregister
-                        </Web3Button>
-                      </div>
-                    )}
+                    </div>
                   </div>
 
                   {loadingListings ? (
-                    <div className="mt-5 flex flex-col items-center justify-center gap-5">
+                    <div className="mt-0 flex flex-col items-center justify-center gap-5">
                       <div className="text-xl font-bold xl:text-2xl">
                         <b>Loading sale...</b>
                       </div>
                     </div>
                   ) : (
-                    <div className="mt-5 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+                    <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                       {!directListing || directListing.quantity === '0' ? (
                         <>
                           <div className="text-xl font-bold xl:text-2xl">
@@ -844,6 +909,30 @@ export default function NftSinglePrice({
                               </span>
                             )}
                             &nbsp;USDC
+                          </div>
+
+                          <div className=" flex flex-row items-center justify-start gap-2">
+                            <Web3Button
+                              theme="light"
+                              contractAddress={marketplaceContractAddress}
+                              action={() => sellNft(nft?.metadata?.id)}
+                            >
+                              Sell
+                            </Web3Button>
+
+                            <input
+                              className=" w-full text-black"
+                              type="number"
+                              name="price"
+                              placeholder="Price"
+                              value={price}
+                              onChange={(e) => {
+                                setPrice(Number(e.target.value));
+                              }}
+                            />
+                            <span className="ml-2 text-xl font-bold text-blue-600">
+                              USDC
+                            </span>
                           </div>
                         </>
                       ) : (
