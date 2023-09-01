@@ -809,7 +809,7 @@ export default function NftSinglePrice({
                       </div>
                     </div>
                   ) : (
-                    <div className="m-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-5 ">
+                    <div className="mt-5 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                       {!directListing || directListing.quantity === '0' ? (
                         <>
                           <div className="text-xl font-bold xl:text-2xl">
