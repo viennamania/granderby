@@ -11,7 +11,7 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 import { Network, Alchemy } from 'alchemy-sdk';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
@@ -100,15 +100,17 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
   const [stakedNftBalanceAAA, setStakedNftBalanceAAA] = useState<BigNumber>();
+
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
+  /*
   useEffect(() => {
     if (!stakingContract || !address) return;
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContract?.call('getStakeInfo', [address]);
 
-      ////console.log("staeInfo", stakeInfo[0].length);
+      ////console.log("staeInfo=====", stakeInfo);
 
       setStakedNftBalanceAAA(stakeInfo[0].length);
 
@@ -117,6 +119,15 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
 
     loadClaimableRewards();
   }, [address, stakingContract]);
+  */
+
+  useEffect(() => {
+    if (!stakedTokens) return;
+
+    setStakedNftBalanceAAA(stakedTokens[0].length);
+
+    setClaimableRewards(stakedTokens[1]);
+  }, [stakedTokens]);
 
   ////console.log("stakedTokens",stakedTokens );
 

@@ -82,7 +82,7 @@ export default function MomoconScreen() {
       const stakeInfo = await stakingContractHorse?.call('getStakeInfo', [
         address,
       ]);
-      ////const stakeInfo = await contract?.call("getStakeInfo", );
+
       setClaimableRewardsHorse(stakeInfo[1]);
     }
 
