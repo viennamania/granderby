@@ -49,7 +49,7 @@ import { useLayout } from '@/lib/hooks/use-layout';
 
 import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
 
-export default function Feeds({ className }: { className?: string }) {
+export default function RegisteredFeeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
