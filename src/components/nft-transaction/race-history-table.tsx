@@ -342,7 +342,7 @@ const COLUMNS = [
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">placements</div>,
-    accessor: 'placements',
+    accessor: 'Placements',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="flex items-center justify-end">

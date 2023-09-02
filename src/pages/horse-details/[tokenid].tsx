@@ -45,44 +45,52 @@ function SinglePrice(tokenid: any) {
   const breakpoint = useBreakpoint();
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
-  const { data: nftMetadata } = useNFT(contract, tokenid.tokenid);
+  const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
 
   ///console.log('nftMetadata======>', nftMetadata);
 
   return (
     <>
-      <div className="mt-0 flex flex-wrap gap-6 lg:flex-nowrap ">
-        <div
-          className={`w-full 2xl:w-full 
-        ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
-        >
-          <NftSinglePrice
-            tokenid={tokenid.tokenid}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
+      {isLoading ? (
+        <div className="flex h-screen items-center justify-center">
+          <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>
+      ) : (
+        <>
+          <div className="mt-0 flex flex-wrap gap-6 lg:flex-nowrap ">
+            <div
+              className={`w-full 2xl:w-full 
+          ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
+            >
+              <NftSinglePrice
+                //tokenid={tokenid.tokenid}
+                nftMetadata={nftMetadata}
+                contractAddress={nftDropContractAddressHorse}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            </div>
 
-        {layout === LAYOUT_OPTIONS.RETRO ? (
-          <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
-        ) : (
-          <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
-            {/*
+            {layout === LAYOUT_OPTIONS.RETRO ? (
+              <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
+            ) : (
+              <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
+                {/*
             <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
               NFT Info
             </h2>
             */}
 
-            <NftInfo nftMetadata={nftMetadata} />
+                <NftInfo nftMetadata={nftMetadata} />
 
-            {/*
+                {/*
             <div>
               <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
               <CoinConverter />
             </div>
             */}
 
-            {/*
+                {/*
             <div className="px-8 pb-10">
               <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
                 Top Coins
@@ -90,23 +98,25 @@ function SinglePrice(tokenid: any) {
               <TopCoin />
             </div>
             */}
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      <div className="mt-0">
-        <TransactionTable />
+          <div className="mt-0">
+            <TransactionTable />
 
-        {/*
+            {/*
         <HistoryTable />
         */}
-      </div>
+          </div>
 
-      {/*
+          {/*
       <div className="mt-10">
         <CoinTabs />
       </div> 
       */}
+        </>
+      )}
     </>
   );
 }

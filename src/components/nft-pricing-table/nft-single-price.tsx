@@ -45,10 +45,13 @@ import { Network, Alchemy } from 'alchemy-sdk';
 import Link from 'next/link';
 
 import {
-  nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
+  stakingContractAddressHorseBBB,
+  stakingContractAddressHorseCCC,
   marketplaceContractAddress,
+  marketplaceContractAddressChaoscube,
   tokenContractAddressUSDC,
+  tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
 import {
@@ -102,7 +105,9 @@ const currency = [
 ];
 
 interface NftDrawerProps {
-  tokenid: any;
+  //tokenid: any;
+  nftMetadata: any;
+  contractAddress: any;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
@@ -351,7 +356,9 @@ function PriceRange() {
 }
 
 export default function NftSinglePrice({
-  tokenid,
+  //tokenid,
+  contractAddress,
+  nftMetadata,
   isOpen,
   setIsOpen,
 }: NftDrawerProps) {
@@ -368,12 +375,22 @@ export default function NftSinglePrice({
 
   const address = useAddress();
 
+  /*
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
     'nft-drop'
   );
+  */
 
-  const { data: nft } = useNFT(nftDropContract, tokenid);
+  console.log('nftMetadata', nftMetadata);
+  console.log('contractAddress', contractAddress);
+
+  const { contract: nftDropContract } = useContract(
+    contractAddress,
+    'nft-drop'
+  );
+
+  //const { data: nft } = useNFT(nftDropContract, tokenid);
 
   //console.log('nft', nft);
 
@@ -384,7 +401,7 @@ export default function NftSinglePrice({
   useEffect(() => {
     setAttributeGrade(null);
 
-    nft?.metadata?.attributes?.map((attribute: any) => {
+    nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
       if (attribute.trait_type === 'Grade') {
         ///console.log('attribute.value', attribute.value);
@@ -396,7 +413,7 @@ export default function NftSinglePrice({
         //return attribute.value;
       }
     });
-  }, [nft?.metadata?.attributes]);
+  }, [nftMetadata?.metadata?.attributes]);
 
   console.log('attributeGrade', attributeGrade);
 
@@ -406,7 +423,7 @@ export default function NftSinglePrice({
   const { data: stakerAddress, isLoading } = useContractRead(
     contractStaking,
     'stakerAddress',
-    [tokenid]
+    [nftMetadata?.metadata?.id]
   );
 
   //console.log('stakerAddress', stakerAddress);
@@ -431,7 +448,7 @@ export default function NftSinglePrice({
 
     if (directListings) {
       directListings.map((listing: any) => {
-        if (listing.tokenId === tokenid) {
+        if (listing.tokenId === nftMetadata?.metadata?.id) {
           //setListingId(listing.id);
 
           setDirectListing(listing);
@@ -442,7 +459,7 @@ export default function NftSinglePrice({
         }
       });
     }
-  }, [directListings, tokenid]);
+  }, [directListings, nftMetadata?.metadata?.id]);
 
   const { contract: tokenContractUSDC } = useContract(
     tokenContractAddressUSDC,
@@ -568,7 +585,7 @@ export default function NftSinglePrice({
 
     try {
       const transaction = await marketplace?.directListings.createListing({
-        assetContractAddress: nftDropContractAddressHorse, // Contract Address of the NFT
+        assetContractAddress: contractAddress, // Contract Address of the NFT
         tokenId: id, // Token ID of the NFT.
         //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
         pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
@@ -600,13 +617,13 @@ export default function NftSinglePrice({
                   */}
 
                   <div className="text-xl font-medium capitalize text-brand dark:text-white">
-                    {nft?.metadata?.name}
+                    {nftMetadata?.metadata?.name}
                   </div>
 
                   <Image
                     src={
-                      nft?.metadata?.image
-                        ? nft?.metadata?.image
+                      nftMetadata?.metadata?.image
+                        ? nftMetadata?.metadata?.image
                         : '/default-nft.png'
                     }
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
@@ -620,7 +637,7 @@ export default function NftSinglePrice({
                 </span>
 
                 <span className="flex items-end text-xl font-medium capitalize text-brand dark:text-white">
-                  {nft?.metadata?.name}
+                  {nftMetadata?.metadata?.name}
                 </span>
                 {/*
                 <span className="text-sm text-gray-400">(BTC/USD)</span>
@@ -750,11 +767,11 @@ export default function NftSinglePrice({
                       className=" text-left text-lg capitalize text-blue-500 dark:text-white "
                       href={`/horse`}
                     >
-                      Granderby Horse NFT
+                      {nftMetadata?.metadata?.description}
                     </Link>
 
                     <div className="text-left text-xl font-bold capitalize text-black dark:text-white xl:text-2xl">
-                      #{nft?.metadata?.id} {nft?.metadata?.name}
+                      #{nftMetadata?.metadata?.id} {nftMetadata?.metadata?.name}
                     </div>
 
                     {/* owned by */}
@@ -767,12 +784,14 @@ export default function NftSinglePrice({
                         stakerAddress ===
                           '0x0000000000000000000000000000000000000000' ? (
                           <>
-                            {nft?.owner === address ? (
+                            {nftMetadata?.owner === address ? (
                               <div className="text-xl font-bold text-blue-600">
                                 Me
                               </div>
                             ) : (
-                              <span>{nft?.owner?.substring(0, 10)}...</span>
+                              <span>
+                                {nftMetadata?.owner?.substring(0, 10)}...
+                              </span>
                             )}
                           </>
                         ) : (
@@ -808,7 +827,7 @@ export default function NftSinglePrice({
                                 </div>
 
                                 {address &&
-                                  address === nft?.owner &&
+                                  address === nftMetadata?.owner &&
                                   !directListing && (
                                     <Web3Button
                                       theme="light"
@@ -816,7 +835,9 @@ export default function NftSinglePrice({
                                         stakingContractAddressHorseAAA
                                       }
                                       action={() =>
-                                        stakeNft(nft?.metadata?.id || '')
+                                        stakeNft(
+                                          nftMetadata?.metadata?.id || ''
+                                        )
                                       }
                                     >
                                       Register
@@ -856,7 +877,7 @@ export default function NftSinglePrice({
                                 theme="light"
                                 action={(contract) =>
                                   contract?.call('withdraw', [
-                                    [nft?.metadata?.id],
+                                    [nftMetadata?.metadata?.id],
                                   ])
                                 }
                                 contractAddress={stakingContractAddressHorseAAA}
@@ -914,14 +935,14 @@ export default function NftSinglePrice({
                             &nbsp;USDC
                           </div>
 
-                          {address === nft?.owner &&
+                          {address === nftMetadata?.owner &&
                             address !== stakerAddress && (
                               <div className=" flex flex-row items-center justify-start gap-2">
                                 <Web3Button
                                   theme="light"
                                   contractAddress={marketplaceContractAddress}
                                   action={() =>
-                                    sellNft(nft?.metadata?.id || '')
+                                    sellNft(nftMetadata?.metadata?.id || '')
                                   }
                                 >
                                   Sell
@@ -967,7 +988,7 @@ export default function NftSinglePrice({
                             {directListing?.currencyValuePerToken.symbol}
                           </div>
 
-                          {address && address === nft?.owner && (
+                          {address && address === nftMetadata?.owner && (
                             <Web3Button
                               theme="light"
                               action={(contract) =>
@@ -999,7 +1020,7 @@ export default function NftSinglePrice({
                             </div>
                           )}
 
-                          {address && address !== nft?.owner && (
+                          {address && address !== nftMetadata?.owner && (
                             <>
                               <div className="text-sm font-bold xl:text-xl">
                                 <Web3Button
@@ -1046,8 +1067,8 @@ export default function NftSinglePrice({
                   <Image
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
                     src={
-                      nft?.metadata?.image
-                        ? nft?.metadata?.image
+                      nftMetadata?.metadata?.image
+                        ? nftMetadata?.metadata?.image
                         : '/default-nft.png'
                     }
                     alt="nft"
