@@ -1,4 +1,4 @@
-import { useState, Fragment, useEffect } from 'react';
+import { useState, Fragment, useEffect, use } from 'react';
 import { format } from 'date-fns';
 import cn from 'classnames';
 import {
@@ -26,8 +26,17 @@ import {
   yearlyComparison,
 } from '@/data/static/price-history';
 import { Tag } from '@/components/icons/tag';
+
 import { LongArrowUp } from '@/components/icons/long-arrow-up';
 import { ArrowUp } from '@/components/icons/arrow-up';
+
+import { ArrowRight } from '@/components/icons/arrow-right';
+import { LongArrowRight } from '@/components/icons/long-arrow-right';
+import { LongArrowLeft } from '@/components/icons/long-arrow-left';
+import { LinkIcon } from '@/components/icons/link-icon';
+import { ArrowLinkIcon } from '@/components/icons/arrow-link-icon';
+import AnchorLink from '@/components/ui/links/anchor-link';
+
 import { Listbox, Transition } from '@headlessui/react';
 import { ChevronDown } from '@/components/icons/chevron-down';
 import { useLayout } from '@/lib/hooks/use-layout';
@@ -382,8 +391,8 @@ export default function NftSinglePrice({
   );
   */
 
-  console.log('nftMetadata', nftMetadata);
-  console.log('contractAddress', contractAddress);
+  //console.log('nftMetadata', nftMetadata);
+  //console.log('contractAddress', contractAddress);
 
   const { contract: nftDropContract } = useContract(
     contractAddress,
@@ -426,7 +435,21 @@ export default function NftSinglePrice({
     [nftMetadata?.metadata?.id]
   );
 
-  //console.log('stakerAddress', stakerAddress);
+  const { data: stakeInfo, isLoading: isLoadingStakeInfo } = useContractRead(
+    contractStaking,
+    'getStakeInfo',
+    [stakerAddress]
+  );
+
+  const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
+
+  useEffect(() => {
+    if (!stakeInfo) return;
+
+    setStakeInfoCount(stakeInfo?.[0]?.length);
+  }, [stakeInfo]);
+
+  ///console.log('stakerAddress', stakerAddress);
 
   const { contract: marketplace } = useContract(
     marketplaceContractAddress,
@@ -774,42 +797,8 @@ export default function NftSinglePrice({
                       #{nftMetadata?.metadata?.id} {nftMetadata?.metadata?.name}
                     </div>
 
-                    {/* owned by */}
-                    <div className="mt-5 flex items-center gap-4 ">
-                      <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                        Owned by
-                      </div>
-                      <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                        {stakerAddress &&
-                        stakerAddress ===
-                          '0x0000000000000000000000000000000000000000' ? (
-                          <>
-                            {nftMetadata?.owner === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
-                              </div>
-                            ) : (
-                              <span>
-                                {nftMetadata?.owner?.substring(0, 10)}...
-                              </span>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            {stakerAddress && stakerAddress === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
-                              </div>
-                            ) : (
-                              <span>{stakerAddress?.substring(0, 10)}...</span>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* registered by */}
-                    <div className="mt-5 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+                    {/* registered in */}
+                    <div className="mt-2 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                       {isLoadingStaking ? (
                         <div className="mt-0 flex flex-col items-center justify-center gap-5">
                           <div className="text-xl font-bold xl:text-2xl">
@@ -851,7 +840,7 @@ export default function NftSinglePrice({
                               '0x0000000000000000000000000000000000000000' && (
                               <div className="mt-2 flex items-center gap-4 ">
                                 <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                                  Registered by
+                                  Registered in
                                 </div>
                                 <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                                   <span>
@@ -868,6 +857,16 @@ export default function NftSinglePrice({
                                     <span>per Hour</span>
                                   </div>
                                   */}
+
+                                {/*
+                              <AnchorLink
+                                href={`/horse-details/${nftMetadata?.metadata?.id}`}
+                                className="inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white "
+                              >
+                                on {nftMetadata?.metadata?.mintedDate}
+                                <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
+                              </AnchorLink>
+                                */}
                               </div>
                             )}
 
@@ -1063,6 +1062,66 @@ export default function NftSinglePrice({
                       )}
                     </div>
                   )}
+
+                  {/* owned by */}
+                  <div className="mt-5 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+                    {isLoadingStaking ? (
+                      <div className="mt-0 flex flex-col items-center justify-center gap-5">
+                        <div className="text-xl font-bold xl:text-2xl">
+                          <b>Loading Owner...</b>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className=" flex items-center  gap-4 ">
+                        <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                          Owned by
+                        </div>
+                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                          {stakerAddress &&
+                          stakerAddress ===
+                            '0x0000000000000000000000000000000000000000' ? (
+                            <>
+                              {nftMetadata?.owner === address ? (
+                                <div className="text-xl font-bold text-blue-600">
+                                  Me
+                                </div>
+                              ) : (
+                                <div>
+                                  <span>
+                                    {nftMetadata?.owner?.substring(0, 10)}...
+                                  </span>
+                                  {stakeInfoCount && stakeInfoCount > 1 && (
+                                    <span className="text-xs text-gray-400">
+                                      +{stakeInfoCount - 1}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              {stakerAddress && stakerAddress === address ? (
+                                <div className="text-xl font-bold text-blue-600">
+                                  Me
+                                </div>
+                              ) : (
+                                <div>
+                                  <span>
+                                    {stakerAddress?.substring(0, 10)}...
+                                  </span>
+                                  {stakeInfoCount && stakeInfoCount > 1 && (
+                                    <span className="text-xs text-gray-400">
+                                      +{stakeInfoCount - 1}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
                   <Image
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"

@@ -712,7 +712,7 @@ export default function NftSinglePrice({
                       </div>
                     </div>
 
-                    {/* registered by */}
+                    {/* registered in */}
                     <div className="mt-1 flex flex-row items-center gap-4 ">
                       {stakerAddress ===
                       '0x0000000000000000000000000000000000000000' ? (
