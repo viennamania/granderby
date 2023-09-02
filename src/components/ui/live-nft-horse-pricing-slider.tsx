@@ -200,25 +200,51 @@ export default function LiveNftPricingSlider({ limits }: { limits: number }) {
   };
 
   return (
-    <Swiper
-      modules={[Autoplay, Pagination, A11y]}
-      spaceBetween={24}
-      slidesPerView={1}
-      breakpoints={sliderBreakPoints}
-      pagination={{ clickable: true }}
-      observer={true}
-      dir="ltr"
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
-      className="w-full pb-10"
-    >
-      {priceFeedData.map((item) => (
-        <SwiperSlide key={item.id}>
-          <LivePricingFeed {...item} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="flex w-full flex-col">
+      <Swiper
+        modules={[Autoplay, Pagination, A11y]}
+        spaceBetween={24}
+        slidesPerView={1}
+        breakpoints={sliderBreakPoints}
+        pagination={{ clickable: true }}
+        observer={true}
+        dir="ltr"
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        className="w-full pb-10"
+      >
+        {priceFeedData.map((item) => (
+          <SwiperSlide key={item.id}>
+            <LivePricingFeed {...item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <div className="mt-2 flex w-full flex-row items-center justify-between gap-5">
+        <div className="text-sm font-bold ">
+          Total Trade:{' '}
+          <span className="font-bold text-green-600">{'17,422'} </span>USD
+        </div>
+
+        <div className="  flex justify-end ">
+          <div className="flex flex-col items-center justify-center gap-1">
+            <Image
+              src="/images/market.png"
+              alt="market"
+              width={25}
+              height={20}
+            />
+            <Image
+              src="/images/logo-opensea.svg"
+              alt="market"
+              width={80}
+              height={50}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -24,6 +24,7 @@ export default function LastWinnersPage({ npcs }: any) {
 
     ///console.log('getSonKazananlar data  ====', data);
 
+    /*
     if (
       data &&
       data?.lastGame?.placements[0]?.nft?.tokenId ===
@@ -31,13 +32,21 @@ export default function LastWinnersPage({ npcs }: any) {
     )
       return;
 
+    */
+
     setSonKazananlar(undefined);
 
-    //setSonKazananlar(data.lastGame);
+    setSonKazananlar(data.lastGame);
 
+    //console.log('getSonKazananlar   ====', sonKazananlar);
+
+    /*
     setTimeout(() => {
       setSonKazananlar(data.lastGame);
     }, 1000);
+    */
+
+    //console.log("sonKazananlar.placements", sonKazananlar.placements);
   };
 
   useEffect(() => {
@@ -57,7 +66,7 @@ export default function LastWinnersPage({ npcs }: any) {
       */}
 
       <div className="text-xl font-bold ">
-        Win Prize: {sonKazananlar?.winPrize}
+        <span>Win Prize: {sonKazananlar?.winPrize}</span>
       </div>
 
       <div className=" flex flex-row items-center justify-center gap-5 ">
@@ -71,7 +80,12 @@ export default function LastWinnersPage({ npcs }: any) {
                 className="flex w-full items-center justify-center gap-2"
               >
                 <div className=" flex flex-col gap-1 text-left  text-sm text-black">
-                  <span className="w-12">RANK{item.line}</span>
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <span className="w-12">RANK{item.line}</span>
+                    {item.line === 1 && (
+                      <span className=" font-bold text-green-600 ">WINNER</span>
+                    )}
+                  </div>
 
                   {/*
                   <span className=" mr-3 w-12 text-right text-sky-500">
@@ -132,6 +146,43 @@ export default function LastWinnersPage({ npcs }: any) {
               </div>
             );
           })}
+      </div>
+
+      <div className="mt-3 flex w-full flex-row items-center justify-between gap-5">
+        <div className="flex flex-col items-center justify-center gap-5">
+          <div className=" flex flex-row items-center justify-center gap-2 ">
+            {sonKazananlar &&
+              sonKazananlar.placements.map((item: any) => {
+                return (
+                  <div
+                    key={item.line}
+                    className="flex items-center justify-center"
+                  >
+                    <span className="">{item.line}:</span>
+                    <span className=" font-bold text-green-600 ">
+                      {item.bet}
+                    </span>
+                  </div>
+                );
+              })}
+          </div>
+
+          <div className="text-sm font-bold ">
+            Total Bet:{' '}
+            <span className="font-bold text-green-600">
+              {sonKazananlar?.totalBet}
+            </span>
+          </div>
+        </div>
+
+        <div className="  flex justify-end ">
+          <Image
+            src="/images/inkent.jpeg"
+            alt="inkent"
+            width={50}
+            height={50}
+          />
+        </div>
       </div>
     </div>
   );

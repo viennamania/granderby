@@ -898,6 +898,22 @@ export default function NftSinglePrice({
                           </div>
 
                           <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
+                            <button
+                              className="w-24 text-sm font-bold xl:text-xl "
+                              onClick={() =>
+                                router.push(
+                                  `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                                )
+                              }
+                            >
+                              <Image
+                                src="/images/market.png"
+                                alt="live"
+                                width={30}
+                                height={30}
+                              />
+                            </button>
+
                             <span className="pt-1 ">Last price:</span>
                             {attributeGrade === 'S' && (
                               <span className="text-xl font-bold text-green-600 xl:text-3xl">
@@ -925,7 +941,54 @@ export default function NftSinglePrice({
                               </span>
                             )}
 
-                            <span className="pt-1">USDC</span>
+                            <span className="pt-1">USD</span>
+                          </div>
+
+                          <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
+                            <button
+                              className=" w-24 text-sm font-bold xl:text-xl "
+                              onClick={() =>
+                                router.push(
+                                  `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                                )
+                              }
+                            >
+                              <Image
+                                src="/images/logo-opensea.svg"
+                                alt="live"
+                                width={80}
+                                height={30}
+                              />
+                            </button>
+
+                            <span className="pt-1 ">Last price:</span>
+                            {attributeGrade === 'S' && (
+                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                979
+                              </span>
+                            )}
+                            {attributeGrade === 'A' && (
+                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                730
+                              </span>
+                            )}
+                            {attributeGrade === 'B' && (
+                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                529
+                              </span>
+                            )}
+                            {attributeGrade === 'C' && (
+                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                188
+                              </span>
+                            )}
+                            {attributeGrade === 'D' && (
+                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                89
+                              </span>
+                            )}
+
+                            <span className="pt-1">USD</span>
                           </div>
 
                           {address === nftMetadata?.owner &&
@@ -1070,7 +1133,7 @@ export default function NftSinglePrice({
                         {stakerAddress &&
                           stakerAddress ===
                             '0x0000000000000000000000000000000000000000' && (
-                            <div className=" flex flex-row items-center gap-4 ">
+                            <div className="mt-2 flex flex-row items-center gap-4 ">
                               <div className="text-sm font-bold xl:text-lg">
                                 <b>Not registered </b>
                               </div>
@@ -1100,6 +1163,7 @@ export default function NftSinglePrice({
                               <div className="flex text-sm tracking-wider text-[#6B7280]">
                                 Registered in
                               </div>
+                              {/*
                               <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                                 <span>
                                   {stakingContractAddressHorseAAA?.substring(
@@ -1109,6 +1173,13 @@ export default function NftSinglePrice({
                                   ...
                                 </span>
                               </div>
+                              */}
+                              <Image
+                                src="/images/logo-race-club-1.png"
+                                alt="raceTrack"
+                                width={50}
+                                height={50}
+                              />
                               <button
                                 className="text-sm font-bold xl:text-xl "
                                 onClick={() => router.push('/live')}
@@ -1179,7 +1250,7 @@ export default function NftSinglePrice({
                           <div className="text-sm font-bold xl:text-lg">
                             Next entery:&nbsp;
                             <span className="text-xs">
-                              {raceHistory[0].createdAt}
+                              {/*raceHistory[0].createdAt*/}Not reserved
                             </span>
                           </div>
                         </div>
