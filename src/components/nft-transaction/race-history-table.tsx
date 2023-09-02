@@ -490,7 +490,7 @@ export default function RaceHistoryTable(tokenId: any) {
     const data = await response.json();
     ///setLast20Game(data.all);
 
-    console.log('data.all: ', data.all);
+    //console.log('data.all: ', data.all);
 
     const raceHistoryData = [] as any;
 

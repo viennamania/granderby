@@ -53,6 +53,8 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import Link from 'next/link';
 
+import { useRouter } from 'next/router';
+
 import {
   stakingContractAddressHorseAAA,
   stakingContractAddressHorseBBB,
@@ -78,6 +80,7 @@ import {
   ConnectWallet,
 } from '@thirdweb-dev/react';
 import { set } from 'lodash';
+import { Button } from '@mui/material';
 
 interface RadioOptionProps {
   value: string;
@@ -382,6 +385,8 @@ export default function NftSinglePrice({
   const formattedDate = format(new Date(date * 1000), 'MMMM d, yyyy hh:mma');
   const { layout } = useLayout();
 
+  const router = useRouter();
+
   const address = useAddress();
 
   /*
@@ -508,6 +513,86 @@ export default function NftSinglePrice({
         break;
     }
   };
+
+  const [raceHistory, setRaceHistory] = useState([]);
+
+  const getLast20 = async () => {
+    const response = await fetch('/api/games/horseRace/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getAllByTokenId',
+        tokenId: nftMetadata?.metadata?.id,
+      }),
+    });
+    const data = await response.json();
+    ///setLast20Game(data.all);
+
+    ///console.log('data.all: ', data.all);
+
+    const raceHistoryData = [] as any;
+
+    data?.all?.map((item: any) => {
+      const placements =
+        '#' +
+        item.placements[0]?.nft?.tokenId +
+        ' #' +
+        item.placements[1]?.nft?.tokenId +
+        ' #' +
+        item.placements[2]?.nft?.tokenId +
+        ' #' +
+        item.placements[3]?.nft?.tokenId +
+        ' #' +
+        item.placements[4]?.nft?.tokenId +
+        ' #' +
+        item.placements[5]?.nft?.tokenId +
+        ' #' +
+        item.placements[6]?.nft?.tokenId +
+        ' #' +
+        item.placements[7]?.nft?.tokenId +
+        ' #' +
+        item.placements[8]?.nft?.tokenId +
+        ' #' +
+        item.placements[9]?.nft?.tokenId;
+
+      var line = '';
+
+      item.placements.map((placement: any) => {
+        if (placement.nft?.tokenId == nftMetadata?.metadata?.id) {
+          line = placement.line;
+          return;
+        }
+      });
+
+      const raceData = {
+        id: item._id.substring(0, 6),
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: item.nft?.title,
+        createdAt: item.date,
+
+        //address: transfer.from === address ? transfer.to : transfer.from,
+        placements: placements,
+
+        amount: {
+          balance: item.nft?.tokenId,
+          usdBalance: '11,032.24',
+        },
+        rank: line,
+      };
+
+      //console.log('raceData: ', raceData);
+
+      ////setTransers((transfers) => [...transfers, transactionData]);
+
+      raceHistoryData.push(raceData);
+    });
+
+    setRaceHistory(raceHistoryData);
+  };
+
+  useEffect(() => {
+    getLast20();
+  }, [nftMetadata?.metadata?.id]);
 
   async function stakeNft(id: string) {
     if (!address) return;
@@ -812,8 +897,8 @@ export default function NftSinglePrice({
                             <b>Not for sale </b>
                           </div>
 
-                          <div className="text-sm font-bold xl:text-lg">
-                            Last price:&nbsp;
+                          <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
+                            <span className="pt-1 ">Last price:</span>
                             {attributeGrade === 'S' && (
                               <span className="text-xl font-bold text-green-600 xl:text-3xl">
                                 1000
@@ -839,7 +924,8 @@ export default function NftSinglePrice({
                                 100
                               </span>
                             )}
-                            &nbsp;USDC
+
+                            <span className="pt-1">USDC</span>
                           </div>
 
                           {address === nftMetadata?.owner &&
@@ -972,19 +1058,19 @@ export default function NftSinglePrice({
                   )}
 
                   {/* registered in */}
-                  <div className="mt-1 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+                  <div className="mt-1 flex flex-col items-center justify-center gap-2  rounded-lg border ">
                     {isLoadingStaking ? (
-                      <div className="mt-0 flex flex-col items-center justify-center gap-5">
+                      <div className=" flex flex-col items-center justify-center gap-5">
                         <div className="text-xl font-bold xl:text-2xl">
                           <b>Loading register...</b>
                         </div>
                       </div>
                     ) : (
-                      <>
+                      <div className="">
                         {stakerAddress &&
                           stakerAddress ===
                             '0x0000000000000000000000000000000000000000' && (
-                            <div className="mt-0 flex flex-row items-center gap-4 ">
+                            <div className=" flex flex-row items-center gap-4 ">
                               <div className="text-sm font-bold xl:text-lg">
                                 <b>Not registered </b>
                               </div>
@@ -1010,11 +1096,11 @@ export default function NftSinglePrice({
                         {stakerAddress &&
                           stakerAddress !==
                             '0x0000000000000000000000000000000000000000' && (
-                            <div className="mt-2 flex items-center gap-4 ">
-                              <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                            <div className=" flex items-center justify-start gap-2 ">
+                              <div className="flex text-sm tracking-wider text-[#6B7280]">
                                 Registered in
                               </div>
-                              <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                              <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                                 <span>
                                   {stakingContractAddressHorseAAA?.substring(
                                     0,
@@ -1023,6 +1109,17 @@ export default function NftSinglePrice({
                                   ...
                                 </span>
                               </div>
+                              <button
+                                className="text-sm font-bold xl:text-xl "
+                                onClick={() => router.push('/live')}
+                              >
+                                <Image
+                                  src="/horseRace/live.gif"
+                                  alt="live"
+                                  width={90}
+                                  height={30}
+                                />
+                              </button>
                               {/*
                                 <div className="flex flex-col text-xs">
                                   <span>1.8 GRD</span>
@@ -1057,8 +1154,37 @@ export default function NftSinglePrice({
                             </Web3Button>
                           </div>
                         )}
-                      </>
+                      </div>
                     )}
+
+                    <div className="mb-3 flex flex-row">
+                      {raceHistory && raceHistory.length === 0 ? (
+                        <div>
+                          <div className="text-sm font-bold xl:text-lg">
+                            <b>No record </b>
+                          </div>
+                        </div>
+                      ) : (
+                        <div class name="flex flex-col gap-2">
+                          <div className="text-sm font-bold xl:text-lg">
+                            Last rank:&nbsp;
+                            <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                              {raceHistory[0].rank}{' '}
+                            </span>
+                            <span className="text-xs">
+                              {raceHistory[0].createdAt}
+                            </span>
+                          </div>
+
+                          <div className="text-sm font-bold xl:text-lg">
+                            Next entery:&nbsp;
+                            <span className="text-xs">
+                              {raceHistory[0].createdAt}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* owned by */}
