@@ -341,8 +341,8 @@ const COLUMNS = [
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">placements</div>,
-    accessor: 'Placements',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Placements</div>,
+    accessor: 'placements',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="flex items-center justify-end">
@@ -490,7 +490,7 @@ export default function RaceHistoryTable(tokenId: any) {
     const data = await response.json();
     ///setLast20Game(data.all);
 
-    ///console.log('data.all: ', data.all);
+    console.log('data.all: ', data.all);
 
     const raceHistoryData = [] as any;
 
