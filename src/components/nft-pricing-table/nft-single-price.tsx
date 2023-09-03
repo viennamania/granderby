@@ -885,7 +885,7 @@ export default function NftSinglePrice({
 
                   {loadingListings ? (
                     <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
-                      <div className="text-xl font-bold xl:text-2xl">
+                      <div className="text-sm font-bold xl:text-lg">
                         <b>Loading sale...</b>
                       </div>
                     </div>
@@ -962,6 +962,9 @@ export default function NftSinglePrice({
                             </button>
 
                             <span className="pt-1 ">Last price:</span>
+                            <span className="pt-1">No record</span>
+
+                            {/*
                             {attributeGrade === 'S' && (
                               <span className="text-xl font-bold text-green-600 xl:text-3xl">
                                 979
@@ -987,8 +990,10 @@ export default function NftSinglePrice({
                                 89
                               </span>
                             )}
+                            
 
                             <span className="pt-1">USD</span>
+                            */}
                           </div>
 
                           {address === nftMetadata?.owner &&
@@ -1123,47 +1128,50 @@ export default function NftSinglePrice({
                   {/* registered in */}
                   <div className="mt-1 flex flex-col items-center justify-center gap-2  rounded-lg border ">
                     {isLoadingStaking ? (
-                      <div className=" flex flex-col items-center justify-center gap-5">
-                        <div className="text-xl font-bold xl:text-2xl">
+                      <div className=" flex flex-col items-center justify-center gap-5 p-3">
+                        <div className="text-sm font-bold xl:text-lg">
                           <b>Loading register...</b>
                         </div>
                       </div>
                     ) : (
-                      <div className="">
-                        {stakerAddress &&
-                          stakerAddress ===
-                            '0x0000000000000000000000000000000000000000' && (
-                            <div className="mt-2 flex flex-row items-center gap-4 ">
-                              <div className="text-sm font-bold xl:text-lg">
-                                <b>Not registered </b>
-                              </div>
+                      <>
+                        <div className="">
+                          {stakerAddress &&
+                            stakerAddress ===
+                              '0x0000000000000000000000000000000000000000' && (
+                              <div className="mt-2 flex flex-row items-center gap-4 ">
+                                <div className="text-sm font-bold xl:text-lg">
+                                  <b>Not registered </b>
+                                </div>
 
-                              {address &&
-                                address === nftMetadata?.owner &&
-                                !directListing && (
-                                  <Web3Button
-                                    theme="light"
-                                    contractAddress={
-                                      stakingContractAddressHorseAAA
-                                    }
-                                    action={() =>
-                                      stakeNft(nftMetadata?.metadata?.id || '')
-                                    }
-                                  >
-                                    Register
-                                  </Web3Button>
-                                )}
-                            </div>
-                          )}
-
-                        {stakerAddress &&
-                          stakerAddress !==
-                            '0x0000000000000000000000000000000000000000' && (
-                            <div className=" flex items-center justify-start gap-2 ">
-                              <div className="flex text-sm tracking-wider text-[#6B7280]">
-                                Registered in
+                                {address &&
+                                  address === nftMetadata?.owner &&
+                                  !directListing && (
+                                    <Web3Button
+                                      theme="light"
+                                      contractAddress={
+                                        stakingContractAddressHorseAAA
+                                      }
+                                      action={() =>
+                                        stakeNft(
+                                          nftMetadata?.metadata?.id || ''
+                                        )
+                                      }
+                                    >
+                                      Register
+                                    </Web3Button>
+                                  )}
                               </div>
-                              {/*
+                            )}
+
+                          {stakerAddress &&
+                            stakerAddress !==
+                              '0x0000000000000000000000000000000000000000' && (
+                              <div className=" flex items-center justify-start gap-2 ">
+                                <div className="flex text-sm tracking-wider text-[#6B7280]">
+                                  Registered in
+                                </div>
+                                {/*
                               <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                                 <span>
                                   {stakingContractAddressHorseAAA?.substring(
@@ -1174,31 +1182,31 @@ export default function NftSinglePrice({
                                 </span>
                               </div>
                               */}
-                              <Image
-                                src="/images/inkent.jpeg"
-                                alt="raceTrack"
-                                width={50}
-                                height={50}
-                              />
-                              <button
-                                className="text-sm font-bold xl:text-xl "
-                                onClick={() => router.push('/live')}
-                              >
                                 <Image
-                                  src="/horseRace/live.gif"
-                                  alt="live"
-                                  width={90}
-                                  height={30}
+                                  src="/images/inkent.jpeg"
+                                  alt="raceTrack"
+                                  width={50}
+                                  height={50}
                                 />
-                              </button>
-                              {/*
+                                <button
+                                  className="text-sm font-bold xl:text-xl "
+                                  onClick={() => router.push('/live')}
+                                >
+                                  <Image
+                                    src="/horseRace/live.gif"
+                                    alt="live"
+                                    width={90}
+                                    height={30}
+                                  />
+                                </button>
+                                {/*
                                 <div className="flex flex-col text-xs">
                                   <span>1.8 GRD</span>
                                   <span>per Hour</span>
                                 </div>
                                 */}
 
-                              {/*
+                                {/*
                             <AnchorLink
                               href={`/horse-details/${nftMetadata?.metadata?.id}`}
                               className="inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white "
@@ -1207,62 +1215,63 @@ export default function NftSinglePrice({
                               <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
                             </AnchorLink>
                               */}
+                              </div>
+                            )}
+
+                          {stakerAddress && stakerAddress === address && (
+                            <div className="mt-0 ">
+                              <Web3Button
+                                theme="light"
+                                action={(contract) =>
+                                  contract?.call('withdraw', [
+                                    [nftMetadata?.metadata?.id],
+                                  ])
+                                }
+                                contractAddress={stakingContractAddressHorseAAA}
+                              >
+                                Unregister
+                              </Web3Button>
                             </div>
                           )}
+                        </div>
 
-                        {stakerAddress && stakerAddress === address && (
-                          <div className="mt-0 ">
-                            <Web3Button
-                              theme="light"
-                              action={(contract) =>
-                                contract?.call('withdraw', [
-                                  [nftMetadata?.metadata?.id],
-                                ])
-                              }
-                              contractAddress={stakingContractAddressHorseAAA}
-                            >
-                              Unregister
-                            </Web3Button>
-                          </div>
-                        )}
-                      </div>
+                        <div className="mb-3 flex flex-row">
+                          {raceHistory && raceHistory.length === 0 ? (
+                            <div>
+                              <div className="text-sm font-bold xl:text-lg">
+                                <b>No record </b>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex flex-col gap-2">
+                              <div className="text-sm font-bold xl:text-lg">
+                                Last rank:&nbsp;
+                                <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                  {raceHistory[0].rank}{' '}
+                                </span>
+                                <span className="text-xs">
+                                  {raceHistory[0].createdAt}
+                                </span>
+                              </div>
+
+                              <div className="text-sm font-bold xl:text-lg">
+                                Next entery:&nbsp;
+                                <span className="text-xs">
+                                  {/*raceHistory[0].createdAt*/}Not reserved
+                                </span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </>
                     )}
-
-                    <div className="mb-3 flex flex-row">
-                      {raceHistory && raceHistory.length === 0 ? (
-                        <div>
-                          <div className="text-sm font-bold xl:text-lg">
-                            <b>No record </b>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col gap-2">
-                          <div className="text-sm font-bold xl:text-lg">
-                            Last rank:&nbsp;
-                            <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                              {raceHistory[0].rank}{' '}
-                            </span>
-                            <span className="text-xs">
-                              {raceHistory[0].createdAt}
-                            </span>
-                          </div>
-
-                          <div className="text-sm font-bold xl:text-lg">
-                            Next entery:&nbsp;
-                            <span className="text-xs">
-                              {/*raceHistory[0].createdAt*/}Not reserved
-                            </span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
                   </div>
 
                   {/* owned by */}
                   <div className="mt-1 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                     {isLoadingStaking ? (
-                      <div className="mt-0 flex flex-col items-center justify-center gap-5">
-                        <div className="text-xl font-bold xl:text-2xl">
+                      <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
+                        <div className="text-sm font-bold xl:text-lg">
                           <b>Loading Owner...</b>
                         </div>
                       </div>
