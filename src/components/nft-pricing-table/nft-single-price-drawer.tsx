@@ -735,7 +735,9 @@ export default function NftSinglePrice({
                     </div>
                   </div>
 
+                  {/*
                   <LivePricingFeed {...priceFeedData[indexPriceFeedData]} />
+                  */}
 
                   <div className="flex flex-row items-center justify-center gap-2">
                     <Image
