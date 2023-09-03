@@ -379,8 +379,8 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
                           : '/default-nft.png'
                       }
                       alt={nft?.title}
-                      height={200}
-                      width={200}
+                      height={300}
+                      width={300}
                       loading="lazy"
                     />
                     <div className="m-2 w-full items-center justify-center">

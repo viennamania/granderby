@@ -244,7 +244,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
               )}
             >
               {directListings?.map((listing) => (
-                <div
+                <button
                   key={listing.id}
                   className="relative overflow-hidden rounded-lg bg-white shadow-lg"
                   onClick={() =>
@@ -256,8 +256,8 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     )
                   }
                 >
-                  <div className="m-2 w-full  ">
-                    <p className="text-md font-bold">#{listing.asset?.id}</p>
+                  <div className="m-2 flex items-center justify-start">
+                    <p className="text-sm font-bold">#{listing.asset?.id}</p>
                   </div>
 
                   <Image
@@ -267,19 +267,19 @@ export default function SaleFeeds({ className }: { className?: string }) {
                         : '/default-nft.png'
                     }
                     alt="nft"
-                    height={500}
-                    width={500}
+                    height={300}
+                    width={300}
                     loading="lazy"
                   />
                   <div className="m-2 w-full  ">
-                    <p className="text-md font-bold">{listing.asset?.name}</p>
+                    <p className="text-xs font-bold">{listing.asset?.name}</p>
                   </div>
 
                   <div className="m-2 flex w-full items-center justify-end pr-5">
                     <b>{listing.currencyValuePerToken.displayValue}</b>&nbsp;
                     {listing.currencyValuePerToken.symbol}
                   </div>
-                </div>
+                </button>
               ))}
             </div>
 
