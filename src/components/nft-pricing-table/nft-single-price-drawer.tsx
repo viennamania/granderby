@@ -44,6 +44,8 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import Link from 'next/link';
 
+import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
+
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
@@ -210,7 +212,7 @@ function Grade(grade: any) {
     <RadioGroup
       value={grade}
       //onChange={setGrade}
-      className="grid grid-cols-2 gap-2 p-5"
+      className="grid grid-cols-1 gap-2 "
     >
       <RadioGroup.Option value="U">
         {(
@@ -220,7 +222,7 @@ function Grade(grade: any) {
           }
         ) => (
           <span
-            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+            className={` flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid p-2 text-center text-xs font-medium uppercase tracking-wide transition-all ${
               checkedU
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
@@ -244,7 +246,7 @@ function Grade(grade: any) {
           }
         ) => (
           <span
-            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-xs font-medium uppercase tracking-wide transition-all ${
               checkedS
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
@@ -268,7 +270,7 @@ function Grade(grade: any) {
           }
         ) => (
           <span
-            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-xs font-medium uppercase tracking-wide transition-all ${
               checkedA
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
@@ -292,7 +294,7 @@ function Grade(grade: any) {
           }
         ) => (
           <span
-            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-xs font-medium uppercase tracking-wide transition-all ${
               checkedB
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
@@ -316,7 +318,7 @@ function Grade(grade: any) {
           }
         ) => (
           <span
-            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-xs font-medium uppercase tracking-wide transition-all ${
               checkedC
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
@@ -342,7 +344,7 @@ function Grade(grade: any) {
           }
         ) => (
           <span
-            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-xs font-medium uppercase tracking-wide transition-all ${
               checkedD
                 ? 'border-brand bg-brand text-white shadow-button'
                 : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
@@ -424,11 +426,11 @@ export default function NftSinglePrice({
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
-  const { data: nft } = useNFT(contract, tokenid);
+  const { data: nftMetadata } = useNFT(contract, tokenid);
 
   ///console.log('nft.metadata.name', nft?.metadata.name);
 
-  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
+  const { contract: contractStaking, isLoading: isLoadingStaking } =
     useContract(stakingContractAddressHorseAAA);
 
   const { data: stakerAddress, isLoading } = useContractRead(
@@ -462,7 +464,7 @@ export default function NftSinglePrice({
   const [attributeGrade, setAttributeGrade] = useState(null);
 
   useEffect(() => {
-    nft?.metadata?.attributes?.map((attribute: any) => {
+    nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
       if (attribute.trait_type === 'Grade') {
         ///console.log('attribute.value', attribute.value);
@@ -471,12 +473,12 @@ export default function NftSinglePrice({
         return;
       }
     });
-  }, [nft?.metadata?.attributes]);
+  }, [nftMetadata?.metadata?.attributes]);
 
   const [indexPriceFeedData, setIndexPriceFeedData] = useState(0);
 
   useEffect(() => {
-    const grade = nft?.metadata?.attributes?.map((attribute: any) => {
+    const grade = nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
       if (attribute.trait_type === 'Grade') {
         console.log('attribute.value', attribute.value);
@@ -500,7 +502,87 @@ export default function NftSinglePrice({
     }
 
     console.log('indexPriceFeedData', indexPriceFeedData);
-  }, [nft?.metadata?.attributes]);
+  }, [nftMetadata?.metadata?.attributes]);
+
+  const [raceHistory, setRaceHistory] = useState([]);
+
+  const getLast20 = async () => {
+    const response = await fetch('/api/games/horseRace/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getAllByTokenId',
+        tokenId: nftMetadata?.metadata?.id,
+      }),
+    });
+    const data = await response.json();
+    ///setLast20Game(data.all);
+
+    ///console.log('data.all: ', data.all);
+
+    const raceHistoryData = [] as any;
+
+    data?.all?.map((item: any) => {
+      const placements =
+        '#' +
+        item.placements[0]?.nft?.tokenId +
+        ' #' +
+        item.placements[1]?.nft?.tokenId +
+        ' #' +
+        item.placements[2]?.nft?.tokenId +
+        ' #' +
+        item.placements[3]?.nft?.tokenId +
+        ' #' +
+        item.placements[4]?.nft?.tokenId +
+        ' #' +
+        item.placements[5]?.nft?.tokenId +
+        ' #' +
+        item.placements[6]?.nft?.tokenId +
+        ' #' +
+        item.placements[7]?.nft?.tokenId +
+        ' #' +
+        item.placements[8]?.nft?.tokenId +
+        ' #' +
+        item.placements[9]?.nft?.tokenId;
+
+      var line = '';
+
+      item.placements.map((placement: any) => {
+        if (placement.nft?.tokenId == nftMetadata?.metadata?.id) {
+          line = placement.line;
+          return;
+        }
+      });
+
+      const raceData = {
+        id: item._id.substring(0, 6),
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: item.nft?.title,
+        createdAt: item.date,
+
+        //address: transfer.from === address ? transfer.to : transfer.from,
+        placements: placements,
+
+        amount: {
+          balance: item.nft?.tokenId,
+          usdBalance: '11,032.24',
+        },
+        rank: line,
+      };
+
+      //console.log('raceData: ', raceData);
+
+      ////setTransers((transfers) => [...transfers, transactionData]);
+
+      raceHistoryData.push(raceData);
+    });
+
+    setRaceHistory(raceHistoryData);
+  };
+
+  useEffect(() => {
+    getLast20();
+  }, [nftMetadata?.metadata?.id]);
 
   return (
     <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark ">
@@ -515,13 +597,13 @@ export default function NftSinglePrice({
                   */}
 
                   <div className="text-xl font-medium capitalize text-brand dark:text-white">
-                    {nft?.metadata?.name}
+                    {nftMetadata?.metadata?.name}
                   </div>
 
                   <Image
                     src={
-                      nft?.metadata?.image
-                        ? nft?.metadata?.image
+                      nftMetadata?.metadata?.image
+                        ? nftMetadata?.metadata?.image
                         : '/default-nft.png'
                     }
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
@@ -535,7 +617,7 @@ export default function NftSinglePrice({
                 </span>
 
                 <span className="flex items-end text-xl font-medium capitalize text-brand dark:text-white">
-                  {nft?.metadata?.name}
+                  {nftMetadata?.metadata?.name}
                 </span>
                 {/*
                 <span className="text-sm text-gray-400">(BTC/USD)</span>
@@ -656,17 +738,16 @@ export default function NftSinglePrice({
         </div>
       ) : (
         <div className=" flex flex-col items-center justify-between  gap-2 lg:flex-row">
-          <div>
-            <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-              <span className="flex items-center gap-2.5">
-                <span className="items-left flex flex-col gap-2.5 ">
-                  <div className="items-left flex flex-col justify-center ">
-                    <div className="flex flex-row items-center justify-between gap-2.5">
-                      <div className="text-left text-lg font-bold capitalize text-black dark:text-white">
-                        #{nft?.metadata?.id} {nft?.metadata?.name}
-                      </div>
+          <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
+            <span className="flex items-center gap-2.5">
+              <span className="items-left flex flex-col gap-2.5 ">
+                <div className="items-left flex flex-col justify-center ">
+                  <div className="flex flex-row items-center justify-between gap-2.5">
+                    <div className="text-left text-lg font-bold capitalize text-black dark:text-white">
+                      #{nftMetadata?.metadata?.id} {nftMetadata?.metadata?.name}
+                    </div>
 
-                      {/*
+                    {/*
                       <Button
                         size="small"
                         shape="rounded"
@@ -678,98 +759,188 @@ export default function NftSinglePrice({
                         SHARE
                       </Button>
                       */}
-                    </div>
+                  </div>
 
-                    {/* owned by */}
-                    <div className="mt-5 flex flex-row items-center gap-4 ">
-                      <div className="flex w-28 flex-wrap text-xs tracking-wider text-[#6B7280]">
-                        Owned by
+                  {/* registered in */}
+                  <div className="mt-2 flex flex-col items-center justify-center gap-2 rounded-lg  border p-2 ">
+                    {isLoadingStaking ? (
+                      <div className=" flex flex-col items-center justify-center gap-5">
+                        <div className="text-xl font-bold xl:text-2xl">
+                          <b>Loading register...</b>
+                        </div>
                       </div>
-                      <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                    ) : (
+                      <div className="">
                         {stakerAddress &&
-                        stakerAddress ===
-                          '0x0000000000000000000000000000000000000000' ? (
-                          <>
-                            {nft?.owner === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
+                          stakerAddress ===
+                            '0x0000000000000000000000000000000000000000' && (
+                            <div className="mt-2 flex flex-row items-center gap-4 ">
+                              <div className="text-sm font-bold xl:text-lg">
+                                <b>Not registered </b>
                               </div>
-                            ) : (
-                              <span>{nft?.owner?.substring(0, 10)}...</span>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            {stakerAddress && stakerAddress === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
+                            </div>
+                          )}
+
+                        {stakerAddress &&
+                          stakerAddress !==
+                            '0x0000000000000000000000000000000000000000' && (
+                            <div className=" flex items-center justify-start gap-2 ">
+                              <div className="flex text-sm tracking-wider text-[#6B7280]">
+                                Registered in
                               </div>
-                            ) : (
-                              <span>{stakerAddress?.substring(0, 10)}...</span>
-                            )}
-                          </>
+                              {/*
+                              <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                                <span>
+                                  {stakingContractAddressHorseAAA?.substring(
+                                    0,
+                                    6
+                                  )}
+                                  ...
+                                </span>
+                              </div>
+                              */}
+                              <Image
+                                src="/images/inkent.jpeg"
+                                alt="raceTrack"
+                                width={50}
+                                height={50}
+                              />
+
+                              {/*
+                                <div className="flex flex-col text-xs">
+                                  <span>1.8 GRD</span>
+                                  <span>per Hour</span>
+                                </div>
+                                */}
+
+                              {/*
+                            <AnchorLink
+                              href={`/horse-details/${nftMetadata?.metadata?.id}`}
+                              className="inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white "
+                            >
+                              on {nftMetadata?.metadata?.mintedDate}
+                              <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
+                            </AnchorLink>
+                              */}
+                            </div>
+                          )}
+
+                        {stakerAddress && stakerAddress === address && (
+                          <div className="mt-0 ">
+                            <Web3Button
+                              theme="light"
+                              action={(contract) =>
+                                contract?.call('withdraw', [
+                                  [nftMetadata?.metadata?.id],
+                                ])
+                              }
+                              contractAddress={stakingContractAddressHorseAAA}
+                            >
+                              Unregister
+                            </Web3Button>
+                          </div>
                         )}
                       </div>
-                    </div>
+                    )}
 
-                    {/* registered in */}
-                    <div className="mt-1 flex flex-row items-center gap-4 ">
-                      {stakerAddress ===
-                      '0x0000000000000000000000000000000000000000' ? (
-                        <div className=" text-xs tracking-wider text-[#6B7280]">
-                          Not registered
+                    <div className="mb-3 flex flex-row">
+                      {raceHistory && raceHistory.length === 0 ? (
+                        <div>
+                          <div className="text-sm font-bold xl:text-lg">
+                            <b>No record </b>
+                          </div>
                         </div>
                       ) : (
-                        <>
-                          <div className="flex w-28 flex-wrap text-xs tracking-wider text-[#6B7280]">
-                            Registered by
-                          </div>
-                          <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                            <span>
-                              {stakingContractAddressHorseAAA?.substring(0, 10)}
-                              ...
+                        <div className="flex flex-col gap-2">
+                          <div className="text-xs">
+                            Last rank:&nbsp;
+                            <span className="text-lg font-bold text-green-600 ">
+                              {raceHistory[0].rank}{' '}
+                            </span>
+                            <span className="text-xs">
+                              {raceHistory[0].createdAt}
                             </span>
                           </div>
+
+                          <div className="text-xs ">
+                            Next entery:&nbsp;
+                            <span className="text-xs">
+                              {/*raceHistory[0].createdAt*/}Not reserved
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* owned by */}
+                  <div className="mt-5 flex flex-row items-center gap-4 ">
+                    <div className="flex w-28 flex-wrap text-xs tracking-wider text-[#6B7280]">
+                      Owned by
+                    </div>
+                    <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                      {stakerAddress &&
+                      stakerAddress ===
+                        '0x0000000000000000000000000000000000000000' ? (
+                        <>
+                          {nftMetadata?.owner === address ? (
+                            <div className="text-xl font-bold text-blue-600">
+                              Me
+                            </div>
+                          ) : (
+                            <span>
+                              {nftMetadata?.owner?.substring(0, 10)}...
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {stakerAddress && stakerAddress === address ? (
+                            <div className="text-xl font-bold text-blue-600">
+                              Me
+                            </div>
+                          ) : (
+                            <span>{stakerAddress?.substring(0, 10)}...</span>
+                          )}
                         </>
                       )}
                     </div>
                   </div>
 
-                  {/*
+                  <div className="mt-5 flex flex-col items-center gap-4 ">
+                    <div className="flex flex-row items-center gap-4 ">
+                      <Image
+                        //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
+                        src={
+                          nftMetadata?.metadata?.image
+                            ? nftMetadata?.metadata?.image
+                            : '/default-nft.png'
+                        }
+                        alt="nft"
+                        width={180}
+                        height={180}
+                        className=" rounded-lg "
+                      />
+
+                      <Grade grade={attributeGrade} />
+                    </div>
+
+                    <div className="mt-5 flex w-72 items-center ">
+                      <Collapse label="Race History" initialOpen={true}>
+                        <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
+                      </Collapse>
+                    </div>
+                  </div>
+                </div>
+
+                {/*
                   <LivePricingFeed {...priceFeedData[indexPriceFeedData]} />
                   */}
-
-                  <div className="flex flex-row items-center justify-center gap-2">
-                    <Image
-                      //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                      src={
-                        nft?.metadata?.image
-                          ? nft?.metadata?.image
-                          : '/default-nft.png'
-                      }
-                      alt="nft"
-                      width={500}
-                      height={500}
-                      className=" rounded-lg "
-                    />
-
-                    {/*
-                    <div>
-                    <Collapse label="Grade" initialOpen={true}>
-                      <Grade grade={'S'} />
-                    </Collapse>
-                    </div>
-                    */}
-                  </div>
-                </span>
               </span>
-            </div>
+            </span>
+          </div>
 
-            <Collapse label="Grade" initialOpen={true}>
-              <Grade grade={attributeGrade} />
-            </Collapse>
-
-            {/*
+          {/*
             {priceFeedData.map((item) => (
               <SwiperSlide key={item.id}>
                 <LivePricingFeed {...item} />
@@ -777,7 +948,7 @@ export default function NftSinglePrice({
             ))}
             */}
 
-            {/*
+          {/*
             <div className="mt-5 flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
               <span className="text-2xl font-semibold xl:text-3xl">
                 {price}
@@ -814,7 +985,6 @@ export default function NftSinglePrice({
             </div>
 
             */}
-          </div>
 
           {/*
           <RadioGroup

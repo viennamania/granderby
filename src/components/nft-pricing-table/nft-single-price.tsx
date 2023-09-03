@@ -1175,7 +1175,7 @@ export default function NftSinglePrice({
                               </div>
                               */}
                               <Image
-                                src="/images/logo-race-club-1.png"
+                                src="/images/inkent.jpeg"
                                 alt="raceTrack"
                                 width={50}
                                 height={50}
@@ -1236,7 +1236,7 @@ export default function NftSinglePrice({
                           </div>
                         </div>
                       ) : (
-                        <div class name="flex flex-col gap-2">
+                        <div className="flex flex-col gap-2">
                           <div className="text-sm font-bold xl:text-lg">
                             Last rank:&nbsp;
                             <span className="text-xl font-bold text-green-600 xl:text-3xl">
