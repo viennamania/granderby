@@ -876,11 +876,11 @@ export default function NftSinglePrice({
 
                                   {raceHistory[0].rank >
                                     raceHistory[1].rank && (
-                                    <LongArrowUp className="h-8 w-8  text-sky-600 " />
+                                    <LongArrowUp className=" h-8 w-8 rotate-180  text-red-600 " />
                                   )}
                                   {raceHistory[0].rank <
                                     raceHistory[1].rank && (
-                                    <LongArrowUp className=" h-8 w-8 rotate-180  text-red-600 " />
+                                    <LongArrowUp className="h-8 w-8  text-sky-600 " />
                                   )}
                                   {raceHistory[0].rank ===
                                     raceHistory[1].rank && (
