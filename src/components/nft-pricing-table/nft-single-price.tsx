@@ -1032,14 +1032,29 @@ export default function NftSinglePrice({
                               <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
                               {directListing.buyoutCurrencyValuePerToken.symbol}
                                   */}
-                            <span>Sell Price:&nbsp;</span>
-                            <b>
-                              {
-                                directListing?.currencyValuePerToken
-                                  .displayValue
-                              }
-                            </b>{' '}
-                            {directListing?.currencyValuePerToken.symbol}
+
+                            <div className="flex flex-row gap-3">
+                              <Image
+                                src="/images/market.png"
+                                alt="market"
+                                width={30}
+                                height={20}
+                              />
+                              <span>Sell Price</span>
+                            </div>
+
+                            <div className="mt-2 flex flex-row items-center justify-center gap-3">
+                              <span className="text-3xl font-bold text-green-600 xl:text-4xl">
+                                {
+                                  directListing?.currencyValuePerToken
+                                    .displayValue
+                                }
+                              </span>
+                              <span className="text-sm xl:text-lg">
+                                {' '}
+                                {directListing?.currencyValuePerToken.symbol}
+                              </span>
+                            </div>
                           </div>
 
                           <div className="text-sm font-bold xl:text-lg">
