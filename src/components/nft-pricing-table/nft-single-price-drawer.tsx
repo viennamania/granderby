@@ -28,6 +28,7 @@ import {
 import { Tag } from '@/components/icons/tag';
 import { LongArrowUp } from '@/components/icons/long-arrow-up';
 import { ArrowUp } from '@/components/icons/arrow-up';
+
 import { Listbox, Transition } from '@headlessui/react';
 import { ChevronDown } from '@/components/icons/chevron-down';
 import { useLayout } from '@/lib/hooks/use-layout';
@@ -45,6 +46,10 @@ import { Network, Alchemy } from 'alchemy-sdk';
 import Link from 'next/link';
 
 import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
+
+import { LongArrowLeft } from '@/components/icons/long-arrow-left';
+
+import { ArrowRight } from '@/components/icons/arrow-right';
 
 import {
   nftDropContractAddressHorse,
@@ -770,25 +775,26 @@ export default function NftSinglePrice({
                         </div>
                       </div>
                     ) : (
-                      <div className="">
-                        {stakerAddress &&
-                          stakerAddress ===
-                            '0x0000000000000000000000000000000000000000' && (
-                            <div className="mt-2 flex flex-row items-center gap-4 ">
-                              <div className="text-sm font-bold xl:text-lg">
-                                <b>Not registered </b>
+                      <>
+                        <div className="">
+                          {stakerAddress &&
+                            stakerAddress ===
+                              '0x0000000000000000000000000000000000000000' && (
+                              <div className="mt-2 flex flex-row items-center gap-4 ">
+                                <div className="text-sm font-bold xl:text-lg">
+                                  <b>Not registered </b>
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
 
-                        {stakerAddress &&
-                          stakerAddress !==
-                            '0x0000000000000000000000000000000000000000' && (
-                            <div className=" flex items-center justify-start gap-2 ">
-                              <div className="flex text-sm tracking-wider text-[#6B7280]">
-                                Registered in
-                              </div>
-                              {/*
+                          {stakerAddress &&
+                            stakerAddress !==
+                              '0x0000000000000000000000000000000000000000' && (
+                              <div className=" flex items-center justify-start gap-2 ">
+                                <div className="flex text-sm tracking-wider text-[#6B7280]">
+                                  Registered in
+                                </div>
+                                {/*
                               <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                                 <span>
                                   {stakingContractAddressHorseAAA?.substring(
@@ -799,21 +805,21 @@ export default function NftSinglePrice({
                                 </span>
                               </div>
                               */}
-                              <Image
-                                src="/images/inkent.jpeg"
-                                alt="raceTrack"
-                                width={50}
-                                height={50}
-                              />
+                                <Image
+                                  src="/images/inkent.jpeg"
+                                  alt="raceTrack"
+                                  width={50}
+                                  height={50}
+                                />
 
-                              {/*
+                                {/*
                                 <div className="flex flex-col text-xs">
                                   <span>1.8 GRD</span>
                                   <span>per Hour</span>
                                 </div>
                                 */}
 
-                              {/*
+                                {/*
                             <AnchorLink
                               href={`/horse-details/${nftMetadata?.metadata?.id}`}
                               className="inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white "
@@ -822,39 +828,78 @@ export default function NftSinglePrice({
                               <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
                             </AnchorLink>
                               */}
+                              </div>
+                            )}
+                        </div>
+
+                        <div className="mb-3 flex flex-row">
+                          {raceHistory && raceHistory.length === 0 ? (
+                            <div>
+                              <div className="text-sm font-bold xl:text-lg">
+                                <b>No record </b>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex flex-col gap-2">
+                              <div className="item-center flex flex-row justify-center">
+                                <div className=" text-xs  ">Last rank:</div>
+                                <div className="ml-2 text-3xl font-bold  text-green-600 xl:text-4xl ">
+                                  {raceHistory[0].rank}{' '}
+                                </div>
+                              </div>
+                              <div className="text-xs">
+                                record: {raceHistory[0].createdAt}
+                              </div>
+
+                              <div className="item-center flex flex-row justify-center">
+                                <div className=" text-xs  ">Trend:</div>
+                                <div className="ml-2 flex flex-row items-center justify-center gap-1 ">
+                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                    {raceHistory[4].rank}
+                                  </div>
+                                  <ArrowRight className="h-2 w-2 " />
+                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                    {raceHistory[3].rank}
+                                  </div>
+                                  <ArrowRight className="h-2 w-2 " />
+                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                    {raceHistory[2].rank}
+                                  </div>
+                                  <ArrowRight className="h-2 w-2 " />
+                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                    {raceHistory[1].rank}
+                                  </div>
+                                  <ArrowRight className="h-2 w-2 " />
+                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                    {raceHistory[0].rank}
+                                  </div>
+
+                                  {raceHistory[0].rank >
+                                    raceHistory[1].rank && (
+                                    <LongArrowUp className="h-8 w-8  text-sky-600 " />
+                                  )}
+                                  {raceHistory[0].rank <
+                                    raceHistory[1].rank && (
+                                    <LongArrowUp className=" h-8 w-8 rotate-180  text-red-600 " />
+                                  )}
+                                  {raceHistory[0].rank ===
+                                    raceHistory[1].rank && (
+                                    <ArrowRight className="h-5 w-5  text-gray-600 " />
+                                  )}
+                                </div>
+                              </div>
+
+                              <div className="text-xs ">
+                                Next entery:&nbsp;
+                                <span className="text-xs">
+                                  {/*raceHistory[0].createdAt*/}Not reserved
+                                </span>
+                              </div>
                             </div>
                           )}
-                      </div>
+                        </div>
+                      </>
                     )}
-
-                    <div className="mb-3 flex flex-row">
-                      {raceHistory && raceHistory.length === 0 ? (
-                        <div>
-                          <div className="text-sm font-bold xl:text-lg">
-                            <b>No record </b>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col gap-2">
-                          <div className="text-xs">
-                            Last rank:&nbsp;
-                            <span className="text-lg font-bold text-green-600 ">
-                              {raceHistory[0].rank}{' '}
-                            </span>
-                            <span className="text-xs">
-                              {raceHistory[0].createdAt}
-                            </span>
-                          </div>
-
-                          <div className="text-xs ">
-                            Next entery:&nbsp;
-                            <span className="text-xs">
-                              {/*raceHistory[0].createdAt*/}Not reserved
-                            </span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
                   </div>
 
                   {/* owned by */}
