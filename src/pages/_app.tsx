@@ -69,6 +69,8 @@ import { Analytics } from '@vercel/analytics/react';
 
 import React from 'react';
 
+import { Toaster } from 'react-hot-toast';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -199,6 +201,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           <EntriesButton />
           <EntriesDrawer />
           */}
+
+          <Toaster />
 
           <InventoriesButton />
           <InventoriesDrawer />

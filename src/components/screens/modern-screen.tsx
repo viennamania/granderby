@@ -78,6 +78,8 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
 
+import toast from 'react-hot-toast';
+
 export default function ModernScreen() {
   const address = useAddress();
 
@@ -316,8 +318,9 @@ export default function ModernScreen() {
   };
 
   useEffect(() => {
-    if (status == false) {
+    if (status === false) {
       ////deleteCookie('horse');
+      //toast.success('status false')
     }
 
     async function getNpcNames() {
@@ -331,10 +334,6 @@ export default function ModernScreen() {
       //const data = useOwnedNFTs(nftDropContractHorse, address);
 
       setNpcNames(response.npcNames[0]);
-
-      ///console.log("npcnNames", response.npcNames[0]);
-
-      //npcNames.npcNames[0].nft1
     }
 
     getNpcNames();
@@ -415,7 +414,7 @@ export default function ModernScreen() {
     }, 10000);
 
     //return () => clearInterval(interval);
-  }, [npcNames]);
+  }, []);
 
   /*
   useEffect(() => {
@@ -496,7 +495,7 @@ export default function ModernScreen() {
 
           <CollapseLastWinners label="Last Race Winners">
             <div className=" rounded-md  bg-black">
-              <LastWinners npcs={npcNames} />
+              <LastWinners npcs={npcNames} status={status} />
             </div>
             <div></div>
           </CollapseLastWinners>

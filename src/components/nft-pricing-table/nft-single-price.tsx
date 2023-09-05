@@ -82,6 +82,10 @@ import {
 import { set } from 'lodash';
 import { Button } from '@mui/material';
 
+////import { useToast } from '@/components/ui/use-toast';
+
+import toast from 'react-hot-toast';
+
 interface RadioOptionProps {
   value: string;
 }
@@ -387,6 +391,8 @@ export default function NftSinglePrice({
 
   const router = useRouter();
 
+  ////const { toast } = useToast();
+
   const address = useAddress();
 
   /*
@@ -595,6 +601,18 @@ export default function NftSinglePrice({
   }, [nftMetadata?.metadata?.id]);
 
   async function stakeNft(id: string) {
+    ///alert("test stakeNft");
+
+    /*
+      toast({
+        title: 'Successfully minted',
+        description:
+          'The NFT has been transferred to your wallet',
+        duration: 5000,
+        className: 'bg-green-500',
+      });
+      */
+
     if (!address) return;
 
     const isApproved = await nftDropContract?.isApproved(
