@@ -56,7 +56,11 @@ import {
   useTransferToken,
 } from '@thirdweb-dev/react';
 
-import { tokenContractAddressHV } from '@/config/contractAddresses';
+import {
+  tokenContractAddressHV,
+  tokenContractAddressGRD,
+  stakingContractAddressHorseAAA,
+} from '@/config/contractAddresses';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -107,6 +111,18 @@ const RentPage: NextPageWithLayout<
 
   const [toAddress, setToAddress] = useState('');
   const [amount, setAmount] = useState();
+
+  const { contract: tokenContractGRD } = useContract(
+    tokenContractAddressGRD,
+    'token'
+  );
+
+  const { data: tokenBalanceGRD } = useTokenBalance(
+    tokenContractGRD,
+    stakingContractAddressHorseAAA
+  );
+
+  console.log('tokenBalanceGRD', tokenBalanceGRD);
 
   async function transferToken(toAddress: string, amount: number) {
     if (toAddress === '') {
@@ -219,6 +235,22 @@ const RentPage: NextPageWithLayout<
           {/*
           <Profile />
           */}
+        </div>
+
+        <div className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+          <span className="text-lg text-[#2b57a2] ">Total Profit:</span>
+          <b>
+            {tokenBalanceGRD === undefined ? (
+              <>Loading...</>
+            ) : (
+              <div className="m-2 text-5xl font-bold xl:text-7xl">
+                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+              </div>
+            )}
+          </b>{' '}
+          <span className="text-lg text-[#2b57a2] ">
+            {tokenBalanceGRD?.symbol}
+          </span>
         </div>
 
         <div>
