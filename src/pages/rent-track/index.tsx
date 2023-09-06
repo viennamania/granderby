@@ -124,6 +124,27 @@ const RentPage: NextPageWithLayout<
 
   console.log('tokenBalanceGRD', tokenBalanceGRD);
 
+  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
+    useContract(stakingContractAddressHorseAAA);
+
+  /*
+  const { data: stakerAddress, isLoading } = useContractRead(
+    contractStaking,
+    'stakerAddress',
+    [tokenId]
+  );
+  */
+
+  /*
+  const { data: rewardTokenBalance, isLoading } = useContractRead(
+    contractStaking,
+    "getRewardTokenBalance",
+    []
+  );
+  
+  console.log('rewardTokenBalance', rewardTokenBalance);
+    */
+
   async function transferToken(toAddress: string, amount: number) {
     if (toAddress === '') {
       alert(`🌊 Please enter a valid address`);
