@@ -1300,7 +1300,7 @@ export default function NftSinglePrice({
                                 <span className="text-xs">
                                   {format(
                                     Date.parse(raceHistory[0].createdAt || 0),
-                                    'yyy MMMM dd hh:mm:ss'
+                                    'yyy-mm-dd hh:mm:ss'
                                   )}
                                 </span>
                               </div>
