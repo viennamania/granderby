@@ -851,7 +851,7 @@ export default function NftSinglePrice({
                                 record:&nbsp;
                                 {format(
                                   Date.parse(raceHistory[0].createdAt || 0),
-                                  'yyy MMMM dd hh:mm:ss'
+                                  'yyy-MM-dd hh:mm:ss'
                                 )}
                               </div>
 

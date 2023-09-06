@@ -1083,7 +1083,7 @@ export default function NftSinglePrice({
                               new Date(
                                 directListing?.startTimeInSeconds * 1000
                               ),
-                              'yyy MMMM dd hh:mm:ss'
+                              'yyy-MM-dd hh:mm:ss'
                             )}
                           </span>
 
