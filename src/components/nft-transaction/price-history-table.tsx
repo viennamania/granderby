@@ -445,7 +445,9 @@ export default function PriceHistoryTable(
 
       const transactions = [] as any;
 
-      data.transactions?.map((transfer: any) => {
+      data.transactions?.map((transfer: any, index: number) => {
+        if (index > 1) return;
+
         const transactionData = {
           id: transfer.blockNum,
           //transactionType: transfer.from === address ? 'Send' : 'Receive',

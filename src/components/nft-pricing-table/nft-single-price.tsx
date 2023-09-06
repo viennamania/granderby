@@ -435,7 +435,7 @@ export default function NftSinglePrice({
     });
   }, [nftMetadata?.metadata?.attributes]);
 
-  console.log('attributeGrade', attributeGrade);
+  ///console.log('attributeGrade', attributeGrade);
 
   const { contract: contractStaking, isLoading: isLoadingStaking } =
     useContract(stakingContractAddressHorseAAA);
@@ -489,7 +489,7 @@ export default function NftSinglePrice({
 
           setDirectListing(listing);
 
-          console.log('nft-single-price listing', listing);
+          ////console.log('nft-single-price listing', listing);
 
           return;
         }

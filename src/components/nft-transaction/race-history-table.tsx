@@ -44,6 +44,8 @@ import {
 ///import { priceFeedData } from '@/data/static/price-feed';
 import { raceFeedData } from '@/data/static/nft-horse-race-feed';
 
+import { format } from 'date-fns';
+
 type Price = {
   name: number;
   value: number;
@@ -244,6 +246,7 @@ export const TransactionData = [
 */
 
 const COLUMNS = [
+  /*
   {
     //Header: 'ID',
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">ID</div>,
@@ -251,6 +254,7 @@ const COLUMNS = [
     minWidth: 80,
     maxWidth: 80,
   },
+  */
   /*
   {
     Header: 'Type',
@@ -321,10 +325,12 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">{value}</div>
+      <div className="ltr:text-right rtl:text-left">
+        {format(Date.parse(value || 0), 'yyy-MM-dd hh:mm:ss')}
+      </div>
     ),
-    minWidth: 80,
-    maxWidth: 80,
+    minWidth: 130,
+    maxWidth: 130,
   },
 
   {
@@ -332,29 +338,72 @@ const COLUMNS = [
     accessor: 'rank',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-2xl font-bold text-green-600 ltr:text-right rtl:text-left">
+      <div className="text-center text-2xl font-bold text-green-600">
         {value}
       </div>
     ),
-    minWidth: 70,
-    maxWidth: 100,
+    minWidth: 60,
+    maxWidth: 60,
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Placements</div>,
+    Header: () => <div className="">Placements</div>,
     accessor: 'placements',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-end">
-        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-        {value}
+      <div className="flex flex-wrap items-center justify-start">
         {/*
-        {value == '0x0000000000000000000000000000000000000000'
-          ? 'Drops'
-          : value.length > 10
-          ? value.substring(0, 10) + '...'
-          : value}
-    */}
+        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+        */}
+
+        {value?.map((item: any) => {
+          if (item.line === 1) {
+            return (
+              <div
+                key={item.line}
+                className="text-md flex items-center justify-center font-bold text-sky-600"
+              >
+                <span className="text-lg text-red-600">{item.line}:</span>
+                <span className="">#{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
+              </div>
+            );
+          } else if (item.line === 2) {
+            return (
+              <div
+                key={item.line}
+                className="text-md flex items-center justify-center font-bold text-sky-600"
+              >
+                <span className="text-lg text-red-600">{item.line}:</span>
+                <span className="">#{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
+              </div>
+            );
+          } else if (item.line === 3) {
+            return (
+              <>
+                <div
+                  key={item.line}
+                  className="text-md flex items-center justify-center font-bold text-sky-600"
+                >
+                  <span className="text-lg text-red-600">{item.line}:</span>
+                  <span className="">
+                    #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
+                  </span>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </>
+            );
+          } else {
+            return (
+              <div
+                key={item.line}
+                className="flex items-center justify-center text-xs"
+              >
+                <span className="text-sm">{item.line}:</span>
+                <span className="">#{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
+              </div>
+            );
+          }
+        })}
       </div>
     ),
     minWidth: 250,
@@ -495,9 +544,15 @@ export default function RaceHistoryTable(tokenId: any) {
     const raceHistoryData = [] as any;
 
     data?.all?.map((item: any) => {
+      ////console.log('item: ', item);
+
+      /*
       const placements =
+
         '#' +
         item.placements[0]?.nft?.tokenId +
+       
+
         ' #' +
         item.placements[1]?.nft?.tokenId +
         ' #' +
@@ -516,6 +571,7 @@ export default function RaceHistoryTable(tokenId: any) {
         item.placements[8]?.nft?.tokenId +
         ' #' +
         item.placements[9]?.nft?.tokenId;
+      */
 
       var line = '';
 
@@ -533,7 +589,7 @@ export default function RaceHistoryTable(tokenId: any) {
         createdAt: item.date,
 
         //address: transfer.from === address ? transfer.to : transfer.from,
-        placements: placements,
+        placements: item.placements,
 
         amount: {
           balance: item.nft?.tokenId,
