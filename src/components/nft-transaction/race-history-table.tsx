@@ -325,12 +325,12 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">
-        {format(Date.parse(value || 0), 'yyy-MM-dd hh:mm:ss')}
+      <div className="text-right text-xs">
+        {format(Date.parse(value || 0), 'yyyyMMdd hh:mm:ss')}
       </div>
     ),
-    minWidth: 130,
-    maxWidth: 130,
+    minWidth: 80,
+    maxWidth: 80,
   },
 
   {
@@ -342,8 +342,8 @@ const COLUMNS = [
         {value}
       </div>
     ),
-    minWidth: 60,
-    maxWidth: 60,
+    minWidth: 80,
+    maxWidth: 80,
   },
 
   {
@@ -364,7 +364,7 @@ const COLUMNS = [
                 className="text-md flex items-center justify-center "
               >
                 <span className="text-lg  text-red-600">{item.line}:</span>
-                <span className="text-lg font-bold text-sky-600">
+                <span className="text-lg  text-sky-600">
                   #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
               </div>
@@ -376,7 +376,7 @@ const COLUMNS = [
                 className="text-md flex items-center justify-center"
               >
                 <span className="text-lg text-red-600">{item.line}:</span>
-                <span className="text-lg  font-bold text-sky-600">
+                <span className="text-lg  text-sky-600">
                   #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
               </div>
@@ -389,7 +389,7 @@ const COLUMNS = [
                   className="text-md flex items-center justify-center "
                 >
                   <span className="text-lg text-red-600">{item.line}:</span>
-                  <span className="text-lg font-bold text-sky-600">
+                  <span className="text-lg  text-sky-600">
                     #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                   </span>
                 </div>
@@ -410,8 +410,8 @@ const COLUMNS = [
         })}
       </div>
     ),
-    minWidth: 250,
-    maxWidth: 250,
+    minWidth: 200,
+    maxWidth: 200,
   },
 ];
 

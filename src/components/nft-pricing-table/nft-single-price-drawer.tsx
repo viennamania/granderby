@@ -590,7 +590,7 @@ export default function NftSinglePrice({
   }, [nftMetadata?.metadata?.id]);
 
   return (
-    <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark ">
+    <div className="h-full rounded-lg  bg-white shadow-card dark:bg-light-dark ">
       {layout === LAYOUT_OPTIONS.RETRO ? (
         <div>
           <div className="flex justify-between gap-4 sm:gap-8 md:items-start lg:flex-row lg:items-center lg:gap-4">
@@ -742,11 +742,11 @@ export default function NftSinglePrice({
           </div>
         </div>
       ) : (
-        <div className=" flex flex-col items-center justify-between  gap-2 lg:flex-row">
-          <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-            <span className="flex items-center gap-2.5">
-              <span className="items-left flex flex-col gap-2.5 ">
-                <div className="items-left flex flex-col justify-center ">
+        <div className=" flex flex-col items-center justify-between  gap-2 p-2 lg:flex-row ">
+          <div className="flex w-full flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base ">
+            <span className="flex w-full items-center  gap-2.5  ">
+              <span className="items-left flex w-full flex-col  gap-2.5 ">
+                <div className="items-left flex w-full flex-col justify-center ">
                   <div className="flex flex-row items-center justify-between gap-2.5">
                     <div className="text-left text-lg font-bold capitalize text-black dark:text-white">
                       #{nftMetadata?.metadata?.id} {nftMetadata?.metadata?.name}
@@ -767,7 +767,7 @@ export default function NftSinglePrice({
                   </div>
 
                   {/* registered in */}
-                  <div className="mt-2 flex flex-col items-center justify-center gap-2 rounded-lg  border p-2 ">
+                  <div className="mt-2 flex flex-col items-center justify-center gap-2 rounded-lg   p-2 ">
                     {isLoadingStaking ? (
                       <div className=" flex flex-col items-center justify-center gap-5">
                         <div className="text-xl font-bold xl:text-2xl">
@@ -808,7 +808,7 @@ export default function NftSinglePrice({
                                 <Image
                                   src="/images/inkent.jpeg"
                                   alt="raceTrack"
-                                  width={50}
+                                  width={35}
                                   height={50}
                                 />
 
@@ -906,8 +906,8 @@ export default function NftSinglePrice({
                   </div>
 
                   {/* owned by */}
-                  <div className="mt-5 flex flex-row items-center gap-4 ">
-                    <div className="flex w-28 flex-wrap text-xs tracking-wider text-[#6B7280]">
+                  <div className="mt-5 flex flex-row items-center justify-center gap-4 ">
+                    <div className="flex w-28 flex-wrap  text-xs tracking-wider text-[#6B7280]">
                       Owned by
                     </div>
                     <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
@@ -939,7 +939,7 @@ export default function NftSinglePrice({
                     </div>
                   </div>
 
-                  <div className="mt-5 flex flex-col items-center gap-4 ">
+                  <div className="mt-5 flex w-full flex-col items-center">
                     <div className="flex flex-row items-center gap-4 ">
                       <Image
                         //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
@@ -957,7 +957,7 @@ export default function NftSinglePrice({
                       <Grade grade={attributeGrade} />
                     </div>
 
-                    <div className="mt-5 flex w-72 items-center ">
+                    <div className="mt-5 flex w-full items-center ">
                       <Collapse label="Race History" initialOpen={true}>
                         <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
                       </Collapse>
