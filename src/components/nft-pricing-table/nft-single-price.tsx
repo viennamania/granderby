@@ -489,7 +489,7 @@ export default function NftSinglePrice({
 
           setDirectListing(listing);
 
-          ////console.log('nft-single-price listing', listing);
+          console.log('nft-single-price listing', listing);
 
           return;
         }
@@ -1076,6 +1076,16 @@ export default function NftSinglePrice({
                               </span>
                             </div>
                           </div>
+
+                          <span className="text-sm">
+                            Listing:&nbsp;
+                            {format(
+                              new Date(
+                                directListing?.startTimeInSeconds * 1000
+                              ),
+                              'yyy MMMM dd hh:mm:ss'
+                            )}
+                          </span>
 
                           <div className="text-sm font-bold xl:text-lg">
                             Last price:&nbsp;
