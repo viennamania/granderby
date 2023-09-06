@@ -134,7 +134,9 @@ export default function Inventory() {
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div className="items-right flex w-full justify-end">
                     <div className="flex gap-6  ">
+                      {/*
                       <SortList />
+                      */}
 
                       {/*
                       <div className="hidden ">
@@ -168,7 +170,9 @@ export default function Inventory() {
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div className="items-right flex w-full justify-end">
                     <div className="flex gap-6 3xl:gap-8 ">
+                      {/*
                       <SortList />
+                      */}
 
                       {/*
                       <div className="hidden 3xl:block">

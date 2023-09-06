@@ -156,6 +156,11 @@ const RentPage: NextPageWithLayout<
           />
         </div>
 
+        <iframe
+          src="https://polygonscan.com/token/tokenholderchart/0x83491d67EAaCD25C0cC237008C2bB0e6b38e7b1B"
+          className="h-96 w-full"
+        ></iframe>
+
         <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
           {/*
           {!address ? (
