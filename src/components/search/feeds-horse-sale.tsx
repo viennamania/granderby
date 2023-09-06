@@ -26,6 +26,8 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/router';
 
+import { format } from 'date-fns';
+
 import {
   nftDropContractAddressHorse,
   marketplaceContractAddress,
@@ -271,13 +273,27 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     width={300}
                     loading="lazy"
                   />
-                  <div className="m-2 w-full  ">
-                    <p className="text-xs font-bold">{listing.asset?.name}</p>
+                  <div className="mt-2 w-full  ">
+                    <p className="text-sm font-bold">{listing.asset?.name}</p>
                   </div>
 
                   <div className="m-2 flex w-full items-center justify-end pr-5">
-                    <b>{listing.currencyValuePerToken.displayValue}</b>&nbsp;
-                    {listing.currencyValuePerToken.symbol}
+                    <b>
+                      {Number(
+                        listing.currencyValuePerToken.displayValue
+                      ).toFixed(2)}
+                    </b>
+                    &nbsp;
+                    <span className="text-xs text-blue-600">
+                      {listing.currencyValuePerToken.symbol}
+                    </span>
+                  </div>
+
+                  <div className="m-2 flex items-center  justify-end text-xs">
+                    {format(
+                      new Date(listing?.startTimeInSeconds * 1000),
+                      'yyy-MM-dd hh:mm:ss'
+                    )}
                   </div>
                 </button>
               ))}

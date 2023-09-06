@@ -115,10 +115,12 @@ export const getAllHorses = async (
   grades: string,
   sort: string
 ) => {
+  /*
   console.log('getAllHorses pageNumber', pageNumber);
   console.log('getAllHorses pagination', pagination);
   console.log('getAllHorses grade', grades);
   console.log('getAllHorses sort', sort);
+  */
 
   if (grades.length === 0) {
     const data = await HorseModel.find({})

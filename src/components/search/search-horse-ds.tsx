@@ -1,6 +1,6 @@
 import Button from '@/components/ui/button';
 
-import Feeds from './feeds-horse';
+import Feeds from './feeds-horse-ds';
 import SaleFeeds from './feeds-horse-sale';
 
 //import ListedFeeds from '.feeds-horse-listed';
