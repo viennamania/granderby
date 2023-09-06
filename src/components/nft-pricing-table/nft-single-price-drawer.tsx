@@ -848,7 +848,11 @@ export default function NftSinglePrice({
                                 </div>
                               </div>
                               <div className="text-xs">
-                                record: {raceHistory[0].createdAt}
+                                record:&nbsp;
+                                {format(
+                                  Date.parse(raceHistory[0].createdAt || 0),
+                                  'yyy MMMM dd hh:mm:ss'
+                                )}
                               </div>
 
                               <div className="item-center flex flex-row justify-center">
@@ -872,8 +876,7 @@ export default function NftSinglePrice({
                                   <ArrowRight className="h-2 w-2 " />
                                   <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
                                     {raceHistory[0].rank}
-                                  </div>
-
+                                  </div>{' '}
                                   {raceHistory[0].rank >
                                     raceHistory[1].rank && (
                                     <LongArrowUp className=" h-8 w-8 rotate-180  text-red-600 " />

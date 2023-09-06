@@ -452,6 +452,8 @@ export default function NftSinglePrice({
     [stakerAddress]
   );
 
+  ///console.log('stakeInfo', stakeInfo);
+
   const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
 
   useEffect(() => {
@@ -1204,6 +1206,9 @@ export default function NftSinglePrice({
                                 <div className="flex text-sm tracking-wider text-[#6B7280]">
                                   Registered in
                                 </div>
+
+                                {stakeInfo?.[0].date}
+
                                 {/*
                               <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                                 <span>
@@ -1283,7 +1288,10 @@ export default function NftSinglePrice({
                                   {raceHistory[0].rank}{' '}
                                 </span>
                                 <span className="text-xs">
-                                  {raceHistory[0].createdAt}
+                                  {format(
+                                    Date.parse(raceHistory[0].createdAt || 0),
+                                    'yyy MMMM dd hh:mm:ss'
+                                  )}
                                 </span>
                               </div>
 

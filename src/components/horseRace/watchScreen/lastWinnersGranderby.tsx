@@ -10,6 +10,8 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import toast from 'react-hot-toast';
 
+import { format } from 'date-fns';
+
 export default function LastWinnersPage({ npcs }: any, status: any) {
   const [sonKazananlar, setSonKazananlar] = useState<any>();
 
@@ -117,8 +119,10 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
       */}
 
-      <div className="text-xl font-bold ">
-        <span>Win Prize: {sonKazananlar?.winPrize}</span>
+      <div className="flex flex-row items-center justify-center gap-5 ">
+        <span className="text-xl font-bold">
+          Win Prize: {Number(sonKazananlar?.winPrize).toFixed(2)}
+        </span>
       </div>
 
       <div className=" flex flex-row items-center justify-center gap-5 ">
@@ -202,15 +206,23 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
 
       <div className="mt-3 flex w-full flex-row items-center justify-between gap-5">
         <div className="flex flex-col items-center justify-center gap-5">
-          <div className=" flex flex-row items-center justify-center gap-2 ">
+          <span className="text-lg">
+            {format(
+              Date.parse(sonKazananlar?.date || 0),
+              'yyy MMMM dd hh:mm:ss'
+            )}
+          </span>
+
+          <div className=" flex flex-wrap items-center justify-center gap-2 ">
             {sonKazananlar &&
               sonKazananlar.placements.map((item: any) => {
                 return (
                   <div
                     key={item.line}
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center text-xs"
                   >
-                    <span className="">{item.line}:</span>
+                    <span className="text-sm text-red-600">{item.line}:</span>
+                    <span className="">#{item.nft.tokenId}:</span>
                     <span className=" font-bold text-green-600 ">
                       {item.bet}
                     </span>
@@ -231,7 +243,7 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
           <Image
             src="/images/inkent.jpeg"
             alt="inkent"
-            width={50}
+            width={70}
             height={50}
           />
         </div>
