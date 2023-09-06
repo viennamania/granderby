@@ -1294,13 +1294,13 @@ export default function NftSinglePrice({
                             <div className="flex flex-col gap-2">
                               <div className="text-sm font-bold xl:text-lg">
                                 Last rank:&nbsp;
-                                <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                <span className="text-4xl font-bold text-green-600 xl:text-6xl">
                                   {raceHistory[0].rank}{' '}
                                 </span>
                                 <span className="text-xs">
                                   {format(
                                     Date.parse(raceHistory[0].createdAt || 0),
-                                    'yyy-mm-dd hh:mm:ss'
+                                    'yyy-MM-dd hh:mm:ss'
                                   )}
                                 </span>
                               </div>
