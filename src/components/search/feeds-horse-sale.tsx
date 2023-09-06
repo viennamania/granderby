@@ -24,6 +24,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useInfiniteQuery } from 'react-query';
 import Image from 'next/image';
 
+import Button from '@/components/ui/button/button';
+
 import { useRouter } from 'next/router';
 
 import { format } from 'date-fns';
@@ -224,7 +226,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
             </div>
           </>
         ) : (
-          <>
+          <div className="flex flex-col">
             {/*
         {status === "success" && (
 
@@ -235,6 +237,28 @@ export default function SaleFeeds({ className }: { className?: string }) {
             loader={<h4>Loading...</h4>}
           >
         */}
+
+            <div className="m-2 flex flex-row items-center justify-start ">
+              <Button
+                className="m-2 flex flex-row items-center justify-center"
+                title="Go"
+                color="white"
+                shape="rounded"
+                variant="transparent"
+                size="small"
+                onClick={() => {
+                  router.push('https://granderby.market/?view=listed');
+                }}
+              >
+                <Image
+                  src="/images/market.png"
+                  alt="market"
+                  width={24}
+                  height={24}
+                />
+                <span className="">source from: Granderby Market</span>
+              </Button>
+            </div>
 
             <div
               className={cn(
@@ -305,7 +329,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
         )}
 
 */}
-          </>
+          </div>
         )
       }
     </>
