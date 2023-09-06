@@ -46,6 +46,8 @@ import { raceFeedData } from '@/data/static/nft-horse-race-feed';
 
 import { format } from 'date-fns';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
 type Price = {
   name: number;
   value: number;
@@ -364,8 +366,9 @@ const COLUMNS = [
                 className="text-md flex items-center justify-center "
               >
                 <span className="text-lg  text-red-600">{item.line}:</span>
+
                 <span className="text-lg  text-sky-600">
-                  #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
+                  #{item.nft?.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
               </div>
             );
@@ -416,6 +419,14 @@ const COLUMNS = [
 ];
 
 export default function RaceHistoryTable(tokenId: any) {
+  /*
+  const { openDrawer } = useDrawer();
+  */
+
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
   //console.log('RaceHistoryTable tokenId: ', tokenId?.tokenId);
 
   //const data = React.useMemo(() => transactionData, [ ]);
