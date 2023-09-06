@@ -26,9 +26,22 @@ import { SearchIcon } from '@/components/icons/search';
 
 import { GrdIcon } from '@/components/icons/grd-icon';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import TransactionTable from '@/components/token-transaction/transaction-table';
+
+import RegisteredFeeds from '@/components/search/feeds-horse-registered-hv';
+import {
+  Filters,
+  GridSwitcher,
+  SortList,
+} from '@/components/search/filters-horse';
+
+import { OptionIcon } from '@/components/icons/option';
+import Button from '@/components/ui/button';
+
+import CollapseLastWinners from '@/components/ui/collapse-last-winners';
+import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby';
 
 import {
   ConnectWallet,
@@ -66,6 +79,31 @@ const RentPage: NextPageWithLayout<
   );
 
   const { data: tokenBalanceHV } = useTokenBalance(tokenContractHV, address);
+
+  const [status, setStatus] = useState<any>(false);
+  const [npcNames, setNpcNames] = useState<any>([]);
+
+  useEffect(() => {
+    if (status === false) {
+      ////deleteCookie('horse');
+      //toast.success('status false')
+    }
+
+    async function getNpcNames() {
+      const npcNamesResponse = await fetch(
+        `/api/games/horseRace/settings/horseNames?method=all`
+      );
+      const response = await npcNamesResponse.json();
+
+      ///console.log('getNpcNames response', response);
+
+      //const data = useOwnedNFTs(nftDropContractHorse, address);
+
+      setNpcNames(response.npcNames[0]);
+    }
+
+    getNpcNames();
+  }, [status]);
 
   const [toAddress, setToAddress] = useState('');
   const [amount, setAmount] = useState();
@@ -143,7 +181,7 @@ const RentPage: NextPageWithLayout<
     // render default profile
 
     return (
-      <>
+      <div className="h-screen">
         <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
         <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
@@ -163,7 +201,7 @@ const RentPage: NextPageWithLayout<
         ></iframe>
         */}
 
-        <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
           {/*
           {!address ? (
             <></>
@@ -211,157 +249,163 @@ const RentPage: NextPageWithLayout<
           )}
         </div>
 
-        <form>
-          <div className=" flex flex-col items-center justify-center text-lime-600">
-            {/* Form Section */}
+        <div className=" flex w-96 flex-col items-center justify-center text-lime-600">
+          {/* Form Section */}
 
-            <div className="mb-2 text-lg">Send my HV to another address:</div>
+          <div className="mb-2 text-lg">Send my HV to another address:</div>
 
-            {/* NFT Contract Address Field */}
-            <input
-              className="mb-2 w-full text-black"
-              type="text"
-              name="toAddress"
-              placeholder="To Address"
-              value={toAddress}
-              onChange={(e) => {
-                setToAddress(e.target.value);
-              }}
-            />
+          {/* NFT Contract Address Field */}
+          <input
+            className="mb-2 w-full text-black"
+            type="text"
+            name="toAddress"
+            placeholder="To Address"
+            value={toAddress}
+            onChange={(e) => {
+              setToAddress(e.target.value);
+            }}
+          />
 
-            <div className="mb-3 text-lg"></div>
+          <div className="mb-3 text-lg"></div>
 
-            <input
-              className=" w-full text-right text-5xl font-bold text-lime-600"
-              type="number"
-              name="amount"
-              placeholder="0"
-              value={amount}
-              onChange={(e) => {
-                if (e.target.value === null) setAmount(undefined);
-                else if (Number(e.target.value) === 0) setAmount(undefined);
-                else if (Number(e.target.value) < 0) setAmount(undefined);
-                else if (
-                  Number(e.target.value) > Number(tokenBalanceHV?.displayValue)
-                ) {
-                  setAmount(Number(tokenBalanceHV?.displayValue));
-                } else {
-                  setAmount(Number(e.target.value));
-                }
-              }}
-            />
+          <input
+            className=" w-full text-right text-5xl font-bold text-lime-600"
+            type="number"
+            name="amount"
+            placeholder="0"
+            value={amount}
+            onChange={(e) => {
+              if (e.target.value === null) setAmount(undefined);
+              else if (Number(e.target.value) === 0) setAmount(undefined);
+              else if (Number(e.target.value) < 0) setAmount(undefined);
+              else if (
+                Number(e.target.value) > Number(tokenBalanceHV?.displayValue)
+              ) {
+                setAmount(Number(tokenBalanceHV?.displayValue));
+              } else {
+                setAmount(Number(e.target.value));
+              }
+            }}
+          />
 
-            {address && (
-              <div className="mb-3 text-lg">
-                {(Number(tokenBalanceHV?.displayValue) - (amount || 0)).toFixed(
-                  2
-                )}{' '}
-                {tokenBalanceHV?.symbol} left
-              </div>
-            )}
+          {address && (
+            <div className="mb-3 text-lg">
+              {(Number(tokenBalanceHV?.displayValue) - (amount || 0)).toFixed(
+                2
+              )}{' '}
+              {tokenBalanceHV?.symbol} left
+            </div>
+          )}
 
-            {address ? (
-              <div className="mt-5 flex flex-row justify-center">
-                {/*{isTransferTokensLoading ? (*/}
+          {address ? (
+            <div className="mt-5 flex flex-row justify-center">
+              {/*{isTransferTokensLoading ? (*/}
 
-                {isSending ? (
-                  <div className="flex flex-row items-center justify-center gap-2">
-                    <div className="animate-spin">
-                      <GrdIcon className="h-35 w-35" />
-                    </div>
-                    <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                      <span>
-                        Sending {amount} {tokenBalanceHV?.symbol} to
-                      </span>
-                      <span className="text-xs">{toAddress}</span>
-                      <span>Please wait...</span>
-                    </div>
+              {isSending ? (
+                <div className="flex flex-row items-center justify-center gap-2">
+                  <div className="animate-spin">
+                    <GrdIcon className="h-35 w-35" />
                   </div>
-                ) : (
-                  <>
-                    <Web3Button
-                      theme="light"
-                      contractAddress={tokenContractAddressHV}
-                      action={(contract) => {
-                        //contract?.call('withdraw', [[nft.metadata.id]])
-                        //contract?.call('withdraw', [[nft.metadata.id]])
-                        //contract.erc1155.claim(0, 1);
+                  <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                    <span>
+                      Sending {amount} {tokenBalanceHV?.symbol} to
+                    </span>
+                    <span className="text-xs">{toAddress}</span>
+                    <span>Please wait...</span>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Web3Button
+                    theme="light"
+                    contractAddress={tokenContractAddressHV}
+                    action={(contract) => {
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract.erc1155.claim(0, 1);
 
-                        ///contract.erc20.transfer(toAddress, amount);
+                      ///contract.erc20.transfer(toAddress, amount);
 
-                        transferToken(toAddress, amount);
+                      transferToken(toAddress, amount);
 
-                        /*
+                      /*
                           transferTokens({
                             to: toAddress, // Address to transfer to
                             amount: amount, // Amount to transfer
                           })
                           */
-                      }}
-                      onSuccess={() => {
-                        //setAmount(0);
-                        //setToAddress('');
+                    }}
+                    onSuccess={() => {
+                      //setAmount(0);
+                      //setToAddress('');
 
-                        console.log(`🌊 Successfully transfered!`);
-                        //alert('Successfully transfered!');
+                      console.log(`🌊 Successfully transfered!`);
+                      //alert('Successfully transfered!');
 
-                        //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                        //handleClickSucc();
-                      }}
-                      onError={(error) => {
-                        console.error('Failed to transfer', error);
-                        alert('Failed to transfer');
-                        //setErrMsgSnackbar('Failed to transfer');
-                        //handleClickErr();
-                      }}
-                    >
-                      Transfer ({amount} HV)
-                    </Web3Button>
-                  </>
-                )}
+                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                      //handleClickSucc();
+                    }}
+                    onError={(error) => {
+                      console.error('Failed to transfer', error);
+                      alert('Failed to transfer');
+                      //setErrMsgSnackbar('Failed to transfer');
+                      //handleClickErr();
+                    }}
+                  >
+                    Transfer ({amount} HV)
+                  </Web3Button>
+                </>
+              )}
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+
+        <div className="mt-5 flex items-center justify-center">
+          <CollapseLastWinners label="Last Race Winners">
+            <div className=" rounded-md  bg-black">
+              <LastWinners npcs={npcNames} status={status} />
+            </div>
+            <div></div>
+          </CollapseLastWinners>
+        </div>
+
+        <div className="mt-10 2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+          <span className=" text-lg font-bold text-gray-500 dark:text-gray-400">
+            Registered Horses
+          </span>
+
+          <div className="relative z-10 mb-6 flex items-center justify-between ">
+            <div className="items-right flex w-full justify-end">
+              <div className="flex gap-6 3xl:gap-8 ">
+                <SortList />
+
+                <div className="hidden sm:block 2xl:hidden">
+                  <Button
+                    shape="rounded"
+                    size="small"
+                    variant="ghost"
+                    color="gray"
+                    onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                    className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                  >
+                    <OptionIcon className="relative h-auto w-[18px]" />
+                  </Button>
+                </div>
               </div>
-            ) : (
-              <></>
-            )}
+            </div>
           </div>
-        </form>
 
+          <RegisteredFeeds />
+        </div>
+
+        {/*
         <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
           <TransactionTable {...{ contractAddress: tokenContractAddressHV }} />
         </div>
-
-        <footer>
-          <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
-            <div>Copyright ©MOMOCON</div>
-
-            <AnchorLink href="/terms">Terms of Service</AnchorLink>
-
-            <div>Privacy Policy</div>
-          </div>
-
-          <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
-            <div>
-              <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
-            </div>
-
-            <AnchorLink
-              href="https://www.instagram.com/nftgranderby"
-              target="_blank"
-              className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-            >
-              <Instagram className="h-4 w-4" /> Instagram
-            </AnchorLink>
-
-            <AnchorLink
-              href="https://twitter.com/nftgranderby"
-              target="_blank"
-              className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-            >
-              <Twitter className="h-4 w-4" /> Twitter
-            </AnchorLink>
-          </div>
-        </footer>
-      </>
+        */}
+      </div>
     );
   }
 };

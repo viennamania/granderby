@@ -361,20 +361,24 @@ const COLUMNS = [
             return (
               <div
                 key={item.line}
-                className="text-md flex items-center justify-center font-bold text-sky-600"
+                className="text-md flex items-center justify-center "
               >
-                <span className="text-lg text-red-600">{item.line}:</span>
-                <span className="">#{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
+                <span className="text-lg  text-red-600">{item.line}:</span>
+                <span className="text-lg font-bold text-sky-600">
+                  #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
+                </span>
               </div>
             );
           } else if (item.line === 2) {
             return (
               <div
                 key={item.line}
-                className="text-md flex items-center justify-center font-bold text-sky-600"
+                className="text-md flex items-center justify-center"
               >
                 <span className="text-lg text-red-600">{item.line}:</span>
-                <span className="">#{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
+                <span className="text-lg  font-bold text-sky-600">
+                  #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
+                </span>
               </div>
             );
           } else if (item.line === 3) {
@@ -382,10 +386,10 @@ const COLUMNS = [
               <>
                 <div
                   key={item.line}
-                  className="text-md flex items-center justify-center font-bold text-sky-600"
+                  className="text-md flex items-center justify-center "
                 >
                   <span className="text-lg text-red-600">{item.line}:</span>
-                  <span className="">
+                  <span className="text-lg font-bold text-sky-600">
                     #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                   </span>
                 </div>

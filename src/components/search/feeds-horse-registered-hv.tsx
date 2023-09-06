@@ -346,49 +346,55 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
               <div className="text-2xl">Loading registered horses...</div>
             </div>
           ) : (
-            <div
-              className={cn(
-                'mt-5 grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
-                isGridCompact
-                  ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                  : '3xl:!grid-cols-3 4xl:!grid-cols-4',
-                className
-              )}
-            >
-              {npcs &&
-                //stakedTokens[0]?.map((stakedToken: BigNumber) => (
-                npcs?.map((nft: any) => (
-                  <button
-                    key={nft?.tokenId}
-                    className="relative overflow-hidden rounded-lg bg-white shadow-lg"
-                    onClick={() => {
-                      //setTokenid(nft.metadata.id.toString()),
-                      //setIsOpen(true)
+            <>
+              <div className=" flex flex-col items-center  justify-center gap-5 text-lg font-bold text-green-600 ">
+                Total: {npcs?.length}
+              </div>
 
-                      closeInventories();
-                      router.push('/horse-details/' + nft?.tokenId);
-                    }}
-                  >
-                    <div className="m-2 flex items-center justify-start">
-                      <p className="text-sm font-bold">#{nft?.tokenId}</p>
-                    </div>
-                    <Image
-                      src={
-                        nft?.media[0]?.gateway
-                          ? nft?.media[0]?.gateway
-                          : '/default-nft.png'
-                      }
-                      alt={nft?.title}
-                      height={300}
-                      width={300}
-                      loading="lazy"
-                    />
-                    <div className="m-2 w-full items-center justify-center">
-                      <p className="text-xs font-bold">{nft?.title}</p>
-                    </div>
-                  </button>
-                ))}
-            </div>
+              <div
+                className={cn(
+                  'mt-5 grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                  isGridCompact
+                    ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+                    : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                  className
+                )}
+              >
+                {npcs &&
+                  //stakedTokens[0]?.map((stakedToken: BigNumber) => (
+                  npcs?.map((nft: any) => (
+                    <button
+                      key={nft?.tokenId}
+                      className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                      onClick={() => {
+                        //setTokenid(nft.metadata.id.toString()),
+                        //setIsOpen(true)
+
+                        closeInventories();
+                        router.push('/horse-details/' + nft?.tokenId);
+                      }}
+                    >
+                      <div className="m-2 flex items-center justify-start">
+                        <p className="text-sm font-bold">#{nft?.tokenId}</p>
+                      </div>
+                      <Image
+                        src={
+                          nft?.media[0]?.gateway
+                            ? nft?.media[0]?.gateway
+                            : '/default-nft.png'
+                        }
+                        alt={nft?.title}
+                        height={300}
+                        width={300}
+                        loading="lazy"
+                      />
+                      <div className="m-2 w-full items-center justify-center">
+                        <p className="text-xs font-bold">{nft?.title}</p>
+                      </div>
+                    </button>
+                  ))}
+              </div>
+            </>
           )
         }
       </div>
