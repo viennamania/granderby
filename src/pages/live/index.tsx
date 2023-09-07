@@ -422,7 +422,7 @@ const ProposalsPage: NextPageWithLayout<
 
           <div className="ml-[-20px] mr-[80px]  flex w-full items-center justify-center  ">
             <iframe
-              src="https://granderby.io/webgl/granderby/index.html"
+              src="https://granderby.io/webgl/granderby/inapp.html"
               //width="100vw"
               //height="100vh"
               //////sandbox="allow-scripts allow-modal"
