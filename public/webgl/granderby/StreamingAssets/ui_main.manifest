@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1002441097
+CRC: 503010179
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a6933ec85155bbacb7c75fcaba5f7a0c
+    Hash: 3ebcce67621d919b934968f29b3c2909
   TypeTreeHash:
     serializedVersion: 2
     Hash: 319b23d8aa0e992bee24fdda6f97c12d
@@ -112,4 +112,4 @@ ClassTypes:
 Assets:
 - Assets/UI/Lobby/Main/LobbyMainV2.prefab
 Dependencies:
-- D:/INK_Project/INK_Client/Branch/Internal_WebGL_NFT_230613/Assets/AssetBundles/webGl/ui_font
+- D:/INK_Project/INK_Client/Trunk/Granderby_WebGL/Assets/AssetBundles/webGl/ui_font

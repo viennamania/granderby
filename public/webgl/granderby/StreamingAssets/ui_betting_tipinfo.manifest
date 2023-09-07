@@ -94,4 +94,4 @@ ClassTypes:
 Assets:
 - Assets/UI/Lobby/BettingGroup/TypeB/TipInfo/BettingTipInfoV2.prefab
 Dependencies:
-- D:/INK_Project/INK_Client/Branch/Internal_WebGL_NFT_230613/Assets/AssetBundles/webGl/ui_font
+- D:/INK_Project/INK_Client/Trunk/Granderby_WebGL/Assets/AssetBundles/webGl/ui_font

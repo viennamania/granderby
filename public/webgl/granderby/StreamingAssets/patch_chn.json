@@ -1,15 +1,15 @@
 {
-  "version": 92,
+  "version": 184,
   "assetBundleInfoDic": {
     "announce": {
       "name": "announce",
       "version": "077a59b1919a5da22f887e995153f797",
-      "size": 5563583
+      "size": 5563575
     },
     "announce_spa": {
       "name": "announce_spa",
       "version": "4a8b7bf3735b2f33eca3ed16473a9eb0",
-      "size": 4684967
+      "size": 4684955
     },
     "assetdata": {
       "name": "assetdata",
@@ -33,23 +33,23 @@
     },
     "gwacheon_scene": {
       "name": "gwacheon_scene",
-      "version": "c22c4ae7e43be4f8f33622275c71483c",
-      "size": 8279221
+      "version": "7cfcd1a0b6914192a3388c370311acdd",
+      "size": 8279213
     },
     "happyvalley_scene": {
       "name": "happyvalley_scene",
-      "version": "280a48bcbc37077dfbb45d5d26a78553",
-      "size": 10736982
+      "version": "1dbdc60ed7b59119cf7740b3f0ed51fb",
+      "size": 10736977
     },
     "horsemodel": {
       "name": "horsemodel",
-      "version": "2c2d0c8a1e3f1846ba1dd3e1bfecf03b",
-      "size": 85517933
+      "version": "670a35ab5e5272cd62298d5b8f2ab447",
+      "size": 86129038
     },
     "horsepreviewtyped": {
       "name": "horsepreviewtyped",
-      "version": "77ca00036d6cb5dd3f4bb8701d612fbd",
-      "size": 1302277
+      "version": "c4d739904fdfb968cc4a44a1f3fbf05b",
+      "size": 1311367
     },
     "horsetexture": {
       "name": "horsetexture",
@@ -68,13 +68,13 @@
     },
     "shatin_scene": {
       "name": "shatin_scene",
-      "version": "3741d397797cd8e061ec119a580ce629",
-      "size": 8924354
+      "version": "80673867b23baee6774772266dad0540",
+      "size": 8926344
     },
     "singapore_scene": {
       "name": "singapore_scene",
-      "version": "565cdbdbc3a1f89bedd33b41482a2b5c",
-      "size": 9487463
+      "version": "f4624bac1cc010b0fad5bf7585e9f07f",
+      "size": 9487459
     },
     "sound_sfx": {
       "name": "sound_sfx",
@@ -148,8 +148,8 @@
     },
     "ui_main": {
       "name": "ui_main",
-      "version": "a6933ec85155bbacb7c75fcaba5f7a0c",
-      "size": 9747832
+      "version": "3ebcce67621d919b934968f29b3c2909",
+      "size": 9747838
     },
     "ui_newreplaytxt": {
       "name": "ui_newreplaytxt",
@@ -168,7 +168,7 @@
     },
     "ui_raceminimap": {
       "name": "ui_raceminimap",
-      "version": "13952f9b663bd2eba14c795bd50401d7",
+      "version": "f1281c8fe8188def5d23dd008ac7416a",
       "size": 295631
     },
     "ui_racerankinfo": {
@@ -199,7 +199,7 @@
     "webGl": {
       "name": "webGl",
       "version": "00000000000000000000000000000000",
-      "size": 2857
+      "size": 2859
     }
   }
 }

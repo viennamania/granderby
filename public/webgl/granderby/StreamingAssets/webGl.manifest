@@ -1,123 +1,125 @@
 ManifestFileVersion: 0
-CRC: 2010712982
+CRC: 978205259
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: announce
+      Name: horsetexture
       Dependencies: {}
     Info_1:
-      Name: announce_spa
+      Name: ui_inrace
       Dependencies: {}
     Info_2:
+      Name: announce
+      Dependencies: {}
+    Info_3:
+      Name: announce_spa
+      Dependencies: {}
+    Info_4:
+      Name: bundles
+      Dependencies: {}
+    Info_5:
+      Name: ui_raceminimap
+      Dependencies: {}
+    Info_6:
+      Name: camera_race
+      Dependencies: {}
+    Info_7:
+      Name: weatherparticle
+      Dependencies: {}
+    Info_8:
+      Name: tables
+      Dependencies: {}
+    Info_9:
+      Name: jockey
+      Dependencies: {}
+    Info_10:
+      Name: horsemodel
+      Dependencies:
+        Dependency_0: horsetexture
+        Dependency_1: jockey
+    Info_11:
+      Name: ui_raceresult
+      Dependencies: {}
+    Info_12:
+      Name: ui_betting_typed
+      Dependencies: {}
+    Info_13:
+      Name: happyvalley_scene
+      Dependencies: {}
+    Info_14:
+      Name: ui_font
+      Dependencies: {}
+    Info_15:
+      Name: assetdata
+      Dependencies: {}
+    Info_16:
+      Name: sound_sfx
+      Dependencies: {}
+    Info_17:
+      Name: ui_font_spa
+      Dependencies: {}
+    Info_18:
+      Name: ui_newreplaytxt
+      Dependencies: {}
+    Info_19:
+      Name: ui_loading
+      Dependencies: {}
+    Info_20:
       Name: ui_main
       Dependencies:
         Dependency_0: ui_font
-    Info_3:
-      Name: camera_race
-      Dependencies: {}
-    Info_4:
+    Info_21:
       Name: ui_betting_listv2
       Dependencies: {}
-    Info_5:
-      Name: tables
-      Dependencies: {}
-    Info_6:
-      Name: jockey
-      Dependencies: {}
-    Info_7:
+    Info_22:
       Name: ui_racerelay
       Dependencies: {}
-    Info_8:
-      Name: ui_raceresult
-      Dependencies: {}
-    Info_9:
-      Name: ui_raceminimap
-      Dependencies: {}
-    Info_10:
-      Name: weatherparticle
-      Dependencies: {}
-    Info_11:
+    Info_23:
       Name: ui_betting_board
       Dependencies: {}
-    Info_12:
-      Name: bundles
-      Dependencies: {}
-    Info_13:
-      Name: ui_inrace
-      Dependencies: {}
-    Info_14:
-      Name: ui_racemain
-      Dependencies: {}
-    Info_15:
-      Name: ui_raceinfo
-      Dependencies: {}
-    Info_16:
-      Name: raceeffects
-      Dependencies: {}
-    Info_17:
-      Name: ui_font
-      Dependencies: {}
-    Info_18:
-      Name: assetdata
-      Dependencies: {}
-    Info_19:
-      Name: sound_sfx
-      Dependencies: {}
-    Info_20:
-      Name: ui_autoclosepopup
-      Dependencies: {}
-    Info_21:
-      Name: ui_betting_tipinfo
-      Dependencies:
-        Dependency_0: ui_font
-    Info_22:
-      Name: ui_loading
-      Dependencies: {}
-    Info_23:
-      Name: ui_font_spa
-      Dependencies: {}
     Info_24:
-      Name: ui_bettingtipinfo_typed
+      Name: singapore_scene
       Dependencies: {}
     Info_25:
-      Name: shatin_scene
+      Name: raceeffects
       Dependencies: {}
     Info_26:
-      Name: ui_racereplaywindow
+      Name: ui_racemain
       Dependencies: {}
     Info_27:
       Name: eula
       Dependencies: {}
     Info_28:
-      Name: horsemodel
+      Name: ui_raceinfo
       Dependencies: {}
     Info_29:
-      Name: happyvalley_scene
-      Dependencies: {}
-    Info_30:
-      Name: ui_assistant
-      Dependencies: {}
-    Info_31:
-      Name: ui_racerankinfo
-      Dependencies: {}
-    Info_32:
-      Name: ui_betting_menus
-      Dependencies: {}
-    Info_33:
-      Name: horsepreviewtyped
-      Dependencies: {}
-    Info_34:
-      Name: ui_betting_typed
-      Dependencies: {}
-    Info_35:
-      Name: singapore_scene
-      Dependencies: {}
-    Info_36:
       Name: gwacheon_scene
       Dependencies: {}
+    Info_30:
+      Name: ui_autoclosepopup
+      Dependencies: {}
+    Info_31:
+      Name: ui_betting_tipinfo
+      Dependencies:
+        Dependency_0: ui_font
+    Info_32:
+      Name: ui_bettingtipinfo_typed
+      Dependencies: {}
+    Info_33:
+      Name: ui_racereplaywindow
+      Dependencies: {}
+    Info_34:
+      Name: ui_assistant
+      Dependencies: {}
+    Info_35:
+      Name: ui_racerankinfo
+      Dependencies: {}
+    Info_36:
+      Name: ui_betting_menus
+      Dependencies: {}
     Info_37:
-      Name: ui_newreplaytxt
+      Name: shatin_scene
       Dependencies: {}
     Info_38:
-      Name: horsetexture
+      Name: horsepreviewtyped
       Dependencies: {}

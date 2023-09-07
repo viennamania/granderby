@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4068894932
+CRC: 3303353460
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2c2d0c8a1e3f1846ba1dd3e1bfecf03b
+    Hash: 670a35ab5e5272cd62298d5b8f2ab447
   TypeTreeHash:
     serializedVersion: 2
     Hash: 868cebd2344873c8ce63a3286ac303a4
@@ -59,4 +59,6 @@ Assets:
 - Assets/ArtistResources/Characters/Models_02/Prefabs/Ho_Jo_Large_NFT.prefab
 - Assets/ArtistResources/Characters/Models_02/Prefabs/Jocky_Horse_male_unicorn.prefab
 - Assets/ArtistResources/Characters/Models_02/Prefabs/Ho_Jo_Medium_NFT.prefab
-Dependencies: []
+Dependencies:
+- D:/INK_Project/INK_Client/Trunk/Granderby_WebGL/Assets/AssetBundles/webGl/horsetexture
+- D:/INK_Project/INK_Client/Trunk/Granderby_WebGL/Assets/AssetBundles/webGl/jockey
