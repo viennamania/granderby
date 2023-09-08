@@ -602,6 +602,35 @@ export default function NftSinglePrice({
     getLast20();
   }, [nftMetadata?.metadata?.id]);
 
+  const [saleHistory, setSaleHistory] = useState([] as any);
+
+  const getLastSale20 = async () => {
+    console.log(
+      'price-history-table nftMetadata.?metadata?.id: ',
+      nftMetadata?.metadata?.id
+    );
+
+    const response = await fetch('/api/nft/horse/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getAllByTokenId',
+        tokenId: nftMetadata?.metadata?.id,
+      }),
+    });
+    const data = await response.json();
+
+    //console.log('data.all: ', data.all);
+
+    setSaleHistory(data.all);
+  };
+
+  useEffect(() => {
+    getLastSale20();
+  }, [nftMetadata?.metadata?.id]);
+
+  ///console.log('saleHistory[0]', saleHistory[0]);
+
   async function stakeNft(id: string) {
     ///alert("test stakeNft");
 
@@ -635,7 +664,7 @@ export default function NftSinglePrice({
 
     const data = await contractStaking?.call('stake', [[id]]);
 
-    console.log('staking data=====', data);
+    //console.log('staking data=====', data);
 
     if (data) {
       alert('Your horse has been registered successfully');
@@ -935,33 +964,19 @@ export default function NftSinglePrice({
                             </button>
 
                             <span className="pt-1 ">Last price:</span>
-                            {attributeGrade === 'S' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                1000
-                              </span>
-                            )}
-                            {attributeGrade === 'A' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                800
-                              </span>
-                            )}
-                            {attributeGrade === 'B' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                600
-                              </span>
-                            )}
-                            {attributeGrade === 'C' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                200
-                              </span>
-                            )}
-                            {attributeGrade === 'D' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                100
-                              </span>
-                            )}
+                            <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                              {(
+                                saleHistory[0]?.totalPricePaid / 1000000
+                              ).toFixed(2)}
+                            </span>
 
                             <span className="pt-1">USD</span>
+                          </div>
+                          <div className=" flex flex-row items-center justify-start gap-2">
+                            {format(
+                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                              'yyy-MM-dd hh:mm:ss'
+                            )}
                           </div>
 
                           <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
@@ -983,37 +998,6 @@ export default function NftSinglePrice({
 
                             <span className="pt-1 ">Last price:</span>
                             <span className="pt-1">No record</span>
-
-                            {/*
-                            {attributeGrade === 'S' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                979
-                              </span>
-                            )}
-                            {attributeGrade === 'A' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                730
-                              </span>
-                            )}
-                            {attributeGrade === 'B' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                529
-                              </span>
-                            )}
-                            {attributeGrade === 'C' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                188
-                              </span>
-                            )}
-                            {attributeGrade === 'D' && (
-                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                                89
-                              </span>
-                            )}
-                            
-
-                            <span className="pt-1">USD</span>
-                            */}
                           </div>
 
                           {address === nftMetadata?.owner &&
@@ -1088,10 +1072,19 @@ export default function NftSinglePrice({
                           </span>
 
                           <div className="text-sm font-bold xl:text-lg">
-                            Last price:&nbsp;
-                            {directListing?.currencyValuePerToken.displayValue -
-                              6}{' '}
+                            Last price:{' '}
+                            <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                              {(
+                                saleHistory[0]?.totalPricePaid / 1000000
+                              ).toFixed(2)}{' '}
+                            </span>
                             {directListing?.currencyValuePerToken.symbol}
+                          </div>
+                          <div className=" flex flex-row items-center justify-start gap-2">
+                            {format(
+                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                              'yyy-MM-dd hh:mm:ss'
+                            )}
                           </div>
 
                           {address && address === nftMetadata?.owner && (

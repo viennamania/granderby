@@ -58,7 +58,7 @@ export const getHorseLastHistory = async (): Promise<IHorseHistory> => {
 export const getHorseHistoryByTokenId = async (
   tokenId: string
 ): Promise<IHorseHistory[]> => {
-  console.log('getHorseHistoryByTokenId', tokenId);
+  //////console.log('getHorseHistoryByTokenId', tokenId);
 
   return await HorseHistoryModel.find({
     /*

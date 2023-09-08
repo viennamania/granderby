@@ -1,0 +1,22 @@
+import mongoose from 'mongoose';
+
+export interface ISaleHistory {
+  _id: mongoose.Types.ObjectId;
+  blockTimestamp: string;
+  blockNum: string;
+  uniqueId: string;
+  hash: string;
+  from: string;
+  to: string;
+  value: string;
+  erc721TokenId: string;
+  erc1155Metadata: string;
+  tokenId: number;
+  asset: string;
+  category: string;
+  rawContract: string;
+  data: string;
+  buyer: string;
+  quantityBought: string;
+  totalPricePaid: string;
+}

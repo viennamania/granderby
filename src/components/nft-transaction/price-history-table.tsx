@@ -361,7 +361,7 @@ export default function PriceHistoryTable(
 
   { nftMetadata }: { nftMetadata?: any }
 ) {
-  //console.log('PriceHistoryTable nftMetadata: ', nftMetadata);
+  ///console.log('PriceHistoryTable nftMetadata: ', nftMetadata);
 
   //const data = React.useMemo(() => transactionData, [ ]);
 
@@ -482,6 +482,30 @@ export default function PriceHistoryTable(
 
     //}, [address]);
   }, []);
+
+  const [saleHistory, setSaleHistory] = useState([] as any);
+
+  const getLast20 = async () => {
+    ///console.log('price-history-table nftMetadata.?metadata?.id: ', nftMetadata?.metadata?.id);
+
+    const response = await fetch('/api/nft/horse/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getAllByTokenId',
+        tokenId: nftMetadata?.metadata?.id,
+      }),
+    });
+    const data = await response.json();
+
+    ///console.log('data.all: ', data.all);
+
+    setSaleHistory(data.all);
+  };
+
+  useEffect(() => {
+    getLast20();
+  }, [nftMetadata?.metadata?.id]);
 
   const [attributeGrade, setAttributeGrade] = useState(null);
 
