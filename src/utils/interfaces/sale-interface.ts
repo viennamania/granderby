@@ -11,7 +11,7 @@ export interface ISaleHistory {
   value: string;
   erc721TokenId: string;
   erc1155Metadata: string;
-  tokenId: number;
+  tokenId: string;
   asset: string;
   category: string;
   rawContract: string;

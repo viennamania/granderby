@@ -67,7 +67,7 @@ const HorseSaleSchema = new Schema({
     required: true,
   },
   tokenId: {
-    type: Number,
+    type: String,
     required: true,
   },
   asset: {
@@ -104,13 +104,9 @@ export const HorseSaleModel =
   models.Horsesale || model<ISaleHistory>('Horsesale', HorseSaleSchema);
 
 export const getSaleHistoryByTokenId = async (
-  tokenId: string
+  tokenId: String
 ): Promise<ISaleHistory[]> => {
   console.log('getSaleHistoryByTokenId', tokenId);
-
-  const id = parseInt(tokenId);
-
-  console.log('id', id);
 
   return await HorseSaleModel.find({
     /*
@@ -132,7 +128,7 @@ export const getSaleHistoryByTokenId = async (
     },
     */
 
-    tokenId: id,
+    tokenId: tokenId,
   })
     .sort({ blockTimestamp: -1 })
     .limit(10);

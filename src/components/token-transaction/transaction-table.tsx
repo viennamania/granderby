@@ -35,6 +35,9 @@ import { Refresh } from '@/components/icons/refresh';
 
 import moment from 'moment';
 
+import { BigNumber } from 'ethers';
+import { utils } from 'ethers';
+
 /*
 export const TransactionData = [
   {
@@ -340,6 +343,8 @@ export default function TransactionTable(
       const transactions = [] as any;
 
       data.data.transactions?.map((transaction: any) => {
+        /// console.log("transaction.amount", BigInt(transaction.amount));
+
         const transactionData = {
           id: transaction._id,
 
@@ -356,7 +361,12 @@ export default function TransactionTable(
 
           ///address: transaction.to,
 
-          amount: ethers.utils.formatEther(String(transaction.amount)),
+          ///amount: ethers.utils.formatEther(String(transaction.amount)),
+          //amount: utils.formatUnits(transaction.amount, 18),
+          //amount: 0,
+          amount: Number(
+            utils.formatUnits(BigInt(transaction.amount), 18)
+          ).toFixed(2),
 
           status: 'Completed',
           tx_hash: transaction.tx_hash,
@@ -372,60 +382,6 @@ export default function TransactionTable(
   };
 
   useEffect(() => {
-    const getTransactions = async () => {
-      if (address) {
-        // post to api to get transactions
-        const formInputs = {
-          pageKey: pageKey,
-          pageSize: pageSize,
-          contract: contractAddress,
-          address: address,
-        };
-
-        const res = await fetch('/api/ft/transactions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formInputs),
-        });
-
-        const data = await res.json();
-
-        const transactions = [] as any;
-
-        data.data.transactions?.map((transaction: any) => {
-          //console.log("transaction", transaction);
-
-          const transactionData = {
-            id: transaction._id,
-
-            transactionType:
-              transaction.from === address.toLowerCase() ? 'Send' : 'Receive',
-            //transactionType: "Send",
-
-            createdAt: transaction.block_signed_at,
-
-            address:
-              transaction.from === address.toLowerCase()
-                ? transaction.to
-                : transaction.from,
-
-            ///address: transaction.to,
-
-            amount: ethers.utils.formatEther(String(transaction.amount)),
-
-            status: 'Completed',
-            tx_hash: transaction.tx_hash,
-          };
-
-          transactions.push(transactionData);
-        });
-
-        ////console.log('transactions: ', transactions);
-
-        setTransactions(transactions);
-      }
-    };
-
     /*
     let timer1 = setTimeout(() => getTransactions(), 10000);
 

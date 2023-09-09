@@ -86,6 +86,8 @@ import { Button } from '@mui/material';
 
 import toast from 'react-hot-toast';
 
+import AuctionCountdown from '@/components/nft/auction-countdown';
+
 interface RadioOptionProps {
   value: string;
 }
@@ -1700,7 +1702,13 @@ export default function NftSinglePrice({
         </div>
       </div>
 
+
+      
       */}
+
+      {/*
+      <AuctionCountdown date={Date.now() + 4000000 * 10} />
+    */}
     </div>
   );
 }
