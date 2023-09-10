@@ -122,6 +122,25 @@ const WalletPage: NextPageWithLayout<
 
   ///console.log(`🌊 signer: ${signer}`);
 
+  const [sdk, setSdk] = useState<ThirdwebSDK>();
+
+  useEffect(() => {
+    if (signer === undefined) return;
+
+    const sdk = ThirdwebSDK.fromSigner(signer, {
+      chainId: ChainId.Polygon,
+
+      clientId: '79125a56ef0c1629d4863b6df0a43cce',
+
+      gasless: {
+        relayer:
+          'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
+      },
+    });
+
+    setSdk(sdk);
+  }, [signer]);
+
   const [toAddress, setToAddress] = useState('');
   const [amount, setAmount] = useState(undefined);
 
@@ -284,6 +303,7 @@ const WalletPage: NextPageWithLayout<
     }
     */
 
+    /*
     const sdk = ThirdwebSDK.fromSigner(signer, {
       chainId: ChainId.Polygon,
       clientId: '79125a56ef0c1629d4863b6df0a43cce',
@@ -292,13 +312,58 @@ const WalletPage: NextPageWithLayout<
           'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
       },
     });
+    */
+
+    if (sdk === undefined) {
+      alert(`🌊 Please connect your wallet`);
+      return;
+    }
 
     const contract = await sdk.getContract(tokenContractAddressUSDC, 'token');
 
     try {
+      // Prepare an ERC20 transfer
+      const tx = await contract.erc20.transfer.prepare(toAddress, amount);
+
+      /*
+      {
+        "openzeppelin": {
+            "relayerUrl": "https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh",
+            "useEOAForwarder": false,
+            "domainName": "GSNv2 Forwarder",
+            "domainVersion": "0.0.1"
+        },
+        "experimentalChainlessSupport": false
+    }
+      */
+
+      tx.setGaslessOptions({
+        openzeppelin: {
+          relayerUrl:
+            'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
+          useEOAForwarder: false,
+          domainName: 'GSNv2 Forwarder',
+          domainVersion: '0.0.1',
+          //relayerForwarderAddress: "0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81",
+        },
+
+        experimentalChainlessSupport: false,
+      });
+
+      const sentTx = await tx.send();
+      const txHash = sentTx.hash;
+
+      console.log(`🌊 Sent transaction with hash: ${txHash}`);
+
+      //const gaslessOptions = tx.getGaslessOptions();
+
+      //console.log(`🌊 gaslessOptions: ${gaslessOptions}`);
+
+      /*
       const transaction = await contract?.erc20.transfer(toAddress, amount);
 
       console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+      */
 
       //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 

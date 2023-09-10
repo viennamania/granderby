@@ -298,6 +298,17 @@ const WalletPage: NextPageWithLayout<
     setIsSending(true);
 
     try {
+      /*
+      const tx = await tokenContractGRD?.erc20.transfer.prepare(toAddress, amount);
+
+      const gaslessOptions = tx?.getGaslessOptions();
+
+      console.log("gallessOptions", gaslessOptions);
+
+
+      return;
+      */
+
       const transaction = await tokenContractGRD?.erc20.transfer(
         toAddress,
         amount
