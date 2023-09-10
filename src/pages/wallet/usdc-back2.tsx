@@ -72,19 +72,18 @@ import {
   TransactionResult,
 } from '@thirdweb-dev/sdk';
 
-import { tokenContractAddressUSDC } from '@/config/contractAddresses';
+import {
+  thirdwebClientId,
+  tokenContractAddressUSDC,
+  tokenContractAddressUSDT,
+  tokenContractAddressGRD,
+  marketplaceContractAddress,
+} from '@/config/contractAddresses';
 
 import { BigNumber, ethers } from 'ethers';
 
 import styles from '@/styles/Home.module.css';
 import { add } from 'lodash';
-
-/*
-const readOnlySdk = new ThirdwebSDK("goerli", {
-  clientId: "YOUR_CLIENT_ID", // Use client id if using on the client side, get it from dashboard settings
-  secretKey: "YOUR_SECRET_KEY", // Use secret key if using on the server, get it from dashboard settings
-});
-*/
 
 const qrConfig = { fps: 10, qrbox: { width: 200, height: 200 } };
 
@@ -109,6 +108,26 @@ const WalletPage: NextPageWithLayout<
 
   const address = useAddress();
 
+  /*
+  const { contract: tokenContractGRD } = useContract(
+    tokenContractAddressGRD,
+    'token'
+  );
+
+  const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
+  */
+
+  /*
+  const { contract: tokenContractUSDT } = useContract(
+    tokenContractAddressUSDT,
+    'token'
+  );
+  const { data: tokenBalanceUSDT } = useTokenBalance(
+    tokenContractUSDT,
+    address
+  );
+  */
+
   const { contract: tokenContractUSDC } = useContract(
     tokenContractAddressUSDC,
     'token'
@@ -118,12 +137,14 @@ const WalletPage: NextPageWithLayout<
     address
   );
 
-  const signer = useSigner();
-
-  ///console.log(`🌊 signer: ${signer}`);
+  const {
+    mutate: transferTokens,
+    isLoading,
+    error,
+  } = useTransferToken(tokenContractUSDC);
 
   const [toAddress, setToAddress] = useState('');
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState<number | undefined>(undefined);
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
@@ -231,56 +252,40 @@ const WalletPage: NextPageWithLayout<
     setErr(false);
   };
 
-  async function transferToken(toAddress: string, amount: number) {
-    if (address === undefined) {
-      alert(`🌊 Please connect your wallet`);
-      return;
-    }
+  const signer = useSigner();
 
-    if (signer === undefined) {
-      alert(`🌊 Please connect your wallet signer is undefined`);
-      return;
-    }
+  // render retro layout profile
+  if (layout === LAYOUT_OPTIONS.RETRO) {
+    return (
+      <>
+        <NextSeo
+          title="Profile"
+          description="Granderby - NFT Marketplace for the people, by the people."
+        />
 
-    const sdk = ThirdwebSDK.fromSigner(signer, {
-      chainId: ChainId.Polygon,
-      clientId: '79125a56ef0c1629d4863b6df0a43cce',
-      gasless: {
-        relayer:
-          'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
-      },
-    });
-
-    //const tokenContractUSDC = sdk.contract(tokenContractAddressUSDC, 'token');
-
-    ///console.log("SDK: ", sdk);
-
-    /*
-    const signer = sdk.wallet.getSigner();
-
-    
-    if (signer === undefined) {
-      alert(`🌊 Please connect your wallet`);
-      return;
-    }
-    */
-
-    /*
-
-    const allowance = await tokenContractUSDC?.erc20.allowance(address);
-
-    
-    console.log(`🌊 allowance: ${allowance}`);
-
-    alert(`🌊 allowance: ${allowance}`);
-
-    return;
-    */
-    const tokenContractUSDC = await sdk.getContract(
-      tokenContractAddressUSDC,
-      'token'
+        <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
+          <Image
+            src={authorData?.cover_image?.thumbnail}
+            placeholder="blur"
+            fill
+            className="h-full w-full object-cover"
+            alt="Cover Image"
+          />
+        </div>
+        <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <Avatar
+            size="xl"
+            image={authorData?.avatar?.thumbnail}
+            alt="Author"
+            className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
+          />
+          <RetroProfile />
+        </div>
+      </>
     );
+  }
 
+  async function transferToken(toAddress: string, amount: number) {
     if (toAddress === '') {
       alert(`🌊 Please enter a valid address`);
       return;
@@ -294,10 +299,74 @@ const WalletPage: NextPageWithLayout<
     setIsSending(true);
 
     try {
+      //const signer = sdk.wallet.getSigner();
+
+      /*
+      if (signer === undefined) {
+        alert(`🌊 Please connect your wallet`);
+        return;
+      }
+      */
+
+      /*
+      const sdk = ThirdwebSDK.fromSigner(signer, {
+        chainId: ChainId.Polygon,
+        clientId: "79125a56ef0c1629d4863b6df0a43cce",
+        secretKey: "S8C-YQE74bYt9yQEAaBRKQRBy-9wqsGsMIO04vxPEO7XwoFoUXu82kCOTPMGkCkfwerg5M0_-8dt1bwaGvsyOg",
+        //gasless: {
+        //  relayer: 'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
+       // }
+      });
+      */
+
+      /*
+      const sdk = ThirdwebSDK.fromSigner(signer, {
+        chainId: ChainId.Polygon,
+        clientId: "79125a56ef0c1629d4863b6df0a43cce", // Use client id if using on the client side, get it from dashboard settings
+        secretKey: "S8C-YQE74bYt9yQEAaBRKQRBy-9wqsGsMIO04vxPEO7XwoFoUXu82kCOTPMGkCkfwerg5M0_-8dt1bwaGvsyOg", // Use secret key if using on the server, get it from dashboard settings
+      });
+      
+
+
+      console.log('sdk', sdk);
+      
+      
+      const contract = await sdk.getContract(tokenContractAddressUSDC);
+
+      console.log('contract====', contract);
+      */
+
+      /*
+      const transaction = await contract.erc20.transfer(toAddress, amount);
+      */
+
+      /*
+      const transaction = await contract.call(
+        "transfer", // Name of your function as it is on the smart contract
+        // Arguments to your function, in the same order they are on your smart contract
+        
+        [
+          toAddress, // e.g. Argument 1
+          "2000000", // e.g. Argument 2
+        ],
+        
+      );
+      */
+      /*
+      const transaction = await contract.call(
+        "name",
+      );
+
+
+      console.log('signer====', signer);
+            */
+
       const transaction = await tokenContractUSDC?.erc20.transfer(
         toAddress,
         amount
       );
+
+      console.log('transaction====', transaction);
 
       console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 
@@ -307,7 +376,7 @@ const WalletPage: NextPageWithLayout<
 
       setIsSending(false);
 
-      setAmount(0);
+      setAmount(undefined);
       setToAddress('');
 
       //router.reload();
@@ -443,9 +512,7 @@ const WalletPage: NextPageWithLayout<
         <div className=" flex flex-row items-center justify-center text-lime-600">
           {/* Form Section */}
           <div className={styles.collectionContainer}>
-            <div className="mb-2 text-lg">
-              Send my {tokenBalanceUSDC?.symbol} to another address:
-            </div>
+            <div className="mb-2 text-lg">Send my USDC to another address:</div>
 
             {/* Toggle between direct listing and auction listing */}
             {/*
@@ -508,6 +575,7 @@ const WalletPage: NextPageWithLayout<
               placeholder="0"
               value={amount}
               onChange={(e) => {
+                /*
                 if (e.target.value === null) setAmount(undefined);
                 else if (Number(e.target.value) === 0) setAmount(undefined);
                 else if (Number(e.target.value) < 0) setAmount(undefined);
@@ -519,6 +587,9 @@ const WalletPage: NextPageWithLayout<
                 } else {
                   setAmount(Number(e.target.value));
                 }
+                */
+
+                setAmount(e.target.value ? Number(e.target.value) : undefined);
               }}
             />
 
@@ -573,6 +644,13 @@ const WalletPage: NextPageWithLayout<
                         transferToken(toAddress, amount);
 
                         /*
+                        transferTokens({
+                          to: toAddress, // Address to transfer to
+                          amount: amount, // Amount to transfer
+                        });
+                        */
+
+                        /*
                           transferTokens({
                             to: toAddress, // Address to transfer to
                             amount: amount, // Amount to transfer
@@ -596,7 +674,7 @@ const WalletPage: NextPageWithLayout<
                         //handleClickErr();
                       }}
                     >
-                      Transfer ({amount} {tokenBalanceUSDC?.symbol})
+                      Transfer ({amount} GRD)
                     </Web3Button>
                   </>
                 )}
@@ -630,14 +708,12 @@ const WalletPage: NextPageWithLayout<
         <TransactionTable {...{ contractAddress: tokenContractAddressUSDC }} />
       </div>
 
-      {/*
       {address && (
         <iframe
           className="mt-10 h-[500px] w-full border"
           src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c"
         />
       )}
-      */}
 
       {/*
       <Web3Button
