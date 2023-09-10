@@ -123,7 +123,7 @@ const WalletPage: NextPageWithLayout<
   ///console.log(`🌊 signer: ${signer}`);
 
   const [toAddress, setToAddress] = useState('');
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(undefined);
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
@@ -242,45 +242,6 @@ const WalletPage: NextPageWithLayout<
       return;
     }
 
-    const sdk = ThirdwebSDK.fromSigner(signer, {
-      chainId: ChainId.Polygon,
-      clientId: '79125a56ef0c1629d4863b6df0a43cce',
-      gasless: {
-        relayer:
-          'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
-      },
-    });
-
-    //const tokenContractUSDC = sdk.contract(tokenContractAddressUSDC, 'token');
-
-    ///console.log("SDK: ", sdk);
-
-    /*
-    const signer = sdk.wallet.getSigner();
-
-    
-    if (signer === undefined) {
-      alert(`🌊 Please connect your wallet`);
-      return;
-    }
-    */
-
-    /*
-
-    const allowance = await tokenContractUSDC?.erc20.allowance(address);
-
-    
-    console.log(`🌊 allowance: ${allowance}`);
-
-    alert(`🌊 allowance: ${allowance}`);
-
-    return;
-    */
-    const tokenContractUSDC = await sdk.getContract(
-      tokenContractAddressUSDC,
-      'token'
-    );
-
     if (toAddress === '') {
       alert(`🌊 Please enter a valid address`);
       return;
@@ -291,13 +252,51 @@ const WalletPage: NextPageWithLayout<
       return;
     }
 
+    console.log('signer: ', signer);
+
     setIsSending(true);
 
+    /*
+    const formInputs = {
+      method: 'transferToken',
+      signer: signer,
+      toAddress: toAddress,
+      amount: amount,
+    };
+    const res = await fetch('/api/ft/transfer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formInputs),
+    });
+    const data = await res.json();
+
+    setIsSending(false);
+
+    if (data.message === 'Success') {
+
+      setAmount(undefined);
+      setToAddress('');
+
+    } else {
+
+      alert(`🌊 Failed to send transaction`);
+
+    }
+    */
+
+    const sdk = ThirdwebSDK.fromSigner(signer, {
+      chainId: ChainId.Polygon,
+      clientId: '79125a56ef0c1629d4863b6df0a43cce',
+      gasless: {
+        relayer:
+          'https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh',
+      },
+    });
+
+    const contract = await sdk.getContract(tokenContractAddressUSDC, 'token');
+
     try {
-      const transaction = await tokenContractUSDC?.erc20.transfer(
-        toAddress,
-        amount
-      );
+      const transaction = await contract?.erc20.transfer(toAddress, amount);
 
       console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 
@@ -311,8 +310,6 @@ const WalletPage: NextPageWithLayout<
       setToAddress('');
 
       //router.reload();
-
-      return transaction;
     } catch (error) {
       console.error(error);
 
