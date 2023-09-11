@@ -344,7 +344,7 @@ const WalletPage: NextPageWithLayout<
           useEOAForwarder: false,
           domainName: 'GSNv2 Forwarder',
           domainVersion: '0.0.1',
-          //relayerForwarderAddress: "0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81",
+          relayerForwarderAddress: '0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81',
         },
 
         experimentalChainlessSupport: false,

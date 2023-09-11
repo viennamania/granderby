@@ -967,12 +967,23 @@ export default function NftSinglePrice({
 
                             <span className="pt-1 ">Last price:</span>
                             <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                              {(
-                                saleHistory[0]?.totalPricePaid / 1000000
-                              ).toFixed(2)}
+                              {saleHistory[0]?.paidToken ===
+                              '0x0000000000000000000000000000000000001010'
+                                ? (
+                                    saleHistory[0]?.totalPricePaid /
+                                    1000000000000000000
+                                  ).toFixed(2)
+                                : (
+                                    saleHistory[0]?.totalPricePaid / 1000000
+                                  ).toFixed(2)}
                             </span>
 
-                            <span className="pt-1">USD</span>
+                            {saleHistory[0]?.paidToken ===
+                            '0x0000000000000000000000000000000000001010' ? (
+                              <span className="pt-1">MATIC</span>
+                            ) : (
+                              <span className="pt-1">USDC</span>
+                            )}
                           </div>
                           <div className=" flex flex-row items-center justify-start gap-2">
                             {format(
