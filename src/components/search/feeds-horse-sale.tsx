@@ -282,8 +282,10 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     )
                   }
                 >
-                  <div className="m-2 flex items-center justify-start">
-                    <p className="text-sm font-bold">#{listing.asset?.id}</p>
+                  <div className="flex w-full items-center justify-start bg-gray-800">
+                    <p className="m-2 text-sm font-bold text-white">
+                      #{listing.asset?.id}
+                    </p>
                   </div>
 
                   <Image
@@ -301,12 +303,10 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     <p className="text-sm font-bold">{listing.asset?.name}</p>
                   </div>
 
-                  <div className="m-2 flex w-full items-center justify-end pr-5">
-                    <b>
-                      {Number(
-                        listing.currencyValuePerToken.displayValue
-                      ).toFixed(2)}
-                    </b>
+                  <div className="m-2 flex w-full items-center justify-end pr-5 text-2xl font-bold">
+                    {Number(listing.currencyValuePerToken.displayValue).toFixed(
+                      2
+                    )}
                     &nbsp;
                     <span className="text-xs text-blue-600">
                       {listing.currencyValuePerToken.symbol}

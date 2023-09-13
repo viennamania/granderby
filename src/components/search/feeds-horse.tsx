@@ -198,9 +198,12 @@ export default function Feeds({ className }: { className?: string }) {
                     //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
                   }}
                 >
-                  <div className="m-2 flex items-center justify-start">
-                    <p className="text-sm font-bold">#{nft?.tokenId}</p>
+                  <div className="flex w-full items-center justify-start bg-gray-800">
+                    <p className="m-2 text-sm font-bold text-white">
+                      #{nft?.tokenId}
+                    </p>
                   </div>
+
                   <Image
                     src={nft?.media ? nft?.media : '/default-nft.png'}
                     alt={nft?.title}
@@ -209,7 +212,7 @@ export default function Feeds({ className }: { className?: string }) {
                     loading="lazy"
                   />
                   <div className="m-2 flex w-full flex-col items-center justify-center ">
-                    <div className="text-sm font-medium capitalize ">
+                    <div className="text-sm font-bold capitalize ">
                       {nft?.title}
                     </div>
                   </div>
