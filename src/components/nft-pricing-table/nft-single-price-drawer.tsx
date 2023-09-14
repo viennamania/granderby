@@ -747,9 +747,12 @@ export default function NftSinglePrice({
             <span className="flex w-full items-center  gap-2.5  ">
               <span className="items-left flex w-full flex-col  gap-2.5 ">
                 <div className="items-left flex w-full flex-col justify-center ">
-                  <div className="flex flex-row items-center justify-between gap-2.5">
-                    <div className="text-left text-lg font-bold capitalize text-black dark:text-white">
-                      #{nftMetadata?.metadata?.id} {nftMetadata?.metadata?.name}
+                  <div className="flex flex-col items-center justify-start gap-2.5">
+                    <div className="w-full text-left text-lg font-bold text-black dark:text-white">
+                      #{nftMetadata?.metadata?.id}
+                    </div>
+                    <div className="w-full text-left text-3xl font-bold capitalize text-black dark:text-white">
+                      {nftMetadata?.metadata?.name}
                     </div>
 
                     {/*
@@ -842,11 +845,12 @@ export default function NftSinglePrice({
                           ) : (
                             <div className="flex flex-col gap-2">
                               <div className="item-center flex flex-row justify-center">
-                                <div className=" text-xs  ">Last rank:</div>
-                                <div className="ml-2 text-3xl font-bold  text-green-600 xl:text-4xl ">
+                                <div className="  text-xs  ">Last rank:</div>
+                                <div className=" ml-2 text-3xl font-bold  text-green-600 xl:text-4xl ">
                                   {raceHistory[0]?.rank}{' '}
                                 </div>
                               </div>
+
                               <div className="text-xs">
                                 record:&nbsp;
                                 {format(
