@@ -329,7 +329,7 @@ export default function ModernScreen() {
       );
       const response = await npcNamesResponse.json();
 
-      ///console.log('getNpcNames response', response);
+      //console.log('getNpcNames response.npcNames[0]', response.npcNames[0]);
 
       //const data = useOwnedNFTs(nftDropContractHorse, address);
 

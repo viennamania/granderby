@@ -192,37 +192,35 @@ export default async function handler(
 
     //console.log('npcNames[0].nft6', npcNames[0].nft6);
 
-    /*
     await alchemy.nft
-    .getNftMetadata(npcNames[0].nft6?.contract, npcNames[0].nft6?.tokenId)
-    .then((response) => {
-      resNpcNames[0].media6 = response.media[0];
-    });
+      .getNftMetadata(npcNames[0].nft6?.contract, npcNames[0].nft6?.tokenId)
+      .then((response) => {
+        resNpcNames[0].media6 = response.media[0];
+      });
 
     await alchemy.nft
-    .getNftMetadata(npcNames[0].nft7?.contract, npcNames[0].nft7?.tokenId)
-    .then((response) => {
-      resNpcNames[0].media7 = response.media[0];
-    });
+      .getNftMetadata(npcNames[0].nft7?.contract, npcNames[0].nft7?.tokenId)
+      .then((response) => {
+        resNpcNames[0].media7 = response.media[0];
+      });
 
     await alchemy.nft
-    .getNftMetadata(npcNames[0].nft8?.contract, npcNames[0].nft8?.tokenId)
-    .then((response) => {
-      resNpcNames[0].media8 = response.media[0];
-    });
+      .getNftMetadata(npcNames[0].nft8?.contract, npcNames[0].nft8?.tokenId)
+      .then((response) => {
+        resNpcNames[0].media8 = response.media[0];
+      });
 
     await alchemy.nft
-    .getNftMetadata(npcNames[0].nft9?.contract, npcNames[0].nft9?.tokenId)
-    .then((response) => {
-      resNpcNames[0].media9 = response.media[0];
-    });
+      .getNftMetadata(npcNames[0].nft9?.contract, npcNames[0].nft9?.tokenId)
+      .then((response) => {
+        resNpcNames[0].media9 = response.media[0];
+      });
 
     await alchemy.nft
-    .getNftMetadata(npcNames[0].nft10?.contract, npcNames[0].nft10?.tokenId)
-    .then((response) => {
-      resNpcNames[0].media10 = response.media[0];
-    });
-    */
+      .getNftMetadata(npcNames[0].nft10?.contract, npcNames[0].nft10?.tokenId)
+      .then((response) => {
+        resNpcNames[0].media10 = response.media[0];
+      });
 
     ///console.log('resNpcNames', resNpcNames);
 
