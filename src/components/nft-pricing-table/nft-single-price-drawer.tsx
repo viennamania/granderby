@@ -844,13 +844,13 @@ export default function NftSinglePrice({
                               <div className="item-center flex flex-row justify-center">
                                 <div className=" text-xs  ">Last rank:</div>
                                 <div className="ml-2 text-3xl font-bold  text-green-600 xl:text-4xl ">
-                                  {raceHistory[0].rank}{' '}
+                                  {raceHistory[0]?.rank}{' '}
                                 </div>
                               </div>
                               <div className="text-xs">
                                 record:&nbsp;
                                 {format(
-                                  Date.parse(raceHistory[0].createdAt || 0),
+                                  Date.parse(raceHistory[0]?.createdAt || 0),
                                   'yyy-MM-dd hh:mm:ss'
                                 )}
                               </div>
@@ -859,34 +859,34 @@ export default function NftSinglePrice({
                                 <div className=" text-xs  ">Trend:</div>
                                 <div className="ml-2 flex flex-row items-center justify-center gap-1 ">
                                   <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
-                                    {raceHistory[4].rank}
+                                    {raceHistory[4]?.rank}
                                   </div>
                                   <ArrowRight className="h-2 w-2 " />
                                   <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
-                                    {raceHistory[3].rank}
+                                    {raceHistory[3]?.rank}
                                   </div>
                                   <ArrowRight className="h-2 w-2 " />
                                   <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
-                                    {raceHistory[2].rank}
+                                    {raceHistory[2]?.rank}
                                   </div>
                                   <ArrowRight className="h-2 w-2 " />
                                   <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
-                                    {raceHistory[1].rank}
+                                    {raceHistory[1]?.rank}
                                   </div>
                                   <ArrowRight className="h-2 w-2 " />
                                   <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
-                                    {raceHistory[0].rank}
+                                    {raceHistory[0]?.rank}
                                   </div>{' '}
-                                  {raceHistory[0].rank >
-                                    raceHistory[1].rank && (
+                                  {raceHistory[0]?.rank >
+                                    raceHistory[1]?.rank && (
                                     <LongArrowUp className=" h-8 w-8 rotate-180  text-red-600 " />
                                   )}
-                                  {raceHistory[0].rank <
-                                    raceHistory[1].rank && (
+                                  {raceHistory[0]?.rank <
+                                    raceHistory[1]?.rank && (
                                     <LongArrowUp className="h-8 w-8  text-sky-600 " />
                                   )}
-                                  {raceHistory[0].rank ===
-                                    raceHistory[1].rank && (
+                                  {raceHistory[0]?.rank ===
+                                    raceHistory[1]?.rank && (
                                     <ArrowRight className="h-5 w-5  text-gray-600 " />
                                   )}
                                 </div>

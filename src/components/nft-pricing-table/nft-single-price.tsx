@@ -1304,11 +1304,11 @@ export default function NftSinglePrice({
                               <div className="text-sm font-bold xl:text-lg">
                                 Last rank:&nbsp;
                                 <span className="text-4xl font-bold text-green-600 xl:text-6xl">
-                                  {raceHistory[0].rank}{' '}
+                                  {raceHistory[0]?.rank}{' '}
                                 </span>
                                 <span className="text-xs">
                                   {format(
-                                    Date.parse(raceHistory[0].createdAt || 0),
+                                    Date.parse(raceHistory[0]?.createdAt || 0),
                                     'yyy-MM-dd hh:mm:ss'
                                   )}
                                 </span>
