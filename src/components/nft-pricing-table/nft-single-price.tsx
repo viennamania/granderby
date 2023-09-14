@@ -985,9 +985,9 @@ export default function NftSinglePrice({
 
                               {saleHistory[0]?.paidToken ===
                               '0x0000000000000000000000000000000000001010' ? (
-                                <span className="pt-1">MATIC</span>
+                                <span className="pt-1"> MATIC</span>
                               ) : (
-                                <span className="pt-1">USDC</span>
+                                <span className="pt-1"> USDC</span>
                               )}
                             </div>
 
@@ -1105,9 +1105,9 @@ export default function NftSinglePrice({
                             </span>
                             {saleHistory[0]?.paidToken ===
                             '0x0000000000000000000000000000000000001010' ? (
-                              <span className="pt-1">MATIC</span>
+                              <span className="pt-1"> MATIC</span>
                             ) : (
-                              <span className="pt-1">USDC</span>
+                              <span className="pt-1"> USDC</span>
                             )}
                           </div>
                           <div className=" flex flex-row items-center justify-start gap-2 text-xs">
@@ -1182,7 +1182,9 @@ export default function NftSinglePrice({
                                   </div>
                                 )}
                                 <div className="text-md  xl:text-xl">
-                                  {tokenBalanceUSDC?.displayValue}{' '}
+                                  {Number(
+                                    tokenBalanceUSDC?.displayValue
+                                  ).toFixed(2)}{' '}
                                   {tokenBalanceUSDC?.symbol}
                                 </div>
                               </div>
@@ -1317,7 +1319,7 @@ export default function NftSinglePrice({
                             <div className="flex flex-col gap-2">
                               <div className="text-sm font-bold xl:text-lg">
                                 Last rank:&nbsp;
-                                <span className="text-4xl font-bold text-red-600 xl:text-6xl">
+                                <span className="text-2xl font-bold text-red-600 xl:text-4xl">
                                   {raceHistory[0]?.rank}{' '}
                                 </span>
                                 <span className="text-xs">
