@@ -99,13 +99,13 @@ export default function Search() {
       <div className=" flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
         <div className="justify-left flex flex-row items-center">
           <Image
-            src="/horseRace/Hrs_00006009.png"
+            src="/horseRace/logo-derbystars.png"
             alt="Granderby Horse NFT"
             width={28}
             height={28}
             className="rounded-full"
           />
-          <span className="ml-3">Derby Stars</span>
+          <span className="ml-3">Derby Stars Horses</span>
         </div>
       </div>
 

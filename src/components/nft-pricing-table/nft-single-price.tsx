@@ -929,8 +929,11 @@ export default function NftSinglePrice({
                       {nftMetadata?.metadata?.description}
                     </Link>
 
+                    <div className="text-left text-sm text-black dark:text-white xl:text-lg">
+                      #{nftMetadata?.metadata?.id}
+                    </div>
                     <div className="text-left text-xl font-bold capitalize text-black dark:text-white xl:text-2xl">
-                      #{nftMetadata?.metadata?.id} {nftMetadata?.metadata?.name}
+                      {nftMetadata?.metadata?.name}
                     </div>
                   </div>
 
