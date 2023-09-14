@@ -152,9 +152,11 @@ export default async function handler(
 
     if (npcNames[0].nft1.contract && npcNames[0].nft1.tokenId) {
       await alchemy.nft
-        .getNftMetadata(npcNames[0].nft1.contract, npcNames[0].nft1.tokenId)
+        .getNftMetadata(npcNames[0].nft1.contract, npcNames[0].nft1.tokenId, {
+          refreshCache: true,
+        })
         .then((response) => {
-          console.log('response.title', response.title);
+          //console.log('response.rawMetadata.attributes', response.rawMetadata.attributes);
 
           resNpcNames[0].media1 = response.media[0];
           resNpcNames[0].nft1.name = response.title;
@@ -163,7 +165,9 @@ export default async function handler(
 
     if (npcNames[0].nft2.contract && npcNames[0].nft2.tokenId) {
       await alchemy.nft
-        .getNftMetadata(npcNames[0].nft2.contract, npcNames[0].nft2.tokenId)
+        .getNftMetadata(npcNames[0].nft2.contract, npcNames[0].nft2.tokenId, {
+          refreshCache: true,
+        })
         .then((response) => {
           resNpcNames[0].media2 = response.media[0];
           resNpcNames[0].nft2.name = response.title;
@@ -172,7 +176,9 @@ export default async function handler(
 
     if (npcNames[0].nft3.contract && npcNames[0].nft3.tokenId) {
       await alchemy.nft
-        .getNftMetadata(npcNames[0].nft3.contract, npcNames[0].nft3.tokenId)
+        .getNftMetadata(npcNames[0].nft3.contract, npcNames[0].nft3.tokenId, {
+          refreshCache: true,
+        })
         .then((response) => {
           resNpcNames[0].media3 = response.media[0];
           resNpcNames[0].nft3.name = response.title;
@@ -181,7 +187,9 @@ export default async function handler(
 
     if (npcNames[0].nft4.contract && npcNames[0].nft4.tokenId) {
       await alchemy.nft
-        .getNftMetadata(npcNames[0].nft4.contract, npcNames[0].nft4.tokenId)
+        .getNftMetadata(npcNames[0].nft4.contract, npcNames[0].nft4.tokenId, {
+          refreshCache: true,
+        })
         .then((response) => {
           resNpcNames[0].media4 = response.media[0];
           resNpcNames[0].nft4.name = response.title;
@@ -190,7 +198,9 @@ export default async function handler(
 
     if (npcNames[0].nft5.contract && npcNames[0].nft5.tokenId) {
       await alchemy.nft
-        .getNftMetadata(npcNames[0].nft5.contract, npcNames[0].nft5.tokenId)
+        .getNftMetadata(npcNames[0].nft5.contract, npcNames[0].nft5.tokenId, {
+          refreshCache: true,
+        })
         .then((response) => {
           resNpcNames[0].media5 = response.media[0];
           resNpcNames[0].nft5.name = response.title;
@@ -200,35 +210,45 @@ export default async function handler(
     //console.log('npcNames[0].nft6', npcNames[0].nft6);
 
     await alchemy.nft
-      .getNftMetadata(npcNames[0].nft6?.contract, npcNames[0].nft6?.tokenId)
+      .getNftMetadata(npcNames[0].nft6?.contract, npcNames[0].nft6?.tokenId, {
+        refreshCache: true,
+      })
       .then((response) => {
         resNpcNames[0].media6 = response.media[0];
         resNpcNames[0].nft6.name = response.title;
       });
 
     await alchemy.nft
-      .getNftMetadata(npcNames[0].nft7?.contract, npcNames[0].nft7?.tokenId)
+      .getNftMetadata(npcNames[0].nft7?.contract, npcNames[0].nft7?.tokenId, {
+        refreshCache: true,
+      })
       .then((response) => {
         resNpcNames[0].media7 = response.media[0];
         resNpcNames[0].nft7.name = response.title;
       });
 
     await alchemy.nft
-      .getNftMetadata(npcNames[0].nft8?.contract, npcNames[0].nft8?.tokenId)
+      .getNftMetadata(npcNames[0].nft8?.contract, npcNames[0].nft8?.tokenId, {
+        refreshCache: true,
+      })
       .then((response) => {
         resNpcNames[0].media8 = response.media[0];
         resNpcNames[0].nft8.name = response.title;
       });
 
     await alchemy.nft
-      .getNftMetadata(npcNames[0].nft9?.contract, npcNames[0].nft9?.tokenId)
+      .getNftMetadata(npcNames[0].nft9?.contract, npcNames[0].nft9?.tokenId, {
+        refreshCache: true,
+      })
       .then((response) => {
         resNpcNames[0].media9 = response.media[0];
         resNpcNames[0].nft9.name = response.title;
       });
 
     await alchemy.nft
-      .getNftMetadata(npcNames[0].nft10?.contract, npcNames[0].nft10?.tokenId)
+      .getNftMetadata(npcNames[0].nft10?.contract, npcNames[0].nft10?.tokenId, {
+        refreshCache: true,
+      })
       .then((response) => {
         resNpcNames[0].media10 = response.media[0];
         resNpcNames[0].nft10.name = response.title;
