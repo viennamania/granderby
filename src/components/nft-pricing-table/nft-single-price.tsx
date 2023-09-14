@@ -1414,9 +1414,9 @@ export default function NftSinglePrice({
             */}
 
             {/* nft attributes details */}
-            {/*
-            <div className="mt-5 grid  grid-cols-3 items-start justify-between gap-2  ">
-              {attributes?.map((attribute: any) => (
+
+            <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2  ">
+              {nftMetadata?.metadata?.attributes?.map((attribute: any) => (
                 //nft?.metadata?.attributes?.map((attribute:any) => (
                 <div key={attribute?.trait_type}>
                   <div
@@ -1433,16 +1433,18 @@ export default function NftSinglePrice({
                     </span>
 
                     <span className="text-sm  font-semibold xl:text-lg">
+                      {/*
                       {attribute?.value?.toString().length < 8
                         ? attribute?.value?.toString()
                         : attribute?.value?.toString().substring(0, 8)}
                       ...
+                      */}
+                      {attribute?.value}
                     </span>
                   </div>
                 </div>
               ))}
             </div>
-            */}
 
             {/*
             <div className="mt-5 flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
