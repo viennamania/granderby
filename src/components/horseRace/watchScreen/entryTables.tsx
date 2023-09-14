@@ -583,10 +583,6 @@ export default function EntryTables({
                       alt="pp"
                       className="  rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                     />
-
-                    <span className=" xl:text-md text-sm text-sky-500">
-                      #{npcs?.nft1?.tokenId} {npcs?.nft1?.name}
-                    </span>
                   </div>
 
                   <Image
@@ -603,6 +599,14 @@ export default function EntryTables({
                   {/*
                 <span className="text-md font-bold">x{horse1}</span>
                 */}
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                  <span className=" xl:text-md text-sm text-sky-500">
+                    #{npcs?.nft1?.tokenId}
+                  </span>
+                  <span className=" xl:text-md text-block text-sm font-bold">
+                    {npcs?.nft1?.name}
+                  </span>
                 </div>
               </button>
             )}
@@ -650,10 +654,6 @@ export default function EntryTables({
                     alt="pp"
                     className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft2?.tokenId}
-                  </span>
                 </div>
 
                 <Image
@@ -670,6 +670,15 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse2}</span>
               */}
+              </div>
+
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft2?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft2?.name}
+                </span>
               </div>
             </button>
 
@@ -716,10 +725,6 @@ export default function EntryTables({
                     alt="pp"
                     className="  rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft3?.tokenId}
-                  </span>
                 </div>
 
                 <Image
@@ -736,6 +741,15 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse3}</span>
               */}
+              </div>
+
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft3?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft3?.name}
+                </span>
               </div>
             </button>
 
@@ -782,10 +796,6 @@ export default function EntryTables({
                     alt="pp"
                     className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft4?.tokenId}
-                  </span>
                 </div>
 
                 <Image
@@ -802,6 +812,14 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse4}</span>
               */}
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft4?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft4?.name}
+                </span>
               </div>
             </button>
 
@@ -848,10 +866,6 @@ export default function EntryTables({
                     alt="pp"
                     className="  rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft5?.tokenId}
-                  </span>
                 </div>
 
                 <Image
@@ -868,6 +882,14 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft5?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft5?.name}
+                </span>
               </div>
             </button>
 
@@ -914,10 +936,6 @@ export default function EntryTables({
                     alt="pp"
                     className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft6?.tokenId}
-                  </span>
                 </div>
 
                 <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
@@ -930,6 +948,14 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft6?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft6?.name}
+                </span>
               </div>
             </button>
 
@@ -976,10 +1002,6 @@ export default function EntryTables({
                     alt="pp"
                     className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft7?.tokenId}
-                  </span>
                 </div>
 
                 <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
@@ -992,6 +1014,14 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft7?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft7?.name}
+                </span>
               </div>
             </button>
 
@@ -1038,10 +1068,6 @@ export default function EntryTables({
                     alt="pp"
                     className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft8?.tokenId}
-                  </span>
                 </div>
 
                 <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
@@ -1054,6 +1080,14 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft8?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft8?.name}
+                </span>
               </div>
             </button>
 
@@ -1100,10 +1134,6 @@ export default function EntryTables({
                     alt="pp"
                     className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft9?.tokenId}
-                  </span>
                 </div>
 
                 <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
@@ -1116,6 +1146,14 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft9?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft9?.name}
+                </span>
               </div>
             </button>
 
@@ -1162,10 +1200,6 @@ export default function EntryTables({
                     alt="pp"
                     className=" rounded-md md:h-full md:w-full xl:h-full xl:w-full"
                   />
-
-                  <span className=" xl:text-md text-sm text-sky-500">
-                    #{npcs?.nft10?.tokenId}
-                  </span>
                 </div>
 
                 <span className=" ml-5 w-[20px] items-center justify-center rounded-sm bg-red-500 p-1 text-xs text-white xl:w-[45px] xl:text-lg xl:font-bold">
@@ -1178,6 +1212,14 @@ export default function EntryTables({
                 {/*
               <span className="text-md font-bold">x{horse5}</span>
               */}
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <span className=" xl:text-md text-sm text-sky-500">
+                  #{npcs?.nft10?.tokenId}
+                </span>
+                <span className=" xl:text-md text-block text-sm font-bold">
+                  {npcs?.nft10?.name}
+                </span>
               </div>
             </button>
           </div>
