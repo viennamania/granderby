@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getAllHorses } from '@/utils/models/horse-model';
+import { getAllHorses } from '@/utils/models/derbystars-model';
 
 type Data = {
   name: string;

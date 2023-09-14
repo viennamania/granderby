@@ -69,10 +69,12 @@ export default function Search() {
     },
     */
 
+    /*
     {
       title: 'Sales',
       path: 'Sales',
     },
+    */
 
     /*
     {
@@ -103,10 +105,11 @@ export default function Search() {
             height={28}
             className="rounded-full"
           />
-          <span className="ml-3">Granderby Horse NFT</span>
+          <span className="ml-3">Derby Stars</span>
         </div>
       </div>
 
+      {/*
       <div className="mb-5 mt-5 flex">
         <CollapseLivePricing label="Live Pricing">
           <div className="m-5 p-5">
@@ -114,6 +117,7 @@ export default function Search() {
           </div>
         </CollapseLivePricing>
       </div>
+      */}
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
         <div className="mt-10 hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700 2xl:block">

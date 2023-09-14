@@ -76,7 +76,7 @@ export default function Feeds({ className }: { className?: string }) {
         //pageParam = '',
       }) =>
         await fetch(
-          '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
+          '/api/nft/getDerbystars?pageNumber=' + pageParam + '&pageSize=20',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -190,7 +190,7 @@ export default function Feeds({ className }: { className?: string }) {
                     //setTokenid(nft.metadata.id.toString()),
                     //setIsOpen(true)
 
-                    router.push('/horse-details/' + nft?.tokenId)
+                    router.push('/derbystars-details/' + nft?.tokenId)
                   }
                   onMouseOver={() => {
                     //alert("onMouseOver");

@@ -47,6 +47,7 @@ const nextConfig = withPWA({
       'bafybeialqcg4le2irtqqqcp2ea7yvy3yrmtuyn6rbdyarl247lfl7x44ce.ipfs.cf-ipfs.com',
       '79125a56ef0c1629d4863b6df0a43cce.ipfscdn.io',
       'images.unsplash.com',
+      'resource.nft.derbystars.com',
     ],
   },
 
