@@ -951,70 +951,73 @@ export default function NftSinglePrice({
                             <b>Not for sale </b>
                           </div>
 
-                          <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
-                            <button
-                              className="w-24 text-sm font-bold xl:text-xl "
-                              onClick={() =>
-                                router.push(
-                                  `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
-                                )
-                              }
-                            >
-                              <Image
-                                src="/images/market.png"
-                                alt="live"
-                                width={30}
-                                height={30}
-                              />
-                            </button>
+                          <div className="flex flex-col ">
+                            <div className="item-center flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                              <button
+                                className=" w-24 text-sm font-bold xl:text-xl "
+                                onClick={() =>
+                                  router.push(
+                                    `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                                  )
+                                }
+                              >
+                                <Image
+                                  src="/images/market.png"
+                                  alt="live"
+                                  width={30}
+                                  height={30}
+                                />
+                              </button>
 
-                            <span className="pt-1 ">Last price:</span>
+                              <span className="flex pt-1">Last price:</span>
 
-                            <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                              <span className="flex text-xl font-bold text-green-600 xl:text-3xl">
+                                {saleHistory[0]?.paidToken ===
+                                '0x0000000000000000000000000000000000001010'
+                                  ? (
+                                      saleHistory[0]?.totalPricePaid /
+                                      1000000000000000000
+                                    ).toFixed(2)
+                                  : (
+                                      saleHistory[0]?.totalPricePaid / 1000000
+                                    ).toFixed(2)}
+                              </span>
+
                               {saleHistory[0]?.paidToken ===
-                              '0x0000000000000000000000000000000000001010'
-                                ? (
-                                    saleHistory[0]?.totalPricePaid /
-                                    1000000000000000000
-                                  ).toFixed(2)
-                                : (
-                                    saleHistory[0]?.totalPricePaid / 1000000
-                                  ).toFixed(2)}
-                            </span>
+                              '0x0000000000000000000000000000000000001010' ? (
+                                <span className="pt-1">MATIC</span>
+                              ) : (
+                                <span className="pt-1">USDC</span>
+                              )}
+                            </div>
 
-                            {saleHistory[0]?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' ? (
-                              <span className="pt-1">MATIC</span>
-                            ) : (
-                              <span className="pt-1">USDC</span>
-                            )}
-                          </div>
-                          <div className=" flex flex-row items-center justify-start gap-2">
-                            {format(
-                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                              'yyy-MM-dd hh:mm:ss'
-                            )}
-                          </div>
+                            <div className=" flex flex-row items-center justify-start text-xs">
+                              {format(
+                                Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                                'yyy-MM-dd hh:mm:ss'
+                              )}
+                            </div>
 
-                          <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
-                            <button
-                              className=" w-24 text-sm font-bold xl:text-xl "
-                              onClick={() =>
-                                router.push(
-                                  `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
-                                )
-                              }
-                            >
-                              <Image
-                                src="/images/logo-opensea.svg"
-                                alt="live"
-                                width={80}
-                                height={30}
-                              />
-                            </button>
+                            <div className="item-center mt-3 flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                              <button
+                                className=" w-24 text-sm font-bold xl:text-xl "
+                                onClick={() =>
+                                  router.push(
+                                    `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                                  )
+                                }
+                              >
+                                <Image
+                                  src="/images/logo-opensea.svg"
+                                  alt="live"
+                                  width={80}
+                                  height={30}
+                                />
+                              </button>
 
-                            <span className="pt-1 ">Last price:</span>
-                            <span className="pt-1">No record</span>
+                              <span className="flex pt-1 ">Last price:</span>
+                              <span className="flex pt-1">No record</span>
+                            </div>
                           </div>
 
                           {address === nftMetadata?.owner &&
@@ -1078,8 +1081,7 @@ export default function NftSinglePrice({
                             </div>
                           </div>
 
-                          <span className="text-sm">
-                            Listing:&nbsp;
+                          <span className="text-xs">
                             {format(
                               new Date(
                                 directListing?.startTimeInSeconds * 1000
@@ -1108,7 +1110,7 @@ export default function NftSinglePrice({
                               <span className="pt-1">USDC</span>
                             )}
                           </div>
-                          <div className=" flex flex-row items-center justify-start gap-2">
+                          <div className=" flex flex-row items-center justify-start gap-2 text-xs">
                             {format(
                               Date.parse(saleHistory[0]?.blockTimestamp || 0),
                               'yyy-MM-dd hh:mm:ss'
@@ -1315,7 +1317,7 @@ export default function NftSinglePrice({
                             <div className="flex flex-col gap-2">
                               <div className="text-sm font-bold xl:text-lg">
                                 Last rank:&nbsp;
-                                <span className="text-4xl font-bold text-green-600 xl:text-6xl">
+                                <span className="text-4xl font-bold text-red-600 xl:text-6xl">
                                   {raceHistory[0]?.rank}{' '}
                                 </span>
                                 <span className="text-xs">
