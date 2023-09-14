@@ -1,4 +1,4 @@
-import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
+import NftSinglePrice from '@/components/nft-pricing-table/derbystars-single-price';
 
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import RootLayout from '@/layouts/_root-layout';
