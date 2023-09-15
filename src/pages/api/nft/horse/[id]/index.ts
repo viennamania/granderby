@@ -371,7 +371,7 @@ export default async function handler(
 
       grade = 'C';
     } else if (Number(req.query.id) >= 2645 && Number(req.query.id) < 5000) {
-      var formattedNumber = Number(req.query.id) - 2000 + '';
+      var formattedNumber = Number(req.query.id) - 1000 + '';
 
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;

@@ -846,7 +846,7 @@ export default function NftSinglePrice({
                             <div className="flex flex-col gap-2">
                               <div className="item-center flex flex-row justify-center">
                                 <div className="  text-xs  ">Last rank:</div>
-                                <div className=" ml-2 text-3xl font-bold  text-green-600 xl:text-4xl ">
+                                <div className=" ml-2 text-3xl font-bold  text-red-600 xl:text-4xl ">
                                   {raceHistory[0]?.rank}{' '}
                                 </div>
                               </div>
