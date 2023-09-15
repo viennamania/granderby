@@ -751,8 +751,25 @@ export default function NftSinglePrice({
                     <div className="w-full text-left text-lg font-bold text-black dark:text-white">
                       #{nftMetadata?.metadata?.id}
                     </div>
-                    <div className="w-full text-left text-3xl font-bold capitalize text-black dark:text-white">
-                      {nftMetadata?.metadata?.name}
+
+                    <div className="flex w-full flex-row items-center justify-start gap-2.5">
+                      {attributeGrade && (
+                        <Image
+                          src={`/images/grade-${attributeGrade?.toLowerCase()}.png`}
+                          alt="Grade"
+                          width={30}
+                          height={30}
+                          /*
+                          onErrorCapture={() => {
+                            //console.log('onErrorCapture');
+                            return '/images/logo-gd.png';
+                          } }
+                          */
+                        />
+                      )}
+                      <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
+                        {nftMetadata?.metadata?.name}
+                      </div>
                     </div>
 
                     {/*

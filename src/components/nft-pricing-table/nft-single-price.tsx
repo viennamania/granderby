@@ -79,7 +79,7 @@ import {
   ChainId,
   ConnectWallet,
 } from '@thirdweb-dev/react';
-import { set } from 'lodash';
+import { at, set } from 'lodash';
 import { Button } from '@mui/material';
 
 ////import { useToast } from '@/components/ui/use-toast';
@@ -419,6 +419,7 @@ export default function NftSinglePrice({
   ///const attributes: any = nft?.metadata?.attributes;
 
   const [attributeGrade, setAttributeGrade] = useState(null);
+  const [attributeSize, setAttributeSize] = useState(null);
 
   useEffect(() => {
     setAttributeGrade(null);
@@ -430,7 +431,17 @@ export default function NftSinglePrice({
 
         setAttributeGrade(attribute.value);
 
-        return;
+        //return;
+
+        //return attribute.value;
+      }
+
+      if (attribute.trait_type === 'Size') {
+        ///console.log('attribute.value', attribute.value);
+
+        setAttributeSize(attribute.value);
+
+        //return;
 
         //return attribute.value;
       }
@@ -929,11 +940,28 @@ export default function NftSinglePrice({
                       {nftMetadata?.metadata?.description}
                     </Link>
 
-                    <div className="text-left text-sm text-black dark:text-white xl:text-lg">
+                    <div className="mt-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                       #{nftMetadata?.metadata?.id}
                     </div>
-                    <div className="text-left text-xl font-bold capitalize text-black dark:text-white xl:text-2xl">
-                      {nftMetadata?.metadata?.name}
+
+                    <div className="flex w-full flex-row items-center justify-start gap-2.5">
+                      {attributeGrade && (
+                        <Image
+                          src={`/images/grade-${attributeGrade?.toLowerCase()}.png`}
+                          alt="Grade"
+                          width={30}
+                          height={30}
+                        />
+                      )}
+                      <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
+                        {nftMetadata?.metadata?.name}
+                      </div>
+
+                      {attributeSize && (
+                        <div className="text-left text-lg capitalize  text-black dark:text-white xl:text-xl">
+                          {attributeSize}
+                        </div>
+                      )}
                     </div>
                   </div>
 
