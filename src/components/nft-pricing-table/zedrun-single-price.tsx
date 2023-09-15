@@ -936,7 +936,7 @@ export default function NftSinglePrice({
                   <div className="items-left flex flex-col justify-center ">
                     <Link
                       className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                      href={`/horse`}
+                      href={`/zedrun`}
                     >
                       {nftMetadata?.metadata?.description}
                     </Link>
