@@ -512,6 +512,8 @@ export default function NftSinglePrice({
   const [raceHistory, setRaceHistory] = useState([]);
 
   const getLast20 = async () => {
+    setRaceHistory([]);
+
     const response = await fetch('/api/games/horseRace/history', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -862,22 +864,24 @@ export default function NftSinglePrice({
                           ) : (
                             <div className="flex flex-col gap-2">
                               <div className="item-center flex flex-row justify-center">
-                                <div className="  text-xs  ">Last rank:</div>
-                                <div className=" ml-2 text-3xl font-bold  text-red-600 xl:text-4xl ">
+                                <div className="text-6xl font-bold  text-red-600 ">
                                   {raceHistory[0]?.rank}{' '}
+                                </div>
+
+                                <div className="m-5 flex flex-col gap-1">
+                                  <div className=" text-xs  ">Last rank</div>
+                                  <div className="text-xs">
+                                    {format(
+                                      Date.parse(
+                                        raceHistory[0]?.createdAt || 0
+                                      ),
+                                      'yyy-MM-dd hh:mm:ss'
+                                    )}
+                                  </div>
                                 </div>
                               </div>
 
-                              <div className="text-xs">
-                                record:&nbsp;
-                                {format(
-                                  Date.parse(raceHistory[0]?.createdAt || 0),
-                                  'yyy-MM-dd hh:mm:ss'
-                                )}
-                              </div>
-
-                              <div className="item-center flex flex-row justify-center">
-                                <div className=" text-xs  ">Trend:</div>
+                              <div className="item-center m-2 flex flex-row justify-center">
                                 <div className="ml-2 flex flex-row items-center justify-center gap-1 ">
                                   <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
                                     {raceHistory[4]?.rank}
