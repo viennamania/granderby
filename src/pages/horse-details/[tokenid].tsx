@@ -38,6 +38,8 @@ import {
 import { get } from 'http';
 import { set } from 'date-fns';
 
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+
 function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
@@ -45,6 +47,7 @@ function SinglePrice(tokenid: any) {
   const breakpoint = useBreakpoint();
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+
   const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
 
   ///console.log('nftMetadata======>', nftMetadata);
@@ -143,13 +146,29 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const tokenid: any = context.params?.tokenid;
+
+  // If used on the FRONTEND pass your 'clientId'
+  const sdk = new ThirdwebSDK('polygon', {
+    clientId: '79125a56ef0c1629d4863b6df0a43cce',
+  });
+
+  const contract = await sdk.getContract(nftDropContractAddressHorse);
+
+  const nft = await contract.erc721.get(tokenid);
+
+  ///console.log('nft======>', nft);
+
   return {
     props: {
-      title: 'Granderby',
-      description: 'powered by MOMOCON',
-      image: '/images/logo.png',
-      //image: {nftMetadata?.metadata?.image},
+      tokenid: tokenid,
+      //////nftMetadata: nft,
+      title: '#' + tokenid + '-' + nft?.metadata?.name,
+      description: nft?.metadata?.description,
+      //image: '/images/logo.png',
+      //image: data?.metadata?.image,
+      image: nft?.metadata?.image,
     },
   };
 };
@@ -157,11 +176,11 @@ export const getStaticProps: GetStaticProps = async () => {
 const AssetSinglePrice: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
-  const { title, description, image } = props;
+  const { tokenid, title, description, image } = props;
 
-  const router = useRouter();
+  //const router = useRouter();
 
-  console.log('id======', router.query.tokenid);
+  //console.log('id======', router.query.tokenid);
 
   return (
     <>
@@ -184,10 +203,10 @@ const AssetSinglePrice: NextPageWithLayout<
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:image" content={image}></meta>
 
-        <title>{router.query.tokenid}</title>
+        <title>{title}</title>
       </Head>
 
-      <SinglePrice tokenid={router.query.tokenid} />
+      <SinglePrice tokenid={tokenid} />
     </>
   );
 };
