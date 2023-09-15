@@ -790,7 +790,7 @@ export default function NftSinglePrice({
 
                     <div className="flex flex-row items-center justify-start gap-2.5">
                       <div className="flex flex-row items-center justify-start gap-2.5">
-                        <span>Speed:</span>
+                        <span className="text-xs">Speed:</span>
                         {attributeSpped && (
                           <div className="text-left text-xl capitalize  text-red-600 dark:text-white">
                             {attributeSpped}
@@ -799,7 +799,7 @@ export default function NftSinglePrice({
                       </div>
 
                       <div className="flex flex-row items-center justify-start gap-2.5">
-                        <span>Stamina:</span>
+                        <span className="text-xs">Stamina:</span>
                         {attributeStamina && (
                           <div className="text-left text-xl capitalize  text-green-600 dark:text-white">
                             {attributeStamina}
@@ -807,7 +807,7 @@ export default function NftSinglePrice({
                         )}
                       </div>
                       <div className="flex flex-row items-center justify-start gap-2.5">
-                        <span>Power:</span>
+                        <span className="text-xs">Power:</span>
                         {attributePower && (
                           <div className="text-left text-xl capitalize  text-blue-600 dark:text-white">
                             {attributePower}
