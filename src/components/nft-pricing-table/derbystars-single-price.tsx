@@ -79,7 +79,7 @@ import {
   ChainId,
   ConnectWallet,
 } from '@thirdweb-dev/react';
-import { set } from 'lodash';
+import { at, set } from 'lodash';
 import { Button } from '@mui/material';
 
 ////import { useToast } from '@/components/ui/use-toast';
@@ -419,6 +419,10 @@ export default function NftSinglePrice({
   ///const attributes: any = nft?.metadata?.attributes;
 
   const [attributeGrade, setAttributeGrade] = useState(null);
+  const [attributeSize, setAttributeSize] = useState(null);
+  const [attributeSpped, setAttributeSpeed] = useState(null);
+  const [attributeStamina, setAttributeStamina] = useState(null);
+  const [attributePower, setAttributePower] = useState(null);
 
   useEffect(() => {
     setAttributeGrade(null);
@@ -426,13 +430,21 @@ export default function NftSinglePrice({
     nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
       if (attribute.trait_type === 'Grade') {
-        ///console.log('attribute.value', attribute.value);
-
         setAttributeGrade(attribute.value);
+      }
+      if (attribute.trait_type === 'Size') {
+        setAttributeSize(attribute.value);
+      }
+      if (attribute.trait_type === 'Speed') {
+        setAttributeSpeed(attribute.value);
 
-        return;
-
-        //return attribute.value;
+        //console.log('attributeSpeed', attribute.value);
+      }
+      if (attribute.trait_type === 'Stamina') {
+        setAttributeStamina(attribute.value);
+      }
+      if (attribute.trait_type === 'Power') {
+        setAttributePower(attribute.value);
       }
     });
   }, [nftMetadata?.metadata?.attributes]);
@@ -622,7 +634,7 @@ export default function NftSinglePrice({
     });
     const data = await response.json();
 
-    //console.log('data.all: ', data.all);
+    ///console.log('data.all: ', data.all);
 
     setSaleHistory(data.all);
   };
@@ -924,16 +936,61 @@ export default function NftSinglePrice({
                   <div className="items-left flex flex-col justify-center ">
                     <Link
                       className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                      href={`/derbystars`}
+                      href={`/horse`}
                     >
                       {nftMetadata?.metadata?.description}
                     </Link>
 
-                    <div className="text-left text-sm text-black dark:text-white xl:text-lg">
+                    <div className="mt-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                       #{nftMetadata?.metadata?.id}
                     </div>
-                    <div className="text-left text-xl font-bold capitalize text-black dark:text-white xl:text-2xl">
-                      {nftMetadata?.metadata?.name}
+
+                    <div className="flex w-full flex-row items-center justify-start gap-2.5">
+                      {attributeGrade && (
+                        <Image
+                          src={`/images/grade-${attributeGrade?.toLowerCase()}.png`}
+                          alt="Grade"
+                          width={30}
+                          height={30}
+                        />
+                      )}
+                      <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
+                        {nftMetadata?.metadata?.name}
+                      </div>
+
+                      {attributeSize && (
+                        <div className="text-left text-lg capitalize  text-black dark:text-white xl:text-xl">
+                          {attributeSize}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex flex-row items-center justify-start gap-2.5">
+                      <div className="flex flex-row items-center justify-start gap-2.5">
+                        <span>Speed:</span>
+                        {attributeSpped && (
+                          <div className="text-left text-2xl capitalize  text-red-600 dark:text-white xl:text-4xl">
+                            {attributeSpped}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex flex-row items-center justify-start gap-2.5">
+                        <span>Stamina:</span>
+                        {attributeStamina && (
+                          <div className="text-left text-2xl capitalize  text-green-600 dark:text-white xl:text-4xl">
+                            {attributeStamina}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-2.5">
+                        <span>Power:</span>
+                        {attributePower && (
+                          <div className="text-left text-2xl capitalize  text-blue-600 dark:text-white xl:text-4xl">
+                            {attributePower}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
 
@@ -951,69 +1008,73 @@ export default function NftSinglePrice({
                             <b>Not for sale </b>
                           </div>
 
-                          <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
-                            <button
-                              className="w-24 text-sm font-bold xl:text-xl "
-                              onClick={() =>
-                                router.push(
-                                  `https://granderby.market/derbystars-details/${nftMetadata?.metadata?.id}`
-                                )
-                              }
-                            >
-                              <Image
-                                src="/images/market.png"
-                                alt="live"
-                                width={30}
-                                height={30}
-                              />
-                            </button>
+                          <div className="flex flex-col ">
+                            <div className="item-center flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                              <button
+                                className=" w-24 text-sm font-bold xl:text-xl "
+                                onClick={() =>
+                                  router.push(
+                                    `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                                  )
+                                }
+                              >
+                                <Image
+                                  src="/images/market.png"
+                                  alt="live"
+                                  width={30}
+                                  height={30}
+                                />
+                              </button>
 
-                            <span className="pt-1 ">Last price:</span>
-                            <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                              <span className="flex pt-1">Last price:</span>
+
+                              <span className="flex text-xl font-bold text-green-600 xl:text-3xl">
+                                {saleHistory[0]?.paidToken ===
+                                '0x0000000000000000000000000000000000001010'
+                                  ? (
+                                      saleHistory[0]?.totalPricePaid /
+                                      1000000000000000000
+                                    ).toFixed(2)
+                                  : (
+                                      saleHistory[0]?.totalPricePaid / 1000000
+                                    ).toFixed(2)}
+                              </span>
+
                               {saleHistory[0]?.paidToken ===
-                              '0x0000000000000000000000000000000000001010'
-                                ? (
-                                    saleHistory[0]?.totalPricePaid /
-                                    1000000000000000000
-                                  ).toFixed(2)
-                                : (
-                                    saleHistory[0]?.totalPricePaid / 1000000
-                                  ).toFixed(2)}
-                            </span>
+                              '0x0000000000000000000000000000000000001010' ? (
+                                <span className="pt-1"> MATIC</span>
+                              ) : (
+                                <span className="pt-1"> USDC</span>
+                              )}
+                            </div>
 
-                            {saleHistory[0]?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' ? (
-                              <span className="pt-1">MATIC</span>
-                            ) : (
-                              <span className="pt-1">USDC</span>
-                            )}
-                          </div>
-                          <div className=" flex flex-row items-center justify-start gap-2">
-                            {format(
-                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                              'yyy-MM-dd hh:mm:ss'
-                            )}
-                          </div>
+                            <div className=" flex flex-row items-center justify-start text-xs">
+                              {format(
+                                Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                                'yyy-MM-dd hh:mm:ss'
+                              )}
+                            </div>
 
-                          <div className="item-center flex flex-row justify-center gap-2 text-sm font-bold xl:text-lg">
-                            <button
-                              className=" w-24 text-sm font-bold xl:text-xl "
-                              onClick={() =>
-                                router.push(
-                                  `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
-                                )
-                              }
-                            >
-                              <Image
-                                src="/images/logo-opensea.svg"
-                                alt="live"
-                                width={80}
-                                height={30}
-                              />
-                            </button>
+                            <div className="item-center mt-3 flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                              <button
+                                className=" w-24 text-sm font-bold xl:text-xl "
+                                onClick={() =>
+                                  router.push(
+                                    `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                                  )
+                                }
+                              >
+                                <Image
+                                  src="/images/logo-opensea.svg"
+                                  alt="live"
+                                  width={80}
+                                  height={30}
+                                />
+                              </button>
 
-                            <span className="pt-1 ">Last price:</span>
-                            <span className="pt-1">No record</span>
+                              <span className="flex pt-1 ">Last price:</span>
+                              <span className="flex pt-1">No record</span>
+                            </div>
                           </div>
 
                           {address === nftMetadata?.owner &&
@@ -1077,8 +1138,7 @@ export default function NftSinglePrice({
                             </div>
                           </div>
 
-                          <span className="text-sm">
-                            Listing:&nbsp;
+                          <span className="text-xs">
                             {format(
                               new Date(
                                 directListing?.startTimeInSeconds * 1000
@@ -1090,13 +1150,24 @@ export default function NftSinglePrice({
                           <div className="text-sm font-bold xl:text-lg">
                             Last price:{' '}
                             <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                              {(
-                                saleHistory[0]?.totalPricePaid / 1000000
-                              ).toFixed(2)}{' '}
+                              {saleHistory[0]?.paidToken ===
+                              '0x0000000000000000000000000000000000001010'
+                                ? (
+                                    saleHistory[0]?.totalPricePaid /
+                                    1000000000000000000
+                                  ).toFixed(2)
+                                : (
+                                    saleHistory[0]?.totalPricePaid / 1000000
+                                  ).toFixed(2)}
                             </span>
-                            {directListing?.currencyValuePerToken.symbol}
+                            {saleHistory[0]?.paidToken ===
+                            '0x0000000000000000000000000000000000001010' ? (
+                              <span className="pt-1"> MATIC</span>
+                            ) : (
+                              <span className="pt-1"> USDC</span>
+                            )}
                           </div>
-                          <div className=" flex flex-row items-center justify-start gap-2">
+                          <div className=" flex flex-row items-center justify-start gap-2 text-xs">
                             {format(
                               Date.parse(saleHistory[0]?.blockTimestamp || 0),
                               'yyy-MM-dd hh:mm:ss'
@@ -1168,7 +1239,9 @@ export default function NftSinglePrice({
                                   </div>
                                 )}
                                 <div className="text-md  xl:text-xl">
-                                  {tokenBalanceUSDC?.displayValue}{' '}
+                                  {Number(
+                                    tokenBalanceUSDC?.displayValue
+                                  ).toFixed(2)}{' '}
                                   {tokenBalanceUSDC?.symbol}
                                 </div>
                               </div>
@@ -1303,12 +1376,12 @@ export default function NftSinglePrice({
                             <div className="flex flex-col gap-2">
                               <div className="text-sm font-bold xl:text-lg">
                                 Last rank:&nbsp;
-                                <span className="text-4xl font-bold text-green-600 xl:text-6xl">
-                                  {raceHistory[0].rank}{' '}
+                                <span className="text-2xl font-bold text-red-600 xl:text-4xl">
+                                  {raceHistory[0]?.rank}{' '}
                                 </span>
                                 <span className="text-xs">
                                   {format(
-                                    Date.parse(raceHistory[0].createdAt || 0),
+                                    Date.parse(raceHistory[0]?.createdAt || 0),
                                     'yyy-MM-dd hh:mm:ss'
                                   )}
                                 </span>
@@ -1403,11 +1476,9 @@ export default function NftSinglePrice({
               </span>
             </div>
 
-            {/*
             <Collapse label="Grade" initialOpen={true}>
               <Grade {...{ grade: attributeGrade }} />
             </Collapse>
-            */}
 
             {/*
             <Collapse label="Speed" initialOpen={true}>

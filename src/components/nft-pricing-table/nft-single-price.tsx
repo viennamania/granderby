@@ -420,6 +420,9 @@ export default function NftSinglePrice({
 
   const [attributeGrade, setAttributeGrade] = useState(null);
   const [attributeSize, setAttributeSize] = useState(null);
+  const [attributeSpped, setAttributeSpeed] = useState(null);
+  const [attributeStamina, setAttributeStamina] = useState(null);
+  const [attributePower, setAttributePower] = useState(null);
 
   useEffect(() => {
     setAttributeGrade(null);
@@ -427,23 +430,21 @@ export default function NftSinglePrice({
     nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
       if (attribute.trait_type === 'Grade') {
-        ///console.log('attribute.value', attribute.value);
-
         setAttributeGrade(attribute.value);
-
-        //return;
-
-        //return attribute.value;
       }
-
       if (attribute.trait_type === 'Size') {
-        ///console.log('attribute.value', attribute.value);
-
         setAttributeSize(attribute.value);
+      }
+      if (attribute.trait_type === 'Speed') {
+        setAttributeSpeed(attribute.value);
 
-        //return;
-
-        //return attribute.value;
+        //console.log('attributeSpeed', attribute.value);
+      }
+      if (attribute.trait_type === 'Stamina') {
+        setAttributeStamina(attribute.value);
+      }
+      if (attribute.trait_type === 'Power') {
+        setAttributePower(attribute.value);
       }
     });
   }, [nftMetadata?.metadata?.attributes]);
@@ -962,6 +963,34 @@ export default function NftSinglePrice({
                           {attributeSize}
                         </div>
                       )}
+                    </div>
+
+                    <div className="flex flex-row items-center justify-start gap-2.5">
+                      <div className="flex flex-row items-center justify-start gap-2.5">
+                        <span>Speed:</span>
+                        {attributeSpped && (
+                          <div className="text-left text-2xl capitalize  text-red-600 dark:text-white xl:text-4xl">
+                            {attributeSpped}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex flex-row items-center justify-start gap-2.5">
+                        <span>Stamina:</span>
+                        {attributeStamina && (
+                          <div className="text-left text-2xl capitalize  text-green-600 dark:text-white xl:text-4xl">
+                            {attributeStamina}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-2.5">
+                        <span>Power:</span>
+                        {attributePower && (
+                          <div className="text-left text-2xl capitalize  text-blue-600 dark:text-white xl:text-4xl">
+                            {attributePower}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
 
