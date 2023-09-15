@@ -416,9 +416,9 @@ export default async function handler(
 
   //https://granderby.io/nft/horse/Hrs_00200000.png
 
-  const speed = 54;
-  const stamina = 34;
-  const power = 48;
+  const speed = parseInt(((Number(req.query.id) / 100) * 2 + 11).toString());
+  const stamina = parseInt(((Number(req.query.id) / 40) * 2 + 11).toString());
+  const power = parseInt(((Number(req.query.id) / 80) * 2 + 11).toString());
 
   const preceding = 0;
   const overtaking = 0;
