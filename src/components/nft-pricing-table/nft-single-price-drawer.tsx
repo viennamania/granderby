@@ -883,23 +883,23 @@ export default function NftSinglePrice({
 
                               <div className="item-center m-2 flex flex-row justify-center">
                                 <div className="ml-2 flex flex-row items-center justify-center gap-1 ">
-                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                  <div className="text-3xl font-bold  text-green-600 ">
                                     {raceHistory[4]?.rank}
                                   </div>
-                                  <ArrowRight className="h-2 w-2 " />
-                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                  <ArrowRight className="m-2 h-2 w-2 " />
+                                  <div className="text-3xl font-bold  text-green-600 ">
                                     {raceHistory[3]?.rank}
                                   </div>
-                                  <ArrowRight className="h-2 w-2 " />
-                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                  <ArrowRight className="m-2 h-2 w-2 " />
+                                  <div className="text-3xl font-bold  text-green-600 ">
                                     {raceHistory[2]?.rank}
                                   </div>
-                                  <ArrowRight className="h-2 w-2 " />
-                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                  <ArrowRight className="m-2 h-2 w-2 " />
+                                  <div className="text-3xl font-bold  text-green-600 ">
                                     {raceHistory[1]?.rank}
                                   </div>
-                                  <ArrowRight className="h-2 w-2 " />
-                                  <div className="text-xl font-bold  text-green-600 xl:text-2xl ">
+                                  <ArrowRight className="m-2 h-2 w-2 " />
+                                  <div className="text-3xl font-bold  text-green-600 ">
                                     {raceHistory[0]?.rank}
                                   </div>{' '}
                                   {raceHistory[0]?.rank >
