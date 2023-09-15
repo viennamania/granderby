@@ -190,7 +190,7 @@ export default function Feeds({ className }: { className?: string }) {
                     //setTokenid(nft.metadata.id.toString()),
                     //setIsOpen(true)
 
-                    router.push('/derbystars-details/' + nft?.tokenId)
+                    router.push('/zedrun-details/' + nft?.tokenId)
                   }
                   onMouseOver={() => {
                     //alert("onMouseOver");

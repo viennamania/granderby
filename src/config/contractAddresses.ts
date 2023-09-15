@@ -14,6 +14,9 @@ export const nftDropContractAddressHorse =
 export const nftDropContractAddressHorseDerbyStars =
   '0x9d3aCa725a289c6E798355592Cd3dd5E43fA14A5';
 
+export const nftDropContractAddressHorseZedRun =
+  '0x67F4732266C7300cca593C814d46bee72e40659F';
+
 export const nftDropContractAddressNpc =
   '0x9d3aCa725a289c6E798355592Cd3dd5E43fA14A5';
 
