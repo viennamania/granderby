@@ -83,7 +83,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
 
           <div className="text-sm text-blue-600">#{nft?.metadata?.id}</div>
 
-          <span className="flex h-9 flex-wrap text-xs ">
+          <span className="flex h-10 flex-wrap text-xs font-bold xl:text-xl ">
             {nft?.metadata?.name}
           </span>
         </div>

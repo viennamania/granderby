@@ -1476,9 +1476,11 @@ export default function NftSinglePrice({
               </span>
             </div>
 
+            {/*
             <Collapse label="Grade" initialOpen={true}>
               <Grade {...{ grade: attributeGrade }} />
             </Collapse>
+            */}
 
             {/*
             <Collapse label="Speed" initialOpen={true}>
