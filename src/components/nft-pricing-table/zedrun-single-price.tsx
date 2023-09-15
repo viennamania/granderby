@@ -404,7 +404,7 @@ export default function NftSinglePrice({
   );
   */
 
-  //console.log('nftMetadata', nftMetadata);
+  ///console.log('nftMetadata', nftMetadata);
   //console.log('contractAddress', contractAddress);
 
   const { contract: nftDropContract } = useContract(
@@ -938,33 +938,48 @@ export default function NftSinglePrice({
                       className=" text-left text-lg capitalize text-blue-500 dark:text-white "
                       href={`/zedrun`}
                     >
-                      {nftMetadata?.metadata?.description}
+                      {nftMetadata?.metadata?.description ? (
+                        <>{nftMetadata?.metadata?.description}</>
+                      ) : (
+                        <>ZED RUN</>
+                      )}
                     </Link>
 
-                    <div className="mt-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
+                    <div className="mt-2 flex flex-row items-center justify-start ">
+                      <Image
+                        src="/images/logo-zedrun.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+
+                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                        #{nftMetadata?.metadata?.id}
+                      </span>
                     </div>
 
-                    <div className="flex w-full flex-row items-center justify-start gap-2.5">
-                      {attributeGrade && (
+                    <div className="mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                      {/*attributeGrade && (
                         <Image
                           src={`/images/grade-${attributeGrade?.toLowerCase()}.png`}
                           alt="Grade"
                           width={30}
                           height={30}
                         />
-                      )}
-                      <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
+                      )*/}
+
+                      <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
                         {nftMetadata?.metadata?.name}
                       </div>
 
-                      {attributeSize && (
+                      {/*attributeSize && (
                         <div className="text-left text-lg capitalize  text-black dark:text-white xl:text-xl">
                           {attributeSize}
                         </div>
-                      )}
+                      )*/}
                     </div>
 
+                    {/*
                     <div className="flex flex-row items-center justify-start gap-2.5">
                       <div className="flex flex-row items-center justify-start gap-2.5">
                         <span>Speed:</span>
@@ -992,6 +1007,7 @@ export default function NftSinglePrice({
                         )}
                       </div>
                     </div>
+                    */}
                   </div>
 
                   {loadingListings ? (
