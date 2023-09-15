@@ -416,12 +416,15 @@ export default async function handler(
 
   //https://granderby.io/nft/horse/Hrs_00200000.png
 
-  const speed = 0;
+  const speed = 54;
+  const stamina = 34;
+  const power = 48;
+
   const preceding = 0;
   const overtaking = 0;
-  const stamina = 0;
+
   const spirit = 0;
-  const power = 0;
+
   const agility = 0;
   const weight = 0;
   const drivinghabits = 0;
