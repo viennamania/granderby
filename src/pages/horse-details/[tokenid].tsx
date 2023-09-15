@@ -1,6 +1,7 @@
 import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
 
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
+
 import RootLayout from '@/layouts/_root-layout';
 import { NextPageWithLayout } from '@/types';
 import React, { useEffect, useState } from 'react';
@@ -142,11 +143,14 @@ export async function getStaticPaths() {
       { params: { tokenid: '7' } },
     ],
     fallback: true,
+    
     */
   };
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export async function getStaticProps(context: any) {
+  ///export const getStaticProps: GetStaticProps = async (context) => {
+
   const tokenid: any = context.params?.tokenid;
 
   // If used on the FRONTEND pass your 'clientId'
@@ -171,16 +175,45 @@ export const getStaticProps: GetStaticProps = async (context) => {
       image: nft?.metadata?.image,
     },
   };
-};
+}
+
+/*
+export async function getServerSideProps(context:any) {
+  const tokenid: any = context.params?.tokenid;
+
+  console.log("tokenid", tokenid);
+
+  //const tokenid: any = context.query.slug;
+
+  // If used on the FRONTEND pass your 'clientId'
+  const sdk = new ThirdwebSDK('polygon', {
+    clientId: '79125a56ef0c1629d4863b6df0a43cce',
+  });
+
+  const contract = await sdk.getContract(nftDropContractAddressHorse);
+
+  const nft = await contract.erc721.get(tokenid);
+
+  ///console.log('nft======>', nft);
+
+  return {
+    props: {
+      tokenid: tokenid,
+      //////nftMetadata: nft,
+      title: '#' + tokenid + '-' + nft?.metadata?.name,
+      description: nft?.metadata?.description,
+      //image: '/images/logo.png',
+      //image: data?.metadata?.image,
+      image: nft?.metadata?.image,
+    },
+  };
+}
+*/
 
 const AssetSinglePrice: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
   const { tokenid, title, description, image } = props;
-
-  //const router = useRouter();
-
-  //console.log('id======', router.query.tokenid);
 
   return (
     <>
