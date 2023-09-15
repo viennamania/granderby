@@ -118,6 +118,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      {/*
       <Head>
         <meta
           name="viewport"
@@ -145,6 +146,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
         <title>Granderby - powered by MOMOCON</title>
       </Head>
+      */}
 
       <QueryClientProvider client={queryClient}>
         <ThirdwebProvider
