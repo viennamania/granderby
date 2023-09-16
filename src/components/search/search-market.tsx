@@ -126,7 +126,9 @@ export default function Search() {
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
         <div className="mt-10 hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700 2xl:block">
+          {/*
           <Filters />
+          */}
         </div>
 
         <div className="m-3 block">

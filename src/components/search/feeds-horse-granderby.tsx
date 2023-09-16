@@ -73,44 +73,49 @@ export default function Feeds({ className }: { className?: string }) {
     price: string;
   };
 
-  const { data, status, fetchNextPage, hasNextPage, refetch } =
-    useInfiniteQuery(
-      'infiniteCharacters',
+  const {
+    data: searchData,
+    status,
+    fetchNextPage,
+    hasNextPage,
+    refetch,
+  } = useInfiniteQuery(
+    'infiniteCharacters',
 
-      async ({
-        pageParam = 1,
+    async ({
+      pageParam = 1,
 
-        //pageParam = '',
-      }) =>
-        await fetch(
-          '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              ///grades: selectedGradesStorage,
-              grades: selectedGradesStorage ?? [],
-              manes: selectedManesStorage ?? [],
-              //sort: selectedGSortStorage,
-            }),
-          }
-        ).then((result) => {
-          return result.json();
-        }),
-      {
-        getNextPageParam: (lastPage, pages) => {
-          ////console.log(" feeds-horse  lastPage======>", lastPage);
+      //pageParam = '',
+    }) =>
+      await fetch(
+        '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ///grades: selectedGradesStorage,
+            grades: selectedGradesStorage ?? [],
+            manes: selectedManesStorage ?? [],
+            //sort: selectedGSortStorage,
+          }),
+        }
+      ).then((result) => {
+        return result.json();
+      }),
+    {
+      getNextPageParam: (lastPage, pages) => {
+        ////console.log(" feeds-horse  lastPage======>", lastPage);
 
-          //console.log("pages======>", pages);
+        //console.log("pages======>", pages);
 
-          if (lastPage.pageKey) {
-            return lastPage.pageKey;
-          } else {
-            return undefined;
-          }
-        },
-      }
-    );
+        if (lastPage.pageKey) {
+          return lastPage.pageKey;
+        } else {
+          return undefined;
+        }
+      },
+    }
+  );
 
   useEffect(() => {
     /*
@@ -138,12 +143,12 @@ export default function Feeds({ className }: { className?: string }) {
 
       {status === 'success' && (
         <InfiniteScroll
-          dataLength={data?.pages?.length * 20}
+          dataLength={searchData?.pages?.length * 20}
           next={fetchNextPage}
           hasMore={hasNextPage ?? false}
           loader={
             <div className="mt-10 flex flex-col items-center justify-center ">
-              <div className="text-xl">Loading horses...</div>
+              <div className="text-xl">Loading...</div>
 
               <span className="items-top mt-10 flex h-screen w-full justify-center">
                 <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
@@ -181,7 +186,7 @@ export default function Feeds({ className }: { className?: string }) {
         </Button>
         */}
 
-          {data?.pages.map((page) => (
+          {searchData?.pages.map((page) => (
             <div
               key={page.pageKey}
               className={cn(

@@ -695,7 +695,7 @@ export function Filters() {
         <GradeMultiple />
       </Collapse>
 
-      <Collapse label="Mane" initialOpen>
+      <Collapse label="Manes" initialOpen>
         <ManeMultiple />
       </Collapse>
 
