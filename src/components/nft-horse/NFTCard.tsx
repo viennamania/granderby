@@ -26,13 +26,15 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 interface NFTCardProps {
+  contractAddress: string;
   tokenId: number;
 }
 
-const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
+const NFTCard: FC<NFTCardProps> = ({ contractAddress, tokenId }) => {
   const address = useAddress();
 
-  const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+  //////const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+  const { contract } = useContract(contractAddress, 'nft-drop');
 
   const { data: nft } = useNFT(contract, tokenId);
 
@@ -57,7 +59,14 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
         <div className=" overflow-hidden rounded-lg bg-white shadow-lg">
           {nft?.metadata && (
             <div className=" flex flex-col">
-              <div className="m-0 w-full items-center justify-start bg-gray-100">
+              <div className="flex w-full flex-row items-center justify-start bg-gray-100 p-1">
+                <Image
+                  src="/horseRace/logo-granderby.png"
+                  alt="logo"
+                  width={18}
+                  height={18}
+                />
+
                 <p className="p-1  text-left text-sm font-bold ">
                   #{nft?.metadata?.id}
                 </p>
@@ -76,7 +85,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
                 //}
               />
 
-              <div className=" h-10 w-full items-center justify-center xl:h-14">
+              <div className=" h-16 w-full items-center justify-center xl:h-16 ">
                 <p className="text-md p-1  text-center ">
                   {nft?.metadata?.name}
                 </p>

@@ -11,6 +11,7 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import toast from 'react-hot-toast';
 
 import { format } from 'date-fns';
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
 export default function LastWinnersPage({ npcs }: any, status: any) {
   const [sonKazananlar, setSonKazananlar] = useState<any>();
@@ -166,6 +167,7 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
                     }}
                   >
                     <NFTCard
+                      contractAddress={nftDropContractAddressHorse}
                       tokenId={item.nft?.tokenId}
                       key={item.nft?.tokenId}
                     />
@@ -204,12 +206,12 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
           })}
       </div>
 
+      <span className="text-lg">
+        {format(Date.parse(sonKazananlar?.date || 0), 'yyy-MM-dd hh:mm:ss')}
+      </span>
+
       <div className="mt-3 flex w-full flex-row items-center justify-between gap-5">
         <div className="flex flex-col items-center justify-center gap-5">
-          <span className="text-lg">
-            {format(Date.parse(sonKazananlar?.date || 0), 'yyy-MM-dd hh:mm:ss')}
-          </span>
-
           <div className=" flex flex-wrap items-center justify-center gap-2 ">
             {sonKazananlar &&
               sonKazananlar.placements.map((item: any) => {
@@ -240,7 +242,7 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
           <Image
             src="/images/inkent.jpeg"
             alt="inkent"
-            width={70}
+            width={40}
             height={50}
           />
         </div>

@@ -31,7 +31,9 @@ import { OptionIcon } from '@/components/icons/option';
 
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 
-export default function Inventory() {
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
+export default function Search() {
   const tabMenu = [
     /*
     {

@@ -18,14 +18,14 @@ import styles from '../../styles/Home.module.css';
 import { useState, useEffect } from 'react';
 
 interface NFTCardProps {
+  contractAddress: string;
   tokenId: number;
 }
 
-const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
-
+const NFTCard: FC<NFTCardProps> = ({ contractAddress, tokenId }) => {
   const address = useAddress();
 
-  const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+  const { contract } = useContract(contractAddress, 'nft-drop');
   const { data: nft } = useNFT(contract, tokenId);
 
   const { contract: editionDrop } = useContract(contractAddressRace);

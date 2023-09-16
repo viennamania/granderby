@@ -353,6 +353,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
                       }}
                     >
                       <NFTCard
+                        contractAddress={nftDropContractAddressHorse}
                         tokenId={stakedToken.toNumber()}
                         key={stakedToken.toString()}
                       />

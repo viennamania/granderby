@@ -177,6 +177,7 @@ export default function ProfileTab() {
           {stakedTokens &&
             stakedTokens[0]?.map((stakedToken: BigNumber) => (
               <NFTCard
+                contractAddress={nftDropContractAddressHorse}
                 tokenId={stakedToken.toNumber()}
                 key={stakedToken.toString()}
               />

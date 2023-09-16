@@ -13,11 +13,12 @@ import {
 import styles from '../../styles/Home.module.css';
 
 interface NFTCardProps {
+  contractAddress: string;
   tokenId: number;
 }
 
-const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
-  const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
+const NFTCard: FC<NFTCardProps> = ({ contractAddress, tokenId }) => {
+  const { contract } = useContract(contractAddress, 'nft-drop');
   const { data: nft } = useNFT(contract, tokenId);
 
   return (

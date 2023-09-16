@@ -25,7 +25,7 @@ import { ClassicLayoutIcon } from '@/components/icons/classic-layout-icon';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
-import Inventory from '@/components/search/inventory-horse';
+import Search from '@/components/search/search-inventory';
 
 const ColorPreset = [
   {
@@ -353,7 +353,7 @@ export default function InventoriesDrawer() {
                   <ColorSwitcher />
                   */}
 
-                  <Inventory />
+                  <Search />
                 </div>
               </Scrollbar>
             </div>

@@ -23,8 +23,6 @@ import { ClassicLayoutIcon } from '@/components/icons/classic-layout-icon';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
-import Inventory from '@/components/search/inventory-horse';
-
 import EntryTables from '@/components/horseRace/watchScreen/entryTables';
 
 import { useState } from 'react';

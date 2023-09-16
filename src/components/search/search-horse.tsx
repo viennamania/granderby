@@ -34,6 +34,7 @@ import { randomInt } from 'crypto';
 import LastWinnersPage from '@/components/horseRace/watchScreen/lastWinnersGranderby';
 
 import Collapse from '@/components/ui/collapse-last-winners';
+
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 export default function Search() {
@@ -211,7 +212,7 @@ export default function Search() {
                     </div>
 
                     <div className="flex flex-col gap-2 xl:flex-row">
-                      {selectedManesStorage.map((mane: any, index: number) => (
+                      {selectedManesStorage?.map((mane: any, index: number) => (
                         <div
                           key={index}
                           className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-2 py-1 dark:border-gray-700"

@@ -25,8 +25,6 @@ import RootLayout from '@/layouts/_root-layout';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 
-import NFTCard from '@/components/nft/NFTCard';
-
 //import '@rainbow-me/rainbowkit/styles.css';
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
