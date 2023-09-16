@@ -93,6 +93,8 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
   const { data: stakedTokens, isLoading: isLoadingStakedTokens } =
     useContractRead(stakingContract, 'getStakeInfo', [address]);
 
+  ///console.log("stakedTokens", stakedTokens);
+
   const { contract: tokenContract } = useContract(
     tokenContractAddressGRD,
     'token'
@@ -334,10 +336,10 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
             ) : (
               <div
                 className={cn(
-                  'mt-5 grid grid-cols-2 gap-2  ',
+                  'mt-5 grid grid-cols-3 gap-2  ',
                   layout === LAYOUT_OPTIONS.RETRO
-                    ? 'md:grid-cols-2'
-                    : 'md:grid-cols-2'
+                    ? 'md:grid-cols-3'
+                    : 'md:grid-cols-3'
                 )}
               >
                 {stakedTokens &&

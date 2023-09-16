@@ -54,38 +54,35 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   return (
     <>
       {nft && (
-        <div className=" flex flex-col items-center  justify-center gap-1">
+        <div className=" overflow-hidden rounded-lg bg-white shadow-lg">
           {nft?.metadata && (
-            <div className=" flex">
-              {/*
-            <ThirdwebNftMedia
-              metadata={nft.metadata}
-              //className={styles.nftMedia}
-              className="rounded-lg "
-            />
-            */}
+            <div className=" flex flex-col">
+              <div className="m-0 w-full items-center justify-start bg-gray-100">
+                <p className="p-1  text-left text-sm font-bold ">
+                  #{nft?.metadata?.id}
+                </p>
+              </div>
 
               <Image
                 //src={nft.media[0].thumbnail}
                 src={nft?.metadata?.image ? nft?.metadata?.image : ''}
                 alt={'alt'}
-                width={200}
-                height={200}
-                className="rounded-lg"
+                width={150}
+                height={150}
                 // onClick={() =>
                 //setTokenid(nft.metadata.id.toString()),
                 //setIsOpen(true)
                 //router.push('/horse-details/' + nft?.metadata?.id)
                 //}
               />
+
+              <div className=" h-10 w-full items-center justify-center xl:h-14">
+                <p className="text-md p-1  text-center ">
+                  {nft?.metadata?.name}
+                </p>
+              </div>
             </div>
           )}
-
-          <div className="text-sm text-blue-600">#{nft?.metadata?.id}</div>
-
-          <span className="flex h-10 flex-wrap text-xs font-bold xl:text-xl ">
-            {nft?.metadata?.name}
-          </span>
         </div>
       )}
     </>

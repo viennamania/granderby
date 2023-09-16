@@ -310,7 +310,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
 
                   <div
                     className={cn(
-                      'grid grid-cols-4 gap-2 sm:grid-cols-4 md:grid-cols-4',
+                      'grid grid-cols-3 gap-2 ',
                       isGridCompact
                         ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
                         : '3xl:!grid-cols-3 4xl:!grid-cols-4',
@@ -320,7 +320,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                     {ownedNfts?.map((nft) => (
                       <div
                         key={nft?.metadata?.id}
-                        className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+                        className=" overflow-hidden rounded-lg bg-white shadow-lg"
                         onClick={() => {
                           //setTokenid(nft.metadata.id.toString()),
 
@@ -330,6 +330,11 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                           router.push('/horse-details/' + nft?.metadata?.id);
                         }}
                       >
+                        <div className="m-0 w-full items-center justify-start bg-gray-100">
+                          <p className="p-1  text-left text-sm font-bold ">
+                            #{nft?.metadata?.id}
+                          </p>
+                        </div>
                         <Image
                           src={
                             nft?.metadata?.image
@@ -341,9 +346,9 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                           width={200}
                           loading="lazy"
                         />
-                        <div className="m-0 w-full items-center justify-center bg-gray-100">
-                          <p className="mr-2  text-right  text-sm text-sky-500 ">
-                            #{nft?.metadata?.id}
+                        <div className=" h-10 w-full items-center justify-center xl:h-14">
+                          <p className="text-md p-1  text-center ">
+                            {nft?.metadata?.name}
                           </p>
                         </div>
                       </div>
@@ -354,6 +359,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
             }
           </div>
 
+          {/*
           <div className="mt-5 flex flex-col">
             <div className="flex flex-row justify-between">
               <div className="text-xl">Derby Stars</div>
@@ -407,29 +413,6 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                         I have {ownedNftsDerbyStars?.length} horses.
                       </h4>
 
-                      {/*
-                      <Button
-                        className="w-full"
-                        title="Go"
-                        color="white"
-                        shape="rounded"
-                        variant="transparent"
-                        size="large"
-                        onClick={() => {
-                          router.push('/mint-carrot');
-                        }}
-                      >
-                        <div className="flex flex-row items-center gap-2">
-                          <Image
-                            src="/horseRace/3338carrots.png"
-                            alt="breed"
-                            width={48}
-                            height={48}
-                          />
-                          Try to breed them.
-                        </div>
-                      </Button>
-                      */}
                     </div>
                   )}
 
@@ -478,6 +461,8 @@ export default function OwnedFeeds({ className }: { className?: string }) {
               )
             }
           </div>
+
+          */}
         </div>
       )}
     </div>
