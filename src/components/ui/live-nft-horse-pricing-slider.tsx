@@ -15,6 +15,8 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 
+import { ChevronForward } from '@/components/icons/chevron-forward';
+
 type Price = {
   name: number;
   value: number;
@@ -47,8 +49,6 @@ export function LivePricingFeed({
   prices,
   isBorder,
 }: LivePriceFeedProps) {
-  const router = useRouter();
-
   const { openDrawer } = useDrawer();
 
   const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
@@ -172,6 +172,8 @@ export function LivePricingFeed({
 }
 
 export default function LiveNftPricingSlider({ limits }: { limits: number }) {
+  const router = useRouter();
+
   const breakpoint = useBreakpoint();
 
   const limit = limits ?? 4;
@@ -225,7 +227,8 @@ export default function LiveNftPricingSlider({ limits }: { limits: number }) {
       <div className="mt-2 flex w-full flex-row items-center justify-between gap-5">
         <div className="text-sm font-bold ">
           Total Trade:{' '}
-          <span className="font-bold text-green-600">{'17,422'} </span>USD
+          <span className="text-xl font-bold text-green-600">{'17,422'} </span>
+          USD
         </div>
 
         <div className="  flex justify-end ">
@@ -243,6 +246,17 @@ export default function LiveNftPricingSlider({ limits }: { limits: number }) {
               height={50}
             />
           </div>
+
+          <button
+            className="ml-5 flex flex-row items-center justify-center gap-3"
+            ///onClick={(e) => router.push('/coin/usdc')}
+            onClick={() => {
+              router.push('/buy-horse');
+              ///router.push('/horse-details/' + nft?.metadata?.id);
+            }}
+          >
+            <ChevronForward className="mr-10 rtl:rotate-180" />
+          </button>
         </div>
       </div>
     </div>

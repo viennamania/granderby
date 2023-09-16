@@ -73,6 +73,7 @@ import { IHorseGame } from '@/utils/horseRace/interfaces/horseGame';
 import CollapseIntroVideo from '@/components/ui/collapse-intro-video';
 import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import CollapseLastWinners from '@/components/ui/collapse-last-winners';
+import CollapseCurrentEvent from '@/components/ui/collapse-current-event';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
@@ -567,31 +568,35 @@ export default function ModernScreen() {
             </div>
           </div>
 
-          <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-5 shadow-card dark:bg-light-dark ">
-            <div className="mb-1 text-center text-sm text-black xl:text-lg">
-              My horses <span className="font-bold text-red-500">RUN</span>, I{' '}
-              <span className="font-bold text-blue-500">EARN</span> !{' '}
-              <span className="text-block text-xs ">©</span>
-            </div>
+          <div className="mt-5 flex">
+            <CollapseCurrentEvent label="Current Event">
+              <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-5 shadow-card dark:bg-light-dark ">
+                <div className="mb-1 text-center text-sm text-black xl:text-lg">
+                  My horses <span className="font-bold text-red-500">RUN</span>,
+                  I <span className="font-bold text-blue-500">EARN</span> !{' '}
+                  <span className="text-block text-xs ">©</span>
+                </div>
 
-            <EntryTables
-              horse1={horse1Oran}
-              horse2={horse2Oran}
-              horse3={horse3Oran}
-              horse4={horse4Oran}
-              horse5={horse5Oran}
-              horse6={horse6Oran}
-              horse7={horse7Oran}
-              horse8={horse8Oran}
-              horse9={horse9Oran}
-              horse10={horse10Oran}
-              //user={user}
-              user={null}
-              npcs={npcNames}
-              //inputs={inputs}
-              inputs={null}
-              balance={0}
-            />
+                <EntryTables
+                  horse1={horse1Oran}
+                  horse2={horse2Oran}
+                  horse3={horse3Oran}
+                  horse4={horse4Oran}
+                  horse5={horse5Oran}
+                  horse6={horse6Oran}
+                  horse7={horse7Oran}
+                  horse8={horse8Oran}
+                  horse9={horse9Oran}
+                  horse10={horse10Oran}
+                  //user={user}
+                  user={null}
+                  npcs={npcNames}
+                  //inputs={inputs}
+                  inputs={null}
+                  balance={0}
+                />
+              </div>
+            </CollapseCurrentEvent>
           </div>
 
           <div className="items-top mt-5 flex w-full justify-center ">

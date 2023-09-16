@@ -19,6 +19,10 @@ import { OptionIcon } from '@/components/icons/option';
 
 import { add, set } from 'lodash';
 
+import { ChevronForward } from '@/components/icons/chevron-forward';
+
+import { useRouter } from 'next/router';
+
 import {
   ///nftDropContractAddressEntry,
   nftDropContractAddressCar,
@@ -125,6 +129,8 @@ export default function EntryTables({
   */
 
   //console.log("npcs", npcs);
+
+  const router = useRouter();
 
   const address = useAddress();
 
@@ -1224,6 +1230,35 @@ export default function EntryTables({
             </button>
           </div>
         )}
+
+        <div className="mt-2 flex w-full flex-row items-center justify-between gap-5">
+          <div className="text-sm font-bold ">
+            Total Events:{' '}
+            <span className="text-xl font-bold text-green-600">{'268'} </span>
+          </div>
+
+          <div className="  flex justify-end ">
+            <div className="flex flex-col items-center justify-center gap-1">
+              <Image
+                src="/horseRace/logo-racecourse.png"
+                alt="market"
+                width={80}
+                height={50}
+              />
+            </div>
+
+            <button
+              className="ml-5 flex flex-row items-center justify-center gap-3"
+              ///onClick={(e) => router.push('/coin/usdc')}
+              onClick={() => {
+                router.push('/track');
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/*
