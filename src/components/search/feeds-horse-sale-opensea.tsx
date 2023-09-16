@@ -247,16 +247,18 @@ export default function SaleFeeds({ className }: { className?: string }) {
                 variant="transparent"
                 size="small"
                 onClick={() => {
-                  router.push('https://granderby.market/?view=listed');
+                  router.push(
+                    'https://opensea.io/collection/granderby-horse-nft?search[toggles][0]=IS_LISTED'
+                  );
                 }}
               >
                 <Image
-                  src="/images/market.png"
-                  alt="market"
-                  width={24}
-                  height={24}
+                  src="/images/logo-opensea.svg"
+                  alt="opensea"
+                  width={80}
+                  height={50}
                 />
-                <span className="">source from: Granderby Market</span>
+                <span className="">source from: Opensea Market</span>
               </Button>
             </div>
 
@@ -278,7 +280,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     //setIsOpen(true)
                     router.push(
                       //`/listing/${listing.id}`
-                      `/sale-details/${listing.asset?.id}`
+                      `/horse-details/${listing.asset?.id}`
                     )
                   }
                 >

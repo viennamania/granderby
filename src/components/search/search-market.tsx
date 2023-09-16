@@ -3,6 +3,8 @@ import Button from '@/components/ui/button';
 import Feeds from './feeds-horse';
 import SaleFeeds from './feeds-horse-sale';
 
+import SaleFeedsOpensea from './feeds-horse-sale-opensea';
+
 //import ListedFeeds from '.feeds-horse-listed';
 
 import RegisteredFeeds from './feeds-horse-registered-hv';
@@ -52,10 +54,12 @@ export default function Search() {
   }
 
   const tabMenu = [
+    /*
     {
       title: 'Items',
       path: 'items',
     },
+    */
     /*
     {
       title: 'Owned',
@@ -69,12 +73,15 @@ export default function Search() {
     },
     */
 
-    /*
     {
-      title: 'Sales',
-      path: 'Sales',
+      title: 'Granderby Market',
+      path: 'GranderbyMarket',
     },
-    */
+
+    {
+      title: 'Opensea Market',
+      path: 'OpenseaMarket',
+    },
 
     /*
     {
@@ -124,55 +131,12 @@ export default function Search() {
 
         <div className="m-3 block">
           <ParamTab tabMenu={tabMenu}>
-            {/* Total list of items */}
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="flex flex-col gap-2 xl:flex-row">
-                    {selectedGradesStorage
-                      //.sort(function(a:any, b:any) {return a - b})
-                      // sort grades
-                      /*
-                      .sort(function (a: any, b: any) {
-                        if (a < b) {
-                          return -1;
-                        }
-                        if (a > b) {
-                          return 1;
-                        }
-                        return 0;
-                      })
-                      */
-                      .map((grade: any, index: number) => (
-                        <div
-                          key={index}
-                          className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-2 py-1 dark:border-gray-700"
-                        >
-                          <div className="text-sm font-bold">Grade:</div>
-                          <div className="text-sm font-bold">{grade}</div>
-
-                          <button
-                            className="text-sm font-bold  "
-                            onClick={() => {
-                              const temp = selectedGradesStorage?.filter(
-                                (item) => item !== grade
-                              );
-                              setSelectedGradesStorage(temp);
-                            }}
-                          >
-                            X
-                          </button>
-                        </div>
-                      ))}
-                  </div>
-
                   <div className="items-right flex w-full justify-end">
                     <div className="flex gap-6 3xl:gap-8 ">
                       <SortList />
-
-                      <div className="hidden 3xl:block">
-                        <GridSwitcher />
-                      </div>
 
                       <div className="hidden sm:block 2xl:hidden">
                         <Button
@@ -190,7 +154,34 @@ export default function Search() {
                   </div>
                 </div>
 
-                <Feeds />
+                <SaleFeeds />
+              </div>
+            </TabPanel>
+
+            <TabPanel className="focus:outline-none  ">
+              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+                <div className="relative z-10 mb-6 flex items-center justify-between ">
+                  <div className="items-right flex w-full justify-end">
+                    <div className="flex gap-6 3xl:gap-8 ">
+                      <SortList />
+
+                      <div className="hidden sm:block 2xl:hidden">
+                        <Button
+                          shape="rounded"
+                          size="small"
+                          variant="ghost"
+                          color="gray"
+                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                        >
+                          <OptionIcon className="relative h-auto w-[18px]" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <SaleFeedsOpensea />
               </div>
             </TabPanel>
 
@@ -257,33 +248,6 @@ export default function Search() {
               </div>
             </TabPanel>
             */}
-
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      <SortList />
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <SaleFeeds />
-              </div>
-            </TabPanel>
           </ParamTab>
         </div>
 

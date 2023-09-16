@@ -56,9 +56,11 @@ const routes = {
   mintCoupon: '/mint-coupon',
   mintTicket: '/mint-ticket',
 
+  buyHorse: '/buy-horse',
+
   rentHorse: '/rent-horse',
   rentJockey: '/rent-jockey',
-  rentTrack: '/rent-track',
+  track: '/track',
   rentItem: '/rent-item',
   rentTRVC: '/rent-trvc',
 

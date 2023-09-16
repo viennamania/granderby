@@ -13,6 +13,10 @@ import { CompassIcon } from '@/components/icons/compass';
 import { Usdc } from '@/components/icons/usdc';
 import { GrdIcon } from '@/components/icons/grd-icon';
 
+import { SearchIcon } from '@/components/icons/search';
+
+import { BookIcon } from '@/components/icons/book';
+
 import { LivePricing } from '@/components/icons/live-pricing';
 
 import { Ranking } from '@/components/icons/ranking';
@@ -127,7 +131,7 @@ export const menuItems = [
 
   {
     name: 'ASSETS',
-    icon: <FarmIcon />,
+    icon: <SearchIcon />,
     href: routes.rentHorse,
     dropdownItems: [
       {
@@ -143,7 +147,7 @@ export const menuItems = [
       {
         name: 'Track',
         icon: <PlusCircle />,
-        href: routes.rentTrack,
+        href: routes.track,
       },
       {
         name: 'Item',
@@ -221,9 +225,14 @@ export const menuItems = [
 
   {
     name: 'SHOP',
-    icon: <FarmIcon />,
+    icon: <ExchangeIcon />,
     href: routes.mint,
     dropdownItems: [
+      {
+        name: 'Horse',
+        icon: <PlusCircle />,
+        href: routes.buyHorse,
+      },
       {
         name: 'Carrot',
         icon: <PlusCircle />,
