@@ -29,6 +29,8 @@ import { useRouter } from 'next/router';
 import {
   nftDropContractAddressHorse,
   nftDropContractAddressHorseDerbyStars,
+  tokenContractAddressUSDC,
+  tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
 import Button from '../ui/button/button';
@@ -48,7 +50,7 @@ import {
 
 import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
 import { Usdc } from '@/components/icons/usdc';
-import { GrdIcon } from '../icons/grd-icon';
+import { GrdIcon } from '@/components/icons/grd-icon';
 
 export default function OwnedFeeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
@@ -57,7 +59,22 @@ export default function OwnedFeeds({ className }: { className?: string }) {
 
   const address = useAddress();
 
-  console.log('address======>', address);
+  ///console.log('address======>', address);
+
+  const { contract: tokenContractUSDC } = useContract(
+    tokenContractAddressUSDC,
+    'token'
+  );
+  const { data: tokenBalanceUSDC } = useTokenBalance(
+    tokenContractUSDC,
+    address
+  );
+
+  const { contract: tokenContractGRD } = useContract(
+    tokenContractAddressGRD,
+    'token'
+  );
+  const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
 
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
@@ -234,14 +251,22 @@ export default function OwnedFeeds({ className }: { className?: string }) {
           <div className="flex flex-col">
             <div className=" flex flex-row items-center justify-start gap-1">
               <Usdc className="h-5 w-5" />
-              USDC:
-              <div className="text-xl underline decoration-sky-500">244.64</div>
+              <div className="w-20 text-xl underline decoration-sky-500">
+                {tokenBalanceUSDC?.symbol}:
+              </div>
+              <div className="text-2xl font-bold">
+                {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
+              </div>
             </div>
 
             <div className="mt-5 flex flex-row items-center justify-start gap-1">
               <GrdIcon className="h-5 w-5" />
-              GRD:
-              <div className="text-xl underline decoration-sky-500">244.64</div>
+              <div className="w-20 text-xl underline decoration-sky-500">
+                {tokenBalanceGRD?.symbol}:
+              </div>
+              <div className="text-2xl font-bold">
+                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+              </div>
             </div>
 
             <div className="mt-5 flex flex-row items-center justify-start gap-1">
