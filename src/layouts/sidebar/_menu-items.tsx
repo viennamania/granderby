@@ -12,8 +12,11 @@ import { PlusCircle } from '@/components/icons/plus-circle';
 import { CompassIcon } from '@/components/icons/compass';
 import { Usdc } from '@/components/icons/usdc';
 import { GrdIcon } from '@/components/icons/grd-icon';
+import { GasIcon } from '@/components/icons/gas-icon';
 
 import { SearchIcon } from '@/components/icons/search';
+
+import { Bitcoin } from '@/components/icons/bitcoin';
 
 import { BookIcon } from '@/components/icons/book';
 
@@ -166,19 +169,19 @@ export const menuItems = [
   },
 
   {
-    name: 'WALLET',
-    icon: <FarmIcon />,
-    href: routes.walletUsdc,
+    name: 'COIN',
+    icon: <PlusCircle />,
+    href: routes.coinUsdc,
     dropdownItems: [
       {
         name: 'USDC',
         icon: <Usdc />,
-        href: routes.walletUsdc,
+        href: routes.coinUsdc,
       },
       {
         name: 'GRD',
         icon: <GrdIcon />,
-        href: routes.walletGrd,
+        href: routes.coinGrd,
       },
     ],
   },

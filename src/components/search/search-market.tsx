@@ -253,11 +253,13 @@ export default function Search() {
           </ParamTab>
         </div>
 
+        {/*
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
           <Button onClick={() => openDrawer('DRAWER_SEARCH', '')} fullWidth>
             Filters
           </Button>
         </div>
+          */}
       </div>
     </>
   );

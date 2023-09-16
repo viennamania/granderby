@@ -36,8 +36,8 @@ const routes = {
 
   profile: '/profile',
 
-  walletGrd: '/wallet/grd',
-  walletUsdc: '/wallet/usdc',
+  coinGrd: '/coin/grd',
+  coinUsdc: '/coin/usdc',
 
   portfolio: '/profile?view=portfolio',
   history: '/profile?view=history',

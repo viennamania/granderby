@@ -832,11 +832,11 @@ export default function NftSinglePrice({
                 {loadingListings ? (
                   <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                     <div className="text-sm font-bold xl:text-lg">
-                      <b>Loading sale...</b>
+                      <b>Loading sales info...</b>
                     </div>
                   </div>
                 ) : (
-                  <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+                  <div className="mt-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                     {!directListing || directListing.quantity === '0' ? (
                       <>
                         <div className="text-sm font-bold xl:text-lg">
@@ -883,7 +883,7 @@ export default function NftSinglePrice({
                             )}
                           </div>
 
-                          <div className=" flex flex-row items-center justify-start text-xs">
+                          <div className=" flex flex-row items-center justify-end text-sm">
                             {format(
                               Date.parse(saleHistory[0]?.blockTimestamp || 0),
                               'yyy-MM-dd hh:mm:ss'
@@ -943,33 +943,33 @@ export default function NftSinglePrice({
                       </>
                     ) : (
                       <>
-                        <div className="text-xl font-bold xl:text-2xl">
+                        <div className=" text-xl font-bold xl:text-2xl">
                           {/*
                               <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
                               {directListing.buyoutCurrencyValuePerToken.symbol}
                                   */}
 
-                          <div className="flex flex-row gap-3">
+                          <div className="flex flex-row items-center justify-center gap-2">
                             <Image
                               src="/images/market.png"
                               alt="market"
                               width={30}
-                              height={20}
+                              height={30}
                             />
-                            <span>Sell Price</span>
-                          </div>
+                            <span className=" text-lg">Sell Price:</span>
 
-                          <div className="mt-2 flex flex-row items-center justify-center gap-3">
-                            <span className="text-3xl font-bold text-green-600 xl:text-4xl">
-                              {
-                                directListing?.currencyValuePerToken
-                                  .displayValue
-                              }
-                            </span>
-                            <span className="text-sm xl:text-lg">
-                              {' '}
-                              {directListing?.currencyValuePerToken.symbol}
-                            </span>
+                            <div className="flex flex-row items-center justify-center gap-3">
+                              <span className="text-3xl font-bold text-green-600 xl:text-4xl">
+                                {
+                                  directListing?.currencyValuePerToken
+                                    .displayValue
+                                }
+                              </span>
+                              <span className="text-sm xl:text-lg">
+                                {' '}
+                                {directListing?.currencyValuePerToken.symbol}
+                              </span>
+                            </div>
                           </div>
                         </div>
 
@@ -980,32 +980,37 @@ export default function NftSinglePrice({
                           )}
                         </span>
 
-                        <div className="text-sm font-bold xl:text-lg">
-                          Last price:{' '}
-                          <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                            {saleHistory[0]?.paidToken ===
-                            '0x0000000000000000000000000000000000001010'
-                              ? (
-                                  saleHistory[0]?.totalPricePaid /
-                                  1000000000000000000
-                                ).toFixed(2)
-                              : (
-                                  saleHistory[0]?.totalPricePaid / 1000000
-                                ).toFixed(2)}
-                          </span>
-                          {saleHistory[0]?.paidToken ===
-                          '0x0000000000000000000000000000000000001010' ? (
-                            <span className="pt-1"> MATIC</span>
-                          ) : (
-                            <span className="pt-1"> USDC</span>
-                          )}
-                        </div>
-                        <div className=" flex flex-row items-center justify-start gap-2 text-xs">
-                          {format(
-                            Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                            'yyy-MM-dd hh:mm:ss'
-                          )}
-                        </div>
+                        {saleHistory[0] && (
+                          <>
+                            <div className="text-sm font-bold xl:text-lg">
+                              Last price:{' '}
+                              <span className="text-xl font-bold text-green-600 xl:text-3xl">
+                                {saleHistory[0]?.paidToken ===
+                                '0x0000000000000000000000000000000000001010'
+                                  ? (
+                                      saleHistory[0]?.totalPricePaid /
+                                      1000000000000000000
+                                    ).toFixed(2)
+                                  : (
+                                      saleHistory[0]?.totalPricePaid / 1000000
+                                    ).toFixed(2)}
+                              </span>
+                              {saleHistory[0]?.paidToken ===
+                              '0x0000000000000000000000000000000000001010' ? (
+                                <span className="pt-1"> MATIC</span>
+                              ) : (
+                                <span className="pt-1"> USDC</span>
+                              )}
+                            </div>
+
+                            <div className=" flex flex-row items-center justify-end gap-2 text-sm">
+                              {format(
+                                Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                                'yyy-MM-dd hh:mm:ss'
+                              )}
+                            </div>
+                          </>
+                        )}
 
                         {address && address === nftMetadata?.owner && (
                           <Web3Button
@@ -1090,13 +1095,13 @@ export default function NftSinglePrice({
                   {isLoadingStaking ? (
                     <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
                       <div className="text-sm font-bold xl:text-lg">
-                        <b>Loading Owner...</b>
+                        <b>Loading Seller...</b>
                       </div>
                     </div>
                   ) : (
                     <div className=" flex items-center  gap-4 ">
-                      <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                        Owned by
+                      <div className="w-[140px] text-lg font-bold tracking-wider">
+                        Seller:
                       </div>
                       <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                         {stakerAddress &&
@@ -1112,11 +1117,11 @@ export default function NftSinglePrice({
                                 <span>
                                   {nftMetadata?.owner?.substring(0, 10)}...
                                 </span>
-                                {stakeInfoCount && stakeInfoCount > 1 && (
+                                {/*stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
-                                )}
+                                )*/}
                               </div>
                             )}
                           </>
@@ -1131,11 +1136,12 @@ export default function NftSinglePrice({
                                 <span>
                                   {stakerAddress?.substring(0, 10)}...
                                 </span>
-                                {stakeInfoCount && stakeInfoCount > 1 && (
+
+                                {/*stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
-                                )}
+                                )*/}
                               </div>
                             )}
                           </>
