@@ -47,6 +47,8 @@ import {
 } from '@thirdweb-dev/react';
 
 import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
+import { Usdc } from '@/components/icons/usdc';
+import { GrdIcon } from '../icons/grd-icon';
 
 export default function OwnedFeeds({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
@@ -230,8 +232,28 @@ export default function OwnedFeeds({ className }: { className?: string }) {
       ) : (
         <div className="flex flex-col gap-3">
           <div className="flex flex-col">
-            <div className="flex flex-row justify-between">
-              <div className="text-xl">Granderby</div>
+            <div className=" flex flex-row items-center justify-start gap-1">
+              <Usdc className="h-5 w-5" />
+              USDC:
+              <div className="text-xl underline decoration-sky-500">244.64</div>
+            </div>
+
+            <div className="mt-5 flex flex-row items-center justify-start gap-1">
+              <GrdIcon className="h-5 w-5" />
+              GRD:
+              <div className="text-xl underline decoration-sky-500">244.64</div>
+            </div>
+
+            <div className="mt-5 flex flex-row items-center justify-start gap-1">
+              <Image
+                src="/horseRace/logo-granderby.png"
+                alt="logo"
+                width={18}
+                height={18}
+              />
+              <div className="text-xl underline decoration-sky-500">
+                Granderby
+              </div>
             </div>
             {
               // If the listings are loading, show a loading message
@@ -318,7 +340,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                     )}
                   >
                     {ownedNfts?.map((nft) => (
-                      <div
+                      <button
                         key={nft?.metadata?.id}
                         className=" overflow-hidden rounded-lg bg-white shadow-lg"
                         onClick={() => {
@@ -351,7 +373,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                             {nft?.metadata?.name}
                           </p>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </>

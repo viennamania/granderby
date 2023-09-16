@@ -344,7 +344,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
               >
                 {stakedTokens &&
                   stakedTokens[0]?.map((stakedToken: BigNumber) => (
-                    <div
+                    <button
                       key={stakedToken.toString()}
                       className="block"
                       onClick={() => {
@@ -357,7 +357,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
                         tokenId={stakedToken.toNumber()}
                         key={stakedToken.toString()}
                       />
-                    </div>
+                    </button>
                   ))}
               </div>
             )
