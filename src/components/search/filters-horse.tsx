@@ -424,7 +424,7 @@ export function Grade() {
   );
 }
 
-const grade = ['U', 'S', 'A', 'B', 'C', 'D'];
+const grades = ['U', 'S', 'A', 'B', 'C', 'D'];
 
 export function GradeMultiple() {
   //const [selectedGrade, setSelectedGrade] = useLocalStorage(
@@ -438,7 +438,7 @@ export function GradeMultiple() {
     useLocalStorage('selected-grades');
 
   if (!selectedGradesStorage) {
-    setSelectedGradesStorage(['U', 'S', 'A', 'B', 'C', 'D']);
+    setSelectedGradesStorage(grades);
   }
 
   const [selectedGrades, setSelectedGrades] = useState(selectedGradesStorage);
@@ -451,7 +451,7 @@ export function GradeMultiple() {
     if (!isSelected(value)) {
       const selectedGradesUpdated = [
         ...selectedGrades,
-        grade.find((el) => el === value),
+        grades.find((el) => el === value),
       ];
       setSelectedGrades(selectedGradesUpdated);
       setSelectedGradesStorage(selectedGradesUpdated);
@@ -583,7 +583,7 @@ export function GradeMultiple() {
         </Listbox>
         */}
 
-      {grade.map((grade) => {
+      {grades.map((grade) => {
         const selected = isSelected(grade);
 
         return (
@@ -614,11 +614,89 @@ export function GradeMultiple() {
   );
 }
 
+const manes = ['Long', 'Short', 'Sporty'];
+
+export function ManeMultiple() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [selectedManesStorage, setSelectedManesStorage] =
+    useLocalStorage('selected-manes');
+
+  if (!selectedManesStorage) {
+    setSelectedManesStorage(manes);
+  }
+
+  const [selectedManes, setSelectedManes] = useState(selectedManesStorage);
+
+  function isSelected(value: any) {
+    return selectedManes.find((el) => el === value) ? true : false;
+  }
+
+  function handleSelect(value: any) {
+    if (!isSelected(value)) {
+      const selectedGradesUpdated = [
+        ...selectedManes,
+        manes.find((el) => el === value),
+      ];
+      setSelectedManes(selectedGradesUpdated);
+      setSelectedManesStorage(selectedGradesUpdated);
+    } else {
+      handleDeselect(value);
+    }
+    //setIsOpen(true);
+  }
+
+  function handleDeselect(value: any) {
+    const selectedManesUpdated = selectedManes.filter((el) => el !== value);
+    setSelectedManes(selectedManesUpdated);
+    setSelectedManesStorage(selectedManesUpdated);
+    //setIsOpen(true);
+  }
+
+  return (
+    <div className="grid grid-cols-3 gap-2 p-3  ">
+      {manes.map((mane) => {
+        const selected = isSelected(mane);
+
+        return (
+          <div
+            key={mane}
+            className=" flex items-center justify-center gap-2"
+            onClick={() => handleSelect(mane)}
+          >
+            <span
+              className={` flex cursor-pointer items-center justify-center rounded-lg border border-solid p-2 text-center text-xs uppercase tracking-wide transition-all ${
+                selected
+                  ? 'border-brand bg-brand text-white shadow-button'
+                  : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+              }`}
+            >
+              {/*
+              <Image
+                src={`/images/mane-${lowerCase(mane)}.png`}
+                alt={mane}
+                width={20}
+                height={20}
+              />
+              */}
+              {mane}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function Filters() {
   return (
     <>
       <Collapse label="Grades" initialOpen>
         <GradeMultiple />
+      </Collapse>
+
+      <Collapse label="Mane" initialOpen>
+        <ManeMultiple />
       </Collapse>
 
       {/*

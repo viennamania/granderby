@@ -46,11 +46,18 @@ export default function Feeds({ className }: { className?: string }) {
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
 
-  ///console.log('feeds-horse selectedGradesStorage=====', selectedGradesStorage);
-
   if (selectedGradesStorage === undefined) {
     setSelectedGradesStorage([]);
   }
+
+  const [selectedManesStorage, setSelectedManesStorage] =
+    useLocalStorage('selected-manes');
+
+  if (selectedManesStorage === undefined) {
+    setSelectedManesStorage([]);
+  }
+
+  ///console.log('feeds-horse selectedGradesStorage=====', selectedGradesStorage);
 
   ///const [selectedGSortStorage, setSelectedSortStorage] = useLocalStorage('selected-sort');
 
@@ -83,6 +90,7 @@ export default function Feeds({ className }: { className?: string }) {
             body: JSON.stringify({
               ///grades: selectedGradesStorage,
               grades: selectedGradesStorage ?? [],
+              manes: selectedManesStorage ?? [],
               //sort: selectedGSortStorage,
             }),
           }
@@ -105,12 +113,14 @@ export default function Feeds({ className }: { className?: string }) {
     );
 
   useEffect(() => {
+    /*
     console.log(
       'feeds-horse useEffect selectedGradesStorage=====',
       selectedGradesStorage
     );
+    */
     refetch();
-  }, [selectedGradesStorage, refetch]);
+  }, [selectedGradesStorage, selectedManesStorage, refetch]);
 
   return (
     <>
