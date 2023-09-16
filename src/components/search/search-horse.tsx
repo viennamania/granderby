@@ -1,6 +1,6 @@
 import Button from '@/components/ui/button';
 
-import Feeds from './feeds-horse';
+import Feeds from './feeds-horse-granderby';
 import SaleFeeds from './feeds-horse-sale';
 
 //import ListedFeeds from '.feeds-horse-listed';
@@ -31,6 +31,7 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import { useEffect } from 'react';
 import { set } from 'lodash';
+import { randomInt } from 'crypto';
 
 export default function Search() {
   const { openDrawer } = useDrawer();
@@ -98,23 +99,26 @@ export default function Search() {
     <>
       <div className=" flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
         <div className="justify-left flex flex-row items-center">
+          {/*
           <Image
-            src="/horseRace/logo.png"
+            src={`/horseRace/at${Math.floor(Math.random() * 5) + 1}.gif`}
             alt="nft"
             width={28}
             height={28}
             className="rounded-full"
           />
-          <span className="ml-3">Granderby Horses</span>
-        </div>
-      </div>
+          <span className="ml-3">Horses</span>
+          */}
 
-      <div className="mb-5 mt-5 flex">
-        <CollapseLivePricing label="Live Pricing">
-          <div className="m-5 p-5">
-            <LiveNftPricingSlider limits={3} />
-          </div>
-        </CollapseLivePricing>
+          <Image
+            src="/horseRace/logo-granderby.png"
+            alt="Horse NFT"
+            width={28}
+            height={28}
+            className="rounded-full"
+          />
+          <span className="ml-3">Granderby</span>
+        </div>
       </div>
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">

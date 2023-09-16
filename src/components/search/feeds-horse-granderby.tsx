@@ -76,7 +76,7 @@ export default function Feeds({ className }: { className?: string }) {
         //pageParam = '',
       }) =>
         await fetch(
-          '/api/nft/getDerbystars?pageNumber=' + pageParam + '&pageSize=20',
+          '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -190,7 +190,7 @@ export default function Feeds({ className }: { className?: string }) {
                     //setTokenid(nft.metadata.id.toString()),
                     //setIsOpen(true)
 
-                    router.push('/derbystars-details/' + nft?.tokenId)
+                    router.push('/horse-details/' + nft?.tokenId)
                   }
                   onMouseOver={() => {
                     //alert("onMouseOver");
@@ -198,8 +198,14 @@ export default function Feeds({ className }: { className?: string }) {
                     //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
                   }}
                 >
-                  <div className="flex w-full items-center justify-start bg-gray-800">
-                    <p className="m-2 text-sm font-bold text-white">
+                  <div className="justify-star m-2 flex w-full flex-row items-center gap-2">
+                    <Image
+                      src="/horseRace/logo-granderby.png"
+                      alt="horse"
+                      width={18}
+                      height={18}
+                    />
+                    <p className=" text-sm font-bold text-black">
                       #{nft?.tokenId}
                     </p>
                   </div>
@@ -211,10 +217,8 @@ export default function Feeds({ className }: { className?: string }) {
                     width={250}
                     loading="lazy"
                   />
-                  <div className="m-2 flex w-full flex-col items-center justify-center ">
-                    <div className="text-sm font-bold capitalize ">
-                      {nft?.title}
-                    </div>
+                  <div className=" flex- flex h-16 items-center justify-center ">
+                    <div className="text-lg  ">{nft?.title}</div>
                   </div>
                 </button>
               ))}

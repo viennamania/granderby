@@ -26,7 +26,7 @@ import { Twitter } from '@/components/icons/brands/twitter';
 //import { Copy } from '@/components/icons/copy';
 import { SearchIcon } from '@/components/icons/search';
 
-import Search from '@/components/search/search-horse-ds';
+import Search from '@/components/search/search-horse-derbystars';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {

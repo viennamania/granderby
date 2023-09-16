@@ -1,6 +1,6 @@
 import Button from '@/components/ui/button';
 
-import Feeds from './feeds-horse-ds';
+import Feeds from './feeds-horse-derbystars';
 import SaleFeeds from './feeds-horse-sale';
 
 //import ListedFeeds from '.feeds-horse-listed';
@@ -100,12 +100,12 @@ export default function Search() {
         <div className="justify-left flex flex-row items-center">
           <Image
             src="/horseRace/logo-derbystars.png"
-            alt="Granderby Horse NFT"
+            alt="Horse NFT"
             width={28}
             height={28}
             className="rounded-full"
           />
-          <span className="ml-3">Derby Stars Horses</span>
+          <span className="ml-3">Derby Stars</span>
         </div>
       </div>
 
