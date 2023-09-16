@@ -33,7 +33,9 @@ import {
   tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
-import Button from '../ui/button/button';
+import Button from '@/components/ui/button/button';
+
+import { ChevronForward } from '@/components/icons/chevron-forward';
 
 import {
   ConnectWallet,
@@ -65,16 +67,15 @@ export default function OwnedFeeds({ className }: { className?: string }) {
     tokenContractAddressUSDC,
     'token'
   );
-  const { data: tokenBalanceUSDC } = useTokenBalance(
-    tokenContractUSDC,
-    address
-  );
+  const { data: tokenBalanceUSDC, isLoading: isLoadingBalanceUSDC } =
+    useTokenBalance(tokenContractUSDC, address);
 
   const { contract: tokenContractGRD } = useContract(
     tokenContractAddressGRD,
     'token'
   );
-  const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
+  const { data: tokenBalanceGRD, isLoading: isLoadingBalanceGRD } =
+    useTokenBalance(tokenContractGRD, address);
 
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
@@ -243,31 +244,83 @@ export default function OwnedFeeds({ className }: { className?: string }) {
 
               ///onClick={() => closeInventories()}
             />
-            to see my owned horses
+            to see my inventory
           </div>
         </>
       ) : (
         <div className="flex flex-col gap-3">
           <div className="flex flex-col">
-            <div className=" flex flex-row items-center justify-start gap-1">
-              <Usdc className="h-5 w-5" />
-              <div className="w-20 text-xl underline decoration-sky-500">
-                {tokenBalanceUSDC?.symbol}:
-              </div>
-              <div className="text-2xl font-bold">
-                {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
-              </div>
-            </div>
+            {isLoadingBalanceUSDC ? (
+              <>
+                <div className="flex flex-col items-center justify-center ">
+                  <div className="text-xl text-gray-400">Loading...</div>
 
-            <div className="mt-5 flex flex-row items-center justify-start gap-1">
-              <GrdIcon className="h-5 w-5" />
-              <div className="w-20 text-xl underline decoration-sky-500">
-                {tokenBalanceGRD?.symbol}:
+                  <span className="items-top mt-10 flex h-screen w-full justify-center">
+                    <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-row items-center justify-between">
+                <div className=" flex flex-row items-center justify-start gap-1">
+                  <Usdc className="h-5 w-5" />
+                  <div className="w-20 text-xl ">
+                    {tokenBalanceUSDC?.symbol}:
+                  </div>
+                  <div className=" w-28 text-right text-2xl font-bold underline decoration-sky-500">
+                    {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
+                  </div>
+                </div>
+
+                <button
+                  className="flex flex-row items-center justify-center gap-3"
+                  ///onClick={(e) => router.push('/coin/usdc')}
+                  onClick={() => {
+                    closeInventories();
+                    router.push('/coin/usdc');
+                    ///router.push('/horse-details/' + nft?.metadata?.id);
+                  }}
+                >
+                  <ChevronForward className="mr-10 rtl:rotate-180" />
+                </button>
               </div>
-              <div className="text-2xl font-bold">
-                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+            )}
+
+            {isLoadingBalanceGRD ? (
+              <>
+                <div className="flex flex-col items-center justify-center ">
+                  <div className="text-xl text-gray-400">Loading...</div>
+
+                  <span className="items-top mt-10 flex h-screen w-full justify-center">
+                    <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-row items-center justify-between">
+                <div className="mt-5 flex flex-row items-center justify-start gap-1">
+                  <GrdIcon className="h-5 w-5" />
+                  <div className="w-20 text-xl ">
+                    {tokenBalanceGRD?.symbol}:
+                  </div>
+                  <div className="w-28 text-right text-2xl font-bold underline decoration-sky-500">
+                    {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+                  </div>
+                </div>
+
+                <button
+                  className="flex flex-row items-center justify-center gap-3"
+                  ////onClick={(e) => router.push('/coin/grd')}
+                  onClick={() => {
+                    closeInventories();
+                    router.push('/coin/grd');
+                    ///router.push('/horse-details/' + nft?.metadata?.id);
+                  }}
+                >
+                  <ChevronForward className="mr-10 rtl:rotate-180" />
+                </button>
               </div>
-            </div>
+            )}
 
             <div className="mt-5 flex flex-row items-center justify-start gap-1">
               <Image
@@ -276,8 +329,10 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                 width={18}
                 height={18}
               />
-              <div className="text-xl underline decoration-sky-500">
-                Granderby
+              <div className="text-xl ">GRANDERBY:</div>
+
+              <div className="flex flex-col justify-center text-2xl font-bold underline decoration-sky-500">
+                {ownedNfts?.length} horses
               </div>
             </div>
             {
@@ -286,7 +341,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                 <>
                   <div className="flex flex-col items-center justify-center ">
                     <div className="text-xl text-gray-400">
-                      Loading my own horses...
+                      Loading my horses...
                     </div>
 
                     <span className="items-top mt-10 flex h-screen w-full justify-center">
@@ -325,10 +380,6 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                     </>
                   ) : (
                     <div className="mb-2">
-                      <h4 className="flex flex-col justify-center ">
-                        I have {ownedNfts?.length} horses.
-                      </h4>
-
                       {/*
                       <Button
                         className="w-full"
@@ -369,10 +420,6 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                         key={nft?.metadata?.id}
                         className=" overflow-hidden rounded-lg bg-white shadow-lg"
                         onClick={() => {
-                          //setTokenid(nft.metadata.id.toString()),
-
-                          //////setIsOpen(false);
-
                           closeInventories();
                           router.push('/horse-details/' + nft?.metadata?.id);
                         }}

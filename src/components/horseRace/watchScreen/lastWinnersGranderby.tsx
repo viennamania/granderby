@@ -242,7 +242,7 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
           <Image
             src="/images/inkent.jpeg"
             alt="inkent"
-            width={40}
+            width={80}
             height={50}
           />
         </div>
