@@ -27,11 +27,14 @@ import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
-import { useLocalStorage } from '@/lib/hooks/use-local-storage';
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { set } from 'lodash';
 import { randomInt } from 'crypto';
+
+import LastWinnersPage from '@/components/horseRace/watchScreen/lastWinnersGranderby';
+
+import Collapse from '@/components/ui/collapse-last-winners';
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 export default function Search() {
   const { openDrawer } = useDrawer();
@@ -44,6 +47,8 @@ export default function Search() {
   );
   setLivePricingOpen(true);
   */
+
+  const [lastWinersIsOpen] = useLocalStorage('last-winners-isopen');
 
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades');
@@ -102,6 +107,27 @@ export default function Search() {
     */
   ];
 
+  const [npcNames, setNpcNames] = useState<any>([]);
+
+  useEffect(() => {
+    async function getNpcNames() {
+      const npcNamesResponse = await fetch(
+        `/api/games/horseRace/settings/horseNames?method=all`
+      );
+      const response = await npcNamesResponse.json();
+
+      ///console.log('getNpcNames response', response);
+
+      //const data = useOwnedNFTs(nftDropContractHorse, address);
+
+      setNpcNames(response.npcNames[0]);
+
+      //npcNames.npcNames[0].nft1
+    }
+
+    getNpcNames();
+  }, []);
+
   return (
     <>
       <div className=" flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
@@ -134,6 +160,12 @@ export default function Search() {
         </div>
 
         <div className="m-3 block">
+          <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
+            <div className="m-0 rounded-lg bg-black">
+              <LastWinnersPage npcs={npcNames} />
+            </div>
+          </Collapse>
+
           <ParamTab tabMenu={tabMenu}>
             {/* Total list of items */}
             <TabPanel className="focus:outline-none  ">
