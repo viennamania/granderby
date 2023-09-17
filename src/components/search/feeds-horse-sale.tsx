@@ -319,6 +319,20 @@ export default function SaleFeeds({ className }: { className?: string }) {
                       'yyy-MM-dd hh:mm:ss'
                     )}
                   </div>
+
+                  <div className="m-2 flex flex-row items-center  justify-between">
+                    <div className="flex text-xs">Seller:</div>
+
+                    {listing.creatorAddress === address ? (
+                      <div className="text-xl font-bold text-blue-600">Me</div>
+                    ) : (
+                      <div>
+                        <span>
+                          {listing.creatorAddress?.substring(0, 10)}...
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </button>
               ))}
             </div>
