@@ -28,6 +28,8 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { tr } from 'date-fns/locale';
 import { array } from 'yup';
 
+import { format } from 'date-fns';
+
 import { ArrowUp } from '@/components/icons/arrow-up';
 import {
   XAxis,
@@ -290,7 +292,9 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">{value}</div>
+      <div className="ltr:text-right rtl:text-left">
+        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
+      </div>
     ),
     minWidth: 100,
     maxWidth: 130,
@@ -310,8 +314,8 @@ const COLUMNS = [
           </span>
     */}
 
-          <div className="flex flex-row gap-2 ">
-            <span>
+          <div className="flex flex-row items-center justify-end gap-2 ">
+            <span className="text-2xl font-bold text-green-600">
               {value.paidToken === '0x0000000000000000000000000000000000001010'
                 ? (value.totalPricePaid / 1000000000000000000).toFixed(2)
                 : (value.totalPricePaid / 1000000).toFixed(2)}
@@ -587,7 +591,9 @@ export default function PriceHistoryTable(
 
   return (
     <div>
+      {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
+  */}
 
       {/*
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
@@ -648,32 +654,28 @@ export default function PriceHistoryTable(
                 {...getTableBodyProps()}
                 className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
               >
-                {address && (
-                  <>
-                    {page.map((row, idx) => {
-                      prepareRow(row);
-                      return (
-                        <tr
-                          {...row.getRowProps()}
-                          key={idx}
-                          className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
-                        >
-                          {row.cells.map((cell, idx) => {
-                            return (
-                              <td
-                                {...cell.getCellProps()}
-                                key={idx}
-                                className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
-                              >
-                                {cell.render('Cell')}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    })}
-                  </>
-                )}
+                {page.map((row, idx) => {
+                  prepareRow(row);
+                  return (
+                    <tr
+                      {...row.getRowProps()}
+                      key={idx}
+                      className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                    >
+                      {row.cells.map((cell, idx) => {
+                        return (
+                          <td
+                            {...cell.getCellProps()}
+                            key={idx}
+                            className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                          >
+                            {cell.render('Cell')}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
