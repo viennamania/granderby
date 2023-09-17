@@ -243,6 +243,7 @@ export const TransactionData = [
 */
 
 const COLUMNS = [
+  /*
   {
     //Header: 'ID',
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">ID</div>,
@@ -250,6 +251,7 @@ const COLUMNS = [
     minWidth: 100,
     maxWidth: 100,
   },
+  */
   /*
   {
     Header: 'Type',
@@ -258,6 +260,7 @@ const COLUMNS = [
     maxWidth: 40,
   },
   */
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Type</div>,
     accessor: 'transactionType',
@@ -280,39 +283,8 @@ const COLUMNS = [
     minWidth: 40,
     maxWidth: 40,
   },
-
-  /*
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Amount</div>,
-    accessor: 'amount',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="-tracking-[1px] ltr:text-right rtl:text-left">
-        <strong className="mb-0.5 flex justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
-          {Number(value.balance).toFixed(2)}
-          <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2">
-            ROM
-          </span>
-        </strong>
-
-      </div>
-    ),
-    minWidth: 100,
-    maxWidth: 200,
-  },
   */
-  /*
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Asset</div>,
-    accessor: 'symbol',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">{value}</div>
-    ),
-    minWidth: 80,
-    maxWidth: 120,
-  },
-  */
+
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
     accessor: 'createdAt',
@@ -325,7 +297,56 @@ const COLUMNS = [
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Address</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Price</div>,
+    accessor: 'amount',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="-tracking-[1px] ltr:text-right rtl:text-left">
+        <strong className="mb-0.5 flex items-center justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
+          {/*
+          {Number(value.balance).toFixed(2)}
+          <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2">
+            USDT
+          </span>
+    */}
+
+          <div className="flex flex-row gap-2 ">
+            <span>
+              {value.paidToken === '0x0000000000000000000000000000000000001010'
+                ? (value.totalPricePaid / 1000000000000000).toFixed(2)
+                : (value.totalPricePaid / 1000000).toFixed(2)}
+            </span>
+            <span>
+              {value.paidToken ===
+              '0x0000000000000000000000000000000000001010' ? (
+                <span className="pt-1"> MATIC</span>
+              ) : (
+                <span className="pt-1"> USDC</span>
+              )}
+            </span>
+          </div>
+        </strong>
+      </div>
+    ),
+    minWidth: 100,
+    maxWidth: 200,
+  },
+
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Asset</div>,
+    accessor: 'symbol',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="ltr:text-right rtl:text-left">{value}</div>
+    ),
+    minWidth: 80,
+    maxWidth: 120,
+  },
+  */
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Buyer</div>,
     accessor: 'address',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -342,6 +363,7 @@ const COLUMNS = [
     maxWidth: 150,
   },
 
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Status</div>,
     accessor: 'status',
@@ -354,6 +376,7 @@ const COLUMNS = [
     minWidth: 70,
     maxWidth: 100,
   },
+  */
 ];
 
 export default function PriceHistoryTable(
@@ -402,7 +425,9 @@ export default function PriceHistoryTable(
   const pageKey = '1';
   const pageSize = '10';
 
+  /*
   useEffect(() => {
+
     const getTransactions = async () => {
       //if (address) {
 
@@ -424,22 +449,6 @@ export default function PriceHistoryTable(
 
       //console.log('getTransactions data: ', data);
 
-      /*
-         {
-      blockNum: '0x2bdb72c',
-      uniqueId: '0x16829eebbf7552840016bf10235d596f643d4fbb69655ef54ccf52f64ea88b34:log:25',
-      hash: '0x16829eebbf7552840016bf10235d596f643d4fbb69655ef54ccf52f64ea88b34',
-      from: '0x6271117e328c1720bae5d4cca95eda7554bcfa70',
-      to: '0x15fd1e771828260182b318ef812660badf207fba',
-      value: 33,
-      erc721TokenId: null,
-      erc1155Metadata: null,
-      tokenId: null,
-      asset: 'ROM',
-      category: 'erc20',
-      rawContract: [Object]
-    },
-    */
 
       ///setTransers(data.transfers);
 
@@ -482,6 +491,7 @@ export default function PriceHistoryTable(
 
     //}, [address]);
   }, []);
+  */
 
   const [saleHistory, setSaleHistory] = useState([] as any);
 
@@ -498,9 +508,39 @@ export default function PriceHistoryTable(
     });
     const data = await response.json();
 
-    ///console.log('data.all: ', data.all);
+    //console.log('data.all: ', data.all);
 
-    setSaleHistory(data.all);
+    ///setSaleHistory(data.all);
+
+    const transactions = [] as any;
+
+    data.all?.map((buy: any, index: number) => {
+      const transactionData = {
+        id: buy.blockNum,
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: 'Send',
+        createdAt: buy.blockTimestamp,
+
+        //address: transfer.from === address ? transfer.to : transfer.from,
+        address: buy.buyer,
+
+        amount: {
+          totalPricePaid: buy.totalPricePaid,
+          paidToken: buy.paidToken,
+        },
+        status: 'Completed',
+      };
+
+      //console.log('transactionData: ', transactionData);
+
+      ////setTransers((transfers) => [...transfers, transactionData]);
+
+      transactions.push(transactionData);
+    });
+
+    ///console.log('transactions: ', transactions);
+
+    setTransactions(transactions);
   };
 
   useEffect(() => {
