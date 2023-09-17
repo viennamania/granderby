@@ -31,6 +31,7 @@ import {
   nftDropContractAddressHorseDerbyStars,
   tokenContractAddressUSDC,
   tokenContractAddressGRD,
+  nftDropContractAddressCoupon,
 } from '@/config/contractAddresses';
 
 import Button from '@/components/ui/button/button';
@@ -92,6 +93,15 @@ export default function OwnedFeeds({ className }: { className?: string }) {
   );
   const { data: ownedNftsDerbyStars, isLoading: isLoadingOwnedNftsDerbyStars } =
     useOwnedNFTs(nftDropContractDerbyStars, address);
+
+  const { contract: contractCoupon } = useContract(
+    nftDropContractAddressCoupon
+  );
+
+  const { data: ownedCoupons, isLoading: isLoadingCoupons } = useOwnedNFTs(
+    contractCoupon,
+    address || ''
+  );
 
   ////console.log("ownedNfts======>", ownedNfts);
 
@@ -298,7 +308,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
               </>
             ) : (
               <div className="flex flex-row items-center justify-between">
-                <div className="mt-5 flex flex-row items-center justify-start gap-1">
+                <div className="mt-1 flex flex-row items-center justify-start gap-1">
                   <GrdIcon className="h-5 w-5" />
                   <div className="w-20 text-xl ">
                     {tokenBalanceGRD?.symbol}:
@@ -321,6 +331,38 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                 </button>
               </div>
             )}
+
+            <div className="mt-10 flex w-full flex-row items-center justify-between gap-2">
+              {ownedCoupons?.map((nft) => (
+                <div
+                  className="mb-2 flex flex-col items-center justify-center gap-3"
+                  key={nft.metadata.id.toString()}
+                >
+                  <Image
+                    src={nft.metadata.image || ''}
+                    width={70}
+                    height={50}
+                    alt={String(nft.metadata.name) || ''}
+                    className="rounded-lg "
+                  />
+                  <div className="flex text-2xl font-bold underline decoration-sky-500">
+                    {nft.quantityOwned}
+                  </div>
+                </div>
+              ))}
+
+              <button
+                className="justify-right flex flex-row items-center gap-3"
+                ////onClick={(e) => router.push('/coin/grd')}
+                onClick={() => {
+                  closeInventories();
+                  router.push('/mint-coupon');
+                  ///router.push('/horse-details/' + nft?.metadata?.id);
+                }}
+              >
+                <ChevronForward className="mr-10 rtl:rotate-180" />
+              </button>
+            </div>
 
             <div className="mt-5 flex flex-row items-center justify-start gap-1">
               <Image
