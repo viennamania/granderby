@@ -313,7 +313,7 @@ const COLUMNS = [
           <div className="flex flex-row gap-2 ">
             <span>
               {value.paidToken === '0x0000000000000000000000000000000000001010'
-                ? (value.totalPricePaid / 1000000000000000).toFixed(2)
+                ? (value.totalPricePaid / 1000000000000000000).toFixed(2)
                 : (value.totalPricePaid / 1000000).toFixed(2)}
             </span>
             <span>

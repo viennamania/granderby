@@ -563,8 +563,6 @@ export default function NftSinglePrice({
 
   const [attributes, setAttributes] = useState([]);
 
-  //let attributes = [];
-
   const [attributeGrade, setAttributeGrade] = useState(null);
   const [attributeMane, setAttributeMane] = useState(null);
   const [attributeManeMask, setAttributeManeMask] = useState(null);
