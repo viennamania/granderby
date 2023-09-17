@@ -236,21 +236,25 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.buyHorse,
       },
+      /*
       {
         name: 'Carrot',
         icon: <PlusCircle />,
         href: routes.mintCarrot,
       },
+      */
       {
         name: 'Coupon',
         icon: <PlusCircle />,
         href: routes.mintCoupon,
       },
+      /*
       {
         name: 'Ticket',
         icon: <PlusCircle />,
         href: routes.mintTicket,
       },
+      */
     ],
   },
 

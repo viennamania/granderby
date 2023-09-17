@@ -271,7 +271,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
                 className
               )}
             >
-              {directListings?.map((listing) => (
+              {/*directListings?.map((listing) => (
                 <button
                   key={listing.id}
                   className="relative overflow-hidden rounded-lg bg-white shadow-lg"
@@ -322,7 +322,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     )}
                   </div>
                 </button>
-              ))}
+                    ))*/}
             </div>
 
             {/*
