@@ -38,7 +38,11 @@ import { useModal } from '@/components/modal-views/context';
 
 import Button from '@/components/ui/button';
 
+import { useAddress } from '@thirdweb-dev/react';
+
 export default function Feeds({ className }: { className?: string }) {
+  const address = useAddress();
+
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();

@@ -131,18 +131,6 @@ interface NftDrawerProps {
 }
 
 function Grade(grade: any) {
-  //console.log('grade===', grade);
-
-  /*
-  var valueGrade = '';
-
-  if (grade?.grade?.length > 35) {
-    //console.log('Grade grade.grade[35]====', grade?.grade[35]);
-
-    valueGrade = grade?.grade[35];
-  }
-  */
-
   var checkedS = false;
   var checkedU = false;
   var checkedA = false;
@@ -320,6 +308,160 @@ function Grade(grade: any) {
   );
 }
 
+function Mane(mane: any) {
+  var checkedLong = false;
+  var checkedShort = false;
+  var checkedSporty = false;
+
+  if (mane?.mane === 'Long Mane') {
+    checkedLong = true;
+  } else if (mane?.mane === 'Short Mane') {
+    checkedShort = true;
+  } else if (mane?.mane === 'Sporty Mane') {
+    checkedSporty = true;
+  }
+
+  return (
+    <RadioGroup
+      value={mane}
+      //onChange={setGrade}
+      className="grid grid-cols-3 gap-2 p-5"
+    >
+      <RadioGroup.Option value="Long Mane">
+        {(
+          {
+            //checked
+            //checked = valueGrade === 'U' ? true : false,
+          }
+        ) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checkedLong
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Long
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="Short Mane">
+        {(
+          {
+            //checked = valueGrade === 'S' ? true : false,
+          }
+        ) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checkedShort
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Short
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="Short Mane">
+        {(
+          {
+            //checked
+          }
+        ) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checkedSporty
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Sporty
+          </span>
+        )}
+      </RadioGroup.Option>
+    </RadioGroup>
+  );
+}
+
+function Tail(tail: any) {
+  var checkedBrush = false;
+  var checkedNormal = false;
+  var checkedRichness = false;
+
+  if (tail?.tail === 'Brush Tail') {
+    checkedBrush = true;
+  } else if (tail?.tail === 'Normal Tail') {
+    checkedNormal = true;
+  } else if (tail?.tail === 'Richness Tail') {
+    checkedRichness = true;
+  }
+
+  return (
+    <RadioGroup
+      value={tail}
+      //onChange={setGrade}
+      className="grid grid-cols-3 gap-2 p-5"
+    >
+      <RadioGroup.Option value="Brush Tail">
+        {(
+          {
+            //checked
+            //checked = valueGrade === 'U' ? true : false,
+          }
+        ) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checkedBrush
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Brush
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="Normal Tail">
+        {(
+          {
+            //checked = valueGrade === 'S' ? true : false,
+          }
+        ) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checkedNormal
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Normal
+          </span>
+        )}
+      </RadioGroup.Option>
+
+      <RadioGroup.Option value="Richness Tail">
+        {(
+          {
+            //checked
+          }
+        ) => (
+          <span
+            className={`flex h-9 cursor-pointer items-center justify-center rounded-lg border border-solid text-center text-sm font-medium uppercase tracking-wide transition-all ${
+              checkedRichness
+                ? 'border-brand bg-brand text-white shadow-button'
+                : 'border-gray-200 bg-white text-brand dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+            }`}
+          >
+            Richness
+          </span>
+        )}
+      </RadioGroup.Option>
+    </RadioGroup>
+  );
+}
+
 function PriceRange() {
   let [range, setRange] = useState({ min: 0, max: 1000 });
 
@@ -419,35 +561,78 @@ export default function NftSinglePrice({
 
   ///const attributes: any = nft?.metadata?.attributes;
 
+  const [attributes, setAttributes] = useState([]);
+
+  //let attributes = [];
+
   const [attributeGrade, setAttributeGrade] = useState(null);
+  const [attributeMane, setAttributeMane] = useState(null);
+  const [attributeManeMask, setAttributeManeMask] = useState(null);
+  const [attributeTail, setAttributeTail] = useState(null);
+  const [attributeTailMask, setAttributeTailMask] = useState(null);
+
   const [attributeSize, setAttributeSize] = useState(null);
   const [attributeSpped, setAttributeSpeed] = useState(null);
   const [attributeStamina, setAttributeStamina] = useState(null);
   const [attributePower, setAttributePower] = useState(null);
 
   useEffect(() => {
+    setAttributes([]);
+    //attributes = [];
+    let arrAttribute = [];
+
     setAttributeGrade(null);
+    setAttributeMane(null);
 
     nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
+
       if (attribute.trait_type === 'Grade') {
         setAttributeGrade(attribute.value);
-      }
-      if (attribute.trait_type === 'Size') {
+      } else if (attribute.trait_type === 'Mane') {
+        setAttributeMane(attribute.value);
+      } else if (attribute.trait_type === 'ManeMask') {
+        setAttributeManeMask(attribute.value);
+      } else if (attribute.trait_type === 'Tail') {
+        setAttributeTail(attribute.value);
+      } else if (attribute.trait_type === 'TailMask') {
+        setAttributeTailMask(attribute.value);
+      } else if (attribute.trait_type === 'Size') {
         setAttributeSize(attribute.value);
-      }
-      if (attribute.trait_type === 'Speed') {
+      } else if (attribute.trait_type === 'Speed') {
         setAttributeSpeed(attribute.value);
-
-        //console.log('attributeSpeed', attribute.value);
-      }
-      if (attribute.trait_type === 'Stamina') {
+      } else if (attribute.trait_type === 'Stamina') {
         setAttributeStamina(attribute.value);
-      }
-      if (attribute.trait_type === 'Power') {
+      } else if (attribute.trait_type === 'Power') {
         setAttributePower(attribute.value);
+      } else if (attribute.trait_type === 'Preceding') {
+      } else if (attribute.trait_type === 'Overtaking') {
+      } else if (attribute.trait_type === 'Spirit') {
+      } else if (attribute.trait_type === 'Agility') {
+      } else if (attribute.trait_type === 'Weight') {
+      } else if (attribute.trait_type === 'Drivinghabits') {
+      } else if (attribute.trait_type === 'Record') {
+      } else if (attribute.trait_type === 'textureKey') {
+      } else if (attribute.trait_type === 'Texture Key') {
+      } else if (attribute.trait_type === 'BodyMask') {
+      } else if (attribute.trait_type === 'HeadMask') {
+      } else if (attribute.trait_type === 'LegMask') {
+      } else if (attribute.trait_type === 'BodyAcc') {
+      } else if (attribute.trait_type === 'HeadAcc') {
+      } else if (attribute.trait_type === 'LegAcc') {
+      } else if (attribute.trait_type === 'Comment') {
+      } else if (attribute.trait_type === 'World') {
+      } else {
+        if (attribute) {
+          arrAttribute.push(attribute);
+          //attributes.push(attribute);
+        }
       }
     });
+
+    ///console.log("arrAttribute", arrAttribute);
+
+    setAttributes(arrAttribute);
   }, [nftMetadata?.metadata?.attributes]);
 
   ///console.log('attributeGrade', attributeGrade);
@@ -1492,6 +1677,14 @@ export default function NftSinglePrice({
               <Grade {...{ grade: attributeGrade }} />
             </Collapse>
 
+            <Collapse label="Mane" initialOpen={true}>
+              <Mane {...{ mane: attributeMane }} />
+            </Collapse>
+
+            <Collapse label="Tail" initialOpen={true}>
+              <Tail {...{ tail: attributeTail }} />
+            </Collapse>
+
             {/*
             <Collapse label="Speed" initialOpen={true}>
               <PriceRange />
@@ -1501,34 +1694,36 @@ export default function NftSinglePrice({
             {/* nft attributes details */}
 
             <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2  ">
-              {nftMetadata?.metadata?.attributes?.map((attribute: any) => (
-                //nft?.metadata?.attributes?.map((attribute:any) => (
-                <div key={attribute?.trait_type}>
-                  <div
-                    className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+              {
+                //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+                attributes?.map((attribute: any) => (
+                  <div key={attribute?.trait_type}>
+                    <div
+                      className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
                    lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
-                  >
-                    <span
-                      className={cn(
-                        'flex ',
-                        toggleCoin ? 'flex-row-reverse' : 'flex-row'
-                      )}
                     >
-                      <span>{attribute?.trait_type}</span>
-                    </span>
+                      <span
+                        className={cn(
+                          'flex ',
+                          toggleCoin ? 'flex-row-reverse' : 'flex-row'
+                        )}
+                      >
+                        <span>{attribute?.trait_type}</span>
+                      </span>
 
-                    <span className="text-sm  font-semibold xl:text-lg">
-                      {/*
+                      <span className="text-sm  font-semibold xl:text-lg">
+                        {/*
                       {attribute?.value?.toString().length < 8
                         ? attribute?.value?.toString()
                         : attribute?.value?.toString().substring(0, 8)}
                       ...
                       */}
-                      {attribute?.value}
-                    </span>
+                        {attribute?.value}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              }
             </div>
 
             {/*

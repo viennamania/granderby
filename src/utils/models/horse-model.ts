@@ -113,14 +113,14 @@ export const getAllHorses = async (
   pageNumber: number,
   pagination: number,
   grades: string,
+  manes: string,
   sort: string
 ) => {
-  /*
-  console.log('getAllHorses pageNumber', pageNumber);
-  console.log('getAllHorses pagination', pagination);
-  console.log('getAllHorses grade', grades);
+  //console.log('getAllHorses pageNumber', pageNumber);
+  //console.log('getAllHorses pagination', pagination);
+  console.log('getAllHorses grades', grades);
+  console.log('getAllHorses manes', manes);
   console.log('getAllHorses sort', sort);
-  */
 
   if (grades.length === 0) {
     const data = await HorseModel.find({})
@@ -147,6 +147,37 @@ export const getAllHorses = async (
   const data = await HorseModel.find({
     'nft.rawMetadata.attributes': {
       $elemMatch: {
+        /*
+                    "closed": false,
+            "$or": [
+                {
+                    "openingEvening": { "$lte": currentTime  },
+                    "closingEvening": { "$gte": currentTime  }
+                },
+                {
+                    "openingMorning": { "$lte": currentTime },
+                    "closingMorning": { "$gte": currentTime  }
+                }
+
+            ]
+            */
+
+        /*
+        $and: [
+          {
+            trait_type: 'Grade',
+            //value: grades,
+            value: { $in: grades },
+          },
+          
+          {
+            trait_type: 'Mane',
+            value: { $in: manes },
+          }
+          
+        ]
+        */
+
         trait_type: 'Grade',
         //value: grades,
         value: { $in: grades },

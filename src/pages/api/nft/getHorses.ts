@@ -14,9 +14,10 @@ export default async function handler(
 ) {
   const { pageNumber, pageSize } = req.query;
 
-  const { grades, sort } = req.body;
+  const { grades, manes, sort } = req.body;
 
-  ///console.log('getHorses grades', grades);
+  console.log('getHorses grades', grades);
+  console.log('getHorses manes', manes);
 
   var nfts = [] as any;
 
@@ -24,6 +25,7 @@ export default async function handler(
     Number(pageNumber),
     Number(pageSize),
     grades,
+    manes,
     sort
   );
 
@@ -33,7 +35,7 @@ export default async function handler(
 
   const pageKey = data.pageNumber;
 
-  ////console.log('nfts', nfts);
+  //console.log('nfts', nfts);
 
   const formattedNfts = nfts?.map((nft: any) => {
     const {

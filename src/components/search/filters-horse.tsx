@@ -614,7 +614,7 @@ export function GradeMultiple() {
   );
 }
 
-const manes = ['Long', 'Short', 'Sporty'];
+const manes = ['Long Mane', 'Short Mane', 'Sporty Mane'];
 
 export function ManeMultiple() {
   const [isOpen, setIsOpen] = useState(false);
@@ -695,9 +695,11 @@ export function Filters() {
         <GradeMultiple />
       </Collapse>
 
+      {/*
       <Collapse label="Manes" initialOpen>
         <ManeMultiple />
       </Collapse>
+  */}
 
       {/*
       <Collapse label="Status" initialOpen>
