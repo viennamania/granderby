@@ -194,10 +194,10 @@ export default function Feeds({ className }: { className?: string }) {
             <div
               key={page.pageKey}
               className={cn(
-                'mt-5 grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                'grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-4',
                 isGridCompact
                   ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                  : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                  : '3xl:!grid-cols-5 4xl:!grid-cols-8',
                 className
               )}
             >

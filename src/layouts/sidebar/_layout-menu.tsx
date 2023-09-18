@@ -108,16 +108,16 @@ export default function DrawerMenu() {
   */}
 
         <div className="flex flex-row items-center">
-          {/*
           <Image src={logo} alt="logo" width={24} height={24} className="" />
           <span className="ml-2 text-lg">Granderby</span>
-          */}
 
+          {/*
           <div className=" text-center text-lg text-black xl:text-2xl">
             My horses <span className="font-bold text-red-500">RUN</span>, I{' '}
             <span className="font-bold text-blue-500">EARN</span> !{' '}
             <span className="text-block text-xs ">©</span>
           </div>
+        */}
         </div>
 
         <div className="md:hidden">

@@ -262,10 +262,10 @@ export default function SaleFeeds({ className }: { className?: string }) {
 
             <div
               className={cn(
-                'grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4',
+                'grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-5',
                 isGridCompact
                   ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                  : '3xl:!grid-cols-3 4xl:!grid-cols-4',
+                  : '3xl:!grid-cols-5 4xl:!grid-cols-8',
                 className
               )}
             >

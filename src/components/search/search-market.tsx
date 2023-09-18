@@ -124,75 +124,68 @@ export default function Search() {
         </CollapseLivePricing>
       </div>
 
-      <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
-        <div className="mt-10 hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700 2xl:block">
+      <div className="m-3 block">
+        <ParamTab tabMenu={tabMenu}>
+          <TabPanel className="focus:outline-none  ">
+            <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+              <div className="relative z-10 mb-6 flex items-center justify-between ">
+                <div className="items-right flex w-full justify-end">
+                  <div className="flex gap-6 3xl:gap-8 ">
+                    {/*
+                      <SortList />
+                      */}
+
+                    <div className="hidden sm:block 2xl:hidden">
+                      <Button
+                        shape="rounded"
+                        size="small"
+                        variant="ghost"
+                        color="gray"
+                        onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                        className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                      >
+                        <OptionIcon className="relative h-auto w-[18px]" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <SaleFeeds />
+            </div>
+          </TabPanel>
+
+          <TabPanel className="focus:outline-none  ">
+            <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+              <div className="relative z-10 mb-6 flex items-center justify-between ">
+                <div className="items-right flex w-full justify-end">
+                  <div className="flex gap-6 3xl:gap-8 ">
+                    {/*
+                      <SortList />
+                      */}
+
+                    <div className="hidden sm:block 2xl:hidden">
+                      <Button
+                        shape="rounded"
+                        size="small"
+                        variant="ghost"
+                        color="gray"
+                        onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                        className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                      >
+                        <OptionIcon className="relative h-auto w-[18px]" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <SaleFeedsOpensea />
+            </div>
+          </TabPanel>
+
+          {/* Owned items */}
           {/*
-          <Filters />
-          */}
-        </div>
-
-        <div className="m-3 block">
-          <ParamTab tabMenu={tabMenu}>
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      {/*
-                      <SortList />
-        */}
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <SaleFeeds />
-              </div>
-            </TabPanel>
-
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      {/*
-                      <SortList />
-        */}
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <SaleFeedsOpensea />
-              </div>
-            </TabPanel>
-
-            {/* Owned items */}
-            {/*
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
@@ -225,8 +218,8 @@ export default function Search() {
             </TabPanel>
             */}
 
-            {/* Registered items */}
-            {/*
+          {/* Registered items */}
+          {/*
             <TabPanel className="focus:outline-none  ">
               <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
@@ -254,16 +247,7 @@ export default function Search() {
               </div>
             </TabPanel>
             */}
-          </ParamTab>
-        </div>
-
-        {/*
-        <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
-          <Button onClick={() => openDrawer('DRAWER_SEARCH', '')} fullWidth>
-            Filters
-          </Button>
-        </div>
-          */}
+        </ParamTab>
       </div>
     </>
   );
