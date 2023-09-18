@@ -142,21 +142,26 @@ export const menuItems = [
         icon: <CompassIcon />,
         href: routes.horse,
       },
+      /*
       {
         name: 'Jockey',
         icon: <PlusCircle />,
         href: routes.rentJockey,
       },
+      */
+
       {
         name: 'Track',
         icon: <PlusCircle />,
         href: routes.track,
       },
+      /*
       {
         name: 'Item',
         icon: <PlusCircle />,
         href: routes.rentItem,
       },
+    */
 
       /*
       {

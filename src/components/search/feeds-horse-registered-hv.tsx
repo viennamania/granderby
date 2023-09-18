@@ -374,8 +374,15 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
                         router.push('/horse-details/' + nft?.tokenId);
                       }}
                     >
-                      <div className="m-2 flex items-center justify-start">
-                        <p className="text-sm font-bold">#{nft?.tokenId}</p>
+                      <div className="m-2 flex flex-row items-center justify-start gap-2">
+                        <Image
+                          src="/horseRace/logo-granderby.png"
+                          alt="logo"
+                          width={20}
+                          height={20}
+                        />
+
+                        <p className="text-md font-bold">#{nft?.tokenId}</p>
                       </div>
                       <Image
                         src={
@@ -389,7 +396,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
                         loading="lazy"
                       />
                       <div className="m-2 w-full items-center justify-center">
-                        <p className="text-xs font-bold">{nft?.title}</p>
+                        <p className="text-lg">{nft?.title}</p>
                       </div>
                     </button>
                   ))}

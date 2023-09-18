@@ -258,6 +258,7 @@ const RentPage: NextPageWithLayout<
           */}
         </div>
 
+        {/*
         <div className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
           <span className="text-lg text-[#2b57a2] ">Total Profit:</span>
           <b>
@@ -273,6 +274,7 @@ const RentPage: NextPageWithLayout<
             {tokenBalanceGRD?.symbol}
           </span>
         </div>
+            */}
 
         <div>
           <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
