@@ -17,6 +17,8 @@ import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 
 import { ChevronForward } from '@/components/icons/chevron-forward';
 
+import React, { use, useEffect, useState } from 'react';
+
 type Price = {
   name: number;
   value: number;
@@ -54,6 +56,60 @@ export function LivePricingFeed({
   const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
     'drawer-horse-info-tokenid'
   );
+
+  const [transactions1, setTransactions1] = React.useState([]);
+
+  const getLast20 = async () => {
+    ///console.log('price-history-table nftMetadata.?metadata?.id: ', nftMetadata?.metadata?.id);
+
+    const response = await fetch('/api/nft/horse/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getAllByTokenId',
+        tokenId: '537', // 584, 520, 500, 555,
+      }),
+    });
+    const data = await response.json();
+
+    //console.log('data.all: ', data.all);
+
+    ///setSaleHistory(data.all);
+
+    const transactions = [] as any;
+
+    data.all?.map((buy: any, index: number) => {
+      const transactionData = {
+        id: buy.blockNum,
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: 'Send',
+        createdAt: buy.blockTimestamp,
+
+        //address: transfer.from === address ? transfer.to : transfer.from,
+        address: buy.buyer,
+
+        amount: {
+          totalPricePaid: buy.totalPricePaid,
+          paidToken: buy.paidToken,
+        },
+        status: 'Completed',
+      };
+
+      //console.log('transactionData: ', transactionData);
+
+      ////setTransers((transfers) => [...transfers, transactionData]);
+
+      transactions.push(transactionData);
+    });
+
+    console.log('pricing-slider transactions: ', transactions);
+
+    setTransactions1(transactions);
+  };
+
+  useEffect(() => {
+    getLast20();
+  }, []);
 
   return (
     <div

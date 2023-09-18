@@ -14,8 +14,8 @@ import { ExportIcon } from '@/components/icons/export-icon';
 import { getVotesByStatus } from '@/data/static/vote-data';
 import votePool from '@/assets/images/vote-pool.svg';
 
-////import RootLayout from '@/layouts/_root-layout';
-import RootLayout from '@/layouts/_root-layout-live';
+import RootLayout from '@/layouts/_root-layout';
+////import RootLayout from '@/layouts/_root-layout-live';
 
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const ProposalsPage: NextPageWithLayout<
+const LivePage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
   const { title, image, description } = props;
@@ -320,7 +320,7 @@ const ProposalsPage: NextPageWithLayout<
       <EntriesDrawer />
       */}
 
-      <div className=" mx-auto flex w-full shrink-0 flex-col  items-center  justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-6">
+      <div className=" mx-auto flex w-full shrink-0 flex-col  items-center  justify-center ">
         {/*
             export type DRAWER_VIEW =
               | 'DASHBOARD_SIDEBAR'
@@ -396,52 +396,27 @@ const ProposalsPage: NextPageWithLayout<
           )}
         </div>
 
-        <div className=" items-top mt-0  hidden w-full flex-row justify-center  gap-2 rounded-md  border  bg-black xl:flex ">
-          <div className=" ml-[140px] mt-10 w-[50px] items-center justify-center">
-            {/*
-            <EntryTables
-              horse1={horse1Oran}
-              horse2={horse2Oran}
-              horse3={horse3Oran}
-              horse4={horse4Oran}
-              horse5={horse5Oran}
-              horse6={horse6Oran}
-              horse7={horse7Oran}
-              horse8={horse8Oran}
-              horse9={horse9Oran}
-              horse10={horse10Oran}
-              //user={user}
-              user={null}
-              npcs={npcNames}
-              //inputs={inputs}
-              inputs={null}
-              balance={0}
-            />
-          */}
-          </div>
+        <div className=" flex w-full items-center justify-center  ">
+          <iframe
+            src="https://granderby.io/webgl/granderby/inapp.html"
+            //width="100vw"
+            //height="100vh"
+            //////sandbox="allow-scripts allow-modal"
+            //width: 100vw;
+            //height: 100vw;
 
-          <div className="ml-[-20px] mr-[80px]  flex w-full items-center justify-center  ">
-            <iframe
-              src="https://granderby.io/webgl/granderby/inapp.html"
-              //width="100vw"
-              //height="100vh"
-              //////sandbox="allow-scripts allow-modal"
-              //width: 100vw;
-              //height: 100vw;
-
-              //style="width: 100vw; height: 100vh; border: none;"
-              style={{
-                width: '100vw',
-                //width: '100%',
-                height: '100vh',
-                //height: '100%',
-                border: 'none',
-                margin: '0',
-                padding: '0',
-                overflow: 'hidden',
-              }}
-            ></iframe>
-          </div>
+            //style="width: 100vw; height: 100vh; border: none;"
+            style={{
+              //width: '100vw',
+              width: '100%',
+              height: '100vh',
+              //height: '100%',
+              border: 'none',
+              margin: '0',
+              padding: '0',
+              overflow: 'hidden',
+            }}
+          ></iframe>
         </div>
       </div>
 
@@ -512,8 +487,8 @@ const ProposalsPage: NextPageWithLayout<
   );
 };
 
-ProposalsPage.getLayout = function getLayout(page) {
+LivePage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default ProposalsPage;
+export default LivePage;
