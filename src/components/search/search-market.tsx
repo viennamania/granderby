@@ -138,7 +138,9 @@ export default function Search() {
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div className="items-right flex w-full justify-end">
                     <div className="flex gap-6 3xl:gap-8 ">
+                      {/*
                       <SortList />
+        */}
 
                       <div className="hidden sm:block 2xl:hidden">
                         <Button
@@ -165,7 +167,9 @@ export default function Search() {
                 <div className="relative z-10 mb-6 flex items-center justify-between ">
                   <div className="items-right flex w-full justify-end">
                     <div className="flex gap-6 3xl:gap-8 ">
+                      {/*
                       <SortList />
+        */}
 
                       <div className="hidden sm:block 2xl:hidden">
                         <Button
