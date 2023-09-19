@@ -144,14 +144,29 @@ export default function Search() {
           <span className="ml-3">Granderby</span>
         </div>
         */}
+
+        <span className="mt-3 text-xl font-bold xl:text-2xl">
+          Granderby Horse NFT
+        </span>
         <span className="mt-3 text-xs lg:text-sm xl:text-lg">
           Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
           Category Gaming
         </span>
       </div>
 
-      <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
-        <div className="mt-10 hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700 2xl:block">
+      <div
+        className="
+        grid
+        3xl:grid-cols-[280px_minmax(auto,_1fr)]
+        4xl:grid-cols-[320px_minmax(auto,_1fr)]
+      "
+      >
+        <div
+          className="
+          mt-10 hidden border-dashed border-gray-200 ltr:border-r ltr:pr-8 rtl:border-l rtl:pl-8 dark:border-gray-700
+          3xl:block
+        "
+        >
           <Filters />
         </div>
 
@@ -164,9 +179,14 @@ export default function Search() {
           </Collapse>
         */}
 
-          <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+          <div
+            className="
+            2xl:ltr:pl-8 2xl:rtl:pr-8
+            4xl:ltr:pl-10 4xl:rtl:pr-10
+          "
+          >
             <div className="relative z-10 mb-6 flex items-center justify-between ">
-              <div className="flex flex-col gap-2 xl:hidden">
+              <div className="flex flex-col gap-2 ">
                 <div className="flex flex-col gap-2 xl:flex-row ">
                   {selectedGradesStorage
                     //.sort(function(a:any, b:any) {return a - b})
@@ -238,7 +258,13 @@ export default function Search() {
                     <GridSwitcher />
                   </div>
 
-                  <div className="hidden sm:block 2xl:hidden">
+                  <div
+                    className="
+                    hidden
+                    sm:block
+                    3xl:hidden
+                  "
+                  >
                     <Button
                       shape="rounded"
                       size="small"

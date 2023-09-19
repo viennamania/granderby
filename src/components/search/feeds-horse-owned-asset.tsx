@@ -260,6 +260,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
       ) : (
         <div className="flex flex-col gap-3">
           <div className="flex flex-col">
+            {/*
             {isLoadingBalanceUSDC ? (
               <>
                 <div className="flex flex-col items-center justify-center ">
@@ -295,7 +296,9 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                 </button>
               </div>
             )}
+            */}
 
+            {/*
             {isLoadingBalanceGRD ? (
               <>
                 <div className="flex flex-col items-center justify-center ">
@@ -331,6 +334,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                 </button>
               </div>
             )}
+            */}
 
             <div className="mt-10 flex w-full flex-row items-center justify-between gap-2">
               {ownedCoupons?.map((nft) => (

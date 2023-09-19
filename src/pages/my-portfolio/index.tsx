@@ -30,6 +30,9 @@ import { SearchIcon } from '@/components/icons/search';
 
 import Search from '@/components/search/search-asset';
 
+import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
+import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
+
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
@@ -108,6 +111,12 @@ const RentPage: NextPageWithLayout<
           <Profile />
             */}
 
+          <CollapseLivePricing label="Live Pricing">
+            <div className="p-5">
+              <LiveNftPricingSlider limits={2} />
+            </div>
+          </CollapseLivePricing>
+
           <Search />
         </div>
 
@@ -120,7 +129,6 @@ const RentPage: NextPageWithLayout<
         </div>
           */}
 
-        {/*
         <footer>
           <div className=" flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
             <div>Copyright ©MOMOCON</div>
@@ -152,7 +160,6 @@ const RentPage: NextPageWithLayout<
             </AnchorLink>
           </div>
         </footer>
-        */}
       </>
     );
   }

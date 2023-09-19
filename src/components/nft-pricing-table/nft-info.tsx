@@ -71,11 +71,24 @@ function NftInfo({ nftMetadata }: any) {
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
 
-  const { data: stakerAddress, isLoading } = useContractRead(
+  const { data: stakerAddress, isLoading: isLoadingStakerAddress } =
+    useContractRead(contractStaking, 'stakerAddress', [
+      nftMetadata?.metadata?.id,
+    ]);
+
+  const { data: stakeInfo, isLoading: isLoadingStakeInfo } = useContractRead(
     contractStaking,
-    'stakerAddress',
-    [nftMetadata?.metadata?.id]
+    'getStakeInfo',
+    [stakerAddress]
   );
+
+  const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
+
+  useEffect(() => {
+    if (!stakeInfo) return;
+
+    setStakeInfoCount(stakeInfo?.[0]?.length);
+  }, [stakeInfo]);
 
   const { contract: marketplace } = useContract(
     marketplaceContractAddress,
@@ -182,6 +195,8 @@ function NftInfo({ nftMetadata }: any) {
     }
   }
 
+  const [price, setPrice] = useState();
+
   const [toAddress, setToAddress] = useState('');
   const [isSending, setIsSending] = useState(false);
 
@@ -224,112 +239,163 @@ function NftInfo({ nftMetadata }: any) {
   return (
     <div className="px-5 pb-0 lg:mt-0">
       {/*{nftMetadata?.owner === address && (*/}
-      <div>
-        {nftMetadata?.owner === address && (
-          <div className="mt-2 flex flex-row items-center justify-center gap-2">
-            <div className=" flex flex-row justify-center">
-              {/*{isTransferTokensLoading ? (*/}
 
-              {isSending ? (
-                <div className="flex flex-row items-center justify-center gap-2">
-                  <div className="animate-spin">
-                    <RaceIcon className="h-35 w-35" />
-                  </div>
-                  <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                    <span>Sending #{nftMetadata?.metadata?.id} to</span>
-                    <span>Please wait...</span>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <Web3Button
-                    theme="light"
-                    contractAddress={nftDropContractAddressHorse}
-                    action={() => {
-                      //contract?.call('withdraw', [[nft.metadata.id]])
-                      //contract?.call('withdraw', [[nft.metadata.id]])
-                      //contract.erc1155.claim(0, 1);
+      <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
+        <Link
+          className=" text-left text-lg capitalize text-blue-500 dark:text-white "
+          href={`/horse`}
+        >
+          {nftMetadata?.metadata?.description}
+        </Link>
 
-                      ///contract.erc20.transfer(toAddress, amount);
+        <div className="mt-2 flex flex-row items-center justify-start ">
+          <Image src="/images/logo-gd.png" alt="gd" width={18} height={18} />
 
-                      transferNft(nftMetadata?.metadata?.id, toAddress);
-
-                      /*
-                          transferTokens({
-                            to: toAddress, // Address to transfer to
-                            amount: amount, // Amount to transfer
-                          })
-                          */
-                    }}
-                    onSuccess={() => {
-                      //setAmount(0);
-                      //setToAddress('');
-
-                      console.log(`🌊 Successfully transfered!`);
-                      //alert('Successfully transfered!');
-
-                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                      //handleClickSucc();
-                    }}
-                    onError={(error) => {
-                      console.error('Failed to transfer', error);
-                      alert('Failed to transfer');
-                      //setErrMsgSnackbar('Failed to transfer');
-                      //handleClickErr();
-                    }}
-                  >
-                    Transfer
-                  </Web3Button>
-                </>
-              )}
-            </div>
-
-            <input
-              className=" w-full text-black"
-              type="text"
-              name="toAddress"
-              placeholder="To Address"
-              value={toAddress}
-              onChange={(e) => {
-                setToAddress(e.target.value);
-              }}
-            />
-          </div>
-        )}
-
-        <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
-          <Link
-            className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-            href={`/horse`}
-          >
-            {nftMetadata?.metadata?.description}
-          </Link>
-
-          <div className="mt-2 flex flex-row items-center justify-start ">
-            <Image src="/images/logo-gd.png" alt="gd" width={18} height={18} />
-
-            <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-              #{nftMetadata?.metadata?.id}
-            </span>
-          </div>
-
-          <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-            <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
-              {nftMetadata?.metadata?.name}
-            </div>
-          </div>
+          <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+            #{nftMetadata?.metadata?.id}
+          </span>
         </div>
 
-        {/* sale info */}
+        <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+          <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
+            {nftMetadata?.metadata?.name}
+          </div>
+        </div>
+      </div>
 
-        {loadingListings ? (
-          <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+      {/* owned by */}
+
+      <div className=" flex flex-col items-center justify-start gap-5  rounded-lg border p-3 ">
+        {isLoadingStakerAddress ? (
+          <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
             <div className="text-sm font-bold xl:text-lg">
-              <b>Loading sale...</b>
+              <b>Loading Owner...</b>
             </div>
           </div>
         ) : (
-          <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+          <div className=" item-center flex w-full justify-start  gap-4 ">
+            <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+              Owned by
+            </div>
+            <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+              {stakerAddress &&
+              stakerAddress === '0x0000000000000000000000000000000000000000' ? (
+                <>
+                  {nftMetadata?.owner === address ? (
+                    <div className="text-xl font-bold text-blue-600">Me</div>
+                  ) : (
+                    <div>
+                      <span>{nftMetadata?.owner?.substring(0, 10)}...</span>
+                      {stakeInfoCount && stakeInfoCount > 1 && (
+                        <span className="text-xs text-gray-400">
+                          +{stakeInfoCount - 1}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  {stakerAddress && stakerAddress === address ? (
+                    <div className="text-xl font-bold text-blue-600">Me</div>
+                  ) : (
+                    <div>
+                      <span>{stakerAddress?.substring(0, 10)}...</span>
+                      {stakeInfoCount && stakeInfoCount > 1 && (
+                        <span className="text-xs text-gray-400">
+                          +{stakeInfoCount - 1}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {nftMetadata?.owner === address && (
+        <div className="mt-2 flex flex-row items-center justify-center gap-2">
+          <div className=" flex flex-row justify-center">
+            {/*{isTransferTokensLoading ? (*/}
+
+            {isSending ? (
+              <div className="flex flex-row items-center justify-center gap-2">
+                <div className="animate-spin">
+                  <RaceIcon className="h-35 w-35" />
+                </div>
+                <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                  <span>Sending #{nftMetadata?.metadata?.id} to</span>
+                  <span>Please wait...</span>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Web3Button
+                  theme="light"
+                  contractAddress={nftDropContractAddressHorse}
+                  action={() => {
+                    //contract?.call('withdraw', [[nft.metadata.id]])
+                    //contract?.call('withdraw', [[nft.metadata.id]])
+                    //contract.erc1155.claim(0, 1);
+
+                    ///contract.erc20.transfer(toAddress, amount);
+
+                    transferNft(nftMetadata?.metadata?.id, toAddress);
+
+                    /*
+                            transferTokens({
+                              to: toAddress, // Address to transfer to
+                              amount: amount, // Amount to transfer
+                            })
+                            */
+                  }}
+                  onSuccess={() => {
+                    //setAmount(0);
+                    //setToAddress('');
+
+                    console.log(`🌊 Successfully transfered!`);
+                    //alert('Successfully transfered!');
+
+                    //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                    //handleClickSucc();
+                  }}
+                  onError={(error) => {
+                    console.error('Failed to transfer', error);
+                    alert('Failed to transfer');
+                    //setErrMsgSnackbar('Failed to transfer');
+                    //handleClickErr();
+                  }}
+                >
+                  Transfer
+                </Web3Button>
+              </>
+            )}
+          </div>
+
+          <input
+            className=" w-full text-black"
+            type="text"
+            name="toAddress"
+            placeholder="To Address"
+            value={toAddress}
+            onChange={(e) => {
+              setToAddress(e.target.value);
+            }}
+          />
+        </div>
+      )}
+
+      {/* sale info */}
+
+      <div className="mt-3 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
+        {loadingListings ? (
+          <div className="text-sm font-bold xl:text-lg">
+            <b>Loading sale...</b>
+          </div>
+        ) : (
+          <>
             {!directListing || directListing.quantity === '0' ? (
               <>
                 <div className="text-sm font-bold xl:text-lg">
@@ -546,14 +612,15 @@ function NftInfo({ nftMetadata }: any) {
                 )}
               </>
             )}
-          </div>
+          </>
         )}
+      </div>
 
-        <Collapse label="Price History" initialOpen={true}>
-          <PriceHistoryTable nftMetadata={nftMetadata} />
-        </Collapse>
+      <Collapse label="Price History" initialOpen={true}>
+        <PriceHistoryTable nftMetadata={nftMetadata} />
+      </Collapse>
 
-        {/*
+      {/*
         <div className="ml-2 mt-2 flex flex-row items-center justify-between gap-2">
 
           <div className=" flex flex-row justify-center">Data Source:</div>
@@ -581,11 +648,11 @@ function NftInfo({ nftMetadata }: any) {
         </div>
           */}
 
-        <Collapse label="Race History" initialOpen={true}>
-          <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
-        </Collapse>
+      <Collapse label="Race History" initialOpen={true}>
+        <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
+      </Collapse>
 
-        {/*
+      {/*
         <div className="ml-2 mt-2 flex flex-row items-center justify-between gap-2">
           <div className=" flex flex-row justify-center">Data Source:</div>
           <Button
@@ -610,7 +677,6 @@ function NftInfo({ nftMetadata }: any) {
           </Button>
         </div>
           */}
-      </div>
 
       {/*
       <div className="mt-[10px] flex items-center gap-4">
