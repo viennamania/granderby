@@ -161,11 +161,13 @@ export default function Search() {
         </div>
 
         <div className="m-3 block">
+          {/*
           <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
             <div className="m-0 rounded-lg bg-black">
               <LastWinnersPage npcs={npcNames} />
             </div>
           </Collapse>
+        */}
 
           <ParamTab tabMenu={tabMenu}>
             {/* Total list of items */}

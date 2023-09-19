@@ -1118,6 +1118,7 @@ export default function NftSinglePrice({
               <span className="flex items-center gap-2.5">
                 <span className="items-left flex flex-col gap-2.5 ">
                   <div className="items-left flex flex-col justify-center ">
+                    {/*
                     <Link
                       className=" text-left text-lg capitalize text-blue-500 dark:text-white "
                       href={`/horse`}
@@ -1138,26 +1139,31 @@ export default function NftSinglePrice({
                       </span>
                     </div>
 
-                    <div className="mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                      {/*attributeGrade && (
-                        <Image
-                          src={`/images/grade-${attributeGrade?.toLowerCase()}.png`}
-                          alt="Grade"
-                          width={30}
-                          height={30}
-                        />
-                      )*/}
+                    <div className="mt-3 mb-3 flex w-full flex-row items-center justify-start gap-2.5">
+  
 
                       <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
                         {nftMetadata?.metadata?.name}
                       </div>
 
-                      {/*attributeSize && (
-                        <div className="text-left text-lg capitalize  text-black dark:text-white xl:text-xl">
-                          {attributeSize}
-                        </div>
-                      )*/}
+   
                     </div>
+                    */}
+
+                    <Image
+                      //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
+                      src={
+                        nftMetadata?.metadata?.image
+                          ? nftMetadata?.metadata?.image
+                          : '/default-nft.png'
+                      }
+                      alt="nft"
+                      width={1024}
+                      height={1024}
+                      className=" rounded-lg "
+                    />
+
+                    {/*
 
                     <div className="flex flex-row items-center justify-start gap-2.5">
                       <div className="flex flex-row items-center justify-start gap-2.5">
@@ -1186,9 +1192,65 @@ export default function NftSinglePrice({
                         )}
                       </div>
                     </div>
+
+                    */}
+                  </div>
+
+                  <Collapse label="Grade" initialOpen={true}>
+                    <Grade {...{ grade: attributeGrade }} />
+                  </Collapse>
+
+                  <Collapse label="Mane" initialOpen={true}>
+                    <Mane {...{ mane: attributeMane }} />
+                  </Collapse>
+
+                  <Collapse label="Tail" initialOpen={true}>
+                    <Tail {...{ tail: attributeTail }} />
+                  </Collapse>
+
+                  {/*
+                    <Collapse label="Speed" initialOpen={true}>
+                      <PriceRange />
+                    </Collapse>
+                    */}
+
+                  {/* nft attributes details */}
+
+                  <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2  ">
+                    {
+                      //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+                      attributes?.map((attribute: any) => (
+                        <div key={attribute?.trait_type}>
+                          <div
+                            className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+                          lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                          >
+                            <span
+                              className={cn(
+                                'flex ',
+                                toggleCoin ? 'flex-row-reverse' : 'flex-row'
+                              )}
+                            >
+                              <span>{attribute?.trait_type}</span>
+                            </span>
+
+                            <span className="text-sm  font-semibold xl:text-lg">
+                              {/*
+                              {attribute?.value?.toString().length < 8
+                                ? attribute?.value?.toString()
+                                : attribute?.value?.toString().substring(0, 8)}
+                              ...
+                              */}
+                              {attribute?.value}
+                            </span>
+                          </div>
+                        </div>
+                      ))
+                    }
                   </div>
 
                   {/* owned by */}
+                  {/*
                   <div className="mt-1 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                     {isLoadingStaking ? (
                       <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
@@ -1247,8 +1309,11 @@ export default function NftSinglePrice({
                       </div>
                     )}
                   </div>
+                                  */}
 
                   {/* sale info */}
+                  {/*
+
                   {loadingListings ? (
                     <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
                       <div className="text-sm font-bold xl:text-lg">
@@ -1364,11 +1429,7 @@ export default function NftSinglePrice({
                       ) : (
                         <>
                           <div className=" text-xl font-bold xl:text-2xl">
-                            {/*
-                                <b>{directListing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
-                                {directListing.buyoutCurrencyValuePerToken.symbol}
-                                    */}
-
+            
                             <div className="flex flex-row items-center justify-center gap-2">
                               <Image
                                 src="/images/market.png"
@@ -1443,8 +1504,7 @@ export default function NftSinglePrice({
                               contractAddress={marketplaceContractAddress}
                             >
                               <span className="flex items-center gap-2">
-                                {/*<InfoIcon className="h-3 w-3" /> */} Cancel
-                                Sale
+                                Cancel Sale
                               </span>
                             </Web3Button>
                           )}
@@ -1473,7 +1533,7 @@ export default function NftSinglePrice({
                                   contractAddress={marketplaceContractAddress}
                                 >
                                   <span className="flex items-center gap-2">
-                                    {/*<InfoIcon className="h-3 w-3" /> */} Buy
+                                     Buy
                                   </span>
                                 </Web3Button>
                                 {!address && (
@@ -1507,7 +1567,10 @@ export default function NftSinglePrice({
                     </div>
                   )}
 
+                  */}
+
                   {/* registered in */}
+                  {/*
                   <div className="mt-1 flex flex-col items-center justify-center gap-2  rounded-lg border ">
                     {isLoadingStaking ? (
                       <div className=" flex flex-col items-center justify-center gap-5 p-3">
@@ -1556,17 +1619,7 @@ export default function NftSinglePrice({
 
                                 {stakeInfo?.[0].date}
 
-                                {/*
-                              <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                                <span>
-                                  {stakingContractAddressHorseAAA?.substring(
-                                    0,
-                                    6
-                                  )}
-                                  ...
-                                </span>
-                              </div>
-                              */}
+        
                                 <Image
                                   src="/images/inkent.jpeg"
                                   alt="raceTrack"
@@ -1584,22 +1637,7 @@ export default function NftSinglePrice({
                                     height={30}
                                   />
                                 </button>
-                                {/*
-                                <div className="flex flex-col text-xs">
-                                  <span>1.8 GRD</span>
-                                  <span>per Hour</span>
-                                </div>
-                                */}
 
-                                {/*
-                            <AnchorLink
-                              href={`/horse-details/${nftMetadata?.metadata?.id}`}
-                              className="inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white "
-                            >
-                              on {nftMetadata?.metadata?.mintedDate}
-                              <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
-                            </AnchorLink>
-                              */}
                               </div>
                             )}
 
@@ -1645,7 +1683,7 @@ export default function NftSinglePrice({
                               <div className="text-sm font-bold xl:text-lg">
                                 Next entery:&nbsp;
                                 <span className="text-xs">
-                                  {/*raceHistory[0].createdAt*/}Not reserved
+                                  Not reserved
                                 </span>
                               </div>
                             </div>
@@ -1654,74 +1692,9 @@ export default function NftSinglePrice({
                       </>
                     )}
                   </div>
-
-                  <Image
-                    //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                    src={
-                      nftMetadata?.metadata?.image
-                        ? nftMetadata?.metadata?.image
-                        : '/default-nft.png'
-                    }
-                    alt="nft"
-                    width={1024}
-                    height={1024}
-                    className=" rounded-lg "
-                  />
+                                  */}
                 </span>
               </span>
-            </div>
-
-            <Collapse label="Grade" initialOpen={true}>
-              <Grade {...{ grade: attributeGrade }} />
-            </Collapse>
-
-            <Collapse label="Mane" initialOpen={true}>
-              <Mane {...{ mane: attributeMane }} />
-            </Collapse>
-
-            <Collapse label="Tail" initialOpen={true}>
-              <Tail {...{ tail: attributeTail }} />
-            </Collapse>
-
-            {/*
-            <Collapse label="Speed" initialOpen={true}>
-              <PriceRange />
-            </Collapse>
-            */}
-
-            {/* nft attributes details */}
-
-            <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2  ">
-              {
-                //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
-                attributes?.map((attribute: any) => (
-                  <div key={attribute?.trait_type}>
-                    <div
-                      className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
-                   lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
-                    >
-                      <span
-                        className={cn(
-                          'flex ',
-                          toggleCoin ? 'flex-row-reverse' : 'flex-row'
-                        )}
-                      >
-                        <span>{attribute?.trait_type}</span>
-                      </span>
-
-                      <span className="text-sm  font-semibold xl:text-lg">
-                        {/*
-                      {attribute?.value?.toString().length < 8
-                        ? attribute?.value?.toString()
-                        : attribute?.value?.toString().substring(0, 8)}
-                      ...
-                      */}
-                        {attribute?.value}
-                      </span>
-                    </div>
-                  </div>
-                ))
-              }
             </div>
 
             {/*
