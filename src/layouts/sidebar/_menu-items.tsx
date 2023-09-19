@@ -36,11 +36,62 @@ export const menuItems = [
     href: routes.home,
   },
   */
+
+  /*
   {
     name: 'INTRODUCTION',
     icon: <HomeIcon />,
     href: routes.intro,
   },
+  */
+
+  {
+    name: 'INTRODUCTION',
+    icon: <HomeIcon />,
+    href: routes.intro,
+    dropdownItems: [
+      {
+        name: 'NFT Granderby',
+        icon: <CompassIcon />,
+        href: routes.intro1,
+      },
+      {
+        name: 'NFT Trade',
+        icon: <PlusCircle />,
+        href: routes.intro2,
+      },
+      {
+        name: 'Training',
+        icon: <DiskIcon />,
+        href: routes.intro3,
+      },
+
+      {
+        name: 'Asset Management',
+        icon: <DiskIcon />,
+        href: routes.intro4,
+      },
+
+      {
+        name: 'Partners',
+        icon: <DiskIcon />,
+        href: routes.intro5,
+      },
+
+      {
+        name: 'Roadmap',
+        icon: <DiskIcon />,
+        href: routes.intro6,
+      },
+
+      {
+        name: 'Whitepaper',
+        icon: <DiskIcon />,
+        href: routes.intro7,
+      },
+    ],
+  },
+
   /*
   {
     name: 'RANKING',

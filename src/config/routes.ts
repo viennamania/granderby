@@ -1,6 +1,15 @@
 const routes = {
   home: '/',
+
   intro: '/intro',
+  intro1: '/intro1',
+  intro2: '/intro2',
+  intro3: '/intro3',
+  intro4: '/intro4',
+  intro5: '/intro5',
+  intro6: '/intro6',
+  intro7: '/intro7',
+
   ranking: '/ranking',
 
   horse: '/horse',

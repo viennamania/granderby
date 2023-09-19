@@ -310,10 +310,12 @@ export function MenuItems() {
                             {/*
                             <span className="mr-2">{dropDownItem.icon}</span>
                             */}
+                            {/*
                             <EditActiveIcon
                               className="mr-2 h-5 w-5"
                               aria-hidden="true"
                             />
+                          */}
 
                             {dropDownItem.name}
                           </ActiveLink>
