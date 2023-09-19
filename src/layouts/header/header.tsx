@@ -74,14 +74,14 @@ export default function Header({ className }: { className?: string }) {
             <LogoIcon />
           */}
 
-            <Image src={logo} alt="logo" width={24} height={24} className="" />
+            <Image src={logo} alt="logo" width={24} height={24} />
           </div>
 
           <div className="mx-2 block sm:mx-4 xl:hidden">
             <Hamburger
               isOpen={false}
               variant="transparent"
-              onClick={() => openDrawer('DASHBOARD_SIDEBAR')}
+              onClick={() => openDrawer('DASHBOARD_SIDEBAR', 0)}
               className="dark:text-white"
             />
           </div>

@@ -29,10 +29,17 @@ import { Live } from '@/components/icons/live-icon';
 import { RaceIcon } from '@/components/icons/race-icon';
 
 export const menuItems = [
+  /*
   {
     name: 'HOME',
     icon: <HomeIcon />,
     href: routes.home,
+  },
+  */
+  {
+    name: 'INTRO',
+    icon: <HomeIcon />,
+    href: routes.intro,
   },
   /*
   {
@@ -41,12 +48,6 @@ export const menuItems = [
     href: routes.ranking,
   },
   */
-
-  {
-    name: 'LIVE',
-    icon: <Ranking />,
-    href: routes.live,
-  },
 
   /*
   {
@@ -140,28 +141,20 @@ export const menuItems = [
       {
         name: 'Horse',
         icon: <CompassIcon />,
-        href: routes.horse,
+        href: routes.myhorse,
       },
-      /*
+
       {
         name: 'Jockey',
         icon: <PlusCircle />,
         href: routes.rentJockey,
       },
-      */
 
       {
         name: 'Track',
         icon: <PlusCircle />,
         href: routes.track,
       },
-      /*
-      {
-        name: 'Item',
-        icon: <PlusCircle />,
-        href: routes.rentItem,
-      },
-    */
 
       /*
       {
@@ -173,6 +166,13 @@ export const menuItems = [
     ],
   },
 
+  {
+    name: 'RACE',
+    icon: <Ranking />,
+    href: routes.live,
+  },
+
+  /*
   {
     name: 'COIN',
     icon: <PlusCircle />,
@@ -190,6 +190,7 @@ export const menuItems = [
       },
     ],
   },
+  */
 
   /*
   {
@@ -232,15 +233,28 @@ export const menuItems = [
   */
 
   {
-    name: 'SHOP',
+    name: 'NFT',
     icon: <ExchangeIcon />,
     href: routes.mint,
     dropdownItems: [
       {
         name: 'Horse',
+        icon: <CompassIcon />,
+        href: routes.horse,
+      },
+
+      {
+        name: 'Jockey',
+        icon: <PlusCircle />,
+        href: routes.rentJockey,
+      },
+      /*
+      {
+        name: 'Horse',
         icon: <PlusCircle />,
         href: routes.buyHorse,
       },
+      */
       /*
       {
         name: 'Carrot',
@@ -248,11 +262,7 @@ export const menuItems = [
         href: routes.mintCarrot,
       },
       */
-      {
-        name: 'Coupon',
-        icon: <PlusCircle />,
-        href: routes.mintCoupon,
-      },
+
       /*
       {
         name: 'Ticket',
@@ -263,12 +273,26 @@ export const menuItems = [
     ],
   },
 
-  /*
   {
-    name: 'Live Pricing',
+    name: 'RANKING',
     icon: <Ranking />,
     href: routes.livePricing,
   },
+
+  {
+    name: 'SHOP',
+    icon: <ExchangeIcon />,
+    href: routes.mintCoupon,
+    dropdownItems: [
+      {
+        name: 'Coupon',
+        icon: <ExchangeIcon />,
+        href: routes.mintCoupon,
+      },
+    ],
+  },
+
+  /*
   {
     name: 'Farm',
     icon: <FarmIcon />,

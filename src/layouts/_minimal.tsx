@@ -90,7 +90,7 @@ export function Header() {
           <div className="hidden lg:mr-6 lg:block xl:hidden">
             <Hamburger
               isOpen={isOpen}
-              onClick={() => openDrawer('DRAWER_MENU')}
+              onClick={() => openDrawer('DRAWER_MENU', 0)}
               color="white"
               className="shadow-main dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white"
             />
@@ -101,7 +101,7 @@ export function Header() {
       */}
 
           <div className="flex flex-row gap-2">
-            <Image src={logo} alt="logo" width={24} height={24} className="" />
+            <Image src={logo} alt="logo" width={24} height={24} />
             <span>Granderby</span>
           </div>
 

@@ -217,18 +217,6 @@ export default function Feeds({ className }: { className?: string }) {
                     //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
                   }}
                 >
-                  <div className="justify-star m-2 flex w-full flex-row items-center gap-2">
-                    <Image
-                      src="/horseRace/logo-granderby.png"
-                      alt="horse"
-                      width={18}
-                      height={18}
-                    />
-                    <p className=" text-sm font-bold text-black">
-                      #{nft?.tokenId}
-                    </p>
-                  </div>
-
                   <Image
                     src={nft?.media ? nft?.media : '/default-nft.png'}
                     alt={nft?.title}
@@ -236,7 +224,20 @@ export default function Feeds({ className }: { className?: string }) {
                     width={300}
                     loading="lazy"
                   />
-                  <div className=" flex- flex h-16 items-center justify-center ">
+                  <div className="ml-2 mt-2 flex w-full flex-row items-center justify-start gap-2">
+                    {/*
+                    <Image
+                      src="/horseRace/logo-granderby.png"
+                      alt="horse"
+                      width={18}
+                      height={18}
+                    />
+                    */}
+                    <p className=" text-sm font-bold text-black">
+                      #{nft?.tokenId}
+                    </p>
+                  </div>
+                  <div className=" flex h-16 items-center justify-center xl:h-12 ">
                     <div className="text-lg  ">{nft?.title}</div>
                   </div>
                 </button>
