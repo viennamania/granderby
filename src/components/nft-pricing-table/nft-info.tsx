@@ -297,7 +297,7 @@ function NftInfo({ nftMetadata }: any) {
           </div>
         )}
 
-        <div className="flex flex-col gap-2">
+        <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
           <Link
             className=" text-left text-lg capitalize text-blue-500 dark:text-white "
             href={`/horse`}

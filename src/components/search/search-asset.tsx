@@ -94,135 +94,39 @@ export default function Search() {
 
       <div className="grid ">
         <div className="m-3 block">
-          <ParamTab tabMenu={tabMenu}>
-            {/* Total list of items */}
-            {/*
-            <TabPanel className="focus:outline-none  ">
-              <div className="">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6  ">
-                      <SortList />
+          <div className="">
+            <div className="relative z-10 mb-6 flex items-center justify-between ">
+              <div className="items-right flex w-full justify-end">
+                <div className="flex gap-6  ">
+                  {/*
+      <SortList />
+      */}
 
-                      <div className="hidden ">
-                        <GridSwitcher />
-                      </div>
+                  {/*
+      <div className="hidden ">
+        <GridSwitcher />
+      </div>
 
-                      <div className="hidden ">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+      
+      <div className="hidden ">
+        <Button
+          shape="rounded"
+          size="small"
+          variant="ghost"
+          color="gray"
+          onClick={() => openDrawer('DRAWER_SEARCH', '')}
+          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+        >
+          <OptionIcon className="relative h-auto w-[18px]" />
+        </Button>
+      </div>
+      */}
                 </div>
-
-                <Feeds />
               </div>
-            </TabPanel>
-            */}
+            </div>
 
-            {/* Own */}
-
-            <TabPanel className="focus:outline-none  ">
-              <div className="">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6  ">
-                      {/*
-                      <SortList />
-                      */}
-
-                      {/*
-                      <div className="hidden ">
-                        <GridSwitcher />
-                      </div>
-
-                      
-                      <div className="hidden ">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                      */}
-                    </div>
-                  </div>
-                </div>
-
-                <OwnedFeeds />
-              </div>
-            </TabPanel>
-
-            <TabPanel className="focus:outline-none  ">
-              <div className="">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      {/*
-                      <SortList />
-                      */}
-
-                      {/*
-                      <div className="hidden 3xl:block">
-                        <GridSwitcher />
-                      </div>
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                      */}
-                    </div>
-                  </div>
-                </div>
-
-                <RegisteredFeeds />
-
-                {/*
-                      <OwnedFeeds />
-*/}
-              </div>
-            </TabPanel>
-
-            {/*
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      <SortList />
-
-        
-                    </div>
-                  </div>
-                </div>
-                <RegisteredFeedsDS />
-              </div>
-            </TabPanel>
-            */}
-          </ParamTab>
+            <OwnedFeeds />
+          </div>
         </div>
 
         {/*

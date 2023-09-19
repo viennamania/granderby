@@ -19,12 +19,25 @@ import logo from '@/assets/images/logo.png';
 
 import { ConnectWallet } from '@thirdweb-dev/react';
 
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+import { useDirection } from '@/lib/hooks/use-direction';
+import { useThemeColor } from '@/lib/hooks/use-theme-color';
+
 export function MenuItems() {
   const router = useRouter();
 
   const {
     query: { layout },
   } = router;
+
+  const direction = 'ltr';
+  ///const direction = 'rtl';
+
+  const [themeColor] = useLocalStorage<string>('criptic-color');
+
+  useDirection(direction ? direction : 'ltr');
+
+  useThemeColor(themeColor ? themeColor : '#14161a');
 
   return (
     <div className="flex items-center xl:px-10 2xl:px-14 3xl:px-16">
@@ -40,6 +53,7 @@ export function MenuItems() {
                     <ChevronDown />
                   </span>
                 </Menu.Button>
+
                 <Transition
                   as={Fragment}
                   enter="ease-out duration-300"
@@ -49,22 +63,31 @@ export function MenuItems() {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 translate-y-4"
                 >
+                  {/*
                   <Menu.Items className="absolute mt-5 w-64 origin-top-right rounded-lg bg-white p-3 shadow-large ltr:right-0 rtl:left-0 dark:bg-gray-800">
+                  */}
+                  <Menu.Items className="absolute mt-5 w-64 origin-top-left rounded-lg bg-white p-3 shadow-large ltr:right-0 rtl:left-0 dark:bg-gray-800">
                     {item.dropdownItems.map((dropDownItem, index) => (
                       <Menu.Item key={dropDownItem.name + index}>
                         <div>
                           <ActiveLink
                             href={{
                               pathname: dropDownItem.href,
-                              ...(layout !== LAYOUT_OPTIONS.MODERN && {
-                                query: {
-                                  layout,
-                                },
-                              }),
+                              query: {
+                                layout,
+                              },
+                              //...(layout !== LAYOUT_OPTIONS.MODERN && {
+                              //  query: {
+                              //    layout,
+                              //  },
+                              //}),
                             }}
-                            className="block rounded-lg px-3 py-2 text-sm font-medium uppercase !text-gray-600 transition hover:bg-gray-50 hover:text-gray-900 dark:!text-white dark:hover:bg-gray-700/50"
+                            className="flex rounded-lg px-3 py-2 text-sm font-medium uppercase !text-gray-600 transition hover:bg-gray-50 hover:text-gray-900 dark:!text-white dark:hover:bg-gray-700/50"
                             activeClassName="!bg-gray-100 dark:!bg-gray-700 my-1 last:mb-0 first:mt-0 !text-gray-900 dark:!text-white"
                           >
+                            {/*
+                            <span className="mr-2">{dropDownItem.icon}</span>
+                            */}
                             {dropDownItem.name}
                           </ActiveLink>
                         </div>

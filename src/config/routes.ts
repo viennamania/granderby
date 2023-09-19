@@ -7,6 +7,10 @@ const routes = {
 
   myhorse: '/my-horse',
 
+  myasset: '/my-asset',
+  myportfolio: '/my-portfolio',
+  myitem: '/my-item',
+
   searchHorse: '/search-horse',
   searchJockey: '/search-jockey',
   searchTrack: '/search-track',

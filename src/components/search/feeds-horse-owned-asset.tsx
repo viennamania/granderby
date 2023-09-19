@@ -406,7 +406,8 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                         variant="transparent"
                         size="large"
                         onClick={() => {
-                          router.push('https://granderby.market/');
+                          ///router.push('https://granderby.market/');
+                          router.push('/buy-horse');
                         }}
                       >
                         <div className="flex flex-row items-center gap-2">

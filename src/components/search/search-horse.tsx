@@ -132,18 +132,8 @@ export default function Search() {
   return (
     <>
       <div className=" flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
+        {/*
         <div className="justify-left flex flex-row items-center">
-          {/*
-          <Image
-            src={`/horseRace/at${Math.floor(Math.random() * 5) + 1}.gif`}
-            alt="nft"
-            width={28}
-            height={28}
-            className="rounded-full"
-          />
-          <span className="ml-3">Horses</span>
-          */}
-
           <Image
             src="/horseRace/logo-granderby.png"
             alt="Horse NFT"
@@ -153,6 +143,11 @@ export default function Search() {
           />
           <span className="ml-3">Granderby</span>
         </div>
+        */}
+        <span className="mt-3 text-xs lg:text-sm xl:text-lg">
+          Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
+          Category Gaming
+        </span>
       </div>
 
       <div className="grid 2xl:grid-cols-[280px_minmax(auto,_1fr)] 4xl:grid-cols-[320px_minmax(auto,_1fr)]">
@@ -169,17 +164,14 @@ export default function Search() {
           </Collapse>
         */}
 
-          <ParamTab tabMenu={tabMenu}>
-            {/* Total list of items */}
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="flex flex-col gap-2 xl:hidden">
-                    <div className="flex flex-col gap-2 xl:flex-row ">
-                      {selectedGradesStorage
-                        //.sort(function(a:any, b:any) {return a - b})
-                        // sort grades
-                        /*
+          <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
+            <div className="relative z-10 mb-6 flex items-center justify-between ">
+              <div className="flex flex-col gap-2 xl:hidden">
+                <div className="flex flex-col gap-2 xl:flex-row ">
+                  {selectedGradesStorage
+                    //.sort(function(a:any, b:any) {return a - b})
+                    // sort grades
+                    /*
                         .sort(function (a: any, b: any) {
                           if (a < b) {
                             return -1;
@@ -190,173 +182,80 @@ export default function Search() {
                           return 0;
                         })
                         */
-                        .map((grade: any, index: number) => (
-                          <div
-                            key={index}
-                            className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-2 py-1 dark:border-gray-700"
-                          >
-                            <div className="text-sm font-bold">Grade:</div>
-                            <div className="text-sm font-bold">{grade}</div>
+                    .map((grade: any, index: number) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-2 py-1 dark:border-gray-700"
+                      >
+                        <div className="text-sm font-bold">Grade:</div>
+                        <div className="text-sm font-bold">{grade}</div>
 
-                            <button
-                              className="text-sm font-bold  "
-                              onClick={() => {
-                                const temp = selectedGradesStorage?.filter(
-                                  (item: any) => item !== grade
-                                );
-                                setSelectedGradesStorage(temp);
-                              }}
-                            >
-                              X
-                            </button>
-                          </div>
-                        ))}
-                    </div>
-
-                    <div className="flex flex-col gap-2 xl:flex-row">
-                      {selectedManesStorage?.map((mane: any, index: number) => (
-                        <div
-                          key={index}
-                          className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-2 py-1 dark:border-gray-700"
+                        <button
+                          className="text-sm font-bold  "
+                          onClick={() => {
+                            const temp = selectedGradesStorage?.filter(
+                              (item: any) => item !== grade
+                            );
+                            setSelectedGradesStorage(temp);
+                          }}
                         >
-                          <div className="text-sm font-bold">Mane:</div>
-                          <div className="text-sm font-bold">{mane}</div>
-
-                          <button
-                            className="text-sm font-bold  "
-                            onClick={() => {
-                              const temp = selectedManesStorage?.filter(
-                                (item: any) => item !== mane
-                              );
-                              setSelectedManesStorage(temp);
-                            }}
-                          >
-                            X
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      <SortList />
-
-                      <div className="hidden 3xl:block">
-                        <GridSwitcher />
+                          X
+                        </button>
                       </div>
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+                    ))}
                 </div>
 
-                <Feeds />
-              </div>
-            </TabPanel>
+                <div className="flex flex-col gap-2 xl:flex-row">
+                  {selectedManesStorage?.map((mane: any, index: number) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-2 py-1 dark:border-gray-700"
+                    >
+                      <div className="text-sm font-bold">Mane:</div>
+                      <div className="text-sm font-bold">{mane}</div>
 
-            {/* Owned items */}
-            {/*
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      <SortList />
-
-                      <div className="hidden 3xl:block">
-                        <GridSwitcher />
-                      </div>
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
+                      <button
+                        className="text-sm font-bold  "
+                        onClick={() => {
+                          const temp = selectedManesStorage?.filter(
+                            (item: any) => item !== mane
+                          );
+                          setSelectedManesStorage(temp);
+                        }}
+                      >
+                        X
+                      </button>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="items-right flex w-full justify-end">
+                <div className="flex gap-6 3xl:gap-8 ">
+                  <SortList />
+
+                  <div className="hidden 3xl:block">
+                    <GridSwitcher />
+                  </div>
+
+                  <div className="hidden sm:block 2xl:hidden">
+                    <Button
+                      shape="rounded"
+                      size="small"
+                      variant="ghost"
+                      color="gray"
+                      onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                      className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                    >
+                      <OptionIcon className="relative h-auto w-[18px]" />
+                    </Button>
                   </div>
                 </div>
-
-                <OwnedFeeds />
               </div>
-            </TabPanel>
-            */}
+            </div>
 
-            {/* Registered items */}
-            {/*
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      <SortList />
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <RegisteredFeeds />
-              </div>
-            </TabPanel>
-            */}
-
-            <TabPanel className="focus:outline-none  ">
-              <div className="2xl:ltr:pl-8 2xl:rtl:pr-8 4xl:ltr:pl-10 4xl:rtl:pr-10">
-                <div className="relative z-10 mb-6 flex items-center justify-between ">
-                  <div className="items-right flex w-full justify-end">
-                    <div className="flex gap-6 3xl:gap-8 ">
-                      <SortList />
-
-                      <div className="hidden sm:block 2xl:hidden">
-                        <Button
-                          shape="rounded"
-                          size="small"
-                          variant="ghost"
-                          color="gray"
-                          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                        >
-                          <OptionIcon className="relative h-auto w-[18px]" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <SaleFeeds />
-              </div>
-            </TabPanel>
-          </ParamTab>
+            <Feeds />
+          </div>
         </div>
 
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">

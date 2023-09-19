@@ -123,7 +123,7 @@ export function Header() {
             className="flex flex-row items-center justify-center gap-2"
             onClick={() => router.push(routes.home)}
           >
-            <Image src={logo} alt="logo" width={30} height={30} className="" />
+            <Image src={logo} alt="logo" width={30} height={30} />
             <span className="ml-1 text-lg font-bold">Granderby</span>
           </button>
 
@@ -141,7 +141,7 @@ export function Header() {
 export default function MomoconLayout({
   children,
 }: React.PropsWithChildren<{}>) {
-  console.log('layout MomoconLayout');
+  ///console.log('layout MomoconLayout');
 
   return (
     <>

@@ -81,6 +81,9 @@ import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurren
 
 import toast from 'react-hot-toast';
 
+import '@/components/nft/share-view';
+import ShareView from '@/components/nft/share-view';
+
 export default function IntroScreen() {
   const address = useAddress();
 
@@ -443,17 +446,19 @@ export default function IntroScreen() {
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
       <div className="mb-20 flex flex-wrap">
-        {!address && (
-          <CollapseIntroVideo label="Introduction" initialOpen={true}>
-            <video
-              id="intro-video"
-              src="/mov/intro.mp4"
-              muted
-              autoPlay
-              className="rounded-lg"
-            ></video>
-          </CollapseIntroVideo>
-        )}
+        <CollapseIntroVideo label="Introduction" initialOpen={true}>
+          <video
+            id="intro-video"
+            src="/mov/intro.mp4"
+            muted
+            autoPlay
+            className="rounded-lg"
+          ></video>
+        </CollapseIntroVideo>
+
+        {/*
+          <ShareView />
+  */}
       </div>
     </div>
   );

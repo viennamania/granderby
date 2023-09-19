@@ -134,16 +134,34 @@ export const menuItems = [
   */
 
   {
-    name: 'ASSETS',
-    icon: <SearchIcon />,
-    href: routes.rentHorse,
+    name: 'ASSET MANAGEMENT',
+    icon: <CompassIcon />,
+    href: routes.myasset,
     dropdownItems: [
+      {
+        name: 'Portfolio',
+        icon: <PlusCircle />,
+        href: routes.myportfolio,
+      },
+      {
+        name: 'NFT',
+        icon: <PlusCircle />,
+        href: routes.myasset,
+      },
+      {
+        name: 'Item',
+        icon: <PlusCircle />,
+        href: routes.myitem,
+      },
+
+      /*
       {
         name: 'Horse',
         icon: <CompassIcon />,
         href: routes.myhorse,
       },
 
+      
       {
         name: 'Jockey',
         icon: <PlusCircle />,
@@ -155,6 +173,7 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.track,
       },
+      */
 
       /*
       {
@@ -234,7 +253,7 @@ export const menuItems = [
 
   {
     name: 'NFT',
-    icon: <ExchangeIcon />,
+    icon: <SearchIcon />,
     href: routes.mint,
     dropdownItems: [
       {
