@@ -89,6 +89,8 @@ import toast from 'react-hot-toast';
 
 import AuctionCountdown from '@/components/nft/auction-countdown';
 
+import { CheckoutWithCard } from '@paperxyz/react-client-sdk';
+
 interface RadioOptionProps {
   value: string;
 }
@@ -970,6 +972,52 @@ export default function NftSinglePrice({
     }
   }
 
+  const [sdkClientSecret, setSdkClientSecret] = useState();
+
+  useEffect(() => {
+    const checkSdkClientSecret = async () => {
+      if (address) {
+        const res = await fetch('/api/checkout?address=' + address);
+
+        //console.log("res", res);
+
+        const { sdkClientSecret } = await res.json();
+
+        console.log('sdkClientSecret', sdkClientSecret);
+
+        setSdkClientSecret(sdkClientSecret);
+
+        /*
+        const options = {
+          colorBackground: '#fefae0',
+          colorPrimary: '#606c38',
+          colorText: '#283618',
+          borderRadius: 6,
+          inputBackgroundColor: '#faedcd',
+          inputBorderColor: '#d4a373',
+        };
+        
+        createCheckoutWithCardElement({
+          sdkClientSecret: sdkClientSecret,
+          elementOrId: "paper-checkout-container",
+          appName: "My Web3 App",
+          
+          options,
+      
+          onError(error) {
+            console.error("Payment error:", error);
+          },
+          onPaymentSuccess({ id }) {
+            console.log("Payment successful.");
+          },
+        });
+        */
+      }
+    };
+
+    checkSdkClientSecret();
+  }, [address]);
+
   return (
     <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
       <div className=" flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
@@ -1276,6 +1324,30 @@ export default function NftSinglePrice({
                                 {tokenBalanceUSDC?.symbol}
                               </div>
                             </div>
+
+                            {/*
+
+                            <div className=" mt-10 flex flex-row justify-center">
+                              {address && sdkClientSecret && (
+                                <div className="w-[380px] rounded-lg border p-5">
+                                  <CheckoutWithCard
+                                    sdkClientSecret={sdkClientSecret}
+                                    //onPriceUpdate={ (quantity, unitPrice, networkFees, serviceFees, total) => {
+                                    onPriceUpdate={(priceSummary) => {
+                                      console.log('Payment successful priceSummary', priceSummary);
+                             
+                                    }}
+                                    onPaymentSuccess={(result) => {
+                                      console.log('Payment successful result', result);
+
+                                      //mintNFT();
+
+                                    }}
+                                  />
+                                </div>
+                              )}
+                            </div>
+                            */}
                           </>
                         )}
                       </>

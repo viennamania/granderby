@@ -80,12 +80,18 @@ echo $response->getBody();
     {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer c306527a-68c9-4e47-8d2b-ecad15f697a8',
+        //Authorization: 'Bearer c306527a-68c9-4e47-8d2b-ecad15f697a8',
+
+        Authorization: 'Bearer a0de5222-0439-4a7e-bf01-c268e2de4b1c',
+
         accept: 'application/json',
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        contractId: '39616f9c-1017-44f5-80dd-e3819708e570', //from the Contract Registration endpoint
+        //contractId: '39616f9c-1017-44f5-80dd-e3819708e570', //from the Contract Registration endpoint
+
+        contractId: 'b0824157-35fe-4387-86e0-872600e716a3', //from the Contract Registration endpoint
+
         walletAddress: walletAddress,
       }),
     }
