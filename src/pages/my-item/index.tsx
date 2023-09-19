@@ -120,7 +120,6 @@ const RentPage: NextPageWithLayout<
         </div>
           */}
 
-        {/*
         <footer>
           <div className=" flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
             <div>Copyright ©MOMOCON</div>
@@ -152,7 +151,6 @@ const RentPage: NextPageWithLayout<
             </AnchorLink>
           </div>
         </footer>
-        */}
       </>
     );
   }

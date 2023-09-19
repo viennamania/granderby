@@ -37,7 +37,7 @@ export const menuItems = [
   },
   */
   {
-    name: 'INTRO',
+    name: 'INTRODUCTION',
     icon: <HomeIcon />,
     href: routes.intro,
   },
