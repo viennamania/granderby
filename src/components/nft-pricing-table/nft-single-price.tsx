@@ -1118,6 +1118,7 @@ export default function NftSinglePrice({
               <span className="flex items-center gap-2.5">
                 <span className="items-left flex flex-col gap-2.5 ">
                   <div className="items-left flex flex-col justify-center ">
+                    {/* nft title */}
                     <div className="items-left flex w-full flex-col justify-center lg:hidden xl:hidden">
                       <Link
                         className=" text-left text-lg capitalize text-blue-500 dark:text-white "
@@ -1144,53 +1145,7 @@ export default function NftSinglePrice({
                         </div>
                       </div>
                     </div>
-
-                    {/*
-                    <Image
-                      //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                      src={
-                        nftMetadata?.metadata?.image
-                          ? nftMetadata?.metadata?.image
-                          : '/default-nft.png'
-                      }
-                      alt="nft"
-                      width={1024}
-                      height={1024}
-                      className=" rounded-lg "
-                    />
-                    */}
-
-                    {/*
-
-                    <div className="flex flex-row items-center justify-start gap-2.5">
-                      <div className="flex flex-row items-center justify-start gap-2.5">
-                        <span>Speed:</span>
-                        {attributeSpped && (
-                          <div className="text-left text-xl capitalize  text-red-600 dark:text-white xl:text-2xl">
-                            {attributeSpped}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex flex-row items-center justify-start gap-2.5">
-                        <span>Stamina:</span>
-                        {attributeStamina && (
-                          <div className="text-left text-xl capitalize  text-green-600 dark:text-white xl:text-2xl">
-                            {attributeStamina}
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-2.5">
-                        <span>Power:</span>
-                        {attributePower && (
-                          <div className="text-left text-2xl capitalize  text-blue-600 dark:text-white xl:text-2xl">
-                            {attributePower}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    */}
+                    {/* end of nft title */}
                   </div>
 
                   <Collapse label="Grade" initialOpen={true}>

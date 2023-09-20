@@ -33,13 +33,25 @@ import TransactionTable from '@/components/nft-transaction/transaction-table';
 
 import { useRouter } from 'next/router';
 
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+import Link from 'next/link';
 
 import {
+  nftDropContractAddressHorse,
+  stakingContractAddressHorseAAA,
+} from '@/config/contractAddresses';
+
+import {
+  ConnectWallet,
+  useDisconnect,
   ThirdwebNftMedia,
+  useAddress,
   useContract,
-  useNFT,
+  useContractRead,
+  useOwnedNFTs,
+  useTokenBalance,
   Web3Button,
+  useValidDirectListings,
+  useNFT,
 } from '@thirdweb-dev/react';
 
 import { get } from 'http';
@@ -58,6 +70,30 @@ function SinglePrice(tokenid: any) {
   const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
 
   ///console.log('nftMetadata======>', nftMetadata);
+
+  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
+    useContract(stakingContractAddressHorseAAA);
+
+  const { data: stakerAddress, isLoading: isLoadingStakerAddress } =
+    useContractRead(contractStaking, 'stakerAddress', [
+      nftMetadata?.metadata?.id,
+    ]);
+
+  const { data: stakeInfo, isLoading: isLoadingStakeInfo } = useContractRead(
+    contractStaking,
+    'getStakeInfo',
+    [stakerAddress]
+  );
+
+  const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
+
+  useEffect(() => {
+    if (!stakeInfo) return;
+
+    setStakeInfoCount(stakeInfo?.[0]?.length);
+  }, [stakeInfo]);
+
+  const address = useAddress();
 
   return (
     <>
@@ -100,30 +136,117 @@ function SinglePrice(tokenid: any) {
             {layout === LAYOUT_OPTIONS.RETRO ? (
               <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
             ) : (
-              <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
-                {/*
-            <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-              NFT Info
-            </h2>
-            */}
+              <div className="flex w-full flex-col">
+                <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
+                  <Link
+                    className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
+                    href={`/horse`}
+                  >
+                    {/*nftMetadata?.metadata?.description*/}
+                    Granderby Horse NFT
+                  </Link>
 
-                <NftInfo nftMetadata={nftMetadata} />
+                  <div className="mt-2 flex flex-row items-center justify-start ">
+                    {/*
+                    <Image src="/images/logo-gd.png" alt="gd" width={18} height={18} />
+                    */}
 
-                {/*
-            <div>
-              <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
-              <CoinConverter />
-            </div>
-            */}
+                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                      #{nftMetadata?.metadata?.id}
+                    </span>
+                  </div>
 
-                {/*
-            <div className="px-8 pb-10">
-              <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-                Top Coins
-              </h2>
-              <TopCoin />
-            </div>
-            */}
+                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
+                      {nftMetadata?.metadata?.name}
+                    </div>
+                  </div>
+
+                  {/* owned by */}
+
+                  {isLoadingStakerAddress ? (
+                    <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
+                      <div className="text-sm font-bold xl:text-lg">
+                        <b>Loading Owner...</b>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className=" item-center flex w-full justify-start  gap-4 ">
+                      <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                        Owned by
+                      </div>
+                      <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                        {stakerAddress &&
+                        stakerAddress ===
+                          '0x0000000000000000000000000000000000000000' ? (
+                          <>
+                            {nftMetadata?.owner === address ? (
+                              <div className="text-xl font-bold text-blue-600">
+                                Me
+                              </div>
+                            ) : (
+                              <div>
+                                <span>
+                                  {nftMetadata?.owner?.substring(0, 10)}...
+                                </span>
+                                {stakeInfoCount && stakeInfoCount > 1 && (
+                                  <span className="text-xs text-gray-400">
+                                    +{stakeInfoCount - 1}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            {stakerAddress && stakerAddress === address ? (
+                              <div className="text-xl font-bold text-blue-600">
+                                Me
+                              </div>
+                            ) : (
+                              <div>
+                                <span>
+                                  {stakerAddress?.substring(0, 10)}...
+                                </span>
+                                {stakeInfoCount && stakeInfoCount > 1 && (
+                                  <span className="text-xs text-gray-400">
+                                    +{stakeInfoCount - 1}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
+                  {/*
+                  <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
+                    NFT Info
+                  </h2>
+                  */}
+
+                  <NftInfo nftMetadata={nftMetadata} />
+
+                  {/*
+                  <div>
+                    <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
+                    <CoinConverter />
+                  </div>
+                  */}
+
+                  {/*
+                  <div className="px-8 pb-10">
+                    <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
+                      Top Coins
+                    </h2>
+                    <TopCoin />
+                  </div>
+                  */}
+                </div>
               </div>
             )}
           </div>
