@@ -17,7 +17,7 @@ import { LAYOUT_OPTIONS } from '@/lib/constants';
 import Image from '@/components/ui/image';
 import logo from '@/assets/images/logo.png';
 
-import { ConnectWallet } from '@thirdweb-dev/react';
+import { ConnectWallet, useAddress, Web3Button } from '@thirdweb-dev/react';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useDirection } from '@/lib/hooks/use-direction';
@@ -353,6 +353,8 @@ export function MenuItems() {
 export default function DrawerMenu() {
   const { closeDrawer } = useDrawer();
 
+  const address = useAddress();
+
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
       <div className="flex h-24 items-center justify-between overflow-hidden px-6 py-4">
@@ -399,6 +401,14 @@ export default function DrawerMenu() {
                 dropdownItems={item.dropdownItems}
               />
             ))}
+
+            <div className="mt-10 flex w-full items-center justify-center">
+              {address ? (
+                <ConnectWallet theme="dark" />
+              ) : (
+                <ConnectWallet theme="light" />
+              )}
+            </div>
           </div>
         </div>
       </Scrollbar>
@@ -407,10 +417,6 @@ export default function DrawerMenu() {
         {/*
         <WalletConnect anchorClassName="w-full" btnClassName="!w-full !h-11" />
             */}
-
-        {/*
-        <ConnectWallet />
-          */}
       </div>
     </div>
   );
