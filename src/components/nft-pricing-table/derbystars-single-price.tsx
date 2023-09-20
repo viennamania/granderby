@@ -381,6 +381,7 @@ export default function NftSinglePrice({
   setIsOpen,
 }: NftDrawerProps) {
   const [price, setPrice] = useState(null);
+
   const [date, setDate] = useState(1624147200);
   const [status, setStatus] = useState('Month');
   const [chartData, setChartData] = useState(monthlyComparison);

@@ -960,7 +960,7 @@ export default function NftSinglePrice({
   }
 
   return (
-    <div className="h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
+    <div className=" h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
       {layout === LAYOUT_OPTIONS.RETRO ? (
         <div>
           <div className="flex justify-between gap-4 sm:gap-8 md:items-start lg:flex-row lg:items-center lg:gap-4">
@@ -1112,593 +1112,59 @@ export default function NftSinglePrice({
           </div>
         </div>
       ) : (
-        <div className=" flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
-          <div>
-            <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-              <span className="flex items-center gap-2.5">
-                <span className="items-left flex flex-col gap-2.5 ">
-                  <div className="items-left flex flex-col justify-center ">
-                    {/* nft title */}
-                    <div className="items-left flex w-full flex-col justify-center lg:hidden xl:hidden">
-                      <Link
-                        className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                        href={`/horse`}
-                      >
-                        {nftMetadata?.metadata?.description}
-                      </Link>
-                      <div className="mt-2 flex flex-row items-center justify-start ">
-                        {/*
-                        <Image
-                          src="/images/logo-gd.png"
-                          alt="gd"
-                          width={18}
-                          height={18}
-                        />
-                        */}
-                        <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                          #{nftMetadata?.metadata?.id}
-                        </span>
-                      </div>
-                      <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                        <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
-                          {nftMetadata?.metadata?.name}
-                        </div>
-                      </div>
-                    </div>
-                    {/* end of nft title */}
-                  </div>
+        <div className="  flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
+          <div className=" flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
+            <span className="   flex items-center gap-2.5  ">
+              <span className="items-left flex flex-col gap-2.5  ">
+                <Collapse label="Grade" initialOpen={true}>
+                  <Grade {...{ grade: attributeGrade }} />
+                </Collapse>
 
-                  <Collapse label="Grade" initialOpen={true}>
-                    <Grade {...{ grade: attributeGrade }} />
-                  </Collapse>
+                <Collapse label="Mane" initialOpen={true}>
+                  <Mane {...{ mane: attributeMane }} />
+                </Collapse>
 
-                  <Collapse label="Mane" initialOpen={true}>
-                    <Mane {...{ mane: attributeMane }} />
-                  </Collapse>
+                <Collapse label="Tail" initialOpen={true}>
+                  <Tail {...{ tail: attributeTail }} />
+                </Collapse>
 
-                  <Collapse label="Tail" initialOpen={true}>
-                    <Tail {...{ tail: attributeTail }} />
-                  </Collapse>
+                {/* nft attributes details */}
 
-                  {/*
-                    <Collapse label="Speed" initialOpen={true}>
-                      <PriceRange />
-                    </Collapse>
-                    */}
-
-                  {/* nft attributes details */}
-
-                  <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2  ">
-                    {
-                      //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
-                      attributes?.map((attribute: any) => (
-                        <div key={attribute?.trait_type}>
-                          <div
-                            className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+                <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2  ">
+                  {
+                    //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+                    attributes?.map((attribute: any) => (
+                      <div key={attribute?.trait_type}>
+                        <div
+                          className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
                           lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                        >
+                          <span
+                            className={cn(
+                              'flex ',
+                              toggleCoin ? 'flex-row-reverse' : 'flex-row'
+                            )}
                           >
-                            <span
-                              className={cn(
-                                'flex ',
-                                toggleCoin ? 'flex-row-reverse' : 'flex-row'
-                              )}
-                            >
-                              <span>{attribute?.trait_type}</span>
-                            </span>
+                            <span>{attribute?.trait_type}</span>
+                          </span>
 
-                            <span className="text-sm  font-semibold xl:text-lg">
-                              {/*
+                          <span className="text-sm  font-semibold xl:text-lg">
+                            {/*
                               {attribute?.value?.toString().length < 8
                                 ? attribute?.value?.toString()
                                 : attribute?.value?.toString().substring(0, 8)}
                               ...
                               */}
-                              {attribute?.value}
-                            </span>
-                          </div>
-                        </div>
-                      ))
-                    }
-                  </div>
-
-                  {/* owned by */}
-                  {/*
-                  <div className="mt-1 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
-                    {isLoadingStaking ? (
-                      <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
-                        <div className="text-sm font-bold xl:text-lg">
-                          <b>Loading Owner...</b>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className=" flex items-center  gap-4 ">
-                        <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                          Owned by
-                        </div>
-                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                          {stakerAddress &&
-                          stakerAddress ===
-                            '0x0000000000000000000000000000000000000000' ? (
-                            <>
-                              {nftMetadata?.owner === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <div>
-                                  <span>
-                                    {nftMetadata?.owner?.substring(0, 10)}...
-                                  </span>
-                                  {stakeInfoCount && stakeInfoCount > 1 && (
-                                    <span className="text-xs text-gray-400">
-                                      +{stakeInfoCount - 1}
-                                    </span>
-                                  )}
-                                </div>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              {stakerAddress && stakerAddress === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <div>
-                                  <span>
-                                    {stakerAddress?.substring(0, 10)}...
-                                  </span>
-                                  {stakeInfoCount && stakeInfoCount > 1 && (
-                                    <span className="text-xs text-gray-400">
-                                      +{stakeInfoCount - 1}
-                                    </span>
-                                  )}
-                                </div>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                                  */}
-
-                  {/* sale info */}
-                  {/*
-
-                  {loadingListings ? (
-                    <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
-                      <div className="text-sm font-bold xl:text-lg">
-                        <b>Loading sale...</b>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="mt-0 flex flex-col items-center justify-center gap-5  rounded-lg border p-3 ">
-                      {!directListing || directListing.quantity === '0' ? (
-                        <>
-                          <div className="text-sm font-bold xl:text-lg">
-                            <b>Not for sale </b>
-                          </div>
-
-                          <div className="flex flex-col ">
-                            <div className="item-center flex flex-row  gap-2 text-sm font-bold xl:text-lg">
-                              <button
-                                className=" w-24 text-sm font-bold xl:text-xl "
-                                onClick={() =>
-                                  router.push(
-                                    `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
-                                  )
-                                }
-                              >
-                                <Image
-                                  src="/images/market.png"
-                                  alt="live"
-                                  width={30}
-                                  height={30}
-                                />
-                              </button>
-
-                              <span className="flex pt-1">Last price:</span>
-
-                              <span className="flex text-xl font-bold text-green-600 xl:text-3xl">
-                                {saleHistory[0]?.paidToken ===
-                                '0x0000000000000000000000000000000000001010'
-                                  ? (
-                                      saleHistory[0]?.totalPricePaid /
-                                      1000000000000000000
-                                    ).toFixed(2)
-                                  : (
-                                      saleHistory[0]?.totalPricePaid / 1000000
-                                    ).toFixed(2)}
-                              </span>
-
-                              {saleHistory[0]?.paidToken ===
-                              '0x0000000000000000000000000000000000001010' ? (
-                                <span className="pt-1"> MATIC</span>
-                              ) : (
-                                <span className="pt-1"> USDC</span>
-                              )}
-                            </div>
-
-                            <div className=" flex flex-row items-center justify-start text-xs">
-                              {format(
-                                Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                                'yyy-MM-dd hh:mm:ss'
-                              )}
-                            </div>
-
-                            <div className="item-center mt-3 flex flex-row  gap-2 text-sm font-bold xl:text-lg">
-                              <button
-                                className=" w-24 text-sm font-bold xl:text-xl "
-                                onClick={() =>
-                                  router.push(
-                                    `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
-                                  )
-                                }
-                              >
-                                <Image
-                                  src="/images/logo-opensea.svg"
-                                  alt="live"
-                                  width={80}
-                                  height={30}
-                                />
-                              </button>
-
-                              <span className="flex pt-1 ">Last price:</span>
-                              <span className="flex pt-1">No record</span>
-                            </div>
-                          </div>
-
-                          {address === nftMetadata?.owner &&
-                            address !== stakerAddress && (
-                              <div className=" flex flex-row items-center justify-start gap-2">
-                                <Web3Button
-                                  theme="light"
-                                  contractAddress={marketplaceContractAddress}
-                                  action={() =>
-                                    sellNft(nftMetadata?.metadata?.id || '')
-                                  }
-                                >
-                                  Sell
-                                </Web3Button>
-
-                                <input
-                                  className=" w-full text-black"
-                                  type="number"
-                                  name="price"
-                                  placeholder="Price"
-                                  value={price}
-                                  onChange={(e) => {
-                                    setPrice(e.target.value as any);
-                                  }}
-                                />
-                                <span className="ml-2 text-xl font-bold text-blue-600">
-                                  USDC
-                                </span>
-                              </div>
-                            )}
-                        </>
-                      ) : (
-                        <>
-                          <div className=" text-xl font-bold xl:text-2xl">
-            
-                            <div className="flex flex-row items-center justify-center gap-2">
-                              <Image
-                                src="/images/market.png"
-                                alt="market"
-                                width={30}
-                                height={30}
-                              />
-                              <span className=" text-lg">Sell Price:</span>
-
-                              <div className="flex flex-row items-center justify-center gap-3">
-                                <span className="text-3xl font-bold text-green-600 xl:text-4xl">
-                                  {
-                                    directListing?.currencyValuePerToken
-                                      .displayValue
-                                  }
-                                </span>
-                                <span className="text-sm xl:text-lg">
-                                  {' '}
-                                  {directListing?.currencyValuePerToken.symbol}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <span className="text-xs">
-                            {format(
-                              new Date(
-                                directListing?.startTimeInSeconds * 1000
-                              ),
-                              'yyy-MM-dd hh:mm:ss'
-                            )}
+                            {attribute?.value}
                           </span>
-
-                          <div className="text-sm font-bold xl:text-lg">
-                            Last price:{' '}
-                            <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                              {saleHistory[0]?.paidToken ===
-                              '0x0000000000000000000000000000000000001010'
-                                ? (
-                                    saleHistory[0]?.totalPricePaid /
-                                    1000000000000000000
-                                  ).toFixed(2)
-                                : (
-                                    saleHistory[0]?.totalPricePaid / 1000000
-                                  ).toFixed(2)}
-                            </span>
-                            {saleHistory[0]?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' ? (
-                              <span className="pt-1"> MATIC</span>
-                            ) : (
-                              <span className="pt-1"> USDC</span>
-                            )}
-                          </div>
-                          <div className=" flex flex-row items-center justify-start gap-2 text-xs">
-                            {format(
-                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                              'yyy-MM-dd hh:mm:ss'
-                            )}
-                          </div>
-
-                          {address && address === nftMetadata?.owner && (
-                            <Web3Button
-                              theme="light"
-                              action={(contract) =>
-                                //contract?.call('withdraw', [[nft?.metadata?.id]])
-                                //contract?.call('cancel', [[directListing?.id]])
-
-                                contract?.directListings.cancelListing(
-                                  directListing?.id
-                                )
-                              }
-                              contractAddress={marketplaceContractAddress}
-                            >
-                              <span className="flex items-center gap-2">
-                                Cancel Sale
-                              </span>
-                            </Web3Button>
-                          )}
-
-                          {!address && (
-                            <div className="flex flex-row items-center justify-center">
-                              <ConnectWallet
-                                theme="light"
-                                className="text-sm font-bold xl:text-xl"
-                              />
-                              <span className="text-sm font-bold xl:text-xl">
-                                &nbsp;&nbsp;for Buy Now
-                              </span>
-                            </div>
-                          )}
-
-                          {address && address !== nftMetadata?.owner && (
-                            <>
-                              <div className="text-sm font-bold xl:text-xl">
-                                <Web3Button
-                                  theme="light"
-                                  action={(contract) =>
-                                    //contract?.call('withdraw', [[nftMetadata?.tokenId]])
-                                    buyNft()
-                                  }
-                                  contractAddress={marketplaceContractAddress}
-                                >
-                                  <span className="flex items-center gap-2">
-                                     Buy
-                                  </span>
-                                </Web3Button>
-                                {!address && (
-                                  <span className="text-sm font-bold xl:text-xl">
-                                    &nbsp;&nbsp;for Buy Now
-                                  </span>
-                                )}
-                              </div>
-
-                              <div className=" flex flex-row items-center justify-center  gap-2">
-                                <span className="text-md  xl:text-xl">
-                                  My Balance:
-                                </span>
-
-                                {isLoadingTokenBalanceUSDC && (
-                                  <div className=" text-md  xl:text-xl">
-                                    Loading...
-                                  </div>
-                                )}
-                                <div className="text-md  xl:text-xl">
-                                  {Number(
-                                    tokenBalanceUSDC?.displayValue
-                                  ).toFixed(2)}{' '}
-                                  {tokenBalanceUSDC?.symbol}
-                                </div>
-                              </div>
-                            </>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  )}
-
-                  */}
-
-                  {/* registered in */}
-                  {/*
-                  <div className="mt-1 flex flex-col items-center justify-center gap-2  rounded-lg border ">
-                    {isLoadingStaking ? (
-                      <div className=" flex flex-col items-center justify-center gap-5 p-3">
-                        <div className="text-sm font-bold xl:text-lg">
-                          <b>Loading register...</b>
                         </div>
                       </div>
-                    ) : (
-                      <>
-                        <div className="">
-                          {stakerAddress &&
-                            stakerAddress ===
-                              '0x0000000000000000000000000000000000000000' && (
-                              <div className="mt-2 flex flex-row items-center gap-4 ">
-                                <div className="text-sm font-bold xl:text-lg">
-                                  <b>Not registered </b>
-                                </div>
-
-                                {address &&
-                                  address === nftMetadata?.owner &&
-                                  !directListing && (
-                                    <Web3Button
-                                      theme="light"
-                                      contractAddress={
-                                        stakingContractAddressHorseAAA
-                                      }
-                                      action={() =>
-                                        stakeNft(
-                                          nftMetadata?.metadata?.id || ''
-                                        )
-                                      }
-                                    >
-                                      Register
-                                    </Web3Button>
-                                  )}
-                              </div>
-                            )}
-
-                          {stakerAddress &&
-                            stakerAddress !==
-                              '0x0000000000000000000000000000000000000000' && (
-                              <div className=" flex items-center justify-start gap-2 ">
-                                <div className="flex text-sm tracking-wider text-[#6B7280]">
-                                  Registered in
-                                </div>
-
-                                {stakeInfo?.[0].date}
-
-        
-                                <Image
-                                  src="/images/inkent.jpeg"
-                                  alt="raceTrack"
-                                  width={50}
-                                  height={50}
-                                />
-                                <button
-                                  className="text-sm font-bold xl:text-xl "
-                                  onClick={() => router.push('/live')}
-                                >
-                                  <Image
-                                    src="/horseRace/live.gif"
-                                    alt="live"
-                                    width={90}
-                                    height={30}
-                                  />
-                                </button>
-
-                              </div>
-                            )}
-
-                          {stakerAddress && stakerAddress === address && (
-                            <div className="mt-0 ">
-                              <Web3Button
-                                theme="light"
-                                action={(contract) =>
-                                  contract?.call('withdraw', [
-                                    [nftMetadata?.metadata?.id],
-                                  ])
-                                }
-                                contractAddress={stakingContractAddressHorseAAA}
-                              >
-                                Unregister
-                              </Web3Button>
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="mb-3 flex flex-row">
-                          {raceHistory && raceHistory.length === 0 ? (
-                            <div>
-                              <div className="text-sm font-bold xl:text-lg">
-                                <b>No record </b>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="flex flex-col gap-2">
-                              <div className="text-sm font-bold xl:text-lg">
-                                Last rank:&nbsp;
-                                <span className="text-2xl font-bold text-red-600 xl:text-4xl">
-                                  {raceHistory[0]?.rank}{' '}
-                                </span>
-                                <span className="text-xs">
-                                  {format(
-                                    Date.parse(raceHistory[0]?.createdAt || 0),
-                                    'yyy-MM-dd hh:mm:ss'
-                                  )}
-                                </span>
-                              </div>
-
-                              <div className="text-sm font-bold xl:text-lg">
-                                Next entery:&nbsp;
-                                <span className="text-xs">
-                                  Not reserved
-                                </span>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                                  */}
-                </span>
+                    ))
+                  }
+                </div>
               </span>
-            </div>
-
-            {/*
-            <div className="mt-5 flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
-              <span className="text-2xl font-semibold xl:text-3xl">
-                {price}
-              </span>
-
-              <span
-                className={cn(
-                  'flex items-end',
-                  toggleCoin ? 'flex-row-reverse' : 'flex-row'
-                )}
-              >
-
-              </span>
-
-              <span
-                className={cn(
-                  'mb-1 flex items-center text-xs sm:mb-0 sm:text-base',
-                  priceDiff > 0 ? 'text-green-500' : 'text-red-500'
-                )}
-              >
-                <span
-                  className={`inline-flex ltr:mr-2 rtl:ml-2 ${
-                    priceDiff > 0 ? '' : 'rotate-180'
-                  }`}
-                >
-                  <ArrowUp />
-                </span>
-                {priceDiff} ({percentage})
-              </span>
-            </div>
-
-            <div className="mt-6 flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 sm:text-sm">
-              <Refresh /> {formattedDate}
-            </div>
-
-            */}
+            </span>
           </div>
-
-          {/*
-          <RadioGroup
-            value={status}
-            onChange={handleOnChange}
-            className="flex items-center gap-5"
-          >
-            <RadioGroupOption value="Week" />
-            <RadioGroupOption value="Month" />
-            <RadioGroupOption value="Year" />
-          </RadioGroup>
-          */}
         </div>
       )}
 

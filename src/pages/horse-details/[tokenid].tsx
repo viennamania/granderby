@@ -108,8 +108,89 @@ function SinglePrice(tokenid: any) {
               className={`w-full 2xl:w-full 
               ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
             >
-              <div className="flex flex-col ">
-                <span></span>
+              <div className=" flex flex-col">
+                {/* nft title */}
+
+                <div className="items-left  mb-5  w-full flex-col justify-center  lg:hidden xl:hidden">
+                  <Link
+                    className=" text-left text-lg capitalize text-blue-500 dark:text-white "
+                    href={`/horse`}
+                  >
+                    {nftMetadata?.metadata?.description}
+                  </Link>
+                  <div className="mt-2 flex flex-row items-center justify-start ">
+                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                      #{nftMetadata?.metadata?.id}
+                    </span>
+                  </div>
+                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
+                      {nftMetadata?.metadata?.name}
+                    </div>
+                  </div>
+
+                  {/* owned by */}
+
+                  {isLoadingStakerAddress ? (
+                    <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
+                      <div className="text-sm font-bold xl:text-lg">
+                        <b>Loading Owner...</b>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className=" item-center flex w-full justify-start  gap-4 ">
+                      <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                        Owned by
+                      </div>
+                      <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                        {stakerAddress &&
+                        stakerAddress ===
+                          '0x0000000000000000000000000000000000000000' ? (
+                          <>
+                            {nftMetadata?.owner === address ? (
+                              <div className="text-xl font-bold text-blue-600">
+                                Me
+                              </div>
+                            ) : (
+                              <div>
+                                <span>
+                                  {nftMetadata?.owner?.substring(0, 10)}...
+                                </span>
+                                {stakeInfoCount && stakeInfoCount > 1 && (
+                                  <span className="text-xs text-gray-400">
+                                    +{stakeInfoCount - 1}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            {stakerAddress && stakerAddress === address ? (
+                              <div className="text-xl font-bold text-blue-600">
+                                Me
+                              </div>
+                            ) : (
+                              <div>
+                                <span>
+                                  {stakerAddress?.substring(0, 10)}...
+                                </span>
+                                {stakeInfoCount && stakeInfoCount > 1 && (
+                                  <span className="text-xs text-gray-400">
+                                    +{stakeInfoCount - 1}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* end of nft title */}
+
                 <Image
                   //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
                   src={
@@ -120,7 +201,7 @@ function SinglePrice(tokenid: any) {
                   alt="nft"
                   width={1024}
                   height={1024}
-                  className=" rounded-lg"
+                  className=" rounded-lg "
                 />
 
                 <NftSinglePrice

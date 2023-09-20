@@ -63,7 +63,7 @@ function SinglePrice(tokenid: any) {
           <div className="mt-0 flex flex-wrap gap-6 lg:flex-nowrap ">
             <div
               className={`w-full 2xl:w-full 
-          ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
+              ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
             >
               <NftSinglePrice
                 //tokenid={tokenid.tokenid}
