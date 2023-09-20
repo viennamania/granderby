@@ -1126,12 +1126,14 @@ export default function NftSinglePrice({
                         {nftMetadata?.metadata?.description}
                       </Link>
                       <div className="mt-2 flex flex-row items-center justify-start ">
+                        {/*
                         <Image
                           src="/images/logo-gd.png"
                           alt="gd"
                           width={18}
                           height={18}
                         />
+                        */}
                         <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                           #{nftMetadata?.metadata?.id}
                         </span>
@@ -1143,6 +1145,7 @@ export default function NftSinglePrice({
                       </div>
                     </div>
 
+                    {/*
                     <Image
                       //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
                       src={
@@ -1155,6 +1158,7 @@ export default function NftSinglePrice({
                       height={1024}
                       className=" rounded-lg "
                     />
+                    */}
 
                     {/*
 

@@ -242,14 +242,17 @@ function NftInfo({ nftMetadata }: any) {
 
       <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
         <Link
-          className=" text-left text-lg capitalize text-blue-500 dark:text-white "
+          className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
           href={`/horse`}
         >
-          {nftMetadata?.metadata?.description}
+          {/*nftMetadata?.metadata?.description*/}
+          Granderby Horse NFT
         </Link>
 
         <div className="mt-2 flex flex-row items-center justify-start ">
+          {/*
           <Image src="/images/logo-gd.png" alt="gd" width={18} height={18} />
+          */}
 
           <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
             #{nftMetadata?.metadata?.id}

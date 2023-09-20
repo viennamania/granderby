@@ -223,6 +223,7 @@ export default function Feeds({ className }: { className?: string }) {
                     height={300}
                     width={300}
                     loading="lazy"
+                    className="cursor-pointer object-cover transition duration-500 hover:scale-110"
                   />
                   <div className="ml-2 mt-2 flex w-full flex-row items-center justify-start gap-2">
                     {/*

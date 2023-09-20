@@ -70,15 +70,31 @@ function SinglePrice(tokenid: any) {
           <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
             <div
               className={`w-full 2xl:w-full 
-          ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
+              ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
             >
-              <NftSinglePrice
-                //tokenid={tokenid.tokenid}
-                nftMetadata={nftMetadata}
-                contractAddress={nftDropContractAddressHorse}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-              />
+              <div className="flex flex-col ">
+                <span></span>
+                <Image
+                  //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
+                  src={
+                    nftMetadata?.metadata?.image
+                      ? nftMetadata?.metadata?.image
+                      : '/default-nft.png'
+                  }
+                  alt="nft"
+                  width={1024}
+                  height={1024}
+                  className=" rounded-lg"
+                />
+
+                <NftSinglePrice
+                  //tokenid={tokenid.tokenid}
+                  nftMetadata={nftMetadata}
+                  contractAddress={nftDropContractAddressHorse}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                />
+              </div>
             </div>
 
             {layout === LAYOUT_OPTIONS.RETRO ? (

@@ -62,7 +62,7 @@ function HeaderRightArea() {
 
         {/*
         <NotificationButton />
-        */}
+      */}
 
         {/*
         <WalletConnect />
