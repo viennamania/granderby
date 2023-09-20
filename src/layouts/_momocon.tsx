@@ -68,7 +68,11 @@ function HeaderRightArea() {
         <WalletConnect />
         */}
 
-        {address && <ConnectWallet />}
+        {address ? (
+          <ConnectWallet theme="dark" />
+        ) : (
+          <ConnectWallet theme="light" />
+        )}
       </div>
 
       <div className="flex items-center lg:hidden">
