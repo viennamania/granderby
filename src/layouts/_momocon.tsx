@@ -23,6 +23,7 @@ import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 import { Github } from '@/components/icons/brands/github';
 import { Instagram } from '@/components/icons/brands/instagram';
 import { Twitter } from '@/components/icons/brands/twitter';
+import { Facebook } from '@/components/icons/brands/facebook';
 import { Check } from '@/components/icons/check';
 import { Copy } from '@/components/icons/copy';
 import { SearchIcon } from '@/components/icons/search';
@@ -295,14 +296,6 @@ export default function MomoconLayout({
 
             <div className="flex w-28 flex-col items-center justify-center gap-3 xl:w-36">
               <span className="text-xl font-bold">Community</span>
-              <AnchorLink
-                href="https://www.instagram.com/nftgranderby"
-                target="_blank"
-                //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-                className="flex flex-row items-center justify-center gap-2"
-              >
-                {<Instagram className="h-4 w-4" />}Instagram
-              </AnchorLink>
 
               <AnchorLink
                 href="https://twitter.com/nftgranderby"
@@ -312,6 +305,25 @@ export default function MomoconLayout({
               >
                 <Twitter className="h-4 w-4" />
                 Twitter
+              </AnchorLink>
+
+              <AnchorLink
+                href="https://twitter.com/nftgranderby"
+                target="_blank"
+                //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                className="flex flex-row items-center justify-center gap-2"
+              >
+                <Facebook className="h-4 w-4" />
+                Facebook
+              </AnchorLink>
+
+              <AnchorLink
+                href="https://www.instagram.com/nftgranderby"
+                target="_blank"
+                //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                className="flex flex-row items-center justify-center gap-2"
+              >
+                {<Instagram className="h-4 w-4" />}Instagram
               </AnchorLink>
             </div>
           </div>
