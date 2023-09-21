@@ -485,7 +485,7 @@ const MintPage: NextPageWithLayout = () => {
                     and you are entitled to a refund for any reason, you agree
                     the refund is to be made in the same form of Digital
                     Currency used in the initial transaction, or at our option
-                    in Australian dollars equivalent to the value of the Digital
+                    in US dollars equivalent to the value of the Digital
                     Currency used in the initial transaction on the date the
                     Purchase Price was paid.
                   </li>
@@ -697,11 +697,6 @@ const MintPage: NextPageWithLayout = () => {
                 and transfers of any NFTs are for transaction purposes only;
               </li>
               <li>
-                all transactions entered into and conducted under these Terms
-                are deemed to have occurred within the jurisdiction of New South
-                Wales, Australia;
-              </li>
-              <li>
                 we are not responsible for any Loss caused by your failure to
                 act in accordance with our policies, procedures or in accordance
                 with our reasonable directions;
@@ -883,15 +878,6 @@ const MintPage: NextPageWithLayout = () => {
           <li>
             Consumer Guarantees
             <ol type="a">
-              <li>
-                Certain legislation, including the Australian Consumer Law (
-                <b>ACL</b>) contained in the Competition and Consumer Act 2010
-                (Cth and similar consumer protection laws and regulations, may
-                provide you with rights, warranties, guarantees and remedies
-                relating to your purchase of NFTs which cannot be excluded,
-                restricted or modified in these NFT Terms (
-                <b>Statutory Rights</b>).
-              </li>
               <li>
                 Nothing in these NFT Terms does, or is intended to, exclude any
                 Statutory Rights which you are entitled to.
@@ -1126,13 +1112,6 @@ const MintPage: NextPageWithLayout = () => {
                     dispute is by this clause c submitted to mediation.
                   </li>
                   <li>
-                    The mediation must be conducted in New South Wales,
-                    Australia in accordance with the mediation guidelines /
-                    rules of the Resolution Institute, save any process in these
-                    Terms which is inconsistent with those guidelines or rules
-                    will take precedence to the extent of any inconsistency.
-                  </li>
-                  <li>
                     If the parties have not agreed on the mediator and the
                     mediator’s remuneration within <b>5 Business Days</b> after
                     the end of the Notice Period:
@@ -1173,15 +1152,7 @@ const MintPage: NextPageWithLayout = () => {
               </li>
             </ol>
           </li>
-          <li>
-            Governing law and jurisdiction
-            <br />
-            These Terms are governed by the laws of New South Wales and
-            Australia. The parties irrevocably submit to the exclusive
-            jurisdiction of the courts of New South Wales and the New South
-            Wales division of the Federal Court of New South Wales and the
-            courts of appeal from them.
-          </li>
+
           <li>
             Amendment
             <br />
@@ -1331,10 +1302,6 @@ const MintPage: NextPageWithLayout = () => {
             clauses 7, 8 and 9;
             <br />
             <br />
-            <b>Business Day</b> means any day except a Saturday or a Sunday or
-            other public holiday in New South Wales, Australia;
-            <br />
-            <br />
             <b>Claim</b> includes a claim, notice, demand, action, proceeding,
             litigation, investigation, however arising whether present,
             unascertained, immediate, future or contingent, whether based in
@@ -1410,11 +1377,6 @@ const MintPage: NextPageWithLayout = () => {
                 the Corporations Act), administrator, receiver, provisional
                 liquidator, trustee for creditors in bankruptcy or an analogous
                 appointment is made in respect of the body corporate;
-              </li>
-              <li>
-                in Australia, the body corporate is taken to have failed to
-                comply with a statutory demand within the meaning of section
-                459F of the Corporations Act;
               </li>
               <li>
                 the body corporate suspends payment of its debts, or enters, or
