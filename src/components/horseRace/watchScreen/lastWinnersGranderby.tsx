@@ -139,9 +139,9 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
                 <div className=" flex flex-col gap-1 text-left  text-sm text-black">
                   <div className="flex flex-row items-center justify-center gap-2">
                     <span className="w-12">RANK{item.line}</span>
-                    {item.line === 1 && (
+                    {/*item.line === 1 && (
                       <span className=" font-bold text-green-600 ">WINNER</span>
-                    )}
+                    )*/}
                   </div>
 
                   {/*

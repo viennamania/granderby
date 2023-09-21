@@ -181,8 +181,7 @@ export default function Search() {
 
           <div
             className="
-            2xl:ltr:pl-8 2xl:rtl:pr-8
-            4xl:ltr:pl-10 4xl:rtl:pr-10
+
           "
           >
             <div className="relative z-10 mb-6 flex items-center justify-between ">

@@ -346,7 +346,7 @@ export const menuItems = [
   {
     name: 'RANKING',
     icon: <Ranking />,
-    href: routes.livePricing,
+    href: routes.ranking,
   },
 
   {

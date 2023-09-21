@@ -225,28 +225,32 @@ export default function Feeds({ className }: { className?: string }) {
                     loading="lazy"
                     className="cursor-pointer object-cover transition duration-500 hover:scale-110"
                   />
+                  {/*
                   <div className="ml-2 mt-2 flex w-full flex-row items-center justify-start gap-2">
-                    {/*
+                    
                     <Image
                       src="/horseRace/logo-granderby.png"
                       alt="horse"
                       width={18}
                       height={18}
                     />
-                    */}
+                   
                     <p className=" text-sm font-bold text-black">
                       #{nft?.tokenId}
                     </p>
                   </div>
-                  <div className=" flex h-16 items-center justify-center xl:h-12 ">
-                    <div className="text-lg  ">{nft?.title}</div>
+                   */}
+                  <div className="items-top ml-5 mt-5 flex h-20 justify-start font-bold  ">
+                    <div className="text-md  ">{nft?.title}</div>
                   </div>
-                  <div className=" flex h-16 items-center justify-center xl:h-12 ">
+                  {/*
+                  <div className="m-2 flex items-center justify-center ">
                     Owner:{' '}
                     <div className="text-sm  ">
                       {nft?.holder?.substring(0, 10)}...
                     </div>
                   </div>
+                  */}
                 </button>
               ))}
             </div>
