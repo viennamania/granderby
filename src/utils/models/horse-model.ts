@@ -87,6 +87,11 @@ const HorseSchema = new Schema({
     required: true,
     default: false,
   },
+  holder: {
+    type: String,
+    required: true,
+    default: false,
+  },
 });
 
 export const HorseModel =

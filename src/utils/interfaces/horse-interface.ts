@@ -4,4 +4,5 @@ export interface IHorse {
   tokenId: string;
   contract: string;
   nft: object;
+  holder: string;
 }

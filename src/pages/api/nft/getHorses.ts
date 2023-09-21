@@ -48,6 +48,18 @@ export default async function handler(
       rawMetadata,
     } = nft.nft;
 
+    /*
+    console.log("getHorses nft", nft);
+    console.log("getHorses nft tokenId", nft.tokenId);
+    console.log("getHorses nft _id", nft._id);
+    console.log("getHorses nft nft", nft.nft);
+    console.log("getHorses nft holder", nft.holder);
+    */
+
+    const holder = nft.holder;
+
+    //console.log("getHorses holder", holder);
+
     //console.log('rawMetadata', rawMetadata);
 
     return {
