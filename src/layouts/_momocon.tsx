@@ -30,6 +30,8 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 
+import { darkTheme, lightTheme } from '@thirdweb-dev/react';
+
 function NotificationButton() {
   return (
     <ActiveLink href={routes.notification}>
@@ -81,7 +83,18 @@ function HeaderRightArea() {
         {address ? (
           <ConnectWallet theme="dark" />
         ) : (
-          <ConnectWallet theme="light" />
+          <ConnectWallet
+            theme={lightTheme({
+              fontFamily: 'Inter, sans-serif',
+              colors: {
+                //modalBg: "#000000",
+                modalBg: '#ffffff',
+                accentText: 'green',
+                // ... etc
+              },
+            })}
+            btnTitle="Login"
+          />
         )}
       </div>
 
