@@ -41,7 +41,7 @@ function EditInactiveIcon(props: any) {
   );
 }
 
-function EditActiveIcon(props: nay) {
+function EditActiveIcon(props: any) {
   return (
     <svg
       {...props}

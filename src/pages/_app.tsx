@@ -71,6 +71,8 @@ import React from 'react';
 
 import { Toaster } from 'react-hot-toast';
 
+import 'node_modules/flag-icons/css/flag-icons.min.css';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };

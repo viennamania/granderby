@@ -32,6 +32,10 @@ import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 
 import { darkTheme, lightTheme } from '@thirdweb-dev/react';
 
+import { useTranslation } from 'react-i18next';
+
+import { useState, useEffect } from 'react';
+
 function NotificationButton() {
   return (
     <ActiveLink href={routes.notification}>
@@ -51,6 +55,45 @@ function HeaderRightArea() {
   const address = useAddress();
 
   const router = useRouter();
+
+  //const {i18n} = useTranslation();
+  const [isOpenLng, setIsOpenLng] = useState<boolean>(true);
+  const handleLanguageChange = async (language: Language) => {
+    await i18n.changeLanguage(language.key);
+    setIsOpenLng(false);
+  };
+
+  const LANGUAGE_SELECTOR_ID = 'language-selector';
+  useEffect(() => {
+    const handleWindowClick = (event: any) => {
+      const target = event.target.closest('button');
+      if (target && target.id === LANGUAGE_SELECTOR_ID) {
+        return;
+      }
+      setIsOpenLng(false);
+    };
+    window.addEventListener('click', handleWindowClick);
+    return () => {
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, []);
+
+  const [languages, setLanguages] = useState<Language[]>([]);
+  useEffect(() => {
+    const setupLanguages = async () => {
+      const appLanguages = await fetch(
+        'https://cdn.simplelocalize.io/{YOUR_PROJECT_TOKEN}/_latest/_languages'
+      ).then((response) => response.json());
+      setLanguages(appLanguages);
+    };
+    setupLanguages();
+  }, []);
+
+  const { i18n } = useTranslation();
+  const selectedLanguage = languages.find(
+    (language) => language.key === i18n.language
+  );
+  // ...
 
   return (
     <div className="order-last flex shrink-0 items-center">
@@ -96,6 +139,35 @@ function HeaderRightArea() {
             btnTitle="Login"
           />
         )}
+      </div>
+
+      <div className="items-cneter flex">
+        {/*
+        <button
+            onClick={() => setIsOpenLng(!isOpenLng)}
+            type="button"
+            className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            id={LANGUAGE_SELECTOR_ID}
+            aria-expanded={isOpenLng}
+        >
+            <FlagIcon countryCode={selectedLanguage.key}/>
+
+            {selectedLanguage.name}
+            <svg
+                className="-me-1 ms-2 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+            >
+                <path
+                    fillRule="evenodd"
+                    d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
+                    clipRule="evenodd"
+                />
+            </svg>
+        </button>
+          */}
       </div>
 
       <div className="flex items-center lg:hidden">
