@@ -241,6 +241,12 @@ export default function Feeds({ className }: { className?: string }) {
                   <div className=" flex h-16 items-center justify-center xl:h-12 ">
                     <div className="text-lg  ">{nft?.title}</div>
                   </div>
+                  <div className=" flex h-16 items-center justify-center xl:h-12 ">
+                    Owner:{' '}
+                    <div className="text-sm  ">
+                      {nft?.holder?.substring(0, 10)}...
+                    </div>
+                  </div>
                 </button>
               ))}
             </div>

@@ -35,8 +35,6 @@ export default async function handler(
 
   const pageKey = data.pageNumber;
 
-  //console.log('nfts', nfts);
-
   const formattedNfts = nfts?.map((nft: any) => {
     const {
       contract,
@@ -58,11 +56,12 @@ export default async function handler(
 
     const holder = nft.holder;
 
-    //console.log("getHorses holder", holder);
+    console.log('getHorses holder', holder);
 
     //console.log('rawMetadata', rawMetadata);
 
     return {
+      holder: holder,
       contract: contract.address,
       symbol: contract.symbol,
       media: media[0]?.gateway
