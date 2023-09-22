@@ -376,6 +376,12 @@ const LivePage: NextPageWithLayout<
         </div>
         */}
 
+        <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
+          <div className="m-0 rounded-lg bg-black">
+            <LastWinnersPage npcs={npcNames} />
+          </div>
+        </Collapse>
+
         <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
           <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />
         </div>

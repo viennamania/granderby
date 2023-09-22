@@ -238,8 +238,25 @@ export const menuItems = [
 
   {
     name: 'RACE',
-    icon: <Ranking />,
+    icon: <PlusCircle />,
     href: routes.live,
+    dropdownItems: [
+      {
+        name: 'Race Schedule',
+        icon: <PlusCircle />,
+        href: routes.raceSchedule,
+      },
+      {
+        name: 'Last Race',
+        icon: <PlusCircle />,
+        href: routes.raceLast,
+      },
+      {
+        name: 'Live',
+        icon: <PlusCircle />,
+        href: routes.live,
+      },
+    ],
   },
 
   /*
@@ -352,11 +369,38 @@ export const menuItems = [
       */
     ],
   },
-
   {
     name: 'RANKING',
     icon: <Ranking />,
     href: routes.ranking,
+    dropdownItems: [
+      {
+        name: 'Horse',
+        icon: <CompassIcon />,
+        href: routes.rankHorse,
+      },
+
+      {
+        name: 'Jockey',
+        icon: <PlusCircle />,
+        href: routes.rankJockey,
+      },
+      {
+        name: 'Track',
+        icon: <PlusCircle />,
+        href: routes.rankTrack,
+      },
+      {
+        name: 'User',
+        icon: <PlusCircle />,
+        href: routes.rankUser,
+      },
+      {
+        name: 'Leaderboard',
+        icon: <PlusCircle />,
+        href: routes.leaderboard,
+      },
+    ],
   },
 
   {
@@ -365,9 +409,19 @@ export const menuItems = [
     href: routes.mintCoupon,
     dropdownItems: [
       {
+        name: 'Carrot',
+        icon: <ExchangeIcon />,
+        href: routes.mintCarrot,
+      },
+      {
         name: 'Coupon',
         icon: <ExchangeIcon />,
         href: routes.mintCoupon,
+      },
+      {
+        name: 'Ticket',
+        icon: <ExchangeIcon />,
+        href: routes.mintTicket,
       },
     ],
   },

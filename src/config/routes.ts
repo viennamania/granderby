@@ -12,6 +12,12 @@ const routes = {
 
   ranking: '/ranking',
 
+  rankHorse: '/rank-horse',
+  rankJockey: '/rank-jockey',
+  rankTrack: '/rank-track',
+  rankUser: '/rank-user',
+  leaderboard: '/leaderboard',
+
   horse: '/horse',
 
   myhorse: '/my-horse',
@@ -28,6 +34,9 @@ const routes = {
   searchReddit: '/search-reddit',
 
   race: '/race',
+
+  raceSchedule: '/race/schedule',
+  raceLast: '/race/last',
 
   live: '/live',
   //live: '/watch/horseRace',

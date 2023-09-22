@@ -376,42 +376,11 @@ const LivePage: NextPageWithLayout<
         </div>
         */}
 
-        <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
-          <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />
-        </div>
-
-        <div className="items-top mt-0 flex  w-full flex-col justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
-          {time ? (
-            <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
-          ) : (
-            <div className="flex w-full items-center justify-center text-2xl text-white ">
-              Loading game...
-            </div>
-          )}
-        </div>
-
-        <div className=" flex w-full items-center justify-center  ">
-          <iframe
-            src="https://granderby.io/webgl/granderby/inapp.html"
-            //width="100vw"
-            //height="100vh"
-            //////sandbox="allow-scripts allow-modal"
-            //width: 100vw;
-            //height: 100vw;
-
-            //style="width: 100vw; height: 100vh; border: none;"
-            style={{
-              //width: '100vw',
-              width: '100%',
-              height: '100vh',
-              //height: '100%',
-              border: 'none',
-              margin: '0',
-              padding: '0',
-              overflow: 'hidden',
-            }}
-          ></iframe>
-        </div>
+        <Collapse label="Last Race Winners" initialOpen={lastWinersIsOpen}>
+          <div className="m-0 rounded-lg bg-black">
+            <LastWinnersPage npcs={npcNames} />
+          </div>
+        </Collapse>
       </div>
 
       {/*

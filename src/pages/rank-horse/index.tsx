@@ -376,80 +376,10 @@ const LivePage: NextPageWithLayout<
         </div>
         */}
 
-        <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
-          <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />
-        </div>
-
-        <div className="items-top mt-0 flex  w-full flex-col justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
-          {time ? (
-            <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
-          ) : (
-            <div className="flex w-full items-center justify-center text-2xl text-white ">
-              Loading game...
-            </div>
-          )}
-        </div>
-
-        <div className=" flex w-full items-center justify-center  ">
-          <iframe
-            src="https://granderby.io/webgl/granderby/inapp.html"
-            //width="100vw"
-            //height="100vh"
-            //////sandbox="allow-scripts allow-modal"
-            //width: 100vw;
-            //height: 100vw;
-
-            //style="width: 100vw; height: 100vh; border: none;"
-            style={{
-              //width: '100vw',
-              width: '100%',
-              height: '100vh',
-              //height: '100%',
-              border: 'none',
-              margin: '0',
-              padding: '0',
-              overflow: 'hidden',
-            }}
-          ></iframe>
+        <div className="m-0 rounded-lg bg-black">
+          <LastWinnersPage npcs={npcNames} />
         </div>
       </div>
-
-      {/*
-      <div className="items-top mx-auto mt-5 flex w-full shrink-0 flex-col justify-center gap-5 md:flex-row md:px-4 xl:gap-5 xl:px-0 3xl:max-w-[1700px] 3xl:px-12">
-        <div className="items-top flex w-full justify-center">
-          <BetInputs
-            horse1={horse1Oran}
-            horse2={horse2Oran}
-            horse3={horse3Oran}
-            horse4={horse4Oran}
-            horse5={horse5Oran}
-            horse6={horse6Oran}
-            horse7={horse7Oran}
-            horse8={horse8Oran}
-            horse9={horse9Oran}
-            horse10={horse10Oran}
-            //user={user}
-            user={null}
-            npcs={npcNames}
-            //inputs={inputs}
-            inputs={null}
-            balance={0}
-          />
-        </div>
-
-        <div className="items-top mt-0 flex w-full justify-center ">
-          <BetTables npcs={npcNames} />
-        </div>
-      </div>
-          */}
-
-      {/*
-        <div className="mx-auto mt-10 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          <Search />
-        </div>
-        */}
-
-      {/* delete footer */}
     </>
   );
 };
