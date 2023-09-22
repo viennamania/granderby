@@ -240,7 +240,7 @@ export default function Feeds({ className }: { className?: string }) {
                     </p>
                   </div>
                    */}
-                  <div className="items-top ml-5 mt-5 flex h-20 justify-start font-bold  ">
+                  <div className="items-top  m-5 flex h-20 justify-center font-bold  ">
                     <div className="text-md  ">{nft?.title}</div>
                   </div>
                   {/*
