@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const RentPage: NextPageWithLayout<
+const TrackPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
   const { layout } = useLayout();
@@ -187,76 +187,46 @@ const RentPage: NextPageWithLayout<
     }
   }
 
-  // render retro layout profile
-  if (layout === LAYOUT_OPTIONS.RETRO) {
-    return (
-      <>
-        <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
+  return (
+    <>
+      <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
-        <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
-          <Image
-            src={authorData?.cover_image?.thumbnail}
-            placeholder="blur"
-            fill
-            className="h-full w-full object-fill"
-            alt="Cover Image"
-          />
-        </div>
+      <div
+        className="relative h-36 w-full overflow-hidden rounded-lg
+          sm:h-44
+          md:h-64
+          xl:h-80
+          2xl:h-96
+          3xl:h-[448px]"
+      >
+        <Image
+          src={authorData?.cover_image?.thumbnail}
+          placeholder="blur"
+          fill
+          //className="object-fill"
+          className="h-full w-full object-cover"
+          alt="Cover Image"
+        />
+      </div>
 
-        <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        {/*
+        {!address ? (
+          <></>
+        ) : (
+          
           <Avatar
             size="xl"
             image={authorData?.avatar?.thumbnail}
             alt="Author"
             className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
           />
-          <RetroProfile />
-        </div>
-      </>
-    );
-  } else {
-    // render default profile
-
-    return (
-      <div className="h-screen">
-        <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
-
-        <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
-          <Image
-            src={authorData?.cover_image?.thumbnail}
-            placeholder="blur"
-            fill
-            className="object-fill"
-            alt="Cover Image"
-          />
-        </div>
-
-        {/*
-        <iframe
-          src="https://polygonscan.com/token/tokenholderchart/0x83491d67EAaCD25C0cC237008C2bB0e6b38e7b1B"
-          className="h-96 w-full"
-        ></iframe>
+        )}
         */}
 
-        <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          {/*
-          {!address ? (
-            <></>
-          ) : (
-            
-            <Avatar
-              size="xl"
-              image={authorData?.avatar?.thumbnail}
-              alt="Author"
-              className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
-            />
-          )}
-          */}
-
-          {/*
-          <Profile />
-          */}
-        </div>
+        {/*
+        <Profile />
+        */}
 
         {/*
         <div className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
@@ -274,35 +244,33 @@ const RentPage: NextPageWithLayout<
             {tokenBalanceGRD?.symbol}
           </span>
         </div>
-            */}
+          */}
 
-        <div>
-          <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
-            My Balance
-          </h3>
+        <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+          My Balance
+        </h3>
 
-          {address ? (
-            <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-              <GrdIcon className="h-auto w-8 lg:w-auto" />
-              <b>
-                {tokenBalanceHV === undefined ? (
-                  <>Loading...</>
-                ) : (
-                  <div className="m-5 text-5xl font-bold xl:text-7xl">
-                    {Number(tokenBalanceHV?.displayValue).toFixed(2)}
-                  </div>
-                )}
-              </b>{' '}
-              <span className="text-lg text-[#2b57a2] ">
-                {tokenBalanceHV?.symbol}
-              </span>
-            </div>
-          ) : (
-            <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-              <ConnectWallet theme="light" />
-            </div>
-          )}
-        </div>
+        {address ? (
+          <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+            <GrdIcon className="h-auto w-8 lg:w-auto" />
+            <b>
+              {tokenBalanceHV === undefined ? (
+                <>Loading...</>
+              ) : (
+                <div className="m-5 text-5xl font-bold xl:text-7xl">
+                  {Number(tokenBalanceHV?.displayValue).toFixed(2)}
+                </div>
+              )}
+            </b>{' '}
+            <span className="text-lg text-[#2b57a2] ">
+              {tokenBalanceHV?.symbol}
+            </span>
+          </div>
+        ) : (
+          <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+            <ConnectWallet theme="light" />
+          </div>
+        )}
 
         <div className=" flex w-96 flex-col items-center justify-center text-lime-600">
           {/* Form Section */}
@@ -417,6 +385,8 @@ const RentPage: NextPageWithLayout<
           )}
         </div>
 
+        {/*}
+
         <div className="mt-5 flex items-center justify-center">
           <CollapseLastWinners label="Last Race Winners">
             <div className=" rounded-md  bg-black">
@@ -431,29 +401,9 @@ const RentPage: NextPageWithLayout<
             Registered Horses
           </span>
 
-          <div className="relative z-10 mb-6 flex items-center justify-between ">
-            <div className="items-right flex w-full justify-end">
-              <div className="flex gap-6 3xl:gap-8 ">
-                <SortList />
-
-                <div className="hidden sm:block 2xl:hidden">
-                  <Button
-                    shape="rounded"
-                    size="small"
-                    variant="ghost"
-                    color="gray"
-                    onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                    className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                  >
-                    <OptionIcon className="relative h-auto w-[18px]" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <RegisteredFeeds />
         </div>
+          */}
 
         {/*
         <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
@@ -461,12 +411,12 @@ const RentPage: NextPageWithLayout<
         </div>
         */}
       </div>
-    );
-  }
+    </>
+  );
 };
 
-RentPage.getLayout = function getLayout(page) {
+TrackPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default RentPage;
+export default TrackPage;

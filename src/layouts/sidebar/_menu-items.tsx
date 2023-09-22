@@ -58,36 +58,36 @@ export const menuItems = [
       {
         name: 'NFT Trade',
         icon: <PlusCircle />,
-        href: routes.intro2,
+        href: routes.intro1,
       },
       {
         name: 'Training',
         icon: <DiskIcon />,
-        href: routes.intro3,
+        href: routes.intro1,
       },
 
       {
         name: 'Asset Management',
         icon: <DiskIcon />,
-        href: routes.intro4,
+        href: routes.intro1,
       },
 
       {
         name: 'Partners',
         icon: <DiskIcon />,
-        href: routes.intro5,
+        href: routes.intro1,
       },
 
       {
         name: 'Roadmap',
         icon: <DiskIcon />,
-        href: routes.intro6,
+        href: routes.intro1,
       },
 
       {
         name: 'Whitepaper',
         icon: <DiskIcon />,
-        href: routes.intro7,
+        href: routes.intro1,
       },
     ],
   },
@@ -317,6 +317,16 @@ export const menuItems = [
         name: 'Jockey',
         icon: <PlusCircle />,
         href: routes.rentJockey,
+      },
+      {
+        name: 'Track',
+        icon: <PlusCircle />,
+        href: routes.track,
+      },
+      {
+        name: 'Market',
+        icon: <PlusCircle />,
+        href: routes.buyHorse,
       },
       /*
       {

@@ -223,8 +223,10 @@ export function Header() {
             className="flex flex-row items-center justify-center gap-2"
             onClick={() => router.push(routes.home)}
           >
-            <Image src={logo} alt="logo" width={30} height={30} />
+            <Image src={logo} alt="logo" width={35} height={35} />
+            {/*
             <span className="ml-1 text-lg font-bold">Granderby</span>
+            */}
           </button>
 
           {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
@@ -254,7 +256,7 @@ export default function MomoconLayout({
       </div>
 
       <footer>
-        <div className="flex flex-col items-center justify-center gap-3 bg-gray-800 pb-10 pt-20 text-white ">
+        <div className="flex flex-col items-center justify-center gap-3  bg-gray-800 pb-10 pt-20 text-white ">
           {/*
           <div className='flex flex-row gap-5'>
             <div>
@@ -279,52 +281,159 @@ export default function MomoconLayout({
           </div>
           */}
 
-          <div className=" flex flex-row items-start justify-center gap-5">
-            <div className=" flex w-28 flex-col items-center justify-center gap-3 xl:w-36">
-              <span className="text-xl font-bold">News</span>
-              <div>Notice</div>
-              <div>Event</div>
-              <div>Press Release</div>
+          <div className=" flex flex-row items-start justify-center gap-5 xl:gap-20">
+            <div className=" flex w-28 flex-col items-center justify-center gap-3 lg:w-44 xl:w-36">
+              <span className="mb-2 w-full text-left text-xl font-bold">
+                News
+              </span>
+              <div className="h-7 w-full text-left ">Notice</div>
+              <div className="h-7 w-full text-left">Event</div>
+              <div className="h-7 w-full text-left">Press Release</div>
             </div>
 
-            <div className="flex w-28 flex-col items-center justify-center gap-3 xl:w-36">
-              <span className="text-xl font-bold">Legal</span>
-              <AnchorLink href="/terms">Terms of Service</AnchorLink>
-              <div>Privacy Policy</div>
-              <div>Help Center</div>
+            <div className="flex w-28 flex-col items-center justify-center gap-3 lg:w-44 xl:w-36">
+              <span className="mb-2 w-full text-left text-xl font-bold">
+                Legal
+              </span>
+              <div className="h-7 w-full text-left">
+                <AnchorLink href="/terms">Terms of Service</AnchorLink>
+              </div>
+              <div className="h-7 w-full text-left">Privacy Policy</div>
+              <div className="h-7 w-full text-left">Help Center</div>
             </div>
 
-            <div className="flex w-28 flex-col items-center justify-center gap-3 xl:w-36">
-              <span className="text-xl font-bold">Community</span>
+            <div className="flex w-28 flex-col items-center justify-center gap-3 lg:w-44 xl:w-36">
+              <span className="mb-2 w-full text-left text-xl font-bold">
+                Community
+              </span>
 
-              <AnchorLink
-                href="https://twitter.com/nftgranderby"
-                target="_blank"
-                //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-                className="flex flex-row items-center justify-center gap-2"
-              >
-                <Twitter className="h-4 w-4" />
-                Twitter
-              </AnchorLink>
+              <div className="h-7 w-full">
+                <AnchorLink
+                  href="https://discord.gg/TKmzxqDS"
+                  target="_blank"
+                  //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {/*<Twitter className="h-4 w-4" />*/}
+                  <Image
+                    src="/images/brands/discord.png"
+                    width={18}
+                    height={18}
+                    alt="discord"
+                  />
+                  Discord
+                </AnchorLink>
+              </div>
 
-              <AnchorLink
-                href="https://twitter.com/nftgranderby"
-                target="_blank"
-                //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-                className="flex flex-row items-center justify-center gap-2"
-              >
-                <Facebook className="h-4 w-4" />
-                Facebook
-              </AnchorLink>
+              <div className="h-7 w-full">
+                <AnchorLink
+                  href="https://twitter.com/nftgranderby"
+                  target="_blank"
+                  //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {/*<Twitter className="h-4 w-4" />*/}
+                  <Image
+                    src="/images/brands/twitter.png"
+                    width={18}
+                    height={18}
+                    alt="twitter"
+                  />
+                  Twitter
+                </AnchorLink>
+              </div>
 
-              <AnchorLink
-                href="https://www.instagram.com/nftgranderby"
-                target="_blank"
-                //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-                className="flex flex-row items-center justify-center gap-2"
-              >
-                {<Instagram className="h-4 w-4" />}Instagram
-              </AnchorLink>
+              <div className="h-7 w-full ">
+                <AnchorLink
+                  href="https://www.facebook.com/granderby/"
+                  target="_blank"
+                  //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {/*
+                  <Facebook className="h-4 w-4" />
+                  */}
+                  <Image
+                    src="/images/brands/facebook.png"
+                    width={18}
+                    height={18}
+                    alt="facebook"
+                  />
+                  Facebook
+                </AnchorLink>
+              </div>
+
+              <div className="h-7 w-full">
+                <AnchorLink
+                  href="https://www.instagram.com/nftgranderby"
+                  target="_blank"
+                  //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {/*<Instagram className="h-4 w-4" />*/}
+                  <Image
+                    src="/images/brands/instagram.png"
+                    width={18}
+                    height={18}
+                    alt="instagram"
+                  />
+                  Instagram
+                </AnchorLink>
+              </div>
+
+              <div className="h-7 w-full">
+                <AnchorLink
+                  href="https://www.youtube.com/channel/UCQugbaIcEJxfMs3VYvaTFzw"
+                  target="_blank"
+                  //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {/*<Instagram className="h-4 w-4" />*/}
+                  <Image
+                    src="/images/brands/youtube.png"
+                    width={18}
+                    height={18}
+                    alt="youtube"
+                  />
+                  Youtube
+                </AnchorLink>
+              </div>
+
+              <div className="h-7 w-full">
+                <AnchorLink
+                  href="https://www.twitch.tv/nftgranderby"
+                  target="_blank"
+                  //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {/*<Instagram className="h-4 w-4" />*/}
+                  <Image
+                    src="/images/brands/twitch.png"
+                    width={18}
+                    height={18}
+                    alt="twitch"
+                  />
+                  Twitch
+                </AnchorLink>
+              </div>
+
+              <div className="h-7 w-full">
+                <AnchorLink
+                  href="https://t.me/granderby"
+                  target="_blank"
+                  //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {/*<Instagram className="h-4 w-4" />*/}
+                  <Image
+                    src="/images/brands/telegram.png"
+                    width={18}
+                    height={18}
+                    alt="instagram"
+                  />
+                  Telegram
+                </AnchorLink>
+              </div>
             </div>
           </div>
 
