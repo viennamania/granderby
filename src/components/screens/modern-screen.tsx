@@ -462,11 +462,11 @@ export default function ModernScreen() {
           <AssetSlider coins={assetSlideData} />
           */}
 
-        <div className="flex flex-col items-center justify-center gap-10">
+        <div className="flex flex-col items-center justify-center gap-5">
           <Image src="/images/logo.png" alt="logo" width={300} height={300} />
 
           <div className="text-2xl font-bold xl:text-4xl">NFT GRANDERBY</div>
-          <div className="items-center justify-center p-5 text-xl xl:text-2xl">
+          <div className="items-center justify-center p-2 text-xl xl:text-2xl">
             NFT horse racing game where you can experience all the fun of horse
             racing
           </div>

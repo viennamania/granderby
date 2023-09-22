@@ -402,11 +402,23 @@ export default function DrawerMenu() {
               />
             ))}
 
-            <div className="mt-10 flex w-full items-center justify-center">
+            <div className="mt-10 flex w-full flex-col items-center justify-center gap-2">
               {address ? (
                 <ConnectWallet theme="dark" />
               ) : (
                 <ConnectWallet theme="light" />
+              )}
+
+              {address && (
+                <button
+                  //onClick={() => setIsOpenLng(!isOpenLng)}
+                  type="button"
+                  className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  //id={LANGUAGE_SELECTOR_ID}
+                  //aria-expanded={isOpenLng}
+                >
+                  My Page
+                </button>
               )}
             </div>
           </div>

@@ -383,6 +383,7 @@ export async function getStaticProps(context: any) {
 
   const tokenid: any = context.params?.tokenid;
 
+  /*
   // If used on the FRONTEND pass your 'clientId'
   const sdk = new ThirdwebSDK('polygon', {
     clientId: '79125a56ef0c1629d4863b6df0a43cce',
@@ -393,16 +394,19 @@ export async function getStaticProps(context: any) {
   const nft = await contract.erc721.get(tokenid);
 
   ///console.log('nft======>', nft);
+  */
 
   return {
     props: {
       tokenid: tokenid,
       //////nftMetadata: nft,
-      title: '#' + tokenid + '-' + nft?.metadata?.name,
-      description: nft?.metadata?.description,
+      title: '#' + tokenid,
+      //description: nft?.metadata?.description,
+      description: 'Granderby - Web3 NFT Game',
       //image: '/images/logo.png',
       //image: data?.metadata?.image,
-      image: nft?.metadata?.image,
+      //image: nft?.metadata?.image,
+      image: '/images/intro-bg.png',
     },
   };
 }
