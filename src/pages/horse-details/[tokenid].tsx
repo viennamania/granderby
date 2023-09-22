@@ -381,7 +381,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: any) {
   ///export const getStaticProps: GetStaticProps = async (context) => {
 
-  const tokenid: any = context.params?.tokenid;
+  const tokenid: string = context.params?.tokenid;
 
   /*
   // If used on the FRONTEND pass your 'clientId'
@@ -396,17 +396,31 @@ export async function getStaticProps(context: any) {
   ///console.log('nft======>', nft);
   */
 
+  const res = await fetch('https://granderby.io/api/nft/horse/' + tokenid, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    //body: JSON.stringify(formInputs),
+  });
+
+  const data = await res.json();
+
+  console.log(data);
+
+  const title = data?.name + ' - #' + tokenid;
+  const description = data?.description;
+  const image = data?.image;
+
   return {
     props: {
       tokenid: tokenid,
       //////nftMetadata: nft,
-      title: '#' + tokenid,
+      title: title,
       //description: nft?.metadata?.description,
-      description: 'Granderby - Web3 NFT Game',
+      description: description,
       //image: '/images/logo.png',
       //image: data?.metadata?.image,
       //image: nft?.metadata?.image,
-      image: '/images/intro-bg.png',
+      image: image,
     },
   };
 }
