@@ -379,7 +379,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-  ///export const getStaticProps: GetStaticProps = async (context) => {
+  ////export const getStaticProps: GetStaticProps = async (context: any) => {
 
   const tokenid: string = context.params?.tokenid;
 
@@ -404,7 +404,7 @@ export async function getStaticProps(context: any) {
 
   const data = await res.json();
 
-  console.log(data);
+  //console.log(data);
 
   const title = data?.name + ' - #' + tokenid;
   const description = data?.description;
@@ -465,6 +465,7 @@ const AssetSinglePrice: NextPageWithLayout<
 
   return (
     <>
+      {/*
       <Head>
         <meta
           name="viewport"
@@ -486,6 +487,7 @@ const AssetSinglePrice: NextPageWithLayout<
 
         <title>{title}</title>
       </Head>
+      */}
 
       <SinglePrice tokenid={tokenid} />
     </>

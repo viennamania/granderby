@@ -87,6 +87,10 @@ type AppPropsWithLayout = AppProps & {
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   // inject the next app with the latest version of `@google/model-viewer`
 
+  const title = pageProps?.title;
+  const description = pageProps?.description;
+  const image = pageProps?.image;
+
   //could remove this if you don't need to page level layout
   const getLayout = Component.getLayout ?? ((page) => page);
 
@@ -120,7 +124,6 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      {/*
       <Head>
         <meta
           name="viewport"
@@ -142,13 +145,12 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           property="og:description"
           content="GRANDERBY is a game where players raise and manage NFT horses to enter them into races and earn tokens."
         ></meta>
-        <meta property="og:image" content="/intro-bg.png"></meta>
+        <meta property="og:image" content={image}></meta>
 
-        <meta name="twitter:image" content="/intro-bg.png"></meta>
+        <meta name="twitter:image" content={image}></meta>
 
-        <title>Granderby - powered by MOMOCON</title>
+        <title>{title}</title>
       </Head>
-      */}
 
       <QueryClientProvider client={queryClient}>
         <ThirdwebProvider
