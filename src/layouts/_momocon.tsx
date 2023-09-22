@@ -60,7 +60,7 @@ function HeaderRightArea() {
   const router = useRouter();
 
   const { i18n } = useTranslation();
-  const [isOpenLng, setIsOpenLng] = useState<boolean>(true);
+  const [isOpenLng, setIsOpenLng] = useState<boolean>(false);
 
   const handleLanguageChange = async (language: any) => {
     ///await i18n.changeLanguage(language.key);
