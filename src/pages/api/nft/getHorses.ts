@@ -56,7 +56,7 @@ export default async function handler(
 
     const holder = nft.holder;
 
-    console.log('getHorses holder', holder);
+    ///console.log('getHorses holder', holder);
 
     //console.log('rawMetadata', rawMetadata);
 

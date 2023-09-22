@@ -80,9 +80,20 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
 
 import toast from 'react-hot-toast';
+//import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+import Button from '@/components/ui/button';
+import AnchorLink from '@/components/ui/links/anchor-link';
+import { InfoIcon } from '@/components/icons/info-icon';
+import { LongArrowRight } from '@/components/icons/long-arrow-right';
+
+import { useRouter } from 'next/router';
 
 export default function ModernScreen() {
   const address = useAddress();
+
+  const router = useRouter();
 
   /////const emailQuery = usePaperWalletUserEmail();
 
@@ -451,47 +462,70 @@ export default function ModernScreen() {
           <AssetSlider coins={assetSlideData} />
           */}
 
-        <CollapseLivePricing label="Live Pricing">
-          <div className="p-5">
-            <LiveNftPricingSlider limits={2} />
+        <div className="flex flex-col items-center justify-center gap-10">
+          <Image src="/images/logo.png" alt="logo" width={300} height={300} />
+
+          <div className="text-2xl font-bold xl:text-4xl">NFT GRANDERBY</div>
+          <div className="items-center justify-center p-5 text-xl xl:text-2xl">
+            NFT horse racing game where you can experience all the fun of horse
+            racing
           </div>
-          {/*
-            <div className='w-full items-center justify-center'>
-              <Link
-                className="hidden h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
-                href="/live"
-              >
-                <Image
-                  src="/horseRace/live.gif"
-                  alt="live"
-                  width={100}
-                  height={30}
-                  className="mb-1"
-                />
-                <span className="mr-2 text-white">for bet</span>
-              </Link>
+
+          <Button
+            shape="rounded"
+            color="success"
+            onClick={() => {
+              router.push('/intro');
+            }}
+          >
+            <div className="text-2xl">Game Introduction</div>
+          </Button>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 gap-5 xl:grid-cols-2">
+          <CollapseLivePricing label="Live Pricing">
+            <div className=" h-96 p-5">
+              <LiveNftPricingSlider limits={2} />
             </div>
+            {/*
+              <div className='w-full items-center justify-center'>
+                <Link
+                  className="hidden h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
+                  href="/live"
+                >
+                  <Image
+                    src="/horseRace/live.gif"
+                    alt="live"
+                    width={100}
+                    height={30}
+                    className="mb-1"
+                  />
+                  <span className="mr-2 text-white">for bet</span>
+                </Link>
+              </div>
+              */}
+          </CollapseLivePricing>
+
+          {/*
+            <Collapse label="Live Pricing" initialOpen={true}>
+              <div className="m-5 p-5">
+
+
+                <CryptoCurrencyPricingSkeleton />
+
+              </div>
+            </Collapse>
             */}
-        </CollapseLivePricing>
+
+          <CollapseLastWinners label="Last Race Winners">
+            <div className="h-96">
+              <LastWinners npcs={npcNames} status={status} />
+            </div>
+            <div></div>
+          </CollapseLastWinners>
+        </div>
 
         {/*
-          <Collapse label="Live Pricing" initialOpen={true}>
-            <div className="m-5 p-5">
-
-
-              <CryptoCurrencyPricingSkeleton />
-
-            </div>
-          </Collapse>
-          */}
-
-        <CollapseLastWinners label="Last Race Winners">
-          <div className=" rounded-md  bg-black">
-            <LastWinners npcs={npcNames} status={status} />
-          </div>
-          <div></div>
-        </CollapseLastWinners>
-
         <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
           {time ? (
             <div className="w-full">
@@ -554,7 +588,9 @@ export default function ModernScreen() {
             </Link>
           </div>
         </div>
+        */}
 
+        {/*
         <div className="mt-5 flex">
           <CollapseCurrentEvent label="Current Event">
             <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-5 shadow-card dark:bg-light-dark ">
@@ -585,6 +621,7 @@ export default function ModernScreen() {
             </div>
           </CollapseCurrentEvent>
         </div>
+        */}
 
         <div className="items-top mt-5 flex w-full justify-center ">
           {/*

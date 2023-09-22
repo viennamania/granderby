@@ -19,6 +19,7 @@
     "@google/model-viewer": "^3.1.1",
     "@headlessui/react": "^1.7.13",
     "@hookform/resolvers": "^2.9.11",
+    "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.13.4",
     "@paperxyz/embedded-wallet-service-rainbowkit": "^0.3.0",
     "@paperxyz/embedded-wallet-service-wagmi": "^3.1.0",

@@ -120,12 +120,6 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
       */}
 
-      <div className="flex flex-row items-center justify-center gap-5 ">
-        <span className="text-xl font-bold">
-          Win Prize: {Number(sonKazananlar?.winPrize).toFixed(2)}
-        </span>
-      </div>
-
       <div className=" flex flex-row items-center justify-center gap-5 ">
         {sonKazananlar &&
           sonKazananlar.placements.map((item: any) => {
@@ -137,13 +131,6 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
                 className="flex w-full items-center justify-center gap-2"
               >
                 <div className=" flex flex-col gap-1 text-left  text-sm text-black">
-                  <div className="flex flex-row items-center justify-center gap-2">
-                    <span className="w-12">RANK{item.line}</span>
-                    {/*item.line === 1 && (
-                      <span className=" font-bold text-green-600 ">WINNER</span>
-                    )*/}
-                  </div>
-
                   {/*
                   <span className=" mr-3 w-12 text-right text-sky-500">
                     #{item.nft?.tokenId}
@@ -181,6 +168,13 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
                     />
                     */}
                   </button>
+
+                  <div className="mt-2 flex flex-row items-center justify-center gap-2">
+                    <span className="w-12">RANK{item.line}</span>
+                    {/*item.line === 1 && (
+                        <span className=" font-bold text-green-600 ">WINNER</span>
+                      )*/}
+                  </div>
                 </div>
 
                 {/*
@@ -205,11 +199,17 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
             );
           })}
       </div>
+      <div className="flex flex-row items-center justify-center gap-5 ">
+        <span className="text-xl font-bold">
+          Win Prize: {Number(sonKazananlar?.winPrize).toFixed(2)}
+        </span>
 
-      <span className="text-lg">
         {format(Date.parse(sonKazananlar?.date || 0), 'yyy-MM-dd hh:mm:ss')}
-      </span>
 
+        <Image src="/images/inkent.jpeg" alt="inkent" width={60} height={50} />
+      </div>
+
+      {/*
       <div className="mt-3 flex w-full flex-row items-center justify-between gap-5">
         <div className="flex flex-col items-center justify-center gap-5">
           <div className=" flex flex-wrap items-center justify-center gap-2 ">
@@ -247,6 +247,7 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
           />
         </div>
       </div>
+      */}
     </div>
   );
 }

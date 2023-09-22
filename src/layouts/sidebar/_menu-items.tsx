@@ -53,41 +53,41 @@ export const menuItems = [
       {
         name: 'NFT Granderby',
         icon: <CompassIcon />,
-        href: routes.intro1,
+        href: routes.intro,
       },
       {
         name: 'NFT Trade',
         icon: <PlusCircle />,
-        href: routes.intro1,
+        href: routes.intro,
       },
       {
         name: 'Training',
         icon: <DiskIcon />,
-        href: routes.intro1,
+        href: routes.intro,
       },
 
       {
         name: 'Asset Management',
         icon: <DiskIcon />,
-        href: routes.intro1,
+        href: routes.intro,
       },
 
       {
         name: 'Partners',
         icon: <DiskIcon />,
-        href: routes.intro1,
+        href: routes.intro,
       },
 
       {
         name: 'Roadmap',
         icon: <DiskIcon />,
-        href: routes.intro1,
+        href: routes.intro,
       },
 
       {
         name: 'Whitepaper',
         icon: <DiskIcon />,
-        href: routes.intro1,
+        href: routes.intro,
       },
     ],
   },
