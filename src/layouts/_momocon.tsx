@@ -142,6 +142,7 @@ function HeaderRightArea() {
         )}
       </div>
 
+      {/*
       <div className="items-cneter flex">
         <button
           onClick={() => setIsOpenLng(!isOpenLng)}
@@ -150,11 +151,11 @@ function HeaderRightArea() {
           id={LANGUAGE_SELECTOR_ID}
           aria-expanded={isOpenLng}
         >
-          {/*
+          
             <FlagIcon countryCode={selectedLanguage.key}/>
-          */}
+          
 
-          {/*selectedLanguage.name*/}
+          {selectedLanguage.name}
           <svg
             className="-me-1 ms-2 h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
@@ -170,6 +171,7 @@ function HeaderRightArea() {
           </svg>
         </button>
       </div>
+          */}
 
       <div className="flex items-center lg:hidden">
         {/*
