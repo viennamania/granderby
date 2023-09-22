@@ -1,0 +1,10 @@
+{
+    "en_US": {
+        "hello.world": "Hello World!",
+        "my_address": "My address"
+    },
+    "pl_PL": {
+        "hello.world": "Witaj Świecie!",
+        "my_address": "Mój adres"
+    }
+}

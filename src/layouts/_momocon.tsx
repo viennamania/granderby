@@ -37,6 +37,8 @@ import { useTranslation } from 'react-i18next';
 
 import { useState, useEffect } from 'react';
 
+//import { FlagIcon } from 'flag-icons'
+
 function NotificationButton() {
   return (
     <ActiveLink href={routes.notification}>
@@ -61,7 +63,7 @@ function HeaderRightArea() {
   const [isOpenLng, setIsOpenLng] = useState<boolean>(true);
 
   const handleLanguageChange = async (language: any) => {
-    await i18n.changeLanguage(language.key);
+    ///await i18n.changeLanguage(language.key);
     setIsOpenLng(false);
   };
 
@@ -80,19 +82,30 @@ function HeaderRightArea() {
     };
   }, []);
 
+  const [languageKey, setLanguageKey] = useState('en_US'); // kr , en_US
+
   const [languages, setLanguages] = useState<any[]>([]);
+
   useEffect(() => {
     const setupLanguages = async () => {
       const appLanguages = await fetch(
-        'https://cdn.simplelocalize.io/{YOUR_PROJECT_TOKEN}/_latest/_languages'
+        'https://cdn.simplelocalize.io/b00816c4b6244e4ba53349703e52d44d/_latest/_languages'
       ).then((response) => response.json());
+
+      console.log('appLanguage', appLanguages);
+
       setLanguages(appLanguages);
     };
     setupLanguages();
   }, []);
 
+  console.log('i18n.language', i18n.language);
+
+  const [countryCode, setCountryCode] = useState('en');
+
   const selectedLanguage = languages.find(
-    (language) => language.key === i18n.language
+    //(language) => language.key === i18n.language
+    (language) => language.key === languageKey
   );
   // ...
 
@@ -142,8 +155,7 @@ function HeaderRightArea() {
         )}
       </div>
 
-      {/*
-      <div className="items-cneter flex">
+      <div className="items-cneter ml-5 flex">
         <button
           onClick={() => setIsOpenLng(!isOpenLng)}
           type="button"
@@ -151,11 +163,15 @@ function HeaderRightArea() {
           id={LANGUAGE_SELECTOR_ID}
           aria-expanded={isOpenLng}
         >
-          
-            <FlagIcon countryCode={selectedLanguage.key}/>
-          
-
-          {selectedLanguage.name}
+          {selectedLanguage?.key === 'kr' ? (
+            <span className="fi fis fi-kr " />
+          ) : (
+            <span className="fi fis fi-us " />
+          )}
+          {/*
+          <FlagIcon countryCode={selectedLanguage.key}/>
+          */}
+          &nbsp;{selectedLanguage?.name}
           <svg
             className="-me-1 ms-2 h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +187,44 @@ function HeaderRightArea() {
           </svg>
         </button>
       </div>
-          */}
+
+      {isOpenLng && (
+        <div
+          className="absolute right-5 mt-40 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby={LANGUAGE_SELECTOR_ID}
+        >
+          <div className="grid grid-cols-1 gap-2 py-1" role="none">
+            {languages.map((language, index) => {
+              return (
+                <button
+                  key={language.key}
+                  onClick={() => handleLanguageChange(language)}
+                  className={`${
+                    selectedLanguage?.key === language.key
+                      ? 'bg-gray-100 text-gray-900'
+                      : 'text-gray-700'
+                  } block inline-flex items-center px-4 py-2 text-start text-sm hover:bg-gray-100 ${
+                    index % 2 === 0 ? 'rounded-r' : 'rounded-l'
+                  }`}
+                  role="menuitem"
+                >
+                  {/*
+                          <FlagIcon countryCode={language.key}/>
+                          */}
+                  {language.key === 'kr' ? (
+                    <span className="fi fis fi-kr " />
+                  ) : (
+                    <span className="fi fis fi-us " />
+                  )}
+                  &nbsp;<span className="truncate">{language.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <div className="flex items-center lg:hidden">
         {/*
