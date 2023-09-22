@@ -120,12 +120,24 @@ function HeaderRightArea() {
   */}
       </div>
 
-      <div className="hidden gap-6 lg:flex 2xl:gap-8">
+      <div className="hidden  items-center gap-2  lg:flex">
         {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
           <div>
             {/*
             <SearchButton variant="transparent" className="dark:text-white" />
         */}
+
+            {address && (
+              <button
+                //onClick={() => setIsOpenLng(!isOpenLng)}
+                type="button"
+                className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                //id={LANGUAGE_SELECTOR_ID}
+                //aria-expanded={isOpenLng}
+              >
+                My Page
+              </button>
+            )}
           </div>
         )}
 
@@ -138,7 +150,9 @@ function HeaderRightArea() {
         */}
 
         {address ? (
-          <ConnectWallet theme="dark" />
+          <div className="flex flex-row ">
+            <ConnectWallet theme="dark" />
+          </div>
         ) : (
           <ConnectWallet
             theme={lightTheme({
@@ -155,7 +169,7 @@ function HeaderRightArea() {
         )}
       </div>
 
-      <div className="items-cneter ml-5 flex">
+      <div className="items-cneter ml-2 flex">
         <button
           onClick={() => setIsOpenLng(!isOpenLng)}
           type="button"
