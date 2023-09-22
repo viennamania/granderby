@@ -57,9 +57,10 @@ function HeaderRightArea() {
 
   const router = useRouter();
 
-  //const {i18n} = useTranslation();
+  const { i18n } = useTranslation();
   const [isOpenLng, setIsOpenLng] = useState<boolean>(true);
-  const handleLanguageChange = async (language: Language) => {
+
+  const handleLanguageChange = async (language: any) => {
     await i18n.changeLanguage(language.key);
     setIsOpenLng(false);
   };
@@ -79,7 +80,7 @@ function HeaderRightArea() {
     };
   }, []);
 
-  const [languages, setLanguages] = useState<Language[]>([]);
+  const [languages, setLanguages] = useState<any[]>([]);
   useEffect(() => {
     const setupLanguages = async () => {
       const appLanguages = await fetch(
@@ -90,7 +91,6 @@ function HeaderRightArea() {
     setupLanguages();
   }, []);
 
-  const { i18n } = useTranslation();
   const selectedLanguage = languages.find(
     (language) => language.key === i18n.language
   );
@@ -143,32 +143,32 @@ function HeaderRightArea() {
       </div>
 
       <div className="items-cneter flex">
-        {/*
         <button
-            onClick={() => setIsOpenLng(!isOpenLng)}
-            type="button"
-            className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            id={LANGUAGE_SELECTOR_ID}
-            aria-expanded={isOpenLng}
+          onClick={() => setIsOpenLng(!isOpenLng)}
+          type="button"
+          className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          id={LANGUAGE_SELECTOR_ID}
+          aria-expanded={isOpenLng}
         >
+          {/*
             <FlagIcon countryCode={selectedLanguage.key}/>
-
-            {selectedLanguage.name}
-            <svg
-                className="-me-1 ms-2 h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-            >
-                <path
-                    fillRule="evenodd"
-                    d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
-                    clipRule="evenodd"
-                />
-            </svg>
-        </button>
           */}
+
+          {/*selectedLanguage.name*/}
+          <svg
+            className="-me-1 ms-2 h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
 
       <div className="flex items-center lg:hidden">
@@ -309,7 +309,7 @@ export default function MomoconLayout({
 
               <div className="h-7 w-full">
                 <AnchorLink
-                  href="https://discord.gg/TKmzxqDS"
+                  href="https://discord.gg/PZqNeGeR"
                   target="_blank"
                   //className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
                   className="flex flex-row items-center justify-start gap-2"

@@ -76,7 +76,7 @@ const RentPage: NextPageWithLayout<
         <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
         <div
-          className="relative h-36 w-full overflow-hidden rounded-lg
+          className="relative h-36 w-full
           sm:h-44
           md:h-64
           xl:h-80
