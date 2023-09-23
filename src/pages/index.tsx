@@ -51,53 +51,6 @@ const HomePage: NextPageWithLayout<
   const address = useAddress();
   const emailQuery = usePaperWalletUserEmail();
 
-  useEffect(() => {
-    async function checkUser() {
-      if (address) {
-        //console.log('address: ', address);
-        //console.log('emailQuery: ', emailQuery);
-
-        var email = '';
-
-        if (emailQuery.data) {
-          email = emailQuery.data;
-        } else {
-          email = address + '@granderby.io';
-        }
-
-        const username = email;
-        const password = '12345678';
-
-        const formInputs = {
-          username: username,
-          email: email,
-          pass1: password,
-          pass2: password,
-          walletAddress: address,
-          //bonus: settings?.welcomeBonus ?? 0
-          bonus: 0,
-        };
-
-        const res = await fetch('/api/user?method=create', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formInputs),
-        });
-        const data = await res.json();
-
-        console.log('data: ', data);
-
-        if (data.status) {
-          //console.log('data: ', data);
-        } else {
-          //console.log('user: ', data.user);
-        }
-      }
-    }
-
-    checkUser();
-  }, [address, emailQuery]);
-
   // render morden screen/page
   /*
   if (layout === LAYOUT_OPTIONS.MODERN) {
