@@ -147,10 +147,11 @@ export default async function handler(req: NextRequest) {
             <div
               style={{
                 display: 'flex',
-                fontSize: 30,
+                fontSize: 70,
+                color: 'green',
               }}
             >
-              Last Price: {totalPricePaid}&nbsp;{paidToken}
+              {totalPricePaid}&nbsp;{paidToken}
             </div>
           </div>
         </div>
