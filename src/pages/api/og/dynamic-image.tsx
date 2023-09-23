@@ -27,13 +27,45 @@ export default async function handler(req: NextRequest) {
 
   const name = data?.name;
 
+  const res2 = await fetch('https://granderby.io/api/nft/horse/history', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      method: 'getAllByTokenId',
+      tokenId: tokenid,
+    }),
+  });
+
+  const data2 = await res2.json();
+
+  var blockTimestamp = '';
+  var totalPricePaid = '';
+  var paidToken = '';
+
+  data2?.all?.map((buy: any, index: number) => {
+    blockTimestamp = buy.blockTimestamp;
+    totalPricePaid = buy.totalPricePaid;
+    paidToken = buy.paidToken;
+
+    return;
+  });
+
+  if (paidToken === '0x0000000000000000000000000000000000001010') {
+    totalPricePaid = (Number(totalPricePaid) / 1000000000000000000).toFixed(2);
+    paidToken = 'MATIC';
+  } else {
+    totalPricePaid = (Number(totalPricePaid) / 1000000).toFixed(2);
+
+    paidToken = 'USDT';
+  }
+
   return new ImageResponse(
     (
       <div
         style={{
           color: 'black',
           background: '#ffffff',
-          width: '1200',
+          width: '100%',
           height: '100%',
           paddingTop: 10,
           paddingLeft: 15,
@@ -59,24 +91,68 @@ export default async function handler(req: NextRequest) {
           style={{
             fontSize: 30,
             color: 'black',
-            paddingLeft: 20,
+            paddingLeft: 50,
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
           }}
         >
           <div
             style={{
-              fontSize: 30,
+              fontSize: 80,
               color: 'black',
-              paddingLeft: 20,
               display: 'flex',
             }}
           >
             {name}
           </div>
-          <p>© momocon</p>
+          <div
+            style={{
+              fontSize: 80,
+              color: 'black',
+              display: 'flex',
+            }}
+          >
+            #{tokenid}
+          </div>
+          <div
+            style={{
+              fontSize: 50,
+              color: 'green',
+              display: 'flex',
+            }}
+          >
+            @GRANDERBY
+          </div>
+
+          <div
+            style={{
+              paddingTop: 50,
+              fontSize: 30,
+              color: 'black',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+              }}
+            >
+              {blockTimestamp}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 30,
+              }}
+            >
+              Last Price: {totalPricePaid}&nbsp;{paidToken}
+            </div>
+          </div>
         </div>
       </div>
     ),
