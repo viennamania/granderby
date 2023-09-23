@@ -202,30 +202,33 @@ export default function Feeds({ className }: { className?: string }) {
               )}
             >
               {page.nfts?.map((nft: any) => (
-                <button
+                <div
+                  className="relative flex flex-col overflow-hidden rounded-lg bg-white shadow-lg"
                   key={nft?.tokenId}
-                  className="relative overflow-hidden rounded-lg bg-white shadow-lg"
-                  onClick={() =>
-                    //setTokenid(nft.metadata.id.toString()),
-                    //setIsOpen(true)
-
-                    router.push('/horse-details/' + nft?.tokenId)
-                  }
-                  onMouseOver={() => {
-                    //alert("onMouseOver");
-                    //setDrawerHorseInfoTokenId(nft?.tokenId);
-                    //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
-                  }}
                 >
-                  <Image
-                    src={nft?.media ? nft?.media : '/default-nft.png'}
-                    alt={nft?.title}
-                    height={300}
-                    width={300}
-                    loading="lazy"
-                    className="cursor-pointer object-cover transition duration-500 hover:scale-110"
-                  />
-                  {/*
+                  <button
+                    className=""
+                    onClick={() =>
+                      //setTokenid(nft.metadata.id.toString()),
+                      //setIsOpen(true)
+
+                      router.push('/horse-details/' + nft?.tokenId)
+                    }
+                    onMouseOver={() => {
+                      //alert("onMouseOver");
+                      //setDrawerHorseInfoTokenId(nft?.tokenId);
+                      //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
+                    }}
+                  >
+                    <Image
+                      src={nft?.media ? nft?.media : '/default-nft.png'}
+                      alt={nft?.title}
+                      height={300}
+                      width={300}
+                      loading="lazy"
+                      className="cursor-pointer object-cover transition duration-500 hover:scale-110"
+                    />
+                    {/*
                   <div className="ml-2 mt-2 flex w-full flex-row items-center justify-start gap-2">
                     
                     <Image
@@ -240,10 +243,10 @@ export default function Feeds({ className }: { className?: string }) {
                     </p>
                   </div>
                    */}
-                  <div className="items-top  m-5 flex h-20 justify-center font-bold  ">
-                    <div className="text-md  ">{nft?.title}</div>
-                  </div>
-                  {/*
+                    <div className="items-top  m-5 flex  h-12 justify-center font-bold  ">
+                      <div className="text-md  ">{nft?.title}</div>
+                    </div>
+                    {/*
                   <div className="m-2 flex items-center justify-center ">
                     Owner:{' '}
                     <div className="text-sm  ">
@@ -251,7 +254,20 @@ export default function Feeds({ className }: { className?: string }) {
                     </div>
                   </div>
                   */}
-                </button>
+                  </button>
+                  {/*
+                <button
+                  className="text-white text-md font-bold bg-sky-500  p-3
+                    opacity-0 hover:opacity-100"
+                >
+                */}
+                  <button
+                    className="bg-sky-600 p-3 text-sm font-bold  text-white
+                    "
+                  >
+                    Buy now
+                  </button>
+                </div>
               ))}
             </div>
           ))}

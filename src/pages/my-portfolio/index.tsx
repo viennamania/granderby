@@ -111,11 +111,13 @@ const RentPage: NextPageWithLayout<
           <Profile />
             */}
 
+          {/*
           <CollapseLivePricing label="Live Pricing">
             <div className="p-5">
               <LiveNftPricingSlider limits={2} />
             </div>
           </CollapseLivePricing>
+          */}
 
           <Search />
         </div>
