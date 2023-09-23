@@ -87,9 +87,12 @@ type AppPropsWithLayout = AppProps & {
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   // inject the next app with the latest version of `@google/model-viewer`
 
+  const tokenid = pageProps?.tokenid;
   const title = pageProps?.title;
   const description = pageProps?.description;
-  const image = pageProps?.image;
+  //const image = pageProps?.image;
+
+  const image = `https://granderby.io/api/og/dynamic-image?tokenid=${tokenid}`;
 
   //could remove this if you don't need to page level layout
   const getLayout = Component.getLayout ?? ((page) => page);
