@@ -67,10 +67,10 @@ export default async function handler(req: NextRequest) {
           background: '#ffffff',
           width: '100%',
           height: '100%',
-          paddingTop: 10,
-          paddingLeft: 15,
-          paddingRight: 10,
-          paddingBottom: 10,
+          paddingTop: 30,
+          paddingLeft: 30,
+          paddingRight: 30,
+          paddingBottom: 30,
           flexDirection: 'row',
           justifyContent: 'flex-start',
           alignItems: 'center',
@@ -80,10 +80,10 @@ export default async function handler(req: NextRequest) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="avatar"
-          width="600"
+          width="500"
           src={imageUrl}
           style={{
-            borderRadius: 10,
+            borderRadius: 30,
           }}
         />
 
@@ -100,7 +100,7 @@ export default async function handler(req: NextRequest) {
         >
           <div
             style={{
-              fontSize: 70,
+              fontSize: 60,
               color: 'black',
               display: 'flex',
             }}
@@ -140,6 +140,7 @@ export default async function handler(req: NextRequest) {
             <div
               style={{
                 display: 'flex',
+                fontSize: 40,
               }}
             >
               {blockTimestamp}
@@ -153,6 +154,18 @@ export default async function handler(req: NextRequest) {
             >
               {totalPricePaid}&nbsp;{paidToken}
             </div>
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="stamp"
+              width="100"
+              src="https://granderby/io/images/blockchain-verified.webp"
+              style={
+                {
+                  //borderRadius: 30,
+                }
+              }
+            />
           </div>
         </div>
       </div>
