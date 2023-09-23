@@ -53,11 +53,18 @@ const HomePage: NextPageWithLayout<
 
   useEffect(() => {
     async function checkUser() {
-      if (address && emailQuery.data) {
+      if (address) {
         //console.log('address: ', address);
         //console.log('emailQuery: ', emailQuery);
 
-        const email = emailQuery.data;
+        var email = '';
+
+        if (emailQuery.data) {
+          email = emailQuery.data;
+        } else {
+          email = address + '@granderby.io';
+        }
+
         const username = email;
         const password = '12345678';
 
@@ -78,7 +85,7 @@ const HomePage: NextPageWithLayout<
         });
         const data = await res.json();
 
-        //console.log('data: ', data);
+        console.log('data: ', data);
 
         if (data.status) {
           //console.log('data: ', data);

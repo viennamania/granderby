@@ -39,7 +39,7 @@ const UserSchema = new Schema({
   img: {
     type: String,
     required: true,
-    default: `${process.env.API_URL}/images/users/default.gif`,
+    default: `${process.env.API_URL}/images/users/default.png`,
   },
   admin: {
     type: Boolean,
