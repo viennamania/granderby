@@ -242,14 +242,14 @@ export const menuItems = [
     href: routes.live,
     dropdownItems: [
       {
-        name: 'Race Schedule',
+        name: 'Schedule',
         icon: <PlusCircle />,
         href: routes.raceSchedule,
       },
       {
-        name: 'Last Race',
+        name: 'Finished',
         icon: <PlusCircle />,
-        href: routes.raceLast,
+        href: routes.raceFinished,
       },
       {
         name: 'Live',

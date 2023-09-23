@@ -36,7 +36,7 @@ const routes = {
   race: '/race',
 
   raceSchedule: '/race/schedule',
-  raceLast: '/race/last',
+  raceFinished: '/race/finished',
 
   live: '/live',
   //live: '/watch/horseRace',
