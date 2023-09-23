@@ -25,18 +25,22 @@ export default async function handler(req: NextRequest) {
 
   const imageUrl = data?.image;
 
+  const name = data?.name;
+
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize: 60,
           color: 'black',
-          background: '#f6f6f6',
-          width: '100%',
+          background: '#ffffff',
+          width: '1200',
           height: '100%',
-          paddingTop: 50,
-          flexDirection: 'column',
-          justifyContent: 'center',
+          paddingTop: 10,
+          paddingLeft: 15,
+          paddingRight: 10,
+          paddingBottom: 10,
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
           alignItems: 'center',
           display: 'flex',
         }}
@@ -44,18 +48,38 @@ export default async function handler(req: NextRequest) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="avatar"
-          width="256"
+          width="600"
           src={imageUrl}
-          style={
-            {
-              //borderRadius: 128,
-            }
-          }
+          style={{
+            borderRadius: 10,
+          }}
         />
-        <p>granderby.io/{tokenid}</p>
+
+        <div
+          style={{
+            fontSize: 30,
+            color: 'black',
+            paddingLeft: 20,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 30,
+              color: 'black',
+              paddingLeft: 20,
+              display: 'flex',
+            }}
+          >
+            {name}
+          </div>
+          <p>© momocon</p>
+        </div>
       </div>
     ),
-
     {
       width: 1200,
       height: 630,
