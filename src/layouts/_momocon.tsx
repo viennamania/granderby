@@ -29,13 +29,27 @@ import { Copy } from '@/components/icons/copy';
 import { SearchIcon } from '@/components/icons/search';
 import AnchorLink from '@/components/ui/links/anchor-link';
 
-import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+
+import {
+  ConnectWallet,
+  useAddress,
+  useNFT,
+  useContract,
+} from '@thirdweb-dev/react';
 
 import { darkTheme, lightTheme } from '@thirdweb-dev/react';
 
 import { useTranslation } from 'react-i18next';
 
 import { useState, useEffect } from 'react';
+
+import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
+
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
+
+import CollapseLastWinners from '@/components/ui/collapse-last-winners';
+import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby';
 
 //import { FlagIcon } from 'flag-icons'
 
@@ -109,6 +123,35 @@ function HeaderRightArea() {
   );
   // ...
 
+  const { contract: nftDropContract } = useContract(
+    nftDropContractAddressHorse,
+    'nft-drop'
+  );
+
+  const tokenid = 300;
+
+  const { data: nftMetadata, isLoading } = useNFT(nftDropContract, tokenid);
+
+  const [isOpenWelcome, setIsOpenWelcome] = useState(false);
+
+  const [npcNames, setNpcNames] = useState<any>([]);
+  useEffect(() => {
+    async function getNpcNames() {
+      const npcNamesResponse = await fetch(
+        `/api/games/horseRace/settings/horseNames?method=all`
+      );
+      const response = await npcNamesResponse.json();
+
+      //console.log('getNpcNames response.npcNames[0]', response.npcNames[0]);
+
+      //const data = useOwnedNFTs(nftDropContractHorse, address);
+
+      setNpcNames(response.npcNames[0]);
+    }
+
+    getNpcNames();
+  }, []);
+
   return (
     <div className="order-last flex shrink-0 items-center">
       <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
@@ -155,15 +198,56 @@ function HeaderRightArea() {
           </div>
         ) : (
           <ConnectWallet
-            theme={lightTheme({
-              fontFamily: 'Inter, sans-serif',
-              colors: {
-                //modalBg: "#000000",
-                modalBg: '#ffffff',
-                accentText: 'green',
-                // ... etc
-              },
-            })}
+            /*
+            theme={
+              lightTheme({
+                fontFamily: 'Inter, sans-serif',
+                colors: {
+                  //modalBg: "#000000",
+                  modalBg: '#ffffff',
+                  accentText: 'green',
+                  
+
+                  // ... etc
+                },
+              }),
+            }
+            */
+            theme="light"
+            welcomeScreen={() => {
+              ////return <LiveNftPricingSlider limits={2} />;
+              /*
+              return (
+                <NftSinglePrice
+                  //tokenid={tokenid.tokenid}
+                  nftMetadata={nftMetadata}
+                  contractAddress={nftDropContractAddressHorse}
+                  isOpen={isOpenWelcome}
+                  setIsOpen={setIsOpenWelcome}
+                />
+              );
+              */
+              /*
+              return (
+
+                <div className=' m-10 flex items-center justify-center'>
+                  <CollapseLastWinners label="Last Race Winners">
+                    <div className="h-96">
+                      <LastWinners npcs={npcNames} status={0} />
+                    </div>
+                  </CollapseLastWinners>
+                </div>
+              )
+              */
+
+              return (
+                <div className=" mt-20 flex flex-col items-center justify-center p-10">
+                  <div>Last Race Winner</div>
+
+                  <LastWinners npcs={npcNames} status={0} />
+                </div>
+              );
+            }}
             btnTitle="Login"
           />
         )}
