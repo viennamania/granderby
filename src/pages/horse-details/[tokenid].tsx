@@ -406,8 +406,48 @@ export async function getStaticProps(context: any) {
 
   //console.log(data);
 
+  var grade = '';
+  var size = '';
+  var speed = '';
+  var stamina = '';
+  var power = '';
+
+  data?.attributes?.map((attribute: any) => {
+    ///console.log('attribute', attribute);
+    if (attribute.trait_type === 'Grade') {
+      //setAttributeGrade(attribute.value);
+      grade = attribute.value;
+    }
+    if (attribute.trait_type === 'Size') {
+      //setAttributeSize(attribute.value);
+      size = attribute.value;
+    }
+    if (attribute.trait_type === 'Speed') {
+      //setAttributeSpeed(attribute.value);
+      speed = attribute.value;
+
+      //console.log('attributeSpeed', attribute.value);
+    }
+    if (attribute.trait_type === 'Stamina') {
+      //setAttributeStamina(attribute.value);
+      stamina = attribute.value;
+    }
+    if (attribute.trait_type === 'Power') {
+      //setAttributePower(attribute.value);
+      power = attribute.value;
+    }
+  });
+
   const title = data?.name + ' - #' + tokenid;
-  const description = data?.attributes;
+  const description =
+    'Speed: ' +
+    speed +
+    ' | ' +
+    'Stamina: ' +
+    stamina +
+    ' | ' +
+    'Power: ' +
+    power;
   const image = data?.image;
 
   return {
