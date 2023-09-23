@@ -407,7 +407,7 @@ export async function getStaticProps(context: any) {
   //console.log(data);
 
   const title = data?.name + ' - #' + tokenid;
-  const description = data?.description;
+  const description = data?.attributes;
   const image = data?.image;
 
   return {

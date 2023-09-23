@@ -137,14 +137,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <meta property="og:image:width" content="1400"></meta>
         <meta property="og:image:height" content="1400"></meta>
 
-        <meta
-          property="og:title"
-          content="Granderby - powered by MOMOCON"
-        ></meta>
-        <meta
-          property="og:description"
-          content="GRANDERBY is a game where players raise and manage NFT horses to enter them into races and earn tokens."
-        ></meta>
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:description" content={description}></meta>
         <meta property="og:image" content={image}></meta>
 
         <meta name="twitter:image" content={image}></meta>
