@@ -159,7 +159,7 @@ export default async function handler(req: NextRequest) {
             <img
               alt="stamp"
               width="100"
-              src="https://granderby/io/images/blockchain-verified.webp"
+              src="https://granderby.io/images/blockchain-verified.webp"
               style={
                 {
                   //borderRadius: 30,
