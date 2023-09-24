@@ -552,9 +552,11 @@ function NftInfo({ nftMetadata }: any) {
         )}
       </div>
 
-      <Collapse label="Price History" initialOpen={true}>
-        <PriceHistoryTable nftMetadata={nftMetadata} />
-      </Collapse>
+      <div className="mt-5 flex flex-col rounded-lg border ">
+        <Collapse label="Price History" initialOpen={true}>
+          <PriceHistoryTable nftMetadata={nftMetadata} />
+        </Collapse>
+      </div>
 
       {/*
         <div className="ml-2 mt-2 flex flex-row items-center justify-between gap-2">
