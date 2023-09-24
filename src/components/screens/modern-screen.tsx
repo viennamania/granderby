@@ -482,15 +482,29 @@ export default function ModernScreen() {
           </Button>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 xl:grid-cols-2">
-          <CollapseLivePricing label="Live Pricing">
-            <div className=" h-96 p-5">
-              <LiveNftPricingSlider limits={2} />
-            </div>
-            {/*
+        <div className="mt-10 grid grid-cols-1 gap-5 xl:grid-cols-2 ">
+          <div className=" flex flex-col rounded-lg border">
+            <CollapseLivePricing label="Live Pricing">
+              <div className="flex h-[490px] flex-col items-center justify-start p-5">
+                <LiveNftPricingSlider limits={2} />
+
+                <div className="mb-5 flex h-full flex-row  items-end justify-center">
+                  <Button
+                    shape="rounded"
+                    color="success"
+                    onClick={() => {
+                      router.push('/buy-horse');
+                    }}
+                  >
+                    <div className="text-2xl">Buy now</div>
+                  </Button>
+                </div>
+              </div>
+
+              {/*
               <div className='w-full items-center justify-center'>
                 <Link
-                  className="hidden h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
+                  className=" h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
                   href="/live"
                 >
                   <Image
@@ -504,203 +518,218 @@ export default function ModernScreen() {
                 </Link>
               </div>
               */}
-          </CollapseLivePricing>
+            </CollapseLivePricing>
 
-          {/*
-            <Collapse label="Live Pricing" initialOpen={true}>
-              <div className="m-5 p-5">
+            {/*
+              <Collapse label="Live Pricing" initialOpen={true}>
+                <div className="m-5 p-5">
 
 
-                <CryptoCurrencyPricingSkeleton />
+                  <CryptoCurrencyPricingSkeleton />
 
-              </div>
-            </Collapse>
-            */}
-
-          <CollapseLastWinners label="Last Race Winners">
-            <div className="h-96">
-              <LastWinners npcs={npcNames} status={status} />
-            </div>
-            <div></div>
-          </CollapseLastWinners>
-        </div>
-
-        {/*
-        <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
-          {time ? (
-            <div className="w-full">
-              {time === -1 ? (
-                <div className="mt-0 flex flex-row gap-1">
-                  {horses
-
-                    .sort((a: any, b: any) => a.progress - b.progress)
-                    .map((horse: any, index: number) => {
-                      return (
-                        <div
-                          key={index}
-                          className={`flex w-1/5 flex-col items-center justify-center rounded-md p-2 md:h-32 xl:w-1/5 ${
-                            selectedHorse === horse.name ? 'bg-green-500' : null
-                          }`}
-                        >
-                          <div className="flex-row items-center justify-center rounded-md bg-white p-2 text-center">
-                            #{horse.nft}
-                          </div>
-
-                          <div className="mt-2 w-full flex-col items-center justify-center  md:flex">
-                            <Image
-                              //src={horse.media}
-                              src={
-                                '/horseRace/bib_gui_' + (horse.id - 1) + '.png'
-                              }
-                              width="80"
-                              height="80"
-                              alt={'at'}
-                              className=" xl:w-[150px] "
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
                 </div>
-              ) : (
-                <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
-              )}
-            </div>
-          ) : (
-            <div className="flex w-full items-center justify-center text-2xl text-white ">
-              Loading game...
-            </div>
-          )}
-
-          <div className=" flex flex-row  items-center justify-end ">
-            <Link
-              className="hidden h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
-              href="/live"
-            >
-              <Image
-                src="/horseRace/live.gif"
-                alt="live"
-                width={100}
-                height={30}
-                className="mb-1"
-              />
-              <span className="mr-2 text-white">for bet</span>
-            </Link>
+              </Collapse>
+              */}
           </div>
-        </div>
-        */}
 
-        {/*
-        <div className="mt-5 flex">
-          <CollapseCurrentEvent label="Current Event">
-            <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-5 shadow-card dark:bg-light-dark ">
-              <div className="mb-1 text-center text-sm text-black xl:text-lg">
-                My horses <span className="font-bold text-red-500">RUN</span>, I{' '}
-                <span className="font-bold text-blue-500">EARN</span> !{' '}
-                <span className="text-block text-xs ">©</span>
+          <div className=" flex flex-col rounded-lg border">
+            <CollapseLastWinners label="Last Race Winners">
+              <div className="flex h-[490px] flex-col items-center justify-center p-5">
+                <LastWinners npcs={npcNames} status={status} />
+
+                <div className="mb-5 flex h-full  items-end justify-center">
+                  <Button
+                    className="mt-5"
+                    shape="rounded"
+                    color="success"
+                    onClick={() => {
+                      router.push('/live');
+                    }}
+                  >
+                    <div className="text-2xl">Live now</div>
+                  </Button>
+                </div>
               </div>
-
-              <EntryTables
-                horse1={horse1Oran}
-                horse2={horse2Oran}
-                horse3={horse3Oran}
-                horse4={horse4Oran}
-                horse5={horse5Oran}
-                horse6={horse6Oran}
-                horse7={horse7Oran}
-                horse8={horse8Oran}
-                horse9={horse9Oran}
-                horse10={horse10Oran}
-                //user={user}
-                user={null}
-                npcs={npcNames}
-                //inputs={inputs}
-                inputs={null}
-                balance={0}
-              />
-            </div>
-          </CollapseCurrentEvent>
-        </div>
-        */}
-
-        <div className="items-top mt-5 flex w-full justify-center ">
-          {/*
-            <BetTables npcs={npcNames} />
-            */}
+            </CollapseLastWinners>
+          </div>
 
           {/*
-            <div className="mb-2 flex w-full items-center justify-center rounded-lg text-3xl font-bold text-yellow-500">
-              Total bet: {betAmountTotal}
-            </div>
-            */}
-        </div>
+          <div className="items-top mt-0 flex  w-full flex-row justify-center gap-2  rounded-md border  bg-black  p-2 ">
+            {time ? (
+              <div className="w-full">
+                {time === -1 ? (
+                  <div className="mt-0 flex flex-row gap-1">
+                    {horses
 
-        {/*
-        </div>
-        */}
+                      .sort((a: any, b: any) => a.progress - b.progress)
+                      .map((horse: any, index: number) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`flex w-1/5 flex-col items-center justify-center rounded-md p-2 md:h-32 xl:w-1/5 ${
+                              selectedHorse === horse.name ? 'bg-green-500' : null
+                            }`}
+                          >
+                            <div className="flex-row items-center justify-center rounded-md bg-white p-2 text-center">
+                              #{horse.nft}
+                            </div>
 
-        {/*
-        <div className="mt-3 w-full  sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
-          <div className="justify-top flex h-full flex-col items-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
-            {!address ? (
-              <div className="flex flex-col justify-center">
-                <ConnectWallet theme="light" />
-                <h5> to experience the GRANDERBY</h5>
-
-                <div className="mt-5 hidden  flex-row items-center justify-center p-5 xl:flex ">
-                  <Image
-                    src="/horseRace/mobile-app.png"
-                    alt="mobile-app"
-                    width={300}
-                    height={1000}
-                    className="rounded-lg"
-                  />
-                </div>
-
-                <div className="btn-wrap flex w-full flex-col items-center justify-center gap-5">
-                  <button className="btn-app flex ">
-                    <Image
-                      src={IcoApple}
-                      alt="apple"
-                      width={300}
-                      height={100}
-                      className="w-full"
-                    />
-                    <div className="flex">Download App</div>
-                  </button>
-
-                  <button className="btn-app  ">
-                    <Image
-                      src={IcoAndroid}
-                      alt="android"
-                      width={300}
-                      height={100}
-                      className="w-full"
-                    />
-                    <div className="flex">Download App</div>
-                  </button>
-                </div>
+                            <div className="mt-2 w-full flex-col items-center justify-center  md:flex">
+                              <Image
+                                //src={horse.media}
+                                src={
+                                  '/horseRace/bib_gui_' + (horse.id - 1) + '.png'
+                                }
+                                width="80"
+                                height="80"
+                                alt={'at'}
+                                className=" xl:w-[150px] "
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                ) : (
+                  <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
+                )}
               </div>
             ) : (
-              <>
-                <div className="mb-5 flex flex-row items-center justify-center ">
-                  <ConnectWallet theme="dark" />
+              <div className="flex w-full items-center justify-center text-2xl text-white ">
+                Loading game...
+              </div>
+            )}
+
+            <div className=" flex flex-row  items-center justify-end ">
+              <Link
+                className="hidden h-[40px] w-[180px]  flex-row items-center justify-center rounded-lg bg-black xl:flex"
+                href="/live"
+              >
+                <Image
+                  src="/horseRace/live.gif"
+                  alt="live"
+                  width={100}
+                  height={30}
+                  className="mb-1"
+                />
+                <span className="mr-2 text-white">for bet</span>
+              </Link>
+            </div>
+          </div>
+          */}
+
+          {/*
+          <div className="mt-5 flex">
+            <CollapseCurrentEvent label="Current Event">
+              <div className="mt-5 flex flex-col items-center justify-center rounded-lg bg-white p-5 shadow-card dark:bg-light-dark ">
+                <div className="mb-1 text-center text-sm text-black xl:text-lg">
+                  My horses <span className="font-bold text-red-500">RUN</span>, I{' '}
+                  <span className="font-bold text-blue-500">EARN</span> !{' '}
+                  <span className="text-block text-xs ">©</span>
                 </div>
 
-
-
-                <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
-                  My horses
-                </h3>
-
-                <OwnedFeeds />
-
-           
-              </>
-            )}
+                <EntryTables
+                  horse1={horse1Oran}
+                  horse2={horse2Oran}
+                  horse3={horse3Oran}
+                  horse4={horse4Oran}
+                  horse5={horse5Oran}
+                  horse6={horse6Oran}
+                  horse7={horse7Oran}
+                  horse8={horse8Oran}
+                  horse9={horse9Oran}
+                  horse10={horse10Oran}
+                  //user={user}
+                  user={null}
+                  npcs={npcNames}
+                  //inputs={inputs}
+                  inputs={null}
+                  balance={0}
+                />
+              </div>
+            </CollapseCurrentEvent>
           </div>
+          */}
+
+          <div className="items-top mt-5 flex w-full justify-center ">
+            {/*
+              <BetTables npcs={npcNames} />
+              */}
+
+            {/*
+              <div className="mb-2 flex w-full items-center justify-center rounded-lg text-3xl font-bold text-yellow-500">
+                Total bet: {betAmountTotal}
+              </div>
+              */}
+          </div>
+
+          {/*
+          </div>
+          */}
+
+          {/*
+          <div className="mt-3 w-full  sm:w-1/2 md:w-64 lg:w-72 2xl:w-80 3xl:w-[358px]">
+            <div className="justify-top flex h-full flex-col items-center rounded-lg bg-white p-6 shadow-card dark:bg-light-dark xl:p-8">
+              {!address ? (
+                <div className="flex flex-col justify-center">
+                  <ConnectWallet theme="light" />
+                  <h5> to experience the GRANDERBY</h5>
+
+                  <div className="mt-5 hidden  flex-row items-center justify-center p-5 xl:flex ">
+                    <Image
+                      src="/horseRace/mobile-app.png"
+                      alt="mobile-app"
+                      width={300}
+                      height={1000}
+                      className="rounded-lg"
+                    />
+                  </div>
+
+                  <div className="btn-wrap flex w-full flex-col items-center justify-center gap-5">
+                    <button className="btn-app flex ">
+                      <Image
+                        src={IcoApple}
+                        alt="apple"
+                        width={300}
+                        height={100}
+                        className="w-full"
+                      />
+                      <div className="flex">Download App</div>
+                    </button>
+
+                    <button className="btn-app  ">
+                      <Image
+                        src={IcoAndroid}
+                        alt="android"
+                        width={300}
+                        height={100}
+                        className="w-full"
+                      />
+                      <div className="flex">Download App</div>
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-5 flex flex-row items-center justify-center ">
+                    <ConnectWallet theme="dark" />
+                  </div>
+
+
+
+                  <h3 className="mb-2 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+                    My horses
+                  </h3>
+
+                  <OwnedFeeds />
+
+            
+                </>
+              )}
+            </div>
+          </div>
+          */}
         </div>
-        */}
       </div>
 
       {/*

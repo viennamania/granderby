@@ -115,7 +115,7 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
   );
 
   return (
-    <div className=" flex flex-col items-center justify-center gap-3  bg-white p-5 text-black backdrop-blur-md ">
+    <div className=" flex flex-col items-center justify-center p-5 text-black backdrop-blur-md ">
       {/*
       <div className=" mb-2 border-b text-xl">Last Race Winners</div>
       */}
@@ -199,6 +199,7 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
             );
           })}
       </div>
+
       <div className="flex flex-row items-center justify-center gap-5 ">
         <span className="text-xl font-bold">
           Win Prize: {Number(sonKazananlar?.winPrize).toFixed(2)}

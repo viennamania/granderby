@@ -295,19 +295,21 @@ export default function LiveNftPricingSlider({ limits }: { limits: number }) {
               width={25}
               height={20}
             />
+            {/*
             <Image
               src="/images/logo-opensea.svg"
               alt="market"
               width={80}
               height={50}
             />
+            */}
           </div>
 
           <button
             className="ml-5 flex flex-row items-center justify-center gap-3"
             ///onClick={(e) => router.push('/coin/usdc')}
             onClick={() => {
-              router.push('/buy-horse');
+              router.push('https://granderby.market');
               ///router.push('/horse-details/' + nft?.metadata?.id);
             }}
           >
