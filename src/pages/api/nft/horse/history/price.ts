@@ -21,6 +21,9 @@ export default async function handler(
     //console.log('getAllByTokenId all', all);
 
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
-    return res.status(200).json({ status: true, all });
+
+    const total = all.length;
+
+    return res.status(200).json({ status: true, all, total });
   }
 }

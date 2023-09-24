@@ -111,7 +111,6 @@ const WatchPage: NextPageWithLayout<
   const [horse9Oran, setHorse9Oran] = useState<any>([]);
   const [horse10Oran, setHorse10Oran] = useState<any>([]);
 
-  
   const [flag, setFlag] = useState<any>(false);
   const [balance, setBalance] = useState<any>(0);
 
@@ -165,12 +164,10 @@ const WatchPage: NextPageWithLayout<
     });
     socketa.on('horse9Rate', (data: any) => {
       setHorse9Oran(data);
-    } );
+    });
     socketa.on('horse10Rate', (data: any) => {
       setHorse10Oran(data);
-    } );
-
-    
+    });
 
     socketa.on('flag', (data: any) => {
       setFlag(data);
@@ -269,7 +266,7 @@ const WatchPage: NextPageWithLayout<
                                 <div className="bg-center bg-no-repeat bg-contain bg-[url(/snailRace/back.svg)] h-full ">
                                 */}
               <div className="h-full bg-[url(/snailRace/1683723489-asd.jpg)] bg-contain bg-center bg-no-repeat ">
-                <div className="item-center mt-20 flex w-full justify-center gap-1 bg-transparent text-2xl text-white">
+                <div className="mt-20 flex w-full items-center justify-center gap-1 bg-transparent text-2xl text-white">
                   Loading Game...
                 </div>
               </div>

@@ -42,6 +42,8 @@ import {
   useTokenBalance,
   Web3Button,
   useValidDirectListings,
+  useNetworkMismatch,
+  useNetwork,
 } from '@thirdweb-dev/react';
 
 import { RaceIcon } from '@/components/icons/race-icon';
@@ -138,7 +140,7 @@ function NftInfo({ nftMetadata }: any) {
       nftMetadata?.metadata?.id
     );
 
-    const response = await fetch('/api/nft/horse/history', {
+    const response = await fetch('/api/nft/horse/history/price', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -282,6 +284,42 @@ function NftInfo({ nftMetadata }: any) {
     }
   }
 
+  // Hooks to detect user is on the right network and switch them if they are not
+  const networkMismatch = useNetworkMismatch();
+  const [, switchNetwork] = useNetwork();
+
+  async function buyNft() {
+    try {
+      // Ensure user is on the correct network
+
+      if (networkMismatch) {
+        switchNetwork && switchNetwork(ChainId.Polygon);
+        return;
+      }
+
+      // Simple one-liner for buying the NFT
+      /*
+        await marketplace?.buyFromListing(listingId.listingId, 1);
+        */
+
+      // The ID of the listing you want to buy from
+      //const listingId = 0;
+      // Quantity of the asset you want to buy
+      const quantityDesired = 1;
+
+      await marketplace?.directListings?.buyFromListing(
+        directListing?.id,
+        quantityDesired,
+        address
+      );
+
+      alert('NFT bought successfully!');
+    } catch (error) {
+      console.error(error);
+      alert(error);
+    }
+  }
+
   return (
     <div className="px-3  ">
       {/*{nftMetadata?.owner === address && (*/}
@@ -298,12 +336,12 @@ function NftInfo({ nftMetadata }: any) {
               <div className="flex  w-full flex-col gap-5 p-5">
                 {!directListing || directListing.quantity === '0' ? (
                   <>
+                    {/* Last Price */}
                     <div className="text-sm font-bold xl:text-lg">
-                      <b>Not for sale </b>
+                      <b>Last price</b>
                     </div>
-
                     <div className="flex flex-col ">
-                      <div className="item-center flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                      <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
                           className=" w-24 text-sm font-bold xl:text-xl "
                           onClick={() =>
@@ -320,9 +358,7 @@ function NftInfo({ nftMetadata }: any) {
                           />
                         </button>
 
-                        <span className="flex pt-1">Last price:</span>
-
-                        <span className="flex text-xl font-bold text-green-600 xl:text-3xl">
+                        <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
                           {saleHistory[0]?.paidToken ===
                           '0x0000000000000000000000000000000000001010'
                             ? (
@@ -336,9 +372,9 @@ function NftInfo({ nftMetadata }: any) {
 
                         {saleHistory[0]?.paidToken ===
                         '0x0000000000000000000000000000000000001010' ? (
-                          <span className="pt-1"> MATIC</span>
+                          <span className="flex "> MATIC</span>
                         ) : (
-                          <span className="pt-1"> USDC</span>
+                          <span className="flex"> USDC</span>
                         )}
                       </div>
 
@@ -349,7 +385,7 @@ function NftInfo({ nftMetadata }: any) {
                         )}
                       </div>
 
-                      <div className="item-center mt-3 flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                      <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
                           className=" w-24 text-sm font-bold xl:text-xl "
                           onClick={() =>
@@ -359,24 +395,33 @@ function NftInfo({ nftMetadata }: any) {
                           }
                         >
                           <Image
-                            src="/images/logo-opensea.svg"
+                            src="/images/logo-opensea.png"
                             alt="live"
-                            width={80}
+                            width={30}
                             height={30}
                           />
                         </button>
-
-                        <span className="flex pt-1 ">Last price:</span>
-                        <span className="flex pt-1">No record</span>
+                        <span className="flex ">No record</span>
                       </div>
                     </div>
 
                     {address === nftMetadata?.owner &&
                       address !== stakerAddress && (
-                        <div className="flex flex-col gap-2">
+                        <div className="mt-5 flex flex-col gap-2">
+                          <div className="text-sm font-bold xl:text-lg">
+                            <b>Not for sale</b>
+                          </div>
+
                           {/* Sell NFT */}
                           <div className=" grid grid-cols-1 items-center justify-start gap-3 xl:grid-cols-2">
                             <div className=" flex flex-row items-center justify-start gap-2">
+                              <div className=" flex w-20 flex-col gap-1">
+                                <span>Listing</span>
+                                <span className=" font-bold text-blue-600">
+                                  USDC
+                                </span>
+                              </div>
+
                               <input
                                 className=" w-full text-right text-xl font-bold text-black"
                                 type="number"
@@ -387,9 +432,6 @@ function NftInfo({ nftMetadata }: any) {
                                   setPrice(e.target.value as any);
                                 }}
                               />
-                              <span className="ml-2 text-xl font-bold text-blue-600">
-                                USDC
-                              </span>
                             </div>
 
                             <Web3Button
@@ -406,16 +448,19 @@ function NftInfo({ nftMetadata }: any) {
                           {/* Send NFT */}
                           {nftMetadata?.owner === address && (
                             <div className="mt-3 grid grid-cols-1 items-center justify-center gap-3 xl:grid-cols-2">
-                              <input
-                                className=" w-full text-black"
-                                type="text"
-                                name="toAddress"
-                                placeholder="To Address"
-                                value={toAddress}
-                                onChange={(e) => {
-                                  setToAddress(e.target.value);
-                                }}
-                              />
+                              <div className=" flex flex-row items-center justify-start gap-2">
+                                <div className="w-20">Transfer</div>
+                                <input
+                                  className=" w-full text-black"
+                                  type="text"
+                                  name="toAddress"
+                                  placeholder="To Address"
+                                  value={toAddress}
+                                  onChange={(e) => {
+                                    setToAddress(e.target.value);
+                                  }}
+                                />
+                              </div>
 
                               {/*{isTransferTokensLoading ? (*/}
 
@@ -479,7 +524,7 @@ function NftInfo({ nftMetadata }: any) {
                                       //handleClickErr();
                                     }}
                                   >
-                                    Transfer
+                                    Send
                                   </Web3Button>
                                 </>
                               )}
@@ -490,18 +535,90 @@ function NftInfo({ nftMetadata }: any) {
                   </>
                 ) : (
                   <>
+                    {/* Last Price */}
+                    <div className="text-sm font-bold xl:text-lg">
+                      <b>Last price</b>
+                    </div>
+                    <div className="flex flex-col ">
+                      <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                        <button
+                          className=" w-24 text-sm font-bold xl:text-xl "
+                          onClick={() =>
+                            router.push(
+                              `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                            )
+                          }
+                        >
+                          <Image
+                            src="/images/market.png"
+                            alt="live"
+                            width={30}
+                            height={30}
+                          />
+                        </button>
+
+                        <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
+                          {saleHistory[0]?.paidToken ===
+                          '0x0000000000000000000000000000000000001010'
+                            ? (
+                                saleHistory[0]?.totalPricePaid /
+                                1000000000000000000
+                              ).toFixed(2)
+                            : (
+                                saleHistory[0]?.totalPricePaid / 1000000
+                              ).toFixed(2)}
+                        </span>
+
+                        {saleHistory[0]?.paidToken ===
+                        '0x0000000000000000000000000000000000001010' ? (
+                          <span className="flex "> MATIC</span>
+                        ) : (
+                          <span className="flex"> USDC</span>
+                        )}
+                      </div>
+
+                      <div className=" flex flex-row items-center justify-start text-xs">
+                        {format(
+                          Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                          'yyy-MM-dd hh:mm:ss'
+                        )}
+                      </div>
+
+                      <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                        <button
+                          className=" w-24 text-sm font-bold xl:text-xl "
+                          onClick={() =>
+                            router.push(
+                              `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                            )
+                          }
+                        >
+                          <Image
+                            src="/images/logo-opensea.png"
+                            alt="live"
+                            width={30}
+                            height={30}
+                          />
+                        </button>
+                        <span className="flex ">No record</span>
+                      </div>
+                    </div>
+
+                    {/* sell price */}
+                    <div className="mt-5 text-sm font-bold xl:text-lg">
+                      <b>Sell price</b>
+                    </div>
                     <div className=" text-xl font-bold xl:text-2xl">
-                      <div className="flex flex-row items-center justify-center gap-2">
+                      <div className="flex flex-row items-center justify-start gap-2">
                         <Image
                           src="/images/market.png"
                           alt="market"
                           width={30}
                           height={30}
                         />
-                        <span className=" text-lg">Sell Price:</span>
 
                         <div className="flex flex-row items-center justify-center gap-3">
-                          <span className="text-3xl font-bold text-green-600 xl:text-4xl">
+                          <span className="text-2xl font-bold text-green-600 xl:text-4xl ">
                             {directListing?.currencyValuePerToken.displayValue}
                           </span>
                           <span className="text-sm xl:text-lg">
@@ -518,33 +635,6 @@ function NftInfo({ nftMetadata }: any) {
                         'yyy-MM-dd hh:mm:ss'
                       )}
                     </span>
-
-                    <div className="text-sm font-bold xl:text-lg">
-                      Last price:{' '}
-                      <span className="text-xl font-bold text-green-600 xl:text-3xl">
-                        {saleHistory[0]?.paidToken ===
-                        '0x0000000000000000000000000000000000001010'
-                          ? (
-                              saleHistory[0]?.totalPricePaid /
-                              1000000000000000000
-                            ).toFixed(2)
-                          : (saleHistory[0]?.totalPricePaid / 1000000).toFixed(
-                              2
-                            )}
-                      </span>
-                      {saleHistory[0]?.paidToken ===
-                      '0x0000000000000000000000000000000000001010' ? (
-                        <span className="pt-1"> MATIC</span>
-                      ) : (
-                        <span className="pt-1"> USDC</span>
-                      )}
-                    </div>
-                    <div className=" flex flex-row items-center justify-start gap-2 text-xs">
-                      {format(
-                        Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                        'yyy-MM-dd hh:mm:ss'
-                      )}
-                    </div>
 
                     {address && address === nftMetadata?.owner && (
                       <Web3Button
@@ -621,7 +711,9 @@ function NftInfo({ nftMetadata }: any) {
                 )}
 
                 <div className="itmes-start mt-5 flex flex-col justify-center">
-                  <span className="text-lg font-bold">Price History</span>
+                  <span className="text-lg font-bold">
+                    <b>Price History</b>
+                  </span>
 
                   <PriceHistoryTable nftMetadata={nftMetadata} />
                 </div>
@@ -662,7 +754,9 @@ function NftInfo({ nftMetadata }: any) {
       <div className="mt-5 flex flex-col rounded-lg border ">
         <Collapse label="Race Information" initialOpen={true}>
           <div className="itmes-start mt-5 flex flex-col justify-center p-10">
-            <span className="text-lg font-bold">Race History</span>
+            <span className="text-lg font-bold">
+              <b>Race History</b>
+            </span>
             <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
           </div>
         </Collapse>

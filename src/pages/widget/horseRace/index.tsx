@@ -375,7 +375,7 @@ const WidgetPage: NextPageWithLayout<
                                 <div className="bg-center bg-no-repeat bg-contain bg-[url(/snailRace/back.svg)] h-full ">
                                 */}
                 <div className="h-full bg-[url(/snailRace/1683723489-asd.jpg)] bg-contain bg-center bg-no-repeat ">
-                  <div className="item-center mt-20 flex w-full justify-center gap-1 bg-transparent text-2xl text-white">
+                  <div className="mt-20 flex w-full items-center justify-center gap-1 bg-transparent text-2xl text-white">
                     Loading Game...
                   </div>
                 </div>

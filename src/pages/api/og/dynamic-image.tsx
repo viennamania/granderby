@@ -29,7 +29,7 @@ export default async function handler(req: NextRequest) {
 
   const name = data?.name;
 
-  const res2 = await fetch('https://granderby.io/api/nft/horse/history', {
+  const res2 = await fetch('https://granderby.io/api/nft/horse/history/price', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

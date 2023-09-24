@@ -1017,7 +1017,7 @@ export default function BetInputs({
         </div>
 
         {address && (
-          <div className="item-center mt-5 flex w-full justify-center gap-1 bg-transparent text-xl text-black">
+          <div className="mt-5 flex w-full items-center justify-center gap-1 bg-transparent text-xl text-black">
             <div className="glow-text p-2 font-medium text-black ">
               {chosenNpc && betAmount ? (
                 <div>

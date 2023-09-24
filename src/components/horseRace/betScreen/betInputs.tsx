@@ -476,7 +476,7 @@ export default function BetInputs({
       {
         //hasCookie('horse') &&
         address && (
-          <div className="item-center flex w-full justify-center gap-1 bg-transparent text-xl text-white">
+          <div className="flex w-full items-center justify-center gap-1 bg-transparent text-xl text-white">
             <div className="glow-text p-2 font-medium text-white ">
               {chosenNpc && betAmount ? (
                 <div>
@@ -725,7 +725,6 @@ export default function BetInputs({
             </div>
           </button>
 
-
           <button
             disabled={placedBet}
             onClick={() => {
@@ -748,8 +747,6 @@ export default function BetInputs({
               <span className="text-sm">x {horse7}</span>
             </div>
           </button>
-
-
 
           <button
             disabled={placedBet}
@@ -774,7 +771,6 @@ export default function BetInputs({
             </div>
           </button>
 
-
           <button
             disabled={placedBet}
             onClick={() => {
@@ -798,7 +794,6 @@ export default function BetInputs({
             </div>
           </button>
 
-
           <button
             disabled={placedBet}
             onClick={() => {
@@ -821,9 +816,6 @@ export default function BetInputs({
               <span className="text-sm">x {horse10}</span>
             </div>
           </button>
-
-
-
         </div>
 
         {/* //? Place Bet Button */}

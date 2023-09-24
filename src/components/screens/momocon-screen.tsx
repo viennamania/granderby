@@ -160,7 +160,7 @@ export default function MomoconScreen() {
                   {tokenBalance?.symbol}
                 </div>
 
-                <div className="item-center flex w-full  flex-row justify-center">
+                <div className="flex w-full flex-row  items-center justify-center">
                   {/*icon*/}
                   <div className="mr-3 h-[22px] w-[22px]">
                     <Image
@@ -187,7 +187,7 @@ export default function MomoconScreen() {
                   {tokenBalance?.symbol}
                 </div>
 
-                <div className="item-center flex w-full  flex-row justify-center">
+                <div className="flex w-full flex-row  items-center justify-center">
                   {/*icon*/}
                   <div className="mr-3 h-[22px] w-[22px]">
                     <Image

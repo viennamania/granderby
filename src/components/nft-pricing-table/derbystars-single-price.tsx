@@ -625,7 +625,7 @@ export default function NftSinglePrice({
       nftMetadata?.metadata?.id
     );
 
-    const response = await fetch('/api/nft/horse/history', {
+    const response = await fetch('/api/nft/horse/history/price', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1020,7 +1020,7 @@ export default function NftSinglePrice({
                           </div>
 
                           <div className="flex flex-col ">
-                            <div className="item-center flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                            <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                               <button
                                 className=" w-24 text-sm font-bold xl:text-xl "
                                 onClick={() =>
@@ -1068,7 +1068,7 @@ export default function NftSinglePrice({
                               )}
                             </div>
 
-                            <div className="item-center mt-3 flex flex-row  gap-2 text-sm font-bold xl:text-lg">
+                            <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                               <button
                                 className=" w-24 text-sm font-bold xl:text-xl "
                                 onClick={() =>

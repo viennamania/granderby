@@ -499,10 +499,12 @@ export default function PriceHistoryTable(
 
   const [saleHistory, setSaleHistory] = useState([] as any);
 
+  const [totlaCount, setTotalCount] = useState();
+
   const getLast20 = async () => {
     ///console.log('price-history-table nftMetadata.?metadata?.id: ', nftMetadata?.metadata?.id);
 
-    const response = await fetch('/api/nft/horse/history', {
+    const response = await fetch('/api/nft/horse/history/price', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -513,6 +515,10 @@ export default function PriceHistoryTable(
     const data = await response.json();
 
     //console.log('data.all: ', data.all);
+
+    console.log('data.total: ', data.total);
+
+    setTotalCount(data.total);
 
     ///setSaleHistory(data.all);
 
@@ -606,6 +612,12 @@ export default function PriceHistoryTable(
       */}
 
       <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
+        <div className="m-3 flex flex-row items-center justify-start gap-2 ">
+          <span className="text-sm">Total Trading Count</span>
+          <span className="text-4xl font-bold text-green-600 xl:text-6xl">
+            {totlaCount}
+          </span>
+        </div>
         <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
           <div className="px-0.5">
             <table

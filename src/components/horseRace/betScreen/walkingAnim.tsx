@@ -36,7 +36,7 @@ export default function WalkingAdnim({ time, npcSrc }: any) {
                 */}
 
         {time && (
-          <div className="item-center flex w-full justify-center gap-1 bg-transparent text-2xl text-white">
+          <div className="flex w-full items-center justify-center gap-1 bg-transparent text-2xl text-white">
             <div className="glow-text p-2 font-medium text-white ">
               {' '}
               Last {time} seconds for bets{' '}

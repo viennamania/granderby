@@ -138,7 +138,7 @@ function SinglePrice(tokenid: any) {
                       </div>
                     </div>
                   ) : (
-                    <div className=" item-center flex w-full justify-start  gap-4 ">
+                    <div className=" flex w-full items-center justify-start  gap-4 ">
                       <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
                         Owned by
                       </div>
@@ -252,7 +252,7 @@ function SinglePrice(tokenid: any) {
                       </div>
                     </div>
                   ) : (
-                    <div className=" item-center flex w-full justify-start  gap-4 ">
+                    <div className=" flex w-full items-center justify-start  gap-4 ">
                       <div className="flex w-[140px] items-center justify-start text-sm tracking-wider text-[#6B7280] ">
                         <span>Owned by</span>
                       </div>

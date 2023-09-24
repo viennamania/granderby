@@ -473,7 +473,7 @@ export default function BetInputs({
       {/*
         //hasCookie('horse') &&
         address && (
-          <div className="item-center flex w-full justify-center gap-1 bg-transparent text-xl text-white">
+          <div className="items-center flex w-full justify-center gap-1 bg-transparent text-xl text-white">
             <div className="glow-text p-2 font-medium text-white ">
               {chosenNpc && betAmount ? (
                 <div>

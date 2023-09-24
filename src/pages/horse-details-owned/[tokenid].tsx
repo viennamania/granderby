@@ -119,15 +119,16 @@ function SinglePrice(tokenid: any) {
                     My NFT
                   </Link>
 
-                  <div className="mt-2 flex flex-row items-center justify-start ">
-                    <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
-                    </span>
-                  </div>
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
                     <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
                       {nftMetadata?.metadata?.name}
                     </div>
+                  </div>
+
+                  <div className="mt-2 flex flex-row items-center justify-start ">
+                    <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                      #{nftMetadata?.metadata?.id}
+                    </span>
                   </div>
 
                   {/* owned by */}
@@ -139,7 +140,9 @@ function SinglePrice(tokenid: any) {
                       </div>
                     </div>
                   ) : (
-                    <div className=" item-center flex w-full justify-start  gap-4 ">
+                    <div className=" flex w-full items-center justify-start  gap-4 ">
+                      {/*
+                      
                       <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
                         Owned by
                       </div>
@@ -186,6 +189,8 @@ function SinglePrice(tokenid: any) {
                           </>
                         )}
                       </div>
+
+                      */}
                     </div>
                   )}
                 </div>
@@ -227,6 +232,12 @@ function SinglePrice(tokenid: any) {
                     My NFT
                   </Link>
 
+                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
+                      {nftMetadata?.metadata?.name}
+                    </div>
+                  </div>
+
                   <div className="mt-2 flex flex-row items-center justify-start ">
                     {/*
                     <Image src="/images/logo-gd.png" alt="gd" width={18} height={18} />
@@ -235,12 +246,6 @@ function SinglePrice(tokenid: any) {
                     <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                       #{nftMetadata?.metadata?.id}
                     </span>
-                  </div>
-
-                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
-                      {nftMetadata?.metadata?.name}
-                    </div>
                   </div>
 
                   {/* owned by */}
@@ -252,9 +257,10 @@ function SinglePrice(tokenid: any) {
                       </div>
                     </div>
                   ) : (
-                    <div className=" item-center flex w-full justify-start  gap-4 ">
+                    <div className=" flex w-full items-center justify-start  gap-4 ">
+                      {/*
                       <div className="flex w-[140px] items-center justify-start text-sm tracking-wider text-[#6B7280] ">
-                        <span>Owned by</span>
+                        Owned by
                       </div>
                       <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                         {stakerAddress &&
@@ -289,16 +295,18 @@ function SinglePrice(tokenid: any) {
                                 <span>
                                   {stakerAddress?.substring(0, 10)}...
                                 </span>
-                                {/*stakeInfoCount && stakeInfoCount > 1 && (
+                                {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
-                                )*/}
+                                )}
                               </div>
                             )}
                           </>
                         )}
                       </div>
+
+                       */}
                     </div>
                   )}
                 </div>
