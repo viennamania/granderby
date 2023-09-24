@@ -65,11 +65,16 @@ export default async function handler(
     const totalPricePaid = nft.totalPricePaid;
     const paidToken = nft.paidToken;
 
-    ///console.log('getHorses holder', holder);
+    const logsNewSale = nft.logsNewSale;
+
+    //console.log('getHorses holder', holder);
+    //console.log('getHorses totalPricePaid', totalPricePaid);
+    //console.log('getHorses logsNewSale', logsNewSale);
 
     //console.log('rawMetadata', rawMetadata);
 
     return {
+      logsNewSale: logsNewSale,
       totalPricePaid: totalPricePaid,
       paidToken: paidToken,
       holder: holder,

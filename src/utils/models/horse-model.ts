@@ -102,6 +102,11 @@ const HorseSchema = new Schema({
     required: true,
     default: false,
   },
+  logsNewSale: {
+    type: Object,
+    required: true,
+    default: false,
+  },
 });
 
 export const HorseModel =

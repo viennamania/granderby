@@ -110,7 +110,7 @@ export default function Feeds({ className }: { className?: string }) {
       getNextPageParam: (lastPage, pages) => {
         ////console.log(" feeds-horse  lastPage======>", lastPage);
 
-        //console.log("pages======>", pages);
+        ///console.log("pages======>", pages);
 
         if (lastPage.pageKey) {
           return lastPage.pageKey;
@@ -245,10 +245,25 @@ export default function Feeds({ className }: { className?: string }) {
                    */}
 
                     <div className="items-top  m-5 flex h-12 flex-col  justify-center gap-1   ">
-                      <div className="text-md font-bold ">{nft?.title}</div>
+                      <div className="text-sm font-bold ">{nft?.title}</div>
                       <div className="text-left text-xs">#{nft?.tokenId}</div>
-                      <div className="text-sm  ">
-                        Last Price&nbsp;{nft?.totalPricePaid}
+                      <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                        <span>Last Price</span>
+                        <span>
+                          {nft?.paidToken ===
+                            '0x0000000000000000000000000000000000001010' &&
+                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
+                              2
+                            )}
+                          {nft?.paidToken ===
+                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
+                              2
+                            )}
+                          {nft?.paidToken ===
+                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                            (nft?.totalPricePaid / 1000000).toFixed(2)}
+                        </span>
                       </div>
                     </div>
 
