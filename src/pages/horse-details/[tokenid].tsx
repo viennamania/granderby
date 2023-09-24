@@ -118,15 +118,24 @@ function SinglePrice(tokenid: any) {
                   >
                     {nftMetadata?.metadata?.description}
                   </Link>
-                  <div className="mt-2 flex flex-row items-center justify-start ">
-                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
-                    </span>
-                  </div>
+
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
                     <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
                       {nftMetadata?.metadata?.name}
                     </div>
+                  </div>
+
+                  <div className="mt-2 flex flex-row items-center justify-start ">
+                    <Image
+                      src="/images/logo-polygon.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
+
+                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                      #{nftMetadata?.metadata?.id}
+                    </span>
                   </div>
 
                   {/* owned by */}
@@ -227,20 +236,23 @@ function SinglePrice(tokenid: any) {
                     {/*Granderby Horse NFT*/}
                   </Link>
 
-                  <div className="mt-2 flex flex-row items-center justify-start ">
-                    {/*
-                    <Image src="/images/logo-gd.png" alt="gd" width={18} height={18} />
-                    */}
-
-                    <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
-                    </span>
-                  </div>
-
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
                     <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
                       {nftMetadata?.metadata?.name}
                     </div>
+                  </div>
+
+                  <div className="mt-2 flex flex-row items-center justify-start ">
+                    <Image
+                      src="/images/logo-polygon.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
+
+                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                      #{nftMetadata?.metadata?.id}
+                    </span>
                   </div>
 
                   {/* owned by */}

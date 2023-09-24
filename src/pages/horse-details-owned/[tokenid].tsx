@@ -126,7 +126,14 @@ function SinglePrice(tokenid: any) {
                   </div>
 
                   <div className="mt-2 flex flex-row items-center justify-start ">
-                    <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                    <Image
+                      src="/images/logo-polygon.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
+
+                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                       #{nftMetadata?.metadata?.id}
                     </span>
                   </div>
@@ -239,11 +246,14 @@ function SinglePrice(tokenid: any) {
                   </div>
 
                   <div className="mt-2 flex flex-row items-center justify-start ">
-                    {/*
-                    <Image src="/images/logo-gd.png" alt="gd" width={18} height={18} />
-                    */}
+                    <Image
+                      src="/images/logo-polygon.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
 
-                    <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                       #{nftMetadata?.metadata?.id}
                     </span>
                   </div>
