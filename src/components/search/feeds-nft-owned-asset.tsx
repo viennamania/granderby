@@ -32,6 +32,7 @@ import {
   tokenContractAddressUSDC,
   tokenContractAddressGRD,
   nftDropContractAddressCoupon,
+  nftDropContractAddressJockey,
 } from '@/config/contractAddresses';
 
 import Button from '@/components/ui/button/button';
@@ -342,13 +343,17 @@ export default function OwnedFeeds(
             */}
 
             <div className="mt-5 flex flex-row items-center justify-start gap-3">
+              {/*
               <Image
                 src="/horseRace/logo-granderby.png"
                 alt="logo"
                 width={28}
                 height={28}
               />
+              
               <div className="text-xl ">Granderby Horses</div>
+              */}
+              <div className="text-xl xl:text-2xl ">Count</div>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <div className="flex flex-col justify-center text-4xl font-bold underline decoration-sky-500 xl:text-6xl">
                 {ownedNfts?.length}

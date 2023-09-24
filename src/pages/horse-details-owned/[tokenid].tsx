@@ -303,7 +303,7 @@ function SinglePrice(tokenid: any) {
                   )}
                 </div>
 
-                <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
+                <div className="w-full rounded-lg bg-white py-3 shadow-card dark:bg-light-dark ">
                   {/*
                   <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
                     NFT Info

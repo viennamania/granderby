@@ -6,7 +6,7 @@ import Feeds from '@/components/search/feeds-horse-inventory';
 
 //import OwnedFeeds from './feeds-coin-owned-asset';
 
-import OwnedFeeds from './feeds-horse-owned-asset';
+import OwnedFeeds from './feeds-nft-owned-asset';
 
 import OwnedFeedsDerbystars from './feeds-horse-owned-asset-derbystars';
 
@@ -106,69 +106,62 @@ export default function Search() {
       */}
 
       <div className="grid ">
-        <div className="m-3 block">
-          <div className="">
-            <div className="relative z-10 mb-6 flex items-center justify-between ">
-              <div className="items-right flex w-full justify-end">
-                <div className="flex gap-6  ">
-                  {/*
-      <SortList />
-      */}
+        <div className="block">
+          <div className="relative z-10 mb-6 flex items-center justify-between ">
+            <div className="items-right flex w-full justify-end">
+              <div className="flex gap-6  ">
+                {/*
+                    <SortList />
+                    */}
 
-                  {/*
-      <div className="hidden ">
-        <GridSwitcher />
-      </div>
+                {/*
+                  <div className="hidden ">
+                    <GridSwitcher />
+                  </div>
 
-      
-      <div className="hidden ">
-        <Button
-          shape="rounded"
-          size="small"
-          variant="ghost"
-          color="gray"
-          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-        >
-          <OptionIcon className="relative h-auto w-[18px]" />
-        </Button>
-      </div>
-      */}
-                </div>
+                  
+                  <div className="hidden ">
+                    <Button
+                      shape="rounded"
+                      size="small"
+                      variant="ghost"
+                      color="gray"
+                      onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                      className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                    >
+                      <OptionIcon className="relative h-auto w-[18px]" />
+                    </Button>
+                  </div>
+                  */}
               </div>
             </div>
+          </div>
 
-            <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Carrot" initialOpen={true}>
-                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
-                  <span className="text-lg font-bold">Asset</span>
+          <div className="mt-5 flex flex-col rounded-lg border ">
+            <Collapse label="Carrot" initialOpen={true}>
+              <div className="itmes-start mt-5 flex flex-col justify-center p-3 pb-10">
+                <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
+              </div>
+            </Collapse>
+          </div>
 
-                  <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
-                </div>
-              </Collapse>
-            </div>
+          <div className="mt-5 flex flex-col rounded-lg border ">
+            <Collapse label="Coupon" initialOpen={true}>
+              <div className="itmes-start mt-5 flex flex-col justify-center p-3 pb-10">
+                <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
+              </div>
+            </Collapse>
+          </div>
 
-            <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Coupon" initialOpen={true}>
-                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
-                  <span className="text-lg font-bold">Asset</span>
+          <div className="mt-5 flex flex-col rounded-lg border ">
+            <Collapse label="Ticket" initialOpen={true}>
+              <div className="itmes-start mt-5 flex flex-col justify-center p-3 pb-10">
+                <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
+              </div>
+            </Collapse>
+          </div>
 
-                  <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
-                </div>
-              </Collapse>
-            </div>
-
-            <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Ticket" initialOpen={true}>
-                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
-                  <span className="text-lg font-bold">Asset</span>
-
-                  <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
-                </div>
-              </Collapse>
-            </div>
-
-            {/*
+          {/*
             <div className="mt-5 flex flex-col rounded-lg border ">
               <Collapse label="Derbystars Horse" initialOpen={true}>
                 <div className="itmes-start mt-5 flex flex-col justify-center p-3">
@@ -178,7 +171,6 @@ export default function Search() {
               </Collapse>
             </div>
             */}
-          </div>
         </div>
 
         {/*

@@ -237,7 +237,7 @@ function NftInfo({ nftMetadata }: any) {
   }
 
   return (
-    <div className="px-5  ">
+    <div className="px-3  ">
       {/*{nftMetadata?.owner === address && (*/}
 
       <div className=" flex flex-col rounded-lg border ">
@@ -249,7 +249,7 @@ function NftInfo({ nftMetadata }: any) {
                 <b>Loading sale...</b>
               </div>
             ) : (
-              <div className="flex  w-full flex-col gap-5 p-10">
+              <div className="flex  w-full flex-col gap-5 p-5">
                 {!directListing || directListing.quantity === '0' ? (
                   <>
                     <div className="text-sm font-bold xl:text-lg">
@@ -329,7 +329,23 @@ function NftInfo({ nftMetadata }: any) {
                       address !== stakerAddress && (
                         <div className="flex flex-col gap-2">
                           {/* Sell NFT */}
-                          <div className=" flex flex-row items-center justify-start gap-2">
+                          <div className=" grid grid-cols-1 items-center justify-start gap-3 xl:grid-cols-2">
+                            <div className=" flex flex-row items-center justify-start gap-2">
+                              <input
+                                className=" w-full text-right text-xl font-bold text-black"
+                                type="number"
+                                name="price"
+                                placeholder="Price"
+                                value={price}
+                                onChange={(e) => {
+                                  setPrice(e.target.value as any);
+                                }}
+                              />
+                              <span className="ml-2 text-xl font-bold text-blue-600">
+                                USDC
+                              </span>
+                            </div>
+
                             <Web3Button
                               theme="light"
                               contractAddress={marketplaceContractAddress}
@@ -339,94 +355,11 @@ function NftInfo({ nftMetadata }: any) {
                             >
                               Sell
                             </Web3Button>
-
-                            <input
-                              className=" w-full text-black"
-                              type="number"
-                              name="price"
-                              placeholder="Price"
-                              value={price}
-                              onChange={(e) => {
-                                setPrice(e.target.value as any);
-                              }}
-                            />
-                            <span className="ml-2 text-xl font-bold text-blue-600">
-                              USDC
-                            </span>
                           </div>
 
                           {/* Send NFT */}
                           {nftMetadata?.owner === address && (
-                            <div className="mt-0 flex flex-row items-center justify-center gap-2">
-                              <div className=" flex flex-row justify-center">
-                                {/*{isTransferTokensLoading ? (*/}
-
-                                {isSending ? (
-                                  <div className="flex flex-row items-center justify-center gap-2">
-                                    <div className="animate-spin">
-                                      <RaceIcon className="h-35 w-35" />
-                                    </div>
-                                    <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                                      <span>
-                                        Sending #{nftMetadata?.metadata?.id} to
-                                      </span>
-                                      <span>Please wait...</span>
-                                    </div>
-                                  </div>
-                                ) : (
-                                  <>
-                                    <Web3Button
-                                      theme="light"
-                                      contractAddress={
-                                        nftDropContractAddressHorse
-                                      }
-                                      action={() => {
-                                        //contract?.call('withdraw', [[nft.metadata.id]])
-                                        //contract?.call('withdraw', [[nft.metadata.id]])
-                                        //contract.erc1155.claim(0, 1);
-
-                                        ///contract.erc20.transfer(toAddress, amount);
-
-                                        transferNft(
-                                          nftMetadata?.metadata?.id,
-                                          toAddress
-                                        );
-
-                                        /*
-                                                transferTokens({
-                                                  to: toAddress, // Address to transfer to
-                                                  amount: amount, // Amount to transfer
-                                                })
-                                                */
-                                      }}
-                                      onSuccess={() => {
-                                        //setAmount(0);
-                                        //setToAddress('');
-
-                                        console.log(
-                                          `🌊 Successfully transfered!`
-                                        );
-                                        //alert('Successfully transfered!');
-
-                                        //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                                        //handleClickSucc();
-                                      }}
-                                      onError={(error) => {
-                                        console.error(
-                                          'Failed to transfer',
-                                          error
-                                        );
-                                        alert('Failed to transfer');
-                                        //setErrMsgSnackbar('Failed to transfer');
-                                        //handleClickErr();
-                                      }}
-                                    >
-                                      Transfer
-                                    </Web3Button>
-                                  </>
-                                )}
-                              </div>
-
+                            <div className="mt-3 grid grid-cols-1 items-center justify-center gap-3 xl:grid-cols-2">
                               <input
                                 className=" w-full text-black"
                                 type="text"
@@ -437,6 +370,73 @@ function NftInfo({ nftMetadata }: any) {
                                   setToAddress(e.target.value);
                                 }}
                               />
+
+                              {/*{isTransferTokensLoading ? (*/}
+
+                              {isSending ? (
+                                <div className="flex flex-row items-center justify-center gap-2">
+                                  <div className="animate-spin">
+                                    <RaceIcon className="h-35 w-35" />
+                                  </div>
+                                  <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                                    <span>
+                                      Sending #{nftMetadata?.metadata?.id} to
+                                    </span>
+                                    <span>Please wait...</span>
+                                  </div>
+                                </div>
+                              ) : (
+                                <>
+                                  <Web3Button
+                                    theme="light"
+                                    contractAddress={
+                                      nftDropContractAddressHorse
+                                    }
+                                    action={() => {
+                                      //contract?.call('withdraw', [[nft.metadata.id]])
+                                      //contract?.call('withdraw', [[nft.metadata.id]])
+                                      //contract.erc1155.claim(0, 1);
+
+                                      ///contract.erc20.transfer(toAddress, amount);
+
+                                      transferNft(
+                                        nftMetadata?.metadata?.id,
+                                        toAddress
+                                      );
+
+                                      /*
+                                                transferTokens({
+                                                  to: toAddress, // Address to transfer to
+                                                  amount: amount, // Amount to transfer
+                                                })
+                                                */
+                                    }}
+                                    onSuccess={() => {
+                                      //setAmount(0);
+                                      //setToAddress('');
+
+                                      console.log(
+                                        `🌊 Successfully transfered!`
+                                      );
+                                      //alert('Successfully transfered!');
+
+                                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                                      //handleClickSucc();
+                                    }}
+                                    onError={(error) => {
+                                      console.error(
+                                        'Failed to transfer',
+                                        error
+                                      );
+                                      alert('Failed to transfer');
+                                      //setErrMsgSnackbar('Failed to transfer');
+                                      //handleClickErr();
+                                    }}
+                                  >
+                                    Transfer
+                                  </Web3Button>
+                                </>
+                              )}
                             </div>
                           )}
                         </div>

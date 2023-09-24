@@ -142,7 +142,7 @@ export default function Search() {
 
           <div className="mt-5 flex flex-col rounded-lg border ">
             <Collapse label="Jockey" initialOpen={true}>
-              <div className="itmes-start mt-5 flex flex-col justify-center p-3 pb-10">
+              <div className="itmes-start flex flex-col justify-center p-3 pb-10">
                 <OwnedFeeds contractAddress={nftDropContractAddressJockey} />
               </div>
             </Collapse>
