@@ -443,7 +443,9 @@ export default function OwnedFeeds(
                           className=" overflow-hidden rounded-lg bg-white shadow-lg"
                           onClick={() => {
                             closeInventories();
-                            router.push('/horse-details/' + nft?.metadata?.id);
+                            router.push(
+                              '/horse-details-owned/' + nft?.metadata?.id
+                            );
                           }}
                         >
                           <Image

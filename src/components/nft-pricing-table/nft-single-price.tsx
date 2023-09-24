@@ -585,6 +585,7 @@ export default function NftSinglePrice({
     nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       ///console.log('attribute', attribute);
 
+      /*
       if (attribute.trait_type === 'Grade') {
         setAttributeGrade(attribute.value);
       } else if (attribute.trait_type === 'Mane') {
@@ -603,6 +604,8 @@ export default function NftSinglePrice({
         setAttributeStamina(attribute.value);
       } else if (attribute.trait_type === 'Power') {
         setAttributePower(attribute.value);
+      */
+      if (false) {
       } else if (attribute.trait_type === 'Preceding') {
       } else if (attribute.trait_type === 'Overtaking') {
       } else if (attribute.trait_type === 'Spirit') {
@@ -1116,6 +1119,7 @@ export default function NftSinglePrice({
           <div className=" flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
             <span className="   flex items-center gap-2.5  ">
               <span className="items-left flex flex-col gap-2.5  ">
+                {/*
                 <Collapse label="Grade" initialOpen={true}>
                   <Grade {...{ grade: attributeGrade }} />
                 </Collapse>
@@ -1127,6 +1131,7 @@ export default function NftSinglePrice({
                 <Collapse label="Tail" initialOpen={true}>
                   <Tail {...{ tail: attributeTail }} />
                 </Collapse>
+                */}
 
                 {/* nft attributes details */}
 

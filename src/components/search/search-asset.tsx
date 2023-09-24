@@ -18,6 +18,7 @@ import {
   stakingContractAddressHorseAAA,
   stakingContractAddressHorseDerbyStars,
   nftDropContractAddressHorse,
+  nftDropContractAddressJockey,
   nftDropContractAddressHorseDerbyStars,
   nftDropContractAddressHorseZedRun,
 } from '@/config/contractAddresses';
@@ -133,10 +134,19 @@ export default function Search() {
             </div>
 
             <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Granderby Horse" initialOpen={true}>
+              <Collapse label="Horse" initialOpen={true}>
                 <div className="itmes-start mt-5 flex flex-col justify-center p-3">
                   <span className="text-lg font-bold">Asset</span>
                   <OwnedFeeds contractAddress={nftDropContractAddressHorse} />
+                </div>
+              </Collapse>
+            </div>
+
+            <div className="mt-5 flex flex-col rounded-lg border ">
+              <Collapse label="Jockey" initialOpen={true}>
+                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
+                  <span className="text-lg font-bold">Asset</span>
+                  <OwnedFeeds contractAddress={nftDropContractAddressJockey} />
                 </div>
               </Collapse>
             </div>
