@@ -113,7 +113,7 @@ function SinglePrice(tokenid: any) {
 
                 <div className="items-left  mb-5  w-full flex-col justify-center  lg:hidden xl:hidden">
                   <Link
-                    className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
+                    className=" text-left text-lg font-bold text-blue-500  dark:text-white xl:text-xl "
                     href={`/my-asset`}
                   >
                     My NFT
@@ -221,7 +221,7 @@ function SinglePrice(tokenid: any) {
               <div className="flex w-full flex-col">
                 <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
                   <Link
-                    className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
+                    className=" text-left text-lg font-bold text-blue-500  dark:text-white xl:text-xl "
                     href={`/my-asset`}
                   >
                     My NFT

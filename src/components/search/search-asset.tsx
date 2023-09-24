@@ -4,7 +4,7 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
-import OwnedFeeds from './feeds-horse-owned-asset';
+import OwnedFeeds from './feeds-nft-owned-asset';
 
 import OwnedFeedsDerbystars from './feeds-horse-owned-asset-derbystars';
 
@@ -132,17 +132,17 @@ export default function Search() {
             </div>
           </div>
 
-          <div className="mt-5 flex flex-col rounded-lg border ">
+          <div className="mt-5  flex flex-col rounded-lg border ">
             <Collapse label="Horse" initialOpen={true}>
-              <div className="itmes-start  flex flex-col justify-center p-3">
+              <div className=" itmes-start  flex flex-col justify-center p-3 pb-10">
                 <OwnedFeeds contractAddress={nftDropContractAddressHorse} />
               </div>
             </Collapse>
           </div>
 
-          <div className=" flex flex-col rounded-lg border ">
+          <div className="mt-5 flex flex-col rounded-lg border ">
             <Collapse label="Jockey" initialOpen={true}>
-              <div className="itmes-start mt-5 flex flex-col justify-center p-3">
+              <div className="itmes-start mt-5 flex flex-col justify-center p-3 pb-10">
                 <OwnedFeeds contractAddress={nftDropContractAddressJockey} />
               </div>
             </Collapse>
