@@ -1061,7 +1061,9 @@ export default function NftSinglePrice({
 
                             <div className=" flex flex-row items-center justify-start text-xs">
                               {format(
-                                Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                                Date.parse(
+                                  saleHistory[0]?.blockTimestamp || '0'
+                                ),
                                 'yyy-MM-dd hh:mm:ss'
                               )}
                             </div>
@@ -1180,7 +1182,7 @@ export default function NftSinglePrice({
                           </div>
                           <div className=" flex flex-row items-center justify-start gap-2 text-xs">
                             {format(
-                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                              Date.parse(saleHistory[0]?.blockTimestamp || '0'),
                               'yyy-MM-dd hh:mm:ss'
                             )}
                           </div>

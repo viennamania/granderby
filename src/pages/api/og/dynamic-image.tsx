@@ -1,6 +1,8 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
 
+import { format } from 'date-fns';
+
 export const config = {
   runtime: 'edge',
 };
@@ -39,24 +41,24 @@ export default async function handler(req: NextRequest) {
   const data2 = await res2.json();
 
   var blockTimestamp = '';
-  var totalPricePaid = '';
+  var totalPricePaid = '0';
   var paidToken = '';
 
-  data2?.all?.map((buy: any, index: number) => {
-    blockTimestamp = buy.blockTimestamp;
-    totalPricePaid = buy.totalPricePaid;
-    paidToken = buy.paidToken;
+  if (data2?.all[0]) {
+    blockTimestamp = data2?.all[0].blockTimestamp;
 
-    return;
-  });
+    if (paidToken === '0x0000000000000000000000000000000000001010') {
+      totalPricePaid = (
+        Number(data2?.all[0].totalPricePaid) / 1000000000000000000
+      ).toFixed(2);
+      paidToken = 'MATIC';
+    } else {
+      totalPricePaid = (Number(data2?.all[0].totalPricePaid) / 1000000).toFixed(
+        2
+      );
 
-  if (paidToken === '0x0000000000000000000000000000000000001010') {
-    totalPricePaid = (Number(totalPricePaid) / 1000000000000000000).toFixed(2);
-    paidToken = 'MATIC';
-  } else {
-    totalPricePaid = (Number(totalPricePaid) / 1000000).toFixed(2);
-
-    paidToken = 'USDT';
+      paidToken = 'USDT';
+    }
   }
 
   return new ImageResponse(
@@ -68,8 +70,8 @@ export default async function handler(req: NextRequest) {
           width: '100%',
           height: '100%',
           paddingTop: 30,
-          paddingLeft: 30,
-          paddingRight: 30,
+          paddingLeft: 80,
+          paddingRight: 10,
           paddingBottom: 30,
           flexDirection: 'row',
           justifyContent: 'flex-start',
@@ -80,7 +82,7 @@ export default async function handler(req: NextRequest) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="avatar"
-          width="500"
+          width="450"
           src={imageUrl}
           style={{
             borderRadius: 30,
@@ -134,32 +136,34 @@ export default async function handler(req: NextRequest) {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-start',
-              alignItems: 'center',
+              alignItems: 'flex-end',
             }}
           >
             <div
               style={{
                 display: 'flex',
-                fontSize: 40,
-              }}
-            >
-              {blockTimestamp}
-            </div>
-            <div
-              style={{
-                display: 'flex',
                 fontSize: 70,
-                color: 'green',
               }}
             >
               {totalPricePaid}&nbsp;{paidToken}
             </div>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 50,
+                color: 'green',
+              }}
+            >
+              {format(Date.parse(blockTimestamp || '0'), 'yyy-MM-dd hh:mm:ss')}
+            </div>
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
+            {/*
             <img
               alt="stamp"
-              width="100"
-              src="https://granderby.io/images/blockchain-stamp-seal.jpeg"
+              width="80"
+              src="https://granderby.io/images/market.png"
+              //src="https://granderby.io/images/blockchain-stamp-seal.jpeg"
               ///src="http://localhost:3000/images/blockchain-stamp-seal.jpeg"
               style={
                 {
@@ -167,6 +171,7 @@ export default async function handler(req: NextRequest) {
                 }
               }
             />
+            */}
           </div>
         </div>
       </div>
