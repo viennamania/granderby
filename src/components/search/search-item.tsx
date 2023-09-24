@@ -4,6 +4,8 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
+//import OwnedFeeds from './feeds-coin-owned-asset';
+
 import OwnedFeeds from './feeds-horse-owned-asset';
 
 import OwnedFeedsDerbystars from './feeds-horse-owned-asset-derbystars';
@@ -20,6 +22,10 @@ import {
   nftDropContractAddressHorse,
   nftDropContractAddressHorseDerbyStars,
   nftDropContractAddressHorseZedRun,
+  tokenContractAddressUSDC,
+  tokenContractAddressGRD,
+  nftDropContractAddressCoupon,
+  //nftDropContractAddressTicket,
 } from '@/config/contractAddresses';
 
 //////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
@@ -133,10 +139,31 @@ export default function Search() {
             </div>
 
             <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Granderby Horse" initialOpen={true}>
+              <Collapse label="Carrot" initialOpen={true}>
                 <div className="itmes-start mt-5 flex flex-col justify-center p-3">
                   <span className="text-lg font-bold">Asset</span>
-                  <OwnedFeeds contractAddress={nftDropContractAddressHorse} />
+
+                  <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
+                </div>
+              </Collapse>
+            </div>
+
+            <div className="mt-5 flex flex-col rounded-lg border ">
+              <Collapse label="Coupon" initialOpen={true}>
+                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
+                  <span className="text-lg font-bold">Asset</span>
+
+                  <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
+                </div>
+              </Collapse>
+            </div>
+
+            <div className="mt-5 flex flex-col rounded-lg border ">
+              <Collapse label="Ticket" initialOpen={true}>
+                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
+                  <span className="text-lg font-bold">Asset</span>
+
+                  <OwnedFeeds contractAddress={nftDropContractAddressCoupon} />
                 </div>
               </Collapse>
             </div>

@@ -55,12 +55,11 @@ import { useInventoriesDrawer } from '@/components/inventories/inventories-conte
 import { Usdc } from '@/components/icons/usdc';
 import { GrdIcon } from '@/components/icons/grd-icon';
 
-export default function OwnedFeeds(
-  { contractAddress }: { contractAddress?: string },
-  { className }: { className?: string }
-) {
-  console.log('OwnedFeeds contractAddress', contractAddress);
-
+export default function OwnedFeedsSerbystars({
+  className,
+}: {
+  className?: string;
+}) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
@@ -83,17 +82,10 @@ export default function OwnedFeeds(
   const { data: tokenBalanceGRD, isLoading: isLoadingBalanceGRD } =
     useTokenBalance(tokenContractGRD, address);
 
-  /*
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
     'nft-drop'
   );
-    */
-  const { contract: nftDropContract } = useContract(
-    contractAddress,
-    'nft-drop'
-  );
-
   const { data: ownedNfts, isLoading: isLoadingOwnedNfts } = useOwnedNFTs(
     nftDropContract,
     address
@@ -341,7 +333,7 @@ export default function OwnedFeeds(
             )}
             */}
 
-            <div className="mt-5 flex flex-row items-center justify-start gap-3">
+            <div className="mt-5 flex flex-row items-center justify-start gap-1">
               <Image
                 src="/horseRace/logo-granderby.png"
                 alt="logo"
@@ -354,7 +346,6 @@ export default function OwnedFeeds(
                 {ownedNfts?.length}
               </div>
             </div>
-
             <div className="mt-10 flex">
               {
                 // If the listings are loading, show a loading message
@@ -430,7 +421,7 @@ export default function OwnedFeeds(
 
                     <div
                       className={cn(
-                        'grid grid-cols-3 gap-3 ',
+                        'grid grid-cols-3 gap-2 ',
                         isGridCompact
                           ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
                           : 'xl:grid-cols-5 xl:gap-4  3xl:!grid-cols-3 4xl:!grid-cols-4',
