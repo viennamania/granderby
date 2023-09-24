@@ -78,10 +78,14 @@ const RentPage: NextPageWithLayout<
         <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
         {address ? (
+          <>
+            {/*
           <div className="flex flex-col items-start justify-center gap-2">
             <span className="text-xs xl:text-sm">My Wallet Address:</span>
             <span className="text-sm font-bold xl:text-lg">{address}</span>
           </div>
+          */}
+          </>
         ) : (
           <div className="relative h-36 w-full overflow-hidden  sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
             <Image
@@ -96,6 +100,8 @@ const RentPage: NextPageWithLayout<
         )}
 
         <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <h1 className="text-2x xl:text-4xl">My NFT</h1>
+
           {/*
           {!address ? (
             <></>

@@ -4,8 +4,6 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
-import OwnedFeedsCoin from './feeds-coin-owned-asset';
-
 import OwnedFeeds from './feeds-horse-owned-asset';
 
 ///import ListedFeeds from '@/components/search/feeds-horse-listed';
@@ -127,7 +125,6 @@ export default function Search() {
               </div>
             </div>
 
-            <OwnedFeedsCoin />
             <OwnedFeeds />
           </div>
         </div>
