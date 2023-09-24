@@ -195,6 +195,52 @@ function NftInfo({ nftMetadata }: any) {
     }
   }
 
+  async function sellNft(id: string) {
+    if (!address) return;
+
+    if (!price) {
+      alert('Please enter price');
+      return;
+    }
+
+    /*
+    const isApproved = await nftDropContract?.isApproved(
+      address,
+      stakingContractAddressHorseAAA
+    );
+
+    if (!isApproved) {
+      await nftDropContract?.setApprovalForAll(stakingContractAddressHorseAAA, true);
+    }
+
+    const data = await stakingContract?.call('stake', [id]);
+    */
+
+    //console.log("data",data);
+
+    try {
+      const transaction = await marketplace?.directListings.createListing({
+        assetContractAddress: nftDropContractAddressHorse, // Contract Address of the NFT
+        tokenId: id, // Token ID of the NFT.
+        //buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+        pricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
+        ///currencyContractAddress: NATIVE_TOKEN_ADDRESS, // NATIVE_TOKEN_ADDRESS is the crpyto curency that is native to the network. i.e. Goerli ETH.
+        currencyContractAddress: tokenContractAddressUSDC,
+
+        //listingDurationInSeconds: 60 * 60 * 24 * 7, // When the auction will be closed and no longer accept bids (1 Week)
+        //quantity: 1, // How many of the NFTs are being listed (useful for ERC 1155 tokens)
+        startTimestamp: new Date(), // When the listing will start
+        endTimestamp: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000), // Optional - when the listing should end (default is 7 days from now)
+      });
+
+      alert(`🌊 Successfully listed`);
+
+      return transaction;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const [price, setPrice] = useState();
 
   const [toAddress, setToAddress] = useState('');
@@ -510,6 +556,9 @@ function NftInfo({ nftMetadata }: any) {
                           contract?.directListings.cancelListing(
                             directListing?.id
                           )
+                        }
+                        onSuccess={() =>
+                          alert(`🌊 Successfully canceled listing!`)
                         }
                         contractAddress={marketplaceContractAddress}
                       >
