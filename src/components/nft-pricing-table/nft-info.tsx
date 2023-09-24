@@ -32,6 +32,7 @@ import {
 } from '@/config/contractAddresses';
 
 import {
+  walletConnect,
   ConnectWallet,
   useDisconnect,
   ThirdwebNftMedia,
@@ -47,6 +48,7 @@ import {
 } from '@thirdweb-dev/react';
 
 import { RaceIcon } from '@/components/icons/race-icon';
+import { connect } from 'http2';
 
 function NftInfo({ nftMetadata }: any) {
   ///console.log('nftMetadata', nftMetadata);
@@ -532,6 +534,20 @@ function NftInfo({ nftMetadata }: any) {
                           )}
                         </div>
                       )}
+
+                    {address !== nftMetadata?.owner && (
+                      <Button
+                        className="mt-5"
+                        shape="rounded"
+                        color="success"
+                        onClick={() => {
+                          //router.push('/live');
+                          //walletConnect
+                        }}
+                      >
+                        <div className="text-2xl">Make Offer</div>
+                      </Button>
+                    )}
                   </>
                 ) : (
                   <>
