@@ -33,6 +33,8 @@ export default async function handler(
 
   nfts = data.nfts;
 
+  ///console.log("nfts", data.nfts);
+
   const pageKey = data.pageNumber;
 
   const formattedNfts = nfts?.map((nft: any) => {
@@ -51,16 +53,25 @@ export default async function handler(
     console.log("getHorses nft tokenId", nft.tokenId);
     console.log("getHorses nft _id", nft._id);
     console.log("getHorses nft nft", nft.nft);
-    console.log("getHorses nft holder", nft.holder);
+
     */
 
+    //console.log("getHorses nft holder", nft.holder);
+
+    //console.log("getHorses nft totalPricePaid", nft.totalPricePaid);
+
     const holder = nft.holder;
+
+    const totalPricePaid = nft.totalPricePaid;
+    const paidToken = nft.paidToken;
 
     ///console.log('getHorses holder', holder);
 
     //console.log('rawMetadata', rawMetadata);
 
     return {
+      totalPricePaid: totalPricePaid,
+      paidToken: paidToken,
       holder: holder,
       contract: contract.address,
       symbol: contract.symbol,

@@ -5,4 +5,6 @@ export interface IHorse {
   contract: string;
   nft: object;
   holder: string;
+  paidToken: string;
+  totalPricePaid: string;
 }

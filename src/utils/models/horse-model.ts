@@ -92,6 +92,16 @@ const HorseSchema = new Schema({
     required: true,
     default: false,
   },
+  paidToken: {
+    type: String,
+    required: true,
+    default: false,
+  },
+  totalPricePaid: {
+    type: String,
+    required: true,
+    default: false,
+  },
 });
 
 export const HorseModel =
@@ -123,9 +133,9 @@ export const getAllHorses = async (
 ) => {
   //console.log('getAllHorses pageNumber', pageNumber);
   //console.log('getAllHorses pagination', pagination);
-  console.log('getAllHorses grades', grades);
-  console.log('getAllHorses manes', manes);
-  console.log('getAllHorses sort', sort);
+  //console.log('getAllHorses grades', grades);
+  //console.log('getAllHorses manes', manes);
+  //console.log('getAllHorses sort', sort);
 
   if (grades.length === 0) {
     const data = await HorseModel.find({})
@@ -210,7 +220,7 @@ export const getAllHorses = async (
       ////return err;
     });
 
-  //console.log('data', data);
+  ///console.log('data', data);
 
   return { nfts: data, pageNumber: pageNumber + 1 };
 };

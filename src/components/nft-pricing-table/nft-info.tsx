@@ -86,7 +86,7 @@ function NftInfo({ nftMetadata }: any) {
     [stakerAddress]
   );
 
-  console.log('stakeInfo', stakeInfo);
+  ///console.log('stakeInfo', stakeInfo);
 
   const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
 
@@ -363,23 +363,39 @@ function NftInfo({ nftMetadata }: any) {
                         </button>
 
                         <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
-                          {saleHistory[0]?.paidToken ===
-                          '0x0000000000000000000000000000000000001010'
-                            ? (
-                                saleHistory[0]?.totalPricePaid /
-                                1000000000000000000
-                              ).toFixed(2)
-                            : (
-                                saleHistory[0]?.totalPricePaid / 1000000
-                              ).toFixed(2)}
+                          {saleHistory[0].paidToken ===
+                            '0x0000000000000000000000000000000000001010' &&
+                            (
+                              saleHistory[0].totalPricePaid /
+                              1000000000000000000
+                            ).toFixed(2)}
+                          {saleHistory[0].paidToken ===
+                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                            (
+                              saleHistory[0].totalPricePaid /
+                              1000000000000000000
+                            ).toFixed(2)}
+                          {saleHistory[0].paidToken ===
+                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                            (saleHistory[0].totalPricePaid / 1000000).toFixed(
+                              2
+                            )}
                         </span>
+                        <span>
+                          {saleHistory[0].paidToken ===
+                            '0x0000000000000000000000000000000000001010' && (
+                            <span className="pt-1">MATIC</span>
+                          )}
+                          {saleHistory[0].paidToken ===
+                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
+                            <span className="pt-1">GRD</span>
+                          )}
 
-                        {saleHistory[0]?.paidToken ===
-                        '0x0000000000000000000000000000000000001010' ? (
-                          <span className="flex "> MATIC</span>
-                        ) : (
-                          <span className="flex"> USDC</span>
-                        )}
+                          {saleHistory[0].paidToken ===
+                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
+                            <span className="pt-1">USDC</span>
+                          )}
+                        </span>
                       </div>
 
                       <div className=" flex flex-row items-center justify-start text-xs">
@@ -784,11 +800,11 @@ function NftInfo({ nftMetadata }: any) {
               <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                 <button
                   className=" w-24 text-sm font-bold xl:text-xl "
-                  onClick={() =>
-                    router.push(
-                      `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
-                    )
-                  }
+                  //onClick={() =>
+                  //  router.push(
+                  //</div>    `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                  //  )
+                  //}
                 >
                   <Image
                     src="/images/inkent.jpeg"

@@ -243,9 +243,15 @@ export default function Feeds({ className }: { className?: string }) {
                     </p>
                   </div>
                    */}
-                    <div className="items-top  m-5 flex  h-12 justify-center font-bold  ">
-                      <div className="text-md  ">{nft?.title}</div>
+
+                    <div className="items-top  m-5 flex h-12 flex-col  justify-center gap-1   ">
+                      <div className="text-md font-bold ">{nft?.title}</div>
+                      <div className="text-left text-xs">#{nft?.tokenId}</div>
+                      <div className="text-sm  ">
+                        Last Price&nbsp;{nft?.totalPricePaid}
+                      </div>
                     </div>
+
                     {/*
                   <div className="m-2 flex items-center justify-center ">
                     Owner:{' '}

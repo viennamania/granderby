@@ -316,16 +316,29 @@ const COLUMNS = [
 
           <div className="flex flex-row items-center justify-end gap-2 ">
             <span className="text-2xl font-bold text-green-600">
-              {value.paidToken === '0x0000000000000000000000000000000000001010'
-                ? (value.totalPricePaid / 1000000000000000000).toFixed(2)
-                : (value.totalPricePaid / 1000000).toFixed(2)}
+              {value.paidToken ===
+                '0x0000000000000000000000000000000000001010' &&
+                (value.totalPricePaid / 1000000000000000000).toFixed(2)}
+              {value.paidToken ===
+                '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                (value.totalPricePaid / 1000000000000000000).toFixed(2)}
+              {value.paidToken ===
+                '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                (value.totalPricePaid / 1000000).toFixed(2)}
             </span>
             <span>
               {value.paidToken ===
-              '0x0000000000000000000000000000000000001010' ? (
-                <span className="pt-1"> MATIC</span>
-              ) : (
-                <span className="pt-1"> USDC</span>
+                '0x0000000000000000000000000000000000001010' && (
+                <span className="pt-1">MATIC</span>
+              )}
+              {value.paidToken ===
+                '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
+                <span className="pt-1">GRD</span>
+              )}
+
+              {value.paidToken ===
+                '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
+                <span className="pt-1">USDC</span>
               )}
             </span>
           </div>
