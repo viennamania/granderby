@@ -129,10 +129,8 @@ function HeaderRightArea() {
   );
   // ...
 
-  const { contract: nftDropContract } = useContract(
-    nftDropContractAddressHorse,
-    'nft-drop'
-  );
+  const { contract: nftDropContract, isLoading: isLoadingContract } =
+    useContract(nftDropContractAddressHorse, 'nft-drop');
 
   const tokenid = 300;
 
@@ -247,9 +245,13 @@ function HeaderRightArea() {
         <WalletConnect />
         */}
 
+        {/*
         {address ? (
           <></>
         ) : (
+        */}
+
+        {!isLoadingContract && !address && (
           <ConnectWallet
             /*
             theme={
@@ -306,6 +308,10 @@ function HeaderRightArea() {
         )}
       </div>
 
+      {isLoadingContract && !address && (
+        <span className="text-lg text-green-600">Loading Wallet Info...</span>
+      )}
+
       {address && (
         <>
           <div className="items-cneter ml-2 flex">
@@ -313,7 +319,7 @@ function HeaderRightArea() {
               onClick={() => setIsOpenLogout(!isOpenLogout)}
               type="button"
               className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              aria-expanded={isOpenLng}
+              aria-expanded={isOpenLogout}
             >
               <span>{address?.substring(0, 10)}...</span>
               <svg

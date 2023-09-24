@@ -200,14 +200,16 @@ export default function LastWinnersPage({ npcs }: any, status: any) {
           })}
       </div>
 
-      <div className="flex flex-row items-center justify-center gap-5 ">
+      <div className="mt-3 flex flex-row items-center justify-center gap-5 ">
         <span className="text-xl font-bold">
           Win Prize: {Number(sonKazananlar?.winPrize).toFixed(2)}
         </span>
 
         {format(Date.parse(sonKazananlar?.date || 0), 'yyy-MM-dd hh:mm:ss')}
 
+        {/*
         <Image src="/images/inkent.jpeg" alt="inkent" width={60} height={50} />
+        */}
       </div>
 
       {/*

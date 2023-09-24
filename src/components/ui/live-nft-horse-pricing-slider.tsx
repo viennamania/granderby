@@ -280,15 +280,42 @@ export default function LiveNftPricingSlider({ limits }: { limits: number }) {
         ))}
       </Swiper>
 
-      <div className="mt-2 flex w-full flex-row items-center justify-between gap-5">
+      <div className="mt-5 flex w-full flex-col items-center justify-center gap-5">
         <div className="text-sm font-bold ">
-          Total Trade:{' '}
-          <span className="text-xl font-bold text-green-600">{'17,422'} </span>
-          USD
+          Total Trade&nbsp;&nbsp;
+          <span className="text-2xl font-bold text-green-600 xl:text-4xl">
+            {'367,422'}{' '}
+          </span>
+          &nbsp;USD
         </div>
 
-        <div className="  flex justify-end ">
-          <div className="flex flex-col items-center justify-center gap-1">
+        <div className="  flex items-center justify-center ">
+          <button
+            //className="ml-5 flex flex-row items-center justify-center gap-3"
+
+            /*
+            className={`gold-btn block border border-black p-1 text-center text-black ${
+              address === 0
+                ? 'gold-btn-active'
+                : address === 1000
+                ? 'bg-[#ffc000]'
+                : 'bg-transparent'
+            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+            */
+
+            className={`gold-btn flex  flex-row items-center justify-center gap-2   border-none p-2 text-center text-black ${
+              limit === 0
+                ? 'gold-btn-active'
+                : limit === 1000
+                ? 'bg-[#ffc000]'
+                : 'bg-transparent'
+            } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+            ///onClick={(e) => router.push('/coin/usdc')}
+            onClick={() => {
+              router.push('https://granderby.market');
+              ///router.push('/horse-details/' + nft?.metadata?.id);
+            }}
+          >
             <Image
               src="/images/market.png"
               alt="market"
@@ -303,17 +330,10 @@ export default function LiveNftPricingSlider({ limits }: { limits: number }) {
               height={50}
             />
             */}
-          </div>
 
-          <button
-            className="ml-5 flex flex-row items-center justify-center gap-3"
-            ///onClick={(e) => router.push('/coin/usdc')}
-            onClick={() => {
-              router.push('https://granderby.market');
-              ///router.push('/horse-details/' + nft?.metadata?.id);
-            }}
-          >
-            <ChevronForward className="mr-10 rtl:rotate-180" />
+            <span>GRANDERBY MARKET</span>
+
+            <ChevronForward className=" rtl:rotate-180" />
           </button>
         </div>
       </div>

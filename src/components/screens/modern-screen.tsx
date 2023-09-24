@@ -478,7 +478,7 @@ export default function ModernScreen() {
               router.push('/intro');
             }}
           >
-            <div className="text-2xl">Game Introduction</div>
+            <div className="text-2xl">GAME INTRODUCTION</div>
           </Button>
         </div>
 
@@ -496,7 +496,7 @@ export default function ModernScreen() {
                       router.push('/buy-horse');
                     }}
                   >
-                    <div className="text-2xl">Buy now</div>
+                    <div className="text-2xl">BUY NOW</div>
                   </Button>
                 </div>
               </div>
@@ -546,7 +546,7 @@ export default function ModernScreen() {
                       router.push('/live');
                     }}
                   >
-                    <div className="text-2xl">Live now</div>
+                    <div className="text-2xl">LIVE NOW</div>
                   </Button>
                 </div>
               </div>
