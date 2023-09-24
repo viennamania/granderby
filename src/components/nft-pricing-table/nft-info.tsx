@@ -86,6 +86,8 @@ function NftInfo({ nftMetadata }: any) {
     [stakerAddress]
   );
 
+  console.log('stakeInfo', stakeInfo);
+
   const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
 
   useEffect(() => {
@@ -340,7 +342,7 @@ function NftInfo({ nftMetadata }: any) {
                   <>
                     {/* Last Price */}
                     <div className="text-sm font-bold xl:text-lg">
-                      <b>Last price</b>
+                      <b>Last Price</b>
                     </div>
                     <div className="flex flex-col ">
                       <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
@@ -553,7 +555,7 @@ function NftInfo({ nftMetadata }: any) {
                   <>
                     {/* Last Price */}
                     <div className="text-sm font-bold xl:text-lg">
-                      <b>Last price</b>
+                      <b>Last Price</b>
                     </div>
                     <div className="flex flex-col ">
                       <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
@@ -769,10 +771,97 @@ function NftInfo({ nftMetadata }: any) {
 
       <div className="mt-5 flex flex-col rounded-lg border ">
         <Collapse label="Race Information" initialOpen={true}>
-          <div className="itmes-start mt-5 flex flex-col justify-center p-10">
-            <span className="text-lg font-bold">
+          <div className="itmes-start flex flex-col justify-center p-5">
+            {/* Last Ranke */}
+            <div className="text-sm font-bold xl:text-lg">
+              <b>Last Rank</b>
+            </div>
+            <div className="flex flex-col ">
+              <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                <button
+                  className=" w-24 text-sm font-bold xl:text-xl "
+                  onClick={() =>
+                    router.push(
+                      `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                    )
+                  }
+                >
+                  <Image
+                    src="/images/inkent.jpeg"
+                    alt="live"
+                    width={60}
+                    height={30}
+                  />
+                </button>
+
+                <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
+                  3
+                </span>
+              </div>
+
+              <div className=" flex flex-row items-center justify-start text-xs">
+                {format(
+                  Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                  'yyy-MM-dd hh:mm:ss'
+                )}
+              </div>
+            </div>
+
+            {address &&
+              address === nftMetadata?.owner &&
+              address !== stakerAddress && (
+                <>
+                  <span className="mt-5 text-lg font-bold">
+                    <b>Not for race</b>
+                  </span>
+
+                  <Web3Button
+                    theme="light"
+                    contractAddress={stakingContractAddressHorseAAA}
+                    action={() => stakeNft(nftMetadata?.metadata?.id || '')}
+                  >
+                    Register for race
+                  </Web3Button>
+                </>
+              )}
+
+            {stakerAddress && stakeInfo && (
+              <div className="itmes-start mt-5 flex flex-col justify-center ">
+                {/* Staking Infomation */}
+                <div className="text-sm font-bold xl:text-lg">
+                  <b>Registered</b>
+                </div>
+                <div className="flex flex-col ">
+                  <div className=" flex flex-row items-center justify-start text-xs">
+                    {format(
+                      Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                      'yyy-MM-dd hh:mm:ss'
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {address && address === stakerAddress && (
+              <>
+                {/*
+              <Web3Button
+                theme="light"
+                contractAddress={
+                  stakingContractAddressHorseAAA
+                }
+                action={() => stakeNft(nftMetadata?.metadata?.id || '')}
+                >
+                Unregister
+              </Web3Button>
+              */}
+              </>
+            )}
+
+            <span className="mt-5 text-lg font-bold">
               <b>Race History</b>
             </span>
+
             <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
           </div>
         </Collapse>

@@ -119,7 +119,7 @@ function HeaderRightArea() {
     setupLanguages();
   }, []);
 
-  console.log('i18n.language', i18n.language);
+  ///console.log('i18n.language', i18n.language);
 
   const [countryCode, setCountryCode] = useState('en');
 
@@ -192,7 +192,7 @@ function HeaderRightArea() {
         });
         const data = await res.json();
 
-        console.log('data: ', data);
+        ///console.log('data: ', data);
 
         if (data.status) {
           //console.log('data: ', data);
