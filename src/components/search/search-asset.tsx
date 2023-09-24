@@ -101,57 +101,54 @@ export default function Search() {
       */}
 
       <div className="grid ">
-        <div className="m-3 block">
-          <div className="">
-            <div className="relative z-10 mb-6 flex items-center justify-between ">
-              <div className="items-right flex w-full justify-end">
-                <div className="flex gap-6  ">
-                  {/*
-      <SortList />
-      */}
+        <div className=" block">
+          <div className="relative z-10 mb-6 flex items-center justify-between ">
+            <div className="items-right flex w-full justify-end">
+              <div className="flex gap-6  ">
+                {/*
+                  <SortList />
+                  */}
 
-                  {/*
-      <div className="hidden ">
-        <GridSwitcher />
-      </div>
+                {/*
+                    <div className="hidden ">
+                      <GridSwitcher />
+                    </div>
 
-      
-      <div className="hidden ">
-        <Button
-          shape="rounded"
-          size="small"
-          variant="ghost"
-          color="gray"
-          onClick={() => openDrawer('DRAWER_SEARCH', '')}
-          className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-        >
-          <OptionIcon className="relative h-auto w-[18px]" />
-        </Button>
-      </div>
-      */}
-                </div>
+                    
+                    <div className="hidden ">
+                      <Button
+                        shape="rounded"
+                        size="small"
+                        variant="ghost"
+                        color="gray"
+                        onClick={() => openDrawer('DRAWER_SEARCH', '')}
+                        className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
+                      >
+                        <OptionIcon className="relative h-auto w-[18px]" />
+                      </Button>
+                    </div>
+                    */}
               </div>
             </div>
+          </div>
 
-            <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Horse" initialOpen={true}>
-                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
-                  <span className="text-lg font-bold">Asset</span>
-                  <OwnedFeeds contractAddress={nftDropContractAddressHorse} />
-                </div>
-              </Collapse>
-            </div>
+          <div className="mt-5 flex flex-col rounded-lg border ">
+            <Collapse label="Horse" initialOpen={true}>
+              <div className="itmes-start  flex flex-col justify-center p-3">
+                <OwnedFeeds contractAddress={nftDropContractAddressHorse} />
+              </div>
+            </Collapse>
+          </div>
 
-            <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Jockey" initialOpen={true}>
-                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
-                  <span className="text-lg font-bold">Asset</span>
-                  <OwnedFeeds contractAddress={nftDropContractAddressJockey} />
-                </div>
-              </Collapse>
-            </div>
+          <div className=" flex flex-col rounded-lg border ">
+            <Collapse label="Jockey" initialOpen={true}>
+              <div className="itmes-start mt-5 flex flex-col justify-center p-3">
+                <OwnedFeeds contractAddress={nftDropContractAddressJockey} />
+              </div>
+            </Collapse>
+          </div>
 
-            {/*
+          {/*
             <div className="mt-5 flex flex-col rounded-lg border ">
               <Collapse label="Derbystars Horse" initialOpen={true}>
                 <div className="itmes-start mt-5 flex flex-col justify-center p-3">
@@ -161,7 +158,6 @@ export default function Search() {
               </Collapse>
             </div>
             */}
-          </div>
         </div>
 
         {/*
