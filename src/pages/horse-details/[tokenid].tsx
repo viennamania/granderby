@@ -219,23 +219,13 @@ function SinglePrice(tokenid: any) {
             ) : (
               <div className="flex w-full flex-col">
                 <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
-                  {address ? (
-                    <Link
-                      className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
-                      href={`/my-asset`}
-                    >
-                      {/*nftMetadata?.metadata?.description*/}
-                      My NFT
-                    </Link>
-                  ) : (
-                    <Link
-                      className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
-                      href={`/horse`}
-                    >
-                      {/*nftMetadata?.metadata?.description*/}
-                      Granderby Horse NFT
-                    </Link>
-                  )}
+                  <Link
+                    className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
+                    href={`/horse`}
+                  >
+                    {nftMetadata?.metadata?.description}
+                    {/*Granderby Horse NFT*/}
+                  </Link>
 
                   <div className="mt-2 flex flex-row items-center justify-start ">
                     {/*
@@ -280,11 +270,13 @@ function SinglePrice(tokenid: any) {
                                 <span>
                                   {nftMetadata?.owner?.substring(0, 10)}...
                                 </span>
+                                {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
+                                */}
                               </div>
                             )}
                           </>
