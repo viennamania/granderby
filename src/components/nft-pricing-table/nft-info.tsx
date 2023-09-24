@@ -538,17 +538,21 @@ function NftInfo({ nftMetadata }: any) {
                       )}
 
                     {address !== nftMetadata?.owner && (
-                      <Button
-                        className="mt-5"
-                        shape="rounded"
-                        color="success"
-                        onClick={() => {
-                          //router.push('/live');
-                          //walletConnect
-                        }}
-                      >
-                        <div className="text-2xl">Make Offer</div>
-                      </Button>
+                      <>
+                        <div className="mt-5 text-sm font-bold xl:text-lg">
+                          <b>Not for sale</b>
+                        </div>
+                        <Button
+                          shape="rounded"
+                          color="success"
+                          onClick={() => {
+                            //router.push('/live');
+                            //walletConnect
+                          }}
+                        >
+                          <div className="text-2xl">Make Offer</div>
+                        </Button>
+                      </>
                     )}
                   </>
                 ) : (
@@ -624,7 +628,7 @@ function NftInfo({ nftMetadata }: any) {
 
                     {/* sell price */}
                     <div className="mt-5 text-sm font-bold xl:text-lg">
-                      <b>Sell price</b>
+                      <b>Sell Price</b>
                     </div>
                     <div className=" text-xl font-bold xl:text-2xl">
                       <div className="flex flex-row items-center justify-start gap-2">
