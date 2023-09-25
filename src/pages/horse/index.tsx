@@ -95,12 +95,24 @@ const HorsePage: NextPageWithLayout<
           2xl:h-96
           3xl:h-[448px]"
         >
+          {/*
           <Image
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
             fill
             //className="object-fill"
             className="h-full w-full object-cover"
+            alt="Cover Image"
+          />
+          */}
+
+          <Image
+            src={`https://granderby.io/api/og/dynamic-image-page?id=horse`}
+            placeholder="blur"
+            blurDataURL="https://granderby.io/images/logo.png"
+            fill
+            className="object-cover"
+            //className="h-full w-full object-cover"
             alt="Cover Image"
           />
         </div>

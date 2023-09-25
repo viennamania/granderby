@@ -114,7 +114,7 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="200"
+            width="50"
             src={imageUrl1}
             style={{
               borderRadius: 10,
@@ -125,7 +125,7 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="200"
+            width="50"
             src={imageUrl2}
             style={{
               borderRadius: 10,
@@ -136,7 +136,7 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="200"
+            width="50"
             src={imageUrl3}
             style={{
               borderRadius: 10,
@@ -147,7 +147,7 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="200"
+            width="50"
             src={imageUrl4}
             style={{
               borderRadius: 10,
@@ -158,7 +158,7 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="200"
+            width="50"
             src={imageUrl5}
             style={{
               borderRadius: 10,
