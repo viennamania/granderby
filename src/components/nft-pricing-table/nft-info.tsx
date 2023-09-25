@@ -48,7 +48,6 @@ import {
 } from '@thirdweb-dev/react';
 
 import { RaceIcon } from '@/components/icons/race-icon';
-import { connect } from 'http2';
 
 function NftInfo({ nftMetadata }: any) {
   ///console.log('nftMetadata', nftMetadata);
@@ -839,6 +838,7 @@ function NftInfo({ nftMetadata }: any) {
         </div>
           */}
 
+      {/* Race Information */}
       <div className="mt-5 flex flex-col rounded-lg border ">
         <Collapse label="Race Information" initialOpen={true}>
           <div className="itmes-start flex flex-col justify-center p-5">

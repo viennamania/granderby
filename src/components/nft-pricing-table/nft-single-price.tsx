@@ -55,6 +55,8 @@ import Link from 'next/link';
 
 import { useRouter } from 'next/router';
 
+import ShareView from '@/components/nft/share-view';
+
 import {
   stakingContractAddressHorseAAA,
   stakingContractAddressHorseBBB,
@@ -623,6 +625,17 @@ export default function NftSinglePrice({
       } else if (attribute.trait_type === 'LegAcc') {
       } else if (attribute.trait_type === 'Comment') {
       } else if (attribute.trait_type === 'World') {
+      } else if (attribute.trait_type === 'BodyColor') {
+      } else if (attribute.trait_type === 'ManeColor') {
+      } else if (attribute.trait_type === 'TailColor') {
+      } else if (attribute.trait_type === 'BodyMaskColor') {
+      } else if (attribute.trait_type === 'HeadMaskColor') {
+      } else if (attribute.trait_type === 'LegMaskColor') {
+      } else if (attribute.trait_type === 'ManeMaskColor') {
+      } else if (attribute.trait_type === 'TailMaskColor') {
+      } else if (attribute.trait_type === 'BodyAccColor') {
+      } else if (attribute.trait_type === 'HeadAccColor') {
+      } else if (attribute.trait_type === 'LegAccColor') {
       } else {
         if (attribute) {
           arrAttribute.push(attribute);
@@ -1168,6 +1181,10 @@ export default function NftSinglePrice({
                   }
                 </div>
               </Collapse>
+            </div>
+
+            <div className="mt-5 flex flex-row items-center justify-center ">
+              <ShareView />
             </div>
           </div>
         </div>
