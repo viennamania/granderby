@@ -104,7 +104,7 @@ export default async function handler(req: NextRequest) {
             background: '#ffffff',
             width: '100%',
             padding: 0,
-            marginTop: 5,
+            marginTop: 3,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
@@ -114,10 +114,10 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="50"
+            width="30"
             src={imageUrl1}
             style={{
-              borderRadius: 10,
+              borderRadius: 5,
               padding: 2,
             }}
           />
@@ -125,10 +125,10 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="50"
+            width="30"
             src={imageUrl2}
             style={{
-              borderRadius: 10,
+              borderRadius: 5,
               padding: 2,
             }}
           />
@@ -136,10 +136,10 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="50"
+            width="30"
             src={imageUrl3}
             style={{
-              borderRadius: 10,
+              borderRadius: 5,
               padding: 2,
             }}
           />
@@ -147,10 +147,10 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="50"
+            width="30"
             src={imageUrl4}
             style={{
-              borderRadius: 10,
+              borderRadius: 5,
               padding: 2,
             }}
           />
@@ -158,10 +158,10 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="avatar"
-            width="50"
+            width="30"
             src={imageUrl5}
             style={{
-              borderRadius: 10,
+              borderRadius: 5,
               padding: 2,
             }}
           />

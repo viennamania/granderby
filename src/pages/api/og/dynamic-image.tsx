@@ -48,12 +48,12 @@ export default async function handler(req: NextRequest) {
     blockTimestamp = data2?.all[0].blockTimestamp;
 
     if (paidToken === '0x0000000000000000000000000000000000001010') {
-      totalPricePaid = (
-        Number(data2?.all[0].totalPricePaid) / 1000000000000000000
+      totalPricePaid = Number(
+        data2?.all[0].totalPricePaid / 1000000000000000000
       ).toFixed(2);
       paidToken = 'MATIC';
     } else {
-      totalPricePaid = (Number(data2?.all[0].totalPricePaid) / 1000000).toFixed(
+      totalPricePaid = Number(data2?.all[0].totalPricePaid / 1000000).toFixed(
         2
       );
 
