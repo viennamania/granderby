@@ -14,6 +14,8 @@ import RegisteredFeeds from './feeds-horse-registered-inventory';
 
 //import RegisteredFeedsDS from './feeds-horse-registered-ds';
 
+import OwnedFeedsCoin from './feeds-coin-owned-asset';
+
 import {
   stakingContractAddressHorseAAA,
   stakingContractAddressHorseDerbyStars,
@@ -168,6 +170,16 @@ export default function Search() {
               </Collapse>
             </div>
             */}
+        </div>
+
+        <div className="mt-5 flex flex-col rounded-lg border ">
+          <Collapse label="Coin" initialOpen={true}>
+            <div className="itmes-start flex flex-col justify-center p-3 pb-10">
+              <OwnedFeedsCoin
+              //contractAddress={nftDropContractAddressHorseZedRun}
+              />
+            </div>
+          </Collapse>
         </div>
 
         {/*

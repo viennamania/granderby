@@ -32,6 +32,7 @@ import {
   tokenContractAddressUSDC,
   tokenContractAddressGRD,
   nftDropContractAddressCoupon,
+  tokenContractAddressGCOW,
 } from '@/config/contractAddresses';
 
 import Button from '@/components/ui/button/button';
@@ -54,6 +55,8 @@ import {
 import { useInventoriesDrawer } from '@/components/inventories/inventories-context';
 import { Usdc } from '@/components/icons/usdc';
 import { GrdIcon } from '@/components/icons/grd-icon';
+
+import { GasIcon } from '@/components/icons/gas-icon';
 
 export default function OwnedFeedsCoin({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
@@ -78,21 +81,12 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
   const { data: tokenBalanceGRD, isLoading: isLoadingBalanceGRD } =
     useTokenBalance(tokenContractGRD, address);
 
-  const { contract: nftDropContract } = useContract(
-    nftDropContractAddressHorse,
-    'nft-drop'
+  const { contract: tokenContractGCOW } = useContract(
+    tokenContractAddressGCOW,
+    'token'
   );
-  const { data: ownedNfts, isLoading: isLoadingOwnedNfts } = useOwnedNFTs(
-    nftDropContract,
-    address
-  );
-
-  const { contract: nftDropContractDerbyStars } = useContract(
-    nftDropContractAddressHorseDerbyStars,
-    'nft-drop'
-  );
-  const { data: ownedNftsDerbyStars, isLoading: isLoadingOwnedNftsDerbyStars } =
-    useOwnedNFTs(nftDropContractDerbyStars, address);
+  const { data: tokenBalanceGCOW, isLoading: isLoadingBalanceGCOW } =
+    useTokenBalance(tokenContractGCOW, address);
 
   const { contract: contractCoupon } = useContract(
     nftDropContractAddressCoupon
@@ -264,19 +258,19 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 </div>
               </>
             ) : (
-              <div className="flex flex-row items-center justify-between">
+              <div className="flex flex-row items-center justify-start">
                 <div className=" flex flex-row items-center justify-start gap-1">
                   <Usdc className="h-5 w-5" />
                   <div className="w-20 text-xl ">
                     {tokenBalanceUSDC?.symbol}:
                   </div>
-                  <div className=" w-28 text-right text-2xl font-bold underline decoration-sky-500">
+                  <div className=" w-40 text-right text-2xl font-bold underline decoration-sky-500">
                     {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
                   </div>
                 </div>
 
                 <button
-                  className="flex flex-row items-center justify-center gap-3"
+                  className="ml-10 flex flex-row items-center justify-center gap-3"
                   ///onClick={(e) => router.push('/coin/usdc')}
                   onClick={() => {
                     closeInventories();
@@ -300,19 +294,19 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 </div>
               </>
             ) : (
-              <div className="flex flex-row items-center justify-between">
+              <div className="flex flex-row items-center justify-start">
                 <div className="mt-1 flex flex-row items-center justify-start gap-1">
-                  <GrdIcon className="h-5 w-5" />
+                  <GasIcon className="h-5 w-5" />
                   <div className="w-20 text-xl ">
                     {tokenBalanceGRD?.symbol}:
                   </div>
-                  <div className="w-28 text-right text-2xl font-bold underline decoration-sky-500">
+                  <div className="w-40 text-right text-2xl font-bold underline decoration-sky-500">
                     {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
                   </div>
                 </div>
 
                 <button
-                  className="flex flex-row items-center justify-center gap-3"
+                  className="ml-10 flex flex-row items-center justify-center gap-3"
                   ////onClick={(e) => router.push('/coin/grd')}
                   onClick={() => {
                     closeInventories();
@@ -325,7 +319,43 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               </div>
             )}
 
-            <div className="mt-10 flex w-full flex-row items-center justify-between gap-2">
+            {isLoadingBalanceGCOW ? (
+              <>
+                <div className="flex flex-col items-center justify-center ">
+                  <div className="text-xl text-gray-400">Loading...</div>
+
+                  <span className="items-top mt-10 flex h-screen w-full justify-center">
+                    <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-row items-center justify-start">
+                <div className="mt-1 flex flex-row items-center justify-start gap-1">
+                  <GasIcon className="h-5 w-5" />
+                  <div className="w-20 text-xl ">
+                    {tokenBalanceGCOW?.symbol}:
+                  </div>
+                  <div className=" w-40 text-right text-2xl font-bold underline decoration-sky-500">
+                    {Number(tokenBalanceGCOW?.displayValue).toFixed(2)}
+                  </div>
+                </div>
+
+                <button
+                  className="ml-10 flex flex-row items-center justify-center gap-3"
+                  ////onClick={(e) => router.push('/coin/grd')}
+                  onClick={() => {
+                    closeInventories();
+                    router.push('/coin/gcow');
+                    ///router.push('/horse-details/' + nft?.metadata?.id);
+                  }}
+                >
+                  <ChevronForward className="mr-10 rtl:rotate-180" />
+                </button>
+              </div>
+            )}
+
+            <div className="mt-10 flex w-full flex-row items-center justify-start gap-2">
               {ownedCoupons?.map((nft) => (
                 <div
                   className="mb-2 flex flex-col items-center justify-center gap-3"
@@ -345,7 +375,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               ))}
 
               <button
-                className="justify-right flex flex-row items-center gap-3"
+                className="ml-10 flex flex-row items-center gap-3"
                 ////onClick={(e) => router.push('/coin/grd')}
                 onClick={() => {
                   closeInventories();

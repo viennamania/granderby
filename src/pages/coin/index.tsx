@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   };
 };
 
-const HorsePage: NextPageWithLayout<
+const CoinPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
   const { layout } = useLayout();
@@ -173,8 +173,8 @@ const HorsePage: NextPageWithLayout<
   }
 };
 
-HorsePage.getLayout = function getLayout(page) {
+CoinPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default HorsePage;
+export default CoinPage;
