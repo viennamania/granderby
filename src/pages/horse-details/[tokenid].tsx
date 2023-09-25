@@ -172,7 +172,14 @@ function SinglePrice(tokenid: any) {
                                 Me
                               </div>
                             ) : (
-                              <div>
+                              <button
+                                className=" flex flex-row items-center justify-start  "
+                                onClick={() =>
+                                  router.push(
+                                    `/user-asset/${nftMetadata?.owner}`
+                                  )
+                                }
+                              >
                                 <span>
                                   {nftMetadata?.owner?.substring(0, 10)}...
                                 </span>
@@ -183,7 +190,7 @@ function SinglePrice(tokenid: any) {
                                   </span>
                                 )}
                                 */}
-                              </div>
+                              </button>
                             )}
                           </>
                         ) : (
@@ -193,7 +200,12 @@ function SinglePrice(tokenid: any) {
                                 Me
                               </div>
                             ) : (
-                              <div className="flex flex-row items-start justify-center">
+                              <button
+                                className=" flex flex-row items-center justify-start  "
+                                onClick={() =>
+                                  router.push(`/user-asset/${stakerAddress}`)
+                                }
+                              >
                                 <span>
                                   {stakerAddress?.substring(0, 10)}...
                                 </span>
@@ -205,7 +217,7 @@ function SinglePrice(tokenid: any) {
                                   </span>
                                 )}
                                 */}
-                              </div>
+                              </button>
                             )}
                           </>
                         )}
@@ -303,7 +315,14 @@ function SinglePrice(tokenid: any) {
                                 Me
                               </div>
                             ) : (
-                              <div>
+                              <button
+                                className=" flex flex-row items-center justify-start  "
+                                onClick={() =>
+                                  router.push(
+                                    `/user-asset/${nftMetadata?.owner}`
+                                  )
+                                }
+                              >
                                 <span>
                                   {nftMetadata?.owner?.substring(0, 10)}...
                                 </span>
@@ -314,7 +333,7 @@ function SinglePrice(tokenid: any) {
                                   </span>
                                 )}
                                 */}
-                              </div>
+                              </button>
                             )}
                           </>
                         ) : (
@@ -324,7 +343,12 @@ function SinglePrice(tokenid: any) {
                                 Me
                               </div>
                             ) : (
-                              <div>
+                              <button
+                                className=" flex flex-row items-center justify-start  "
+                                onClick={() =>
+                                  router.push(`/user-asset/${stakerAddress}`)
+                                }
+                              >
                                 <span>
                                   {stakerAddress?.substring(0, 10)}...
                                 </span>
@@ -334,7 +358,7 @@ function SinglePrice(tokenid: any) {
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )*/}
-                              </div>
+                              </button>
                             )}
                           </>
                         )}
