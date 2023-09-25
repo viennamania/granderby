@@ -19,6 +19,12 @@ export default async function handler(req: NextRequest) {
 
   const imageUrl = 'https://granderby.io/images/profile-cover-horse.jpg';
 
+  const imageUrl1 = 'https://granderby.io/images/NFT/nft_04.jpg';
+  const imageUrl2 = 'https://granderby.io/images/NFT/nft_07.jpg';
+  const imageUrl3 = 'https://granderby.io/images/NFT/nft_10.jpg';
+  const imageUrl4 = 'https://granderby.io/images/NFT/nft_14.jpg';
+  const imageUrl5 = 'https://granderby.io/images/NFT/nft_16.jpg';
+
   {
     /*
   const res = await fetch('https://granderby.io/api/nft/horse/' + id, {
@@ -75,11 +81,8 @@ export default async function handler(req: NextRequest) {
           background: '#ffffff',
           width: '100%',
           height: '100%',
-          paddingTop: 10,
-          paddingLeft: 10,
-          paddingRight: 10,
-          paddingBottom: 10,
-          flexDirection: 'row',
+          padding: 10,
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           display: 'flex',
@@ -88,12 +91,81 @@ export default async function handler(req: NextRequest) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="avatar"
-          width="1200"
+          width="1100"
           src={imageUrl}
           style={{
-            borderRadius: 30,
+            borderRadius: 10,
           }}
         />
+
+        <div
+          style={{
+            color: 'black',
+            background: '#ffffff',
+            width: '100%',
+            padding: 0,
+            marginTop: 20,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="avatar"
+            width="200"
+            src={imageUrl1}
+            style={{
+              borderRadius: 10,
+              padding: 2,
+            }}
+          />
+
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="avatar"
+            width="200"
+            src={imageUrl2}
+            style={{
+              borderRadius: 10,
+              padding: 2,
+            }}
+          />
+
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="avatar"
+            width="200"
+            src={imageUrl3}
+            style={{
+              borderRadius: 10,
+              padding: 2,
+            }}
+          />
+
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="avatar"
+            width="200"
+            src={imageUrl4}
+            style={{
+              borderRadius: 10,
+              padding: 2,
+            }}
+          />
+
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="avatar"
+            width="200"
+            src={imageUrl5}
+            style={{
+              borderRadius: 10,
+              padding: 2,
+            }}
+          />
+        </div>
       </div>
     ),
     {
