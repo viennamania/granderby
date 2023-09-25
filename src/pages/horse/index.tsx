@@ -28,9 +28,21 @@ import { SearchIcon } from '@/components/icons/search';
 
 import Search from '@/components/search/search-horse';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const contractAddress: string = context.params?.contractAddress;
+
+  const pageid = 'horse';
+  const title = 'Granderby Horse NFT';
+  const description =
+    'Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon · Category Gaming';
+
   return {
-    props: {},
+    props: {
+      pageid: pageid,
+      //////nftMetadata: nft,
+      title: title,
+      description: description,
+    },
   };
 };
 
