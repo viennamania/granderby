@@ -165,11 +165,13 @@ function SinglePrice(tokenid: any) {
                                 <span>
                                   {nftMetadata?.owner?.substring(0, 10)}...
                                 </span>
+                                {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
+                                */}
                               </div>
                             )}
                           </>

@@ -244,9 +244,17 @@ export default function Feeds({ className }: { className?: string }) {
                   </div>
                    */}
 
-                    <div className="items-top  m-5 flex h-12 flex-col  justify-center gap-1   ">
+                    <div className="items-top  m-2 mt-4 flex h-12 flex-col  justify-center gap-1   ">
                       <div className="text-sm font-bold ">{nft?.title}</div>
-                      <div className="text-left text-xs">#{nft?.tokenId}</div>
+                      <div className="flex flex-row items-center justify-start gap-1">
+                        <Image
+                          src="/images/logo-polygon.png"
+                          alt="logo"
+                          width={12}
+                          height={12}
+                        />
+                        <div className="text-left text-sm">#{nft?.tokenId}</div>
+                      </div>
                       <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
                         <span>Last Price</span>
                         <span>
@@ -299,7 +307,7 @@ export default function Feeds({ className }: { className?: string }) {
                 >
                 */}
                   <button
-                    className="bg-sky-600 p-3 text-sm font-bold  text-white
+                    className="bg-sky-600 p-2 text-sm font-bold  text-white
                     "
                   >
                     Buy now
