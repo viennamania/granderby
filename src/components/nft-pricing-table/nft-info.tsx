@@ -347,7 +347,7 @@ function NftInfo({ nftMetadata }: any) {
                     <div className="flex flex-col ">
                       <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
-                          className=" w-24 text-sm font-bold xl:text-xl "
+                          className=" w-12 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
                               `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
@@ -360,6 +360,27 @@ function NftInfo({ nftMetadata }: any) {
                             width={30}
                             height={30}
                           />
+                        </button>
+                        <button
+                          className="flex w-24 flex-row items-center justify-start "
+                          onClick={() =>
+                            //alert("clicked")
+
+                            (location.href =
+                              'https://polygonscan.com/tx/' +
+                              saleHistory[0]?.hash)
+                          }
+                        >
+                          <Image
+                            src="/images/logo-polygon.png"
+                            alt="gd"
+                            width={13}
+                            height={13}
+                          />
+
+                          <div className="ml-1 text-left text-xs -tracking-[1px]">
+                            {saleHistory[0]?.hash.substring(0, 6) + '...'}
+                          </div>
                         </button>
 
                         <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
@@ -409,7 +430,7 @@ function NftInfo({ nftMetadata }: any) {
 
                       <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
-                          className=" w-24 text-sm font-bold xl:text-xl "
+                          className=" w-36 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
                               `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
@@ -582,7 +603,7 @@ function NftInfo({ nftMetadata }: any) {
                     <div className="flex flex-col ">
                       <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
-                          className=" w-24 text-sm font-bold xl:text-xl "
+                          className=" w-12 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
                               `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
@@ -595,6 +616,27 @@ function NftInfo({ nftMetadata }: any) {
                             width={30}
                             height={30}
                           />
+                        </button>
+                        <button
+                          className="flex w-24 flex-row items-center justify-start "
+                          onClick={() =>
+                            //alert("clicked")
+
+                            (location.href =
+                              'https://polygonscan.com/tx/' +
+                              saleHistory[0]?.hash)
+                          }
+                        >
+                          <Image
+                            src="/images/logo-polygon.png"
+                            alt="gd"
+                            width={13}
+                            height={13}
+                          />
+
+                          <div className="ml-1 text-left text-xs -tracking-[1px]">
+                            {saleHistory[0]?.hash.substring(0, 6) + '...'}
+                          </div>
                         </button>
 
                         <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
@@ -628,7 +670,7 @@ function NftInfo({ nftMetadata }: any) {
 
                       <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
-                          className=" w-24 text-sm font-bold xl:text-xl "
+                          className=" w-36 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
                               `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`

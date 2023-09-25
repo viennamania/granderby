@@ -244,7 +244,7 @@ export default function Feeds({ className }: { className?: string }) {
                   </div>
                    */}
 
-                    <div className="items-top  m-2 mt-4 flex h-12 flex-col  justify-center gap-1   ">
+                    <div className="items-top  m-2 mt-4 flex  h-14 flex-col  justify-center gap-1   ">
                       <div className="text-sm font-bold ">{nft?.title}</div>
                       <div className="flex flex-row items-center justify-start gap-1">
                         <Image
