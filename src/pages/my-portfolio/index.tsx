@@ -28,7 +28,7 @@ import { SearchIcon } from '@/components/icons/search';
 
 ///import Search from '@/components/search/search-horse';
 
-import Search from '@/components/search/search-asset';
+import Search from '@/components/search/search-portfolio';
 
 import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
