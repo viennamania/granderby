@@ -109,6 +109,10 @@ export const tokenContractAddressUSDC =
 export const tokenContractAddressUSDT =
   '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
 
+// GCOW Token (GCOW)
+export const tokenContractAddressGCOW =
+  '0x81e6F303C1913f60488f2E01CA868e500b0F5F69';
+
 // Race Ticket ERC-1155
 export const contractAddressRace = '0x5e52c17869F8fF63Eeb5f832Bfbf98465bc213bf';
 
