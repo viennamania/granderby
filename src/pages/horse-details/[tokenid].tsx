@@ -193,15 +193,18 @@ function SinglePrice(tokenid: any) {
                                 Me
                               </div>
                             ) : (
-                              <div>
+                              <div className="flex flex-row items-start justify-center">
                                 <span>
                                   {stakerAddress?.substring(0, 10)}...
                                 </span>
+                                Registered
+                                {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
+                                */}
                               </div>
                             )}
                           </>
@@ -325,6 +328,7 @@ function SinglePrice(tokenid: any) {
                                 <span>
                                   {stakerAddress?.substring(0, 10)}...
                                 </span>
+                                Registered
                                 {/*stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
