@@ -81,7 +81,7 @@ import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurren
 
 import toast from 'react-hot-toast';
 
-import '@/components/nft/share-view';
+//import '@/components/nft/share-view';
 import ShareView from '@/components/nft/share-view';
 
 export default function IntroScreen() {

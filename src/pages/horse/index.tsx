@@ -28,6 +28,12 @@ import { SearchIcon } from '@/components/icons/search';
 
 import Search from '@/components/search/search-horse';
 
+import ShareView from '@/components/nft/share-view';
+
+import dynamic from 'next/dynamic';
+
+import CoinInput from '@/components/ui/coin-input';
+
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const contractAddress: string = context.params?.contractAddress;
 

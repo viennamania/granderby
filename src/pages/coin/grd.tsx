@@ -83,6 +83,8 @@ import { BigNumber, ethers } from 'ethers';
 import styles from '@/styles/Home.module.css';
 import { add } from 'lodash';
 
+import CoinInput from '@/components/ui/coin-input';
+
 /*
 const readOnlySdk = new ThirdwebSDK("goerli", {
   clientId: "YOUR_CLIENT_ID", // Use client id if using on the client side, get it from dashboard settings
@@ -406,6 +408,7 @@ const WalletPage: NextPageWithLayout<
         {/*
         <Profile />
         */}
+
         <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
           My Balance
         </h3>
@@ -514,8 +517,17 @@ const WalletPage: NextPageWithLayout<
 
             <div className="mb-3 text-lg"></div>
 
+            <div className="flex flex-col items-center justify-center">
+              <CoinInput
+                label={'From'}
+                exchangeRate={0.0}
+                defaultCoinIndex={0}
+                getCoinValue={(data) => console.log('From coin value:', data)}
+              />
+            </div>
+
             <input
-              className=" w-full text-right text-5xl font-bold text-lime-600"
+              className="mt-10 w-full text-right text-5xl font-bold text-lime-600"
               type="number"
               name="amount"
               placeholder="0"
