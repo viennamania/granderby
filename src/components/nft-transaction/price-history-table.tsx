@@ -30,6 +30,9 @@ import { array } from 'yup';
 
 import { format } from 'date-fns';
 
+import Image from '@/components/ui/image';
+import { useRouter } from 'next/router';
+
 import { ArrowUp } from '@/components/icons/arrow-up';
 import {
   XAxis,
@@ -262,30 +265,30 @@ const COLUMNS = [
     maxWidth: 40,
   },
   */
-  /*
+
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Type</div>,
-    accessor: 'transactionType',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
+    accessor: 'hash',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltext-left">
-        {value === 'Send' ? (
-          <div className="-tracking-[1px] ">
-            <LongArrowRight className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-gray-600 dark:text-gray-400">{value}</span>
-          </div>
-        ) : (
-          <div className="-tracking-[1px]">
-            <LongArrowLeft className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-gray-600 dark:text-gray-400">{value}</span>
-          </div>
-        )}
-      </div>
+      <button
+        className=" flex flex-row items-center justify-start "
+        onClick={() =>
+          //alert("clicked")
+
+          (location.href = 'https://polygonscan.com/tx/' + value)
+        }
+      >
+        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
+
+        <div className="ml-1 text-left text-xs -tracking-[1px]">
+          {value.substring(0, 6) + '...'}
+        </div>
+      </button>
     ),
-    minWidth: 40,
-    maxWidth: 40,
+    minWidth: 60,
+    maxWidth: 60,
   },
-  */
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
@@ -401,6 +404,8 @@ export default function PriceHistoryTable(
 
   { nftMetadata }: { nftMetadata?: any }
 ) {
+  const router = useRouter();
+
   ///console.log('PriceHistoryTable nftMetadata: ', nftMetadata);
 
   //const data = React.useMemo(() => transactionData, [ ]);
@@ -529,7 +534,7 @@ export default function PriceHistoryTable(
 
     //console.log('data.all: ', data.all);
 
-    console.log('data.total: ', data.total);
+    //console.log('data.total: ', data.total);
 
     setTotalCount(data.total);
 
@@ -539,6 +544,7 @@ export default function PriceHistoryTable(
 
     data.all?.map((buy: any, index: number) => {
       const transactionData = {
+        hash: buy.hash,
         id: buy.blockNum,
         //transactionType: transfer.from === address ? 'Send' : 'Receive',
         transactionType: 'Send',

@@ -65,6 +65,8 @@ function SinglePrice(tokenid: any) {
   const isMounted = useIsMounted();
   const breakpoint = useBreakpoint();
 
+  const router = useRouter();
+
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
   const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
@@ -125,17 +127,26 @@ function SinglePrice(tokenid: any) {
                     </div>
                   </div>
 
-                  <div className="mt-2 flex flex-row items-center justify-start ">
-                    <Image
-                      src="/images/logo-polygon.png"
-                      alt="gd"
-                      width={18}
-                      height={18}
-                    />
+                  <div className="mt-2 flex  ">
+                    <button
+                      className=" flex flex-row items-center justify-start "
+                      onClick={() =>
+                        router.push(
+                          `https://polygonscan.com/nft/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                        )
+                      }
+                    >
+                      <Image
+                        src="/images/logo-polygon.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
 
-                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
-                    </span>
+                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                        #{nftMetadata?.metadata?.id}
+                      </span>
+                    </button>
                   </div>
 
                   {/* owned by */}
@@ -244,17 +255,26 @@ function SinglePrice(tokenid: any) {
                     </div>
                   </div>
 
-                  <div className="mt-2 flex flex-row items-center justify-start ">
-                    <Image
-                      src="/images/logo-polygon.png"
-                      alt="gd"
-                      width={18}
-                      height={18}
-                    />
+                  <div className="mt-2 flex  ">
+                    <button
+                      className=" flex flex-row items-center justify-start  "
+                      onClick={() =>
+                        router.push(
+                          `https://polygonscan.com/nft/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                        )
+                      }
+                    >
+                      <Image
+                        src="/images/logo-polygon.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
 
-                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
-                    </span>
+                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                        #{nftMetadata?.metadata?.id}
+                      </span>
+                    </button>
                   </div>
 
                   {/* owned by */}
