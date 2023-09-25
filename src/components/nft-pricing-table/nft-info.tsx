@@ -333,7 +333,7 @@ function NftInfo({ nftMetadata }: any) {
           {/* sale info */}
           <div className="mt-3  flex flex-col items-center justify-center gap-5  ">
             {loadingListings ? (
-              <div className="p-5 text-sm font-bold xl:text-lg">
+              <div className="m-5 p-5 text-sm font-bold xl:text-lg">
                 <b>Loading sale...</b>
               </div>
             ) : (
@@ -694,6 +694,13 @@ function NftInfo({ nftMetadata }: any) {
                     </div>
                     <div className=" text-xl font-bold xl:text-2xl">
                       <div className="flex flex-row items-center justify-start gap-2">
+                        <Image
+                          src="/images/sale.png"
+                          alt="sale"
+                          width={30}
+                          height={30}
+                        />
+
                         <Image
                           src="/images/market.png"
                           alt="market"
