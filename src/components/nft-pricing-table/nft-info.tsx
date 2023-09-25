@@ -363,35 +363,35 @@ function NftInfo({ nftMetadata }: any) {
                         </button>
 
                         <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
-                          {saleHistory[0].paidToken ===
+                          {saleHistory[0]?.paidToken ===
                             '0x0000000000000000000000000000000000001010' &&
                             (
-                              saleHistory[0].totalPricePaid /
+                              saleHistory[0]?.totalPricePaid /
                               1000000000000000000
                             ).toFixed(2)}
-                          {saleHistory[0].paidToken ===
+                          {saleHistory[0]?.paidToken ===
                             '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
                             (
-                              saleHistory[0].totalPricePaid /
+                              saleHistory[0]?.totalPricePaid /
                               1000000000000000000
                             ).toFixed(2)}
-                          {saleHistory[0].paidToken ===
+                          {saleHistory[0]?.paidToken ===
                             '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
-                            (saleHistory[0].totalPricePaid / 1000000).toFixed(
+                            (saleHistory[0]?.totalPricePaid / 1000000).toFixed(
                               2
                             )}
                         </span>
                         <span>
-                          {saleHistory[0].paidToken ===
+                          {saleHistory[0]?.paidToken ===
                             '0x0000000000000000000000000000000000001010' && (
                             <span className="pt-1">MATIC</span>
                           )}
-                          {saleHistory[0].paidToken ===
+                          {saleHistory[0]?.paidToken ===
                             '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
                             <span className="pt-1">GRD</span>
                           )}
 
-                          {saleHistory[0].paidToken ===
+                          {saleHistory[0]?.paidToken ===
                             '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
                             <span className="pt-1">USDC</span>
                           )}
