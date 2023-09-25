@@ -111,8 +111,8 @@ const HorsePage: NextPageWithLayout<
             placeholder="blur"
             blurDataURL="https://granderby.io/images/logo.png"
             fill
-            className="object-cover"
-            //className="h-full w-full object-cover"
+            //className="object-cover"
+            className="h-full w-full object-cover"
             alt="Cover Image"
           />
         </div>

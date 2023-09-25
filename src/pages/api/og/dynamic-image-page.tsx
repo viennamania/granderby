@@ -81,7 +81,7 @@ export default async function handler(req: NextRequest) {
           background: '#ffffff',
           width: '100%',
           height: '100%',
-          padding: 10,
+          padding: 0,
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
@@ -94,7 +94,7 @@ export default async function handler(req: NextRequest) {
           width="1100"
           src={imageUrl}
           style={{
-            borderRadius: 10,
+            borderRadius: 0,
           }}
         />
 
@@ -104,7 +104,7 @@ export default async function handler(req: NextRequest) {
             background: '#ffffff',
             width: '100%',
             padding: 0,
-            marginTop: 20,
+            marginTop: 5,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
