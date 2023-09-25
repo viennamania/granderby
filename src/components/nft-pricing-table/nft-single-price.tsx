@@ -1116,9 +1116,9 @@ export default function NftSinglePrice({
         </div>
       ) : (
         <div className="  flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
-          <div className=" flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-            <span className="   flex items-center gap-2.5  ">
-              <span className="items-left flex flex-col gap-2.5  ">
+          <div className=" flex flex-wrap items-center justify-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
+            <span className="   flex items-center gap-2.5 ">
+              <span className=" flex flex-col items-center gap-2.5  ">
                 {/*
                 <Collapse label="Grade" initialOpen={true}>
                   <Grade {...{ grade: attributeGrade }} />
@@ -1135,7 +1135,7 @@ export default function NftSinglePrice({
 
                 {/* nft attributes details */}
 
-                <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2  ">
+                <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2 xl:grid-cols-5 2xl:grid-cols-3  ">
                   {
                     //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
                     attributes?.map((attribute: any) => (

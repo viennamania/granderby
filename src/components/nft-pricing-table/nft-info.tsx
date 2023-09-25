@@ -398,12 +398,14 @@ function NftInfo({ nftMetadata }: any) {
                         </span>
                       </div>
 
+                      {/*
                       <div className=" flex flex-row items-center justify-start text-xs">
                         {format(
                           Date.parse(saleHistory[0]?.blockTimestamp || 0),
                           'yyy-MM-dd hh:mm:ss'
                         )}
                       </div>
+                      */}
 
                       <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
@@ -615,12 +617,14 @@ function NftInfo({ nftMetadata }: any) {
                         )}
                       </div>
 
+                      {/*
                       <div className=" flex flex-row items-center justify-start text-xs">
                         {format(
                           Date.parse(saleHistory[0]?.blockTimestamp || 0),
                           'yyy-MM-dd hh:mm:ss'
                         )}
                       </div>
+                      */}
 
                       <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button
