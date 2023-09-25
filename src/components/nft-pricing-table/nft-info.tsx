@@ -751,10 +751,7 @@ function NftInfo({ nftMetadata }: any) {
 
                     {!address && (
                       <div className="flex flex-row items-center justify-center">
-                        <ConnectWallet
-                          theme="light"
-                          className="text-sm font-bold xl:text-xl"
-                        />
+                        <ConnectWallet theme="light" btnTitle="Login" />
                         <span className="text-sm font-bold xl:text-xl">
                           &nbsp;&nbsp;for Buy Now
                         </span>

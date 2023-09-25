@@ -1117,9 +1117,7 @@ export default function NftSinglePrice({
       ) : (
         <div className="  flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
           <div className=" flex flex-wrap items-center justify-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-            <span className="   flex items-center gap-2.5 ">
-              <span className=" flex flex-col items-center gap-2.5  ">
-                {/*
+            {/*
                 <Collapse label="Grade" initialOpen={true}>
                   <Grade {...{ grade: attributeGrade }} />
                 </Collapse>
@@ -1133,16 +1131,18 @@ export default function NftSinglePrice({
                 </Collapse>
                 */}
 
+            <div className=" flex flex-col rounded-lg border ">
+              <Collapse label="Attributes" initialOpen={true}>
                 {/* nft attributes details */}
 
-                <div className="mt-5 grid  grid-cols-2 items-start justify-between gap-2 xl:grid-cols-5 2xl:grid-cols-3  ">
+                <div className="grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-5 2xl:grid-cols-3  ">
                   {
                     //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
                     attributes?.map((attribute: any) => (
                       <div key={attribute?.trait_type}>
                         <div
                           className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
-                          lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                            lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
                         >
                           <span
                             className={cn(
@@ -1155,11 +1155,11 @@ export default function NftSinglePrice({
 
                           <span className="text-sm  font-semibold xl:text-lg">
                             {/*
-                              {attribute?.value?.toString().length < 8
-                                ? attribute?.value?.toString()
-                                : attribute?.value?.toString().substring(0, 8)}
-                              ...
-                              */}
+                                {attribute?.value?.toString().length < 8
+                                  ? attribute?.value?.toString()
+                                  : attribute?.value?.toString().substring(0, 8)}
+                                ...
+                                */}
                             {attribute?.value}
                           </span>
                         </div>
@@ -1167,8 +1167,8 @@ export default function NftSinglePrice({
                     ))
                   }
                 </div>
-              </span>
-            </span>
+              </Collapse>
+            </div>
           </div>
         </div>
       )}
