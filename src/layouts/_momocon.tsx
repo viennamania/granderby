@@ -296,10 +296,19 @@ function HeaderRightArea() {
               */
 
               return (
-                <div className=" mt-20 flex flex-col items-center justify-center p-10">
+                <div className=" mt-10 flex flex-col items-center justify-center p-20">
+                  {/*
                   <div>Last Race Winner</div>
 
                   <LastWinners npcs={npcNames} status={0} />
+                  */}
+
+                  <Image
+                    src="/images/logo.png"
+                    alt="logo"
+                    width={300}
+                    height={300}
+                  />
                 </div>
               );
             }}
