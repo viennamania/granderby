@@ -39,7 +39,7 @@ import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
-import Collapse from '@/components/ui/collapse';
+import Collapse from '@/components/ui/collapse-asset';
 
 export default function Search() {
   const tabMenu = [
@@ -133,7 +133,7 @@ export default function Search() {
           </div>
 
           <div className="mt-5  flex flex-col rounded-lg border ">
-            <Collapse label="Horse" initialOpen={true}>
+            <Collapse label="Horse" description="34" initialOpen={true}>
               <div className=" itmes-start  flex flex-col justify-center p-3 pb-10">
                 <OwnedFeeds contractAddress={nftDropContractAddressHorse} />
               </div>
@@ -141,7 +141,7 @@ export default function Search() {
           </div>
 
           <div className="mt-5 flex flex-col rounded-lg border ">
-            <Collapse label="Jockey" initialOpen={true}>
+            <Collapse label="Jockey" description="54" initialOpen={true}>
               <div className="itmes-start flex flex-col justify-center p-3 pb-10">
                 <OwnedFeeds contractAddress={nftDropContractAddressJockey} />
               </div>
@@ -149,7 +149,7 @@ export default function Search() {
           </div>
 
           <div className="mt-5 flex flex-col rounded-lg border ">
-            <Collapse label="Track" initialOpen={true}>
+            <Collapse label="Track" description="42" initialOpen={true}>
               <div className="itmes-start flex flex-col justify-center p-3 pb-10">
                 <OwnedFeeds
                   contractAddress={nftDropContractAddressHorseZedRun}

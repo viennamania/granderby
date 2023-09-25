@@ -353,14 +353,16 @@ export default function OwnedFeeds(
               
               <div className="text-xl ">Granderby Horses</div>
               */}
+              {/*
               <div className="text-xl xl:text-2xl ">Count</div>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <div className="flex flex-col justify-center text-4xl font-bold underline decoration-sky-500 xl:text-6xl">
                 {ownedNfts?.length}
               </div>
+              */}
             </div>
 
-            <div className="mt-10 flex">
+            <div className="m-2 flex items-center justify-center xl:m-5 ">
               {
                 // If the listings are loading, show a loading message
                 isLoadingOwnedNfts ? (
