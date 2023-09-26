@@ -59,11 +59,16 @@ import { set } from 'date-fns';
 
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 
+import Button from '@/components/ui/button/button';
+import { useModal } from '@/components/modal-views/context';
+
 function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
   const isMounted = useIsMounted();
   const breakpoint = useBreakpoint();
+
+  const { openModal } = useModal();
 
   const router = useRouter();
 
@@ -147,83 +152,98 @@ function SinglePrice(tokenid: any) {
                         #{nftMetadata?.metadata?.id}
                       </span>
                     </button>
+
+                    <button
+                      className="ml-10 flex flex-row items-center justify-start "
+                      onClick={() => openModal('SHARE_VIEW')}
+                    >
+                      <Image
+                        src="/images/logo-polygon.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+
+                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                        Share
+                      </span>
+                    </button>
                   </div>
 
                   {/* owned by */}
-
-                  {isLoadingStakerAddress ? (
-                    <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
+                  <div className="mt-3 flex w-full items-center justify-start  gap-4 ">
+                    {isLoadingStakerAddress ? (
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Loading Owner...</b>
                       </div>
-                    </div>
-                  ) : (
-                    <div className=" flex w-full items-center justify-start  gap-4 ">
-                      <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                        Owned by
-                      </div>
-                      <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                        {stakerAddress &&
-                        stakerAddress ===
-                          '0x0000000000000000000000000000000000000000' ? (
-                          <>
-                            {nftMetadata?.owner === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
-                              </div>
-                            ) : (
-                              <button
-                                className=" flex flex-row items-center justify-start  "
-                                onClick={() =>
-                                  router.push(
-                                    `/user-asset/${nftMetadata?.owner}`
-                                  )
-                                }
-                              >
-                                <span>
-                                  {nftMetadata?.owner?.substring(0, 10)}...
-                                </span>
-                                {/*
+                    ) : (
+                      <>
+                        <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                          Owned by
+                        </div>
+                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                          {stakerAddress &&
+                          stakerAddress ===
+                            '0x0000000000000000000000000000000000000000' ? (
+                            <>
+                              {nftMetadata?.owner === address ? (
+                                <div className="text-xl font-bold text-blue-600">
+                                  Me
+                                </div>
+                              ) : (
+                                <button
+                                  className=" flex flex-row items-center justify-start  "
+                                  onClick={() =>
+                                    router.push(
+                                      `/user-asset/${nftMetadata?.owner}`
+                                    )
+                                  }
+                                >
+                                  <span>
+                                    {nftMetadata?.owner?.substring(0, 10)}...
+                                  </span>
+                                  {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
                                 */}
-                              </button>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            {stakerAddress && stakerAddress === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
-                              </div>
-                            ) : (
-                              <button
-                                className=" flex flex-row items-center justify-start  "
-                                onClick={() =>
-                                  router.push(`/user-asset/${stakerAddress}`)
-                                }
-                              >
-                                <span>
-                                  {stakerAddress?.substring(0, 10)}...
-                                </span>
-                                Registered
-                                {/*
+                                </button>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              {stakerAddress && stakerAddress === address ? (
+                                <div className="text-xl font-bold text-blue-600">
+                                  Me
+                                </div>
+                              ) : (
+                                <button
+                                  className=" flex flex-row items-center justify-start  "
+                                  onClick={() =>
+                                    router.push(`/user-asset/${stakerAddress}`)
+                                  }
+                                >
+                                  <span>
+                                    {stakerAddress?.substring(0, 10)}...
+                                  </span>
+                                  Registered
+                                  {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
                                 */}
-                              </button>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                                </button>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 {/* end of nft title */}
@@ -290,81 +310,96 @@ function SinglePrice(tokenid: any) {
                         #{nftMetadata?.metadata?.id}
                       </span>
                     </button>
+
+                    <button
+                      className="ml-10 flex flex-row items-center justify-start "
+                      onClick={() => openModal('SHARE_VIEW')}
+                    >
+                      <Image
+                        src="/images/logo-polygon.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+
+                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                        Share
+                      </span>
+                    </button>
                   </div>
 
                   {/* owned by */}
-
-                  {isLoadingStakerAddress ? (
-                    <div className="mt-0 flex flex-col items-center justify-center gap-5 p-3">
+                  <div className="mt-2 flex w-full items-center justify-start  gap-4 ">
+                    {isLoadingStakerAddress ? (
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Loading Owner...</b>
                       </div>
-                    </div>
-                  ) : (
-                    <div className=" flex w-full items-center justify-start  gap-4 ">
-                      <div className="flex w-[140px] items-center justify-start text-sm tracking-wider text-[#6B7280] ">
-                        <span>Owned by</span>
-                      </div>
-                      <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                        {stakerAddress &&
-                        stakerAddress ===
-                          '0x0000000000000000000000000000000000000000' ? (
-                          <>
-                            {nftMetadata?.owner === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
-                              </div>
-                            ) : (
-                              <button
-                                className=" flex flex-row items-center justify-start  "
-                                onClick={() =>
-                                  router.push(
-                                    `/user-asset/${nftMetadata?.owner}`
-                                  )
-                                }
-                              >
-                                <span>
-                                  {nftMetadata?.owner?.substring(0, 10)}...
-                                </span>
-                                {/*
+                    ) : (
+                      <>
+                        <div className="flex w-[140px] items-center justify-start text-sm tracking-wider text-[#6B7280] ">
+                          <span>Owned by</span>
+                        </div>
+                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                          {stakerAddress &&
+                          stakerAddress ===
+                            '0x0000000000000000000000000000000000000000' ? (
+                            <>
+                              {nftMetadata?.owner === address ? (
+                                <div className="text-xl font-bold text-blue-600">
+                                  Me
+                                </div>
+                              ) : (
+                                <button
+                                  className=" flex flex-row items-center justify-start  "
+                                  onClick={() =>
+                                    router.push(
+                                      `/user-asset/${nftMetadata?.owner}`
+                                    )
+                                  }
+                                >
+                                  <span>
+                                    {nftMetadata?.owner?.substring(0, 10)}...
+                                  </span>
+                                  {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
                                 */}
-                              </button>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            {stakerAddress && stakerAddress === address ? (
-                              <div className="text-xl font-bold text-blue-600">
-                                Me
-                              </div>
-                            ) : (
-                              <button
-                                className=" flex flex-row items-center justify-start  "
-                                onClick={() =>
-                                  router.push(`/user-asset/${stakerAddress}`)
-                                }
-                              >
-                                <span>
-                                  {stakerAddress?.substring(0, 10)}...
-                                </span>
-                                Registered
-                                {/*stakeInfoCount && stakeInfoCount > 1 && (
+                                </button>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              {stakerAddress && stakerAddress === address ? (
+                                <div className="text-xl font-bold text-blue-600">
+                                  Me
+                                </div>
+                              ) : (
+                                <button
+                                  className=" flex flex-row items-center justify-start  "
+                                  onClick={() =>
+                                    router.push(`/user-asset/${stakerAddress}`)
+                                  }
+                                >
+                                  <span>
+                                    {stakerAddress?.substring(0, 10)}...
+                                  </span>
+                                  Registered
+                                  {/*stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )*/}
-                              </button>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                                </button>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">

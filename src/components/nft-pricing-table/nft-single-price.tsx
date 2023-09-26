@@ -20,11 +20,13 @@ import { RadioGroup } from '@/components/ui/radio-group';
 import Collapse from '@/components/ui/collapse';
 import { motion } from 'framer-motion';
 import Slider from 'rc-slider';
+
 import {
   weeklyComparison,
   monthlyComparison,
   yearlyComparison,
 } from '@/data/static/price-history';
+
 import { Tag } from '@/components/icons/tag';
 
 import { LongArrowUp } from '@/components/icons/long-arrow-up';
@@ -57,6 +59,12 @@ import { useRouter } from 'next/router';
 
 import ShareView from '@/components/nft/share-view';
 
+//import { Button } from '@mui/material';
+import Button from '@/components/ui/button';
+import { useModal } from '@/components/modal-views/context';
+
+import TransferHistoryTable from '@/components/nft-transaction/transfer-history-table';
+
 import {
   stakingContractAddressHorseAAA,
   stakingContractAddressHorseBBB,
@@ -82,7 +90,6 @@ import {
   ConnectWallet,
 } from '@thirdweb-dev/react';
 import { at, set } from 'lodash';
-import { Button } from '@mui/material';
 
 ////import { useToast } from '@/components/ui/use-toast';
 
@@ -538,6 +545,8 @@ export default function NftSinglePrice({
   const router = useRouter();
 
   ////const { toast } = useToast();
+
+  const { openModal } = useModal();
 
   const address = useAddress();
 
@@ -1144,7 +1153,7 @@ export default function NftSinglePrice({
                 </Collapse>
                 */}
 
-            <div className=" flex rounded-lg border ">
+            <div className="flex w-full rounded-lg border ">
               <Collapse label="Attributes" initialOpen={true}>
                 {/* nft attributes details */}
 
@@ -1183,8 +1192,13 @@ export default function NftSinglePrice({
               </Collapse>
             </div>
 
-            <div className="mt-5 flex flex-row items-center justify-center ">
-              <ShareView />
+            <div className="flex w-full flex-col rounded-lg border ">
+              <Collapse label="Transfer Information" initialOpen={true}>
+                {/*
+                <TransferHistoryTable data={saleHistory} />
+                */}
+                <TransferHistoryTable />
+              </Collapse>
             </div>
           </div>
         </div>
