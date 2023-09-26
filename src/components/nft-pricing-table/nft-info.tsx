@@ -330,7 +330,7 @@ function NftInfo({ nftMetadata }: any) {
       <div className=" flex flex-col rounded-lg border ">
         <Collapse label="Sale Information" initialOpen={true}>
           {/* sale info */}
-          <div className="mt-3  flex flex-col items-center justify-center gap-5  ">
+          <div className="  flex flex-col items-center justify-center gap-5  ">
             {loadingListings ? (
               <div className="m-5 p-5 text-sm font-bold xl:text-lg">
                 <b>Loading sale...</b>

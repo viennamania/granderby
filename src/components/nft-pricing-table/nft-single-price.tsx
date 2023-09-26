@@ -1193,7 +1193,7 @@ export default function NftSinglePrice({
             </div>
 
             <div className="flex w-full flex-col rounded-lg border ">
-              <Collapse label="Transfer Information" initialOpen={true}>
+              <Collapse label="Transfers" initialOpen={true}>
                 {/*
                 <TransferHistoryTable data={saleHistory} />
                 */}

@@ -277,7 +277,7 @@ function SinglePrice(tokenid: any) {
             {layout === LAYOUT_OPTIONS.RETRO ? (
               <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
             ) : (
-              <div className="flex w-full flex-col">
+              <div className="mt-5 flex w-full flex-col">
                 <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
                   <Link
                     className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
@@ -408,7 +408,7 @@ function SinglePrice(tokenid: any) {
                   </div>
                 </div>
 
-                <div className="w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
+                <div className="mt-5 w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
                   {/*
                   <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
                     NFT Info
