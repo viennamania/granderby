@@ -141,8 +141,10 @@ export const getAllHorses = async (
   //console.log('getAllHorses pagination', pagination);
   //console.log('getAllHorses grades', grades);
   //console.log('getAllHorses manes', manes);
-  //console.log('getAllHorses holder', holder);
+
   //console.log('getAllHorses sort', sort);
+
+  console.log('getAllHorses holder', holder);
 
   if (holder) {
     const data = await HorseModel.find({

@@ -104,7 +104,7 @@ export default async function handler(
   });
 
   res.status(200).json({
-    nfts: formattedNfts.length ? formattedNfts : null,
+    nfts: formattedNfts ? formattedNfts : [],
     //pageKey: nfts.pageKey,
     ///pageKey: null,
     pageKey: pageKey,

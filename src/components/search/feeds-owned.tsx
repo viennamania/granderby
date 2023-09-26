@@ -1,9 +1,5 @@
 import cn from 'classnames';
 
-import { NFTList } from '@/data/static/horse-list';
-
-import NFTGrid from '@/components/ui/nft-card';
-
 //import AuthorImage from '@/assets/images/author.jpg';
 import AuthorImage from '@/assets/images/author.jpg';
 
@@ -24,7 +20,9 @@ import { set } from 'date-fns';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useInfiniteQuery } from 'react-query';
-import Image from 'next/image';
+
+//import Image from 'next/image';
+import Image from '@/components/ui/image';
 
 import { useRouter } from 'next/router';
 
@@ -39,6 +37,8 @@ import { useModal } from '@/components/modal-views/context';
 import Button from '@/components/ui/button';
 
 import { useAddress } from '@thirdweb-dev/react';
+
+import { ChevronForward } from '@/components/icons/chevron-forward';
 
 export default function OwnedFeeds(
   { contractAddress }: { contractAddress?: string },
@@ -82,159 +82,137 @@ export default function OwnedFeeds(
     price: string;
   };
 
-  const {
-    data: searchData,
-    status,
-    fetchNextPage,
-    hasNextPage,
-    refetch,
-  } = useInfiniteQuery(
-    'infiniteCharacters',
-
-    async ({
-      pageParam = 1,
-
-      //pageParam = '',
-    }) =>
-      await fetch(
-        '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ///grades: selectedGradesStorage,
-            grades: selectedGradesStorage ?? [],
-            manes: selectedManesStorage ?? [],
-            holder: address,
-            //sort: selectedGSortStorage,
-          }),
-        }
-      ).then((result) => {
-        return result.json();
-      }),
-    {
-      getNextPageParam: (lastPage, pages) => {
-        ////console.log(" feeds-horse  lastPage======>", lastPage);
-
-        ///console.log("pages======>", pages);
-
-        if (lastPage.pageKey) {
-          return lastPage.pageKey;
-        } else {
-          return undefined;
-        }
-      },
-    }
-  );
-
+  const [searchData, setSearchData] = useState<any>();
   useEffect(() => {
-    /*
-    console.log(
-      'feeds-horse useEffect selectedGradesStorage=====',
-      selectedGradesStorage
+    async function getHorses() {
+      const data = await fetch('/api/nft/getHorses?pageNumber=1&pageSize=20', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ///grades: selectedGradesStorage,
+          grades: selectedGradesStorage ?? [],
+          manes: selectedManesStorage ?? [],
+          holder: address,
+          //sort: selectedGSortStorage,
+        }),
+      }).then((result) => {
+        return result.json();
+      });
+
+      console.log('feeds-owned data', data);
+
+      setSearchData(data);
+    }
+
+    if (address !== undefined) {
+      getHorses();
+    }
+  }, [address, selectedGradesStorage, selectedManesStorage]);
+
+  const limit = 1000;
+
+  if (address === undefined) {
+    return (
+      <>
+        <div className="flex flex-col items-center justify-center ">
+          <div className="text-xl">Please connect wallet</div>
+        </div>
+      </>
     );
-    */
-    refetch();
-  }, [address, selectedGradesStorage, selectedManesStorage, refetch]);
+  }
 
   return (
     <>
-      {status === 'loading' && (
+      {searchData?.nfts.length === 0 ? (
         <>
           <div className="flex flex-col items-center justify-center ">
-            <div className="text-xl">Loading horses...</div>
+            <div className="text-xl">No horses found</div>
 
-            <span className="items-top mt-10 flex h-screen w-full justify-center">
-              <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-            </span>
+            <button
+              //className="ml-5 flex flex-row items-center justify-center gap-3"
+
+              /*
+              className={`gold-btn block border border-black p-1 text-center text-black ${
+                address === 0
+                  ? 'gold-btn-active'
+                  : address === 1000
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+              */
+
+              className={`gold-btn flex  flex-row items-center justify-center gap-2   border-none p-2 text-center text-black ${
+                limit === 0
+                  ? 'gold-btn-active'
+                  : limit === 1000
+                  ? 'bg-[#ffc000]'
+                  : 'bg-transparent'
+              } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+              ///onClick={(e) => router.push('/coin/usdc')}
+              onClick={() => {
+                router.push('https://granderby.market');
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <Image
+                src="/images/market.png"
+                alt="market"
+                width={25}
+                height={20}
+              />
+              {/*
+              <Image
+                src="/images/logo-opensea.svg"
+                alt="market"
+                width={80}
+                height={50}
+              />
+              */}
+
+              <span>GRANDERBY MARKET</span>
+
+              <ChevronForward className=" rtl:rotate-180" />
+            </button>
           </div>
         </>
-      )}
-
-      {status === 'success' && (
-        <InfiniteScroll
-          dataLength={searchData?.pages?.length * 20}
-          next={fetchNextPage}
-          hasMore={hasNextPage ?? false}
-          loader={
-            <div className="mt-10 flex flex-col items-center justify-center ">
-              <div className="text-xl">Loading...</div>
-
-              <span className="items-top mt-10 flex h-screen w-full justify-center">
-                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-              </span>
-            </div>
-          }
+      ) : (
+        <div
+          className={cn(
+            'mb-5 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5',
+            isGridCompact
+              ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
+              : '3xl:!grid-cols-5 4xl:!grid-cols-8',
+            className
+          )}
         >
-          {/*
-            switch (view) {
-    case 'SEARCH_VIEW':
-      return <SearchView />;
-    case 'SHARE_VIEW':
-      return <ShareView />;
-    case 'WALLET_CONNECT_VIEW':
-      return <SelectWallet />;
-    case 'PROFILE_INFO_VIEW':
-      return <ProfileInfo />;
-    case 'FOLLOWING_VIEW':
-      return <Followers />;
-    case 'FOLLOWERS_VIEW':
-      return <Followers />;
-    case 'NFT_PREVIEW':
-      return <PreviewContent />;
-    default:
-      return null;
-  }
-        */}
-
-          {/*
-        <Button
-          onClick={() => openModal('NFT_PREVIEW')}
-          className={cn('shadow-main hover:shadow-large', className)}
-        >
-          CONNECT
-        </Button>
-        */}
-
-          {searchData?.pages.map((page) => (
+          {searchData?.nfts?.map((nft: any) => (
             <div
-              key={page.pageKey}
-              className={cn(
-                'mb-5 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5',
-                isGridCompact
-                  ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                  : '3xl:!grid-cols-5 4xl:!grid-cols-8',
-                className
-              )}
+              className="relative flex flex-col overflow-hidden rounded-lg bg-white shadow-lg"
+              key={nft?.tokenId}
             >
-              {page.nfts?.map((nft: any) => (
-                <div
-                  className="relative flex flex-col overflow-hidden rounded-lg bg-white shadow-lg"
-                  key={nft?.tokenId}
-                >
-                  <button
-                    className=""
-                    onClick={() =>
-                      //setTokenid(nft.metadata.id.toString()),
-                      //setIsOpen(true)
+              <button
+                className=""
+                onClick={() =>
+                  //setTokenid(nft.metadata.id.toString()),
+                  //setIsOpen(true)
 
-                      router.push('/horse-details-owned/' + nft?.tokenId)
-                    }
-                    onMouseOver={() => {
-                      //alert("onMouseOver");
-                      //setDrawerHorseInfoTokenId(nft?.tokenId);
-                      //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
-                    }}
-                  >
-                    <Image
-                      src={nft?.media ? nft?.media : '/default-nft.png'}
-                      alt={nft?.title}
-                      height={300}
-                      width={300}
-                      loading="lazy"
-                      className="cursor-pointer object-cover transition duration-500 hover:scale-110"
-                    />
-                    {/*
+                  router.push('/horse-details-owned/' + nft?.tokenId)
+                }
+                onMouseOver={() => {
+                  //alert("onMouseOver");
+                  //setDrawerHorseInfoTokenId(nft?.tokenId);
+                  //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
+                }}
+              >
+                <Image
+                  src={nft?.media ? nft?.media : '/default-nft.png'}
+                  alt={nft?.title}
+                  height={300}
+                  width={300}
+                  loading="lazy"
+                  className="cursor-pointer object-cover transition duration-500 hover:scale-110"
+                />
+                {/*
                   <div className="ml-2 mt-2 flex w-full flex-row items-center justify-start gap-2">
                     
                     <Image
@@ -243,86 +221,83 @@ export default function OwnedFeeds(
                       width={18}
                       height={18}
                     />
-                   
+                    
                     <p className=" text-sm font-bold text-black">
                       #{nft?.tokenId}
                     </p>
                   </div>
-                   */}
-
-                    <div className="items-top  m-2 mt-4 flex  h-14 flex-col  justify-center gap-1   ">
-                      <div className="text-sm font-bold ">{nft?.title}</div>
-                      <div className="flex flex-row items-center justify-start gap-1">
-                        <Image
-                          src="/images/logo-polygon.png"
-                          alt="logo"
-                          width={12}
-                          height={12}
-                        />
-                        <div className="text-left text-sm">#{nft?.tokenId}</div>
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                        <span>Last Price</span>
-                        <span>
-                          {nft?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' &&
-                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
-                              2
-                            )}
-                          {nft?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
-                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
-                              2
-                            )}
-                          {nft?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
-                            (nft?.totalPricePaid / 1000000).toFixed(2)}
-                        </span>
-
-                        <span>
-                          {nft?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' && (
-                            <span>MATIC</span>
-                          )}
-                          {nft?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
-                            <span>GRD</span>
-                          )}
-
-                          {nft?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
-                            <span>USDC</span>
-                          )}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/*
-                  <div className="m-2 flex items-center justify-center ">
-                    Owner:{' '}
-                    <div className="text-sm  ">
-                      {nft?.holder?.substring(0, 10)}...
-                    </div>
-                  </div>
-                  */}
-                  </button>
-                  {/*
-                <button
-                  className="text-white text-md font-bold bg-sky-500  p-3
-                    opacity-0 hover:opacity-100"
-                >
                 */}
-                  <button
-                    className="bg-sky-600 p-2 text-sm font-bold  text-white
-                    "
-                  >
-                    Buy now
-                  </button>
+
+                <div className="items-top  m-2 mt-4 flex  h-16 flex-col  justify-center gap-1   ">
+                  <div className="text-sm font-bold ">{nft?.title}</div>
+                  <div className="flex flex-row items-center justify-start gap-1">
+                    <Image
+                      src="/images/logo-polygon.png"
+                      alt="logo"
+                      width={12}
+                      height={12}
+                    />
+                    <div className="text-left text-sm">#{nft?.tokenId}</div>
+                  </div>
+                  <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                    <span>Last Price</span>
+                    <span>
+                      {nft?.paidToken ===
+                        '0x0000000000000000000000000000000000001010' &&
+                        (nft?.totalPricePaid / 1000000000000000000).toFixed(2)}
+                      {nft?.paidToken ===
+                        '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                        (nft?.totalPricePaid / 1000000000000000000).toFixed(2)}
+                      {nft?.paidToken ===
+                        '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                        (nft?.totalPricePaid / 1000000).toFixed(2)}
+                    </span>
+
+                    <span>
+                      {nft?.paidToken ===
+                        '0x0000000000000000000000000000000000001010' && (
+                        <span>MATIC</span>
+                      )}
+                      {nft?.paidToken ===
+                        '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
+                        <span>GRD</span>
+                      )}
+
+                      {nft?.paidToken ===
+                        '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
+                        <span>USDC</span>
+                      )}
+                    </span>
+                  </div>
                 </div>
-              ))}
+
+                {/*
+              <div className="m-2 flex items-center justify-center ">
+                Owner:{' '}
+                <div className="text-sm  ">
+                  {nft?.holder?.substring(0, 10)}...
+                </div>
+              </div>
+              */}
+              </button>
+              {/*
+            <button
+              className="text-white text-md font-bold bg-sky-500  p-3
+                opacity-0 hover:opacity-100"
+            >
+            */}
+              {/*
+              <button
+                className="bg-sky-600 p-2 text-sm font-bold  text-white
+                "
+              >
+                Buy now
+              </button>
+
+               */}
             </div>
           ))}
-        </InfiniteScroll>
+        </div>
       )}
     </>
   );
