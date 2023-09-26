@@ -517,6 +517,7 @@ const WalletPage: NextPageWithLayout<
 
             <div className="mb-3 text-lg"></div>
 
+            {/*
             <div className="flex flex-col items-center justify-center">
               <CoinInput
                 label={'From'}
@@ -525,6 +526,9 @@ const WalletPage: NextPageWithLayout<
                 getCoinValue={(data) => console.log('From coin value:', data)}
               />
             </div>
+            */}
+
+            {/* Amount Field */}
 
             <input
               className="mt-10 w-full text-right text-5xl font-bold text-lime-600"

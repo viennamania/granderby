@@ -101,7 +101,6 @@ const HorsePage: NextPageWithLayout<
           2xl:h-96
           3xl:h-[448px]"
         >
-          {/*
           <Image
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
@@ -110,8 +109,8 @@ const HorsePage: NextPageWithLayout<
             className="h-full w-full object-cover"
             alt="Cover Image"
           />
-          */}
 
+          {/*
           <Image
             src={`https://granderby.io/api/og/dynamic-image-page?id=horse`}
             placeholder="blur"
@@ -121,6 +120,7 @@ const HorsePage: NextPageWithLayout<
             className="h-full w-full object-cover"
             alt="Cover Image"
           />
+          */}
         </div>
 
         <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">

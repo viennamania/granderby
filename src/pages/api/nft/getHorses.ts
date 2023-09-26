@@ -14,10 +14,11 @@ export default async function handler(
 ) {
   const { pageNumber, pageSize } = req.query;
 
-  const { grades, manes, sort } = req.body;
+  const { grades, manes, holder, sort } = req.body;
 
-  console.log('getHorses grades', grades);
-  console.log('getHorses manes', manes);
+  //console.log('getHorses grades', grades);
+  //console.log('getHorses manes', manes);
+  //console.log('getHorses holder', holder);
 
   var nfts = [] as any;
 
@@ -26,6 +27,7 @@ export default async function handler(
     Number(pageSize),
     grades,
     manes,
+    holder,
     sort
   );
 
@@ -33,7 +35,9 @@ export default async function handler(
 
   nfts = data.nfts;
 
-  ///console.log("nfts", data.nfts);
+  //console.log("nfts count", data.nfts.length);
+
+  //console.log("nfts", data.nfts);
 
   const pageKey = data.pageNumber;
 
@@ -78,8 +82,8 @@ export default async function handler(
       totalPricePaid: totalPricePaid,
       paidToken: paidToken,
       holder: holder,
-      contract: contract.address,
-      symbol: contract.symbol,
+      contract: contract?.address,
+      symbol: contract?.symbol,
       media: media[0]?.gateway
         ? media[0]?.gateway
         : 'https://via.placeholder.com/500',
@@ -87,7 +91,7 @@ export default async function handler(
       verified: contract.openSea?.safelistRequestStatus,
       tokenType,
       tokenId,
-      title: rawMetadata.name ? rawMetadata.name : title,
+      title: rawMetadata?.name ? rawMetadata.name : title,
       description,
       format: media[0]?.format ? media[0]?.format : 'png',
 

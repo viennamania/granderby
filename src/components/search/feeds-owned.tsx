@@ -40,7 +40,12 @@ import Button from '@/components/ui/button';
 
 import { useAddress } from '@thirdweb-dev/react';
 
-export default function Feeds({ className }: { className?: string }) {
+export default function OwnedFeeds(
+  { contractAddress }: { contractAddress?: string },
+  { className }: { className?: string }
+) {
+  console.log('OwnedFeeds contractAddress', contractAddress);
+
   const address = useAddress();
 
   const { isGridCompact } = useGridSwitcher();
@@ -100,7 +105,7 @@ export default function Feeds({ className }: { className?: string }) {
             ///grades: selectedGradesStorage,
             grades: selectedGradesStorage ?? [],
             manes: selectedManesStorage ?? [],
-            //holder: address,
+            holder: address,
             //sort: selectedGSortStorage,
           }),
         }
@@ -130,7 +135,7 @@ export default function Feeds({ className }: { className?: string }) {
     );
     */
     refetch();
-  }, [selectedGradesStorage, selectedManesStorage, refetch]);
+  }, [address, selectedGradesStorage, selectedManesStorage, refetch]);
 
   return (
     <>
@@ -213,7 +218,7 @@ export default function Feeds({ className }: { className?: string }) {
                       //setTokenid(nft.metadata.id.toString()),
                       //setIsOpen(true)
 
-                      router.push('/horse-details/' + nft?.tokenId)
+                      router.push('/horse-details-owned/' + nft?.tokenId)
                     }
                     onMouseOver={() => {
                       //alert("onMouseOver");

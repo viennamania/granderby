@@ -1144,11 +1144,11 @@ export default function NftSinglePrice({
                 </Collapse>
                 */}
 
-            <div className=" flex flex-col rounded-lg border ">
+            <div className=" flex rounded-lg border ">
               <Collapse label="Attributes" initialOpen={true}>
                 {/* nft attributes details */}
 
-                <div className="grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-5 2xl:grid-cols-3  ">
+                <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-5 2xl:grid-cols-4  ">
                   {
                     //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
                     attributes?.map((attribute: any) => (
@@ -1166,7 +1166,7 @@ export default function NftSinglePrice({
                             <span>{attribute?.trait_type}</span>
                           </span>
 
-                          <span className="text-sm  font-semibold xl:text-lg">
+                          <span className="xl:text-md  text-sm font-semibold">
                             {/*
                                 {attribute?.value?.toString().length < 8
                                   ? attribute?.value?.toString()

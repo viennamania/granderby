@@ -60,6 +60,8 @@ import { set } from 'date-fns';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 
 function SinglePrice(tokenid: any) {
+  const address = useAddress();
+
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
   const isMounted = useIsMounted();
@@ -67,7 +69,10 @@ function SinglePrice(tokenid: any) {
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
-  const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
+  const { data: nftMetadata, isLoading: isLoadingUseNFT } = useNFT(
+    contract,
+    tokenid.tokenid
+  );
 
   ///console.log('nftMetadata======>', nftMetadata);
 
@@ -93,11 +98,99 @@ function SinglePrice(tokenid: any) {
     setStakeInfoCount(stakeInfo?.[0]?.length);
   }, [stakeInfo]);
 
-  const address = useAddress();
+  if (isLoadingUseNFT)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
+      </div>
+    );
+
+  if (!address)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <ConnectWallet
+          /*
+        theme={
+          lightTheme({
+            fontFamily: 'Inter, sans-serif',
+            colors: {
+              //modalBg: "#000000",
+              modalBg: '#ffffff',
+              accentText: 'green',
+              
+
+              // ... etc
+            },
+          }),
+        }
+        */
+          theme="light"
+          welcomeScreen={() => {
+            ////return <LiveNftPricingSlider limits={2} />;
+            /*
+          return (
+            <NftSinglePrice
+              //tokenid={tokenid.tokenid}
+              nftMetadata={nftMetadata}
+              contractAddress={nftDropContractAddressHorse}
+              isOpen={isOpenWelcome}
+              setIsOpen={setIsOpenWelcome}
+            />
+          );
+          */
+            /*
+          return (
+
+            <div className=' m-10 flex items-center justify-center'>
+              <CollapseLastWinners label="Last Race Winners">
+                <div className="h-96">
+                  <LastWinners npcs={npcNames} status={0} />
+                </div>
+              </CollapseLastWinners>
+            </div>
+          )
+          */
+
+            return (
+              <div className=" mt-10 flex flex-col items-center justify-center p-20">
+                {/*
+              <div>Last Race Winner</div>
+
+              <LastWinners npcs={npcNames} status={0} />
+              */}
+
+                <Image
+                  src="/images/logo.png"
+                  alt="logo"
+                  width={300}
+                  height={300}
+                />
+              </div>
+            );
+          }}
+          btnTitle="Login"
+        />
+      </div>
+    );
+
+  if (address && address !== nftMetadata?.owner)
+    return (
+      <div className="flex h-screen flex-col items-center justify-center">
+        <div className="text-center text-3xl font-bold">
+          You do not own this NFT.
+        </div>
+
+        <div className="text-center text-2xl font-bold">
+          <Link className="text-blue-500 underline" href={`/my-asset`}>
+            Go to My NFT
+          </Link>
+        </div>
+      </div>
+    );
 
   return (
     <>
-      {isLoading ? (
+      {isLoadingUseNFT ? (
         <div className="flex h-screen items-center justify-center">
           <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>

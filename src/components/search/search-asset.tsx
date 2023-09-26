@@ -4,7 +4,7 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
-import OwnedFeeds from './feeds-nft-owned-asset';
+import OwnedFeeds from './feeds-owned';
 
 import OwnedFeedsDerbystars from './feeds-horse-owned-asset-derbystars';
 

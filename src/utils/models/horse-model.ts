@@ -134,13 +134,39 @@ export const getAllHorses = async (
   pagination: number,
   grades: string,
   manes: string,
+  holder: string,
   sort: string
 ) => {
   //console.log('getAllHorses pageNumber', pageNumber);
   //console.log('getAllHorses pagination', pagination);
   //console.log('getAllHorses grades', grades);
   //console.log('getAllHorses manes', manes);
+  //console.log('getAllHorses holder', holder);
   //console.log('getAllHorses sort', sort);
+
+  if (holder) {
+    const data = await HorseModel.find({
+      holder: holder.toLowerCase(),
+    })
+
+      .sort({ tokenId: 1 })
+
+      .skip((pageNumber - 1) * pagination)
+      //limit is number of Records we want to display
+      .limit(pagination)
+      /*
+      .then(data => {
+  
+        return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
+  
+      })
+      */
+      .catch((err) => {
+        ////return err;
+      });
+
+    return { nfts: data, pageNumber: pageNumber + 1 };
+  }
 
   if (grades.length === 0) {
     const data = await HorseModel.find({})
