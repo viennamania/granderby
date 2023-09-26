@@ -616,56 +616,66 @@ function NftInfo({ nftMetadata }: any) {
                             height={30}
                           />
                         </button>
-                        <button
-                          className="flex w-24 flex-row items-center justify-start "
-                          onClick={() =>
-                            //alert("clicked")
 
-                            (location.href =
-                              'https://polygonscan.com/tx/' +
-                              saleHistory[0]?.hash)
-                          }
-                        >
-                          <Image
-                            src="/images/logo-polygon.png"
-                            alt="gd"
-                            width={13}
-                            height={13}
-                          />
+                        {saleHistory[0] ? (
+                          <>
+                            <button
+                              className="flex w-24 flex-row items-center justify-start "
+                              onClick={() =>
+                                //alert("clicked")
 
-                          <div className="ml-1 text-left text-xs -tracking-[1px]">
-                            {saleHistory[0]?.hash.substring(0, 6) + '...'}
-                          </div>
-                        </button>
+                                (location.href =
+                                  'https://polygonscan.com/tx/' +
+                                  saleHistory[0]?.hash)
+                              }
+                            >
+                              <Image
+                                src="/images/logo-polygon.png"
+                                alt="gd"
+                                width={13}
+                                height={13}
+                              />
 
-                        <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
-                          {saleHistory[0]?.paidToken ===
-                          '0x0000000000000000000000000000000000001010'
-                            ? (
-                                saleHistory[0]?.totalPricePaid /
-                                1000000000000000000
-                              ).toFixed(2)
-                            : (
-                                saleHistory[0]?.totalPricePaid / 1000000
-                              ).toFixed(2)}
-                        </span>
+                              <div className="ml-1 text-left text-xs -tracking-[1px]">
+                                {saleHistory[0]?.hash.substring(0, 6) + '...'}
+                              </div>
+                            </button>
 
-                        {saleHistory[0]?.paidToken ===
-                        '0x0000000000000000000000000000000000001010' ? (
-                          <span className="flex "> MATIC</span>
+                            <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
+                              {saleHistory[0]?.paidToken ===
+                              '0x0000000000000000000000000000000000001010'
+                                ? (
+                                    saleHistory[0]?.totalPricePaid /
+                                    1000000000000000000
+                                  ).toFixed(2)
+                                : (
+                                    saleHistory[0]?.totalPricePaid / 1000000
+                                  ).toFixed(2)}
+                            </span>
+
+                            {saleHistory[0]?.paidToken ===
+                            '0x0000000000000000000000000000000000001010' ? (
+                              <span className="flex "> MATIC</span>
+                            ) : (
+                              <span className="flex"> USDC</span>
+                            )}
+                          </>
                         ) : (
-                          <span className="flex"> USDC</span>
+                          <>
+                            <div className="w-24"></div>
+                            <span className="flex ">No record</span>
+                          </>
                         )}
                       </div>
 
                       {/*
-                      <div className=" flex flex-row items-center justify-start text-xs">
-                        {format(
-                          Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                          'yyy-MM-dd hh:mm:ss'
-                        )}
-                      </div>
-                      */}
+                          <div className=" flex flex-row items-center justify-start text-xs">
+                            {format(
+                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                              'yyy-MM-dd hh:mm:ss'
+                            )}
+                          </div>
+                          */}
 
                       <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                         <button

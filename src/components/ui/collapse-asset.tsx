@@ -37,9 +37,9 @@ export default function Collapse({
         className="flex h-24 w-full items-center justify-between px-5 py-2 text-sm font-medium uppercase tracking-wider text-gray-900 dark:text-white"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="flex flex-row items-center justify-start gap-5">
+        <div className="flex w-full flex-row items-center justify-start gap-5">
           <span className=" w-40 text-left text-xl xl:text-2xl">{label}</span>
-          <span className="text-left text-4xl font-bold xl:text-6xl ">
+          <span className=" mr-20 w-full text-right text-4xl font-bold  xl:text-6xl ">
             {description}
           </span>
         </div>
