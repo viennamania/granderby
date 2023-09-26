@@ -17,6 +17,8 @@ export default async function handler(req: NextRequest) {
     });
   }
 
+  const ogPowerNumber = parseInt(tokenid) / 2 + 1;
+
   const res = await fetch('https://granderby.io/api/nft/horse/' + tokenid, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -70,8 +72,8 @@ export default async function handler(req: NextRequest) {
           width: '100%',
           height: '100%',
           paddingTop: 30,
-          paddingLeft: 80,
-          paddingRight: 10,
+          paddingLeft: 30,
+          paddingRight: 30,
           paddingBottom: 30,
           flexDirection: 'row',
           justifyContent: 'center',
@@ -82,19 +84,19 @@ export default async function handler(req: NextRequest) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="avatar"
-          width="500"
+          width="600"
           src={imageUrl}
           style={{
-            borderRadius: 10,
+            borderRadius: 0,
           }}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="power"
-          width="500"
-          src={'https://granderby.io/images/og-power.png'}
+          width="600"
+          src={'https://granderby.io/images/og-power1.png'}
           style={{
-            borderRadius: 10,
+            borderRadius: 0,
           }}
         />
 
