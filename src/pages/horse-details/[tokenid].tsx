@@ -157,15 +157,18 @@ function SinglePrice(tokenid: any) {
                       className="ml-10 flex flex-row items-center justify-start "
                       onClick={() => openModal('SHARE_VIEW')}
                     >
+                      {/*
                       <Image
                         src="/images/logo-polygon.png"
                         alt="gd"
                         width={18}
                         height={18}
                       />
+                    */}
+                      <Twitter className="h-5 w-5" />
 
-                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        Share
+                      <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                        share
                       </span>
                     </button>
                   </div>
@@ -315,14 +318,17 @@ function SinglePrice(tokenid: any) {
                       className="ml-10 flex flex-row items-center justify-start "
                       onClick={() => openModal('SHARE_VIEW')}
                     >
+                      {/*
                       <Image
-                        src="/images/logo-polygon.png"
+                        src={"/images/logo-polygon.png"}
                         alt="gd"
                         width={18}
                         height={18}
                       />
+                      */}
+                      <Twitter className="h-5 w-5" />
 
-                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                      <span className="text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                         Share
                       </span>
                     </button>
