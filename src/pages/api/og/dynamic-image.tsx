@@ -74,7 +74,7 @@ export default async function handler(req: NextRequest) {
           paddingRight: 10,
           paddingBottom: 30,
           flexDirection: 'row',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
           alignItems: 'center',
           display: 'flex',
         }}
@@ -82,13 +82,23 @@ export default async function handler(req: NextRequest) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="avatar"
-          width="450"
+          width="500"
           src={imageUrl}
           style={{
-            borderRadius: 30,
+            borderRadius: 10,
+          }}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt="power"
+          width="500"
+          src={'https://granderby.io/images/og-power.png'}
+          style={{
+            borderRadius: 10,
           }}
         />
 
+        {/*
         <div
           style={{
             fontSize: 30,
@@ -157,23 +167,11 @@ export default async function handler(req: NextRequest) {
               {format(Date.parse(blockTimestamp || '0'), 'yyy-MM-dd hh:mm:ss')}
             </div>
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            {/*
-            <img
-              alt="stamp"
-              width="80"
-              src="https://granderby.io/images/market.png"
-              //src="https://granderby.io/images/blockchain-stamp-seal.jpeg"
-              ///src="http://localhost:3000/images/blockchain-stamp-seal.jpeg"
-              style={
-                {
-                  //borderRadius: 30,
-                }
-              }
-            />
-            */}
+
           </div>
+          
         </div>
+        */}
       </div>
     ),
     {
