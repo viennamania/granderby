@@ -94,6 +94,8 @@ export default function Search() {
 
   useEffect(() => {
     async function getHorses() {
+      setSearchDataHorse(undefined);
+
       const data = await fetch('/api/nft/getHorses?pageNumber=1&pageSize=100', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -121,7 +123,9 @@ export default function Search() {
   const [searchDataJockey, setSearchDataJockey] = useState<any>();
 
   useEffect(() => {
-    async function getHorses() {
+    async function getJockeys() {
+      setSearchDataJockey(undefined);
+
       const data = await fetch(
         '/api/nft/getJockeys?pageNumber=1&pageSize=100',
         {
@@ -145,7 +149,7 @@ export default function Search() {
     }
 
     if (address !== undefined) {
-      getHorses();
+      getJockeys();
     }
   }, [address]);
 
@@ -203,7 +207,11 @@ export default function Search() {
             <Collapse
               label="Horse"
               description={`${
-                searchDataHorse?.nfts.length ?? 'Loading...'
+                !address
+                  ? ''
+                  : !searchDataHorse
+                  ? 'Loading...'
+                  : searchDataHorse?.nfts.length
               } / 3645 `}
               initialOpen={true}
             >
@@ -217,7 +225,11 @@ export default function Search() {
             <Collapse
               label="Jockey"
               description={`${
-                searchDataJockey?.nfts.length ?? 'Loading...'
+                !address
+                  ? ''
+                  : !searchDataJockey
+                  ? 'Loading...'
+                  : searchDataJockey?.nfts.length
               } / 0 `}
               initialOpen={true}
             >
