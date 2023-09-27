@@ -44,8 +44,17 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import Collapse from '@/components/ui/collapse-asset';
 
-import { useAddress } from '@thirdweb-dev/react';
 import { useEffect, useState } from 'react';
+
+import {
+  useAddress,
+  useContract,
+  useContractRead,
+  useOwnedNFTs,
+  useTokenBalance,
+  useNFTBalance,
+  Web3Button,
+} from '@thirdweb-dev/react';
 
 export default function Search() {
   const tabMenu = [
@@ -153,6 +162,13 @@ export default function Search() {
     }
   }, [address]);
 
+  const { contract: tokenContractHV } = useContract(
+    tokenContractAddressHV,
+    'token'
+  );
+  const { data: tokenBalanceHV, isLoading: isLoadingBalanceHV } =
+    useTokenBalance(tokenContractHV, address);
+
   return (
     <>
       {/*
@@ -240,7 +256,13 @@ export default function Search() {
           </div>
 
           <div className="mt-5 flex flex-col rounded-lg border ">
-            <Collapse label="Track" description="42" initialOpen={true}>
+            <Collapse
+              label="Track"
+              description={`${Number(tokenBalanceHV?.displayValue).toFixed(
+                0
+              )} / 1000 `}
+              initialOpen={true}
+            >
               <div className="itmes-start flex flex-col justify-center p-3 pb-10">
                 <OwnedFeedsFt
                 //contractAddress={tokenContractAddressHV}

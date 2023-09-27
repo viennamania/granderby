@@ -33,6 +33,7 @@ import {
   tokenContractAddressGRD,
   nftDropContractAddressCoupon,
   tokenContractAddressGCOW,
+  tokenContractAddressHV,
 } from '@/config/contractAddresses';
 
 import Button from '@/components/ui/button/button';
@@ -67,6 +68,14 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
 
   ///console.log('address======>', address);
 
+  const { contract: tokenContractHV } = useContract(
+    tokenContractAddressHV,
+    'token'
+  );
+  const { data: tokenBalanceHV, isLoading: isLoadingBalanceHV } =
+    useTokenBalance(tokenContractHV, address);
+
+  /*
   const { contract: tokenContractUSDC } = useContract(
     tokenContractAddressUSDC,
     'token'
@@ -96,6 +105,7 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
     contractCoupon,
     address || ''
   );
+  */
 
   ////console.log("ownedNfts======>", ownedNfts);
 
@@ -246,7 +256,48 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
         </>
       ) : (
         <div className="flex flex-col gap-3">
-          <div className="flex flex-col">
+          <div className="m-10 flex flex-col items-center justify-center">
+            {isLoadingBalanceHV ? (
+              <>
+                <div className="flex flex-col items-center justify-center ">
+                  <div className="text-xl text-gray-400">Loading...</div>
+
+                  <span className="items-top mt-10 flex h-screen w-full justify-center">
+                    <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-row items-center justify-start">
+                <button
+                  className="ml-10 flex flex-row items-center justify-center gap-3"
+                  ///onClick={(e) => router.push('/coin/usdc')}
+                  onClick={() => {
+                    closeInventories();
+                    router.push('/track');
+                    ///router.push('/horse-details/' + nft?.metadata?.id);
+                  }}
+                >
+                  <div className=" flex flex-row items-center justify-start gap-1">
+                    {/*<Usdc className="h-5 w-5" />*/}
+                    <div className="w-20 text-4xl xl:text-6xl ">
+                      {tokenBalanceHV?.symbol}:
+                    </div>
+                    <div className=" w-40 text-right text-4xl font-bold underline decoration-sky-500 xl:text-6xl">
+                      {Number(
+                        (parseFloat(tokenBalanceHV?.displayValue) / 1000.0) *
+                          100.0
+                      ).toFixed(0)}
+                      &nbsp;%
+                    </div>
+                  </div>
+
+                  <ChevronForward className="ml-10 rtl:rotate-180" />
+                </button>
+              </div>
+            )}
+
+            {/*
             {isLoadingBalanceUSDC ? (
               <>
                 <div className="flex flex-col items-center justify-center ">
@@ -282,7 +333,9 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
                 </button>
               </div>
             )}
+            */}
 
+            {/*
             {isLoadingBalanceGRD ? (
               <>
                 <div className="flex flex-col items-center justify-center ">
@@ -318,6 +371,7 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
                 </button>
               </div>
             )}
+            */}
 
             {/*
             {isLoadingBalanceGCOW ? (
@@ -357,6 +411,7 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
             )}
             */}
 
+            {/*
             <div className="mt-10 flex w-full flex-row items-center justify-start gap-2">
               {ownedCoupons?.map((nft) => (
                 <div
@@ -388,6 +443,8 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
                 <ChevronForward className="mr-10 rtl:rotate-180" />
               </button>
             </div>
+
+            */}
           </div>
 
           {/*

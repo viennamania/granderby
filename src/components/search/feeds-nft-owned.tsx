@@ -159,8 +159,8 @@ export default function OwnedFeedsNft(
     <>
       {searchData?.nfts.length === 0 ? (
         <>
-          <div className="flex flex-col items-center justify-center ">
-            <div className="mt-10 text-xl">No assets found</div>
+          <div className="m-10 flex flex-col items-center justify-center ">
+            <div className=" text-xl">No assets found</div>
 
             <div className="mt-10 flex flex-row items-center justify-center gap-3">
               <button
@@ -214,7 +214,7 @@ export default function OwnedFeedsNft(
       ) : (
         <div
           className={cn(
-            'mb-5 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5',
+            'm-10 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5',
             isGridCompact
               ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
               : '3xl:!grid-cols-5 4xl:!grid-cols-8',

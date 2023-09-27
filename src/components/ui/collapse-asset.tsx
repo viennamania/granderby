@@ -39,7 +39,7 @@ export default function Collapse({
       >
         <div className="flex w-full flex-row items-center justify-start gap-5">
           <span className=" w-40 text-left text-xl xl:text-2xl">{label}</span>
-          <span className=" mr-20 w-full text-right text-4xl font-bold  xl:text-6xl ">
+          <span className=" mr-20 w-full text-right text-4xl font-bold  underline decoration-sky-500 xl:text-6xl ">
             {description}
           </span>
         </div>
