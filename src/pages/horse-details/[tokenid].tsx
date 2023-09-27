@@ -27,10 +27,6 @@ import InfoDrawer from '@/components/cryptocurrency-pricing-table/info-drawer';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 
-import HistoryTable from '@/components/race-history/history-table';
-
-import TransactionTable from '@/components/nft-transaction/transaction-table';
-
 import { useRouter } from 'next/router';
 
 import Link from 'next/link';

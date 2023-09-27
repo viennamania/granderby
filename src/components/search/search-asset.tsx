@@ -119,7 +119,7 @@ export default function Search() {
         return result.json();
       });
 
-      console.log('feeds-owned data', data);
+      console.log('feeds-owned horses data', data);
 
       setSearchDataHorse(data);
     }
@@ -152,7 +152,7 @@ export default function Search() {
         return result.json();
       });
 
-      console.log('feeds-owned data', data);
+      console.log('feeds-owned jockeys data', data);
 
       setSearchDataJockey(data);
     }
@@ -187,109 +187,58 @@ export default function Search() {
       </div>
       */}
 
-      <div className="grid ">
-        <div className=" block">
-          <div className="relative z-10 mb-6 flex items-center justify-between ">
-            <div className="items-right flex w-full justify-end">
-              <div className="flex gap-6  ">
-                {/*
-                  <SortList />
-                  */}
-
-                {/*
-                    <div className="hidden ">
-                      <GridSwitcher />
-                    </div>
-
-                    
-                    <div className="hidden ">
-                      <Button
-                        shape="rounded"
-                        size="small"
-                        variant="ghost"
-                        color="gray"
-                        onClick={() => openDrawer('DRAWER_SEARCH', '')}
-                        className="!h-11 !p-3 hover:!translate-y-0 hover:!shadow-none focus:!translate-y-0 focus:!shadow-none"
-                      >
-                        <OptionIcon className="relative h-auto w-[18px]" />
-                      </Button>
-                    </div>
-                    */}
-              </div>
+      <div className="flex flex-col items-center justify-center   ">
+        <div className="w-ufll mt-5  flex flex-col rounded-lg border ">
+          <Collapse
+            label="Horse"
+            description={`${
+              !address
+                ? ''
+                : !searchDataHorse
+                ? 'Loading...'
+                : searchDataHorse?.nfts.length
+            } / 3645 `}
+            initialOpen={true}
+          >
+            <div className=" itmes-start  flex flex-col justify-center p-0 pb-10">
+              <OwnedFeedsNft contractAddress={nftDropContractAddressHorse} />
             </div>
-          </div>
-
-          <div className="mt-5  flex flex-col rounded-lg border ">
-            <Collapse
-              label="Horse"
-              description={`${
-                !address
-                  ? ''
-                  : !searchDataHorse
-                  ? 'Loading...'
-                  : searchDataHorse?.nfts.length
-              } / 3645 `}
-              initialOpen={true}
-            >
-              <div className=" itmes-start  flex flex-col justify-center p-5 pb-10">
-                <OwnedFeedsNft contractAddress={nftDropContractAddressHorse} />
-              </div>
-            </Collapse>
-          </div>
-
-          <div className="mt-5 flex flex-col rounded-lg border ">
-            <Collapse
-              label="Jockey"
-              description={`${
-                !address
-                  ? ''
-                  : !searchDataJockey
-                  ? 'Loading...'
-                  : searchDataJockey?.nfts.length
-              } / 0 `}
-              initialOpen={true}
-            >
-              <div className="itmes-start flex flex-col justify-center p-3 pb-10">
-                <OwnedFeedsNft contractAddress={nftDropContractAddressJockey} />
-              </div>
-            </Collapse>
-          </div>
-
-          <div className="mt-5 flex flex-col rounded-lg border ">
-            <Collapse
-              label="Track"
-              description={`${Number(tokenBalanceHV?.displayValue).toFixed(
-                0
-              )} / 1000 `}
-              initialOpen={true}
-            >
-              <div className="itmes-start flex flex-col justify-center p-3 pb-10">
-                <OwnedFeedsFt
-                //contractAddress={tokenContractAddressHV}
-                />
-              </div>
-            </Collapse>
-          </div>
-
-          {/*
-            <div className="mt-5 flex flex-col rounded-lg border ">
-              <Collapse label="Derbystars Horse" initialOpen={true}>
-                <div className="itmes-start mt-5 flex flex-col justify-center p-3">
-                  <span className="text-lg font-bold">Asset</span>
-                  <OwnedFeeds contractAddress={nftDropContractAddressHorseDerbyStars} />
-                </div>
-              </Collapse>
-            </div>
-            */}
+          </Collapse>
         </div>
 
-        {/*
-        <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 ">
-          <Button onClick={() => openDrawer('DRAWER_SEARCH')} fullWidth>
-            Filters
-          </Button>
+        <div className="mt-5 flex w-full flex-col rounded-lg border ">
+          <Collapse
+            label="Jockey"
+            description={`${
+              !address
+                ? ''
+                : !searchDataJockey
+                ? 'Loading...'
+                : searchDataJockey?.nfts.length
+            } / 0 `}
+            initialOpen={true}
+          >
+            <div className="itmes-start flex flex-col justify-center p-3 pb-10">
+              <OwnedFeedsNft contractAddress={nftDropContractAddressJockey} />
+            </div>
+          </Collapse>
         </div>
-        */}
+
+        <div className="mt-5 flex w-full flex-col rounded-lg border ">
+          <Collapse
+            label="Track"
+            description={`${Number(tokenBalanceHV?.displayValue).toFixed(
+              0
+            )} / 1000 `}
+            initialOpen={true}
+          >
+            <div className="itmes-start flex flex-col justify-center p-3 pb-10">
+              <OwnedFeedsFt
+              //contractAddress={tokenContractAddressHV}
+              />
+            </div>
+          </Collapse>
+        </div>
       </div>
     </>
   );

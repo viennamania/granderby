@@ -84,16 +84,17 @@ export default async function handler(
       holder: holder,
       contract: contract?.address,
       symbol: contract?.symbol,
-      media: media[0]?.gateway
-        ? media[0]?.gateway
-        : 'https://via.placeholder.com/500',
-      collectionName: contract.openSea?.collectionName,
-      verified: contract.openSea?.safelistRequestStatus,
+      media:
+        media && media[0]?.gateway
+          ? media[0]?.gateway
+          : 'https://via.placeholder.com/500',
+      collectionName: contract?.openSea?.collectionName,
+      verified: contract?.openSea?.safelistRequestStatus,
       tokenType,
       tokenId,
       title: rawMetadata?.name ? rawMetadata.name : title,
       description,
-      format: media[0]?.format ? media[0]?.format : 'png',
+      format: media && media[0]?.format ? media[0]?.format : 'png',
 
       //attributes: rawMetadata?.attributes,
 

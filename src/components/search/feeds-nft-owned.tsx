@@ -88,6 +88,7 @@ export default function OwnedFeedsNft(
   };
 
   const [searchData, setSearchData] = useState<any>();
+
   useEffect(() => {
     async function getHorses() {
       const data = await fetch(`/api/nft/getHorses?pageNumber=1&pageSize=100`, {
@@ -104,7 +105,7 @@ export default function OwnedFeedsNft(
         return result.json();
       });
 
-      console.log('feeds-owned data', data);
+      console.log('feeds-owned horses data', data);
 
       setSearchData(data);
     }
@@ -127,7 +128,7 @@ export default function OwnedFeedsNft(
         return result.json();
       });
 
-      console.log('feeds-owned data', data);
+      console.log('feeds-owned jockeys data', data);
 
       setSearchData(data);
     }
@@ -214,7 +215,7 @@ export default function OwnedFeedsNft(
       ) : (
         <div
           className={cn(
-            'm-5 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5',
+            ' m-5 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5  ',
             isGridCompact
               ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
               : '3xl:!grid-cols-5 4xl:!grid-cols-8',
