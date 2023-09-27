@@ -58,7 +58,7 @@ import { GrdIcon } from '@/components/icons/grd-icon';
 
 import { GasIcon } from '@/components/icons/gas-icon';
 
-export default function OwnedFeedsCoin({ className }: { className?: string }) {
+export default function OwnedFeedsFt({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();

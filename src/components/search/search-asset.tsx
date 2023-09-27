@@ -4,7 +4,9 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
-import OwnedFeeds from './feeds-owned';
+import OwnedFeedsNft from './feeds-nft-owned';
+
+import OwnedFeedsFt from './feeds-ft-owned';
 
 import OwnedFeedsDerbystars from './feeds-horse-owned-asset-derbystars';
 
@@ -21,6 +23,7 @@ import {
   nftDropContractAddressJockey,
   nftDropContractAddressHorseDerbyStars,
   nftDropContractAddressHorseZedRun,
+  tokenContractAddressHV,
 } from '@/config/contractAddresses';
 
 //////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
@@ -40,6 +43,9 @@ import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import Collapse from '@/components/ui/collapse-asset';
+
+import { useAddress } from '@thirdweb-dev/react';
+import { useEffect, useState } from 'react';
 
 export default function Search() {
   const tabMenu = [
@@ -81,6 +87,67 @@ export default function Search() {
     },
     */
   ];
+
+  const address = useAddress();
+
+  const [searchDataHorse, setSearchDataHorse] = useState<any>();
+
+  useEffect(() => {
+    async function getHorses() {
+      const data = await fetch('/api/nft/getHorses?pageNumber=1&pageSize=100', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ///grades: selectedGradesStorage,
+          grades: [],
+          manes: [],
+          holder: address,
+          //sort: selectedGSortStorage,
+        }),
+      }).then((result) => {
+        return result.json();
+      });
+
+      console.log('feeds-owned data', data);
+
+      setSearchDataHorse(data);
+    }
+
+    if (address !== undefined) {
+      getHorses();
+    }
+  }, [address]);
+
+  const [searchDataJockey, setSearchDataJockey] = useState<any>();
+
+  useEffect(() => {
+    async function getHorses() {
+      const data = await fetch(
+        '/api/nft/getJockeys?pageNumber=1&pageSize=100',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ///grades: selectedGradesStorage,
+            grades: ['Jockey'],
+            manes: [],
+            holder: address,
+            //sort: selectedGSortStorage,
+          }),
+        }
+      ).then((result) => {
+        return result.json();
+      });
+
+      console.log('feeds-owned data', data);
+
+      setSearchDataJockey(data);
+    }
+
+    if (address !== undefined) {
+      getHorses();
+    }
+  }, [address]);
 
   return (
     <>
@@ -133,17 +200,29 @@ export default function Search() {
           </div>
 
           <div className="mt-5  flex flex-col rounded-lg border ">
-            <Collapse label="Horse" description="34" initialOpen={true}>
+            <Collapse
+              label="Horse"
+              description={`${
+                searchDataHorse?.nfts.length ?? 'Loading...'
+              } / 3645 `}
+              initialOpen={true}
+            >
               <div className=" itmes-start  flex flex-col justify-center p-5 pb-10">
-                <OwnedFeeds contractAddress={nftDropContractAddressHorse} />
+                <OwnedFeedsNft contractAddress={nftDropContractAddressHorse} />
               </div>
             </Collapse>
           </div>
 
           <div className="mt-5 flex flex-col rounded-lg border ">
-            <Collapse label="Jockey" description="54" initialOpen={true}>
+            <Collapse
+              label="Jockey"
+              description={`${
+                searchDataJockey?.nfts.length ?? 'Loading...'
+              } / 0 `}
+              initialOpen={true}
+            >
               <div className="itmes-start flex flex-col justify-center p-3 pb-10">
-                <OwnedFeeds contractAddress={nftDropContractAddressJockey} />
+                <OwnedFeedsNft contractAddress={nftDropContractAddressJockey} />
               </div>
             </Collapse>
           </div>
@@ -151,8 +230,8 @@ export default function Search() {
           <div className="mt-5 flex flex-col rounded-lg border ">
             <Collapse label="Track" description="42" initialOpen={true}>
               <div className="itmes-start flex flex-col justify-center p-3 pb-10">
-                <OwnedFeeds
-                  contractAddress={nftDropContractAddressHorseZedRun}
+                <OwnedFeedsFt
+                //contractAddress={tokenContractAddressHV}
                 />
               </div>
             </Collapse>
