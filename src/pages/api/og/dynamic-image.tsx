@@ -91,6 +91,7 @@ export default async function handler(req: NextRequest) {
           }}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/*
         <img
           alt="power"
           width="600"
@@ -99,6 +100,7 @@ export default async function handler(req: NextRequest) {
             borderRadius: 0,
           }}
         />
+        */}
 
         {/*
         <div
