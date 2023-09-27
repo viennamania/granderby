@@ -8,7 +8,13 @@ const FinishedPage: NextPageWithLayout = () => {
     <>
       <NextSeo title="Farms" description="Granderby - Web3 NFT Game" />
 
-      <Farms />
+      <div className="flex h-full w-full flex-col items-start justify-start">
+        <span className="text-2xl font-bold xl:text-4xl ">Race Finished</span>
+
+        {/*
+        <Farms />
+        */}
+      </div>
     </>
   );
 };

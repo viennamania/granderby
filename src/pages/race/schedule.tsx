@@ -8,7 +8,13 @@ const SchedulePage: NextPageWithLayout = () => {
     <>
       <NextSeo title="Farms" description="Granderby - Web3 NFT Game" />
 
+      <div className="flex h-full w-full flex-col items-start justify-start">
+        <span className="text-2xl font-bold xl:text-4xl ">Race Schedule</span>
+
+        {/*
       <Farms />
+      */}
+      </div>
     </>
   );
 };
