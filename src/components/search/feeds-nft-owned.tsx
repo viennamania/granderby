@@ -105,7 +105,7 @@ export default function OwnedFeedsNft(
         return result.json();
       });
 
-      console.log('feeds-owned horses data', data);
+      ///console.log('feeds-owned horses data', data);
 
       setSearchData(data);
     }
@@ -142,7 +142,7 @@ export default function OwnedFeedsNft(
         getHorses();
       }
     }
-  }, [address, selectedGradesStorage, selectedManesStorage]);
+  }, [address, selectedGradesStorage, selectedManesStorage, contractAddress]);
 
   const limit = 1000;
 

@@ -119,7 +119,7 @@ export default function Search() {
         return result.json();
       });
 
-      console.log('feeds-owned horses data', data);
+      ///console.log('feeds-owned horses data', data);
 
       setSearchDataHorse(data);
     }
@@ -152,7 +152,7 @@ export default function Search() {
         return result.json();
       });
 
-      console.log('feeds-owned jockeys data', data);
+      ///console.log('feeds-owned jockeys data', data);
 
       setSearchDataJockey(data);
     }
@@ -187,8 +187,8 @@ export default function Search() {
       </div>
       */}
 
-      <div className="flex flex-col items-center justify-center   ">
-        <div className="w-ufll mt-5  flex flex-col rounded-lg border ">
+      <div className="flex w-full flex-col items-center justify-center   ">
+        <div className="mt-5 flex  w-full flex-col rounded-lg border ">
           <Collapse
             label="Horse"
             description={`${
