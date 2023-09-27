@@ -370,9 +370,9 @@ export const menuItems = [
     ],
   },
   {
-    name: 'RANKING',
+    name: 'RANK',
     icon: <Ranking />,
-    href: routes.ranking,
+    href: routes.rankHorse,
     dropdownItems: [
       {
         name: 'Horse',

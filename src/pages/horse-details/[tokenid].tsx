@@ -133,7 +133,7 @@ function SinglePrice(tokenid: any) {
                       className=" flex flex-row items-center justify-start "
                       onClick={() =>
                         router.push(
-                          `https://polygonscan.com/nft/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
                         )
                       }
                     >
@@ -273,7 +273,7 @@ function SinglePrice(tokenid: any) {
             {layout === LAYOUT_OPTIONS.RETRO ? (
               <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
             ) : (
-              <div className="mt-5 flex w-full flex-col">
+              <div className=" flex w-full flex-col">
                 <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
                   <Link
                     className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
@@ -294,7 +294,7 @@ function SinglePrice(tokenid: any) {
                       className=" flex flex-row items-center justify-start  "
                       onClick={() =>
                         router.push(
-                          `https://polygonscan.com/nft/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
                         )
                       }
                     >

@@ -37,8 +37,14 @@ import Collapse from '@/components/ui/collapse-last-winners';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
+import { useRouter } from 'next/router';
+
+import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+
 export default function Search() {
   const { openDrawer } = useDrawer();
+
+  const router = useRouter();
 
   ///const [livePricingIsOpen] = useLocalStorage('live-pricing-isopen', true);
 
@@ -145,9 +151,27 @@ export default function Search() {
         </div>
         */}
 
-        <span className="mt-3 text-xl font-bold xl:text-2xl">
-          Granderby Horse NFT
-        </span>
+        <div className="mt-5 flex flex-row items-center justify-start gap-3 ">
+          <span className=" text-xl font-bold xl:text-2xl">
+            Granderby Horse NFT
+          </span>
+
+          <button
+            onClick={() =>
+              router.push(
+                `https://polygonscan.com/token/${nftDropContractAddressHorse}`
+              )
+            }
+          >
+            <Image
+              src="/images/logo-polygon.png"
+              alt="gd"
+              width={18}
+              height={18}
+            />
+          </button>
+        </div>
+
         <span className="mt-3 text-xs lg:text-sm xl:text-lg">
           Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
           Category Gaming
