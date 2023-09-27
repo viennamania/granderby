@@ -214,7 +214,7 @@ export default function OwnedFeedsNft(
       ) : (
         <div
           className={cn(
-            'm-10 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5',
+            'm-5 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5',
             isGridCompact
               ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
               : '3xl:!grid-cols-5 4xl:!grid-cols-8',
