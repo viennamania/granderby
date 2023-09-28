@@ -359,7 +359,7 @@ function HeaderRightArea() {
                     setIsOpenLogout(false);
                     router.push('/mypage');
                   }}
-                  className="block inline-flex items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
+                  className="block items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
                   role="menuitem"
                 >
                   {/*
@@ -370,7 +370,7 @@ function HeaderRightArea() {
 
                 <button
                   onClick={disconnect}
-                  className="block inline-flex items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
+                  className="block  items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
                   role="menuitem"
                 >
                   {/*

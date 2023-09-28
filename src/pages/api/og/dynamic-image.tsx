@@ -63,6 +63,12 @@ export default async function handler(req: NextRequest) {
     }
   }
 
+  var ogPowerUrl = 'https://granderby.io/images/og-power1.png';
+
+  if (tokenid === '555') {
+    ogPowerUrl = 'https://granderby.io/images/og-power-555.jpeg';
+  }
+
   return new ImageResponse(
     (
       <div
@@ -90,6 +96,7 @@ export default async function handler(req: NextRequest) {
             borderRadius: 0,
           }}
         />
+
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="power"
