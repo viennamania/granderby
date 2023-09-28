@@ -101,7 +101,7 @@ export default async function handler(req: NextRequest) {
         <img
           alt="power"
           width="600"
-          src={'https://granderby.io/images/og-power1.png'}
+          src={ogPowerUrl}
           style={{
             borderRadius: 0,
           }}
