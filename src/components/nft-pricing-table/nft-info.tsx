@@ -47,6 +47,8 @@ import {
   useNetwork,
 } from '@thirdweb-dev/react';
 
+import { ChainId } from '@thirdweb-dev/sdk';
+
 import { RaceIcon } from '@/components/icons/race-icon';
 
 function NftInfo({ nftMetadata }: any) {

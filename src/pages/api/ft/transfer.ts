@@ -23,7 +23,9 @@ export default async function handler(
 
     const sdk = ThirdwebSDK.fromSigner(signer, {
       chainId: ChainId.Polygon,
+
       clientId: process.env.THIRDWEB_CLIENT_ID,
+
       gasless: {
         relayer: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
       },

@@ -986,160 +986,9 @@ export default function NftSinglePrice({
 
   return (
     <div className=" h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
-      {layout === LAYOUT_OPTIONS.RETRO ? (
-        <div>
-          <div className="flex justify-between gap-4 sm:gap-8 md:items-start lg:flex-row lg:items-center lg:gap-4">
-            <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-              <span className="flex items-center gap-2.5">
-                <span className="flex flex-row items-center gap-2.5">
-                  {/*
-                  <Bitcoin className="h-auto w-7 lg:w-9" />
-                  */}
-
-                  <div className="text-xl font-medium capitalize text-brand dark:text-white">
-                    {nftMetadata?.metadata?.name}
-                  </div>
-
-                  <Image
-                    src={
-                      nftMetadata?.metadata?.image
-                        ? nftMetadata?.metadata?.image
-                        : '/default-nft.png'
-                    }
-                    //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-
-                    ///src={nft?.image}
-                    alt="nft"
-                    width={500}
-                    height={500}
-                    ///className="h-auto w-100 lg:w-200"
-                  />
-                </span>
-
-                <span className="flex items-end text-xl font-medium capitalize text-brand dark:text-white">
-                  {nftMetadata?.metadata?.name}
-                </span>
-                {/*
-                <span className="text-sm text-gray-400">(BTC/USD)</span>
-                */}
-              </span>
-
-              {/*
-              <span className="flex flex-wrap items-center gap-[5px]">
-                <span className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium leading-none text-brand dark:!bg-gray-700 dark:text-white">
-                  RANK #5
-                </span>
-                <span className="w-[65px]">
-                  <Listbox value={selected} onChange={setSelected}>
-                    <div className="relative rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-brand rtl:text-left dark:bg-gray-700 dark:text-white">
-                      <Listbox.Button className="rounded-lg bg-gray-100 text-sm font-medium text-brand dark:bg-gray-700 dark:text-white">
-                        <span className="block truncate">{selected.name}</span>
-                        <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronDown
-                            className="h-[10px] w-[12px] text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options className="absolute left-0 mt-3 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-large focus:outline-none dark:!bg-gray-700 sm:text-sm">
-                          {currency.map((item) => (
-                            <Listbox.Option
-                              key={item.id}
-                              className={({ active }) =>
-                                `relative cursor-pointer select-none px-4 py-2 transition-all ${
-                                  active
-                                    ? 'bg-gray-100 text-brand hover:bg-gray-200 dark:bg-gray-700 dark:text-white hover:dark:bg-slate-600'
-                                    : 'text-gray-900 dark:text-white'
-                                }`
-                              }
-                              value={item}
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span
-                                    className={`block truncate ${
-                                      selected ? 'font-medium' : 'font-normal'
-                                    }`}
-                                  >
-                                    {item.name}
-                                  </span>
-                                </>
-                              )}
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
-                    </div>
-                  </Listbox>
-                </span>
-              </span>
-              */}
-            </div>
-
-            <div
-              className="relative flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-white text-brand shadow-main transition-all hover:-translate-y-0.5 hover:shadow-large focus:-translate-y-0.5 focus:shadow-large focus:outline-none dark:border-gray-700 dark:bg-light-dark dark:text-white"
-              onClick={() => setIsOpen(true)}
-            >
-              <InfoCircle className="h-4 w-4" />
-            </div>
-          </div>
-
-          <div className="mt-5 flex flex-col items-start justify-between gap-8 lg:flex-row lg:gap-4">
-            <div>
-              <div className="flex items-end gap-3 text-base font-medium text-gray-900 dark:text-white sm:text-xl lg:flex-wrap 2xl:flex-nowrap">
-                <span className="text-2xl font-semibold xl:text-3xl">
-                  {price}
-                </span>
-                <span
-                  className={cn(
-                    'flex items-end',
-                    toggleCoin ? 'flex-row-reverse' : 'flex-row'
-                  )}
-                >
-                  <span>BTCB</span>/<span>ETH</span>
-                </span>
-
-                <span
-                  className={cn(
-                    'mb-1 flex items-center text-xs sm:mb-0 sm:text-base',
-                    priceDiff > 0 ? 'text-green-500' : 'text-red-500'
-                  )}
-                >
-                  <span
-                    className={`inline-flex ltr:mr-2 rtl:ml-2 ${
-                      priceDiff > 0 ? '' : 'rotate-180'
-                    }`}
-                  >
-                    <ArrowUp />
-                  </span>
-                  {priceDiff} ({percentage})
-                </span>
-              </div>
-              <div className="mt-6 flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 sm:text-sm">
-                <Refresh /> {formattedDate}
-              </div>
-            </div>
-            <RadioGroup
-              value={status}
-              onChange={handleOnChange}
-              className="mt-2 flex items-center gap-5"
-            >
-              <RadioGroupOption value="Week" />
-              <RadioGroupOption value="Month" />
-              <RadioGroupOption value="Year" />
-            </RadioGroup>
-          </div>
-        </div>
-      ) : (
-        <div className="  flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
-          <div className=" flex flex-wrap items-center justify-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-            {/*
+      <div className="  flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
+        <div className=" flex flex-wrap items-center justify-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
+          {/*
                 <Collapse label="Grade" initialOpen={true}>
                   <Grade {...{ grade: attributeGrade }} />
                 </Collapse>
@@ -1153,56 +1002,56 @@ export default function NftSinglePrice({
                 </Collapse>
                 */}
 
-            <div className="flex w-full rounded-lg border ">
-              <Collapse label="Attributes" initialOpen={true}>
-                {/* nft attributes details */}
+          <div className=" flex items-center justify-center rounded-lg border ">
+            <Collapse label="Attributes" initialOpen={true}>
+              {/* nft attributes details */}
 
-                <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-5 2xl:grid-cols-4  ">
-                  {
-                    //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
-                    attributes?.map((attribute: any) => (
-                      <div key={attribute?.trait_type}>
-                        <div
-                          className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+              <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-5 2xl:grid-cols-4  ">
+                {
+                  //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+                  attributes?.map((attribute: any) => (
+                    <div key={attribute?.trait_type}>
+                      <div
+                        className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
                             lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                      >
+                        <span
+                          className={cn(
+                            'flex ',
+                            toggleCoin ? 'flex-row-reverse' : 'flex-row'
+                          )}
                         >
-                          <span
-                            className={cn(
-                              'flex ',
-                              toggleCoin ? 'flex-row-reverse' : 'flex-row'
-                            )}
-                          >
-                            <span>{attribute?.trait_type}</span>
-                          </span>
+                          <span>{attribute?.trait_type}</span>
+                        </span>
 
-                          <span className="xl:text-md  text-sm font-semibold">
-                            {/*
+                        <span className="xl:text-md  text-sm font-semibold">
+                          {/*
                                 {attribute?.value?.toString().length < 8
                                   ? attribute?.value?.toString()
                                   : attribute?.value?.toString().substring(0, 8)}
                                 ...
                                 */}
-                            {attribute?.value}
-                          </span>
-                        </div>
+                          {attribute?.value}
+                        </span>
                       </div>
-                    ))
-                  }
-                </div>
-              </Collapse>
-            </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </Collapse>
+          </div>
 
-            <div className="flex w-full flex-col rounded-lg border ">
-              <Collapse label="Transfers" initialOpen={true}>
-                {/*
+          <div className="mt-3 flex w-full flex-col rounded-lg border ">
+            <Collapse label="Transfers" initialOpen={true}>
+              {/*
                 <TransferHistoryTable data={saleHistory} />
                 */}
-                <TransferHistoryTable />
-              </Collapse>
-            </div>
+
+              <TransferHistoryTable nftMetadata={nftMetadata} />
+            </Collapse>
           </div>
         </div>
-      )}
+      </div>
 
       {/*
       <div className="py-4">

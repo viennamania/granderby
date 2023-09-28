@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 
@@ -27,136 +27,6 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
 import { tr } from 'date-fns/locale';
 import { array } from 'yup';
-
-import { format } from 'date-fns';
-
-import Image from '@/components/ui/image';
-import { useRouter } from 'next/router';
-
-import { ArrowUp } from '@/components/icons/arrow-up';
-import {
-  XAxis,
-  Tooltip,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  BarChart,
-  CartesianGrid,
-  Bar,
-} from 'recharts';
-
-///import { priceFeedData } from '@/data/static/price-feed';
-import { priceFeedData } from '@/data/static/nft-horse-price-feed';
-
-type Price = {
-  name: number;
-  value: number;
-};
-
-type LivePriceFeedProps = {
-  id: string;
-  name: string;
-  symbol: string;
-  icon: React.ReactElement;
-  balance: string;
-  usdBalance: string;
-  logo: string;
-  change: string;
-  isChangePositive: boolean;
-  isBorder?: boolean;
-  prices: Price[];
-};
-
-function LivePricingFeed({
-  id,
-  name,
-  symbol,
-  icon,
-  balance,
-  usdBalance,
-  logo,
-  change,
-  isChangePositive,
-  prices,
-  isBorder,
-}: LivePriceFeedProps) {
-  return (
-    <div
-      className={cn(
-        'flex flex-row items-center gap-4 rounded-lg bg-white p-5 shadow-[0_8px_16px_rgba(17,24,39,0.05)] dark:bg-light-dark '
-      )}
-    >
-      <div className="flex w-full flex-col justify-between">
-        <div className="mb-2 text-sm font-medium tracking-tighter text-gray-900 dark:text-white lg:text-lg 2xl:text-xl 3xl:text-2xl">
-          {balance}
-          <span className="ml-3">{symbol}</span>
-        </div>
-
-        <div className="flex items-center text-xs font-medium 2xl:text-sm">
-          <span
-            className="truncate tracking-tighter text-gray-600 ltr:mr-5 rtl:ml-5 dark:text-gray-400 2xl:w-24 3xl:w-auto"
-            title={`${usdBalance} USD`}
-          >
-            {usdBalance} USD
-          </span>
-
-          <span
-            className={`flex items-center  ${
-              isChangePositive ? 'text-green-500' : 'text-red-500'
-            }`}
-          >
-            <span
-              className={`ltr:mr-2 rtl:ml-2 ${
-                !isChangePositive ? 'rotate-180' : ''
-              }`}
-            >
-              <ArrowUp />
-            </span>
-            {change}
-          </span>
-        </div>
-
-        <div
-          className="h-20 w-full overflow-hidden"
-          data-hello={isChangePositive ? '#22c55e' : '#D6455D'}
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={prices}>
-              <defs>
-                <linearGradient
-                  id={`${name}-${id}`}
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="1"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
-                    stopOpacity={0.5}
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor={isChangePositive ? '#22c55e' : '#D6455D'}
-                    stopOpacity={0}
-                  />
-                </linearGradient>
-              </defs>
-              <Area
-                type="linear"
-                dataKey="value"
-                stroke={isChangePositive ? '#22c55e' : '#D6455D'}
-                strokeWidth={2.5}
-                fill={`url(#${`${name}-${id}`})`}
-                dot={false}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /*
 export const TransactionData = [
@@ -248,7 +118,6 @@ export const TransactionData = [
 */
 
 const COLUMNS = [
-  /*
   {
     //Header: 'ID',
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">ID</div>,
@@ -256,7 +125,6 @@ const COLUMNS = [
     minWidth: 100,
     maxWidth: 100,
   },
-  */
   /*
   {
     Header: 'Type',
@@ -265,55 +133,83 @@ const COLUMNS = [
     maxWidth: 40,
   },
   */
-
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
-    accessor: 'hash',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Type</div>,
+    accessor: 'transactionType',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <button
-        className=" flex flex-row items-center justify-start "
-        onClick={() =>
-          //alert("clicked")
-
-          (location.href = 'https://polygonscan.com/tx/' + value)
-        }
-      >
-        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
-
-        <div className="ml-1 text-left text-xs -tracking-[1px]">
-          {value.substring(0, 6) + '...'}
-        </div>
-      </button>
+      <div className="ltext-left">
+        {value === 'Send' ? (
+          <div className="-tracking-[1px] ">
+            <LongArrowRight className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
+            <span className="text-gray-600 dark:text-gray-400">{value}</span>
+          </div>
+        ) : (
+          <div className="-tracking-[1px]">
+            <LongArrowLeft className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
+            <span className="text-gray-600 dark:text-gray-400">{value}</span>
+          </div>
+        )}
+      </div>
     ),
-    minWidth: 80,
-    maxWidth: 80,
+    minWidth: 40,
+    maxWidth: 40,
   },
 
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Amount</div>,
+    accessor: 'amount',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="-tracking-[1px] ltr:text-right rtl:text-left">
+        <strong className="mb-0.5 flex justify-end text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
+          {Number(value.balance).toFixed(2)}
+          <span className="inline-block text-[#2b57a2] ltr:ml-1.5 rtl:mr-1.5 md:ltr:ml-2 md:rtl:mr-2">
+            ROM
+          </span>
+        </strong>
+
+      </div>
+    ),
+    minWidth: 100,
+    maxWidth: 200,
+  },
+  */
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Asset</div>,
+    accessor: 'symbol',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="ltr:text-right rtl:text-left">{value}</div>
+    ),
+    minWidth: 80,
+    maxWidth: 120,
+  },
+  */
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">
-        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
-      </div>
+      <div className="ltr:text-right rtl:text-left">{value}</div>
     ),
-    minWidth: 140,
-    maxWidth: 140,
+    minWidth: 100,
+    maxWidth: 130,
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">From</div>,
-    accessor: 'tokenFrom',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Address</div>,
+    accessor: 'address',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="flex items-center justify-end">
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         {value == '0x0000000000000000000000000000000000000000'
           ? 'Drops'
-          : value?.length > 10
-          ? value?.substring(0, 10) + '...'
+          : value.length > 10
+          ? value.substring(0, 10) + '...'
           : value}
       </div>
     ),
@@ -321,25 +217,6 @@ const COLUMNS = [
     maxWidth: 150,
   },
 
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">To</div>,
-    accessor: 'tokenTo',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-end">
-        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-        {value == '0x0000000000000000000000000000000000000000'
-          ? 'Drops'
-          : value?.length > 10
-          ? value?.substring(0, 10) + '...'
-          : value}
-      </div>
-    ),
-    minWidth: 90,
-    maxWidth: 150,
-  },
-
-  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Status</div>,
     accessor: 'status',
@@ -352,18 +229,9 @@ const COLUMNS = [
     minWidth: 70,
     maxWidth: 100,
   },
-  */
 ];
 
-export default function TransferHistoryTable(
-  //nftMetadata: any
-
-  { nftMetadata }: { nftMetadata?: any }
-) {
-  const router = useRouter();
-
-  ///console.log('PriceHistoryTable nftMetadata: ', nftMetadata);
-
+export default function TransferHistoryTable() {
   //const data = React.useMemo(() => transactionData, [ ]);
 
   const columns = React.useMemo(() => COLUMNS, []);
@@ -403,9 +271,7 @@ export default function TransferHistoryTable(
   const pageKey = '1';
   const pageSize = '10';
 
-  /*
   useEffect(() => {
-
     const getTransactions = async () => {
       //if (address) {
 
@@ -425,15 +291,31 @@ export default function TransferHistoryTable(
 
       const data = await res.json();
 
-      //console.log('getTransactions data: ', data);
+      ///console.log('getTransactions data: ', data);
 
+      /*
+         {
+      blockNum: '0x2bdb72c',
+      uniqueId: '0x16829eebbf7552840016bf10235d596f643d4fbb69655ef54ccf52f64ea88b34:log:25',
+      hash: '0x16829eebbf7552840016bf10235d596f643d4fbb69655ef54ccf52f64ea88b34',
+      from: '0x6271117e328c1720bae5d4cca95eda7554bcfa70',
+      to: '0x15fd1e771828260182b318ef812660badf207fba',
+      value: 33,
+      erc721TokenId: null,
+      erc1155Metadata: null,
+      tokenId: null,
+      asset: 'ROM',
+      category: 'erc20',
+      rawContract: [Object]
+    },
+    */
 
       ///setTransers(data.transfers);
 
       const transactions = [] as any;
 
       data.transactions?.map((transfer: any, index: number) => {
-        if (index > 1) return;
+        if (index > 2) return;
 
         const transactionData = {
           id: transfer.blockNum,
@@ -469,127 +351,18 @@ export default function TransferHistoryTable(
 
     //}, [address]);
   }, []);
-  */
-
-  const [saleHistory, setSaleHistory] = useState([] as any);
-
-  const [totlaCount, setTotalCount] = useState();
-
-  const getLast20 = async () => {
-    ///console.log('price-history-table nftMetadata.?metadata?.id: ', nftMetadata?.metadata?.id);
-
-    const response = await fetch('/api/nft/horse/history/transfer', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        method: 'getAllByTokenId',
-        tokenId: nftMetadata?.metadata?.id,
-      }),
-    });
-    const data = await response.json();
-
-    //console.log('data.all: ', data.all);
-
-    //console.log('data.total: ', data.total);
-
-    setTotalCount(data.total);
-
-    ///setSaleHistory(data.all);
-
-    const transactions = [] as any;
-
-    data.all?.map((transfer: any, index: number) => {
-      const transactionData = {
-        hash: transfer.hash,
-        id: transfer.blockNum,
-        //transactionType: transfer.from === address ? 'Send' : 'Receive',
-        transactionType: 'Send',
-        createdAt: transfer.blockTimestamp,
-
-        tokenFrom: transfer.tokenFrom,
-        tokenTo: transfer.tokenTo,
-
-        status: 'Completed',
-      };
-
-      //console.log('transactionData: ', transactionData);
-
-      ////setTransers((transfers) => [...transfers, transactionData]);
-
-      transactions.push(transactionData);
-    });
-
-    ///console.log('transactions: ', transactions);
-
-    setTransactions(transactions);
-  };
-
-  useEffect(() => {
-    getLast20();
-  }, [nftMetadata?.metadata?.id]);
-
-  const [attributeGrade, setAttributeGrade] = useState(null);
-
-  const [priceFeedDataIndex, setPriceFeedDataIndex] = useState(0);
-
-  useEffect(() => {
-    var grade = null;
-
-    nftMetadata?.metadata?.attributes?.map((attribute: any) => {
-      ///console.log('attribute', attribute);
-      if (attribute.trait_type === 'Grade') {
-        //console.log('attribute.value', attribute.value);
-
-        grade = attribute.value;
-        return;
-      }
-    });
-
-    setAttributeGrade(grade);
-
-    console.log('grade', grade);
-
-    if (grade === 'U') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'S') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'A') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'B') {
-      setPriceFeedDataIndex(2);
-    } else if (grade === 'C') {
-      setPriceFeedDataIndex(2);
-    } else if (grade === 'D') {
-      setPriceFeedDataIndex(0);
-    } else {
-      setPriceFeedDataIndex(0);
-    }
-  }, [nftMetadata?.metadata?.attributes]);
 
   return (
-    <div>
-      {/*
-      <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
-  */}
-
-      {/*
+    <div className="m-5 rounded-lg border">
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
         <div className="flex flex-col items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 md:flex-row">
           <h2 className="sm:text-md mb-3 shrink-0 text-lg font-medium uppercase text-black dark:text-white md:mb-0 md:text-xl">
-            Price History
+            Item Activity
           </h2>
         </div>
       </div>
-      */}
 
       <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
-        <div className="m-3 flex flex-row items-center justify-start gap-2 ">
-          <span className="text-sm">Total Transfers</span>
-          <span className="text-4xl font-bold text-green-600 xl:text-6xl">
-            {totlaCount}
-          </span>
-          <span className="text-sm">transfers</span>
-        </div>
         <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
           <div className="px-0.5">
             <table
@@ -638,28 +411,32 @@ export default function TransferHistoryTable(
                 {...getTableBodyProps()}
                 className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
               >
-                {page.map((row, idx) => {
-                  prepareRow(row);
-                  return (
-                    <tr
-                      {...row.getRowProps()}
-                      key={idx}
-                      className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
-                    >
-                      {row.cells.map((cell, idx) => {
-                        return (
-                          <td
-                            {...cell.getCellProps()}
-                            key={idx}
-                            className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
-                          >
-                            {cell.render('Cell')}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
+                {address && (
+                  <>
+                    {page.map((row, idx) => {
+                      prepareRow(row);
+                      return (
+                        <tr
+                          {...row.getRowProps()}
+                          key={idx}
+                          className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                        >
+                          {row.cells.map((cell, idx) => {
+                            return (
+                              <td
+                                {...cell.getCellProps()}
+                                key={idx}
+                                className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                              >
+                                {cell.render('Cell')}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </>
+                )}
               </tbody>
             </table>
           </div>

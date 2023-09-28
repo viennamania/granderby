@@ -286,8 +286,8 @@ const COLUMNS = [
         </div>
       </button>
     ),
-    minWidth: 60,
-    maxWidth: 60,
+    minWidth: 80,
+    maxWidth: 80,
   },
 
   {
