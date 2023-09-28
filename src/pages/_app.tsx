@@ -34,9 +34,11 @@ import {
   paperWallet,
   metamaskWallet,
   walletConnect,
+  localWallet,
+  smartWallet,
 } from '@thirdweb-dev/react';
 
-import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
+//import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
 
 import { Polygon } from '@thirdweb-dev/chains';
 
@@ -132,6 +134,12 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   //console.log("process.env.THIRDWEB_CLIENT_ID", process.env.THIRDWEB_CLIENT_ID);
   //console.log("process.env.PAPER_CLIENT_ID", process.env.PAPER_CLIENT_ID);
 
+  const smartWalletConfig = smartWallet({
+    factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB',
+    gasless: true,
+    personalWallets: [localWallet()],
+  });
+
   return (
     <>
       <Head>
@@ -164,6 +172,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           clientId="79125a56ef0c1629d4863b6df0a43cce"
           activeChain={Polygon}
           supportedWallets={[
+            smartWalletConfig,
             walletConnect(),
 
             metamaskWallet(),
