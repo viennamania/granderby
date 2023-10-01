@@ -326,7 +326,7 @@ function NftInfo({ nftMetadata }: any) {
   }
 
   return (
-    <div className="px-3  ">
+    <div className="p-3  ">
       {/*{nftMetadata?.owner === address && (*/}
 
       <div className=" flex flex-col rounded-lg border ">

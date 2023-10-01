@@ -128,7 +128,7 @@ function SinglePrice(tokenid: any) {
                     </div>
                   </div>
 
-                  <div className="mt-2 flex  ">
+                  <div className="mt-2 flex flex-row items-center justify-between  ">
                     <button
                       className=" flex flex-row items-center justify-start "
                       onClick={() =>
@@ -170,7 +170,7 @@ function SinglePrice(tokenid: any) {
                   </div>
 
                   {/* owned by */}
-                  <div className="mt-3 flex w-full items-center justify-start  gap-4 ">
+                  <div className="mt-5 flex w-full items-center justify-start  gap-4 ">
                     {isLoadingStakerAddress ? (
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Loading Owner...</b>
@@ -289,7 +289,7 @@ function SinglePrice(tokenid: any) {
                     </div>
                   </div>
 
-                  <div className="mt-2 flex  ">
+                  <div className="mr-5 mt-2 flex flex-row items-center justify-between ">
                     <button
                       className=" flex flex-row items-center justify-start  "
                       onClick={() =>
@@ -331,7 +331,7 @@ function SinglePrice(tokenid: any) {
                   </div>
 
                   {/* owned by */}
-                  <div className="mt-2 flex w-full items-center justify-start  gap-4 ">
+                  <div className="mt-10 flex w-full items-center justify-start  gap-4 ">
                     {isLoadingStakerAddress ? (
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Loading Owner...</b>
@@ -339,7 +339,7 @@ function SinglePrice(tokenid: any) {
                     ) : (
                       <>
                         <div className="flex w-[140px] items-center justify-start text-sm tracking-wider text-[#6B7280] ">
-                          <span>Owned by</span>
+                          Owned by
                         </div>
                         <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
                           {stakerAddress &&
@@ -404,7 +404,7 @@ function SinglePrice(tokenid: any) {
                   </div>
                 </div>
 
-                <div className="mt-5 w-full rounded-lg bg-white py-8 shadow-card dark:bg-light-dark ">
+                <div className="mt-10 w-full rounded-lg bg-white  shadow-card dark:bg-light-dark ">
                   {/*
                   <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
                     NFT Info

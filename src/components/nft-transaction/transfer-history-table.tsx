@@ -299,8 +299,8 @@ const COLUMNS = [
         {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 140,
-    maxWidth: 140,
+    minWidth: 150,
+    maxWidth: 150,
   },
 
   {
