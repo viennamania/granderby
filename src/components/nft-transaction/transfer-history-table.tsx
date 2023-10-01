@@ -308,7 +308,7 @@ const COLUMNS = [
     accessor: 'tokenFrom',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-start">
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         {value == '0x0000000000000000000000000000000000000000'
           ? 'Drops'
@@ -326,7 +326,7 @@ const COLUMNS = [
     accessor: 'tokenTo',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-start">
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         {value == '0x0000000000000000000000000000000000000000'
           ? 'Drops'

@@ -40,6 +40,58 @@ import Button from '@/components/ui/button';
 
 import { useAddress } from '@thirdweb-dev/react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMagnifyingGlass,
+  faCircleStop,
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
+  motion,
+  useAnimationControls,
+  Variants,
+  useScroll,
+} from 'framer-motion';
+
+const isBrowser = () => typeof window !== 'undefined'; //The approach recommended by Next.js
+
+function scrollToTop() {
+  if (!isBrowser()) return;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const ScrollToTopContainerVariants: Variants = {
+  hide: { opacity: 0, y: 100 },
+  show: { opacity: 1, y: 0 },
+};
+
+function ScrollToTopButton() {
+  const { scrollYProgress } = useScroll();
+  const controls = useAnimationControls();
+
+  useEffect(() => {
+    return scrollYProgress.on('change', (latestValue) => {
+      if (latestValue > 0.5) {
+        controls.start('show');
+      } else {
+        controls.start('hide');
+      }
+    });
+  });
+
+  return (
+    <motion.button
+      className="fixed bottom-0 right-0 p-10"
+      variants={ScrollToTopContainerVariants}
+      initial="hide"
+      animate={controls}
+      onClick={scrollToTop}
+    >
+      <FontAwesomeIcon icon={faCircleStop} />
+    </motion.button>
+  );
+}
+
 export default function Feeds({ className }: { className?: string }) {
   const address = useAddress();
 
@@ -118,6 +170,8 @@ export default function Feeds({ className }: { className?: string }) {
 
   return (
     <>
+      <ScrollToTopButton />
+
       {status === 'loading' && (
         <>
           <div className="flex flex-col items-center justify-center ">
