@@ -75,6 +75,8 @@ import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import CollapseLastWinners from '@/components/ui/collapse-last-winners';
 import CollapseCurrentEvent from '@/components/ui/collapse-current-event';
 
+import CollapsePortfolio from '@/components/ui/collapse-portfolio';
+
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
@@ -462,25 +464,48 @@ export default function ModernScreen() {
           <AssetSlider coins={assetSlideData} />
           */}
 
-        <div className="flex flex-col items-center justify-center gap-5">
-          <Image src="/images/logo.png" alt="logo" width={300} height={300} />
+        {address ? (
+          <div className=" flex flex-col rounded-lg border">
+            <CollapsePortfolio label="Last Race Winners">
+              <div className="flex h-[490px] flex-col items-center justify-center p-5">
+                <LastWinners npcs={npcNames} status={status} />
 
-          <div className="text-2xl font-bold xl:text-4xl">NFT GRANDERBY</div>
-          <div className="items-center justify-center p-2 text-xl xl:text-2xl">
-            NFT horse racing game where you can experience all the fun of horse
-            racing
+                <div className="mb-5 flex h-full  items-end justify-center">
+                  <Button
+                    className="mt-5"
+                    shape="rounded"
+                    color="success"
+                    onClick={() => {
+                      router.push('/my-asset');
+                    }}
+                  >
+                    <div className="text-2xl">My NFT</div>
+                  </Button>
+                </div>
+              </div>
+            </CollapsePortfolio>
           </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-5">
+            <Image src="/images/logo.png" alt="logo" width={300} height={300} />
 
-          <Button
-            shape="rounded"
-            color="success"
-            onClick={() => {
-              router.push('/intro');
-            }}
-          >
-            <div className="text-2xl">GAME INTRODUCTION</div>
-          </Button>
-        </div>
+            <div className="text-2xl font-bold xl:text-4xl">NFT GRANDERBY</div>
+            <div className="items-center justify-center p-2 text-xl xl:text-2xl">
+              NFT horse racing game where you can experience all the fun of
+              horse racing
+            </div>
+
+            <Button
+              shape="rounded"
+              color="success"
+              onClick={() => {
+                router.push('/intro');
+              }}
+            >
+              <div className="text-2xl">GAME INTRODUCTION</div>
+            </Button>
+          </div>
+        )}
 
         <div className="mt-10 grid grid-cols-1 gap-5 xl:grid-cols-2 ">
           <div className=" flex flex-col rounded-lg border">
