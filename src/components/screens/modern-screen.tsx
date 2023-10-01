@@ -247,7 +247,7 @@ export default function ModernScreen() {
   }, 40);
 
   useEffect(() => {
-    socketInitializer();
+    ////socketInitializer();
   }, []);
 
   const socketInitializer = () => {

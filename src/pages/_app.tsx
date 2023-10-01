@@ -134,10 +134,24 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   //console.log("process.env.THIRDWEB_CLIENT_ID", process.env.THIRDWEB_CLIENT_ID);
   //console.log("process.env.PAPER_CLIENT_ID", process.env.PAPER_CLIENT_ID);
 
-  const smartWalletConfig = smartWallet({
+  /*
+  const smartWalletConfig = smartWallet(
+  
+
+    {
+      factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB',
+      gasless: true,
+      personalWallets: [localWallet()],
+    }
+
+  );
+  */
+
+  const walletConfig = metamaskWallet(); // or use any other wallet
+
+  const smartWalletConfig = smartWallet(walletConfig, {
     factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB',
     gasless: true,
-    personalWallets: [localWallet()],
   });
 
   return (
@@ -172,7 +186,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           clientId="79125a56ef0c1629d4863b6df0a43cce"
           activeChain={Polygon}
           supportedWallets={[
-            smartWalletConfig,
+            ///smartWalletConfig,
+
             walletConnect(),
 
             metamaskWallet(),

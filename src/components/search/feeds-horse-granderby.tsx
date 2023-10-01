@@ -40,6 +40,7 @@ import Button from '@/components/ui/button';
 
 import { useAddress } from '@thirdweb-dev/react';
 
+/*
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMagnifyingGlass,
@@ -91,6 +92,7 @@ function ScrollToTopButton() {
     </motion.button>
   );
 }
+*/
 
 export default function Feeds({ className }: { className?: string }) {
   const address = useAddress();
@@ -186,7 +188,9 @@ export default function Feeds({ className }: { className?: string }) {
 
   return (
     <>
+      {/*
       <ScrollToTopButton />
+      */}
 
       {status === 'loading' && (
         <>
