@@ -73,6 +73,109 @@ export default async function handler(req: NextRequest) {
   */
   }
 
+  if (id === 'home') {
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            color: 'black',
+            background: '#ffffff',
+            width: '100%',
+            height: '100%',
+            padding: 0,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="avatar"
+            width="1100"
+            src={imageUrl}
+            style={{
+              borderRadius: 0,
+            }}
+          />
+
+          <div
+            style={{
+              color: 'black',
+              background: '#ffffff',
+              width: '100%',
+              padding: 0,
+              marginTop: 3,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="avatar"
+              width="30"
+              src={imageUrl1}
+              style={{
+                borderRadius: 5,
+                padding: 2,
+              }}
+            />
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="avatar"
+              width="30"
+              src={imageUrl2}
+              style={{
+                borderRadius: 5,
+                padding: 2,
+              }}
+            />
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="avatar"
+              width="30"
+              src={imageUrl3}
+              style={{
+                borderRadius: 5,
+                padding: 2,
+              }}
+            />
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="avatar"
+              width="30"
+              src={imageUrl4}
+              style={{
+                borderRadius: 5,
+                padding: 2,
+              }}
+            />
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="avatar"
+              width="30"
+              src={imageUrl5}
+              style={{
+                borderRadius: 5,
+                padding: 2,
+              }}
+            />
+          </div>
+        </div>
+      ),
+      {
+        width: 1200,
+        height: 630,
+      }
+    );
+  }
+
   return new ImageResponse(
     (
       <div

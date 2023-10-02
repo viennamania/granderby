@@ -60,6 +60,10 @@ export const getHorseHistoryByTokenId = async (
 ): Promise<IHorseHistory[]> => {
   //////console.log('getHorseHistoryByTokenId', tokenId);
 
+  if (!tokenId) {
+    return await HorseHistoryModel.find({}).sort({ date: -1 }).limit(10);
+  }
+
   return await HorseHistoryModel.find({
     /*
     'placements': {

@@ -30,13 +30,18 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import { use, useEffect } from 'react';
 
 import { useAddress, usePaperWalletUserEmail } from '@thirdweb-dev/react';
+import { de } from 'date-fns/locale';
 
 export const getStaticProps: GetStaticProps = async () => {
+  const pageid = 'home';
+  const title = 'Granderby - Home';
+  const description = 'powered by MOMOCON';
+
   return {
     props: {
-      title: 'Granderby - Home',
-      description: 'powered by MOMOCON',
-      image: '/intro-bg.png',
+      pageid: pageid,
+      title: title,
+      description: description,
     },
   };
 };

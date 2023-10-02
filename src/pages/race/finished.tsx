@@ -3,6 +3,8 @@ import { NextSeo } from 'next-seo';
 import RootLayout from '@/layouts/_root-layout';
 import Farms from '@/components/farms/farms';
 
+import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
+
 const FinishedPage: NextPageWithLayout = () => {
   return (
     <>
@@ -14,6 +16,8 @@ const FinishedPage: NextPageWithLayout = () => {
         {/*
         <Farms />
         */}
+
+        <RaceHistoryTable tokenId={undefined} />
       </div>
     </>
   );

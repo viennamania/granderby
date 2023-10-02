@@ -97,7 +97,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   var image = '';
 
-  if (pageid === 'horse') {
+  if (pageid === 'horse' || pageid === 'home') {
     image = `https://granderby.io/api/og/dynamic-image-page?id=${pageid}`;
   } else {
     image = `https://granderby.io/api/og/dynamic-image?tokenid=${tokenid}`;

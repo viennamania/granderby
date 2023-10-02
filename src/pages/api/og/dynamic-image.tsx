@@ -10,6 +10,7 @@ export const config = {
 export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const tokenid = searchParams.get('tokenid');
+
   if (!tokenid) {
     return new ImageResponse(<>{'Visit with "?username=vercel"'}</>, {
       width: 1200,
