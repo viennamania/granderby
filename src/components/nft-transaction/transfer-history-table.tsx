@@ -249,14 +249,14 @@ export const TransactionData = [
 
 const COLUMNS = [
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Token ID</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">TokenID</div>,
     accessor: 'tokenId',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="font-bold ltr:text-right rtl:text-left">#{value}</div>
     ),
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 120,
+    maxWidth: 120,
   },
 
   /*
@@ -593,7 +593,6 @@ export default function TransferHistoryTable(
           <span className="text-4xl font-bold text-green-600 xl:text-6xl">
             {totlaCount}
           </span>
-          <span className="text-sm">transfers</span>
         </div>
 
         <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
