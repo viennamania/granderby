@@ -328,11 +328,11 @@ const COLUMNS = [
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="text-right text-xs">
-        {format(Date.parse(value || 0), 'yyyyMMdd hh:mm:ss')}
+        {format(Date.parse(value || 0), 'yyyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 80,
-    maxWidth: 80,
+    minWidth: 100,
+    maxWidth: 100,
   },
 
   {
@@ -628,7 +628,7 @@ export default function RaceHistoryTable(tokenId: any) {
   }, [tokenId.tokenId]);
 
   return (
-    <div>
+    <div className="flex w-full flex-col">
       {/*
       <LivePricingFeed {...raceFeedData[0]} />
       */}
