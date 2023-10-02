@@ -362,6 +362,7 @@ function NftInfo({ nftMetadata }: any) {
                             height={30}
                           />
                         </button>
+                        {/*
                         <button
                           className="flex w-24 flex-row items-center justify-start "
                           onClick={() =>
@@ -383,6 +384,7 @@ function NftInfo({ nftMetadata }: any) {
                             {saleHistory[0]?.hash.substring(0, 6) + '...'}
                           </div>
                         </button>
+                        */}
 
                         <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
                           {saleHistory[0]?.paidToken ===

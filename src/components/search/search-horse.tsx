@@ -137,7 +137,7 @@ export default function Search() {
 
   return (
     <>
-      <div className=" flex flex-col text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
+      <div className=" flex flex-col items-start justify-center  text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
         {/*
         <div className="justify-left flex flex-row items-center">
           <Image
@@ -176,10 +176,18 @@ export default function Search() {
           Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
           Category Gaming
         </span>
+
+        <button
+          className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
+          onClick={() => router.push(`/horse/transfers`)}
+        >
+          Transfers
+        </button>
       </div>
 
       <div
         className="
+        mt-5
         grid
         3xl:grid-cols-[280px_minmax(auto,_1fr)]
         4xl:grid-cols-[320px_minmax(auto,_1fr)]

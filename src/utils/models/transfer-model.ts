@@ -105,6 +105,12 @@ export const getTransferHistoryByTokenId = async (
 ): Promise<ITransferHistory[]> => {
   console.log('getTransferHistoryByTokenId', tokenId);
 
+  if (tokenId === undefined) {
+    return await HorseTransferModel.find({})
+      .sort({ blockTimestamp: -1 })
+      .limit(100);
+  }
+
   return await HorseTransferModel.find({
     /*
     'placements': {
@@ -128,5 +134,5 @@ export const getTransferHistoryByTokenId = async (
     tokenId: tokenId,
   })
     .sort({ blockTimestamp: -1 })
-    .limit(10);
+    .limit(100);
 };

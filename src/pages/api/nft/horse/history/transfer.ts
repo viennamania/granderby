@@ -14,7 +14,7 @@ export default async function handler(
   if (method === 'getAllByTokenId') {
     const { tokenId } = req.body;
 
-    //console.log('history handler tokenId', tokenId);
+    //console.log('horse history transfer tokenId', tokenId);
 
     const all = await getTransferHistoryByTokenId(tokenId);
 

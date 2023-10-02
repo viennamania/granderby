@@ -248,15 +248,17 @@ export const TransactionData = [
 */
 
 const COLUMNS = [
-  /*
   {
-    //Header: 'ID',
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">ID</div>,
-    accessor: 'id',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Token ID</div>,
+    accessor: 'tokenId',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="font-bold ltr:text-right rtl:text-left">#{value}</div>
+    ),
     minWidth: 100,
     maxWidth: 100,
   },
-  */
+
   /*
   {
     Header: 'Type',
@@ -281,7 +283,7 @@ const COLUMNS = [
       >
         <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
 
-        <div className="ml-1 text-left text-xs -tracking-[1px]">
+        <div className="ml-1 text-left text-xs -tracking-[1px]  ">
           {value.substring(0, 6) + '...'}
         </div>
       </button>
@@ -390,7 +392,7 @@ export default function TransferHistoryTable(
       columns,
       //data,
       data: transactions,
-      initialState: { pageSize: 5 },
+      initialState: { pageSize: 10 },
     },
     useSortBy,
     useResizeColumns,
@@ -499,6 +501,8 @@ export default function TransferHistoryTable(
     const transactions = [] as any;
 
     data.all?.map((transfer: any, index: number) => {
+      //console.log('transfer: ', transfer);
+
       const transactionData = {
         hash: transfer.hash,
         id: transfer.blockNum,
@@ -510,6 +514,7 @@ export default function TransferHistoryTable(
         tokenTo: transfer.tokenTo,
 
         status: 'Completed',
+        tokenId: transfer.tokenId,
       };
 
       //console.log('transactionData: ', transactionData);
@@ -567,7 +572,7 @@ export default function TransferHistoryTable(
   }, [nftMetadata?.metadata?.attributes]);
 
   return (
-    <div>
+    <div className="flex w-full flex-col">
       {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
   */}
@@ -590,6 +595,7 @@ export default function TransferHistoryTable(
           </span>
           <span className="text-sm">transfers</span>
         </div>
+
         <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
           <div className="px-0.5">
             <table
