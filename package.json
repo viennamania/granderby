@@ -43,7 +43,7 @@
     "@vercel/og": "^0.5.17",
     "add": "^2.0.6",
     "aframe": "^1.4.2",
-    "alchemy-sdk": "^2.8.3",
+    "alchemy-sdk": "^2.10.1",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "cookies-next": "^2.1.2",
