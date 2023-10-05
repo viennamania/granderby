@@ -617,6 +617,7 @@ export default function NftSinglePrice({
         setAttributePower(attribute.value);
       */
       if (false) {
+      } else if (attribute.trait_type === 'Grade') {
       } else if (attribute.trait_type === 'Preceding') {
       } else if (attribute.trait_type === 'Overtaking') {
       } else if (attribute.trait_type === 'Spirit') {

@@ -253,7 +253,13 @@ export const getAllHorses = async (
       ////return err;
     });
 
-  ///console.log('data', data);
+  //console.log('data', data);
+  console.log('data.length', data?.length);
+  console.log('pageNumber', pageNumber);
+
+  if (data?.length === 0) {
+    return { nfts: [], pageNumber: null };
+  }
 
   return { nfts: data, pageNumber: pageNumber + 1 };
 };
