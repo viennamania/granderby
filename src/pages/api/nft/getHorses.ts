@@ -35,11 +35,9 @@ export default async function handler(
 
   nfts = data.nfts;
 
-  //console.log("nfts count", data.nfts.length);
-
-  //console.log("nfts", data.nfts);
-
   const pageKey = data.pageNumber;
+
+  const total = data.total;
 
   const formattedNfts = nfts?.map((nft: any) => {
     const {
@@ -109,6 +107,7 @@ export default async function handler(
     //pageKey: nfts.pageKey,
     ///pageKey: null,
     pageKey: pageKey,
+    total: total,
   });
 
   ///return res.status(200).json({ success: true, nfts: response, pageKey: 'aaaaa' });

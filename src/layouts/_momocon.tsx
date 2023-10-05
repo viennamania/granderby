@@ -141,6 +141,7 @@ function HeaderRightArea() {
 
   const [isOpenWelcome, setIsOpenWelcome] = useState(false);
 
+  /*
   const [npcNames, setNpcNames] = useState<any>([]);
   useEffect(() => {
     async function getNpcNames() {
@@ -158,6 +159,7 @@ function HeaderRightArea() {
 
     getNpcNames();
   }, []);
+  */
 
   const emailQuery = usePaperWalletUserEmail();
 

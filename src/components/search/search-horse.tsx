@@ -114,6 +114,7 @@ export default function Search() {
     */
   ];
 
+  /*
   const [npcNames, setNpcNames] = useState<any>([]);
 
   useEffect(() => {
@@ -134,6 +135,32 @@ export default function Search() {
 
     getNpcNames();
   }, []);
+  */
+
+  const [horsesCount, setHorsesCount] = useState<any>(0);
+
+  useEffect(() => {
+    async function getHorsesCount() {
+      const response = await fetch('/api/nft/getHorsesCount', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ///grades: selectedGradesStorage,
+          grades: selectedGradesStorage ?? [],
+          manes: selectedManesStorage ?? [],
+          //holder: address,
+          //sort: selectedGSortStorage,
+        }),
+      });
+      const data = await response.json();
+
+      console.log('getHorsesCount data====', data);
+
+      setHorsesCount(data.total);
+    }
+
+    getHorsesCount();
+  }, [selectedGradesStorage, selectedManesStorage]);
 
   return (
     <>
@@ -218,6 +245,10 @@ export default function Search() {
           >
             <div className="relative z-10 mb-6 flex items-center justify-between ">
               <div className="flex flex-col gap-2 ">
+                <div className="text-sm xl:text-xl">
+                  {horsesCount} {horsesCount > 1 ? 'Horses' : 'Horse'}
+                </div>
+
                 <div className="flex flex-col gap-2 xl:flex-row ">
                   {selectedGradesStorage
                     //.sort(function(a:any, b:any) {return a - b})

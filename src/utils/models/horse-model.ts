@@ -192,6 +192,20 @@ export const getAllHorses = async (
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
 
+  const totalData = await HorseModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        trait_type: 'Grade',
+        //value: grades,
+        value: { $in: grades },
+      },
+    },
+  }).catch((err) => {
+    ////return err;
+  });
+
+  const total = totalData?.length;
+
   const data = await HorseModel.find({
     'nft.rawMetadata.attributes': {
       $elemMatch: {
@@ -261,5 +275,79 @@ export const getAllHorses = async (
     return { nfts: [], pageNumber: null };
   }
 
-  return { nfts: data, pageNumber: pageNumber + 1 };
+  return { nfts: data, pageNumber: pageNumber + 1, total: total };
+};
+
+export const getAllHorsesCount = async (
+  grades: string,
+  manes: string,
+  holder: string
+) => {
+  console.log('getAllHorsesCount holder', holder);
+
+  if (holder) {
+    const data = await HorseModel.find({
+      holder: holder.toLowerCase(),
+    })
+    .catch((err) => {
+      ////return err;
+    });
+
+    return { total: data?.length };
+  }
+
+  if (grades.length === 0) {
+    const data = await HorseModel.find({})
+    .catch((err) => {
+      ////return err;
+    });
+
+    return { total: data?.length };
+  }
+
+  const data = await HorseModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        /*
+                    "closed": false,
+            "$or": [
+                {
+                    "openingEvening": { "$lte": currentTime  },
+                    "closingEvening": { "$gte": currentTime  }
+                },
+                {
+                    "openingMorning": { "$lte": currentTime },
+                    "closingMorning": { "$gte": currentTime  }
+                }
+
+            ]
+            */
+
+        /*
+        $and: [
+          {
+            trait_type: 'Grade',
+            //value: grades,
+            value: { $in: grades },
+          },
+          
+          {
+            trait_type: 'Mane',
+            value: { $in: manes },
+          }
+          
+        ]
+        */
+
+        trait_type: 'Grade',
+        //value: grades,
+        value: { $in: grades },
+      },
+    },
+  })
+  .catch((err) => {
+    ////return err;
+  });
+
+  return { total: data?.length };
 };
