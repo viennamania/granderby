@@ -17,7 +17,7 @@ export default function handler(req, res) {
 ////import { updateTopStories } from '@/lib/upstash';
 import { NextResponse } from 'next/server';
 
-import type { NextApiRequest, NextApiResponse } from 'next';
+/////import type { NextApiRequest, NextApiResponse } from 'next';
 
 import {
   Network,
@@ -54,18 +54,15 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 
-type Data = {
-  address: string;
-  transfers: any;
-};
-
-///export default async function handler() {
-
+export default async function handler() {
+  /*
 export default async function handler(
   req: NextApiRequest,
   ///res: NextApiResponse<Data>
   res: NextApiResponse
 ) {
+*/
+
   try {
     /*
 		const hackerNewsData = await getHackerNews();
