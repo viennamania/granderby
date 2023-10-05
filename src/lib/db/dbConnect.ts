@@ -10,11 +10,13 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  //console.log('dbConnect 1 cached.conn========', cached.conn);
+
   if (cached.conn) {
     return cached.conn;
   }
 
-  console.log('dbConnect cached.conn', cached.conn);
+  //console.log('dbConnect 2 cached.conn========', cached.conn);
 
   if (!cached.promise) {
     cached.promise = mongoose

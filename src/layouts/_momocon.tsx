@@ -32,6 +32,9 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
 import {
+  ThirdwebProvider,
+  smartWallet,
+  embeddedWallet,
   ConnectWallet,
   useAddress,
   useNFT,
@@ -253,56 +256,10 @@ function HeaderRightArea() {
 
         {!isLoadingContract && !address && (
           <ConnectWallet
-            /*
-            theme={
-              lightTheme({
-                fontFamily: 'Inter, sans-serif',
-                colors: {
-                  //modalBg: "#000000",
-                  modalBg: '#ffffff',
-                  accentText: 'green',
-                  
-
-                  // ... etc
-                },
-              }),
-            }
-            */
             theme="light"
             welcomeScreen={() => {
-              ////return <LiveNftPricingSlider limits={2} />;
-              /*
-              return (
-                <NftSinglePrice
-                  //tokenid={tokenid.tokenid}
-                  nftMetadata={nftMetadata}
-                  contractAddress={nftDropContractAddressHorse}
-                  isOpen={isOpenWelcome}
-                  setIsOpen={setIsOpenWelcome}
-                />
-              );
-              */
-              /*
-              return (
-
-                <div className=' m-10 flex items-center justify-center'>
-                  <CollapseLastWinners label="Last Race Winners">
-                    <div className="h-96">
-                      <LastWinners npcs={npcNames} status={0} />
-                    </div>
-                  </CollapseLastWinners>
-                </div>
-              )
-              */
-
               return (
                 <div className=" mt-10 flex flex-col items-center justify-center p-20">
-                  {/*
-                  <div>Last Race Winner</div>
-
-                  <LastWinners npcs={npcNames} status={0} />
-                  */}
-
                   <Image
                     src="/images/logo.png"
                     alt="logo"

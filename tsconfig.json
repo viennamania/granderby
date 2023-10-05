@@ -25,7 +25,8 @@
     "react-table-config.d.ts",
     "./src/**/*.ts",
     "./src/**/*.tsx",
-    "./src/types/react.d.ts"
+    "./src/types/react.d.ts",
+    "custom.d.ts"
   ],
   "exclude": ["node_modules"]
 }
