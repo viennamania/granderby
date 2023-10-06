@@ -270,7 +270,7 @@ export default function Feeds({ className }: { className?: string }) {
                   key={nft?.tokenId}
                 >
                   <button
-                    className=""
+                    className="flex h-full w-full flex-col"
                     onClick={() =>
                       //setTokenid(nft.metadata.id.toString()),
                       //setIsOpen(true)
@@ -307,9 +307,10 @@ export default function Feeds({ className }: { className?: string }) {
                   </div>
                    */}
 
-                    <div className="items-top  m-2 mt-4 flex  h-14 flex-col  justify-center gap-1   ">
+                    <div className=" h-18 mb-2  mt-4 flex w-full  flex-col items-center  justify-center  gap-1 xl:h-16   ">
                       <div className="text-sm font-bold ">{nft?.title}</div>
-                      <div className="flex flex-row items-center justify-start gap-1">
+
+                      <div className="ml-5 flex w-full flex-row items-center justify-start gap-1">
                         <Image
                           src="/images/logo-polygon.png"
                           alt="logo"
@@ -319,7 +320,7 @@ export default function Feeds({ className }: { className?: string }) {
                         <div className="text-left text-sm">#{nft?.tokenId}</div>
                       </div>
 
-                      <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                      <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
                         <span>Last Price:</span>
                         <span>
                           {nft?.paidToken ===
