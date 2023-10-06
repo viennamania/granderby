@@ -181,6 +181,10 @@ export const getAllHorses = async (
         ////return err;
       });
 
+    if (data?.length === 0) {
+      return { nfts: [], pageNumber: null };
+    }
+
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
 

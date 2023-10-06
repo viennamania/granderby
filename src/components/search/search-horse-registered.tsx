@@ -1,6 +1,6 @@
 import Button from '@/components/ui/button';
 
-import Feeds from './feeds-horse-granderby';
+import Feeds from './feeds-horse-registered';
 
 import SaleFeeds from './feeds-horse-sale';
 
@@ -150,8 +150,8 @@ export default function Search() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ///grades: selectedGradesStorage,
-          grades: selectedGradesStorage ?? [],
-          manes: selectedManesStorage ?? [],
+          grades: [],
+          manes: [],
           holder: stakingContractAddressHorseAAA,
           //sort: selectedGSortStorage,
         }),
@@ -316,10 +316,13 @@ export default function Search() {
                 </div>
               </div>
 
+              {/*
               <div className="items-right flex w-full justify-end">
                 <div className="flex gap-6 3xl:gap-8 ">
+
                   <SortList />
 
+                  
                   <div className="hidden 3xl:block">
                     <GridSwitcher />
                   </div>
@@ -344,17 +347,20 @@ export default function Search() {
                   </div>
                 </div>
               </div>
+              */}
             </div>
 
             <Feeds holderAddress={stakingContractAddressHorseAAA} />
           </div>
         </div>
 
+        {/*
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
           <Button onClick={() => openDrawer('DRAWER_SEARCH', '')} fullWidth>
             Filters
           </Button>
         </div>
+        */}
       </div>
     </>
   );
