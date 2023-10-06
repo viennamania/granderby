@@ -245,7 +245,7 @@ export default function Search() {
           >
             <div className="relative z-10 mb-6 flex items-center justify-between ">
               <div className="flex flex-col gap-2 ">
-                <div className="text-sm xl:text-xl">
+                <div className="text-lg font-bold xl:text-2xl">
                   {horsesCount} {horsesCount > 1 ? 'Horses' : 'Horse'}
                 </div>
 
