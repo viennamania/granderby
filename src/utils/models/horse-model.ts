@@ -109,6 +109,20 @@ const HorseSchema = new Schema({
   },
 });
 
+/*
+export interface IHorse {
+  save(): unknown;
+  _id: string;
+  tokenId: string;
+  contract: string;
+  nft: object;
+  holder: string;
+  paidToken: string;
+  totalPricePaid: string;
+  logsNewSale: object;
+}
+*/
+
 export const HorseModel =
   models.nfthorse || model<IHorse>('nfthorse', HorseSchema);
 
@@ -267,7 +281,7 @@ export const getAllHorses = async (
       ////return err;
     });
 
-  //console.log('data', data);
+  console.log('data', data);
   console.log('data.length', data?.length);
   console.log('pageNumber', pageNumber);
 
@@ -288,8 +302,7 @@ export const getAllHorsesCount = async (
   if (holder) {
     const data = await HorseModel.find({
       holder: holder.toLowerCase(),
-    })
-    .catch((err) => {
+    }).catch((err) => {
       ////return err;
     });
 
@@ -297,8 +310,7 @@ export const getAllHorsesCount = async (
   }
 
   if (grades.length === 0) {
-    const data = await HorseModel.find({})
-    .catch((err) => {
+    const data = await HorseModel.find({}).catch((err) => {
       ////return err;
     });
 
@@ -344,8 +356,7 @@ export const getAllHorsesCount = async (
         value: { $in: grades },
       },
     },
-  })
-  .catch((err) => {
+  }).catch((err) => {
     ////return err;
   });
 
