@@ -178,7 +178,7 @@ export default function Feeds({ className }: { className?: string }) {
     }
   );
 
-  console.log('feeds-horse-granderby searchData======>', searchData);
+  ///console.log('feeds-horse-granderby searchData======>', searchData);
 
   useEffect(() => {
     /*
