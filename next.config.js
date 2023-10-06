@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const runtimeCaching = require('next-pwa/cache');
+
 const withPWA = require('next-pwa')({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
@@ -14,8 +15,14 @@ const nextConfig = withPWA({
         // matching all API routes
         source: '/api/:path*',
         headers: [
-          { key: 'Access-Control-Allow-Credentials', value: 'true' },
-          { key: 'Access-Control-Allow-Origin', value: '*' },
+          {
+            key: 'Access-Control-Allow-Credentials',
+            value: 'true',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
           {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
@@ -61,4 +68,5 @@ const nextConfig = withPWA({
     },
   }),
 });
+
 module.exports = nextConfig;
