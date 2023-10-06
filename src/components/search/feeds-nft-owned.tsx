@@ -46,10 +46,13 @@ import {
 } from '@/config/contractAddresses';
 
 export default function OwnedFeedsNft(
-  { contractAddress }: { contractAddress?: string },
+  //{ contractAddress }: { contractAddress?: string },
+
+  { searchData }: { searchData?: any },
+
   { className }: { className?: string }
 ) {
-  console.log('OwnedFeeds contractAddress', contractAddress);
+  ///console.log('OwnedFeeds searchData', searchData);
 
   const address = useAddress();
 
@@ -77,16 +80,7 @@ export default function OwnedFeedsNft(
 
   // useLocalStrage change event
 
-  type NFT = {
-    id: string;
-    author: string;
-    authorImage: StaticImageData;
-    image: string;
-    name: string;
-    collection: string;
-    price: string;
-  };
-
+  /*
   const [searchData, setSearchData] = useState<any>();
 
   useEffect(() => {
@@ -143,6 +137,7 @@ export default function OwnedFeedsNft(
       }
     }
   }, [address, selectedGradesStorage, selectedManesStorage, contractAddress]);
+  */
 
   const limit = 1000;
 

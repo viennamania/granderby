@@ -103,7 +103,7 @@ export default function Search() {
 
   useEffect(() => {
     async function getHorses() {
-      setSearchDataHorse(undefined);
+      //setSearchDataHorse(undefined);
 
       const data = await fetch('/api/nft/getHorses?pageNumber=1&pageSize=100', {
         method: 'POST',
@@ -121,12 +121,20 @@ export default function Search() {
 
       ///console.log('feeds-owned horses data', data);
 
+      //searchDataHorse?.nfts.length !== data?.nfts.length &&
+
       setSearchDataHorse(data);
     }
 
     if (address !== undefined) {
       getHorses();
     }
+
+    /*
+    setInterval(() => {
+      getHorses();
+    } , 10000);
+    */
   }, [address]);
 
   const [searchDataJockey, setSearchDataJockey] = useState<any>();
@@ -201,7 +209,10 @@ export default function Search() {
             initialOpen={true}
           >
             <div className=" itmes-start  flex flex-col justify-center p-0 pb-10">
+              {/*
               <OwnedFeedsNft contractAddress={nftDropContractAddressHorse} />
+              */}
+              <OwnedFeedsNft searchData={searchDataHorse} />
             </div>
           </Collapse>
         </div>
@@ -219,7 +230,10 @@ export default function Search() {
             initialOpen={true}
           >
             <div className="itmes-start flex flex-col justify-center p-3 pb-10">
+              {/*
               <OwnedFeedsNft contractAddress={nftDropContractAddressJockey} />
+              */}
+              <OwnedFeedsNft searchData={searchDataJockey} />
             </div>
           </Collapse>
         </div>
