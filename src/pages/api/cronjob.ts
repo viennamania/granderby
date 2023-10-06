@@ -9,7 +9,10 @@ import {
   AssetTransfersCategory,
 } from 'alchemy-sdk';
 
-import { tokenContractAddressGRD } from '@/config/contractAddresses';
+import {
+  tokenContractAddressGRD,
+  nftDropContractAddressHorse,
+} from '@/config/contractAddresses';
 
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
@@ -20,44 +23,124 @@ const alchemy = new Alchemy(settings);
 
 type Data = {
   address: string;
+  length: number;
 };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const contractAddress = tokenContractAddressGRD;
+  let transfers = [] as any;
 
-  const response = await alchemy.core.getAssetTransfers({
-    fromBlock: '0x0',
-    toBlock: 'latest',
-    contractAddresses: [contractAddress],
-    category: [AssetTransfersCategory.ERC20],
-    withMetadata: true,
-    excludeZeroValue: false,
-    //order: "desc",
-    order: SortingOrder.DESCENDING,
+  // Contract address for granderby NFT
+  const contractAddress = nftDropContractAddressHorse;
 
-    ///pageKey: pageParam,
-    //pageSize: 100,
-  });
+  var pageParam = null;
 
-  ///console.log(response);
+  //var pageParam = "c9d362ce-45be-4631-b974-5242ed9e50cd";
 
-  var transfers: any = [];
+  ///var fromBlock = "0x0";
 
-  response.transfers.forEach((transfer: any) => {
-    transfers.push({
-      uniqueId: transfer.uniqueId,
-      hash: transfer.hash,
-      from: transfer.from,
-      to: transfer.to,
-      value: transfer.value,
-      blockTimestamp: transfer.metadata.blockTimestamp,
+  //var fromBlock = "0x2a672b6";
+
+  var fromBlock = '0x2d8b54c';
+
+  //var fromBlock = "0x2a6857f";
+
+  //var fromBlock = "0x2a68678";
+  //var fromBlock = "0x2b762f9";
+
+  var response = null;
+
+  while (true) {
+    if (pageParam == null) {
+      response = await alchemy.core.getAssetTransfers({
+        fromBlock: fromBlock,
+        toBlock: 'latest',
+
+        contractAddresses: [contractAddress],
+        //category: ["external","internal","erc721"],
+        //category: ["erc721"],
+        //category: ["erc721"],
+        category: [AssetTransfersCategory.ERC721],
+        //category: ["internal"],
+        //fromAddress: "0x89Dc7A2E543a24F8c1513Fa67cE5aBE6CA338C18",
+        //toAddress: "0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81",
+        withMetadata: true,
+        ///excludeZeroValue: false,
+        excludeZeroValue: true,
+        /////////order: SortingOrder.DESCENDING,
+        order: SortingOrder.ASCENDING,
+
+        /////pageKey: pageParam,
+        //pageSize: 100,
+      });
+    } else {
+      response = await alchemy.core.getAssetTransfers({
+        fromBlock: fromBlock,
+
+        contractAddresses: [contractAddress],
+        //category: ["external","internal","erc721"],
+        //category: ["erc721"],
+        category: [AssetTransfersCategory.ERC721],
+        //category: ["internal"],
+        //fromAddress: "0x89Dc7A2E543a24F8c1513Fa67cE5aBE6CA338C18",
+        //toAddress: "0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81",
+        withMetadata: true,
+        ///excludeZeroValue: false,
+        excludeZeroValue: true,
+        //////order: SortingOrder.DESCENDING,
+        order: SortingOrder.ASCENDING,
+        pageKey: pageParam,
+        //pageSize: 100,
+      });
+    }
+
+    //console.log('response.transfers.length', response?.transfers.length);
+
+    //console.log('response.pageKey', response?.pageKey);
+
+    response?.transfers.map((item, index) => {
+      ///console.log("index", index);
+
+      ///console.log("item", item);
+
+      const match = transfers.find((element: any) => {
+        return element.hash == item.hash;
+      });
+
+      if (match) {
+        return;
+      }
+
+      const transfer = {
+        hash: item.hash,
+        blockNum: item.blockNum,
+        uniqueId: item.uniqueId,
+        from: item.from,
+        to: item.to,
+        value: item.value,
+        erc721TokenId: item.erc721TokenId,
+        erc1155Metadata: item.erc1155Metadata,
+        tokenId: item.tokenId,
+        asset: item.asset,
+        category: item.category,
+        rawContract: item.rawContract,
+        blockTimestamp: item.metadata.blockTimestamp,
+      };
+
+      transfers.push(transfer);
     });
-  });
+
+    if (response.pageKey == undefined) {
+      break;
+    }
+
+    pageParam = response.pageKey;
+  }
 
   res.status(200).json({
     address: contractAddress,
+    length: transfers.length,
   });
 }
