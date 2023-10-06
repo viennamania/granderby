@@ -3,6 +3,8 @@ import { NextSeo } from 'next-seo';
 import RootLayout from '@/layouts/_root-layout';
 import Farms from '@/components/farms/farms';
 
+import Search from '@/components/search/search-horse-registered';
+
 const SchedulePage: NextPageWithLayout = () => {
   return (
     <>
@@ -14,6 +16,7 @@ const SchedulePage: NextPageWithLayout = () => {
         {/*
       <Farms />
       */}
+        <Search />
       </div>
     </>
   );

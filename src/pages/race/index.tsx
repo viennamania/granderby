@@ -37,8 +37,6 @@ import BetInputs from '@/components/horseRace/watchScreen/betInputsGranderby';
 
 import BetTables from '@/components/horseRace/watchScreen/betTablesGranderby';
 
-import Search from '@/components/search/search-horse';
-
 import { useDrawer } from '@/components/drawer-views/context';
 
 import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
@@ -97,6 +95,8 @@ import LastWinnersPage from '@/components/horseRace/watchScreen/lastWinnersGrand
 import Collapse from '@/components/ui/collapse-last-winners';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
+import Search from '@/components/search/search-horse-registered';
+
 /*
       <Header className="ltr:xl:pl-72 rtl:xl:pr-72 ltr:2xl:pl-[320px] rtl:2xl:pr-[320px] ltr:3xl:pl-80 rtl:3xl:pr-80" />
       <Sidebar className="z-40 hidden xl:block" />
@@ -133,151 +133,11 @@ const LivePage: NextPageWithLayout<
 
   const [npcNames, setNpcNames] = useState<any>([]);
 
-  const [horse1Oran, setHorse1Oran] = useState<any>([]);
-  const [horse2Oran, setHorse2Oran] = useState<any>([]);
-  const [horse3Oran, setHorse3Oran] = useState<any>([]);
-  const [horse4Oran, setHorse4Oran] = useState<any>([]);
-  const [horse5Oran, setHorse5Oran] = useState<any>([]);
-  const [horse6Oran, setHorse6Oran] = useState<any>([]);
-  const [horse7Oran, setHorse7Oran] = useState<any>([]);
-  const [horse8Oran, setHorse8Oran] = useState<any>([]);
-  const [horse9Oran, setHorse9Oran] = useState<any>([]);
-  const [horse10Oran, setHorse10Oran] = useState<any>([]);
-
-  const [socket, setSocket] = useState<Socket | null>(null);
-
-  const [status, setStatus] = useState<any>();
-  const [time, setTime] = useState<any>(0);
-
-  const address = useAddress();
-
-  const { contract: tokenContract } = useContract(
-    tokenContractAddressGRD,
-    'token'
-  );
-  const { data: tokenBalance, isLoading: tokenBalanceIsLoading } =
-    useTokenBalance(tokenContract, address);
-
-  useEffect(() => {
-    socketInitializer();
-  }, []);
-
-  const socketInitializer = () => {
-    ///console.log("snailRace socketInitializer socket", socket);
-
-    if (socket) return;
-
-    const socketa = io(process.env.NEXT_PUBLIC_HORSE_RACE_SOCKET_URL as string);
-
-    setSocket(socketa);
-
-    socketa.on('status', (data: any) => {
-      console.log('socket status======', data);
-
-      setStatus(data);
-    });
-
-    socketa.on('time', (data: any) => {
-      setTime(data);
-    });
-
-    socketa.on('horse1Rate', (data: any) => {
-      setHorse1Oran(data);
-    });
-    socketa.on('horse2Rate', (data: any) => {
-      setHorse2Oran(data);
-    });
-    socketa.on('horse3Rate', (data: any) => {
-      setHorse3Oran(data);
-    });
-    socketa.on('horse4Rate', (data: any) => {
-      setHorse4Oran(data);
-    });
-    socketa.on('horse5Rate', (data: any) => {
-      setHorse5Oran(data);
-    });
-    socketa.on('horse6Rate', (data: any) => {
-      setHorse6Oran(data);
-    });
-    socketa.on('horse7Rate', (data: any) => {
-      setHorse7Oran(data);
-    });
-    socketa.on('horse8Rate', (data: any) => {
-      setHorse8Oran(data);
-    });
-    socketa.on('horse9Rate', (data: any) => {
-      setHorse9Oran(data);
-    });
-    socketa.on('horse10Rate', (data: any) => {
-      setHorse10Oran(data);
-    });
-
-    /*
-    socketa.on('flag', (data: any) => {
-      setFlag(data);
-    });
-    */
-
-    return () => {
-      socketa.disconnect();
-    };
-  };
-
-  useEffect(() => {
-    if (status == false) {
-      ////deleteCookie('horse');
-    }
-
-    async function getNpcNames() {
-      const npcNamesResponse = await fetch(
-        `/api/games/horseRace/settings/horseNames?method=all`
-      );
-      const response = await npcNamesResponse.json();
-
-      ///console.log('getNpcNames response', response);
-
-      //const data = useOwnedNFTs(nftDropContractHorse, address);
-
-      setNpcNames(response.npcNames[0]);
-
-      //npcNames.npcNames[0].nft1
-    }
-
-    getNpcNames();
-  }, [status]);
-
-  {
-    /*
-  useEffect(() => {
-    Array.from(document.getElementsByTagName("iframe")).forEach((iframe) => {
-      iframe?.contentWindow?.addEventListener(
-        "load",
-        () => {
-          const doc = iframe.contentWindow?.document;
-          iframe.height = doc?.body.scrollHeight;
-        },
-        true
-      );
-      iframe.contentWindow.addEventListener(
-        "resize",
-        () => {
-          iframe.height = iframe?.contentWindow?.document?.body?.scrollHeight + 40;
-        },
-        true
-      );
-    });
-  }, []);
-*/
-  }
-
   const [lastWinersIsOpen] = useLocalStorage('last-winners-isopen');
 
   return (
     <>
-      <NextSeo
-        title="Landing"
-        description="Granderby - NFT Horse Racing Game"
-      />
+      <NextSeo title="Race" description="Granderby - NFT Horse Racing Game" />
 
       <Head>
         <meta
@@ -384,39 +244,6 @@ const LivePage: NextPageWithLayout<
 
         <div className="justify-left mt-0 flex h-[50px] w-full items-center  ">
           <Image src="/horseRace/live.gif" alt="live" width={100} height={30} />
-        </div>
-
-        <div className="items-top mt-0 flex  w-full flex-col justify-center gap-2  rounded-md border  bg-black  p-2 xl:hidden ">
-          {time ? (
-            <WalkingAnim time={time} npcSrc={'/npcRace/at.json'} />
-          ) : (
-            <div className="flex w-full items-center justify-center text-2xl text-white ">
-              Loading game...
-            </div>
-          )}
-        </div>
-
-        <div className=" flex w-full items-center justify-center  ">
-          <iframe
-            src="https://granderby.io/webgl/granderby/inapp.html"
-            //width="100vw"
-            //height="100vh"
-            //////sandbox="allow-scripts allow-modal"
-            //width: 100vw;
-            //height: 100vw;
-
-            //style="width: 100vw; height: 100vh; border: none;"
-            style={{
-              //width: '100vw',
-              width: '100%',
-              height: '100vh',
-              //height: '100%',
-              border: 'none',
-              margin: '0',
-              padding: '0',
-              overflow: 'hidden',
-            }}
-          ></iframe>
         </div>
       </div>
 

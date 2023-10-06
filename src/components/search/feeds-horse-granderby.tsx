@@ -94,7 +94,10 @@ function ScrollToTopButton() {
 }
 */
 
-export default function Feeds({ className }: { className?: string }) {
+export default function Feeds(
+  { holderAddress }: { holderAddress?: string },
+  { className }: { className?: string }
+) {
   const address = useAddress();
 
   const { isGridCompact } = useGridSwitcher();
@@ -156,7 +159,7 @@ export default function Feeds({ className }: { className?: string }) {
             ///grades: selectedGradesStorage,
             grades: selectedGradesStorage ?? [],
             manes: selectedManesStorage ?? [],
-            //holder: address,
+            holder: holderAddress,
             //sort: selectedGSortStorage,
           }),
         }
