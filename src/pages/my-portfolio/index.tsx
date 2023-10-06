@@ -33,6 +33,8 @@ import Search from '@/components/search/search-portfolio';
 import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
+import PortfolioScreen from '@/components/screens/portfolio-screen';
+
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
@@ -46,95 +48,63 @@ const RentPage: NextPageWithLayout<
 
   const address = useAddress();
 
-  // render retro layout profile
-  if (layout === LAYOUT_OPTIONS.RETRO) {
-    return (
-      <>
-        <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
+  return (
+    <>
+      <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
-        <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
-          <Image
-            src={authorData?.cover_image?.thumbnail}
-            placeholder="blur"
-            fill
-            className="h-full w-full object-fill"
-            alt="Cover Image"
-          />
-        </div>
+      {/*
+      <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
+        <Image
+          src={authorData?.cover_image?.thumbnail}
+          placeholder="blur"
+          fill
+          //className="object-fill"
+          className="h-full w-full object-cover"
+          alt="Cover Image"
+        />
+      </div>
+      */}
 
-        <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          <Avatar
-            size="xl"
-            image={authorData?.avatar?.thumbnail}
-            alt="Author"
-            className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
-          />
-          <RetroProfile />
-        </div>
-      </>
-    );
-  } else {
-    // render default profile
+      <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <h1 className="text-2x xl:text-4xl">My Portfolio</h1>
 
-    return (
-      <>
-        <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
+        {!address ? (
+          <></>
+        ) : (
+          <div className="mt-5 flex flex-col items-start justify-center text-sm xl:text-lg">
+            {address}
+          </div>
+        )}
 
         {/*
-        <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
-          <Image
-            src={authorData?.cover_image?.thumbnail}
-            placeholder="blur"
-            fill
-            //className="object-fill"
-            className="h-full w-full object-cover"
-            alt="Cover Image"
-          />
-        </div>
+        <Profile />
+          */}
+
+        {/*
+        <CollapseLivePricing label="Live Pricing">
+          <div className="p-5">
+            <LiveNftPricingSlider limits={2} />
+          </div>
+        </CollapseLivePricing>
         */}
 
-        <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          <h1 className="text-2x xl:text-4xl">My Portfolio</h1>
-
-          {/*
-          {!address ? (
-            <></>
-          ) : (
-            <Avatar
-              size="xl"
-              image={authorData?.avatar?.thumbnail}
-              alt="Author"
-              className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
-            />
-          )}
-            */}
-
-          {/*
-          <Profile />
-            */}
-
-          {/*
-          <CollapseLivePricing label="Live Pricing">
-            <div className="p-5">
-              <LiveNftPricingSlider limits={2} />
-            </div>
-          </CollapseLivePricing>
-          */}
-
-          <Search />
-        </div>
-
         {/*
-        <div className="flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-center text-2xl font-bold">Coming Soon</div>
-            <div className="text-center text-xl font-bold">Rent your horse</div>
-          </div>
+        <Search />
+        */}
+
+        <PortfolioScreen />
+      </div>
+
+      {/*
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-center text-2xl font-bold">Coming Soon</div>
+          <div className="text-center text-xl font-bold">Rent your horse</div>
         </div>
-          */}
-      </>
-    );
-  }
+      </div>
+        */}
+    </>
+  );
 };
 
 RentPage.getLayout = function getLayout(page) {
