@@ -121,6 +121,7 @@ export default function Feeds({ className }: { className?: string }) {
 
   // useLocalStrage change event
 
+  /*
   type NFT = {
     id: string;
     author: string;
@@ -130,6 +131,7 @@ export default function Feeds({ className }: { className?: string }) {
     collection: string;
     price: string;
   };
+  */
 
   const {
     data: searchData,
@@ -175,6 +177,8 @@ export default function Feeds({ className }: { className?: string }) {
       },
     }
   );
+
+  console.log('feeds-horse-granderby searchData======>', searchData);
 
   useEffect(() => {
     /*
@@ -314,8 +318,9 @@ export default function Feeds({ className }: { className?: string }) {
                         />
                         <div className="text-left text-sm">#{nft?.tokenId}</div>
                       </div>
+
                       <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                        <span>Last Price</span>
+                        <span>Last Price:</span>
                         <span>
                           {nft?.paidToken ===
                             '0x0000000000000000000000000000000000001010' &&
@@ -365,12 +370,15 @@ export default function Feeds({ className }: { className?: string }) {
                     opacity-0 hover:opacity-100"
                 >
                 */}
+
+                  {/*
                   <button
                     className="bg-sky-600 p-2 text-sm font-bold  text-white
                     "
                   >
                     Buy now
                   </button>
+                  */}
                 </div>
               ))}
             </div>

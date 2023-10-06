@@ -281,7 +281,7 @@ export const getAllHorses = async (
       ////return err;
     });
 
-  console.log('data', data);
+  ///console.log('data', data);
   console.log('data.length', data?.length);
   console.log('pageNumber', pageNumber);
 
