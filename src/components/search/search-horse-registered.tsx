@@ -350,7 +350,7 @@ export default function Search() {
               */}
             </div>
 
-            <Feeds holderAddress={stakingContractAddressHorseAAA} />
+            <Feeds registerAddress={stakingContractAddressHorseAAA} />
           </div>
         </div>
 

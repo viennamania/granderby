@@ -12,6 +12,7 @@ import {
 import {
   tokenContractAddressGRD,
   nftDropContractAddressHorse,
+  stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
 
 import db from '@/db/conn.mjs';
@@ -53,7 +54,9 @@ export default async function handler(
   //var fromBlock = "0x2a68678";
   //var fromBlock = "0x2b762f9";
 
-  var fromBlock = '0x2e3866a';
+  //var fromBlock = '0x2e3866a';
+
+  var fromBlock = '0x2e3aabf';
 
   var response = null;
 
@@ -110,7 +113,7 @@ export default async function handler(
 
       ///console.log("item", item);
 
-      const match = transfers.find((element) => {
+      const match = transfers.find((element: any) => {
         return element.hash == item.hash;
       });
 
@@ -151,46 +154,23 @@ export default async function handler(
   for (let i = 0; i < transfers.length; i++) {
     ///for (let i = 0; i < 10; i++) {
 
-    console.log('i', i);
-
     ////getReceipt(transfers[i]);
 
     const item = transfers[i];
 
-    console.log('item.tokenId', item.tokenId);
-
     const tokenId = String(parseInt(item.tokenId, 16));
-
-    console.log('tokenId', tokenId);
 
     //console.log("item.hash", item.hash);
     console.log('item.blockNum', item.blockNum);
 
-    var receipt = null;
+    const receipt = await alchemy.core.getTransactionReceipt(item.hash);
 
-    while (true) {
-      receipt = await alchemy.core.getTransactionReceipt(item.hash);
-
-      if (receipt) {
-        break;
-      } else {
-        console.log('receipt is null');
-        sleep(1000);
-        continue;
-      }
-    }
-
-    //console.log("receipt", receipt);
-
-    //console.log("receipt?.logs[1].topics", receipt?.logs[1].topics);
-    //console.log("receipt?.logs[0].topics[0]", receipt?.logs[0].topics[0]);
-
-    console.log('receipt.logs.length', receipt?.logs.length);
-
-    for (let j = 0; j < receipt?.logs.length; j++) {
+    for (let j = 0; j < receipt?.logs?.length; j++) {
       //console.log("address", receipt?.logs[j].address);
 
       //if (receipt?.logs[j].address != nftDropContractAddressHorse) continue;
+
+      const address = receipt?.logs[j].address;
 
       // Approval
       if (
@@ -265,9 +245,7 @@ export default async function handler(
             },
           };
 
-          const res = await horsesales.updateOne(filter, updateDoc, options);
-
-          console.log('NewSale res', res);
+          await horsesales.updateOne(filter, updateDoc, options);
 
           const nfthorses = db.collection('nfthorses');
 
@@ -283,11 +261,7 @@ export default async function handler(
 
           options = { upsert: true };
 
-          nfthorses.updateOne(filter, updateDoc, options, (err, collection) => {
-            //if(err) throw err;
-            //console.log("Record updated successfully");
-            //console.log(collection);
-          });
+          await nfthorses.updateOne(filter, updateDoc, options);
         } catch (error) {
           console.log('error', error);
         } finally {
@@ -371,119 +345,28 @@ export default async function handler(
             optionsHorsetransfers
           );
 
-          const nfthorses = db.collection('nfthorses');
-
-          const filterNfthorses = { tokenId: tokenId };
-
-          /*
-          var updateNfthorses = null;
-  
-          if (to.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()) {
-  
-            updateNfthorses = {
-              $set: {
-                register: stakingContractAddressHorseAAA,
-              },
-            };
-  
-          } else if (from.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()) {
-  
-            updateNfthorses = {
-              $set: {
-                register: null,
-              },
-            };
-  
+          if (
+            to.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()
+          ) {
           } else {
-  
-            updateNfthorses = {
+            const nfthorses = db.collection('nfthorses');
+
+            const filterNfthorses = { tokenId: tokenId };
+
+            const updateNfthorses = {
               $set: {
                 holder: to,
               },
             };
-  
+
+            const optionsNfthorses = { upsert: true };
+
+            await nfthorses.updateOne(
+              filterNfthorses,
+              updateNfthorses,
+              optionsNfthorses
+            );
           }
-          */
-
-          const updateNfthorses = {
-            $set: {
-              holder: to,
-            },
-          };
-
-          const optionsNfthorses = { upsert: true };
-
-          nfthorses.updateOne(
-            filterNfthorses,
-            updateNfthorses,
-            optionsNfthorses,
-            (err, collection) => {
-              //if(err) throw err;
-              //console.log("Record updated successfully");
-              //console.log(collection);
-            }
-          );
-
-          /*
-          const UserSchema = new Schema({
-          username: {
-            type: String,
-            required: true,
-            unique: true,
-            trim: true,
-            minlength: 3,
-          },
-          email: {
-            type: String,
-            required: true,
-            unique: true,
-            trim: true,
-            minlength: 3,
-          },
-          pass: {
-            type: String,
-            required: true,
-            trim: true,
-            minlength: 3,
-          },
-          deposit: {
-            type: Number,
-            required: false,
-            default: 0,
-          },
-          img: {
-            type: String,
-            required: true,
-            default: `${process.env.API_URL}/images/users/default.png`,
-          },
-          admin: {
-            type: Boolean,
-            required: false,
-            default: false,
-          },
-          newPassToken: {
-            type: String,
-            required: false,
-            default: '',
-          },
-          maticBalance: {
-            type: Number,
-            required: false,
-            default: 0,
-          },
-          walletAddress: {
-            type: String,
-            required: true,
-            default: '',
-          },
-          status: {
-            type: Boolean,
-            default: true,
-          },
-        });
-        */
-
-          //console.log("to", to);
 
           const users = db.collection('users');
 
@@ -510,20 +393,7 @@ export default async function handler(
 
           const optionsUsers = { upsert: true };
 
-          users.updateOne(
-            filterUsers,
-            updateUsers,
-            optionsUsers,
-            (err, collection) => {
-              //if(err) throw err;
-              if (err) {
-                console.log('err', err);
-              } else {
-                //console.log("Record updated successfully");
-                //console.log(collection);
-              }
-            }
-          );
+          await users.updateOne(filterUsers, updateUsers, optionsUsers);
         } catch (error) {
           console.log('error', error);
         } finally {
@@ -565,7 +435,7 @@ export default async function handler(
               rawContract: item.rawContract,
               blockTimestamp: item.blockTimestamp,
               tokenId: tokenId,
-              register: contractAddress,
+              register: address,
               staker: staker,
             },
           };
@@ -585,21 +455,16 @@ export default async function handler(
 
           const updateNfthorses = {
             $set: {
-              register: contractAddress,
+              register: address,
             },
           };
 
           const optionsNfthorses = { upsert: true };
 
-          nfthorses.updateOne(
+          await nfthorses.updateOne(
             filterNfthorses,
             updateNfthorses,
-            optionsNfthorses,
-            (err, collection) => {
-              //if(err) throw err;
-              //console.log("Record updated successfully");
-              //console.log(collection);
-            }
+            optionsNfthorses
           );
         } catch (error) {
           console.log('error', error);

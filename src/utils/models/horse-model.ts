@@ -371,3 +371,103 @@ export const getAllHorsesCount = async (
 
   return { total: data?.length };
 };
+
+export const getRegisteredHorses = async (
+  pageNumber: number,
+  pagination: number,
+  grades: string,
+  manes: string,
+  sort: string,
+  register: string
+) => {
+  if (grades.length === 0) {
+    const data = await HorseModel.find({
+      register: register,
+    })
+
+      .sort({ tokenId: 1 })
+
+      .skip((pageNumber - 1) * pagination)
+      //limit is number of Records we want to display
+      .limit(pagination)
+      /*
+      .then(data => {
+  
+        return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
+  
+      })
+      */
+      .catch((err) => {
+        ////return err;
+      });
+
+    return { nfts: data, pageNumber: pageNumber + 1 };
+  }
+
+  const data = await HorseModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        /*
+                    "closed": false,
+            "$or": [
+                {
+                    "openingEvening": { "$lte": currentTime  },
+                    "closingEvening": { "$gte": currentTime  }
+                },
+                {
+                    "openingMorning": { "$lte": currentTime },
+                    "closingMorning": { "$gte": currentTime  }
+                }
+
+            ]
+            */
+
+        /*
+        $and: [
+          {
+            trait_type: 'Grade',
+            //value: grades,
+            value: { $in: grades },
+          },
+          
+          {
+            trait_type: 'Mane',
+            value: { $in: manes },
+          }
+          
+        ]
+        */
+
+        trait_type: 'Grade',
+        //value: grades,
+        value: { $in: grades },
+      },
+    },
+  })
+    .sort({ tokenId: 1 })
+    .collation({ locale: 'en_US', numericOrdering: true })
+
+    // sort number in descending order
+
+    //.sort(function (a, b) {return b.tokenId - a.tokenId;})
+
+    .skip((pageNumber - 1) * pagination)
+    //limit is number of Records we want to display
+    .limit(pagination)
+    /*
+    .then(data => {
+
+      return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
+
+    })
+    */
+    .catch((err) => {
+      ////return err;
+    });
+
+  if (data?.length === 0) {
+    return { nfts: [], pageNumber: null };
+  }
+
+  return { nfts: data, pageNumber: pageNumber + 1 };
+};

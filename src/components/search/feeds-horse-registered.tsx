@@ -95,7 +95,7 @@ function ScrollToTopButton() {
 */
 
 export default function Feeds(
-  { holderAddress }: { holderAddress?: string },
+  { registerAddress }: { registerAddress?: string },
   { className }: { className?: string }
 ) {
   const address = useAddress();
@@ -151,7 +151,7 @@ export default function Feeds(
       //pageParam = '',
     }) =>
       await fetch(
-        '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
+        '/api/nft/getRegisteredHorses?pageNumber=' + pageParam + '&pageSize=20',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -159,8 +159,8 @@ export default function Feeds(
             ///grades: selectedGradesStorage,
             grades: [],
             manes: [],
-            holder: holderAddress,
             //sort: selectedGSortStorage,
+            register: registerAddress,
           }),
         }
       ).then((result) => {
