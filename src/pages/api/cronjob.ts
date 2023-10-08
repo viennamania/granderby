@@ -291,7 +291,6 @@ export default async function handler(
 
         console.log('Transfer');
         console.log('Transfer item.hash', item.hash);
-        console.log('Transfer tokenId', tokenId);
 
         const fromInHex = receipt.logs[j].topics[1];
         const toInHex = receipt.logs[j].topics[2];
@@ -300,7 +299,7 @@ export default async function handler(
         const from = '0x' + fromInHex.substring(26, 66);
         const to = '0x' + toInHex.substring(26, 66);
 
-        ///const tokenId = String(parseInt(tokenIdInHex, 16));
+        const tokenId = String(parseInt(tokenIdInHex, 16));
 
         //console.log ("Transfer from", from);
         //console.log ("Transfer to", to);
