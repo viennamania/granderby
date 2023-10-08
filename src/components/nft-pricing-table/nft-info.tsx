@@ -81,6 +81,8 @@ function NftInfo({ nftMetadata }: any) {
       nftMetadata?.metadata?.id,
     ]);
 
+  ////console.log('stakerAddress', stakerAddress);
+
   const { data: stakeInfo, isLoading: isLoadingStakeInfo } = useContractRead(
     contractStaking,
     'getStakeInfo',
@@ -186,6 +188,28 @@ function NftInfo({ nftMetadata }: any) {
     const data = await contractStaking?.call('stake', [[id]]);
 
     //console.log('staking data', data);
+
+    if (data) {
+      alert('Your request has been sent successfully');
+      /*
+      setSuccessMsgSnackbar('Your request has been sent successfully');
+      handleClickSucc();
+      */
+    } else {
+      alert(data);
+      /*
+      setErrMsgSnackbar(data);
+      handleClickErr();
+      */
+    }
+  }
+
+  async function withdrawNft(id: string) {
+    if (!address) return;
+
+    const data = await contractStaking?.call('withdraw', [[id]]);
+
+    console.log('withdraw data', data);
 
     if (data) {
       alert('Your request has been sent successfully');
@@ -927,19 +951,15 @@ function NftInfo({ nftMetadata }: any) {
             )}
 
             {address && address === stakerAddress && (
-              <>
-                {/*
-              <Web3Button
-                theme="light"
-                contractAddress={
-                  stakingContractAddressHorseAAA
-                }
-                action={() => stakeNft(nftMetadata?.metadata?.id || '')}
+              <div className="mt-5">
+                <Web3Button
+                  theme="light"
+                  contractAddress={stakingContractAddressHorseAAA}
+                  action={() => withdrawNft(nftMetadata?.metadata?.id || '')}
                 >
-                Unregister
-              </Web3Button>
-              */}
-              </>
+                  Unregister
+                </Web3Button>
+              </div>
             )}
 
             <span className="mt-5 text-lg font-bold">

@@ -103,6 +103,14 @@ const HorseSaleSchema = new Schema({
 export const HorseSaleModel =
   models.Horsesale || model<ISaleHistory>('Horsesale', HorseSaleSchema);
 
+export const getSaleHistory = async (): Promise<ISaleHistory[]> => {
+  return await HorseSaleModel.find({})
+    .sort({
+      blockTimestamp: -1,
+    })
+    .limit(1000);
+};
+
 export const getSaleHistoryByTokenId = async (
   tokenId: String
 ): Promise<ISaleHistory[]> => {

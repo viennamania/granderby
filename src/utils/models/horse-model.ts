@@ -94,17 +94,22 @@ const HorseSchema = new Schema({
   },
   paidToken: {
     type: String,
-    required: true,
+    required: false,
     default: false,
   },
   totalPricePaid: {
     type: String,
-    required: true,
+    required: false,
     default: false,
   },
   logsNewSale: {
     type: Object,
-    required: true,
+    required: false,
+    default: false,
+  },
+  register: {
+    type: String,
+    required: false,
     default: false,
   },
 });

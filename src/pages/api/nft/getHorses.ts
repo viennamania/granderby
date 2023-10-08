@@ -35,6 +35,8 @@ export default async function handler(
 
   nfts = data.nfts;
 
+  //console.log('getHorses nfts====', nfts);
+
   const pageKey = data.pageNumber;
 
   const total = data.total;
@@ -50,8 +52,10 @@ export default async function handler(
       rawMetadata,
     } = nft.nft;
 
+    //console.log("getHorses nft", nft);
     /*
-    console.log("getHorses nft", nft);
+
+  
     console.log("getHorses nft tokenId", nft.tokenId);
     console.log("getHorses nft _id", nft._id);
     console.log("getHorses nft nft", nft.nft);
@@ -69,13 +73,19 @@ export default async function handler(
 
     const logsNewSale = nft.logsNewSale;
 
+    const register = nft.register;
+
+    //console.log('getHorses register', register);
+
     //console.log('getHorses holder', holder);
+
     //console.log('getHorses totalPricePaid', totalPricePaid);
     //console.log('getHorses logsNewSale', logsNewSale);
 
     //console.log('rawMetadata', rawMetadata);
 
     return {
+      register: register,
       logsNewSale: logsNewSale,
       totalPricePaid: totalPricePaid,
       paidToken: paidToken,

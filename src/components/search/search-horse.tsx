@@ -203,13 +203,6 @@ export default function Search() {
           Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
           Category Gaming
         </span>
-
-        <button
-          className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
-          onClick={() => router.push(`/horse/transfers`)}
-        >
-          Transfers
-        </button>
       </div>
 
       <div

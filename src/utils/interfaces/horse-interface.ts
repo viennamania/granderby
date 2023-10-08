@@ -8,4 +8,5 @@ export interface IHorse {
   paidToken: string;
   totalPricePaid: string;
   logsNewSale: object;
+  register: string;
 }

@@ -33,6 +33,7 @@ import ShareView from '@/components/nft/share-view';
 import dynamic from 'next/dynamic';
 
 import CoinInput from '@/components/ui/coin-input';
+import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const contractAddress: string = context.params?.contractAddress;
@@ -57,11 +58,13 @@ const HorsePage: NextPageWithLayout<
 > = () => {
   const { layout } = useLayout();
 
+  const router = useRouter();
+
   const address = useAddress();
 
   return (
     <>
-      <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
+      <NextSeo title="Horse" description="Granderby - Web3 NFT Game" />
 
       <div
         className="relative h-36 w-full
@@ -91,6 +94,22 @@ const HorsePage: NextPageWithLayout<
           alt="Cover Image"
         />
         */}
+      </div>
+
+      <div className="flex flex-row items-center justify-start gap-5">
+        <button
+          className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
+          onClick={() => router.push(`/horse/transfers`)}
+        >
+          Transfers
+        </button>
+
+        <button
+          className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
+          onClick={() => router.push(`/horse/sales`)}
+        >
+          Sales
+        </button>
       </div>
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">

@@ -43,6 +43,7 @@ import {
   nftDropContractAddressJockey,
   nftDropContractAddressHorseDerbyStars,
   nftDropContractAddressHorseZedRun,
+  stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
 
 export default function OwnedFeedsNft(
@@ -210,10 +211,10 @@ export default function OwnedFeedsNft(
       ) : (
         <div
           className={cn(
-            ' m-5 grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4  xl:grid-cols-5  ',
+            ' m-5 grid grid-cols-2 gap-5 sm:grid-cols-5 md:grid-cols-5  xl:grid-cols-5  ',
             isGridCompact
-              ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-              : '3xl:!grid-cols-5 4xl:!grid-cols-8',
+              ? '3xl:!grid-cols-5 4xl:!grid-cols-5'
+              : '3xl:!grid-cols-5 4xl:!grid-cols-10',
             className
           )}
         >
@@ -260,7 +261,7 @@ export default function OwnedFeedsNft(
                   </div>
                 */}
 
-                <div className="items-top  m-2 mt-4 flex  h-16 flex-col  justify-center gap-1   ">
+                <div className="items-top  m-2 mt-4 flex h-28 flex-col  justify-center gap-1   ">
                   <div className="text-sm font-bold ">{nft?.title}</div>
                   <div className="flex flex-row items-center justify-start gap-1">
                     <Image
@@ -272,35 +273,52 @@ export default function OwnedFeedsNft(
                     <div className="text-left text-sm">#{nft?.tokenId}</div>
                   </div>
                   <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                    <span>Last Price</span>
-                    <span>
-                      {nft?.paidToken ===
-                        '0x0000000000000000000000000000000000001010' &&
-                        (nft?.totalPricePaid / 1000000000000000000).toFixed(2)}
-                      {nft?.paidToken ===
-                        '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
-                        (nft?.totalPricePaid / 1000000000000000000).toFixed(2)}
-                      {nft?.paidToken ===
-                        '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
-                        (nft?.totalPricePaid / 1000000).toFixed(2)}
-                    </span>
+                    {nft?.totalPricePaid === null ? (
+                      <span className="text-red-500">No sale record</span>
+                    ) : (
+                      <>
+                        <span>Last Price:</span>
 
-                    <span>
-                      {nft?.paidToken ===
-                        '0x0000000000000000000000000000000000001010' && (
-                        <span>MATIC</span>
-                      )}
-                      {nft?.paidToken ===
-                        '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
-                        <span>GRD</span>
-                      )}
+                        <span>
+                          {nft?.paidToken ===
+                            '0x0000000000000000000000000000000000001010' &&
+                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
+                              2
+                            )}
+                          {nft?.paidToken ===
+                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
+                              2
+                            )}
+                          {nft?.paidToken ===
+                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                            (nft?.totalPricePaid / 1000000).toFixed(2)}
+                        </span>
 
-                      {nft?.paidToken ===
-                        '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
-                        <span>USDC</span>
-                      )}
-                    </span>
+                        <span>
+                          {nft?.paidToken ===
+                            '0x0000000000000000000000000000000000001010' && (
+                            <span>MATIC</span>
+                          )}
+                          {nft?.paidToken ===
+                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
+                            <span>GRD</span>
+                          )}
+
+                          {nft?.paidToken ===
+                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
+                            <span>USDC</span>
+                          )}
+                        </span>
+                      </>
+                    )}
                   </div>
+
+                  {nft?.register === stakingContractAddressHorseAAA && (
+                    <div className="text-left  text-xs xl:text-sm">
+                      <span>Registered</span>
+                    </div>
+                  )}
                 </div>
 
                 {/*

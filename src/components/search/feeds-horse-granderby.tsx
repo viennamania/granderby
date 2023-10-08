@@ -181,7 +181,7 @@ export default function Feeds(
     }
   );
 
-  ///console.log('feeds-horse-granderby searchData======>', searchData);
+  console.log('feeds-horse-granderby searchData======>', searchData);
 
   useEffect(() => {
     /*
@@ -310,7 +310,7 @@ export default function Feeds(
                   </div>
                    */}
 
-                    <div className=" h-18 mb-2  mt-4 flex w-full  flex-col items-center  justify-center  gap-1 xl:h-16   ">
+                    <div className=" h-18 mb-2  mt-4 flex w-full  flex-col items-center  justify-center  gap-1 xl:h-24   ">
                       <div className="text-sm font-bold ">{nft?.title}</div>
 
                       <div className="ml-5 flex w-full flex-row items-center justify-start gap-1">
@@ -357,6 +357,12 @@ export default function Feeds(
                           )}
                         </span>
                       </div>
+
+                      {/*
+                      <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                        Register: {nft?.register}
+                      </div>
+                      */}
                     </div>
 
                     {/*
