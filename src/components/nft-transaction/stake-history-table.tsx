@@ -308,7 +308,7 @@ const COLUMNS = [
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Staker</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Holder</div>,
     accessor: 'staker',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -323,6 +323,12 @@ const COLUMNS = [
     ),
     minWidth: 90,
     maxWidth: 150,
+  },
+  {
+    Header: 'Status',
+    accessor: 'status',
+    minWidth: 80,
+    maxWidth: 80,
   },
 ];
 
@@ -361,7 +367,7 @@ export default function StakeHistoryTable(
       columns,
       //data,
       data: stakes,
-      initialState: { pageSize: 10 },
+      initialState: { pageSize: 20 },
     },
     useSortBy,
     useResizeColumns,
@@ -480,10 +486,11 @@ export default function StakeHistoryTable(
         tokenFrom: stake.tokenFrom,
         tokenTo: stake.tokenTo,
 
-        status: 'Completed',
         tokenId: stake.tokenId,
         register: stake.register,
         staker: stake.staker,
+
+        status: stake.register === null ? 'Unregister' : 'Register',
       };
 
       //console.log('transactionData: ', transactionData);

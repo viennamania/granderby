@@ -328,9 +328,12 @@ export default function Feeds(
                         <span>
                           {nft?.paidToken ===
                             '0x0000000000000000000000000000000000001010' &&
-                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
-                              2
-                            )}
+                            //(nft?.totalPricePaid / 1000000000000000000).toFixed(2)
+                            (
+                              (nft?.totalPricePaid / 1000000000000000000) *
+                              0.66
+                            ).toFixed(2)}
+
                           {nft?.paidToken ===
                             '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
                             (nft?.totalPricePaid / 1000000000000000000).toFixed(
@@ -341,7 +344,11 @@ export default function Feeds(
                             (nft?.totalPricePaid / 1000000).toFixed(2)}
                         </span>
 
+                        <span>USD</span>
+
+                        {/*
                         <span>
+                          
                           {nft?.paidToken ===
                             '0x0000000000000000000000000000000000001010' && (
                             <span>MATIC</span>
@@ -356,13 +363,18 @@ export default function Feeds(
                             <span>USDC</span>
                           )}
                         </span>
+                            */}
                       </div>
 
-                      {/*
-                      <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                        Register: {nft?.register}
-                      </div>
-                      */}
+                      {nft?.register ? (
+                        <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                          Registered
+                        </div>
+                      ) : (
+                        <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                          Not Registered
+                        </div>
+                      )}
                     </div>
 
                     {/*

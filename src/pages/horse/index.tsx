@@ -110,6 +110,13 @@ const HorsePage: NextPageWithLayout<
         >
           Sales
         </button>
+
+        <button
+          className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
+          onClick={() => router.push(`/horse/stakes`)}
+        >
+          Stakes
+        </button>
       </div>
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">

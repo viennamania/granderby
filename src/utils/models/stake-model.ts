@@ -97,7 +97,8 @@ export const HorseStakeModel =
   models.Horsestake || model<IStakeHistory>('Horsestake', HorseStakeSchema);
 
 export const getStakeHistory = async (): Promise<IStakeHistory[]> => {
-  return await HorseStakeModel.find({}).sort({ blockTimestamp: -1 }).limit(100);
+  return await HorseStakeModel.find({}).sort({ blockTimestamp: -1 });
+  //.limit(100);
 };
 
 export const getStakeHistoryByTokenId = async (
@@ -106,9 +107,8 @@ export const getStakeHistoryByTokenId = async (
   console.log('getStakeHistoryByTokenId', tokenId);
 
   if (tokenId === undefined) {
-    return await HorseStakeModel.find({})
-      .sort({ blockTimestamp: -1 })
-      .limit(100);
+    return await HorseStakeModel.find({}).sort({ blockTimestamp: -1 });
+    //.limit(100);
   }
 
   return await HorseStakeModel.find({
@@ -132,7 +132,6 @@ export const getStakeHistoryByTokenId = async (
     */
 
     tokenId: tokenId,
-  })
-    .sort({ blockTimestamp: -1 })
-    .limit(100);
+  }).sort({ blockTimestamp: -1 });
+  //.limit(100);
 };
