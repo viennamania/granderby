@@ -46,12 +46,14 @@ export default async function handler(
 
   //var fromBlock = "0x2a672b6";
 
-  var fromBlock = '0x2d8b54c';
+  ///var fromBlock = '0x2d8b54c';
 
   //var fromBlock = "0x2a6857f";
 
   //var fromBlock = "0x2a68678";
   //var fromBlock = "0x2b762f9";
+
+  var fromBlock = '0x2e3866a';
 
   var response = null;
 
@@ -99,16 +101,16 @@ export default async function handler(
       });
     }
 
-    //console.log('response.transfers.length', response?.transfers.length);
+    console.log('response.transfers.length', response.transfers.length);
 
-    //console.log('response.pageKey', response?.pageKey);
+    console.log('response.pageKey', response.pageKey);
 
-    response?.transfers.map((item, index) => {
+    response.transfers.map((item, index) => {
       ///console.log("index", index);
 
       ///console.log("item", item);
 
-      const match = transfers.find((element: any) => {
+      const match = transfers.find((element) => {
         return element.hash == item.hash;
       });
 
@@ -142,6 +144,10 @@ export default async function handler(
     pageParam = response.pageKey;
   }
 
+  console.log('transfers length', transfers.length);
+
+  //////process.exit(0);
+
   for (let i = 0; i < transfers.length; i++) {
     ///for (let i = 0; i < 10; i++) {
 
@@ -151,18 +157,27 @@ export default async function handler(
 
     const item = transfers[i];
 
+    console.log('item.tokenId', item.tokenId);
+
+    const tokenId = String(parseInt(item.tokenId, 16));
+
+    console.log('tokenId', tokenId);
+
     //console.log("item.hash", item.hash);
     console.log('item.blockNum', item.blockNum);
 
-    const receipt = await alchemy.core.getTransactionReceipt(item.hash);
+    var receipt = null;
 
-    if (!receipt) {
-      res.status(200).json({
-        address: contractAddress,
-        length: transfers.length,
-        error: 'receipt is null',
-      });
-      return;
+    while (true) {
+      receipt = await alchemy.core.getTransactionReceipt(item.hash);
+
+      if (receipt) {
+        break;
+      } else {
+        console.log('receipt is null');
+        sleep(1000);
+        continue;
+      }
     }
 
     //console.log("receipt", receipt);
@@ -173,23 +188,38 @@ export default async function handler(
     console.log('receipt.logs.length', receipt?.logs.length);
 
     for (let j = 0; j < receipt?.logs.length; j++) {
-      console.log('address', receipt?.logs[j].address);
+      //console.log("address", receipt?.logs[j].address);
 
-      if (receipt?.logs[j].address != nftDropContractAddressHorse) continue;
+      //if (receipt?.logs[j].address != nftDropContractAddressHorse) continue;
 
-      // NewSale
+      // Approval
       if (
+        receipt?.logs[j].topics[0] ==
+        '0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925'
+      ) {
+        console.log('Approval item.hash', item.hash);
+        console.log('Approval tokenId', tokenId);
+
+        // NewSale
+      } else if (
         receipt?.logs[j].topics[0] ==
         '0xf6e03f1c408cfd2d118397c912a4b576683c43b41b015e3d7c212bac0cd0e7c7'
       ) {
+        console.log('NewSale item.hash', item.hash);
+        console.log('NewSale tokenId', tokenId);
+
         const logsNewSale = receipt?.logs[j];
 
-        const tokenIdInHex = receipt.logs[j].data.substring(0, 66); // 66
+        const listingCreatorInHex = receipt.logs[j].topics[1];
+        const listingCreator = '0x' + listingCreatorInHex.substring(26, 66);
+
+        //const tokenIdInHex = receipt.logs[j].data.substring(0, 66);           // 66
+
         const buyerIndHex = receipt.logs[j].data.substring(66, 130); // 64
         const quantityBoughtInHex = receipt.logs[j].data.substring(130, 194); // 64
         const totalPricePaidInHex = receipt.logs[j].data.substring(194, 258); // 64
 
-        const tokenId = String(parseInt(tokenIdInHex, 16));
+        ///const tokenId = String(parseInt(tokenIdInHex, 16));
         const buyer = '0x' + buyerIndHex.substring(24, 64);
         const quantityBought = parseInt(quantityBoughtInHex, 16);
         const totalPricePaid = String(parseInt(totalPricePaidInHex, 16));
@@ -197,8 +227,7 @@ export default async function handler(
         const paidToken = receipt?.logs[0]?.address;
         const maticPrice = 0.66;
 
-        console.log('NewSale item.hash', item.hash);
-        console.log('NewSale tokenId', tokenId);
+        console.log('NewSale listingCreator', listingCreator);
         console.log('NewSale buyer', buyer);
 
         try {
@@ -219,12 +248,15 @@ export default async function handler(
               value: item.value,
               erc721TokenId: item.erc721TokenId,
               erc1155Metadata: item.erc1155Metadata,
+
               tokenId: tokenId,
+
               asset: item.asset,
               category: item.category,
               rawContract: item.rawContract,
               blockTimestamp: item.blockTimestamp,
               data: receipt.logs[4]?.data,
+              listingCreator: listingCreator,
               buyer: buyer,
               quantityBought: quantityBought,
               totalPricePaid: totalPricePaid,
@@ -233,7 +265,9 @@ export default async function handler(
             },
           };
 
-          await horsesales.updateOne(filter, updateDoc, options);
+          const res = await horsesales.updateOne(filter, updateDoc, options);
+
+          console.log('NewSale res', res);
 
           const nfthorses = db.collection('nfthorses');
 
@@ -259,51 +293,45 @@ export default async function handler(
         } finally {
           ////await client.close();
         }
-      } // end of NewSale
 
-      // LogFeeTransfer
-      if (
+        // LogFeeTransfer
+      } else if (
         receipt?.logs[j].topics[0] ==
         '0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63'
       ) {
-        //console.log("LogFeeTransfer");
-      }
+        console.log('LogFeeTransfer');
 
-      // TokensClaimned
-      if (
+        // TokensClaimned
+      } else if (
         receipt?.logs[j].topics[0] ==
         '0xfa76a4010d9533e3e964f2930a65fb6042a12fa6ff5b08281837a10b0be7321e'
       ) {
-        //console.log("TokensClaimned");
-      }
+        console.log('TokensClaimned');
 
-      // Approval
-      if (
-        receipt?.logs[j].topics[0] ==
-        '0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925'
-      ) {
-        //console.log("Approval");
-      }
-
-      // Transfer
-      if (
+        // Transfer
+      } else if (
         receipt?.logs[j].topics[0] ==
         '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
       ) {
         ///console.log("receipt?.logs[j].topics", receipt?.logs[j].topics);
 
-        const fromIndHex = receipt.logs[j].topics[1];
+        console.log('Transfer');
+        console.log('Transfer item.hash', item.hash);
+        console.log('Transfer tokenId', tokenId);
+
+        const fromInHex = receipt.logs[j].topics[1];
         const toInHex = receipt.logs[j].topics[2];
         const tokenIdInHex = receipt.logs[j].topics[3];
 
-        const from = '0x' + fromIndHex.substring(26, 66);
+        const from = '0x' + fromInHex.substring(26, 66);
         const to = '0x' + toInHex.substring(26, 66);
-        const tokenId = String(parseInt(tokenIdInHex, 16));
 
-        console.log('Transfer item.hash', item.hash);
-        console.log('Transfer tokenId', tokenId);
-        console.log('Transfer from', from);
-        console.log('Transfer to', to);
+        ///const tokenId = String(parseInt(tokenIdInHex, 16));
+
+        //console.log ("Transfer from", from);
+        //console.log ("Transfer to", to);
+
+        const logs4Address = receipt?.logs[4]?.address;
 
         try {
           const horsetransfers = db.collection('horsetransfers');
@@ -328,9 +356,12 @@ export default async function handler(
               rawContract: item.rawContract,
               blockTimestamp: item.blockTimestamp,
               data: receipt.logs[j]?.data,
+
               tokenId: tokenId,
+
               tokenFrom: from,
               tokenTo: to,
+              logs4Address: logs4Address,
             },
           };
 
@@ -340,15 +371,43 @@ export default async function handler(
             optionsHorsetransfers
           );
 
-          const holder = to;
-
           const nfthorses = db.collection('nfthorses');
 
           const filterNfthorses = { tokenId: tokenId };
 
+          /*
+          var updateNfthorses = null;
+  
+          if (to.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()) {
+  
+            updateNfthorses = {
+              $set: {
+                register: stakingContractAddressHorseAAA,
+              },
+            };
+  
+          } else if (from.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()) {
+  
+            updateNfthorses = {
+              $set: {
+                register: null,
+              },
+            };
+  
+          } else {
+  
+            updateNfthorses = {
+              $set: {
+                holder: to,
+              },
+            };
+  
+          }
+          */
+
           const updateNfthorses = {
             $set: {
-              holder,
+              holder: to,
             },
           };
 
@@ -366,63 +425,63 @@ export default async function handler(
           );
 
           /*
-            const UserSchema = new Schema({
-            username: {
-              type: String,
-              required: true,
-              unique: true,
-              trim: true,
-              minlength: 3,
-            },
-            email: {
-              type: String,
-              required: true,
-              unique: true,
-              trim: true,
-              minlength: 3,
-            },
-            pass: {
-              type: String,
-              required: true,
-              trim: true,
-              minlength: 3,
-            },
-            deposit: {
-              type: Number,
-              required: false,
-              default: 0,
-            },
-            img: {
-              type: String,
-              required: true,
-              default: `${process.env.API_URL}/images/users/default.png`,
-            },
-            admin: {
-              type: Boolean,
-              required: false,
-              default: false,
-            },
-            newPassToken: {
-              type: String,
-              required: false,
-              default: '',
-            },
-            maticBalance: {
-              type: Number,
-              required: false,
-              default: 0,
-            },
-            walletAddress: {
-              type: String,
-              required: true,
-              default: '',
-            },
-            status: {
-              type: Boolean,
-              default: true,
-            },
-          });
-          */
+          const UserSchema = new Schema({
+          username: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true,
+            minlength: 3,
+          },
+          email: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true,
+            minlength: 3,
+          },
+          pass: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 3,
+          },
+          deposit: {
+            type: Number,
+            required: false,
+            default: 0,
+          },
+          img: {
+            type: String,
+            required: true,
+            default: `${process.env.API_URL}/images/users/default.png`,
+          },
+          admin: {
+            type: Boolean,
+            required: false,
+            default: false,
+          },
+          newPassToken: {
+            type: String,
+            required: false,
+            default: '',
+          },
+          maticBalance: {
+            type: Number,
+            required: false,
+            default: 0,
+          },
+          walletAddress: {
+            type: String,
+            required: true,
+            default: '',
+          },
+          status: {
+            type: Boolean,
+            default: true,
+          },
+        });
+        */
 
           //console.log("to", to);
 
@@ -470,50 +529,28 @@ export default async function handler(
         } finally {
           ////await client.close();
         }
-      }
 
-      // ToknesStaked
-      if (
+        // ToknesStaked
+      } else if (
         receipt?.logs[j].topics[0] ==
         '0x540cd34f06460fd67aeca9d19e0a56cd3a7c1cde8dc2263f265b68b2ef3495d2'
       ) {
-        //console.log("ToknesStaked");
-      }
-    }
+        console.log('ToknesStaked');
+        console.log('ToknesStaked item.hash', item.hash);
+        console.log('ToknesStaked tokenId', tokenId);
 
-    /*
-      if (receipt?.logs[4]?.data && receipt?.logs[4]?.data.length > 10) {
-    
-        //console.log("receipt?.logs[4].topics", receipt?.logs[4].topics);
-    
-        console.log("receipt?.logs[4].data", receipt?.logs[4]?.data);
-    
-    
-        const tokenIdInHex = receipt.logs[4].data.substring(0, 66);           // 66
-        const buyerIndHex = receipt.logs[4].data.substring(66, 130);          // 64
-        const quantityBoughtInHex = receipt.logs[4].data.substring(130, 194); // 64
-        const totalPricePaidInHex = receipt.logs[4].data.substring(194, 258); // 64
-    
-    
-        const tokenId = String(parseInt(tokenIdInHex, 16));
-        const buyer = "0x" + buyerIndHex.substring(24, 64);
-        const quantityBought = parseInt(quantityBoughtInHex, 16);
-        const totalPricePaid = parseInt(totalPricePaidInHex, 16);
-    
-        const paidToken = receipt?.logs[0]?.address;
-        const maticPrice = 0.66;
-    
-    
-    
+        const stakerInHex = receipt?.logs[j].topics[1];
+
+        const staker = '0x' + stakerInHex.substring(26, 66);
+
         try {
-    
-          const collection = db.collection("horsesales");
+          const horsestakes = db.collection('horsestakes');
+
           // create a filter for a movie to update
-          const filter = { uniqueId: item.uniqueId };
-          // this option instructs the method to create a document if no documents match the filter
-          const options = { upsert: true };
+          const filterHorsestakes = { uniqueId: item.uniqueId };
+
           // create a document that sets the plot of the movie
-          const updateDoc = {
+          const updateHorsestakes = {
             $set: {
               blockNum: item.blockNum,
               uniqueId: item.uniqueId,
@@ -523,35 +560,132 @@ export default async function handler(
               value: item.value,
               erc721TokenId: item.erc721TokenId,
               erc1155Metadata: item.erc1155Metadata,
-              tokenId: tokenId,
               asset: item.asset,
               category: item.category,
               rawContract: item.rawContract,
               blockTimestamp: item.blockTimestamp,
-              data: receipt.logs[4]?.data,
-              buyer: buyer,
-              quantityBought: quantityBought,
-              totalPricePaid: totalPricePaid,
-              paidToken: paidToken,
-              maticPrice: maticPrice,
-              
-    
+              tokenId: tokenId,
+              register: contractAddress,
+              staker: staker,
             },
           };
-    
-          const result = await collection.updateOne(filter, updateDoc, options);
-        
-    
+
+          // this option instructs the method to create a document if no documents match the filter
+          const optionsHorsestakes = { upsert: true };
+
+          await horsestakes.updateOne(
+            filterHorsestakes,
+            updateHorsestakes,
+            optionsHorsestakes
+          );
+
+          const nfthorses = db.collection('nfthorses');
+
+          const filterNfthorses = { tokenId: tokenId };
+
+          const updateNfthorses = {
+            $set: {
+              register: contractAddress,
+            },
+          };
+
+          const optionsNfthorses = { upsert: true };
+
+          nfthorses.updateOne(
+            filterNfthorses,
+            updateNfthorses,
+            optionsNfthorses,
+            (err, collection) => {
+              //if(err) throw err;
+              //console.log("Record updated successfully");
+              //console.log(collection);
+            }
+          );
         } catch (error) {
-          console.log("error", error);
-    
+          console.log('error', error);
         } finally {
           ////await client.close();
-    
         }
-    
       }
-      */
+
+      // TokensWithdrawn
+      if (
+        receipt?.logs[j].topics[0] ==
+        '0x09ba0ae49142860d7eec1f3ce54722d70b60910facbe018cccb1099e4e84755c'
+      ) {
+        console.log('TokensWithdrawn');
+        console.log('TokensWithdrawn item.hash', item.hash);
+        console.log('TokensWithdrawn tokenId', tokenId);
+
+        const stakerInHex = receipt?.logs[j].topics[1];
+
+        const staker = '0x' + stakerInHex.substring(26, 66);
+
+        try {
+          const horsestakes = db.collection('horsestakes');
+
+          // create a filter for a movie to update
+          const filterHorsestakes = { uniqueId: item.uniqueId };
+
+          // create a document that sets the plot of the movie
+          const updateHorsestakes = {
+            $set: {
+              blockNum: item.blockNum,
+              uniqueId: item.uniqueId,
+              hash: item.hash,
+              from: item.from,
+              to: item.to,
+              value: item.value,
+              erc721TokenId: item.erc721TokenId,
+              erc1155Metadata: item.erc1155Metadata,
+              asset: item.asset,
+              category: item.category,
+              rawContract: item.rawContract,
+              blockTimestamp: item.blockTimestamp,
+              tokenId: tokenId,
+              register: null,
+              staker: staker,
+            },
+          };
+
+          // this option instructs the method to create a document if no documents match the filter
+          const optionsHorsestakes = { upsert: true };
+
+          await horsestakes.updateOne(
+            filterHorsestakes,
+            updateHorsestakes,
+            optionsHorsestakes
+          );
+
+          const nfthorses = db.collection('nfthorses');
+
+          const filterNfthorses = { tokenId: tokenId };
+
+          const updateNfthorses = {
+            $set: {
+              register: null,
+            },
+          };
+
+          const optionsNfthorses = { upsert: true };
+
+          nfthorses.updateOne(
+            filterNfthorses,
+            updateNfthorses,
+            optionsNfthorses,
+            (err, collection) => {
+              //if(err) throw err;
+              //console.log("Record updated successfully");
+              //console.log(collection);
+            }
+          );
+        } catch (error) {
+          console.log('error', error);
+        } finally {
+          ////await client.close();
+        }
+      }
+    }
 
     //sleep(100);
   }
