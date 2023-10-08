@@ -261,9 +261,10 @@ export default function OwnedFeedsNft(
                   </div>
                 */}
 
-                <div className="items-top  m-2 mt-4 flex h-28 flex-col  justify-center gap-1   ">
+                <div className=" h-18 mb-2  mt-4 flex w-full  flex-col items-center  justify-center  gap-1 xl:h-24   ">
                   <div className="text-sm font-bold ">{nft?.title}</div>
-                  <div className="flex flex-row items-center justify-start gap-1">
+
+                  <div className="ml-5 flex w-full flex-row items-center justify-start gap-1">
                     <Image
                       src="/images/logo-polygon.png"
                       alt="logo"
@@ -272,30 +273,31 @@ export default function OwnedFeedsNft(
                     />
                     <div className="text-left text-sm">#{nft?.tokenId}</div>
                   </div>
-                  <div className="flex flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                    {nft?.totalPricePaid === null ? (
-                      <span className="text-red-500">No sale record</span>
-                    ) : (
-                      <>
-                        <span>Last Price:</span>
 
-                        <span>
-                          {nft?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' &&
-                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
-                              2
-                            )}
-                          {nft?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
-                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
-                              2
-                            )}
-                          {nft?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
-                            (nft?.totalPricePaid / 1000000).toFixed(2)}
-                        </span>
+                  <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                    <span>Last Price:</span>
+                    <span>
+                      {nft?.paidToken ===
+                        '0x0000000000000000000000000000000000001010' &&
+                        //(nft?.totalPricePaid / 1000000000000000000).toFixed(2)
+                        (
+                          (nft?.totalPricePaid / 1000000000000000000) *
+                          0.66
+                        ).toFixed(2)}
 
+                      {nft?.paidToken ===
+                        '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                        (nft?.totalPricePaid / 1000000000000000000).toFixed(2)}
+                      {nft?.paidToken ===
+                        '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                        (nft?.totalPricePaid / 1000000).toFixed(2)}
+                    </span>
+
+                    <span>USD</span>
+
+                    {/*
                         <span>
+                          
                           {nft?.paidToken ===
                             '0x0000000000000000000000000000000000001010' && (
                             <span>MATIC</span>
@@ -310,13 +312,16 @@ export default function OwnedFeedsNft(
                             <span>USDC</span>
                           )}
                         </span>
-                      </>
-                    )}
+                            */}
                   </div>
 
-                  {nft?.register === stakingContractAddressHorseAAA && (
-                    <div className="text-left  text-xs xl:text-sm">
-                      <span>Registered</span>
+                  {nft?.register ? (
+                    <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                      Registered
+                    </div>
+                  ) : (
+                    <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
+                      Not Registered
                     </div>
                   )}
                 </div>
