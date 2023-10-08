@@ -90,6 +90,10 @@ const HorseSaleSchema = new Schema({
     type: String,
     required: true,
   },
+  listingCreator: {
+    type: String,
+    required: true,
+  },
   quantityBought: {
     type: String,
     required: true,

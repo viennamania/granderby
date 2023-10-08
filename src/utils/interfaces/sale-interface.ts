@@ -16,6 +16,7 @@ export interface ISaleHistory {
   category: string;
   rawContract: string;
   data: string;
+  listingCreator: string;
   buyer: string;
   quantityBought: string;
   totalPricePaid: string;

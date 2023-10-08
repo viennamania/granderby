@@ -267,17 +267,6 @@ const COLUMNS = [
   */
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">TokenID</div>,
-    accessor: 'tokenId',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="font-bold ltr:text-right rtl:text-left">#{value}</div>
-    ),
-    minWidth: 120,
-    maxWidth: 120,
-  },
-
-  {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
     accessor: 'hash',
     // @ts-ignore
@@ -296,6 +285,19 @@ const COLUMNS = [
           {value.substring(0, 6) + '...'}
         </div>
       </button>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">TokenID</div>,
+    accessor: 'tokenId',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-xl font-bold ltr:text-right rtl:text-left xl:text-2xl">
+        #{value}
+      </div>
     ),
     minWidth: 80,
     maxWidth: 80,
@@ -375,10 +377,26 @@ const COLUMNS = [
     maxWidth: 120,
   },
   */
-
+  {
+    Header: () => <div className=" ltr:ml-auto rtl:mr-auto">Seller</div>,
+    accessor: 'seller',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="flex items-center justify-end">
+        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+        {value == '0x0000000000000000000000000000000000000000'
+          ? 'Drops'
+          : value.length > 10
+          ? value.substring(0, 10) + '...'
+          : value}
+      </div>
+    ),
+    minWidth: 90,
+    maxWidth: 150,
+  },
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Buyer</div>,
-    accessor: 'address',
+    accessor: 'buyer',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="flex items-center justify-end">
@@ -564,7 +582,8 @@ export default function SaleHistoryTable(
         tokenId: buy.tokenId,
 
         //address: transfer.from === address ? transfer.to : transfer.from,
-        address: buy.buyer,
+        buyer: buy.buyer,
+        seller: buy.listingCreator,
 
         amount: {
           totalPricePaid: buy.totalPricePaid,
