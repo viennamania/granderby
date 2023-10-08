@@ -1,4 +1,4 @@
-import { ITransferHistory } from '@/utils/interfaces/transfer-interface';
+import { IStakeHistory } from '@/utils/interfaces/stake-interface';
 
 import { Schema, models, model } from 'mongoose';
 
@@ -29,7 +29,7 @@ dbConnect();
             totalPricePaid: totalPricePaid,
 */
 
-const HorseTransferSchema = new Schema({
+const HorseStakeSchema = new Schema({
   blockTimestamp: {
     type: String,
     required: true,
@@ -82,40 +82,36 @@ const HorseTransferSchema = new Schema({
     type: String,
     required: true,
   },
-  data: {
+
+  register: {
     type: String,
     required: true,
   },
-  tokenFrom: {
-    type: String,
-    required: true,
-  },
-  tokenTo: {
-    type: String,
-    required: true,
-  },
-  logs4Address: {
+  staker: {
     type: String,
     required: true,
   },
 });
 
-export const HorseTransferModel =
-  models.Horsetransfer ||
-  model<ITransferHistory>('Horsetransfer', HorseTransferSchema);
+export const HorseStakeModel =
+  models.Horsestake || model<IStakeHistory>('Horsestake', HorseStakeSchema);
 
-export const getTransferHistoryByTokenId = async (
+export const getStakeHistory = async (): Promise<IStakeHistory[]> => {
+  return await HorseStakeModel.find({}).sort({ blockTimestamp: -1 }).limit(100);
+};
+
+export const getStakeHistoryByTokenId = async (
   tokenId: String
-): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByTokenId', tokenId);
+): Promise<IStakeHistory[]> => {
+  console.log('getStakeHistoryByTokenId', tokenId);
 
   if (tokenId === undefined) {
-    return await HorseTransferModel.find({})
+    return await HorseStakeModel.find({})
       .sort({ blockTimestamp: -1 })
       .limit(100);
   }
 
-  return await HorseTransferModel.find({
+  return await HorseStakeModel.find({
     /*
     'placements': {
       $elemMatch: {

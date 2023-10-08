@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface ITransferHistory {
+export interface IStakeHistory {
   _id: mongoose.Types.ObjectId;
   blockTimestamp: string;
   blockNum: string;
@@ -15,8 +15,6 @@ export interface ITransferHistory {
   asset: string;
   category: string;
   rawContract: string;
-  data: string;
-  tokenFrom: string;
-  tokenTo: string;
-  logs4Address: string;
+  register: string;
+  staker: string;
 }

@@ -308,8 +308,8 @@ const COLUMNS = [
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">From</div>,
-    accessor: 'tokenFrom',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Staker</div>,
+    accessor: 'staker',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="flex items-center justify-start">
@@ -323,41 +323,10 @@ const COLUMNS = [
     ),
     minWidth: 90,
     maxWidth: 150,
-  },
-
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">To</div>,
-    accessor: 'tokenTo',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-start">
-        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-        {value == '0x0000000000000000000000000000000000000000'
-          ? 'Drops'
-          : value?.length > 10
-          ? value?.substring(0, 10) + '...'
-          : value}
-      </div>
-    ),
-    minWidth: 90,
-    maxWidth: 150,
-  },
-
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Action</div>,
-    accessor: 'log4Address',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="font-bold text-green-600 ltr:text-right rtl:text-left">
-        {value}
-      </div>
-    ),
-    minWidth: 70,
-    maxWidth: 100,
   },
 ];
 
-export default function TransferHistoryTable(
+export default function StakeHistoryTable(
   //nftMetadata: any
 
   { nftMetadata }: { nftMetadata?: any }
@@ -370,7 +339,7 @@ export default function TransferHistoryTable(
 
   const columns = React.useMemo(() => COLUMNS, []);
 
-  const [transactions, setTransactions] = React.useState([]);
+  const [stakes, setStakes] = React.useState([]);
 
   const address = useAddress();
 
@@ -391,7 +360,7 @@ export default function TransferHistoryTable(
       // @ts-ignore
       columns,
       //data,
-      data: transactions,
+      data: stakes,
       initialState: { pageSize: 10 },
     },
     useSortBy,
@@ -478,12 +447,12 @@ export default function TransferHistoryTable(
   const getLast20 = async () => {
     ///console.log('price-history-table nftMetadata.?metadata?.id: ', nftMetadata?.metadata?.id);
 
-    const response = await fetch('/api/nft/horse/history/transfer', {
+    const response = await fetch('/api/nft/horse/history/stake', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        method: 'getAllByTokenId',
-        tokenId: nftMetadata?.metadata?.id,
+        method: 'getAll',
+        //tokenId: nftMetadata?.metadata?.id,
       }),
     });
     const data = await response.json();
@@ -496,36 +465,37 @@ export default function TransferHistoryTable(
 
     ///setSaleHistory(data.all);
 
-    const transactions = [] as any;
+    const stakes = [] as any;
 
-    data.all?.map((transfer: any, index: number) => {
+    data.all?.map((stake: any, index: number) => {
       //console.log('transfer: ', transfer);
 
-      const transactionData = {
-        hash: transfer.hash,
-        id: transfer.blockNum,
+      const stakeData = {
+        hash: stake.hash,
+        id: stake.blockNum,
         //transactionType: transfer.from === address ? 'Send' : 'Receive',
         transactionType: 'Send',
-        createdAt: transfer.blockTimestamp,
+        createdAt: stake.blockTimestamp,
 
-        tokenFrom: transfer.tokenFrom,
-        tokenTo: transfer.tokenTo,
+        tokenFrom: stake.tokenFrom,
+        tokenTo: stake.tokenTo,
 
         status: 'Completed',
-        tokenId: transfer.tokenId,
-        logs4Address: transfer.logs4Address,
+        tokenId: stake.tokenId,
+        register: stake.register,
+        staker: stake.staker,
       };
 
       //console.log('transactionData: ', transactionData);
 
       ////setTransers((transfers) => [...transfers, transactionData]);
 
-      transactions.push(transactionData);
+      stakes.push(stakeData);
     });
 
     ///console.log('transactions: ', transactions);
 
-    setTransactions(transactions);
+    setStakes(stakes);
   };
 
   useEffect(() => {
