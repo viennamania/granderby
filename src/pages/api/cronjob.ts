@@ -56,7 +56,9 @@ export default async function handler(
 
   //var fromBlock = '0x2e3866a';
 
-  var fromBlock = '0x2e3aabf';
+  //var fromBlock = '0x2e3aabf';
+
+  var fromBlock = '0x2e43f16';
 
   var response = null;
 

@@ -119,7 +119,7 @@ export default function Search() {
         return result.json();
       });
 
-      //console.log('feeds-owned horses data', data);
+      ///console.log('search-asset data', data);
 
       //searchDataHorse?.nfts.length !== data?.nfts.length &&
 
