@@ -14,7 +14,7 @@ import { Twitter } from '@/components/icons/brands/twitter';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 
-import NftInfo from '@/components/nft-pricing-table/nft-info';
+import NftInfo from '@/components/nft-pricing-table/my-nft-info';
 
 import { CoinConverter } from '@/components/ui/transact-coin';
 import CoinTabs from '@/components/cryptocurrency-pricing-table/coin-tabs';
@@ -173,6 +173,8 @@ function SinglePrice(tokenid: any) {
       </div>
     );
 
+  {
+    /*
   if (address && address !== nftMetadata?.owner)
     return (
       <div className="flex h-screen flex-col items-center justify-center">
@@ -187,6 +189,8 @@ function SinglePrice(tokenid: any) {
         </div>
       </div>
     );
+    */
+  }
 
   return (
     <>

@@ -616,16 +616,6 @@ function NftInfo({ nftMetadata }: any) {
                         <div className="mt-5 text-sm font-bold xl:text-lg">
                           <b>Not for sale</b>
                         </div>
-                        <Button
-                          shape="rounded"
-                          color="success"
-                          onClick={() => {
-                            //router.push('/live');
-                            //walletConnect
-                          }}
-                        >
-                          <div className="text-2xl">Make Offer</div>
-                        </Button>
                       </>
                     )}
                   </>
