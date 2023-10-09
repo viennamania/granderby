@@ -1,5 +1,3 @@
-import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price-for-sale';
-
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import RootLayout from '@/layouts/_root-layout';
@@ -14,6 +12,7 @@ import { Twitter } from '@/components/icons/brands/twitter';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price-for-sale';
 import NftInfo from '@/components/nft-pricing-table/nft-info';
 
 import { CoinConverter } from '@/components/ui/transact-coin';
@@ -55,7 +54,7 @@ function SinglePrice(tokenid: any) {
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
-  const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
+  const { data: nftMetadata, isLoading } = useNFT(contract, tokenid?.tokenid);
 
   ///console.log('nftMetadata======>', nftMetadata);
 
@@ -176,6 +175,7 @@ export async function getStaticProps(context: any) {
 
   const tokenid: any = context.params?.tokenid;
 
+  /*
   // If used on the FRONTEND pass your 'clientId'
   const sdk = new ThirdwebSDK('polygon', {
     clientId: '79125a56ef0c1629d4863b6df0a43cce',
@@ -186,16 +186,11 @@ export async function getStaticProps(context: any) {
   const nft = await contract.erc721.get(tokenid);
 
   ///console.log('nft======>', nft);
+  */
 
   return {
     props: {
       tokenid: tokenid,
-      //////nftMetadata: nft,
-      title: '#' + tokenid + '-' + nft?.metadata?.name,
-      description: nft?.metadata?.description,
-      //image: '/images/logo.png',
-      //image: data?.metadata?.image,
-      image: nft?.metadata?.image,
     },
   };
 }
@@ -236,32 +231,10 @@ export async function getServerSideProps(context:any) {
 const AssetSinglePrice: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
-  const { tokenid, title, description, image } = props;
+  const { tokenid } = props;
 
   return (
     <>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1 maximum-scale=1"
-        />
-        <meta property="og:type" content="website"></meta>
-
-        <meta property="og:site_name" content="GRANDERBY"></meta>
-
-        <meta property="og:image:width" content="1400"></meta>
-        <meta property="og:image:height" content="1400"></meta>
-
-        <meta property="og:title" content={title}></meta>
-        <meta property="og:description" content={description}></meta>
-        <meta property="og:image" content={image}></meta>
-
-        <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:image" content={image}></meta>
-
-        <title>{title}</title>
-      </Head>
-
       <SinglePrice tokenid={tokenid} />
     </>
   );
