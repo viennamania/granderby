@@ -1,12 +1,6 @@
 import Button from '@/components/ui/button';
 
-import Feeds from './feeds-horse-registered';
-
-import SaleFeeds from './feeds-horse-sale';
-
-//import ListedFeeds from '.feeds-horse-listed';
-
-import RegisteredFeeds from './feeds-horse-registered-hv';
+import Feeds from './feeds-horse-zedrun';
 
 import { useDrawer } from '@/components/drawer-views/context';
 
@@ -29,7 +23,7 @@ import ParamTab, { TabPanel } from '@/components/ui/param-tab';
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
 import { useEffect, useState } from 'react';
-import { add, set } from 'lodash';
+import { set } from 'lodash';
 import { randomInt } from 'crypto';
 
 import LastWinnersPage from '@/components/horseRace/watchScreen/lastWinnersGranderby';
@@ -40,10 +34,7 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import { useRouter } from 'next/router';
 
-import {
-  nftDropContractAddressHorse,
-  stakingContractAddressHorseAAA,
-} from '@/config/contractAddresses';
+import { nftDropContractAddressHorseZedRun } from '@/config/contractAddresses';
 
 export default function Search() {
   const { openDrawer } = useDrawer();
@@ -151,9 +142,9 @@ export default function Search() {
         body: JSON.stringify({
           method: 'getAll',
           ///grades: selectedGradesStorage,
-          grades: [],
-          manes: [],
-          holder: stakingContractAddressHorseAAA,
+          grades: selectedGradesStorage ?? [],
+          manes: selectedManesStorage ?? [],
+          //holder: address,
           //sort: selectedGSortStorage,
         }),
       });
@@ -191,7 +182,7 @@ export default function Search() {
           <button
             onClick={() =>
               router.push(
-                `https://polygonscan.com/token/${nftDropContractAddressHorse}`
+                `https://polygonscan.com/token/${nftDropContractAddressHorseZedRun}`
               )
             }
           >
@@ -208,13 +199,6 @@ export default function Search() {
           Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
           Category Gaming
         </span>
-
-        <button
-          className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
-          onClick={() => router.push(`/horse/transfers`)}
-        >
-          Transfers
-        </button>
       </div>
 
       <div
@@ -317,13 +301,10 @@ export default function Search() {
                 </div>
               </div>
 
-              {/*
               <div className="items-right flex w-full justify-end">
                 <div className="flex gap-6 3xl:gap-8 ">
-
                   <SortList />
 
-                  
                   <div className="hidden 3xl:block">
                     <GridSwitcher />
                   </div>
@@ -348,20 +329,17 @@ export default function Search() {
                   </div>
                 </div>
               </div>
-              */}
             </div>
 
-            <Feeds registerAddress={stakingContractAddressHorseAAA} />
+            <Feeds />
           </div>
         </div>
 
-        {/*
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
           <Button onClick={() => openDrawer('DRAWER_SEARCH', '')} fullWidth>
             Filters
           </Button>
         </div>
-        */}
       </div>
     </>
   );

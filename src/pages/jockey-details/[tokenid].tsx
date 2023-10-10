@@ -32,7 +32,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import {
-  nftDropContractAddressHorseDerbyStars,
+  nftDropContractAddressJockey,
   stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
 
@@ -68,10 +68,7 @@ function SinglePrice(tokenid: any) {
 
   const router = useRouter();
 
-  const { contract } = useContract(
-    nftDropContractAddressHorseDerbyStars,
-    'nft-drop'
-  );
+  const { contract } = useContract(nftDropContractAddressJockey, 'nft-drop');
 
   const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
 
@@ -120,7 +117,7 @@ function SinglePrice(tokenid: any) {
                 <div className="items-left  mb-5  w-full flex-col justify-center  lg:hidden xl:hidden">
                   <Link
                     className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                    href={`/derbystars`}
+                    href={`/jockey`}
                   >
                     {nftMetadata?.metadata?.description}
                   </Link>
@@ -136,7 +133,7 @@ function SinglePrice(tokenid: any) {
                       className=" flex flex-row items-center justify-start "
                       onClick={() =>
                         router.push(
-                          `https://polygonscan.com/nft/${nftDropContractAddressHorseDerbyStars}/${nftMetadata?.metadata?.id}`
+                          `https://polygonscan.com/nft/${nftDropContractAddressJockey}/${nftMetadata?.metadata?.id}`
                         )
                       }
                     >
@@ -251,6 +248,7 @@ function SinglePrice(tokenid: any) {
                 {/* end of nft title */}
 
                 <Image
+                  //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
                   src={
                     nftMetadata?.metadata?.image
                       ? nftMetadata?.metadata?.image
@@ -265,7 +263,7 @@ function SinglePrice(tokenid: any) {
                 <NftSinglePrice
                   //tokenid={tokenid.tokenid}
                   nftMetadata={nftMetadata}
-                  contractAddress={nftDropContractAddressHorseDerbyStars}
+                  contractAddress={nftDropContractAddressJockey}
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
                 />
@@ -279,7 +277,7 @@ function SinglePrice(tokenid: any) {
                 <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
                   <Link
                     className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
-                    href={`/derbystars`}
+                    href={`/jockey`}
                   >
                     {nftMetadata?.metadata?.description}
                     {/*Granderby Horse NFT*/}
@@ -296,7 +294,7 @@ function SinglePrice(tokenid: any) {
                       className=" flex flex-row items-center justify-start  "
                       onClick={() =>
                         router.push(
-                          `https://polygonscan.com/nft/${nftDropContractAddressHorseDerbyStars}/${nftMetadata?.metadata?.id}`
+                          `https://polygonscan.com/nft/${nftDropContractAddressJockey}/${nftMetadata?.metadata?.id}`
                         )
                       }
                     >
@@ -492,7 +490,7 @@ export async function getStaticProps(context: any) {
     clientId: '79125a56ef0c1629d4863b6df0a43cce',
   });
 
-  const contract = await sdk.getContract(nftDropContractAddressHorseDerbyStars);
+  const contract = await sdk.getContract(nftDropContractAddressHorse);
 
   const nft = await contract.erc721.get(tokenid);
 
@@ -581,7 +579,7 @@ export async function getServerSideProps(context:any) {
     clientId: '79125a56ef0c1629d4863b6df0a43cce',
   });
 
-  const contract = await sdk.getContract(nftDropContractAddressHorseDerbyStars);
+  const contract = await sdk.getContract(nftDropContractAddressHorse);
 
   const nft = await contract.erc721.get(tokenid);
 

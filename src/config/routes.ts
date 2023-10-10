@@ -19,6 +19,7 @@ const routes = {
   leaderboard: '/leaderboard',
 
   horse: '/horse',
+  jockey: '/jockey',
 
   myhorse: '/my-horse',
 

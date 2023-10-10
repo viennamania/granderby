@@ -14,9 +14,11 @@ export default async function handler(
 ) {
   const { pageNumber, pageSize } = req.query;
 
-  const { grades, sort } = req.body;
+  const { grades, manes, holder, sort } = req.body;
 
-  ///console.log('getHorses grades', grades);
+  //console.log('getHorses grades', grades);
+  //console.log('getHorses manes', manes);
+  //console.log('getHorses holder', holder);
 
   var nfts = [] as any;
 
@@ -24,6 +26,8 @@ export default async function handler(
     Number(pageNumber),
     Number(pageSize),
     grades,
+    manes,
+    holder,
     sort
   );
 
@@ -31,9 +35,11 @@ export default async function handler(
 
   nfts = data.nfts;
 
+  //console.log('getHorses nfts====', nfts);
+
   const pageKey = data.pageNumber;
 
-  ////console.log('nfts', nfts);
+  const total = data.total;
 
   const formattedNfts = nfts?.map((nft: any) => {
     const {
@@ -46,21 +52,57 @@ export default async function handler(
       rawMetadata,
     } = nft.nft;
 
+    //console.log("getHorses nft", nft);
+    /*
+
+  
+    console.log("getHorses nft tokenId", nft.tokenId);
+    console.log("getHorses nft _id", nft._id);
+    console.log("getHorses nft nft", nft.nft);
+
+    */
+
+    //console.log("getHorses nft holder", nft.holder);
+
+    //console.log("getHorses nft totalPricePaid", nft.totalPricePaid);
+
+    const holder = nft.holder;
+
+    const totalPricePaid = nft.totalPricePaid;
+    const paidToken = nft.paidToken;
+
+    const logsNewSale = nft.logsNewSale;
+
+    const register = nft.register;
+
+    //console.log('getHorses register', register);
+
+    //console.log('getHorses holder', holder);
+
+    //console.log('getHorses totalPricePaid', totalPricePaid);
+    //console.log('getHorses logsNewSale', logsNewSale);
+
     //console.log('rawMetadata', rawMetadata);
 
     return {
-      contract: contract.address,
-      symbol: contract.symbol,
-      media: media[0]?.gateway
-        ? media[0]?.gateway
-        : 'https://via.placeholder.com/500',
-      collectionName: contract.openSea?.collectionName,
-      verified: contract.openSea?.safelistRequestStatus,
+      register: register,
+      logsNewSale: logsNewSale,
+      totalPricePaid: totalPricePaid,
+      paidToken: paidToken,
+      holder: holder,
+      contract: contract?.address,
+      symbol: contract?.symbol,
+      media:
+        media && media[0]?.gateway
+          ? media[0]?.gateway
+          : 'https://via.placeholder.com/500',
+      collectionName: contract?.openSea?.collectionName,
+      verified: contract?.openSea?.safelistRequestStatus,
       tokenType,
       tokenId,
-      title: rawMetadata.name ? rawMetadata.name : title,
+      title: rawMetadata?.name ? rawMetadata.name : title,
       description,
-      format: media[0]?.format ? media[0]?.format : 'png',
+      format: media && media[0]?.format ? media[0]?.format : 'png',
 
       //attributes: rawMetadata?.attributes,
 
@@ -71,10 +113,11 @@ export default async function handler(
   });
 
   res.status(200).json({
-    nfts: formattedNfts.length ? formattedNfts : null,
+    nfts: formattedNfts ? formattedNfts : [],
     //pageKey: nfts.pageKey,
     ///pageKey: null,
     pageKey: pageKey,
+    total: total,
   });
 
   ///return res.status(200).json({ success: true, nfts: response, pageKey: 'aaaaa' });

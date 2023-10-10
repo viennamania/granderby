@@ -26,7 +26,7 @@ import { Twitter } from '@/components/icons/brands/twitter';
 //import { Copy } from '@/components/icons/copy';
 import { SearchIcon } from '@/components/icons/search';
 
-import Search from '@/components/search/search-zedrun';
+import Search from '@/components/search/search-jockey';
 
 import ShareView from '@/components/nft/share-view';
 
@@ -99,21 +99,21 @@ const HorsePage: NextPageWithLayout<
       <div className="flex flex-row items-center justify-start gap-5">
         <button
           className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
-          onClick={() => router.push(`/derbystars/transfers`)}
+          onClick={() => router.push(`/jockey/transfers`)}
         >
           Transfers
         </button>
 
         <button
           className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
-          onClick={() => router.push(`/derbystars/sales`)}
+          onClick={() => router.push(`/jockey/sales`)}
         >
           Sales
         </button>
 
         <button
           className="mt-5 text-sm font-bold text-gray-900 dark:text-white"
-          onClick={() => router.push(`/derbystars/stakes`)}
+          onClick={() => router.push(`/jockey/stakes`)}
         >
           Stakes
         </button>

@@ -13,7 +13,7 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import { use, useEffect, useState } from 'react';
 
-import { nftDropContractAddressHorseZedRun } from '@/config/contractAddresses';
+import { nftDropContractAddressJockey } from '@/config/contractAddresses';
 
 import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
@@ -151,7 +151,7 @@ export default function Feeds(
       //pageParam = '',
     }) =>
       await fetch(
-        '/api/nft/getZedrun?pageNumber=' + pageParam + '&pageSize=20',
+        '/api/nft/getJockeys?pageNumber=' + pageParam + '&pageSize=20',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -202,7 +202,7 @@ export default function Feeds(
       {status === 'loading' && (
         <>
           <div className="flex flex-col items-center justify-center ">
-            <div className="text-xl">Loading horses...</div>
+            <div className="text-xl">Loading...</div>
 
             <span className="items-top mt-10 flex h-screen w-full justify-center">
               <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
@@ -278,7 +278,7 @@ export default function Feeds(
                       //setTokenid(nft.metadata.id.toString()),
                       //setIsOpen(true)
 
-                      router.push('/derbystars-details/' + nft?.tokenId)
+                      router.push('/jockey-details/' + nft?.tokenId)
                     }
                     onMouseOver={() => {
                       //alert("onMouseOver");

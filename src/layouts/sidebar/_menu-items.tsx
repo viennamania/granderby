@@ -333,7 +333,7 @@ export const menuItems = [
       {
         name: 'Jockey',
         icon: <PlusCircle />,
-        href: routes.rentJockey,
+        href: routes.jockey,
       },
       {
         name: 'Track',

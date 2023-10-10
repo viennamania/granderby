@@ -163,11 +163,11 @@ export default function PortfolioScreen() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          method: 'getAllByHolder',
+          holder: address,
           ///grades: selectedGradesStorage,
           grades: [],
           manes: [],
-          //holder: address,
-          //sort: selectedGSortStorage,
         }),
       });
       const data = await response.json();
@@ -178,7 +178,7 @@ export default function PortfolioScreen() {
     }
 
     getHorsesCount();
-  }, []);
+  }, [address]);
 
   return (
     <div className="mb-10">

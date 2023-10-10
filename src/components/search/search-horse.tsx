@@ -145,6 +145,7 @@ export default function Search() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          method: 'getAll',
           ///grades: selectedGradesStorage,
           grades: selectedGradesStorage ?? [],
           manes: selectedManesStorage ?? [],

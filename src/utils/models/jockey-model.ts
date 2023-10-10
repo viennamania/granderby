@@ -94,23 +94,41 @@ const HorseSchema = new Schema({
   },
   paidToken: {
     type: String,
-    required: true,
+    required: false,
     default: false,
   },
   totalPricePaid: {
     type: String,
-    required: true,
+    required: false,
     default: false,
   },
   logsNewSale: {
     type: Object,
-    required: true,
+    required: false,
+    default: false,
+  },
+  register: {
+    type: String,
+    required: false,
     default: false,
   },
 });
 
-export const HorseModel =
-  models.nfthorse || model<IHorse>('nfthorse', HorseSchema);
+/*
+export interface IHorse {
+  save(): unknown;
+  _id: string;
+  tokenId: string;
+  contract: string;
+  nft: object;
+  holder: string;
+  paidToken: string;
+  totalPricePaid: string;
+  logsNewSale: object;
+}
+*/
+
+export const HorseModel = models.jockey || model<IHorse>('jockey', HorseSchema);
 
 //export const getAllHorses = async (): Promise<IHorse[]> => {
 
@@ -129,7 +147,7 @@ const result  = await findOne({color: "gray", "object.name":"apple" })
 }
 */
 
-export const getAllJockeys = async (
+export const getAllHorses = async (
   pageNumber: number,
   pagination: number,
   grades: string,
@@ -144,20 +162,38 @@ export const getAllJockeys = async (
 
   //console.log('getAllHorses sort', sort);
 
-  console.log('getAllJockeys holder', holder);
+  console.log('getAllHorses holder', holder);
 
   if (holder) {
     const data = await HorseModel.find({
       holder: holder.toLowerCase(),
-
-      'nft.rawMetadata.attributes': {
-        $elemMatch: {
-          trait_type: 'Grade',
-          //value: grades,
-          value: { $in: grades },
-        },
-      },
     })
+
+      .sort({ tokenId: 1 })
+
+      .skip((pageNumber - 1) * pagination)
+      //limit is number of Records we want to display
+      .limit(pagination)
+      /*
+      .then(data => {
+  
+        return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
+  
+      })
+      */
+      .catch((err) => {
+        ////return err;
+      });
+
+    if (data?.length === 0) {
+      return { nfts: [], pageNumber: null };
+    }
+
+    return { nfts: data, pageNumber: pageNumber + 1 };
+  }
+
+  if (grades.length === 0) {
+    const data = await HorseModel.find({})
 
       .sort({ tokenId: 1 })
 
@@ -178,8 +214,183 @@ export const getAllJockeys = async (
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
 
+  const totalData = await HorseModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        trait_type: 'Grade',
+        //value: grades,
+        value: { $in: grades },
+      },
+    },
+  }).catch((err) => {
+    ////return err;
+  });
+
+  const total = totalData?.length;
+
+  const data = await HorseModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        /*
+                    "closed": false,
+            "$or": [
+                {
+                    "openingEvening": { "$lte": currentTime  },
+                    "closingEvening": { "$gte": currentTime  }
+                },
+                {
+                    "openingMorning": { "$lte": currentTime },
+                    "closingMorning": { "$gte": currentTime  }
+                }
+
+            ]
+            */
+
+        /*
+        $and: [
+          {
+            trait_type: 'Grade',
+            //value: grades,
+            value: { $in: grades },
+          },
+          
+          {
+            trait_type: 'Mane',
+            value: { $in: manes },
+          }
+          
+        ]
+        */
+
+        trait_type: 'Grade',
+        //value: grades,
+        value: { $in: grades },
+      },
+    },
+  })
+    .sort({ tokenId: 1 })
+    .collation({ locale: 'en_US', numericOrdering: true })
+
+    // sort number in descending order
+
+    //.sort(function (a, b) {return b.tokenId - a.tokenId;})
+
+    .skip((pageNumber - 1) * pagination)
+    //limit is number of Records we want to display
+    .limit(pagination)
+    /*
+    .then(data => {
+
+      return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
+
+    })
+    */
+    .catch((err) => {
+      ////return err;
+    });
+
+  ///console.log('data', data);
+  console.log('data.length', data?.length);
+  console.log('pageNumber', pageNumber);
+
+  if (data?.length === 0) {
+    return { nfts: [], pageNumber: null };
+  }
+
+  return { nfts: data, pageNumber: pageNumber + 1, total: total };
+};
+
+export const getAllHorsesCount = async (
+  grades: string,
+  manes: string,
+  holder: string
+) => {
+  console.log('getAllHorsesCount holder', holder);
+
+  if (holder) {
+    const data = await HorseModel.find({
+      holder: holder.toLowerCase(),
+    })
+      .countDocuments()
+      .catch((err) => {
+        ////return err;
+      });
+
+    //return { total: data?.length };
+
+    return { total: data };
+  }
+
   if (grades.length === 0) {
     const data = await HorseModel.find({})
+      .countDocuments()
+      .catch((err) => {
+        ////return err;
+      });
+
+    return { total: data };
+  }
+
+  const data = await HorseModel.find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        /*
+                    "closed": false,
+            "$or": [
+                {
+                    "openingEvening": { "$lte": currentTime  },
+                    "closingEvening": { "$gte": currentTime  }
+                },
+                {
+                    "openingMorning": { "$lte": currentTime },
+                    "closingMorning": { "$gte": currentTime  }
+                }
+
+            ]
+            */
+
+        /*
+        $and: [
+          {
+            trait_type: 'Grade',
+            //value: grades,
+            value: { $in: grades },
+          },
+          
+          {
+            trait_type: 'Mane',
+            value: { $in: manes },
+          }
+          
+        ]
+        */
+
+        trait_type: 'Grade',
+        //value: grades,
+        value: { $in: grades },
+      },
+    },
+  })
+    .countDocuments()
+    .catch((err) => {
+      ////return err;
+    });
+
+  return { total: data };
+};
+
+export const getRegisteredHorses = async (
+  pageNumber: number,
+  pagination: number,
+  grades: string,
+  manes: string,
+  sort: string,
+  register: string
+) => {
+  if (grades.length === 0) {
+    const data = await HorseModel.find({
+      register: register,
+    })
 
       .sort({ tokenId: 1 })
 
@@ -261,7 +472,9 @@ export const getAllJockeys = async (
       ////return err;
     });
 
-  ///console.log('data', data);
+  if (data?.length === 0) {
+    return { nfts: [], pageNumber: null };
+  }
 
   return { nfts: data, pageNumber: pageNumber + 1 };
 };

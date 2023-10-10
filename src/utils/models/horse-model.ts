@@ -311,19 +311,25 @@ export const getAllHorsesCount = async (
   if (holder) {
     const data = await HorseModel.find({
       holder: holder.toLowerCase(),
-    }).catch((err) => {
-      ////return err;
-    });
+    })
+      .countDocuments()
+      .catch((err) => {
+        ////return err;
+      });
 
-    return { total: data?.length };
+    //return { total: data?.length };
+
+    return { total: data };
   }
 
   if (grades.length === 0) {
-    const data = await HorseModel.find({}).catch((err) => {
-      ////return err;
-    });
+    const data = await HorseModel.find({})
+      .countDocuments()
+      .catch((err) => {
+        ////return err;
+      });
 
-    return { total: data?.length };
+    return { total: data };
   }
 
   const data = await HorseModel.find({
@@ -365,11 +371,13 @@ export const getAllHorsesCount = async (
         value: { $in: grades },
       },
     },
-  }).catch((err) => {
-    ////return err;
-  });
+  })
+    .countDocuments()
+    .catch((err) => {
+      ////return err;
+    });
 
-  return { total: data?.length };
+  return { total: data };
 };
 
 export const getRegisteredHorses = async (
