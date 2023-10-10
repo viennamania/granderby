@@ -245,7 +245,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg"></div>
         </>
       ) : (
-        <div className="flex flex-col items-center justify-start">
+        <div className="flex flex-col items-center justify-start gap-5">
           {isLoadingBalanceUSDC ? (
             <>
               <div className="flex flex-col items-center justify-center ">
@@ -275,7 +275,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 <div className=" w-48 text-right text-2xl font-bold underline decoration-sky-500">
                   {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
                 </div>
-                <div className="w-20 text-xl ">{tokenBalanceUSDC?.symbol}:</div>
+                <div className="w-20 text-xl ">{tokenBalanceUSDC?.symbol}</div>
               </div>
 
               <button
@@ -310,10 +310,10 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 */}
                 <div className="times-center  flex w-48 justify-center">
                   <Image
-                    src="/images/icon-grd.png"
+                    src="/images/ui/shop/icon-sugar.png"
                     alt="grd"
-                    width={80}
-                    height={80}
+                    width={50}
+                    height={50}
                   />
                 </div>
 
@@ -321,7 +321,53 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                   {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
                 </div>
 
-                <div className="w-20 text-xl ">{tokenBalanceGRD?.symbol}:</div>
+                <div className="w-20 text-xl ">GRDB</div>
+              </div>
+
+              <button
+                className="ml-10 flex flex-row items-center justify-center gap-3"
+                ////onClick={(e) => router.push('/coin/grd')}
+                onClick={() => {
+                  closeInventories();
+                  router.push('/coin/grd');
+                  ///router.push('/horse-details/' + nft?.metadata?.id);
+                }}
+              >
+                <ChevronForward className="mr-10 rtl:rotate-180" />
+              </button>
+            </div>
+          )}
+
+          {isLoadingBalanceGRD ? (
+            <>
+              <div className="flex flex-col items-center justify-center ">
+                <div className="text-xl text-gray-400">Loading...</div>
+
+                <span className="items-top mt-10 flex h-screen w-full justify-center">
+                  <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                </span>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-row items-center justify-start">
+              <div className=" flex flex-row items-center justify-start gap-1">
+                {/*
+                <GasIcon className="h-5 w-5" />
+                */}
+                <div className="times-center  flex w-48 justify-center">
+                  <Image
+                    src="/images/ui/shop/icon-carrot.png"
+                    alt="carrot"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+
+                <div className=" w-48  text-right text-2xl font-bold underline decoration-sky-500">
+                  {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+                </div>
+
+                <div className="w-20 text-xl ">CARROT</div>
               </div>
 
               <button

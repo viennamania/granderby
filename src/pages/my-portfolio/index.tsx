@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const RentPage: NextPageWithLayout<
+const PortfolioPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
   const { layout } = useLayout();
@@ -107,8 +107,8 @@ const RentPage: NextPageWithLayout<
   );
 };
 
-RentPage.getLayout = function getLayout(page) {
+PortfolioPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default RentPage;
+export default PortfolioPage;
