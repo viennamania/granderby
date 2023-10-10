@@ -266,26 +266,20 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             </>
           ) : (
             <div className="flex flex-row items-center justify-start">
-              <div className=" flex flex-row items-center justify-start gap-1">
-                {/*
-                <Usdc className="h-25 w-25" />
-                */}
+              <div className=" flex ">
+                <Image
+                  src="/images/icon-usdc.png"
+                  alt="usdc"
+                  width={40}
+                  height={40}
+                />
+              </div>
 
-                <div className=" flex w-48 items-center justify-center">
-                  <Image
-                    src="/images/icon-usdc.png"
-                    alt="usdc"
-                    width={40}
-                    height={40}
-                  />
-                </div>
-
-                <div className=" w-48 text-right text-2xl font-bold underline decoration-sky-500">
-                  {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
-                </div>
-                <div className="ml-2 w-20 text-xl ">
-                  {tokenBalanceUSDC?.symbol}
-                </div>
+              <div className=" w-32 text-right text-2xl font-bold underline decoration-sky-500">
+                {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
+              </div>
+              <div className="ml-2 w-12 text-xl ">
+                {tokenBalanceUSDC?.symbol}
               </div>
 
               <button
@@ -314,25 +308,20 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             </>
           ) : (
             <div className="flex flex-row items-center justify-start">
-              <div className=" flex flex-row items-center justify-start gap-1">
-                {/*
-                <GasIcon className="h-5 w-5" />
-                */}
-                <div className="times-center  flex w-48 justify-center">
-                  <Image
-                    src="/images/icon-grd.png"
-                    alt="grd"
-                    width={80}
-                    height={80}
-                  />
-                </div>
-
-                <div className=" w-48  text-right text-2xl font-bold underline decoration-sky-500">
-                  {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
-                </div>
-
-                <div className="ml-2 w-20 text-xl ">GRDB</div>
+              <div className="times-center  flex  justify-start ">
+                <Image
+                  src="/images/icon-grd.png"
+                  alt="grd"
+                  width={80}
+                  height={80}
+                />
               </div>
+
+              <div className=" w-32  text-right text-2xl font-bold underline decoration-sky-500">
+                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+              </div>
+
+              <div className="ml-2 w-12 text-xl ">GRDB</div>
 
               <button
                 className="ml-10 flex flex-row items-center justify-center gap-3"
@@ -360,26 +349,21 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             </>
           ) : (
             <div className="flex flex-row items-center justify-start">
-              <div className=" flex flex-row items-center justify-start gap-1">
-                {/*
-                <GasIcon className="h-5 w-5" />
-                */}
-                <div className="times-center  flex w-48 justify-center">
-                  <Image
-                    src="/images/ui/shop/icon-carrot.png"
-                    alt="carrot"
-                    width={50}
-                    height={50}
-                  />
-                </div>
+              <div className="times-center  flex  justify-center">
+                <Image
+                  src="/images/icon-carrot.png"
+                  alt="carrot"
+                  width={50}
+                  height={50}
+                />
+              </div>
 
-                <div className=" w-48  text-right text-2xl font-bold underline decoration-sky-500">
-                  {Number(tokenBalanceCARROT?.displayValue).toFixed(2)}
-                </div>
+              <div className=" w-32  text-right text-2xl font-bold underline decoration-sky-500">
+                {Number(tokenBalanceCARROT?.displayValue).toFixed(2)}
+              </div>
 
-                <div className="ml-2 w-20 text-xl ">
-                  {tokenBalanceCARROT?.symbol}
-                </div>
+              <div className="ml-2 w-12 text-xl ">
+                {tokenBalanceCARROT?.symbol}
               </div>
 
               <button
@@ -408,32 +392,27 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             </>
           ) : (
             <div className="flex flex-row items-center justify-start">
-              <div className=" flex flex-row items-center justify-start gap-1">
-                {/*
-                <GasIcon className="h-5 w-5" />
-                */}
-                <div className="times-center  flex w-48 justify-center">
-                  <Image
-                    src="/images/ui/shop/icon-sugar.png"
-                    alt="sugar"
-                    width={50}
-                    height={50}
-                  />
-                </div>
-
-                <div className=" w-48  text-right text-2xl font-bold underline decoration-sky-500">
-                  {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
-                </div>
-
-                <div className="ml-2 w-20 text-xl ">SUGAR</div>
+              <div className="times-center  flex justify-center">
+                <Image
+                  src="/images/icon-sugar.png"
+                  alt="sugar"
+                  width={50}
+                  height={50}
+                />
               </div>
+
+              <div className=" w-32  text-right text-2xl font-bold underline decoration-sky-500">
+                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+              </div>
+
+              <div className="ml-2 w-12 text-xl ">SUGAR</div>
 
               <button
                 className="ml-10 flex flex-row items-center justify-center gap-3"
                 ////onClick={(e) => router.push('/coin/grd')}
                 onClick={() => {
                   closeInventories();
-                  router.push('/coin/grd');
+                  router.push('/mint-sugar');
                   ///router.push('/horse-details/' + nft?.metadata?.id);
                 }}
               >

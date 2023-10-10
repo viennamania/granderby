@@ -258,49 +258,49 @@ export default function PortfolioScreen() {
                   />
                 </div>
 
-                <div className="grid w-full grid-cols-3 items-center justify-center gap-5">
+                <div className="grid w-full grid-cols-3 items-center justify-center gap-1">
                   <div className="flex flex-row items-center justify-center gap-5 rounded-lg border p-5">
                     <div className="flex flex-col items-center justify-center gap-5">
                       <span className="text-lg">Horse</span>
-                      <span className="text-2xl font-bold xl:text-4xl">
+                      <span className="text-xl font-bold xl:text-2xl">
                         {horsesCount}
                       </span>
                     </div>
                     <Image
                       src="/images/ui/button/horse.png"
                       alt="logo"
-                      width={30}
-                      height={30}
+                      width={25}
+                      height={25}
                     />
                   </div>
 
                   <div className="flex flex-row items-center justify-center gap-5 rounded-lg border p-5">
                     <div className="flex flex-col items-center justify-center gap-5">
                       <span className="text-lg">Jockey</span>
-                      <span className="text-2xl font-bold xl:text-4xl">
+                      <span className="text-xl font-bold xl:text-2xl">
                         {horsesCount}
                       </span>
                     </div>
                     <Image
                       src="/images/ui/button/jockey.png"
                       alt="logo"
-                      width={30}
-                      height={30}
+                      width={25}
+                      height={25}
                     />
                   </div>
 
                   <div className="flex flex-row items-center justify-center gap-5 rounded-lg border p-5">
                     <div className="flex flex-col items-center justify-center gap-5">
                       <span className="text-lg">Track</span>
-                      <span className="text-2xl font-bold xl:text-4xl">
+                      <span className="text-xl font-bold xl:text-2xl">
                         {horsesCount}
                       </span>
                     </div>
                     <Image
                       src="/images/ui/button/track.png"
                       alt="logo"
-                      width={30}
-                      height={30}
+                      width={25}
+                      height={25}
                     />
                   </div>
                 </div>
