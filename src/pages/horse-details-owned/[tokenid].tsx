@@ -1,5 +1,3 @@
-import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
-
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import RootLayout from '@/layouts/_root-layout';
@@ -14,6 +12,7 @@ import { Twitter } from '@/components/icons/brands/twitter';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
 import NftInfo from '@/components/nft-pricing-table/my-nft-info';
 
 import { CoinConverter } from '@/components/ui/transact-coin';
@@ -203,7 +202,8 @@ function SinglePrice(tokenid: any) {
           <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
             <div
               className={`w-full 2xl:w-full 
-              ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
+                
+              `}
             >
               <div className=" flex flex-col">
                 {/* nft title */}
@@ -302,7 +302,6 @@ function SinglePrice(tokenid: any) {
                 {/* end of nft title */}
 
                 <Image
-                  //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
                   src={
                     nftMetadata?.metadata?.image
                       ? nftMetadata?.metadata?.image
@@ -314,6 +313,7 @@ function SinglePrice(tokenid: any) {
                   className=" rounded-lg "
                 />
 
+                {/*
                 <NftSinglePrice
                   //tokenid={tokenid.tokenid}
                   nftMetadata={nftMetadata}
@@ -321,6 +321,7 @@ function SinglePrice(tokenid: any) {
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
                 />
+                */}
               </div>
             </div>
 

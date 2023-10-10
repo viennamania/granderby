@@ -23,7 +23,10 @@ import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 import { useAddress } from '@thirdweb-dev/react';
 import { add, set } from 'lodash';
 
-import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+import {
+  nftDropContractAddressHorse,
+  stakingContractAddressHorseAAA,
+} from '@/config/contractAddresses';
 
 import { tr } from 'date-fns/locale';
 import { array } from 'yup';
@@ -277,8 +280,8 @@ const COLUMNS = [
         </div>
       </button>
     ),
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 80,
+    maxWidth: 80,
   },
 
   {
@@ -303,10 +306,11 @@ const COLUMNS = [
         {value}
       </div>
     ),
-    minWidth: 70,
-    maxWidth: 100,
+    minWidth: 90,
+    maxWidth: 90,
   },
 
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">From</div>,
     accessor: 'tokenFrom',
@@ -324,9 +328,10 @@ const COLUMNS = [
     minWidth: 90,
     maxWidth: 90,
   },
+  */
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">To</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">To / From</div>,
     accessor: 'tokenTo',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -447,7 +452,14 @@ export default function TransferHistoryTable(
         tokenId: transfer.tokenId,
         logs4Address: transfer.logs4Address,
         category:
-          transfer.tokenFrom === address.toLowerCase() ? 'Send' : 'Receive',
+          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
+            ? 'Register to'
+            : transfer.tokenFrom ===
+              stakingContractAddressHorseAAA.toLowerCase()
+            ? 'Unregister from'
+            : transfer.tokenFrom === address.toLowerCase()
+            ? 'Send to'
+            : 'Receive from',
       };
 
       //console.log('transactionData: ', transactionData);
