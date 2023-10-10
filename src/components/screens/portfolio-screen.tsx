@@ -41,7 +41,7 @@ import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby
 import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
 //import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
-import TransferHistoryTable from '@/components/nft-transaction/transfer-history-table';
+import TransferHistoryTable from '@/components/nft-transaction/user-transfer-history-table';
 
 import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
 
@@ -347,7 +347,7 @@ export default function PortfolioScreen() {
           <div className=" flex flex-col rounded-lg border p-5">
             <span className=" text-2xl font-bold">History</span>
 
-            {address ? <TransferHistoryTable nftMetadata={null} /> : <> </>}
+            {address ? <TransferHistoryTable address={address} /> : <> </>}
           </div>
 
           <div className="items-top mt-5 flex w-full justify-center ">
