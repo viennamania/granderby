@@ -8,6 +8,9 @@ export const thirdwebClientId = '79125a56ef0c1629d4863b6df0a43cce';
 
 //export const nftDropContractAddressHorse = '0xd80c851aC4d8801dCa339d8cd05Ca5c3aCA245Cd';
 
+export const tokenContractAddressCARROTDrop =
+  '0x2aaC53FC860D9815c250b3590D9D7895384f7DB1';
+
 export const nftDropContractAddressHorse =
   '0x41FBA0bd9f4DC9a968a10aEBb792af6A09969F60';
 

@@ -33,6 +33,7 @@ import {
   tokenContractAddressGRD,
   nftDropContractAddressCoupon,
   tokenContractAddressGCOW,
+  tokenContractAddressCARROTDrop,
 } from '@/config/contractAddresses';
 
 import Button from '@/components/ui/button/button';
@@ -66,6 +67,13 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
   const address = useAddress();
 
   ///console.log('address======>', address);
+
+  const { contract: tokenContractCARROT } = useContract(
+    tokenContractAddressCARROTDrop,
+    'token'
+  );
+  const { data: tokenBalanceCARROT, isLoading: isLoadingBalanceCARROT } =
+    useTokenBalance(tokenContractCARROT, address);
 
   const { contract: tokenContractUSDC } = useContract(
     tokenContractAddressUSDC,
@@ -239,7 +247,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
   const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
 
   return (
-    <div className="">
+    <div className="mt-5 flex">
       {!address ? (
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg"></div>
@@ -275,7 +283,9 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 <div className=" w-48 text-right text-2xl font-bold underline decoration-sky-500">
                   {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
                 </div>
-                <div className="w-20 text-xl ">{tokenBalanceUSDC?.symbol}</div>
+                <div className="ml-2 w-20 text-xl ">
+                  {tokenBalanceUSDC?.symbol}
+                </div>
               </div>
 
               <button
@@ -310,10 +320,10 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 */}
                 <div className="times-center  flex w-48 justify-center">
                   <Image
-                    src="/images/ui/shop/icon-sugar.png"
+                    src="/images/icon-grd.png"
                     alt="grd"
-                    width={50}
-                    height={50}
+                    width={80}
+                    height={80}
                   />
                 </div>
 
@@ -321,7 +331,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                   {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
                 </div>
 
-                <div className="w-20 text-xl ">GRDB</div>
+                <div className="ml-2 w-20 text-xl ">GRDB</div>
               </div>
 
               <button
@@ -330,6 +340,54 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 onClick={() => {
                   closeInventories();
                   router.push('/coin/grd');
+                  ///router.push('/horse-details/' + nft?.metadata?.id);
+                }}
+              >
+                <ChevronForward className="mr-10 rtl:rotate-180" />
+              </button>
+            </div>
+          )}
+
+          {isLoadingBalanceCARROT ? (
+            <>
+              <div className="flex flex-col items-center justify-center ">
+                <div className="text-xl text-gray-400">Loading...</div>
+
+                <span className="items-top mt-10 flex h-screen w-full justify-center">
+                  <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
+                </span>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-row items-center justify-start">
+              <div className=" flex flex-row items-center justify-start gap-1">
+                {/*
+                <GasIcon className="h-5 w-5" />
+                */}
+                <div className="times-center  flex w-48 justify-center">
+                  <Image
+                    src="/images/ui/shop/icon-carrot.png"
+                    alt="carrot"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+
+                <div className=" w-48  text-right text-2xl font-bold underline decoration-sky-500">
+                  {Number(tokenBalanceCARROT?.displayValue).toFixed(2)}
+                </div>
+
+                <div className="ml-2 w-20 text-xl ">
+                  {tokenBalanceCARROT?.symbol}
+                </div>
+              </div>
+
+              <button
+                className="ml-10 flex flex-row items-center justify-center gap-3"
+                ////onClick={(e) => router.push('/coin/grd')}
+                onClick={() => {
+                  closeInventories();
+                  router.push('/mint-carrot');
                   ///router.push('/horse-details/' + nft?.metadata?.id);
                 }}
               >
@@ -356,8 +414,8 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 */}
                 <div className="times-center  flex w-48 justify-center">
                   <Image
-                    src="/images/ui/shop/icon-carrot.png"
-                    alt="carrot"
+                    src="/images/ui/shop/icon-sugar.png"
+                    alt="sugar"
                     width={50}
                     height={50}
                   />
@@ -367,7 +425,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                   {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
                 </div>
 
-                <div className="w-20 text-xl ">CARROT</div>
+                <div className="ml-2 w-20 text-xl ">SUGAR</div>
               </div>
 
               <button
