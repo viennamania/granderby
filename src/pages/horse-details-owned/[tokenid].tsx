@@ -301,17 +301,27 @@ function SinglePrice(tokenid: any) {
 
                 {/* end of nft title */}
 
-                <Image
-                  src={
-                    nftMetadata?.metadata?.image
-                      ? nftMetadata?.metadata?.image
-                      : '/default-nft.png'
-                  }
-                  alt="nft"
-                  width={1024}
-                  height={1024}
-                  className=" rounded-lg "
-                />
+                <div className="relative">
+                  <Image
+                    src={
+                      nftMetadata?.metadata?.image
+                        ? nftMetadata?.metadata?.image
+                        : '/default-nft.png'
+                    }
+                    alt="nft"
+                    width={1024}
+                    height={1024}
+                    className=" m-3 rounded-lg"
+                  />
+
+                  <Image
+                    src="/images/horse-auto.png"
+                    alt="nft"
+                    width={150}
+                    height={150}
+                    className="absolute left-0 top-0"
+                  />
+                </div>
 
                 {/*
                 <NftSinglePrice

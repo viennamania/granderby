@@ -237,14 +237,26 @@ export default function OwnedFeedsNft(
                   //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
                 }}
               >
-                <Image
-                  src={nft?.media ? nft?.media : '/default-nft.png'}
-                  alt={nft?.title}
-                  height={300}
-                  width={300}
-                  loading="lazy"
-                  className="cursor-pointer object-cover transition duration-500 hover:scale-110"
-                />
+                <div className="relative">
+                  <Image
+                    src={nft?.media ? nft?.media : '/default-nft.png'}
+                    alt={nft?.title}
+                    height={300}
+                    width={300}
+                    loading="lazy"
+                    className="cursor-pointer object-cover transition duration-500 hover:scale-110 "
+                  />
+                  {nft?.register && (
+                    <Image
+                      src="/images/horse-auto.png"
+                      alt="nft"
+                      width={50}
+                      height={50}
+                      className="absolute left-0 top-0"
+                    />
+                  )}
+                </div>
+
                 {/*
                   <div className="ml-2 mt-2 flex w-full flex-row items-center justify-start gap-2">
                     
