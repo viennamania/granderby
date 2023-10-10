@@ -251,15 +251,59 @@ export default function PortfolioScreen() {
             <span className=" text-2xl font-bold">Assets</span>
 
             {address ? (
-              <div className="flex flex-col items-start justify-center gap-5 p-5">
-                <OwnedFeedsCoin
-                //contractAddress={nftDropContractAddressHorseZedRun}
-                />
+              <div className="mt-5 flex flex-col items-start justify-center gap-5">
+                <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
+                  <OwnedFeedsCoin
+                  //contractAddress={nftDropContractAddressHorseZedRun}
+                  />
+                </div>
 
-                <span className="text-2xl font-bold">{horsesCount} horses</span>
-                <span className="text-2xl font-bold">
-                  {horsesCount} jockeys
-                </span>
+                <div className="grid w-full grid-cols-3 items-center justify-center gap-5">
+                  <div className="flex flex-row items-center justify-center gap-5 rounded-lg border p-5">
+                    <div className="flex flex-col items-center justify-center gap-5">
+                      <span className="text-lg">Horse</span>
+                      <span className="text-2xl font-bold xl:text-4xl">
+                        {horsesCount}
+                      </span>
+                    </div>
+                    <Image
+                      src="/images/ui/button/horse.png"
+                      alt="logo"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+
+                  <div className="flex flex-row items-center justify-center gap-5 rounded-lg border p-5">
+                    <div className="flex flex-col items-center justify-center gap-5">
+                      <span className="text-lg">Jockey</span>
+                      <span className="text-2xl font-bold xl:text-4xl">
+                        {horsesCount}
+                      </span>
+                    </div>
+                    <Image
+                      src="/images/ui/button/jockey.png"
+                      alt="logo"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+
+                  <div className="flex flex-row items-center justify-center gap-5 rounded-lg border p-5">
+                    <div className="flex flex-col items-center justify-center gap-5">
+                      <span className="text-lg">Track</span>
+                      <span className="text-2xl font-bold xl:text-4xl">
+                        {horsesCount}
+                      </span>
+                    </div>
+                    <Image
+                      src="/images/ui/button/track.png"
+                      alt="logo"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+                </div>
               </div>
             ) : (
               <> </>
