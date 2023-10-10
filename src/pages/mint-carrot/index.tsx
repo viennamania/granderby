@@ -168,10 +168,18 @@ const MintPage: NextPageWithLayout<
       const bnPrice = BigNumber.from(
         activeClaimCondition.data?.currencyMetadata.value || 0
       );
+
+      /*
       return `${utils.formatUnits(
         bnPrice.mul(quantity).toString(),
         activeClaimCondition.data?.currencyMetadata.decimals || 18
       )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+        */
+
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} GRDB`;
     }
   }, [
     activeClaimCondition.data?.currencyMetadata.decimals,
@@ -461,8 +469,6 @@ const receipt = tx.receipt; // the transaction receipt
 
           <h2 className="">Buy CARROT</h2>
 
-          <h3 className="mt-5">Price to mint: {priceToMint}</h3>
-
           {/*
           <p className={styles.explain}>
             from <span className={styles.pink}>{contractMetadata?.name}</span>
@@ -492,8 +498,10 @@ const receipt = tx.receipt; // the transaction receipt
           }}
           value={quantity}
           //className={`${styles.textInput} ${styles.noGapBottom}`}
-          className="w-full text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]"
+          className=" w-80 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]"
         />
+
+        <h3 className="mt-5">Price to mint: {priceToMint}</h3>
 
         <div className="mb-5 mt-5 flex w-full flex-row items-center justify-center">
           {address && (
@@ -545,7 +553,7 @@ const receipt = tx.receipt; // the transaction receipt
                   <>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</>
                 )}
               </b>{' '}
-              <span className="text-[#2b57a2]">{tokenBalanceGRD?.symbol}</span>
+              <span className="text-[#2b57a2]">GRDB</span>
             </div>
           )}
         </div>
