@@ -830,7 +830,7 @@ export default function NftSinglePrice({
 
   const getLastSale20 = async () => {
     console.log(
-      'price-history-table nftMetadata.?metadata?.id: ',
+      'price-history-table nftMetadata?.metadata?.id: ',
       nftMetadata?.metadata?.id
     );
 

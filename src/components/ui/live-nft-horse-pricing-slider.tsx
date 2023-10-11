@@ -60,7 +60,7 @@ export function LivePricingFeed({
   const [transactions1, setTransactions1] = React.useState([]);
 
   const getLast20 = async () => {
-    ///console.log('price-history-table nftMetadata.?metadata?.id: ', nftMetadata?.metadata?.id);
+    ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
 
     const response = await fetch('/api/nft/horse/history/price', {
       method: 'POST',

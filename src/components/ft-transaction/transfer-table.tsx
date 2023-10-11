@@ -257,7 +257,7 @@ const COLUMNS = [
         className="flex items-center justify-end"
         onClick={() => {
           window.open(
-            `https://bscscan.com/tx/${value}`,
+            `https://polygonscan.com/tx/${value}`,
             '_blank' // <- This is what makes it open in a new window.
           );
         }}

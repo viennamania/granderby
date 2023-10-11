@@ -77,9 +77,7 @@ function NftInfo({ nftMetadata }: any) {
     useContract(stakingContractAddressHorseAAA);
 
   const { data: stakerAddress, isLoading: isLoadingStakerAddress } =
-    useContractRead(contractStaking, 'stakerAddress', [
-      nftMetadata?.metadata?.id,
-    ]);
+    useContractRead(contractStaking, 'stakerAddress', [nftMetadata?.id]);
 
   ////console.log('stakerAddress', stakerAddress);
 
@@ -119,7 +117,7 @@ function NftInfo({ nftMetadata }: any) {
 
     if (directListings) {
       directListings.map((listing: any) => {
-        if (listing.tokenId === nftMetadata?.metadata?.id) {
+        if (listing.tokenId === nftMetadata?.id) {
           //setListingId(listing.id);
 
           setDirectListing(listing);
@@ -130,7 +128,7 @@ function NftInfo({ nftMetadata }: any) {
         }
       });
     }
-  }, [directListings, nftMetadata?.metadata?.id]);
+  }, [directListings, nftMetadata?.id]);
 
   const { contract: tokenContractUSDC } = useContract(
     tokenContractAddressUSDC,
@@ -142,17 +140,14 @@ function NftInfo({ nftMetadata }: any) {
   const [saleHistory, setSaleHistory] = useState([] as any);
 
   const getLastSale20 = async () => {
-    console.log(
-      'price-history-table nftMetadata.?metadata?.id: ',
-      nftMetadata?.metadata?.id
-    );
+    console.log('price-history-table nftMetadata?.id: ', nftMetadata?.id);
 
     const response = await fetch('/api/nft/horse/history/price', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         method: 'getAllByTokenId',
-        tokenId: nftMetadata?.metadata?.id,
+        tokenId: nftMetadata?.id,
       }),
     });
     const data = await response.json();
@@ -164,7 +159,7 @@ function NftInfo({ nftMetadata }: any) {
 
   useEffect(() => {
     getLastSale20();
-  }, [nftMetadata?.metadata?.id]);
+  }, [nftMetadata?.id]);
 
   async function stakeNft(id: string) {
     if (!address) return;
@@ -383,7 +378,7 @@ function NftInfo({ nftMetadata }: any) {
                           className=" w-12 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
-                              `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                              `https://granderby.market/horse-details/${nftMetadata?.id}`
                             )
                           }
                         >
@@ -468,7 +463,7 @@ function NftInfo({ nftMetadata }: any) {
                           className=" w-36 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
-                              `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                              `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.id}`
                             )
                           }
                         >
@@ -515,9 +510,7 @@ function NftInfo({ nftMetadata }: any) {
                             <Web3Button
                               theme="light"
                               contractAddress={marketplaceContractAddress}
-                              action={() =>
-                                sellNft(nftMetadata?.metadata?.id || '')
-                              }
+                              action={() => sellNft(nftMetadata?.id || '')}
                             >
                               Sell
                             </Web3Button>
@@ -548,9 +541,7 @@ function NftInfo({ nftMetadata }: any) {
                                     <RaceIcon className="h-35 w-35" />
                                   </div>
                                   <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                                    <span>
-                                      Sending #{nftMetadata?.metadata?.id} to
-                                    </span>
+                                    <span>Sending #{nftMetadata?.id} to</span>
                                     <span>Please wait...</span>
                                   </div>
                                 </div>
@@ -568,10 +559,7 @@ function NftInfo({ nftMetadata }: any) {
 
                                       ///contract.erc20.transfer(toAddress, amount);
 
-                                      transferNft(
-                                        nftMetadata?.metadata?.id,
-                                        toAddress
-                                      );
+                                      transferNft(nftMetadata?.id, toAddress);
 
                                       /*
                                                 transferTokens({
@@ -631,7 +619,7 @@ function NftInfo({ nftMetadata }: any) {
                           className=" w-12 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
-                              `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                              `https://granderby.market/horse-details/${nftMetadata?.id}`
                             )
                           }
                         >
@@ -708,7 +696,7 @@ function NftInfo({ nftMetadata }: any) {
                           className=" w-36 text-sm font-bold xl:text-xl "
                           onClick={() =>
                             router.push(
-                              `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.metadata?.id}`
+                              `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.id}`
                             )
                           }
                         >
@@ -888,7 +876,7 @@ function NftInfo({ nftMetadata }: any) {
                   className=" w-24 text-sm font-bold xl:text-xl "
                   //onClick={() =>
                   //  router.push(
-                  //</div>    `https://granderby.market/horse-details/${nftMetadata?.metadata?.id}`
+                  //</div>    `https://granderby.market/horse-details/${nftMetadata?.id}`
                   //  )
                   //}
                 >
@@ -924,7 +912,7 @@ function NftInfo({ nftMetadata }: any) {
                   <Web3Button
                     theme="light"
                     contractAddress={stakingContractAddressHorseAAA}
-                    action={() => stakeNft(nftMetadata?.metadata?.id || '')}
+                    action={() => stakeNft(nftMetadata?.id || '')}
                   >
                     Register for race
                   </Web3Button>
@@ -953,7 +941,7 @@ function NftInfo({ nftMetadata }: any) {
                 <Web3Button
                   theme="light"
                   contractAddress={stakingContractAddressHorseAAA}
-                  action={() => withdrawNft(nftMetadata?.metadata?.id || '')}
+                  action={() => withdrawNft(nftMetadata?.id || '')}
                 >
                   Unregister
                 </Web3Button>
@@ -964,7 +952,7 @@ function NftInfo({ nftMetadata }: any) {
               <b>Race History</b>
             </span>
 
-            <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
+            <RaceHistoryTable tokenId={nftMetadata?.id} />
           </div>
         </Collapse>
       </div>

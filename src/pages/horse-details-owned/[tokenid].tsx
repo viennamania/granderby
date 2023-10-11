@@ -2,7 +2,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import RootLayout from '@/layouts/_root-layout';
 import { NextPageWithLayout } from '@/types';
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
@@ -68,10 +68,45 @@ function SinglePrice(tokenid: any) {
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
+  /*
   const { data: nftMetadata, isLoading: isLoadingUseNFT } = useNFT(
     contract,
     tokenid.tokenid
   );
+  */
+
+  const [isLoadingNFT, setIsLoadingNFT] = useState(true);
+
+  const [searchDataHorse, setSearchDataHorse] = useState<any>();
+
+  const [nftMetadata, setNftMetadata] = useState<any>();
+
+  useEffect(() => {
+    async function getHorse() {
+      setIsLoadingNFT(true);
+
+      const data = await fetch(
+        'https://granderby.io/api/nft/horse/' + tokenid.tokenid,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({}),
+        }
+      ).then((result) => {
+        return result.json();
+      });
+
+      //console.log('horse-details-owned data', data);
+
+      setSearchDataHorse(data);
+
+      setNftMetadata(data);
+
+      setIsLoadingNFT(false);
+    }
+
+    getHorse();
+  }, [tokenid]);
 
   ///console.log('nftMetadata======>', nftMetadata);
 
@@ -79,9 +114,7 @@ function SinglePrice(tokenid: any) {
     useContract(stakingContractAddressHorseAAA);
 
   const { data: stakerAddress, isLoading: isLoadingStakerAddress } =
-    useContractRead(contractStaking, 'stakerAddress', [
-      nftMetadata?.metadata?.id,
-    ]);
+    useContractRead(contractStaking, 'stakerAddress', [tokenid.tokenid]);
 
   const { data: stakeInfo, isLoading: isLoadingStakeInfo } = useContractRead(
     contractStaking,
@@ -97,7 +130,7 @@ function SinglePrice(tokenid: any) {
     setStakeInfoCount(stakeInfo?.[0]?.length);
   }, [stakeInfo]);
 
-  if (isLoadingUseNFT)
+  if (isLoadingNFT)
     return (
       <div className="flex h-screen items-center justify-center">
         <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
@@ -193,7 +226,7 @@ function SinglePrice(tokenid: any) {
 
   return (
     <>
-      {isLoadingUseNFT ? (
+      {isLoadingNFT ? (
         <div className="flex h-screen items-center justify-center">
           <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>
@@ -218,7 +251,7 @@ function SinglePrice(tokenid: any) {
 
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
                     <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
-                      {nftMetadata?.metadata?.name}
+                      {nftMetadata?.name}
                     </div>
                   </div>
 
@@ -231,7 +264,7 @@ function SinglePrice(tokenid: any) {
                     />
 
                     <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
+                      #{nftMetadata?.id}
                     </span>
                   </div>
 
@@ -304,8 +337,8 @@ function SinglePrice(tokenid: any) {
                 <div className="relative">
                   <Image
                     src={
-                      nftMetadata?.metadata?.image
-                        ? nftMetadata?.metadata?.image
+                      nftMetadata?.image
+                        ? nftMetadata?.image
                         : '/default-nft.png'
                     }
                     alt="nft"
@@ -349,7 +382,7 @@ function SinglePrice(tokenid: any) {
 
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
                     <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
-                      {nftMetadata?.metadata?.name}
+                      {nftMetadata?.name}
                     </div>
                   </div>
 
@@ -362,7 +395,7 @@ function SinglePrice(tokenid: any) {
                     />
 
                     <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
+                      #{nftMetadata?.id}
                     </span>
                   </div>
 
