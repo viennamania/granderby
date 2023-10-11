@@ -1,54 +1,45 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { getTransferHistoryByHolder } from '@/utils/models/ft-transfer-model';
 
-import { ThirdwebSDK, ChainId } from '@thirdweb-dev/sdk';
-
-import { tokenContractAddressUSDC } from '@/config/contractAddresses';
+import { NextApiResponse } from 'next';
+import { NextApiRequest } from 'next';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { method } = req.body;
+  //const { method } = req.body;
 
-  if (method === 'transferToken') {
-    const { signer, toAddress, amount } = req.body;
+  /*
+          const formInputs = {
+          pageKey: pageKey,
+          pageSize: pageSize,
+          contract: tokenContractAddressROM,
+          address: address,
+        };
+  */
 
-    /*
-    if (!userToken || !username || !img || !betAmount || !selectedSide) {
-      res.status(400).json({ message: 'Bad Request' });
-      return;
-    }
-    const { _id: userId } = await authFromServer(userToken);
-    */
+  const { pageKey, pageSize, contract, address } = req.body;
 
-    const sdk = ThirdwebSDK.fromSigner(signer, {
-      chainId: ChainId.Polygon,
-
-      clientId: process.env.THIRDWEB_CLIENT_ID,
-
-      gasless: {
-        relayer: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
-      },
-    });
-
-    const tokenContractUSDC = await sdk.getContract(
-      tokenContractAddressUSDC,
-      'token'
-    );
-
-    try {
-      const transaction = await tokenContractUSDC?.erc20.transfer(
-        toAddress,
-        amount
-      );
-
-      console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
-
-      return res.status(200).json({ message: 'Success' });
-    } catch (error) {
-      console.error(error);
-
-      return res.status(400).json({ message: 'Bad Request' });
-    }
+  if (req.method !== 'POST') {
+    res.status(405).send({ message: 'Only POST requests allowed' });
+    return;
   }
+
+  ///if (method === 'getAll') {
+
+  const transfers = await getTransferHistoryByHolder(
+    //pageKey,
+    //pageSize,
+    //contract,
+    address.toLowerCase()
+  );
+
+  ///console.log('transfers', transfers);
+
+  if (!transfers)
+    return res.status(400).json({ status: false, message: 'Error' });
+
+  return res.status(200).json({ status: true, data: transfers });
+
+  ///}
 }

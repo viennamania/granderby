@@ -218,7 +218,7 @@ const COLUMNS = [
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Address</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">From / To</div>,
     accessor: 'address',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -275,11 +275,11 @@ const COLUMNS = [
   },
 ];
 
-export default function TransactionTable(
+export default function TransferTable(
   contractAddress: string
   ///address : string,
 ) {
-  /////console.log('TransactionTable contractAddress: ', contractAddress);
+  /////console.log('TransferTable contractAddress: ', contractAddress);
 
   ///const data = React.useMemo(() => TransactionData, []);
 
@@ -287,7 +287,7 @@ export default function TransactionTable(
 
   const columns = React.useMemo(() => COLUMNS, []);
 
-  const [transactions, setTransactions] = React.useState([]);
+  const [transfers, setTransfers] = React.useState([]);
 
   const address = useAddress();
 
@@ -308,7 +308,7 @@ export default function TransactionTable(
       // @ts-ignore
       columns,
       //data,
-      data: transactions,
+      data: transfers,
       initialState: { pageSize: 10 },
     },
     useSortBy,
@@ -322,7 +322,7 @@ export default function TransactionTable(
   const pageKey = '1';
   const pageSize = '50';
 
-  const getTransactions = async () => {
+  const getTransfers = async () => {
     if (address) {
       // post to api to get transactions
       const formInputs = {
@@ -332,7 +332,7 @@ export default function TransactionTable(
         address: address,
       };
 
-      const res = await fetch('/api/ft/transactions', {
+      const res = await fetch('/api/ft/transfer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formInputs),
@@ -340,44 +340,46 @@ export default function TransactionTable(
 
       const data = await res.json();
 
-      const transactions = [] as any;
+      //console.log('TransferTable data: ', data);
 
-      data.data.transactions?.map((transaction: any) => {
+      const transfers = [] as any;
+
+      data.data?.map((transfer: any) => {
         /// console.log("transaction.amount", BigInt(transaction.amount));
 
-        const transactionData = {
-          id: transaction._id,
+        console.log('transfer-table transfer: ', transfer);
+
+        const transferData = {
+          id: transfer._id,
 
           transactionType:
-            transaction.from === address.toLowerCase() ? 'Send' : 'Receive',
+            transfer.tokenFrom === address.toLowerCase() ? 'Send' : 'Receive',
           //transactionType: "Send",
 
-          createdAt: transaction.block_signed_at,
+          createdAt: transfer.blockTimestamp,
 
           address:
-            transaction.from === address.toLowerCase()
-              ? transaction.to
-              : transaction.from,
+            transfer.tokenFrom === address.toLowerCase()
+              ? transfer.tokenTo
+              : transfer.tokenFrom,
 
           ///address: transaction.to,
 
           ///amount: ethers.utils.formatEther(String(transaction.amount)),
           //amount: utils.formatUnits(transaction.amount, 18),
           //amount: 0,
-          amount: Number(
-            utils.formatUnits(BigInt(transaction.amount), 18)
-          ).toFixed(2),
+          amount: transfer.value,
 
           status: 'Completed',
-          tx_hash: transaction.tx_hash,
+          tx_hash: transfer.hash,
         };
 
-        transactions.push(transactionData);
+        transfers.push(transferData);
       });
 
-      ///////console.log('transactions: ', transactions);
+      ///console.log('transfer-table transfers: ', transfers);
 
-      setTransactions(transactions);
+      setTransfers(transfers);
     }
   };
 
@@ -393,10 +395,12 @@ export default function TransactionTable(
     };
     */
 
-    getTransactions();
+    //console.log('TransferTable useEffect address: ', address);
+
+    getTransfers();
 
     setTimeout(() => {
-      getTransactions();
+      getTransfers();
     }, 10000);
   }, [address]);
 
@@ -408,7 +412,7 @@ export default function TransactionTable(
             <HistoryIcon className="h-6 w-6" />
 
             <div className="   text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
-              Transaction History
+              Tranfer History
             </div>
           </div>
 
@@ -416,7 +420,7 @@ export default function TransactionTable(
           <div className="flex items-center justify-center gap-2">
             <Button
               onClick={() => {
-                getTransactions();
+                getTransfers();
               }}
               title="Reload"
               shape="circle"

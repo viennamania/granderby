@@ -28,7 +28,7 @@ import { GrdIcon } from '@/components/icons/grd-icon';
 
 import { useState, useEffect } from 'react';
 
-import TransactionTable from '@/components/token-transaction/transaction-table';
+import TransactionTable from '@/components/ft-transaction/transfer-table';
 
 import RegisteredFeeds from '@/components/search/feeds-horse-registered-hv';
 import {

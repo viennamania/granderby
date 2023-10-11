@@ -35,7 +35,7 @@ import { Alert, Snackbar, Stack } from '@mui/material';
 
 import dynamic from 'next/dynamic';
 
-import TransactionTable from '@/components/token-transaction/transaction-table';
+import TransactionTable from '@/components/ft-transaction/transfer-table';
 
 import { useCopyToClipboard } from 'react-use';
 import { Copy } from '@/components/icons/copy';

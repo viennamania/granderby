@@ -35,7 +35,7 @@ import { Alert, Snackbar, Stack } from '@mui/material';
 
 import dynamic from 'next/dynamic';
 
-import TransactionTable from '@/components/token-transaction/transaction-table';
+import TransferTable from '@/components/ft-transaction/transfer-table';
 
 import { useCopyToClipboard } from 'react-use';
 import { Copy } from '@/components/icons/copy';
@@ -655,7 +655,7 @@ const WalletPage: NextPageWithLayout<
       </form>
 
       <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <TransactionTable {...{ contractAddress: tokenContractAddressGRD }} />
+        <TransferTable {...{ contractAddress: tokenContractAddressGRD }} />
       </div>
 
       {/*
