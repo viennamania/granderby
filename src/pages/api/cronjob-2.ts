@@ -36,8 +36,7 @@ export default async function handler(
 ) {
   let transfers = [] as any;
 
-  // Contract address for granderby NFT
-  const contractAddress = nftDropContractAddressHorse;
+  const contractAddress = tokenContractAddressGRD;
 
   var pageParam = null;
 
@@ -58,7 +57,7 @@ export default async function handler(
 
   //var fromBlock = '0x2e3aabf';
 
-  var fromBlock = '0x2e43f16';
+  var fromBlock = '0x2e574bc';
 
   var response = null;
 
@@ -72,7 +71,7 @@ export default async function handler(
         //category: ["external","internal","erc721"],
         //category: ["erc721"],
         //category: ["erc721"],
-        category: [AssetTransfersCategory.ERC721],
+        category: [AssetTransfersCategory.ERC20],
         //category: ["internal"],
         //fromAddress: "0x89Dc7A2E543a24F8c1513Fa67cE5aBE6CA338C18",
         //toAddress: "0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81",
@@ -93,7 +92,7 @@ export default async function handler(
         contractAddresses: [contractAddress],
         //category: ["external","internal","erc721"],
         //category: ["erc721"],
-        category: [AssetTransfersCategory.ERC721],
+        category: [AssetTransfersCategory.ERC20],
         //category: ["internal"],
         //fromAddress: "0x89Dc7A2E543a24F8c1513Fa67cE5aBE6CA338C18",
         //toAddress: "0xc82BbE41f2cF04e3a8efA18F7032BDD7f6d98a81",
@@ -168,7 +167,15 @@ export default async function handler(
 
     const receipt = await alchemy.core.getTransactionReceipt(item.hash);
 
-    for (let j = 0; j < receipt?.logs?.length; j++) {
+    for (let j = 0; j < receipt?.logs.length; j++) {
+      /*
+      0x6e435ff2733ec2b2373cdb0dcb157d27a816103930b29a572f45fe3b3dbb9267:log:232
+      */
+
+      const uniqueId = item.hash + ':log:' + receipt?.logs[j].logIndex;
+
+      console.log('uniqueId', uniqueId);
+
       //console.log("address", receipt?.logs[j].address);
 
       //if (receipt?.logs[j].address != nftDropContractAddressHorse) continue;
@@ -213,64 +220,6 @@ export default async function handler(
         console.log('NewSale listingCreator', listingCreator);
         console.log('NewSale buyer', buyer);
 
-        try {
-          const horsesales = db.collection('horsesales');
-
-          // create a filter for a movie to update
-          var filter = { uniqueId: item.uniqueId };
-          // this option instructs the method to create a document if no documents match the filter
-          var options = { upsert: true };
-          // create a document that sets the plot of the movie
-          var updateDoc = {
-            $set: {
-              blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
-              hash: item.hash,
-              from: item.from,
-              to: item.to,
-              value: item.value,
-              erc721TokenId: item.erc721TokenId,
-              erc1155Metadata: item.erc1155Metadata,
-
-              tokenId: tokenId,
-
-              asset: item.asset,
-              category: item.category,
-              rawContract: item.rawContract,
-              blockTimestamp: item.blockTimestamp,
-              data: receipt.logs[4]?.data,
-              listingCreator: listingCreator,
-              buyer: buyer,
-              quantityBought: quantityBought,
-              totalPricePaid: totalPricePaid,
-              paidToken: paidToken,
-              maticPrice: maticPrice,
-            },
-          };
-
-          await horsesales.updateOne(filter, updateDoc, options);
-
-          const nfthorses = db.collection('nfthorses');
-
-          filter = { tokenId: tokenId };
-
-          updateDoc = {
-            $set: {
-              totalPricePaid,
-              paidToken,
-              logsNewSale,
-            },
-          };
-
-          options = { upsert: true };
-
-          await nfthorses.updateOne(filter, updateDoc, options);
-        } catch (error) {
-          console.log('error', error);
-        } finally {
-          ////await client.close();
-        }
-
         // LogFeeTransfer
       } else if (
         receipt?.logs[j].topics[0] ==
@@ -304,23 +253,25 @@ export default async function handler(
 
         const tokenId = String(parseInt(tokenIdInHex, 16));
 
+        console.log('Transfer tokenId', tokenId);
+
         //console.log ("Transfer from", from);
         //console.log ("Transfer to", to);
 
         const logs4Address = receipt?.logs[4]?.address;
 
         try {
-          const horsetransfers = db.collection('horsetransfers');
+          const grdtransfers = db.collection('grdtransfers');
 
           // create a filter for a movie to update
-          const filterHorsetransfers = { uniqueId: item.uniqueId };
+          const filterHorsetransfers = { uniqueId: uniqueId };
           // this option instructs the method to create a document if no documents match the filter
           const optionsHorsetransfers = { upsert: true };
           // create a document that sets the plot of the movie
           const updateHorsetransfers = {
             $set: {
+              uniqueId: uniqueId,
               blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
               hash: item.hash,
               from: item.from,
               to: item.to,
@@ -341,61 +292,11 @@ export default async function handler(
             },
           };
 
-          await horsetransfers.updateOne(
+          await grdtransfers.updateOne(
             filterHorsetransfers,
             updateHorsetransfers,
             optionsHorsetransfers
           );
-
-          if (
-            to.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()
-          ) {
-          } else {
-            const nfthorses = db.collection('nfthorses');
-
-            const filterNfthorses = { tokenId: tokenId };
-
-            const updateNfthorses = {
-              $set: {
-                holder: to,
-              },
-            };
-
-            const optionsNfthorses = { upsert: true };
-
-            await nfthorses.updateOne(
-              filterNfthorses,
-              updateNfthorses,
-              optionsNfthorses
-            );
-          }
-
-          const users = db.collection('users');
-
-          const username = to + '@granderby.io';
-          const email = to + '@granderby.io';
-          const pass = '1234';
-          const deposit = 0;
-          const img = '';
-          const admin = false;
-
-          const filterUsers = { walletAddress: to };
-
-          const updateUsers = {
-            $set: {
-              walletAddress: to,
-              username: username,
-              email: email,
-              pass: pass,
-              deposit: deposit,
-              img: img,
-              admin: admin,
-            },
-          };
-
-          const optionsUsers = { upsert: true };
-
-          await users.updateOne(filterUsers, updateUsers, optionsUsers);
         } catch (error) {
           console.log('error', error);
         } finally {
@@ -416,16 +317,16 @@ export default async function handler(
         const staker = '0x' + stakerInHex.substring(26, 66);
 
         try {
-          const horsestakes = db.collection('horsestakes');
+          const grdstakes = db.collection('grdstakes');
 
           // create a filter for a movie to update
-          const filterHorsestakes = { uniqueId: item.uniqueId };
+          const filterHorsestakes = { uniqueId: uniqueId };
 
           // create a document that sets the plot of the movie
           const updateHorsestakes = {
             $set: {
+              uniqueId: uniqueId,
               blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
               hash: item.hash,
               from: item.from,
               to: item.to,
@@ -445,28 +346,10 @@ export default async function handler(
           // this option instructs the method to create a document if no documents match the filter
           const optionsHorsestakes = { upsert: true };
 
-          await horsestakes.updateOne(
+          await grdstakes.updateOne(
             filterHorsestakes,
             updateHorsestakes,
             optionsHorsestakes
-          );
-
-          const nfthorses = db.collection('nfthorses');
-
-          const filterNfthorses = { tokenId: tokenId };
-
-          const updateNfthorses = {
-            $set: {
-              register: address,
-            },
-          };
-
-          const optionsNfthorses = { upsert: true };
-
-          await nfthorses.updateOne(
-            filterNfthorses,
-            updateNfthorses,
-            optionsNfthorses
           );
         } catch (error) {
           console.log('error', error);
@@ -489,16 +372,16 @@ export default async function handler(
         const staker = '0x' + stakerInHex.substring(26, 66);
 
         try {
-          const horsestakes = db.collection('horsestakes');
+          const grdstakes = db.collection('grdstakes');
 
           // create a filter for a movie to update
-          const filterHorsestakes = { uniqueId: item.uniqueId };
+          const filterHorsestakes = { uniqueId: uniqueId };
 
           // create a document that sets the plot of the movie
           const updateHorsestakes = {
             $set: {
+              uniqueId: uniqueId,
               blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
               hash: item.hash,
               from: item.from,
               to: item.to,
@@ -518,33 +401,10 @@ export default async function handler(
           // this option instructs the method to create a document if no documents match the filter
           const optionsHorsestakes = { upsert: true };
 
-          await horsestakes.updateOne(
+          await grdstakes.updateOne(
             filterHorsestakes,
             updateHorsestakes,
             optionsHorsestakes
-          );
-
-          const nfthorses = db.collection('nfthorses');
-
-          const filterNfthorses = { tokenId: tokenId };
-
-          const updateNfthorses = {
-            $set: {
-              register: null,
-            },
-          };
-
-          const optionsNfthorses = { upsert: true };
-
-          nfthorses.updateOne(
-            filterNfthorses,
-            updateNfthorses,
-            optionsNfthorses,
-            (err, collection) => {
-              //if(err) throw err;
-              //console.log("Record updated successfully");
-              //console.log(collection);
-            }
           );
         } catch (error) {
           console.log('error', error);
