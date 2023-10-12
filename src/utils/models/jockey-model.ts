@@ -128,7 +128,7 @@ export interface IHorse {
 }
 */
 
-export const HorseModel = models.jockey || model<IHorse>('jockey', HorseSchema);
+export const nftModel = models.jockey || model<IHorse>('jockey', HorseSchema);
 
 //export const getAllHorses = async (): Promise<IHorse[]> => {
 
@@ -147,7 +147,7 @@ const result  = await findOne({color: "gray", "object.name":"apple" })
 }
 */
 
-export const getAllHorses = async (
+export const getAll = async (
   pageNumber: number,
   pagination: number,
   grades: string,
@@ -162,12 +162,13 @@ export const getAllHorses = async (
 
   //console.log('getAllHorses sort', sort);
 
-  console.log('getAllHorses holder', holder);
+  console.log('getAll holder', holder);
 
   if (holder) {
-    const data = await HorseModel.find({
-      holder: holder.toLowerCase(),
-    })
+    const data = await nftModel
+      .find({
+        holder: holder.toLowerCase(),
+      })
 
       .sort({ tokenId: 1 })
 
@@ -193,7 +194,8 @@ export const getAllHorses = async (
   }
 
   if (grades.length === 0) {
-    const data = await HorseModel.find({})
+    const data = await nftModel
+      .find({})
 
       .sort({ tokenId: 1 })
 
@@ -214,24 +216,27 @@ export const getAllHorses = async (
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
 
-  const totalData = await HorseModel.find({
-    'nft.rawMetadata.attributes': {
-      $elemMatch: {
-        trait_type: 'Grade',
-        //value: grades,
-        value: { $in: grades },
+  const totalData = await nftModel
+    .find({
+      'nft.rawMetadata.attributes': {
+        $elemMatch: {
+          trait_type: 'Grade',
+          //value: grades,
+          value: { $in: grades },
+        },
       },
-    },
-  }).catch((err) => {
-    ////return err;
-  });
+    })
+    .catch((err) => {
+      ////return err;
+    });
 
   const total = totalData?.length;
 
-  const data = await HorseModel.find({
-    'nft.rawMetadata.attributes': {
-      $elemMatch: {
-        /*
+  const data = await nftModel
+    .find({
+      'nft.rawMetadata.attributes': {
+        $elemMatch: {
+          /*
                     "closed": false,
             "$or": [
                 {
@@ -246,7 +251,7 @@ export const getAllHorses = async (
             ]
             */
 
-        /*
+          /*
         $and: [
           {
             trait_type: 'Grade',
@@ -262,12 +267,12 @@ export const getAllHorses = async (
         ]
         */
 
-        trait_type: 'Grade',
-        //value: grades,
-        value: { $in: grades },
+          trait_type: 'Grade',
+          //value: grades,
+          value: { $in: grades },
+        },
       },
-    },
-  })
+    })
     .sort({ tokenId: 1 })
     .collation({ locale: 'en_US', numericOrdering: true })
 
@@ -300,17 +305,18 @@ export const getAllHorses = async (
   return { nfts: data, pageNumber: pageNumber + 1, total: total };
 };
 
-export const getAllHorsesCount = async (
+export const getAllCount = async (
   grades: string,
   manes: string,
   holder: string
 ) => {
-  console.log('getAllHorsesCount holder', holder);
+  console.log('getAllCount holder', holder);
 
   if (holder) {
-    const data = await HorseModel.find({
-      holder: holder.toLowerCase(),
-    })
+    const data = await nftModel
+      .find({
+        holder: holder.toLowerCase(),
+      })
       .countDocuments()
       .catch((err) => {
         ////return err;
@@ -318,11 +324,14 @@ export const getAllHorsesCount = async (
 
     //return { total: data?.length };
 
+    //console.log('data', data);
+
     return { total: data };
   }
 
   if (grades.length === 0) {
-    const data = await HorseModel.find({})
+    const data = await nftModel
+      .find({})
       .countDocuments()
       .catch((err) => {
         ////return err;
@@ -331,10 +340,11 @@ export const getAllHorsesCount = async (
     return { total: data };
   }
 
-  const data = await HorseModel.find({
-    'nft.rawMetadata.attributes': {
-      $elemMatch: {
-        /*
+  const data = await nftModel
+    .find({
+      'nft.rawMetadata.attributes': {
+        $elemMatch: {
+          /*
                     "closed": false,
             "$or": [
                 {
@@ -349,7 +359,7 @@ export const getAllHorsesCount = async (
             ]
             */
 
-        /*
+          /*
         $and: [
           {
             trait_type: 'Grade',
@@ -365,12 +375,12 @@ export const getAllHorsesCount = async (
         ]
         */
 
-        trait_type: 'Grade',
-        //value: grades,
-        value: { $in: grades },
+          trait_type: 'Grade',
+          //value: grades,
+          value: { $in: grades },
+        },
       },
-    },
-  })
+    })
     .countDocuments()
     .catch((err) => {
       ////return err;
@@ -388,9 +398,10 @@ export const getRegisteredHorses = async (
   register: string
 ) => {
   if (grades.length === 0) {
-    const data = await HorseModel.find({
-      register: register,
-    })
+    const data = await nftModel
+      .find({
+        register: register,
+      })
 
       .sort({ tokenId: 1 })
 
@@ -411,10 +422,11 @@ export const getRegisteredHorses = async (
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
 
-  const data = await HorseModel.find({
-    'nft.rawMetadata.attributes': {
-      $elemMatch: {
-        /*
+  const data = await nftModel
+    .find({
+      'nft.rawMetadata.attributes': {
+        $elemMatch: {
+          /*
                     "closed": false,
             "$or": [
                 {
@@ -429,7 +441,7 @@ export const getRegisteredHorses = async (
             ]
             */
 
-        /*
+          /*
         $and: [
           {
             trait_type: 'Grade',
@@ -445,12 +457,12 @@ export const getRegisteredHorses = async (
         ]
         */
 
-        trait_type: 'Grade',
-        //value: grades,
-        value: { $in: grades },
+          trait_type: 'Grade',
+          //value: grades,
+          value: { $in: grades },
+        },
       },
-    },
-  })
+    })
     .sort({ tokenId: 1 })
     .collation({ locale: 'en_US', numericOrdering: true })
 

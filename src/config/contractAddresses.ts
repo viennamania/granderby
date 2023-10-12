@@ -11,6 +11,9 @@ export const thirdwebClientId = '79125a56ef0c1629d4863b6df0a43cce';
 export const tokenContractAddressCARROTDrop =
   '0x2aaC53FC860D9815c250b3590D9D7895384f7DB1';
 
+export const tokenContractAddressSUGARDrop =
+  '0x631459BF14c9Dd1A30b955DfcBA08106B00c1359';
+
 export const nftDropContractAddressHorse =
   '0x41FBA0bd9f4DC9a968a10aEBb792af6A09969F60';
 

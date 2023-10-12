@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getAllHorsesCount } from '@/utils/models/horse-model';
+import { getAllCount } from '@/utils/models/jockey-model';
 
 type Data = {
   name: string;
@@ -14,7 +14,7 @@ export default async function handler(
 ) {
   const { method } = req.body;
 
-  //console.log('method', method);
+  ///console.log('getJockeysCount API method', method);
 
   if (method === 'getAll') {
     const { grades, manes } = req.body;
@@ -23,7 +23,7 @@ export default async function handler(
     //console.log('getHorses manes', manes);
     //console.log('getHorses holder', holder);
 
-    const data = await getAllHorsesCount(grades, manes, '');
+    const data = await getAllCount(grades, manes, '');
 
     const total = data.total;
 
@@ -39,7 +39,9 @@ export default async function handler(
     //console.log('getHorses manes', manes);
     //console.log('getHorses holder', holder);
 
-    const data = await getAllHorsesCount(grades, manes, holder);
+    const data = await getAllCount(grades, manes, holder);
+
+    //console.log('getJockeyCount getAllByHolder data', data);
 
     const total = data.total;
 

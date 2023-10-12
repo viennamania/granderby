@@ -51,7 +51,7 @@ import {
 } from '@thirdweb-dev/react';
 
 import {
-  tokenContractAddressCARROTDrop,
+  tokenContractAddressSUGARDrop,
   tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
@@ -86,31 +86,13 @@ const MintPage: NextPageWithLayout<
   );
   const { data: tokenBalanceGRD } = useTokenBalance(tokenContractGRD, address);
 
-  /*
-  const { contract: tokenContractUSDC } = useContract(
-    tokenContractAddressUSDC,
-    'token'
-  );
-  const { data: tokenBalanceUSDC } = useTokenBalance(
-    tokenContractUSDC,
-    address
-  );
-  */
-
-  /*
-  const { contract: tokenContractCARROT } = useContract(
-    tokenContractAddressCARROTDrop,
-    'token'
-  );
-  */
-
-  const { contract: tokenContractCARROT } = useContract(
-    tokenContractAddressCARROTDrop,
+  const { contract: tokenContractSUGAR } = useContract(
+    tokenContractAddressSUGARDrop,
     'token-drop'
   );
 
-  const { data: tokenBalanceCARROT } = useTokenBalance(
-    tokenContractCARROT,
+  const { data: tokenBalanceSUGAR } = useTokenBalance(
+    tokenContractSUGAR,
     address
   );
 
@@ -120,26 +102,26 @@ const MintPage: NextPageWithLayout<
     mutateAsync: claimTokenSafe,
     isLoading: isLoadingContract,
     error: errorContract,
-  } = useClaimToken(tokenContractCARROT);
+  } = useClaimToken(tokenContractSUGAR);
 
   const [quantity, setQuantity] = useState(1);
-  const { data: contractMetadata } = useContractMetadata(tokenContractCARROT);
+  const { data: contractMetadata } = useContractMetadata(tokenContractSUGAR);
 
-  const claimConditions = useClaimConditions(tokenContractCARROT);
+  const claimConditions = useClaimConditions(tokenContractSUGAR);
   const activeClaimCondition = useActiveClaimConditionForWallet(
-    tokenContractCARROT,
+    tokenContractSUGAR,
     address
   );
-  const claimerProofs = useClaimerProofs(tokenContractCARROT, address || '');
+  const claimerProofs = useClaimerProofs(tokenContractSUGAR, address || '');
   const claimIneligibilityReasons = useClaimIneligibilityReasons(
-    tokenContractCARROT,
+    tokenContractSUGAR,
     {
       quantity,
       walletAddress: address || '',
     }
   );
 
-  const claimedSupply = useTokenSupply(tokenContractCARROT);
+  const claimedSupply = useTokenSupply(tokenContractSUGAR);
 
   const totalAvailableSupply = useMemo(() => {
     try {
@@ -278,8 +260,8 @@ const MintPage: NextPageWithLayout<
   ]);
 
   const isLoading = useMemo(() => {
-    return activeClaimCondition.isLoading || !tokenContractCARROT;
-  }, [activeClaimCondition.isLoading, tokenContractCARROT]);
+    return activeClaimCondition.isLoading || !tokenContractSUGAR;
+  }, [activeClaimCondition.isLoading, tokenContractSUGAR]);
 
   const buttonLoading = useMemo(
     () => isLoading || claimIneligibilityReasons.isLoading,
@@ -360,7 +342,7 @@ const receipt = tx.receipt; // the transaction receipt
 });
 */
 
-      const transaction = await tokenContractCARROT?.erc20.claim(amount, {
+      const transaction = await tokenContractSUGAR?.erc20.claim(amount, {
         checkERC20Allowance: false, // Set to true if you want to check ERC20 allowance
         currencyAddress: tokenContractAddressGRD,
         ///pricePerToken: "0.02",
@@ -394,7 +376,9 @@ const receipt = tx.receipt; // the transaction receipt
       {/* Header */}
 
       <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-black pb-5 pt-5 text-white">
-        <div className="text-2xl font-bold">Buy CARROT</div>
+        <div className="text-2xl font-bold">
+          Buy {tokenBalanceSUGAR?.symbol}
+        </div>
       </div>
 
       {address ? (
@@ -405,30 +389,30 @@ const receipt = tx.receipt; // the transaction receipt
 
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             <Image
-              src="/images/icon-carrot.png"
-              alt="CARROT"
+              src="/images/icon-sugar.png"
+              alt={tokenBalanceSUGAR?.symbol!}
               width={50}
               height={50}
               style={{ objectFit: 'contain' }}
             />
             <b>
-              {tokenBalanceCARROT === undefined ? (
+              {tokenContractSUGAR === undefined ? (
                 <>Loading...</>
               ) : (
                 <div className="text-6xl font-bold">
-                  {Number(tokenBalanceCARROT?.displayValue).toFixed(2)}
+                  {Number(tokenBalanceSUGAR?.displayValue).toFixed(2)}
                 </div>
               )}
             </b>{' '}
             <span className="text-lg text-[#2b57a2] ">
-              {tokenBalanceCARROT?.symbol}
+              {tokenBalanceSUGAR?.symbol}
             </span>
           </div>
         </>
       ) : (
         <div className="m-10">
           <ConnectWallet theme="light" />
-          <h4>to buy {tokenBalanceCARROT?.symbol}</h4>
+          <h4>to buy {tokenBalanceSUGAR?.symbol}</h4>
         </div>
       )}
 
@@ -467,7 +451,7 @@ const receipt = tx.receipt; // the transaction receipt
           )}
           */}
 
-          <h2 className="">Buy CARROT</h2>
+          <h2 className="">Buy {tokenBalanceSUGAR?.symbol}</h2>
 
           {/*
           <p className={styles.explain}>
@@ -507,7 +491,7 @@ const receipt = tx.receipt; // the transaction receipt
           {address && (
             <Web3Button
               theme="light"
-              contractAddress={tokenContractAddressCARROTDrop}
+              contractAddress={tokenContractAddressSUGARDrop}
               /*
               action={(contract) => {
                 claimToken(address, quantity);

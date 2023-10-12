@@ -34,6 +34,7 @@ import {
   nftDropContractAddressCoupon,
   tokenContractAddressGCOW,
   tokenContractAddressCARROTDrop,
+  tokenContractAddressSUGARDrop,
 } from '@/config/contractAddresses';
 
 import Button from '@/components/ui/button/button';
@@ -67,6 +68,13 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
   const address = useAddress();
 
   ///console.log('address======>', address);
+
+  const { contract: tokenContractSUGAR } = useContract(
+    tokenContractAddressSUGARDrop,
+    'token'
+  );
+  const { data: tokenBalanceSUGAR, isLoading: isLoadingBalanceSUGAR } =
+    useTokenBalance(tokenContractSUGAR, address);
 
   const { contract: tokenContractCARROT } = useContract(
     tokenContractAddressCARROTDrop,
@@ -257,11 +265,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
           {isLoadingBalanceUSDC ? (
             <>
               <div className="flex flex-col items-center justify-center ">
-                <div className="text-xl text-gray-400">Loading...</div>
-
-                <span className="items-top mt-10 flex h-screen w-full justify-center">
-                  <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-                </span>
+                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
               </div>
             </>
           ) : (
@@ -299,11 +303,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
           {isLoadingBalanceGRD ? (
             <>
               <div className="flex flex-col items-center justify-center ">
-                <div className="text-xl text-gray-400">Loading...</div>
-
-                <span className="items-top mt-10 flex h-screen w-full justify-center">
-                  <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-                </span>
+                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
               </div>
             </>
           ) : (
@@ -340,11 +340,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
           {isLoadingBalanceCARROT ? (
             <>
               <div className="flex flex-col items-center justify-center ">
-                <div className="text-xl text-gray-400">Loading...</div>
-
-                <span className="items-top mt-10 flex h-screen w-full justify-center">
-                  <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-                </span>
+                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
               </div>
             </>
           ) : (
@@ -380,14 +376,10 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             </div>
           )}
 
-          {isLoadingBalanceGRD ? (
+          {isLoadingBalanceSUGAR ? (
             <>
               <div className="flex flex-col items-center justify-center ">
-                <div className="text-xl text-gray-400">Loading...</div>
-
-                <span className="items-top mt-10 flex h-screen w-full justify-center">
-                  <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-                </span>
+                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
               </div>
             </>
           ) : (
@@ -402,10 +394,12 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               </div>
 
               <div className=" w-32  text-right text-2xl font-bold underline decoration-sky-500">
-                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
+                {Number(tokenBalanceSUGAR?.displayValue).toFixed(2)}
               </div>
 
-              <div className="ml-2 w-12 text-xl ">SUGAR</div>
+              <div className="ml-2 w-12 text-xl ">
+                {tokenBalanceSUGAR?.symbol}
+              </div>
 
               <button
                 className="ml-10 flex flex-row items-center justify-center gap-3"
@@ -420,44 +414,6 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               </button>
             </div>
           )}
-
-          {/*
-          {isLoadingBalanceGCOW ? (
-            <>
-              <div className="flex flex-col items-center justify-center ">
-                <div className="text-xl text-gray-400">Loading...</div>
-
-                <span className="items-top mt-10 flex h-screen w-full justify-center">
-                  <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-                </span>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-row items-center justify-start">
-              <div className="mt-1 flex flex-row items-center justify-start gap-1">
-                <GasIcon className="h-5 w-5" />
-                <div className="w-20 text-xl ">
-                  {tokenBalanceGCOW?.symbol}:
-                </div>
-                <div className=" w-40 text-right text-2xl font-bold underline decoration-sky-500">
-                  {Number(tokenBalanceGCOW?.displayValue).toFixed(2)}
-                </div>
-              </div>
-
-              <button
-                className="ml-10 flex flex-row items-center justify-center gap-3"
-                ////onClick={(e) => router.push('/coin/grd')}
-                onClick={() => {
-                  closeInventories();
-                  router.push('/coin/gcow');
-                  ///router.push('/horse-details/' + nft?.metadata?.id);
-                }}
-              >
-                <ChevronForward className="mr-10 rtl:rotate-180" />
-              </button>
-            </div>
-          )}
-          */}
 
           <div className="mt-10 flex w-full flex-row items-center justify-start gap-2">
             {ownedCoupons?.map((nft) => (

@@ -394,7 +394,9 @@ const receipt = tx.receipt; // the transaction receipt
       {/* Header */}
 
       <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-black pb-5 pt-5 text-white">
-        <div className="text-2xl font-bold">Buy CARROT</div>
+        <div className="text-2xl font-bold">
+          Buy {tokenBalanceCARROT?.symbol}
+        </div>
       </div>
 
       {address ? (
@@ -406,7 +408,7 @@ const receipt = tx.receipt; // the transaction receipt
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             <Image
               src="/images/icon-carrot.png"
-              alt="CARROT"
+              alt={tokenBalanceCARROT?.symbol!}
               width={50}
               height={50}
               style={{ objectFit: 'contain' }}
@@ -467,7 +469,7 @@ const receipt = tx.receipt; // the transaction receipt
           )}
           */}
 
-          <h2 className="">Buy CARROT</h2>
+          <h2 className="">Buy {tokenBalanceCARROT?.symbol}</h2>
 
           {/*
           <p className={styles.explain}>
