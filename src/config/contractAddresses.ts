@@ -125,3 +125,6 @@ export const contractAddressRace = '0x5e52c17869F8fF63Eeb5f832Bfbf98465bc213bf';
 // Happy Valley Racecourse for Horse
 export const tokenContractAddressHV =
   '0x83491d67EAaCD25C0cC237008C2bB0e6b38e7b1B';
+
+export const tokenContractAddressSTEC =
+  '0x2de9c870cb023eAe35f46D266dA4916e0308E256';

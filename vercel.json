@@ -11,6 +11,10 @@
         {
             "path": "/api/cronjob-gcow",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-stec",
+            "schedule": "* * * * *"
         }
     ]
 }
