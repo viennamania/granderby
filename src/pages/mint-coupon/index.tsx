@@ -496,28 +496,6 @@ const MintPage: NextPageWithLayout<
 
   return (
     <>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1 maximum-scale=1"
-        />
-        <meta property="og:type" content="website"></meta>
-
-        <meta property="og:site_name" content="GRANDERBY"></meta>
-
-        <meta property="og:image:width" content="1400"></meta>
-        <meta property="og:image:height" content="1400"></meta>
-
-        <meta property="og:title" content={title}></meta>
-        <meta property="og:description" content={description}></meta>
-        <meta property="og:image" content={image}></meta>
-
-        <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:image" content={image}></meta>
-
-        <title>{title}</title>
-      </Head>
-
       {/* page content here */}
       <div className="flex flex-col justify-center text-center">
         {/* Header */}
