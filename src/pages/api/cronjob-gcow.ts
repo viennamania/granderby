@@ -10,12 +10,14 @@ import {
 } from 'alchemy-sdk';
 
 import {
-  tokenContractAddressGRD,
+  tokenContractAddressGCOW,
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
 
 import db from '@/db/conn.mjs';
+
+import { kv } from '@vercel/kv';
 
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
@@ -27,6 +29,7 @@ const alchemy = new Alchemy(settings);
 type Data = {
   address: string;
   length: number;
+  fromBlock: string;
   error: string;
 };
 
@@ -34,30 +37,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const contractAddress = tokenContractAddressGCOW;
+
+  var fromBlock: any = await kv.get(contractAddress);
+
+  if (fromBlock) {
+  } else {
+    fromBlock = '0x0';
+  }
+
   let transfers = [] as any;
 
-  const contractAddress = tokenContractAddressGRD;
-
   var pageParam = null;
-
-  //var pageParam = "c9d362ce-45be-4631-b974-5242ed9e50cd";
-
-  ///var fromBlock = "0x0";
-
-  //var fromBlock = "0x2a672b6";
-
-  ///var fromBlock = '0x2d8b54c';
-
-  //var fromBlock = "0x2a6857f";
-
-  //var fromBlock = "0x2a68678";
-  //var fromBlock = "0x2b762f9";
-
-  //var fromBlock = '0x2e3866a';
-
-  //var fromBlock = '0x2e3aabf';
-
-  var fromBlock = '0x2e574bc';
 
   var response = null;
 
@@ -165,9 +156,11 @@ export default async function handler(
     //console.log("item.hash", item.hash);
     console.log('item.blockNum', item.blockNum);
 
+    fromBlock = item.blockNum;
+
     const receipt = await alchemy.core.getTransactionReceipt(item.hash);
 
-    for (let j = 0; j < receipt?.logs.length; j++) {
+    for (let j = 0; j < receipt?.logs?.length; j++) {
       /*
       0x6e435ff2733ec2b2373cdb0dcb157d27a816103930b29a572f45fe3b3dbb9267:log:232
       */
@@ -261,7 +254,7 @@ export default async function handler(
         const logs4Address = receipt?.logs[4]?.address;
 
         try {
-          const grdtransfers = db.collection('grdtransfers');
+          const gcowtransfers = db.collection('gcowtransfers');
 
           // create a filter for a movie to update
           const filterHorsetransfers = { uniqueId: uniqueId };
@@ -292,7 +285,7 @@ export default async function handler(
             },
           };
 
-          await grdtransfers.updateOne(
+          await gcowtransfers.updateOne(
             filterHorsetransfers,
             updateHorsetransfers,
             optionsHorsetransfers
@@ -317,7 +310,7 @@ export default async function handler(
         const staker = '0x' + stakerInHex.substring(26, 66);
 
         try {
-          const grdstakes = db.collection('grdstakes');
+          const gcowstakes = db.collection('gcowstakes');
 
           // create a filter for a movie to update
           const filterHorsestakes = { uniqueId: uniqueId };
@@ -346,7 +339,7 @@ export default async function handler(
           // this option instructs the method to create a document if no documents match the filter
           const optionsHorsestakes = { upsert: true };
 
-          await grdstakes.updateOne(
+          await gcowstakes.updateOne(
             filterHorsestakes,
             updateHorsestakes,
             optionsHorsestakes
@@ -372,7 +365,7 @@ export default async function handler(
         const staker = '0x' + stakerInHex.substring(26, 66);
 
         try {
-          const grdstakes = db.collection('grdstakes');
+          const gcowstakes = db.collection('gcowstakes');
 
           // create a filter for a movie to update
           const filterHorsestakes = { uniqueId: uniqueId };
@@ -401,7 +394,7 @@ export default async function handler(
           // this option instructs the method to create a document if no documents match the filter
           const optionsHorsestakes = { upsert: true };
 
-          await grdstakes.updateOne(
+          await gcowstakes.updateOne(
             filterHorsestakes,
             updateHorsestakes,
             optionsHorsestakes
@@ -417,9 +410,12 @@ export default async function handler(
     //sleep(100);
   }
 
+  await kv.set(contractAddress, fromBlock);
+
   res.status(200).json({
     address: contractAddress,
     length: transfers.length,
+    fromBlock: fromBlock,
     error: '',
   });
 }

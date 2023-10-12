@@ -5,7 +5,11 @@
             "schedule": "* * * * *"
         },
         {
-            "path": "/api/cronjob-2",
+            "path": "/api/cronjob-grd",
+            "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-gcow",
             "schedule": "* * * * *"
         }
     ]
