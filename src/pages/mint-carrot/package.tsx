@@ -647,7 +647,7 @@ const receipt = tx.receipt; // the transaction receipt
           <div className="flex flex-row items-center justify-center gap-10">
             <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
               <Image
-                src="/images/ui/shop/33carrots.png"
+                src="/images/shop/33carrots.png"
                 alt="33 Carrots"
                 width={100}
                 height={100}
@@ -674,7 +674,7 @@ const receipt = tx.receipt; // the transaction receipt
 
             <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
               <Image
-                src="/images/ui/shop/168carrots.png"
+                src="/images/shop/168carrots.png"
                 alt="168 Carrots"
                 width={100}
                 height={100}

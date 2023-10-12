@@ -340,7 +340,7 @@ export default function PortfolioScreen() {
                       </span>
                     </div>
                     <Image
-                      src="/images/ui/button/horse.png"
+                      src="/images/button/horse.png"
                       alt="logo"
                       width={25}
                       height={25}
@@ -362,7 +362,7 @@ export default function PortfolioScreen() {
                       </span>
                     </div>
                     <Image
-                      src="/images/ui/button/jockey.png"
+                      src="/images/button/jockey.png"
                       alt="logo"
                       width={25}
                       height={25}
@@ -384,7 +384,7 @@ export default function PortfolioScreen() {
                       </span>
                     </div>
                     <Image
-                      src="/images/ui/button/track.png"
+                      src="/images/button/track.png"
                       alt="logo"
                       width={25}
                       height={25}
