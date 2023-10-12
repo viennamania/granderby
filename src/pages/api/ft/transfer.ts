@@ -25,12 +25,14 @@ export default async function handler(
     return;
   }
 
+  const contractAccress = contract.contractAddress;
+
   ///if (method === 'getAll') {
 
   const transfers = await getTransferHistoryByHolder(
     //pageKey,
     //pageSize,
-    //contract,
+    contractAccress,
     address.toLowerCase()
   );
 

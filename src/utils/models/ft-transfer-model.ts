@@ -6,6 +6,10 @@ import { Schema, models, model } from 'mongoose';
 ////connectMongo();
 
 import dbConnect from '@/lib/db/dbConnect';
+import {
+  tokenContractAddressGCOW,
+  tokenContractAddressGRD,
+} from '@/config/contractAddresses';
 
 dbConnect();
 
@@ -100,41 +104,84 @@ const HorseTransferSchema = new Schema({
   },
 });
 
-export const HorseTransferModel =
+export const GRDTransferModel =
   models.grdtransfer ||
   model<ITransferHistory>('grdtransfer', HorseTransferSchema);
 
+export const GCOWTransferModel =
+  models.gcowtransfer ||
+  model<ITransferHistory>('gcowtransfer', HorseTransferSchema);
+
 export const getTransferHistoryByHolder = async (
+  contract: String,
   address: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByHolder', address);
+  console.log('getTransferHistoryByHolder contract', contract);
+  console.log('getTransferHistoryByHolder address', address);
 
-  return await HorseTransferModel.find({
-    /*
-    'placements': {
-      $elemMatch: {
-        nft: tokenId,
-        //value: grades,
-        //value: { $in: grades },
+  if (!contract || !address) {
+    return [];
+  }
+
+  if (contract === tokenContractAddressGRD) {
+    return await GRDTransferModel.find({
+      /*
+      'placements': {
+        $elemMatch: {
+          nft: tokenId,
+          //value: grades,
+          //value: { $in: grades },
+        },
       },
-    },
-    */
-    //'placements.nft': tokenId,
+      */
+      //'placements.nft': tokenId,
 
-    //'placements': { $in: [ {"nft" : tokenId} ] } ,
+      //'placements': { $in: [ {"nft" : tokenId} ] } ,
 
-    /*
-    placements: {
-      $elemMatch: { 'nft.tokenId': tokenId },
-    },
-    */
+      /*
+      placements: {
+        $elemMatch: { 'nft.tokenId': tokenId },
+      },
+      */
 
-    //tokenId: tokenId,
+      //tokenId: tokenId,
 
-    //$or: [ { quantity: { $lt: 20 } }, { price: 10 } ]
+      //$or: [ { quantity: { $lt: 20 } }, { price: 10 } ]
 
-    $or: [{ tokenFrom: address }, { tokenTo: address }],
-  })
-    .sort({ blockTimestamp: -1 })
-    .limit(100);
+      $or: [{ tokenFrom: address }, { tokenTo: address }],
+    })
+      .sort({ blockTimestamp: -1 })
+      .limit(100);
+  } else if (contract === tokenContractAddressGCOW) {
+    return await GCOWTransferModel.find({
+      /*
+      'placements': {
+        $elemMatch: {
+          nft: tokenId,
+          //value: grades,
+          //value: { $in: grades },
+        },
+      },
+      */
+      //'placements.nft': tokenId,
+
+      //'placements': { $in: [ {"nft" : tokenId} ] } ,
+
+      /*
+      placements: {
+        $elemMatch: { 'nft.tokenId': tokenId },
+      },
+      */
+
+      //tokenId: tokenId,
+
+      //$or: [ { quantity: { $lt: 20 } }, { price: 10 } ]
+
+      $or: [{ tokenFrom: address }, { tokenTo: address }],
+    })
+      .sort({ blockTimestamp: -1 })
+      .limit(100);
+  } else {
+    return [];
+  }
 };
