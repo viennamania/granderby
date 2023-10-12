@@ -254,7 +254,7 @@ export default async function handler(
         const logs4Address = receipt?.logs[4]?.address;
 
         try {
-          const stectransfers = db.collection('stectransfers');
+          const grdtransfers = db.collection('grdtransfers');
 
           // create a filter for a movie to update
           const filterHorsetransfers = { uniqueId: uniqueId };
@@ -285,7 +285,7 @@ export default async function handler(
             },
           };
 
-          await stectransfers.updateOne(
+          await grdtransfers.updateOne(
             filterHorsetransfers,
             updateHorsetransfers,
             optionsHorsetransfers

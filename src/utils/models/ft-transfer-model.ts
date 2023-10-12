@@ -123,65 +123,58 @@ export const getTransferHistoryByHolder = async (
     return [];
   }
 
-  if (contract === tokenContractAddressGRD) {
-    return await GRDTransferModel.find({
-      /*
-      'placements': {
+  /*
+  const totalData = await HorseModel
+  .find({
+    'nft.rawMetadata.attributes': {
+      $elemMatch: {
+        trait_type: 'Grade',
+        //value: grades,
+        value: { $in: grades },
+      },
+    },
+  }).catch((err) => {
+    ////return err;
+  });
+  */
+
+  return await GRDTransferModel.find({
+    /*
+      'rawContract': {
         $elemMatch: {
-          nft: tokenId,
-          //value: grades,
-          //value: { $in: grades },
+          address: contract.toLowerCase(),
         },
       },
       */
-      //'placements.nft': tokenId,
 
-      //'placements': { $in: [ {"nft" : tokenId} ] } ,
+    $and: [
+      {
+        //$elemMatch: { 'rawContract.address': contract.toLowerCase() },
 
-      /*
-      placements: {
-        $elemMatch: { 'nft.tokenId': tokenId },
+        /*
+          rawContract: {
+            $elemMatch: {
+              address: contract.toLowerCase(),
+            },
+          },
+          */
+
+        'rawContract.address': contract.toLowerCase(),
       },
-      */
-
-      //tokenId: tokenId,
-
-      //$or: [ { quantity: { $lt: 20 } }, { price: 10 } ]
-
-      $or: [{ tokenFrom: address }, { tokenTo: address }],
-    })
-      .sort({ blockTimestamp: -1 })
-      .limit(100);
-  } else if (contract === tokenContractAddressGCOW) {
-    return await GCOWTransferModel.find({
-      /*
-      'placements': {
-        $elemMatch: {
-          nft: tokenId,
-          //value: grades,
-          //value: { $in: grades },
-        },
+      {
+        $or: [{ tokenFrom: address }, { tokenTo: address }],
       },
+    ],
+
+    /*
+      $elemMatch: { 'rawContract.address': contract.toLowerCase() },
+     
+      $or: [
+        { tokenFrom: address },
+        { tokenTo: address },
+      ]
       */
-      //'placements.nft': tokenId,
-
-      //'placements': { $in: [ {"nft" : tokenId} ] } ,
-
-      /*
-      placements: {
-        $elemMatch: { 'nft.tokenId': tokenId },
-      },
-      */
-
-      //tokenId: tokenId,
-
-      //$or: [ { quantity: { $lt: 20 } }, { price: 10 } ]
-
-      $or: [{ tokenFrom: address }, { tokenTo: address }],
-    })
-      .sort({ blockTimestamp: -1 })
-      .limit(100);
-  } else {
-    return [];
-  }
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(100);
 };
