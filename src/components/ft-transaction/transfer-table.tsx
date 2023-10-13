@@ -38,6 +38,8 @@ import moment from 'moment';
 import { BigNumber } from 'ethers';
 import { utils } from 'ethers';
 
+import Image from 'next/image';
+
 /*
 export const TransactionData = [
   {
@@ -146,6 +148,29 @@ const COLUMNS = [
   },
   */
   {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
+    accessor: 'hash',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <button
+        className=" flex flex-row items-center justify-start "
+        onClick={() =>
+          //alert("clicked")
+
+          (location.href = 'https://polygonscan.com/tx/' + value)
+        }
+      >
+        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
+
+        <div className="ml-1 text-left text-xs -tracking-[1px]  ">
+          {value.substring(0, 6) + '...'}
+        </div>
+      </button>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+  {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Type</div>,
     accessor: 'transactionType',
     // @ts-ignore
@@ -204,6 +229,24 @@ const COLUMNS = [
     maxWidth: 120,
   },
   */
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">From / To</div>,
+    accessor: 'address',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="flex items-center justify-start">
+        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+        {value == '0x0000000000000000000000000000000000000000'
+          ? 'Drops'
+          : value?.length > 6
+          ? value?.substring(0, 6) + '...'
+          : value}
+      </div>
+    ),
+    minWidth: 100,
+    maxWidth: 100,
+  },
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
     accessor: 'createdAt',
@@ -217,24 +260,7 @@ const COLUMNS = [
     maxWidth: 130,
   },
 
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">From / To</div>,
-    accessor: 'address',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-end">
-        {value == '0x0000000000000000000000000000000000000000'
-          ? 'Drops'
-          : value.length > 10
-          ? //? value.substring(0, 10) + '...'
-            value
-          : value}
-      </div>
-    ),
-    minWidth: 400,
-    maxWidth: 400,
-  },
-
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Status</div>,
     accessor: 'status',
@@ -247,32 +273,7 @@ const COLUMNS = [
     minWidth: 70,
     maxWidth: 100,
   },
-
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Tx Hash</div>,
-    accessor: 'tx_hash',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div
-        className="flex items-center justify-end"
-        onClick={() => {
-          window.open(
-            `https://polygonscan.com/tx/${value}`,
-            '_blank' // <- This is what makes it open in a new window.
-          );
-        }}
-      >
-        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-        {value == '0x0000000000000000000000000000000000000000'
-          ? 'Drops'
-          : value.length > 10
-          ? value.substring(0, 10) + '...'
-          : value}
-      </div>
-    ),
-    minWidth: 90,
-    maxWidth: 150,
-  },
+  */
 ];
 
 export default function TransferTable(
@@ -371,7 +372,7 @@ export default function TransferTable(
           amount: transfer.value,
 
           status: 'Completed',
-          tx_hash: transfer.hash,
+          hash: transfer.hash,
         };
 
         transfers.push(transferData);

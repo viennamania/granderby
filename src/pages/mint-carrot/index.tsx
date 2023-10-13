@@ -555,7 +555,7 @@ const receipt = tx.receipt; // the transaction receipt
                   <>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</>
                 )}
               </b>{' '}
-              <span className="text-[#2b57a2]">GRDB</span>
+              <span className="text-[#2b57a2]">{tokenBalanceGRD?.symbol}</span>
             </div>
           )}
         </div>

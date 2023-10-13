@@ -282,7 +282,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               <div className=" w-32 text-right text-2xl font-bold underline decoration-sky-500">
                 {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
               </div>
-              <div className="ml-2 w-12 text-xl ">
+              <div className="ml-2 w-14 text-xl ">
                 {tokenBalanceUSDC?.symbol}
               </div>
 
@@ -321,7 +321,9 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
               </div>
 
-              <div className="ml-2 w-12 text-xl ">GRDB</div>
+              <div className="ml-2 w-14 text-xl ">
+                {tokenBalanceGRD?.symbol}
+              </div>
 
               <button
                 className="ml-10 flex flex-row items-center justify-center gap-3"
@@ -358,7 +360,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 {Number(tokenBalanceCARROT?.displayValue).toFixed(2)}
               </div>
 
-              <div className="ml-2 w-12 text-xl ">
+              <div className="ml-2 w-14 text-xl ">
                 {tokenBalanceCARROT?.symbol}
               </div>
 
@@ -397,7 +399,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 {Number(tokenBalanceSUGAR?.displayValue).toFixed(2)}
               </div>
 
-              <div className="ml-2 w-12 text-xl ">
+              <div className="ml-2 w-14 text-xl ">
                 {tokenBalanceSUGAR?.symbol}
               </div>
 

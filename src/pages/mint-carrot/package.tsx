@@ -186,7 +186,7 @@ const MintPage: NextPageWithLayout<
       return `${utils.formatUnits(
         bnPrice.mul(quantity).toString(),
         activeClaimCondition.data?.currencyMetadata.decimals || 18
-      )} GRDB`;
+      )} ${tokenBalanceGRD?.symbol}`;
     }
   }, [
     activeClaimCondition.data?.currencyMetadata.decimals,
@@ -213,7 +213,7 @@ const MintPage: NextPageWithLayout<
       return `${utils.formatUnits(
         bnPrice.mul(quantity).toString(),
         activeClaimCondition.data?.currencyMetadata.decimals || 18
-      )} GRDB`;
+      )} ${tokenBalanceGRD?.symbol}`;
     }
   }, [
     activeClaimCondition.data?.currencyMetadata.decimals,
@@ -240,7 +240,7 @@ const MintPage: NextPageWithLayout<
       return `${utils.formatUnits(
         bnPrice.mul(quantity).toString(),
         activeClaimCondition.data?.currencyMetadata.decimals || 18
-      )} GRDB`;
+      )} GRD`;
     }
   }, [
     activeClaimCondition.data?.currencyMetadata.decimals,

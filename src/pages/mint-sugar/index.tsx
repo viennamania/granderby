@@ -161,7 +161,7 @@ const MintPage: NextPageWithLayout<
       return `${utils.formatUnits(
         bnPrice.mul(quantity).toString(),
         activeClaimCondition.data?.currencyMetadata.decimals || 18
-      )} GRDB`;
+      )} GRD`;
     }
   }, [
     activeClaimCondition.data?.currencyMetadata.decimals,

@@ -285,12 +285,53 @@ const COLUMNS = [
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">TokenID</div>,
-    accessor: 'tokenId',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Asset</div>,
+    accessor: 'asset',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-xl font-bold ltr:text-right rtl:text-left xl:text-2xl">
-        #{value}
+      <div className="text-xs font-bold ltr:text-right rtl:text-left xl:text-xs ">
+        {value === 'CARROT' && (
+          <Image
+            src="/images/shop/icon-carrot.png"
+            alt="gd"
+            width={18}
+            height={18}
+          />
+        )}
+        {value === 'SUGAR' && (
+          <Image
+            src="/images/shop/icon-sugar.png"
+            alt="gd"
+            width={18}
+            height={18}
+          />
+        )}
+        {value === 'GRD' && (
+          <Image
+            src="/images/shop/icon-grd.png"
+            alt="gd"
+            width={38}
+            height={38}
+          />
+        )}
+        {value === 'GRANDERBY' && (
+          <Image src="/images/shop/horse.png" alt="gd" width={28} height={28} />
+        )}
+        {value === 'GCOW' && (
+          <Image src="/images/icon-usdc.png" alt="gd" width={18} height={18} />
+        )}
+      </div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Amount</div>,
+    accessor: 'amount',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-sm font-bold ltr:text-right rtl:text-left xl:text-xl ">
+        {value}
       </div>
     ),
     minWidth: 80,
@@ -302,7 +343,7 @@ const COLUMNS = [
     accessor: 'category',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="font-bold text-green-600 ltr:text-right rtl:text-left">
+      <div className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
         {value}
       </div>
     ),
@@ -331,7 +372,7 @@ const COLUMNS = [
   */
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">To / From</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">To/From</div>,
     accessor: 'tokenTo',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -344,8 +385,8 @@ const COLUMNS = [
           : value}
       </div>
     ),
-    minWidth: 90,
-    maxWidth: 90,
+    minWidth: 120,
+    maxWidth: 120,
   },
 
   {
@@ -357,8 +398,8 @@ const COLUMNS = [
         {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 150,
-    maxWidth: 150,
+    minWidth: 120,
+    maxWidth: 120,
   },
 ];
 
@@ -425,7 +466,7 @@ export default function TransferHistoryTable(
     });
     const data = await response.json();
 
-    //console.log('data.all: ', data.all);
+    console.log('data.all: ', data.all);
 
     //console.log('data.total: ', data.total);
 
@@ -448,8 +489,14 @@ export default function TransferHistoryTable(
         tokenFrom: transfer.tokenFrom,
         tokenTo: transfer.tokenTo,
 
-        status: 'Completed',
+        asset: transfer.asset,
+
         tokenId: transfer.tokenId,
+        amount:
+          transfer.category === 'erc20'
+            ? Number(transfer.value).toFixed(2)
+            : `#` + transfer.tokenId,
+
         logs4Address: transfer.logs4Address,
         category:
           transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
@@ -499,12 +546,14 @@ export default function TransferHistoryTable(
       */}
 
       <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
+        {/*
         <div className="m-3 flex flex-row items-center justify-start gap-2 ">
           <span className="text-sm">Total Transfers</span>
           <span className="text-4xl font-bold text-green-600 xl:text-6xl">
             {totlaCount}
           </span>
         </div>
+        */}
 
         <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
           <div className="px-0.5">
