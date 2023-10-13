@@ -119,6 +119,9 @@ export const tokenContractAddressUSDT =
 export const tokenContractAddressGCOW =
   '0x81e6F303C1913f60488f2E01CA868e500b0F5F69';
 
+export const tokenContractAddressCP =
+  '0xc958c847ad8D46a5f1D72c96A62197f01ae7109d';
+
 // Race Ticket ERC-1155
 export const contractAddressRace = '0x5e52c17869F8fF63Eeb5f832Bfbf98465bc213bf';
 

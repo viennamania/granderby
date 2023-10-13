@@ -10,7 +10,7 @@ import {
 } from 'alchemy-sdk';
 
 import {
-  tokenContractAddressSTEC,
+  tokenContractAddressCP,
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
@@ -37,7 +37,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const contractAddress = tokenContractAddressSTEC;
+  const contractAddress = tokenContractAddressCP;
 
   var fromBlock: any = await kv.get(contractAddress);
 

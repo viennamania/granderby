@@ -6,32 +6,8 @@ import { Schema, models, model } from 'mongoose';
 ////connectMongo();
 
 import dbConnect from '@/lib/db/dbConnect';
-import {
-  tokenContractAddressGCOW,
-  tokenContractAddressGRD,
-} from '@/config/contractAddresses';
 
 dbConnect();
-
-/*
-            blockNum: item.blockNum,
-            uniqueId: item.uniqueId,
-            hash: item.hash,
-            from: item.from,
-            to: item.to,
-            value: item.value,
-            erc721TokenId: item.erc721TokenId,
-            erc1155Metadata: item.erc1155Metadata,
-            tokenId: item.tokenId,
-            asset: item.asset,
-            category: item.category,
-            rawContract: item.rawContract,
-            blockTimestamp: item.blockTimestamp,
-            data: receipt.logs[4]?.data,
-            buyer: buyer,
-            quantityBought: quantityBought,
-            totalPricePaid: totalPricePaid,
-*/
 
 const HorseTransferSchema = new Schema({
   blockTimestamp: {
