@@ -47,9 +47,70 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const privateKey = process.env.REWARD_PRIVATE_KEY;
+  var toAddress = '';
+  var amount = 0;
 
-  if (privateKey) {
+  const horsehistories = db.collection('horsehistories');
+  const results = await horsehistories
+    .aggregate([
+      //{"$project": {"author": 1, "title": 1, "tags": 1, "date": 1}},
+
+      { $match: { nftOwner: { $exists: false } } },
+
+      ///{"$match": {"nft": {"$exists": false}}},
+
+      { $sort: { date: -1 } },
+      { $limit: 1 },
+    ])
+    .toArray();
+
+  //console.log(results);
+
+  console.log('_id', results[0]._id);
+  console.log('winnerHorse', results[0].winnerHorse);
+
+  console.log('winnerNft', results[0].winnerNft);
+
+  console.log('totalBet', results[0].totalBet);
+  console.log('winPrize', results[0].winPrize);
+  console.log('nftOwner', results[0].nftOwner);
+
+  console.log('tokenId', results[0].winnerNft.tokenId);
+
+  const tokenId = results[0].winnerNft.tokenId;
+
+  try {
+    const result = await db
+      .collection('nfthorses')
+      .findOne({ tokenId: tokenId });
+
+    //console.log("result", result);
+
+    console.log('holder', result?.holder);
+
+    const filter = { _id: results[0]._id };
+    const updateNft = {
+      $set: {
+        nftOwner: result?.holder,
+        nft: result?.nft,
+      },
+    };
+    const options = { upsert: false };
+
+    await horsehistories.updateOne(filter, updateNft, options);
+
+    toAddress = result?.holder;
+    amount = results[0].winPrize;
+  } catch (error) {
+    console.error(error);
+  }
+
+  if (toAddress && amount) {
+    console.log('toAddress', toAddress);
+    console.log('amount', amount);
+
+    const privateKey = process.env.REWARD_PRIVATE_KEY;
+
     /*
     // can be any ethers.js signer
     ///const privateKey = process.env.PRIVATE_KEY;
@@ -126,9 +187,6 @@ export default async function handler(
       });
     }
     */
-
-    const toAddress = '0x1d54e58e4519d576be8D61DD86c3054Dc4A9642c';
-    const amount = 2;
 
     const privatekey = process.env.PRIVATE_KEY;
 
