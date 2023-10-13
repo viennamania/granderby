@@ -367,7 +367,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 ////onClick={(e) => router.push('/coin/grd')}
                 onClick={() => {
                   closeInventories();
-                  router.push('/mint-carrot');
+                  router.push('/coin/carrot');
                   ///router.push('/horse-details/' + nft?.metadata?.id);
                 }}
               >

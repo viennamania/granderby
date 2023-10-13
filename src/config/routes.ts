@@ -64,6 +64,8 @@ const routes = {
 
   coinGrd: '/coin/grd',
   coinUsdc: '/coin/usdc',
+  coinGcow: '/coin/gcow',
+  coinCarrot: '/coin/carrot',
 
   portfolio: '/profile?view=portfolio',
   history: '/profile?view=history',
