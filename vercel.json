@@ -23,6 +23,12 @@
         {
             "path": "/api/cronjob-carrot",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-sugar",
+            "schedule": "* * * * *"
         }
+
+
     ]
 }
