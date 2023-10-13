@@ -80,13 +80,9 @@ const HorseTransferSchema = new Schema({
   },
 });
 
-export const GRDTransferModel =
-  models.grdtransfer ||
-  model<ITransferHistory>('grdtransfer', HorseTransferSchema);
-
-export const GCOWTransferModel =
-  models.gcowtransfer ||
-  model<ITransferHistory>('gcowtransfer', HorseTransferSchema);
+export const HorseTransferModel =
+  models.horsetransfer ||
+  model<ITransferHistory>('horsetransfer', HorseTransferSchema);
 
 export const getTransferHistoryByHolder = async (
   contract: String,
@@ -114,7 +110,7 @@ export const getTransferHistoryByHolder = async (
   });
   */
 
-  return await GRDTransferModel.find({
+  return await HorseTransferModel.find({
     /*
       'rawContract': {
         $elemMatch: {
