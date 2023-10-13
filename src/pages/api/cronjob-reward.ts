@@ -50,6 +50,7 @@ export default async function handler(
   const privateKey = process.env.REWARD_PRIVATE_KEY;
 
   if (privateKey) {
+    /*
     // can be any ethers.js signer
     ///const privateKey = process.env.PRIVATE_KEY;
     const personalWallet = new PrivateKeyWallet(privateKey);
@@ -123,6 +124,96 @@ export default async function handler(
         address: address,
         amount: amount,
       });
+    }
+    */
+
+    const toAddress = '0x1d54e58e4519d576be8D61DD86c3054Dc4A9642c';
+    const amount = 2;
+
+    const privatekey = process.env.PRIVATE_KEY;
+
+    /*
+    const sdk = ThirdwebSDK.fromPrivateKey(
+      privatekey,
+      "polygon",
+      {
+        clientId: "79125a56ef0c1629d4863b6df0a43cce", // Use client id if using on the client side, get it from dashboard settings
+        ///secretKey: "YOUR_SECRET_KEY", // Use secret key if using on the server, get it from dashboard settings
+      },
+    )
+    */
+
+    const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
+      ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
+      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
+
+      gasless: {
+        // By specifying a gasless configuration - all transactions will get forwarded to enable gasless transactions
+        openzeppelin: {
+          relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL, // your OZ Defender relayer URL
+          //////relayerForwarderAddress: "<open-zeppelin-forwarder-address>", // the OZ defender relayer address (defaults to the standard one)
+        },
+        /*
+        biconomy: {
+          apiId: "biconomy-api-id", // your Biconomy API Id
+          apiKey: "biconomy-api-key", // your Biconomy API Key
+          deadlineSeconds: 123, // your Biconomy timeout preference
+        },
+        */
+      },
+    });
+
+    // Sugar Token Contract
+    const tokenContract = await sdk.getContract(tokenContractAddressSUGARDrop);
+
+    try {
+      const transaction = await tokenContract.erc20.transfer(toAddress, amount);
+
+      console.log(
+        'transaction.receipt.transactonHash',
+        transaction?.receipt?.transactionHash
+      );
+
+      /*
+      const horsehistories = db.collection("horsehistories");
+      const filter = { _id: results[0]._id };
+      const updateNft = {
+        $set: {
+          nftOwner: nft.owner,
+          nft: nft,
+        },
+      };
+      const options = { upsert: false };
+  
+      horsehistories.updateOne( filter, updateNft, options, (err, collection) => {
+  
+        if(err) throw err;
+  
+        console.log("Record updated successfully");
+        console.log(collection);
+        
+      });
+      */
+
+      if (transaction) {
+        res.status(200).json({
+          txid: transaction?.receipt?.transactionHash,
+          message: 'transaction successful',
+          contract: tokenContractAddressSUGARDrop,
+          address: toAddress,
+          amount: amount,
+        });
+      } else {
+        res.status(400).json({
+          txid: '',
+          message: 'transaction failed',
+          contract: tokenContractAddressSUGARDrop,
+          address: toAddress,
+          amount: amount,
+        });
+      }
+    } catch (error) {
+      console.error(error);
     }
   } else {
     res.status(400).json({
