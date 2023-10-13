@@ -406,7 +406,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
                 ////onClick={(e) => router.push('/coin/grd')}
                 onClick={() => {
                   closeInventories();
-                  router.push('/mint-sugar');
+                  router.push('/coin/sugar');
                   ///router.push('/horse-details/' + nft?.metadata?.id);
                 }}
               >
