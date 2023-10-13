@@ -17,6 +17,8 @@ import {
 
 import db from '@/db/conn.mjs';
 
+import { kv } from '@vercel/kv';
+
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
   network: Network.MATIC_MAINNET, // Replace with your network.
@@ -34,31 +36,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  let transfers = [] as any;
-
-  // Contract address for granderby NFT
   const contractAddress = nftDropContractAddressHorse;
 
+  var fromBlock: any = await kv.get(contractAddress);
+
+  if (fromBlock) {
+  } else {
+    fromBlock = '0x2e43f16';
+  }
+
+  let transfers = [] as any;
+
   var pageParam = null;
-
-  //var pageParam = "c9d362ce-45be-4631-b974-5242ed9e50cd";
-
-  ///var fromBlock = "0x0";
-
-  //var fromBlock = "0x2a672b6";
-
-  ///var fromBlock = '0x2d8b54c';
-
-  //var fromBlock = "0x2a6857f";
-
-  //var fromBlock = "0x2a68678";
-  //var fromBlock = "0x2b762f9";
-
-  //var fromBlock = '0x2e3866a';
-
-  //var fromBlock = '0x2e3aabf';
-
-  var fromBlock = '0x2e43f16';
 
   var response = null;
 
@@ -536,15 +525,10 @@ export default async function handler(
 
           const optionsNfthorses = { upsert: true };
 
-          nfthorses.updateOne(
+          await nfthorses.updateOne(
             filterNfthorses,
             updateNfthorses,
-            optionsNfthorses,
-            (err, collection) => {
-              //if(err) throw err;
-              //console.log("Record updated successfully");
-              //console.log(collection);
-            }
+            optionsNfthorses
           );
         } catch (error) {
           console.log('error', error);
@@ -556,6 +540,8 @@ export default async function handler(
 
     //sleep(100);
   }
+
+  await kv.set(contractAddress, fromBlock);
 
   res.status(200).json({
     address: contractAddress,

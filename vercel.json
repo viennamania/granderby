@@ -15,6 +15,10 @@
         {
             "path": "/api/cronjob-stec",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-cp",
+            "schedule": "* * * * *"
         }
     ]
 }
