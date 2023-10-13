@@ -8,6 +8,7 @@
             "path": "/api/cronjob-grd",
             "schedule": "* * * * *"
         },
+
         {
             "path": "/api/cronjob-cp",
             "schedule": "* * * * *"
@@ -16,6 +17,7 @@
             "path": "/api/cronjob-carrot",
             "schedule": "* * * * *"
         },
+
         {
             "path": "/api/cronjob-reward",
             "schedule": "* * * * *"
