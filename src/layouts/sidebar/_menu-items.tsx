@@ -411,7 +411,7 @@ export const menuItems = [
       {
         name: 'Carrot',
         icon: <ExchangeIcon />,
-        href: routes.mintCarrot,
+        href: routes.mintCarrotPackage,
       },
       {
         name: 'Coupon',

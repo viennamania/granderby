@@ -149,20 +149,13 @@ export const getTransferHistoryByHolder = async (
 
     $and: [
       {
-        //$elemMatch: { 'rawContract.address': contract.toLowerCase() },
-
-        /*
-          rawContract: {
-            $elemMatch: {
-              address: contract.toLowerCase(),
-            },
-          },
-          */
-
         'rawContract.address': contract.toLowerCase(),
       },
       {
-        $or: [{ tokenFrom: address }, { tokenTo: address }],
+        $or: [
+          { tokenFrom: address.toLowerCase() },
+          { tokenTo: address.toLowerCase() },
+        ],
       },
     ],
 
