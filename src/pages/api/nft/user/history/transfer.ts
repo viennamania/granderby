@@ -1,6 +1,7 @@
 import {
   getTransferHistoryByHolder,
   getTransferHistoryLatestByHolder,
+  getNftTransferHistoryByHolder,
 } from '@/utils/models/transfer-model';
 
 import { NextApiResponse } from 'next';
@@ -19,7 +20,7 @@ export default async function handler(
 
     //console.log('horse history transfer tokenId', tokenId);
 
-    const all = await getTransferHistoryByHolder(address);
+    const all = await getNftTransferHistoryByHolder(address);
 
     //console.log('getAllByTokenId all', all);
 

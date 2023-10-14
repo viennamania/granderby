@@ -42,6 +42,8 @@ import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby
 import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
 //import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
+import GameHistoryTable from '@/components/nft-transaction/user-game-history-table';
+
 import TransferHistoryTable from '@/components/nft-transaction/user-transfer-history-table';
 
 import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
@@ -770,20 +772,8 @@ export default function PortfolioScreen() {
           </div>
 
           <div className=" flex flex-col rounded-lg border p-5">
-            <span className=" text-2xl font-bold">History</span>
-            <TransferHistoryTable address={address} />
-          </div>
-
-          <div className="items-top mt-5 flex w-full justify-center ">
-            {/*
-              <BetTables npcs={npcNames} />
-              */}
-
-            {/*
-              <div className="mb-2 flex w-full items-center justify-center rounded-lg text-3xl font-bold text-yellow-500">
-                Total bet: {betAmountTotal}
-              </div>
-              */}
+            <span className=" text-2xl font-bold">News</span>
+            <GameHistoryTable address={address} />
           </div>
         </div>
       </div>

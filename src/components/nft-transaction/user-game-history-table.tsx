@@ -51,6 +51,9 @@ import {
 ///import { priceFeedData } from '@/data/static/price-feed';
 import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 
+import { HistoryIcon } from '@/components/icons/history';
+import { Refresh } from '@/components/icons/refresh';
+
 type Price = {
   name: number;
   value: number;
@@ -287,7 +290,7 @@ const COLUMNS = [
   */
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Asset</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Item</div>,
     accessor: 'asset',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -341,7 +344,7 @@ const COLUMNS = [
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Category</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Contents</div>,
     accessor: 'category',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -407,7 +410,7 @@ const COLUMNS = [
   },
 ];
 
-export default function TransferHistoryTable(
+export default function GameHistoryTable(
   //nftMetadata: any
 
   { address }: { address?: any }
@@ -535,6 +538,30 @@ export default function TransferHistoryTable(
 
   return (
     <div className="flex w-full flex-col">
+      <div className="flex flex-row items-center justify-start gap-2">
+        {/* reload button */}
+        {/*
+        <HistoryIcon className="h-6 w-6" />
+        <span className="text-sm">History</span>
+
+
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            onClick={() => {
+              getLast20();
+            }}
+            title="Reload"
+            shape="circle"
+            variant="transparent"
+            size="small"
+            className="text-gray-700 dark:text-white"
+          >
+            <Refresh className="h-auto w-4 rtl:rotate-180" />
+          </Button>
+        </div>
+        */}
+      </div>
+
       {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
       */}
@@ -613,7 +640,7 @@ export default function TransferHistoryTable(
                     <tr
                       {...row.getRowProps()}
                       key={idx}
-                      className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                      className="mb-1 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
                     >
                       {row.cells.map((cell, idx) => {
                         return (
