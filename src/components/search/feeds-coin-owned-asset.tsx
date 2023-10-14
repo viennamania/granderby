@@ -436,12 +436,16 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             </button>
           </div>
 
-          <div className="mt-0 flex flex-row gap-5">
+          <div className="mt-2 flex flex-row gap-5">
             <Button
               className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
-              onClick={() => {
-                router.push('/mint-carrot/package');
-              }}
+              onClick={() =>
+                openModal('SALE_VIEW', {
+                  title: 'Followers',
+                  count: '1,845',
+                  users: data,
+                })
+              }
             >
               <span className="flex items-center gap-2">
                 <InfoIcon className="h-3 w-3" /> Deposit
@@ -460,6 +464,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             </Button>
           </div>
 
+          {/*
           <button
             className="ltr:pl-6 rtl:pr-6"
             onClick={() =>
@@ -470,20 +475,14 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               })
             }
           >
-            {/*
-            <Image
-              src="/images/logo-polygon.png"
-              alt="gd"
-              width={18}
-              height={18}
-            />
-          */}
+
             <Twitter className="h-5 w-5" />
 
             <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
               followers
             </span>
           </button>
+          */}
 
           {/*
           <div className="mt-10 flex w-full flex-row items-center justify-start gap-2">
