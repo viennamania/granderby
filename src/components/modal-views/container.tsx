@@ -12,6 +12,8 @@ import { LAYOUT_OPTIONS } from '@/lib/constants';
 
 import Followers from '@/components/profile/followers-view';
 
+import Sale from '@/components/profile/sale-view';
+
 // dynamic imports
 const SearchView = dynamic(() => import('@/components/search/view'));
 const ShareView = dynamic(() => import('@/components/nft/share-view'));
@@ -39,6 +41,10 @@ function renderModalContent(view: MODAL_VIEW | string) {
       return <Followers />;
     case 'NFT_PREVIEW':
       return <PreviewContent />;
+
+    case 'SALE_VIEW':
+      return <Sale />;
+
     default:
       return null;
   }

@@ -463,7 +463,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
           <button
             className="ltr:pl-6 rtl:pr-6"
             onClick={() =>
-              openModal('FOLLOWERS_VIEW', {
+              openModal('SALE_VIEW', {
                 title: 'Followers',
                 count: '1,845',
                 users: data,
