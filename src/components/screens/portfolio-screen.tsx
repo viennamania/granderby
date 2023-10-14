@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import CoinSlider from '@/components/ui/coin-card';
 import AssetSlider from '@/components/ui/asset-card';
 
-import PortfolioChart from '@/components/ui/chats/overview-chart';
+import PortfolioChart from '@/components/ui/chats/portfolio-chart';
 
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
