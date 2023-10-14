@@ -152,8 +152,9 @@ const WalletPage: NextPageWithLayout<
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
+
   function handleCopyToClipboard() {
-    copyToClipboard(address);
+    copyToClipboard(address as string);
     setCopyButtonStatus(true);
     setTimeout(() => {
       setCopyButtonStatus(copyButtonStatus);

@@ -354,13 +354,13 @@ export default function TransferTable(
           id: transfer._id,
 
           transactionType:
-            transfer.tokenFrom === address.toLowerCase() ? 'Send' : 'Receive',
+            transfer.tokenFrom === address?.toLowerCase() ? 'Send' : 'Receive',
           //transactionType: "Send",
 
           createdAt: transfer.blockTimestamp,
 
           address:
-            transfer.tokenFrom === address.toLowerCase()
+            transfer.tokenFrom === address?.toLowerCase()
               ? transfer.tokenTo
               : transfer.tokenFrom,
 

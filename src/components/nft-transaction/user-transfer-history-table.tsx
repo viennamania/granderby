@@ -436,7 +436,6 @@ export default function TransferHistoryTable(
     {
       // @ts-ignore
       columns,
-      //data,
       data: transactions,
       initialState: { pageSize: 10 },
     },
@@ -461,7 +460,7 @@ export default function TransferHistoryTable(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         method: 'getAll',
-        address: address.toLowerCase(),
+        address: address?.toLowerCase(),
       }),
     });
     const data = await response.json();
@@ -504,7 +503,7 @@ export default function TransferHistoryTable(
             : transfer.tokenFrom ===
               stakingContractAddressHorseAAA.toLowerCase()
             ? 'Unregister from'
-            : transfer.tokenFrom === address.toLowerCase()
+            : transfer.tokenFrom === address?.toLowerCase()
             ? 'Send to'
             : 'Receive from',
       };
@@ -533,7 +532,7 @@ export default function TransferHistoryTable(
     <div className="flex w-full flex-col">
       {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
-  */}
+      */}
 
       {/*
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">

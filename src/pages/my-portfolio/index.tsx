@@ -22,8 +22,7 @@ import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 import { Github } from '@/components/icons/brands/github';
 import { Instagram } from '@/components/icons/brands/instagram';
 import { Twitter } from '@/components/icons/brands/twitter';
-//import { Check } from '@/components/icons/check';
-//import { Copy } from '@/components/icons/copy';
+
 import { SearchIcon } from '@/components/icons/search';
 
 ///import Search from '@/components/search/search-horse';
@@ -34,6 +33,14 @@ import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
 import PortfolioScreen from '@/components/screens/portfolio-screen';
+
+import { useState } from 'react';
+
+import { useCopyToClipboard } from 'react-use';
+import { Copy } from '@/components/icons/copy';
+import { Check } from '@/components/icons/check';
+
+import { useQRCode } from 'next-qrcode';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -47,6 +54,19 @@ const PortfolioPage: NextPageWithLayout<
   const { layout } = useLayout();
 
   const address = useAddress();
+
+  const { Canvas } = useQRCode();
+
+  const [copyButtonStatus, setCopyButtonStatus] = useState(false);
+  const [_, copyToClipboard] = useCopyToClipboard();
+
+  function handleCopyToClipboard() {
+    copyToClipboard(address as string);
+    setCopyButtonStatus(true);
+    setTimeout(() => {
+      setCopyButtonStatus(copyButtonStatus);
+    }, 2500);
+  }
 
   return (
     <>
@@ -66,13 +86,39 @@ const PortfolioPage: NextPageWithLayout<
       */}
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <h1 className="text-2x xl:text-4xl">My Portfolio</h1>
+        <h1 className="text-2x xl:text-4xl">Portfolio</h1>
 
         {!address ? (
           <></>
         ) : (
-          <div className="mt-5 flex flex-col items-start justify-center text-sm xl:text-lg">
-            {address}
+          <div className="mt-5 flex flex-col items-start justify-center">
+            <div className="mb-5 mt-5 flex flex-row items-center justify-center gap-3">
+              <span className=" text-sm">{address}</span>
+
+              <div title="Copy Address" onClick={() => handleCopyToClipboard()}>
+                {copyButtonStatus ? (
+                  <Check className="h-auto w-3.5 text-green-500" />
+                ) : (
+                  <Copy className="h-auto w-3.5" />
+                )}
+              </div>
+            </div>
+
+            {/*
+            <Canvas
+              text={address}
+              options={{
+                level: 'M',
+                margin: 3,
+                scale: 4,
+                width: 150,
+                color: {
+                  dark: '#010599FF',
+                  light: '#FFBF60FF',
+                },
+              }}
+            />
+            */}
           </div>
         )}
 

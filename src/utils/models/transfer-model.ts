@@ -147,31 +147,21 @@ export const getTransferHistoryByHolder = async (
   console.log('getTransferHistoryByHolder', address);
 
   return await HorseTransferModel.find({
-    /*
-    'placements': {
-      $elemMatch: {
-        nft: tokenId,
-        //value: grades,
-        //value: { $in: grades },
-      },
-    },
-    */
-    //'placements.nft': tokenId,
-
-    //'placements': { $in: [ {"nft" : tokenId} ] } ,
-
-    /*
-    placements: {
-      $elemMatch: { 'nft.tokenId': tokenId },
-    },
-    */
-
-    //tokenId: tokenId,
-
-    //$or: [ { quantity: { $lt: 20 } }, { price: 10 } ]
-
     $or: [{ tokenFrom: address }, { tokenTo: address }],
   })
     .sort({ blockTimestamp: -1 })
     .limit(100);
+};
+
+export const getTransferHistoryLatestByHolder = async (
+  limit: String,
+  address: String
+): Promise<ITransferHistory[]> => {
+  console.log('getTransferHistoryByHolder', address);
+
+  return await HorseTransferModel.find({
+    $or: [{ tokenFrom: address }, { tokenTo: address }],
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(limit as any);
 };

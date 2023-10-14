@@ -91,7 +91,7 @@ export default function OverviewChart({ chartWrapperClass }: Props) {
       <h3 className="text-xl font-medium tracking-tighter text-black sm:text-3xl">
         74.8%
       </h3>
-      <div className={cn('mt-5 h-60 w-full', chartWrapperClass)}>
+      <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -99,8 +99,8 @@ export default function OverviewChart({ chartWrapperClass }: Props) {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="CARROT" stroke="#ff0000" />
             <Line type="monotone" dataKey="GRD" stroke="#666666" />
+            <Line type="monotone" dataKey="CARROT" stroke="#ff0000" />
             <Line type="monotone" dataKey="SUGAR" stroke="#82ca9d" />
           </LineChart>
 
