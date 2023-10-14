@@ -63,12 +63,6 @@ const data = [
     CARROT: 4133,
     SUGAR: 2334,
   },
-  {
-    name: '10 / 15',
-    GRD: 3644,
-    CARROT: 4655,
-    SUGAR: 2455,
-  },
 ];
 
 interface Props {
