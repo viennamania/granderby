@@ -5,7 +5,8 @@ import { NextSeo } from 'next-seo';
 import CoinSlider from '@/components/ui/coin-card';
 import AssetSlider from '@/components/ui/asset-card';
 
-import OverviewChart from '@/components/ui/chats/overview-chart';
+import PortfolioChart from '@/components/ui/chats/overview-chart';
+
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
 import TopPools from '@/components/ui/top-pools';
@@ -255,31 +256,26 @@ export default function PortfolioScreen() {
           </div>
         )}
 
+        {/*
         <div className="mt-10 flex w-full flex-col rounded-lg border">
           <Collapse label="Performance" initialOpen={true}>
             {address ? (
               <div className="flex h-[490px] flex-col items-center justify-center p-5">
                 <LiveNftPricingSlider limits={2} />
 
-                {/*
-              <div className="mb-5 flex h-full  items-end justify-center">
-                <Button
-                  className="mt-5"
-                  shape="rounded"
-                  color="success"
-                  onClick={() => {
-                    router.push('/live');
-                  }}
-                >
-                  <div className="text-2xl">LIVE NOW</div>
-                </Button>
-              </div>
-              */}
               </div>
             ) : (
               <></>
             )}
           </Collapse>
+        </div>
+            */}
+
+        <div className="mt-10 flex w-full flex-col rounded-lg border">
+          <div className="m-5 flex flex-col">
+            <span className="mb-5 text-2xl font-bold">Performance</span>
+            <PortfolioChart />
+          </div>
         </div>
 
         <div className="mt-10 grid w-full grid-cols-1 gap-5 xl:grid-cols-2 ">
@@ -489,6 +485,7 @@ export default function PortfolioScreen() {
       </div>
           */}
 
+      {/*
       <div className="mt-10 flex flex-wrap">
         <div className="w-full lg:w-[calc(100%-288px)] ltr:lg:pr-6 rtl:lg:pl-6 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
           <TransactionTable />
@@ -497,7 +494,9 @@ export default function PortfolioScreen() {
           <OverviewChart />
           <TopPools />
         </div>
+
       </div>
+          */}
     </div>
   );
 }

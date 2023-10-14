@@ -24,6 +24,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useInfiniteQuery } from 'react-query';
 import Image from 'next/image';
 
+import { InfoIcon } from '@/components/icons/info-icon';
+
 import { useRouter } from 'next/router';
 
 import {
@@ -400,6 +402,30 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
             >
               <ChevronForward className="mr-10 rtl:rotate-180" />
             </button>
+          </div>
+
+          <div className="mt-0 flex flex-row gap-5">
+            <Button
+              className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+              onClick={() => {
+                router.push('/mint-carrot/package');
+              }}
+            >
+              <span className="flex items-center gap-2">
+                <InfoIcon className="h-3 w-3" /> Deposit
+              </span>
+            </Button>
+
+            <Button
+              className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+              onClick={() => {
+                router.push('/coin/grd');
+              }}
+            >
+              <span className="flex items-center gap-2">
+                <InfoIcon className="h-3 w-3" /> Withraw
+              </span>
+            </Button>
           </div>
 
           {/*
