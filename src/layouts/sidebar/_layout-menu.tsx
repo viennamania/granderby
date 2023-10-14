@@ -288,38 +288,54 @@ export function MenuItems() {
                   {/*
                   <Menu.Items className="absolute mt-5 w-64 origin-top-right rounded-lg bg-white p-3 shadow-large ltr:right-0 rtl:left-0 dark:bg-gray-800">
                   */}
-                  <Menu.Items className="absolute mt-5 w-64 origin-top-left rounded-lg bg-white p-3 shadow-large ltr:right-0 rtl:left-0 dark:bg-gray-800">
+
+                  <Menu.Items className="absolute mt-3 w-56 origin-top-right rounded-lg bg-white p-3 shadow-large ltr:right-0 rtl:left-0 dark:bg-gray-800">
                     {item.dropdownItems.map((dropDownItem, index) => (
                       <Menu.Item key={dropDownItem.name + index}>
-                        <div>
-                          <ActiveLink
+                        <ActiveLink
+                          href={{
+                            pathname: dropDownItem.href,
+                            //query: {
+                            //  layout,
+                            //},
+                            //...(layout !== LAYOUT_OPTIONS.MODERN && {
+                            //  query: {
+                            //    layout,
+                            //  },
+                            //}),
+                          }}
+                          /*
                             href={{
                               pathname: dropDownItem.href,
-                              query: {
-                                layout,
-                              },
-                              //...(layout !== LAYOUT_OPTIONS.MODERN && {
-                              //  query: {
-                              //    layout,
-                              //  },
-                              //}),
+                              ...(layout !== LAYOUT_OPTIONS.MODERN &&
+                                layout !== undefined && {
+                                  query: {
+                                    layout,
+                                  },
+                                }),
                             }}
-                            className="flex rounded-lg px-3 py-2 text-sm font-medium uppercase !text-gray-600 transition hover:bg-gray-50 hover:text-gray-900 dark:!text-white dark:hover:bg-gray-700/50"
-                            activeClassName="!bg-gray-100 dark:!bg-gray-700 my-1 last:mb-0 first:mt-0 !text-gray-900 dark:!text-white"
-                          >
-                            {/*
+                            */
+
+                          //className="flex rounded-lg px-3 py-2 text-sm font-medium uppercase !text-gray-600 transition hover:bg-gray-50 hover:text-gray-900 dark:!text-white dark:hover:bg-gray-700/50"
+                          //activeClassName="!bg-gray-100 dark:!bg-gray-700 my-1 last:mb-0 first:mt-0 !text-gray-900 dark:!text-white"
+
+                          //className="flex rounded-lg px-3 py-2 text-sm font-medium uppercase !text-gray-600 transition hover:bg-gray-50 hover:text-gray-900 dark:!text-white dark:hover:bg-gray-700/50"
+                          //activeClassName="!bg-gray-100 dark:!bg-gray-700 my-1 last:mb-0 first:mt-0 !text-green-600 !font-bold dark:!text-white"
+                          className="flex items-center rounded-lg p-2 text-sm text-gray-500 transition-all before:h-1 before:w-1 before:rounded-full before:bg-gray-500 hover:font-bold hover:text-green-600 ltr:pl-6 before:ltr:mr-5 rtl:pr-6 before:rtl:ml-5 dark:hover:text-white"
+                          activeClassName="!text-brand dark:!text-white dark:before:!bg-white before:!bg-brand before:!w-2 before:!h-2 before:-ml-0.5 before:ltr:!mr-[18px] before:rtl:!ml-[18px] !font-medium !text-green-600 !font-bold "
+                        >
+                          {/*
                             <span className="mr-2">{dropDownItem.icon}</span>
                             */}
-                            {/*
+                          {/*
                             <EditActiveIcon
                               className="mr-2 h-5 w-5"
                               aria-hidden="true"
                             />
                           */}
 
-                            {dropDownItem.name}
-                          </ActiveLink>
-                        </div>
+                          {dropDownItem.name}
+                        </ActiveLink>
                       </Menu.Item>
                     ))}
                   </Menu.Items>

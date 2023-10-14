@@ -34,14 +34,17 @@ export function MenuItem({
   } = router;
   const [isOpen, setIsOpen] = useState(false);
   const [ref, { height }] = useMeasure<HTMLUListElement>();
+
   const isChildrenActive =
     dropdownItems && dropdownItems.some((item) => item.href === pathname);
+
   useEffect(() => {
     if (isChildrenActive) {
       setIsOpen(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="mb-2 min-h-[48px] list-none last:mb-0">
       {dropdownItems?.length ? (
