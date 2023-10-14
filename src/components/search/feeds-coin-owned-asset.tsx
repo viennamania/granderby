@@ -62,6 +62,36 @@ import { GrdIcon } from '@/components/icons/grd-icon';
 
 import { GasIcon } from '@/components/icons/gas-icon';
 
+import { useModal } from '@/components/modal-views/context';
+
+import { Twitter } from '@/components/icons/brands/twitter';
+
+// dummy data
+import User1 from '@/assets/images/avatar/8.jpg';
+import User2 from '@/assets/images/avatar/9.jpg';
+import User3 from '@/assets/images/avatar/10.jpg';
+import User4 from '@/assets/images/avatar/11.jpg';
+import User5 from '@/assets/images/collection/collection-1.jpg';
+import User6 from '@/assets/images/collection/collection-2.jpg';
+import User7 from '@/assets/images/collection/collection-3.jpg';
+import User8 from '@/assets/images/collection/collection-4.jpg';
+import User9 from '@/assets/images/collection/collection-5.jpg';
+import User10 from '@/assets/images/collection/collection-6.jpg';
+const data = [
+  { name: 'Amanda Jones', thumbnail: User1 },
+  { name: 'Marcos Llanos', thumbnail: User2 },
+  { name: 'Garry Heffernan', thumbnail: User3 },
+  { name: 'Teresa J. Brown', thumbnail: User4 },
+  { name: 'Williams Sarah', thumbnail: User5 },
+  { name: 'Teresa W. Luter', thumbnail: User6 },
+  { name: 'Dorothy Pacheco', thumbnail: User7 },
+  { name: 'Christopher', thumbnail: User8 },
+  { name: 'Ted Luster', thumbnail: User4 },
+  { name: 'R. Foster', thumbnail: User9 },
+  { name: 'Domingo', thumbnail: User3 },
+  { name: 'Conway', thumbnail: User10 },
+];
+
 export default function OwnedFeedsCoin({ className }: { className?: string }) {
   const { isGridCompact } = useGridSwitcher();
 
@@ -256,6 +286,8 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
 
   const { isInventoriesOpen, closeInventories } = useInventoriesDrawer();
 
+  const { openModal } = useModal();
+
   return (
     <div className="mt-5 flex">
       {!address ? (
@@ -427,6 +459,31 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               </span>
             </Button>
           </div>
+
+          <button
+            className="ltr:pl-6 rtl:pr-6"
+            onClick={() =>
+              openModal('FOLLOWERS_VIEW', {
+                title: 'Followers',
+                count: '1,845',
+                users: data,
+              })
+            }
+          >
+            {/*
+            <Image
+              src="/images/logo-polygon.png"
+              alt="gd"
+              width={18}
+              height={18}
+            />
+          */}
+            <Twitter className="h-5 w-5" />
+
+            <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+              followers
+            </span>
+          </button>
 
           {/*
           <div className="mt-10 flex w-full flex-row items-center justify-start gap-2">

@@ -119,6 +119,10 @@ import {
 
 import { format } from 'date-fns';
 
+import { useModal } from '@/components/modal-views/context';
+
+import { Twitter } from '@/components/icons/brands/twitter';
+
 const COLUMNS = [
   /*
   {
@@ -288,6 +292,8 @@ export default function PortfolioScreen() {
   const address = useAddress();
 
   const router = useRouter();
+
+  const { openModal } = useModal();
 
   /////const emailQuery = usePaperWalletUserEmail();
 
@@ -625,6 +631,19 @@ export default function PortfolioScreen() {
         <div className="mt-10 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-2 ">
           <div className=" flex flex-col rounded-lg border p-5">
             <span className=" text-2xl font-bold">Assets</span>
+
+            {/*
+            <button
+              className="ml-10 flex flex-row items-center justify-start "
+              onClick={() => openModal('SHARE_VIEW')}
+            >
+              <Twitter className="h-5 w-5" />
+
+              <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                share
+              </span>
+            </button>
+            */}
 
             {address ? (
               <div className="mt-5 flex flex-col items-start justify-center gap-5">

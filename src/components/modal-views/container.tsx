@@ -9,7 +9,9 @@ import { Close } from '@/components/icons/close';
 import { useModal, MODAL_VIEW } from '@/components/modal-views/context';
 import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
+
 import Followers from '@/components/profile/followers-view';
+
 // dynamic imports
 const SearchView = dynamic(() => import('@/components/search/view'));
 const ShareView = dynamic(() => import('@/components/nft/share-view'));
