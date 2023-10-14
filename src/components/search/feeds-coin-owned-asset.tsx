@@ -262,161 +262,147 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
         </>
       ) : (
         <div className="flex flex-col items-center justify-start gap-5">
-          {isLoadingBalanceUSDC ? (
-            <>
-              <div className="flex flex-col items-center justify-center ">
-                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-row items-center justify-start">
-              <div className=" flex ">
-                <Image
-                  src="/images/icon-usdc.png"
-                  alt="usdc"
-                  width={40}
-                  height={40}
-                />
-              </div>
+          {/*
+          <div className="ml-10 flex flex-row items-center justify-start">
 
-              <div className=" w-32 text-right text-2xl font-bold underline decoration-sky-500">
-                {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
-              </div>
-              <div className="ml-2 w-14 text-xl ">
-                {tokenBalanceUSDC?.symbol}
-              </div>
-
-              <button
-                className="ml-10 flex flex-row items-center justify-center gap-3"
-                ///onClick={(e) => router.push('/coin/usdc')}
-                onClick={() => {
-                  closeInventories();
-                  router.push('/coin/usdc');
-                  ///router.push('/horse-details/' + nft?.metadata?.id);
-                }}
-              >
-                <ChevronForward className="mr-10 rtl:rotate-180" />
-              </button>
+            <div className=" w-10  flex ">
+              <Image
+                src="/images/icon-usdc.png"
+                alt="usdc"
+                width={30}
+                height={30}
+              />
             </div>
-          )}
 
-          {isLoadingBalanceGRD ? (
-            <>
-              <div className="flex flex-col items-center justify-center ">
-                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-row items-center justify-start">
-              <div className="times-center  flex  justify-start ">
-                <Image
-                  src="/images/icon-grd.png"
-                  alt="grd"
-                  width={80}
-                  height={80}
-                />
-              </div>
+            <div className=" w-32 text-right text-2xl font-bold ">
 
-              <div className=" w-32  text-right text-2xl font-bold underline decoration-sky-500">
-                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
-              </div>
+              {isLoadingBalanceUSDC ? (
+                <span className='text-xs'>
+                  Loading...
+                </span>) : Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
 
-              <div className="ml-2 w-14 text-xl ">
-                {tokenBalanceGRD?.symbol}
-              </div>
-
-              <button
-                className="ml-10 flex flex-row items-center justify-center gap-3"
-                ////onClick={(e) => router.push('/coin/grd')}
-                onClick={() => {
-                  closeInventories();
-                  router.push('/coin/grd');
-                  ///router.push('/horse-details/' + nft?.metadata?.id);
-                }}
-              >
-                <ChevronForward className="mr-10 rtl:rotate-180" />
-              </button>
             </div>
-          )}
-
-          {isLoadingBalanceCARROT ? (
-            <>
-              <div className="flex flex-col items-center justify-center ">
-                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-row items-center justify-start">
-              <div className="times-center  flex  justify-center">
-                <Image
-                  src="/images/icon-carrot.png"
-                  alt="carrot"
-                  width={50}
-                  height={50}
-                />
-              </div>
-
-              <div className=" w-32  text-right text-2xl font-bold underline decoration-sky-500">
-                {Number(tokenBalanceCARROT?.displayValue).toFixed(2)}
-              </div>
-
-              <div className="ml-2 w-14 text-xl ">
-                {tokenBalanceCARROT?.symbol}
-              </div>
-
-              <button
-                className="ml-10 flex flex-row items-center justify-center gap-3"
-                ////onClick={(e) => router.push('/coin/grd')}
-                onClick={() => {
-                  closeInventories();
-                  router.push('/coin/carrot');
-                  ///router.push('/horse-details/' + nft?.metadata?.id);
-                }}
-              >
-                <ChevronForward className="mr-10 rtl:rotate-180" />
-              </button>
+            <div className="ml-2 w-14 text-xl ">
+              {tokenBalanceUSDC?.symbol}
             </div>
-          )}
 
-          {isLoadingBalanceSUGAR ? (
-            <>
-              <div className="flex flex-col items-center justify-center ">
-                <span className="relative flex h-10 w-10 animate-spin rounded-sm bg-purple-400 opacity-75"></span>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-row items-center justify-start">
-              <div className="times-center  flex justify-center">
-                <Image
-                  src="/images/icon-sugar.png"
-                  alt="sugar"
-                  width={50}
-                  height={50}
-                />
-              </div>
+            <button
+              className="ml-10 flex flex-row items-center justify-center gap-3"
+              ///onClick={(e) => router.push('/coin/usdc')}
+              onClick={() => {
+                closeInventories();
+                router.push('/coin/usdc');
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+          </div>
+          */}
 
-              <div className=" w-32  text-right text-2xl font-bold underline decoration-sky-500">
-                {Number(tokenBalanceSUGAR?.displayValue).toFixed(2)}
-              </div>
-
-              <div className="ml-2 w-14 text-xl ">
-                {tokenBalanceSUGAR?.symbol}
-              </div>
-
-              <button
-                className="ml-10 flex flex-row items-center justify-center gap-3"
-                ////onClick={(e) => router.push('/coin/grd')}
-                onClick={() => {
-                  closeInventories();
-                  router.push('/coin/sugar');
-                  ///router.push('/horse-details/' + nft?.metadata?.id);
-                }}
-              >
-                <ChevronForward className="mr-10 rtl:rotate-180" />
-              </button>
+          <div className="ml-10 flex flex-row items-center justify-start">
+            <div className=" flex  w-10 ">
+              <Image
+                src="/images/icon-grd.png"
+                alt="grd"
+                width={30}
+                height={30}
+              />
             </div>
-          )}
 
+            <div className=" w-32 text-right text-2xl font-bold ">
+              {isLoadingBalanceGRD ? (
+                <span className="text-xs">Loading...</span>
+              ) : (
+                Number(tokenBalanceGRD?.displayValue).toFixed(2)
+              )}
+            </div>
+            <div className="ml-2 w-14 text-right text-xs font-bold text-green-600 xl:w-48 xl:text-lg ">
+              +5,543 (10.0%)
+            </div>
+
+            <button
+              className="ml-10 flex flex-row items-center justify-center gap-3"
+              ///onClick={(e) => router.push('/coin/usdc')}
+              onClick={() => {
+                closeInventories();
+                router.push('/coin/grd');
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+          </div>
+
+          <div className="ml-10 flex flex-row items-center justify-start">
+            <div className=" flex  w-10 ">
+              <Image
+                src="/images/icon-carrot.png"
+                alt="carrot"
+                width={30}
+                height={30}
+              />
+            </div>
+
+            <div className=" w-32 text-right text-2xl font-bold ">
+              {isLoadingBalanceCARROT ? (
+                <span className="text-xs">Loading...</span>
+              ) : (
+                Number(tokenBalanceCARROT?.displayValue).toFixed(2)
+              )}
+            </div>
+            <div className="ml-2 w-14 text-right text-xs font-bold text-red-600 xl:w-48 xl:text-lg ">
+              -634(5.0%)
+            </div>
+
+            <button
+              className="ml-10 flex flex-row items-center justify-center gap-3"
+              ///onClick={(e) => router.push('/coin/usdc')}
+              onClick={() => {
+                closeInventories();
+                router.push('/coin/carrot');
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+          </div>
+
+          <div className="ml-10 flex flex-row items-center justify-start">
+            <div className=" flex  w-10 ">
+              <Image
+                src="/images/icon-sugar.png"
+                alt="sugar"
+                width={30}
+                height={30}
+              />
+            </div>
+
+            <div className=" w-32 text-right text-2xl font-bold ">
+              {isLoadingBalanceSUGAR ? (
+                <span className="text-xs">Loading...</span>
+              ) : (
+                Number(tokenBalanceSUGAR?.displayValue).toFixed(2)
+              )}
+            </div>
+            <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
+              0(0.0%)
+            </div>
+
+            <button
+              className="ml-10 flex flex-row items-center justify-center gap-3"
+              ///onClick={(e) => router.push('/coin/usdc')}
+              onClick={() => {
+                closeInventories();
+                router.push('/coin/sugar');
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+          </div>
+
+          {/*
           <div className="mt-10 flex w-full flex-row items-center justify-start gap-2">
             {ownedCoupons?.map((nft) => (
               <div
@@ -448,6 +434,7 @@ export default function OwnedFeedsCoin({ className }: { className?: string }) {
               <ChevronForward className="mr-10 rtl:rotate-180" />
             </button>
           </div>
+          */}
         </div>
       )}
     </div>

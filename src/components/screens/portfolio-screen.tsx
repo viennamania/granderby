@@ -451,11 +451,13 @@ export default function PortfolioScreen() {
         </div>
       </div>
 
+      {/*
       <div className=" flex flex-col rounded-lg border p-5">
         <span className=" text-2xl font-bold">Race Schedule</span>
 
         {address ? <RaceHistoryTable tokenId={undefined} /> : <></>}
       </div>
+      */}
 
       {/*
       <div className="mt-8 grid gap-6 sm:my-10 md:grid-cols-2">
@@ -486,6 +488,16 @@ export default function PortfolioScreen() {
         </div>
       </div>
           */}
+
+      <div className="mt-10 flex flex-wrap">
+        <div className="w-full lg:w-[calc(100%-288px)] ltr:lg:pr-6 rtl:lg:pl-6 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
+          <TransactionTable />
+        </div>
+        <div className="order-first mb-8 grid w-full grid-cols-1 gap-6 sm:mb-10 sm:grid-cols-2 lg:order-1 lg:mb-0 lg:flex lg:w-72 lg:flex-col 2xl:w-80 3xl:w-[358px]">
+          <OverviewChart />
+          <TopPools />
+        </div>
+      </div>
     </div>
   );
 }
