@@ -164,6 +164,10 @@ export default async function handler(
 
       const address = receipt?.logs[j].address;
 
+      const uniqueId = item.hash + ':log:' + receipt?.logs[j].logIndex;
+
+      console.log('uniqueId', uniqueId);
+
       // Approval
       if (
         receipt?.logs[j].topics[0] ==
@@ -206,14 +210,14 @@ export default async function handler(
           const horsesales = db.collection('horsesales');
 
           // create a filter for a movie to update
-          var filter = { uniqueId: item.uniqueId };
+          const filter = { uniqueId: uniqueId };
           // this option instructs the method to create a document if no documents match the filter
-          var options = { upsert: true };
+          const options = { upsert: true };
           // create a document that sets the plot of the movie
-          var updateDoc = {
+          const updateDoc = {
             $set: {
               blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
+              uniqueId: uniqueId,
               hash: item.hash,
               from: item.from,
               to: item.to,
@@ -238,12 +242,18 @@ export default async function handler(
           };
 
           await horsesales.updateOne(filter, updateDoc, options);
+        } catch (error) {
+          console.log('error', error);
+        } finally {
+          ////await client.close();
+        }
 
+        try {
           const nfthorses = db.collection('nfthorses');
 
-          filter = { tokenId: tokenId };
+          const filter = { tokenId: tokenId };
 
-          updateDoc = {
+          const updateDoc = {
             $set: {
               totalPricePaid,
               paidToken,
@@ -251,7 +261,7 @@ export default async function handler(
             },
           };
 
-          options = { upsert: true };
+          const options = { upsert: true };
 
           await nfthorses.updateOne(filter, updateDoc, options);
         } catch (error) {
@@ -302,14 +312,14 @@ export default async function handler(
           const horsetransfers = db.collection('horsetransfers');
 
           // create a filter for a movie to update
-          const filterHorsetransfers = { uniqueId: item.uniqueId };
+          const filterHorsetransfers = { uniqueId: uniqueId };
           // this option instructs the method to create a document if no documents match the filter
           const optionsHorsetransfers = { upsert: true };
           // create a document that sets the plot of the movie
           const updateHorsetransfers = {
             $set: {
               blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
+              uniqueId: uniqueId,
               hash: item.hash,
               from: item.from,
               to: item.to,
@@ -391,6 +401,48 @@ export default async function handler(
           ////await client.close();
         }
 
+        try {
+          const action = 'Transfer';
+
+          const horsegames = db.collection('horsegames');
+
+          // create a filter for a movie to update
+          const filter = { uniqueId: uniqueId };
+          // this option instructs the method to create a document if no documents match the filter
+          const option = { upsert: true };
+          // create a document that sets the plot of the movie
+          const updateDoc = {
+            $set: {
+              action: action,
+              uniqueId: uniqueId,
+              blockNum: item.blockNum,
+              hash: item.hash,
+              from: item.from,
+              to: item.to,
+              value: item.value,
+              erc721TokenId: item.erc721TokenId,
+              erc1155Metadata: item.erc1155Metadata,
+              asset: item.asset,
+              category: item.category,
+              rawContract: item.rawContract,
+              blockTimestamp: item.blockTimestamp,
+              data: receipt.logs[j]?.data,
+
+              tokenId: tokenId,
+
+              tokenFrom: from,
+              tokenTo: to,
+              logs4Address: logs4Address,
+            },
+          };
+
+          await horsegames.updateOne(filter, updateDoc, option);
+        } catch (error) {
+          console.log('error', error);
+        } finally {
+          ////await client.close();
+        }
+
         // ToknesStaked
       } else if (
         receipt?.logs[j].topics[0] ==
@@ -408,13 +460,13 @@ export default async function handler(
           const horsestakes = db.collection('horsestakes');
 
           // create a filter for a movie to update
-          const filterHorsestakes = { uniqueId: item.uniqueId };
+          const filterHorsestakes = { uniqueId: uniqueId };
 
           // create a document that sets the plot of the movie
           const updateHorsestakes = {
             $set: {
               blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
+              uniqueId: uniqueId,
               hash: item.hash,
               from: item.from,
               to: item.to,
@@ -462,6 +514,44 @@ export default async function handler(
         } finally {
           ////await client.close();
         }
+
+        try {
+          const action = 'ToknesStaked';
+
+          const horsegames = db.collection('horsegames');
+
+          // create a filter for a movie to update
+          const filter = { uniqueId: uniqueId };
+          // this option instructs the method to create a document if no documents match the filter
+          const option = { upsert: true };
+          // create a document that sets the plot of the movie
+          const updateDoc = {
+            $set: {
+              action: action,
+              uniqueId: uniqueId,
+              blockNum: item.blockNum,
+              hash: item.hash,
+              from: item.from,
+              to: item.to,
+              value: item.value,
+              erc721TokenId: item.erc721TokenId,
+              erc1155Metadata: item.erc1155Metadata,
+              asset: item.asset,
+              category: item.category,
+              rawContract: item.rawContract,
+              blockTimestamp: item.blockTimestamp,
+              tokenId: tokenId,
+              register: address,
+              staker: staker,
+            },
+          };
+
+          await horsegames.updateOne(filter, updateDoc, option);
+        } catch (error) {
+          console.log('error', error);
+        } finally {
+          ////await client.close();
+        }
       }
 
       // TokensWithdrawn
@@ -481,13 +571,13 @@ export default async function handler(
           const horsestakes = db.collection('horsestakes');
 
           // create a filter for a movie to update
-          const filterHorsestakes = { uniqueId: item.uniqueId };
+          const filterHorsestakes = { uniqueId: uniqueId };
 
           // create a document that sets the plot of the movie
           const updateHorsestakes = {
             $set: {
               blockNum: item.blockNum,
-              uniqueId: item.uniqueId,
+              uniqueId: uniqueId,
               hash: item.hash,
               from: item.from,
               to: item.to,
