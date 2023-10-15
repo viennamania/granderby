@@ -342,6 +342,8 @@ export default function PortfolioScreen() {
   const [horsesCount, setHorsesCount] = useState<any>(0);
   const [jockeysCount, setJockeysCount] = useState<any>(0);
 
+  const [horsesTotalPricePaid, setHorsesTotalPricePaid] = useState<any>(0);
+
   useEffect(() => {
     async function getHorsesCount() {
       if (!address) return;
@@ -362,6 +364,8 @@ export default function PortfolioScreen() {
       console.log('getHorsesCount data====', data);
 
       setHorsesCount(data.total);
+
+      setHorsesTotalPricePaid(data.totalPricePaid);
     }
 
     async function getJockeysCount() {
@@ -719,69 +723,85 @@ export default function PortfolioScreen() {
                   */}
 
                   <button
-                    className={`gold-btn flex  flex-row items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-col items-center justify-center gap-5">
-                      <span className="text-lg">Horse</span>
-                      <span className="text-xl font-bold xl:text-2xl">
-                        {horsesCount}
-                      </span>
+                    <div className="flex flex-row items-center justify-center">
+                      <div className="flex flex-col items-center justify-center gap-5">
+                        <span className="text-lg">Horse</span>
+                        <span className="text-xl font-bold xl:text-2xl">
+                          {horsesCount}
+                        </span>
+                      </div>
+                      <Image
+                        src="/images/button/horse.png"
+                        alt="logo"
+                        width={25}
+                        height={25}
+                      />
                     </div>
-                    <Image
-                      src="/images/button/horse.png"
-                      alt="logo"
-                      width={25}
-                      height={25}
-                    />
+
+                    <span className="text-lg font-bold text-green-600 xl:text-xl">
+                      {horsesTotalPricePaid} USD
+                    </span>
                   </button>
 
                   <button
-                    className={`gold-btn flex  flex-row items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-col items-center justify-center gap-5">
-                      <span className="text-lg">Jockey</span>
-                      <span className="text-xl font-bold xl:text-2xl">
-                        {jockeysCount}
-                      </span>
+                    <div className="flex flex-row items-center justify-center">
+                      <div className="flex flex-col items-center justify-center gap-5">
+                        <span className="text-lg">Jockey</span>
+                        <span className="text-xl font-bold xl:text-2xl">
+                          {jockeysCount}
+                        </span>
+                      </div>
+                      <Image
+                        src="/images/button/jockey.png"
+                        alt="logo"
+                        width={25}
+                        height={25}
+                      />
                     </div>
-                    <Image
-                      src="/images/button/jockey.png"
-                      alt="logo"
-                      width={25}
-                      height={25}
-                    />
+                    <span className="text-xs font-bold text-gray-400 xl:text-sm">
+                      No Price Data
+                    </span>
                   </button>
 
                   <button
-                    className={`gold-btn flex  flex-row items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-col items-center justify-center gap-5">
-                      <span className="text-lg">Track</span>
-                      <span className="text-xl font-bold xl:text-2xl">
-                        {Number(tokenBalanceHV?.displayValue).toFixed(0)}
-                      </span>
+                    <div className="flex flex-row items-center justify-center">
+                      <div className="flex flex-col items-center justify-center gap-5">
+                        <span className="text-lg">Track</span>
+                        <span className="text-xl font-bold xl:text-2xl">
+                          {Number(tokenBalanceHV?.displayValue).toFixed(0)}
+                        </span>
+                      </div>
+                      <Image
+                        src="/images/button/track.png"
+                        alt="logo"
+                        width={25}
+                        height={25}
+                      />
                     </div>
-                    <Image
-                      src="/images/button/track.png"
-                      alt="logo"
-                      width={25}
-                      height={25}
-                    />
+                    <span className="text-xs font-bold text-gray-400 xl:text-sm">
+                      No Price Data
+                    </span>
                   </button>
                 </div>
               </div>

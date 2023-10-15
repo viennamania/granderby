@@ -573,7 +573,7 @@ export default function GameHistoryTable(
                     width={18}
                     height={18}
                   />
-                  <span className="text-xs">Send to</span>
+                  <span className="text-xs">Sent to</span>
                   <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
                   <span className="text-xl font-bold text-black">
                     {Number(transfer.value).toFixed(2)}
@@ -588,7 +588,7 @@ export default function GameHistoryTable(
                     width={18}
                     height={18}
                   />
-                  <span className="text-xs">Send to</span>
+                  <span className="text-xs">Sent to</span>
                   <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
                   <span className="text-xl font-bold text-black">
                     {Number(transfer.value).toFixed(2)}
@@ -603,7 +603,7 @@ export default function GameHistoryTable(
                     width={18}
                     height={18}
                   />
-                  <span className="text-xs">Send to</span>
+                  <span className="text-xs">Sent to</span>
                   <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
 
                   <span className="text-xl font-bold text-black">
@@ -631,7 +631,7 @@ export default function GameHistoryTable(
                       #{transfer.tokenId}
                     </span>
                   </button>
-                  <span className="text-xs">Send to</span>
+                  <span className="text-xs">Sent to</span>
                   <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
                 </div>
               )}
@@ -650,7 +650,7 @@ export default function GameHistoryTable(
                         height={18}
                       />
 
-                      <span className="text-xs">Mint</span>
+                      <span className="text-xs">Minted</span>
 
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
@@ -665,7 +665,7 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Mint</span>
+                      <span className="text-xs">Minted</span>
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
@@ -679,7 +679,7 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Mint</span>
+                      <span className="text-xs">Minted</span>
 
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
@@ -697,7 +697,7 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Receive from</span>
+                      <span className="text-xs">Received from</span>
                       <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
@@ -712,7 +712,7 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Reveive from</span>
+                      <span className="text-xs">Reveived from</span>
                       <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
@@ -729,10 +729,10 @@ export default function GameHistoryTable(
                       />
                       {transfer.tokenFrom ===
                       '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase() ? (
-                        <span className="text-xs">Reward for racing</span>
+                        <span className="text-xs">Rewarded for racing</span>
                       ) : (
                         <>
-                          <span className="text-xs">Receive from</span>
+                          <span className="text-xs">Received from</span>
                           <span>
                             {transfer.tokenFrom?.substring(0, 6) + '...'}
                           </span>

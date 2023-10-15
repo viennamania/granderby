@@ -319,7 +319,58 @@ export const getAllHorsesCount = async (
 
     //return { total: data?.length };
 
-    return { total: data };
+    /*
+    // sum of totalPricePaid
+    const data2 = await HorseModel.aggregate([
+      {
+        $match: {
+          holder: holder.toLowerCase(),
+        },
+      },
+      {
+        $group: {
+          
+          //_id: null,
+
+          _id: null,
+
+          total: { $sum: 'totalPricePaid' },
+        },
+      },
+    ]);
+
+    console.log('data2', data2);
+
+    return { total: data, totalPricePaid: data2[0].total };
+    */
+
+    const data2 = await HorseModel.find({
+      holder: holder.toLowerCase(),
+    }).catch((err) => {
+      ////return err;
+    });
+
+    let totalPricePaid = 0;
+    data2?.forEach((element) => {
+      //totalPricePaid += parseInt(element.totalPricePaid);
+
+      if (element.paidToken === '0x0000000000000000000000000000000000001010') {
+        // MATIC
+
+        totalPricePaid =
+          totalPricePaid + (element.totalPricePaid / 1000000000000000000) * 0.5;
+      } else if (
+        element.paidToken === '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
+      ) {
+        // USDC
+
+        totalPricePaid = totalPricePaid + element.totalPricePaid / 1000000;
+      }
+    });
+
+    console.log('totalPricePaid', totalPricePaid);
+
+    return { total: data, totalPricePaid: totalPricePaid };
   }
 
   if (grades.length === 0) {

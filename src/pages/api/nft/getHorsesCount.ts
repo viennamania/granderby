@@ -26,9 +26,11 @@ export default async function handler(
     const data = await getAllHorsesCount(grades, manes, '');
 
     const total = data.total;
+    const totalPricePaid = data.totalPricePaid;
 
     res.status(200).json({
       total: total,
+      totalPricePaid: totalPricePaid,
     });
   }
 
@@ -42,9 +44,11 @@ export default async function handler(
     const data = await getAllHorsesCount(grades, manes, holder);
 
     const total = data.total;
+    const totalPricePaid = data.totalPricePaid;
 
     res.status(200).json({
       total: total,
+      totalPricePaid: totalPricePaid,
     });
   }
 }
