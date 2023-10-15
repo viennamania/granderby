@@ -1,5 +1,3 @@
-import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
-
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import RootLayout from '@/layouts/_root-layout';
@@ -15,6 +13,7 @@ import AnchorLink from '@/components/ui/links/anchor-link';
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 
 import NftInfo from '@/components/nft-pricing-table/nft-info';
+import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
 
 import { CoinConverter } from '@/components/ui/transact-coin';
 import CoinTabs from '@/components/cryptocurrency-pricing-table/coin-tabs';
@@ -108,7 +107,7 @@ function SinglePrice(tokenid: any) {
         <>
           <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
             <div
-              className={`w-full 2xl:w-full 
+              className={`w-full 
               ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
             >
               <div className=" flex flex-col">
@@ -149,100 +148,6 @@ function SinglePrice(tokenid: any) {
                         #{nftMetadata?.metadata?.id}
                       </span>
                     </button>
-
-                    <button
-                      className="ml-10 flex flex-row items-center justify-start "
-                      onClick={() => openModal('SHARE_VIEW')}
-                    >
-                      {/*
-                      <Image
-                        src="/images/logo-polygon.png"
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
-                    */}
-                      <Twitter className="h-5 w-5" />
-
-                      <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        share
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* owned by */}
-                  <div className="mt-5 flex w-full items-center justify-start  gap-4 ">
-                    {isLoadingStakerAddress ? (
-                      <div className="text-sm font-bold xl:text-lg">
-                        <b>Loading Owner...</b>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                          Owned by
-                        </div>
-                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                          {stakerAddress &&
-                          stakerAddress ===
-                            '0x0000000000000000000000000000000000000000' ? (
-                            <>
-                              {nftMetadata?.owner === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(
-                                      `/user-asset/${nftMetadata?.owner}`
-                                    )
-                                  }
-                                >
-                                  <span>
-                                    {nftMetadata?.owner?.substring(0, 10)}...
-                                  </span>
-                                  {/*
-                                {stakeInfoCount && stakeInfoCount > 1 && (
-                                  <span className="text-xs text-gray-400">
-                                    +{stakeInfoCount - 1}
-                                  </span>
-                                )}
-                                */}
-                                </button>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              {stakerAddress && stakerAddress === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(`/user-asset/${stakerAddress}`)
-                                  }
-                                >
-                                  <span>
-                                    {stakerAddress?.substring(0, 10)}...
-                                  </span>
-                                  Registered
-                                  {/*
-                                {stakeInfoCount && stakeInfoCount > 1 && (
-                                  <span className="text-xs text-gray-400">
-                                    +{stakeInfoCount - 1}
-                                  </span>
-                                )}
-                                */}
-                                </button>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </>
-                    )}
                   </div>
                 </div>
 
@@ -262,7 +167,6 @@ function SinglePrice(tokenid: any) {
                 />
 
                 <NftSinglePrice
-                  //tokenid={tokenid.tokenid}
                   nftMetadata={nftMetadata}
                   contractAddress={nftDropContractAddressHorse}
                   isOpen={isOpen}
@@ -271,167 +175,33 @@ function SinglePrice(tokenid: any) {
               </div>
             </div>
 
-            {layout === LAYOUT_OPTIONS.RETRO ? (
-              <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
-            ) : (
-              <div className=" flex w-full flex-col">
-                <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
-                  <Link
-                    className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
-                    href={`/horse`}
-                  >
-                    {nftMetadata?.metadata?.description}
-                    {/*Granderby Horse NFT*/}
-                  </Link>
+            <div className=" flex w-full flex-col">
+              <div className=" w-full rounded-lg bg-white  shadow-card dark:bg-light-dark ">
+                {/*
+                <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
+                  NFT Info
+                </h2>
+                */}
 
-                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
-                      {nftMetadata?.metadata?.name}
-                    </div>
-                  </div>
+                <NftInfo nftMetadata={nftMetadata} />
 
-                  <div className="mr-5 mt-2 flex flex-row items-center justify-between ">
-                    <button
-                      className=" flex flex-row items-center justify-start  "
-                      onClick={() =>
-                        router.push(
-                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
-                        )
-                      }
-                    >
-                      <Image
-                        src="/images/logo-polygon.png"
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
-
-                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        #{nftMetadata?.metadata?.id}
-                      </span>
-                    </button>
-
-                    <button
-                      className="ml-10 flex flex-row items-center justify-start "
-                      onClick={() => openModal('SHARE_VIEW')}
-                    >
-                      {/*
-                      <Image
-                        src={"/images/logo-polygon.png"}
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
-                      */}
-                      <Twitter className="h-5 w-5" />
-
-                      <span className="text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        Share
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* owned by */}
-                  <div className="mt-10 flex w-full items-center justify-start  gap-4 ">
-                    {isLoadingStakerAddress ? (
-                      <div className="text-sm font-bold xl:text-lg">
-                        <b>Loading Owner...</b>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="flex w-[140px] items-center justify-start text-sm tracking-wider text-[#6B7280] ">
-                          Owned by
-                        </div>
-                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                          {stakerAddress &&
-                          stakerAddress ===
-                            '0x0000000000000000000000000000000000000000' ? (
-                            <>
-                              {nftMetadata?.owner === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(
-                                      `/user-asset/${nftMetadata?.owner}`
-                                    )
-                                  }
-                                >
-                                  <span>
-                                    {nftMetadata?.owner?.substring(0, 10)}...
-                                  </span>
-                                  {/*
-                                {stakeInfoCount && stakeInfoCount > 1 && (
-                                  <span className="text-xs text-gray-400">
-                                    +{stakeInfoCount - 1}
-                                  </span>
-                                )}
-                                */}
-                                </button>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              {stakerAddress && stakerAddress === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(`/user-asset/${stakerAddress}`)
-                                  }
-                                >
-                                  <span>
-                                    {stakerAddress?.substring(0, 10)}...
-                                  </span>
-                                  Registered
-                                  {/*stakeInfoCount && stakeInfoCount > 1 && (
-                                  <span className="text-xs text-gray-400">
-                                    +{stakeInfoCount - 1}
-                                  </span>
-                                )*/}
-                                </button>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
+                {/*
+                <div>
+                  <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
+                  <CoinConverter />
                 </div>
+                */}
 
-                <div className="mt-10 w-full rounded-lg bg-white  shadow-card dark:bg-light-dark ">
-                  {/*
-                  <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-                    NFT Info
+                {/*
+                <div className="px-8 pb-10">
+                  <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
+                    Top Coins
                   </h2>
-                  */}
-
-                  <NftInfo nftMetadata={nftMetadata} />
-
-                  {/*
-                  <div>
-                    <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
-                    <CoinConverter />
-                  </div>
-                  */}
-
-                  {/*
-                  <div className="px-8 pb-10">
-                    <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-                      Top Coins
-                    </h2>
-                    <TopCoin />
-                  </div>
-                  */}
+                  <TopCoin />
                 </div>
+                */}
               </div>
-            )}
+            </div>
           </div>
 
           <div className="mt-0">
