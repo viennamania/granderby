@@ -462,7 +462,7 @@ export default function GameHistoryTable(
   const getLast20 = async () => {
     ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
 
-    const response = await fetch('/api/nft/user/history/transfer', {
+    const response = await fetch('/api/nft/user/history/game', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
