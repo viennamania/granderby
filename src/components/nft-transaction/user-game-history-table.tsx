@@ -352,8 +352,8 @@ const COLUMNS = [
         {value}
       </div>
     ),
-    minWidth: 150,
-    maxWidth: 150,
+    minWidth: 250,
+    maxWidth: 250,
   },
 
   /*
@@ -507,14 +507,20 @@ export default function GameHistoryTable(
         logs4Address: transfer.logs4Address,
 
         category:
-          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
-            ? 'Registered'
-            : transfer.tokenFrom ===
-              stakingContractAddressHorseAAA.toLowerCase()
-            ? 'Unregistered'
-            : transfer.tokenFrom === address?.toLowerCase()
-            ? 'Send to ' + transfer.tokenTo?.substring(0, 6) + '...'
-            : 'Receive from ' + transfer.tokenFrom?.substring(0, 6) + '...',
+          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase() ? (
+            'Registered'
+          ) : transfer.tokenFrom ===
+            stakingContractAddressHorseAAA.toLowerCase() ? (
+            'Unregistered'
+          ) : transfer.tokenFrom === address?.toLowerCase() ? (
+            'Send to ' + transfer.tokenTo?.substring(0, 6) + '...'
+          ) : (
+            //'Receive from ' + transfer.tokenFrom?.substring(0, 6) + '...',
+            <div className="flex items-center justify-start">
+              Received from&nbsp;
+              {transfer.tokenFrom?.substring(0, 6) + '...'}
+            </div>
+          ),
       };
 
       //console.log('transactionData: ', transactionData);
