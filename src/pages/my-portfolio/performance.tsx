@@ -32,7 +32,7 @@ import Search from '@/components/search/search-portfolio';
 import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
-import PortfolioScreen from '@/components/screens/portfolio-screen';
+import PerformanceScreen from '@/components/screens/performance-screen';
 
 import { useState } from 'react';
 
@@ -70,7 +70,7 @@ const PortfolioPage: NextPageWithLayout<
 
   return (
     <>
-      <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
+      <NextSeo title="Performance" description="Granderby - Web3 NFT Game" />
 
       {/*
       <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
@@ -86,61 +86,19 @@ const PortfolioPage: NextPageWithLayout<
       */}
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <h1 className="text-2x xl:text-4xl">Portfolio</h1>
+        <h1 className="text-2x xl:text-4xl">Performance</h1>
 
         {!address ? (
           <></>
         ) : (
-          <div className="mt-5 flex flex-col items-start justify-center">
-            {/*
-            <div className="mb-5 mt-5 flex flex-row items-center justify-center gap-3">
-              <span className=" text-sm">{address}</span>
-
-              <div title="Copy Address" onClick={() => handleCopyToClipboard()}>
-                {copyButtonStatus ? (
-                  <Check className="h-auto w-3.5 text-green-500" />
-                ) : (
-                  <Copy className="h-auto w-3.5" />
-                )}
-              </div>
-            </div>
-            */}
-
-            {/*
-            <Canvas
-              text={address}
-              options={{
-                level: 'M',
-                margin: 3,
-                scale: 4,
-                width: 150,
-                color: {
-                  dark: '#010599FF',
-                  light: '#FFBF60FF',
-                },
-              }}
-            />
-            */}
-          </div>
+          <div className="mt-5 flex flex-col items-start justify-center"></div>
         )}
 
         {/*
         <Profile />
-          */}
-
-        {/*
-        <CollapseLivePricing label="Live Pricing">
-          <div className="p-5">
-            <LiveNftPricingSlider limits={2} />
-          </div>
-        </CollapseLivePricing>
         */}
 
-        {/*
-        <Search />
-        */}
-
-        <PortfolioScreen />
+        <PerformanceScreen />
       </div>
 
       {/*

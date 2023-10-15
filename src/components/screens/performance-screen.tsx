@@ -289,7 +289,7 @@ const COLUMNS = [
   },
 ];
 
-export default function PortfolioScreen() {
+export default function PerformanceScreen() {
   const address = useAddress();
 
   const router = useRouter();
@@ -557,7 +557,7 @@ export default function PortfolioScreen() {
               </Button>
             </div>
 
-            <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
+            <div className=" flex w-full flex-col gap-5 md:flex-row xl:flex-row">
               <div className=" rounded-lg p-2 shadow-card  md:w-2/3 xl:w-2/3">
                 <PortfolioChart />
               </div>
@@ -813,11 +813,6 @@ export default function PortfolioScreen() {
                 </div>
               </Collapse>
               */}
-          </div>
-
-          <div className=" flex flex-col rounded-lg border p-5">
-            <span className=" text-2xl font-bold">News</span>
-            <GameHistoryTable address={address} />
           </div>
         </div>
       </div>
