@@ -520,20 +520,6 @@ export async function getStaticPaths() {
   return {
     paths: [{ params: { tokenid: '1' } }],
     fallback: true,
-
-    /*
-    paths: [
-      { params: { tokenid: '1' } },
-      { params: { tokenid: '2' } },
-      { params: { tokenid: '3' } },
-      { params: { tokenid: '4' } },
-      { params: { tokenid: '5' } },
-      { params: { tokenid: '6' } },
-      { params: { tokenid: '7' } },
-    ],
-    fallback: true,
-    
-    */
   };
 }
 
@@ -541,19 +527,6 @@ export async function getStaticProps(context: any) {
   ////export const getStaticProps: GetStaticProps = async (context: any) => {
 
   const tokenid: string = context.params?.tokenid;
-
-  /*
-  // If used on the FRONTEND pass your 'clientId'
-  const sdk = new ThirdwebSDK('polygon', {
-    clientId: '79125a56ef0c1629d4863b6df0a43cce',
-  });
-
-  const contract = await sdk.getContract(nftDropContractAddressHorse);
-
-  const nft = await contract.erc721.get(tokenid);
-
-  ///console.log('nft======>', nft);
-  */
 
   const res = await fetch('https://granderby.io/api/nft/horse/' + tokenid, {
     method: 'POST',
@@ -624,39 +597,6 @@ export async function getStaticProps(context: any) {
   };
 }
 
-/*
-export async function getServerSideProps(context:any) {
-  const tokenid: any = context.params?.tokenid;
-
-  console.log("tokenid", tokenid);
-
-  //const tokenid: any = context.query.slug;
-
-  // If used on the FRONTEND pass your 'clientId'
-  const sdk = new ThirdwebSDK('polygon', {
-    clientId: '79125a56ef0c1629d4863b6df0a43cce',
-  });
-
-  const contract = await sdk.getContract(nftDropContractAddressHorse);
-
-  const nft = await contract.erc721.get(tokenid);
-
-  ///console.log('nft======>', nft);
-
-  return {
-    props: {
-      tokenid: tokenid,
-      //////nftMetadata: nft,
-      title: '#' + tokenid + '-' + nft?.metadata?.name,
-      description: nft?.metadata?.description,
-      //image: '/images/logo.png',
-      //image: data?.metadata?.image,
-      image: nft?.metadata?.image,
-    },
-  };
-}
-*/
-
 const AssetSinglePrice: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
@@ -664,30 +604,6 @@ const AssetSinglePrice: NextPageWithLayout<
 
   return (
     <>
-      {/*
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1 maximum-scale=1"
-        />
-        <meta property="og:type" content="website"></meta>
-
-        <meta property="og:site_name" content="GRANDERBY"></meta>
-
-        <meta property="og:image:width" content="1400"></meta>
-        <meta property="og:image:height" content="1400"></meta>
-
-        <meta property="og:title" content={title}></meta>
-        <meta property="og:description" content={description}></meta>
-        <meta property="og:image" content={image}></meta>
-
-        <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:image" content={image}></meta>
-
-        <title>{title}</title>
-      </Head>
-      */}
-
       <SinglePrice tokenid={tokenid} />
     </>
   );

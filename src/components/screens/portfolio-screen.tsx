@@ -122,6 +122,7 @@ import { format } from 'date-fns';
 import { useModal } from '@/components/modal-views/context';
 
 import { Twitter } from '@/components/icons/brands/twitter';
+import { time } from 'console';
 
 const COLUMNS = [
   /*
@@ -132,30 +133,6 @@ const COLUMNS = [
     maxWidth: 40,
   },
   */
-
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
-    accessor: 'hash',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <button
-        className=" flex flex-row items-center justify-start "
-        onClick={() =>
-          //alert("clicked")
-
-          (location.href = 'https://polygonscan.com/tx/' + value)
-        }
-      >
-        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
-
-        <div className="ml-1 text-left text-xs -tracking-[1px]  ">
-          {value.substring(0, 6) + '...'}
-        </div>
-      </button>
-    ),
-    minWidth: 80,
-    maxWidth: 80,
-  },
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Asset</div>,
@@ -195,8 +172,8 @@ const COLUMNS = [
         )}
       </div>
     ),
-    minWidth: 60,
-    maxWidth: 60,
+    minWidth: 70,
+    maxWidth: 70,
   },
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Amount</div>,
@@ -230,8 +207,8 @@ const COLUMNS = [
         )}
       </div>
     ),
-    minWidth: 70,
-    maxWidth: 70,
+    minWidth: 60,
+    maxWidth: 60,
   },
 
   /*
@@ -285,6 +262,30 @@ const COLUMNS = [
     ),
     minWidth: 120,
     maxWidth: 120,
+  },
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
+    accessor: 'hash',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <button
+        className=" flex flex-row items-center justify-start "
+        onClick={() =>
+          //alert("clicked")
+
+          (location.href = 'https://polygonscan.com/tx/' + value)
+        }
+      >
+        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
+
+        <div className="ml-1 text-left text-xs -tracking-[1px]  ">
+          {value.substring(0, 6) + '...'}
+        </div>
+      </button>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
   },
 ];
 
@@ -494,17 +495,21 @@ export default function PortfolioScreen() {
 
       setTransfers(transactions);
 
-      console.log('getLatest transfers: ', transfers);
+      //console.log('getLatest transfers: ', transfers);
     };
 
     getLatest();
+
+    setInterval(() => {
+      ///getLatest();
+    }, 10000);
   }, [address]);
 
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
-      <div className="mb-20 flex flex-wrap items-center justify-center">
+      <div className=" flex flex-wrap items-center justify-center">
         {/*
         <div className="  mt-3 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
         */}
@@ -513,11 +518,13 @@ export default function PortfolioScreen() {
           <AssetSlider coins={assetSlideData} />
           */}
 
+        {/*
         {address ? (
           <div className=" flex flex-col rounded-lg border"></div>
         ) : (
           <> </>
         )}
+        */}
 
         {/*
         <div className="mt-10 flex w-full flex-col rounded-lg border">
@@ -534,14 +541,23 @@ export default function PortfolioScreen() {
         </div>
             */}
 
-        <div className="mt-10 flex w-full flex-col">
-          <span className="m-5 text-2xl font-bold">Performance</span>
+        <div className="mt-2 flex w-full flex-col">
+          <span className="m-2 text-2xl font-bold">Performance</span>
+          <div className=" flex w-full flex-col gap-5 md:flex-row xl:flex-row">
+            <div className=" rounded-lg p-2 shadow-card  md:w-2/3 xl:w-2/3">
+              <PortfolioChart />
+            </div>
 
-          <div className="mt-10 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-2 ">
-            <PortfolioChart />
-
-            <div className="rounded-lg  p-2 shadow-card">
-              <span className="text-xl font-bold">Transfers</span>
+            <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-2/3">
+              <div className="flex flex-row items-start justify-center gap-5">
+                <span className="text-xl font-bold">Transfers</span>
+                <AnchorLink href="/my-portfolio/transfer">
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <span className="text-lg font-bold">View All</span>
+                    <LongArrowRight className="h-5 w-5" />
+                  </div>
+                </AnchorLink>
+              </div>
 
               <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
                 <Scrollbar
