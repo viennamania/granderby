@@ -256,12 +256,14 @@ export const TransactionData = [
 */
 
 const COLUMNS = [
+  /*
   {
     Header: 'Action',
     accessor: 'action',
     minWidth: 100,
     maxWidth: 100,
   },
+  */
 
   /*
   {
@@ -289,6 +291,7 @@ const COLUMNS = [
   },
   */
 
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Item</div>,
     accessor: 'asset',
@@ -342,9 +345,10 @@ const COLUMNS = [
     minWidth: 80,
     maxWidth: 80,
   },
+  */
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Contents</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Messages</div>,
     accessor: 'category',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
@@ -508,45 +512,184 @@ export default function GameHistoryTable(
 
         category:
           transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase() ? (
-            'Registered'
+            <div className="flex items-center justify-start gap-2">
+              {transfer.asset === 'GRANDERBY' && (
+                <Image
+                  src="/images/shop/horse.png"
+                  alt="horse"
+                  width={18}
+                  height={18}
+                />
+              )}
+              <span className="text-xl font-bold text-black">
+                #{transfer.tokenId}
+              </span>
+              <span className="text-xs">Registered</span>
+            </div>
           ) : transfer.tokenFrom ===
             stakingContractAddressHorseAAA.toLowerCase() ? (
-            'Unregistered'
-          ) : transfer.tokenFrom === address?.toLowerCase() ? (
-            'Send to ' + transfer.tokenTo?.substring(0, 6) + '...'
-          ) : transfer.category === 'erc20' ? (
-            //'Receive from ' + transfer.tokenFrom?.substring(0, 6) + '...',
-            <div className="flex items-center justify-start">
-              Received from&nbsp;
-              {transfer.tokenFrom?.substring(0, 6) + '...'}
-              {transfer.asset === 'GRD' && (
+            //'Unregistered'
+
+            <div className="flex items-center justify-start gap-2">
+              {transfer.asset === 'GRANDERBY' && (
                 <Image
-                  src="/images/shop/icon-grd.png"
-                  alt="gd"
+                  src="/images/shop/horse.png"
+                  alt="horse"
                   width={18}
                   height={18}
                 />
+              )}
+              <span className="text-xl font-bold text-black">
+                #{transfer.tokenId}
+              </span>
+              <span className="text-xs">Unregistered</span>
+            </div>
+          ) : transfer.tokenFrom === address?.toLowerCase() ? (
+            <div className="flex items-center justify-start">
+              {transfer.asset === 'GRD' && (
+                <div className="flex items-center justify-start gap-2">
+                  <Image
+                    src="/images/shop/icon-grd.png"
+                    alt="gd"
+                    width={18}
+                    height={18}
+                  />
+                  <span className="text-xs">Send to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
+                  <span className="text-xl font-bold text-black">
+                    {Number(transfer.value).toFixed(2)}
+                  </span>
+                </div>
               )}
               {transfer.asset === 'CARROT' && (
-                <Image
-                  src="/images/shop/icon-carrot.png"
-                  alt="gd"
-                  width={18}
-                  height={18}
-                />
+                <div className="flex items-center justify-start gap-2">
+                  <Image
+                    src="/images/shop/icon-carrot.png"
+                    alt="gd"
+                    width={18}
+                    height={18}
+                  />
+                  <span className="text-xs">Send to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
+                  <span className="text-xl font-bold text-black">
+                    {Number(transfer.value).toFixed(2)}
+                  </span>
+                </div>
               )}
               {transfer.asset === 'SUGAR' && (
-                <Image
-                  src="/images/shop/icon-sugar.png"
-                  alt="gd"
-                  width={18}
-                  height={18}
-                />
+                <div className="flex items-center justify-start gap-2">
+                  <Image
+                    src="/images/shop/icon-sugar.png"
+                    alt="gd"
+                    width={18}
+                    height={18}
+                  />
+                  <span className="text-xs">Send to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
+
+                  <span className="text-xl font-bold text-black">
+                    {Number(transfer.value).toFixed(2)}
+                  </span>
+                </div>
+              )}
+            </div>
+          ) : transfer.category === 'erc20' ? (
+            <div className="flex items-center justify-start">
+              {transfer.tokenFrom ===
+              '0x0000000000000000000000000000000000000000' ? (
+                <div className="flex items-center justify-start">
+                  {transfer.asset === 'GRD' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-grd.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+
+                      <span className="text-xs">Drops</span>
+
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                  {transfer.asset === 'CARROT' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-carrot.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+                      <span className="text-xs">Drops</span>
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                  {transfer.asset === 'SUGAR' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-sugar.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+                      <span className="text-xs">Drops</span>
+
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center justify-start">
+                  Received from&nbsp;
+                  {transfer.tokenFrom?.substring(0, 6) + '...'}
+                  {transfer.asset === 'GRD' && (
+                    <Image
+                      src="/images/shop/icon-grd.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
+                  )}
+                  {transfer.asset === 'CARROT' && (
+                    <Image
+                      src="/images/shop/icon-carrot.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
+                  )}
+                  {transfer.asset === 'SUGAR' && (
+                    <Image
+                      src="/images/shop/icon-sugar.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
+                  )}
+                </div>
               )}
             </div>
           ) : transfer.category === 'erc721' ? (
-            <div className="flex items-center justify-start">
-              Receive from&nbsp;{transfer.tokenFrom?.substring(0, 6) + '...'}
+            <div className="flex items-center justify-start gap-2">
+              {transfer.asset === 'GRANDERBY' && (
+                <Image
+                  src="/images/shop/horse.png"
+                  alt="horse"
+                  width={18}
+                  height={18}
+                />
+              )}
+              <span className="text-xl font-bold text-black">
+                #{transfer.tokenId}
+              </span>
+              <span className="text-xs">Received from</span>
+              <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
             </div>
           ) : (
             ''
