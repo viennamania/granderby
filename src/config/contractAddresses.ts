@@ -130,4 +130,4 @@ export const tokenContractAddressHV =
   '0x83491d67EAaCD25C0cC237008C2bB0e6b38e7b1B';
 
 export const tokenContractAddressSTEC =
-  '0x2de9c870cb023eAe35f46D266dA4916e0308E256';
+  '0x96451Ce84a33dFCAAd776c99308fABe27e0b183B';
