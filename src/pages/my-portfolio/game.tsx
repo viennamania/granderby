@@ -274,7 +274,7 @@ const PortfolioPage: NextPageWithLayout<
       // @ts-ignore
       columns,
       data: games,
-      initialState: { pageSize: 10 },
+      initialState: { pageSize: 30 },
     },
     useSortBy,
     useResizeColumns,
@@ -362,7 +362,7 @@ const PortfolioPage: NextPageWithLayout<
       <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <h1 className="text-2xl xl:text-4xl">Game</h1>
+        <h1 className="text-2xl xl:text-4xl">Game Messages</h1>
 
         {!address ? (
           <></>

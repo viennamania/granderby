@@ -192,23 +192,9 @@ const COLUMNS = [
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Type</div>,
-    accessor: 'transactionType',
+    accessor: 'category',
     // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="ltext-left">
-        {value === 'Send' ? (
-          <div className="-tracking-[1px] ">
-            <LongArrowRight className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-orange-600  dark:text-gray-400">{value}</span>
-          </div>
-        ) : (
-          <div className="-tracking-[1px]">
-            <LongArrowLeft className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-green-600 dark:text-gray-400">{value}</span>
-          </div>
-        )}
-      </div>
-    ),
+    Cell: ({ cell: { value } }) => <div className="ltext-left">{value}</div>,
     minWidth: 60,
     maxWidth: 60,
   },
@@ -486,6 +472,9 @@ export default function PortfolioScreen() {
             ? 'Unregister'
             : transfer.tokenFrom === address?.toLowerCase()
             ? 'Send'
+            : transfer.tokenFrom ===
+              '0x0000000000000000000000000000000000000000'.toLowerCase()
+            ? 'Mint'
             : 'Receive',
       };
 

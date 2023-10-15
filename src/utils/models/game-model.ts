@@ -174,17 +174,19 @@ export const getTransferHistoryByHolder = async (
   return await HorseTransferModel.find({
     $and: [
       {
-        //tokenFrom: address
-
-        // tokenFrom <> tokenTo
         $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
       },
       {
-        $expr: { $ne: ['$tokenTo', ''] },
+        $expr: {
+          $ne: [
+            '$tokenTo',
+            '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
+          ],
+        },
       },
-      {
-        $expr: { $ne: ['$tokenFrom', ''] },
-      },
+      //{
+      //  $expr: { $ne: ['$tokenFrom', ''] },
+      //},
       {
         $or: [
           { tokenFrom: address },
@@ -220,6 +222,17 @@ export const getFtTransferHistoryByHolder = async (
     $and: [
       {
         category: 'erc20',
+      },
+      //{
+      //  $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+      //},
+      {
+        $expr: {
+          $ne: [
+            '$tokenTo',
+            '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
+          ],
+        },
       },
       {
         $or: [

@@ -234,6 +234,60 @@ export default function Sale({ ...props }) {
     quantityPackage,
   ]);
 
+  const priceToMint2 = useMemo(() => {
+    const quantity = quantityPackage[2];
+
+    if (quantity) {
+      const bnPrice = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      /*
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+        */
+
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} GRD`;
+    }
+  }, [
+    activeClaimCondition.data?.currencyMetadata.decimals,
+    activeClaimCondition.data?.currencyMetadata.symbol,
+    activeClaimCondition.data?.currencyMetadata.value,
+    quantityPackage,
+  ]);
+
+  const priceToMint3 = useMemo(() => {
+    const quantity = quantityPackage[3];
+
+    if (quantity) {
+      const bnPrice = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      /*
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+        */
+
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} GRD`;
+    }
+  }, [
+    activeClaimCondition.data?.currencyMetadata.decimals,
+    activeClaimCondition.data?.currencyMetadata.symbol,
+    activeClaimCondition.data?.currencyMetadata.value,
+    quantityPackage,
+  ]);
+
   const maxClaimable = useMemo(() => {
     let bnMaxClaimable;
     try {
@@ -447,6 +501,84 @@ export default function Sale({ ...props }) {
     quantityPackage,
   ]);
 
+  const buttonTextPackage2 = useMemo(() => {
+    if (isSoldOut) {
+      return 'Sold Out';
+    }
+
+    if (canClaim) {
+      const pricePerToken = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      if (pricePerToken.eq(0)) {
+        return 'Pay (Free)';
+      }
+
+      return `Pay (${priceToMint2})`;
+    }
+
+    if (claimIneligibilityReasons.data?.length) {
+      return parseIneligibility(
+        claimIneligibilityReasons.data,
+        quantityPackage[2]
+      );
+    }
+
+    if (buttonLoading) {
+      return 'Checking eligibility...';
+    }
+
+    return 'Claiming not available';
+  }, [
+    isSoldOut,
+    canClaim,
+    claimIneligibilityReasons.data,
+    buttonLoading,
+    activeClaimCondition.data?.currencyMetadata.value,
+    priceToMint2,
+    quantityPackage,
+  ]);
+
+  const buttonTextPackage3 = useMemo(() => {
+    if (isSoldOut) {
+      return 'Sold Out';
+    }
+
+    if (canClaim) {
+      const pricePerToken = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      if (pricePerToken.eq(0)) {
+        return 'Pay (Free)';
+      }
+
+      return `Pay (${priceToMint3})`;
+    }
+
+    if (claimIneligibilityReasons.data?.length) {
+      return parseIneligibility(
+        claimIneligibilityReasons.data,
+        quantityPackage[3]
+      );
+    }
+
+    if (buttonLoading) {
+      return 'Checking eligibility...';
+    }
+
+    return 'Claiming not available';
+  }, [
+    isSoldOut,
+    canClaim,
+    claimIneligibilityReasons.data,
+    buttonLoading,
+    activeClaimCondition.data?.currencyMetadata.value,
+    priceToMint3,
+    quantityPackage,
+  ]);
+
   /*
 const address = "0x6CdA16E0fA6E6b8e957Db2cb5936AfA3A69A29FE"; // address of the wallet you want to claim the NFTs
 const quantity = 42.69; // how many tokens you want to claim
@@ -519,15 +651,25 @@ const receipt = tx.receipt; // the transaction receipt
       className="relative z-50 mx-auto h-[600px] w-[540px] max-w-full rounded-lg bg-white px-6 py-6 dark:bg-light-dark"
       {...props}
     >
+      {/*
       {data && (
         <h3 className="mb-5 text-lg font-medium ltr:text-left rtl:text-right">
           {data?.title} ({data?.count})
         </h3>
       )}
+        */}
 
-      <Scrollbar style={{ height: 'calc(100% - 60px)' }}>
+      <Scrollbar style={{ height: 'calc(100% - 30px)' }}>
         <div className="ltr:pr-2 rtl:pl-2">
-          <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-black pb-5 pt-5 text-white">
+          <div className=" mt-5 flex flex-row items-center justify-center gap-3 rounded-lg bg-black pb-5 pt-5 text-white">
+            <Image
+              src="/images/icon-carrot.png"
+              alt={tokenBalanceCARROT?.symbol!}
+              width={50}
+              height={50}
+              style={{ objectFit: 'contain' }}
+            />
+
             <div className="text-2xl font-bold">
               Buy {tokenBalanceCARROT?.symbol}
             </div>
@@ -540,18 +682,11 @@ const receipt = tx.receipt; // the transaction receipt
               </h3>
 
               <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-                <Image
-                  src="/images/icon-carrot.png"
-                  alt={tokenBalanceCARROT?.symbol!}
-                  width={50}
-                  height={50}
-                  style={{ objectFit: 'contain' }}
-                />
                 <b>
                   {tokenBalanceCARROT === undefined ? (
                     <>Loading...</>
                   ) : (
-                    <div className="text-6xl font-bold">
+                    <div className="text-2xl font-bold xl:text-4xl">
                       {Number(tokenBalanceCARROT?.displayValue).toFixed(2)}
                     </div>
                   )}
@@ -692,6 +827,62 @@ const receipt = tx.receipt; // the transaction receipt
                       }
                     >
                       {buttonTextPackage1}
+                    </Web3Button>
+                  )}
+                </div>
+              </div>
+
+              <div className="mt-10 flex flex-row items-center justify-center gap-10">
+                <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
+                  <Image
+                    src="/images/shop/500carrots.png"
+                    alt="500 Carrots"
+                    width={100}
+                    height={100}
+                    style={{ objectFit: 'contain' }}
+                  />
+                  x{quantityPackage[2]}
+                  {address && (
+                    <Web3Button
+                      theme="light"
+                      contractAddress={tokenContractAddressCARROTDrop}
+                      action={(contract) =>
+                        contract.erc20.claimTo(address, quantityPackage[2])
+                      }
+                      onSuccess={() => alert(`🌊 Successfully payed!`)}
+                      onError={(err) =>
+                        //alert(err)
+                        console.log(err)
+                      }
+                    >
+                      {buttonTextPackage2}
+                    </Web3Button>
+                  )}
+                </div>
+
+                <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
+                  <Image
+                    src="/images/shop/1000carrots.png"
+                    alt="1000 Carrots"
+                    width={100}
+                    height={100}
+                    style={{ objectFit: 'contain' }}
+                  />
+                  x{quantityPackage[3]}
+                  {address && (
+                    <Web3Button
+                      theme="light"
+                      contractAddress={tokenContractAddressCARROTDrop}
+                      action={(contract) =>
+                        contract.erc20.claimTo(address, quantityPackage[3])
+                      }
+                      onSuccess={() => alert(`🌊 Successfully payed!`)}
+                      onError={(err) =>
+                        //alert(err)
+                        console.log(err)
+                      }
+                    >
+                      {buttonTextPackage3}
                     </Web3Button>
                   )}
                 </div>
