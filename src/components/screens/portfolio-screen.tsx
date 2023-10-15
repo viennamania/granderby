@@ -495,14 +495,14 @@ export default function PortfolioScreen() {
 
       setTransfers(transactions);
 
-      //console.log('getLatest transfers: ', transfers);
+      console.log('getLatest transfers: ', transactions);
     };
 
     getLatest();
 
-    setInterval(() => {
-      ///getLatest();
-    }, 10000);
+    //setInterval(() => {
+    ///getLatest();
+    //}, 10000);
   }, [address]);
 
   return (
@@ -541,104 +541,109 @@ export default function PortfolioScreen() {
         </div>
             */}
 
-        <div className="mt-2 flex w-full flex-col">
-          <span className="m-2 text-2xl font-bold">Performance</span>
-          <div className=" flex w-full flex-col gap-5 md:flex-row xl:flex-row">
-            <div className=" rounded-lg p-2 shadow-card  md:w-2/3 xl:w-2/3">
-              <PortfolioChart />
-            </div>
-
-            <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-2/3">
-              <div className="flex flex-row items-start justify-center gap-5">
-                <span className="text-xl font-bold">Transfers</span>
-                <AnchorLink href="/my-portfolio/transfer">
-                  <div className="flex flex-row items-center justify-center gap-2">
-                    <span className="text-lg font-bold">View All</span>
-                    <LongArrowRight className="h-5 w-5" />
-                  </div>
-                </AnchorLink>
+        <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
+          <div className=" flex w-full flex-col">
+            <span className=" text-2xl font-bold">Performance</span>
+            <div className=" flex w-full flex-col gap-5 md:flex-row xl:flex-row">
+              <div className=" rounded-lg p-2 shadow-card  md:w-2/3 xl:w-2/3">
+                <PortfolioChart />
               </div>
 
-              <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
-                <Scrollbar
-                  style={{ width: '100%' }}
-                  autoHide="never"
-                  className=""
-                >
-                  <div className="px-0.5">
-                    <table
-                      {...getTableProps()}
-                      className="transaction-table w-full border-separate border-0"
-                    >
-                      <thead className="text-sm text-gray-500 dark:text-gray-300">
-                        {headerGroups.map((headerGroup, idx) => (
-                          <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
-                            {headerGroup.headers.map((column, idx) => (
-                              <th
-                                {...column.getHeaderProps(
-                                  column.getSortByToggleProps()
-                                )}
-                                key={idx}
-                                className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
-                              >
-                                <div className="flex items-center">
-                                  {column.render('Header')}
-                                  {column.canResize && (
-                                    <div
-                                      {...column.getResizerProps()}
-                                      className={`resizer ${
-                                        column.isResizing ? 'isResizing' : ''
-                                      }`}
-                                    />
-                                  )}
-                                  <span className="ltr:ml-1 rtl:mr-1">
-                                    {column.isSorted ? (
-                                      column.isSortedDesc ? (
-                                        <ChevronDown />
-                                      ) : (
-                                        <ChevronDown className="rotate-180" />
-                                      )
-                                    ) : (
-                                      <ChevronDown className="rotate-180 opacity-0 transition group-hover:opacity-50" />
-                                    )}
-                                  </span>
-                                </div>
-                              </th>
-                            ))}
-                          </tr>
-                        ))}
-                      </thead>
-                      <tbody
-                        {...getTableBodyProps()}
-                        className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+              <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-2/3">
+                <div className="flex flex-row items-start justify-center gap-5">
+                  <span className="text-xl font-bold">Transfers</span>
+                  <AnchorLink href="/my-portfolio/transfer">
+                    <div className="flex flex-row items-center justify-center gap-2">
+                      <span className="text-lg font-bold">View All</span>
+                      <LongArrowRight className="h-5 w-5" />
+                    </div>
+                  </AnchorLink>
+                </div>
+
+                <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
+                  <Scrollbar
+                    style={{ width: '100%' }}
+                    autoHide="never"
+                    className=""
+                  >
+                    <div className="px-0.5">
+                      <table
+                        {...getTableProps()}
+                        className="transaction-table w-full border-separate border-0"
                       >
-                        {page.map((row, idx) => {
-                          prepareRow(row);
-                          return (
+                        <thead className="text-sm text-gray-500 dark:text-gray-300">
+                          {headerGroups.map((headerGroup, idx) => (
                             <tr
-                              {...row.getRowProps()}
+                              {...headerGroup.getHeaderGroupProps()}
                               key={idx}
-                              className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
                             >
-                              {row.cells.map((cell, idx) => {
-                                return (
-                                  <td
-                                    {...cell.getCellProps()}
-                                    key={idx}
-                                    //className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
-                                    className="px-2 py-1 tracking-[1px] "
-                                  >
-                                    {cell.render('Cell')}
-                                  </td>
-                                );
-                              })}
+                              {headerGroup.headers.map((column, idx) => (
+                                <th
+                                  {...column.getHeaderProps(
+                                    column.getSortByToggleProps()
+                                  )}
+                                  key={idx}
+                                  className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                                >
+                                  <div className="flex items-center">
+                                    {column.render('Header')}
+                                    {column.canResize && (
+                                      <div
+                                        {...column.getResizerProps()}
+                                        className={`resizer ${
+                                          column.isResizing ? 'isResizing' : ''
+                                        }`}
+                                      />
+                                    )}
+                                    <span className="ltr:ml-1 rtl:mr-1">
+                                      {column.isSorted ? (
+                                        column.isSortedDesc ? (
+                                          <ChevronDown />
+                                        ) : (
+                                          <ChevronDown className="rotate-180" />
+                                        )
+                                      ) : (
+                                        <ChevronDown className="rotate-180 opacity-0 transition group-hover:opacity-50" />
+                                      )}
+                                    </span>
+                                  </div>
+                                </th>
+                              ))}
                             </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </Scrollbar>
+                          ))}
+                        </thead>
+                        <tbody
+                          {...getTableBodyProps()}
+                          className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+                        >
+                          {page.map((row, idx) => {
+                            prepareRow(row);
+                            return (
+                              <tr
+                                {...row.getRowProps()}
+                                key={idx}
+                                className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                              >
+                                {row.cells.map((cell, idx) => {
+                                  return (
+                                    <td
+                                      {...cell.getCellProps()}
+                                      key={idx}
+                                      //className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                                      className="px-2 py-1 tracking-[1px] "
+                                    >
+                                      {cell.render('Cell')}
+                                    </td>
+                                  );
+                                })}
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </Scrollbar>
+                </div>
               </div>
             </div>
           </div>
