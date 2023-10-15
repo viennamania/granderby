@@ -39,7 +39,7 @@ export default async function handler(
 
     const all = await getFtTransferHistoryByHolder(limit, address);
 
-    //console.log('getAllByTokenId all', all);
+    ///console.log('getFtTransferHistoryByHolder all', all);
 
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
 

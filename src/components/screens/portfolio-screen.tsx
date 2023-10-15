@@ -129,10 +129,11 @@ import { time } from 'console';
 const COLUMNS = [
   /*
   {
-    Header: 'Type',
-    accessor: 'transactionType',
-    minWidth: 30,
-    maxWidth: 40,
+
+    Header: 'Action',
+    accessor: 'action',
+    minWidth: 100,
+    maxWidth: 100,
   },
   */
 
@@ -395,8 +396,6 @@ export default function PortfolioScreen() {
     getJockeysCount();
   }, [address]);
 
-  const limit = 500;
-
   const [transfers, setTransfers] = useState([]);
 
   const columns = useMemo(() => COLUMNS, []);
@@ -427,6 +426,8 @@ export default function PortfolioScreen() {
   );
   const { pageIndex } = state;
 
+  const limit = 5;
+
   const getLatest = async () => {
     ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
 
@@ -447,6 +448,7 @@ export default function PortfolioScreen() {
       //console.log('transfer: ', transfer);
 
       const transactionData = {
+        action: transfer.action,
         hash: transfer.hash,
         id: transfer.blockNum,
         //transactionType: transfer.from === address ? 'Send' : 'Receive',
@@ -479,6 +481,10 @@ export default function PortfolioScreen() {
             : transfer.tokenFrom ===
               '0x0000000000000000000000000000000000000000'.toLowerCase()
             ? 'Mint'
+            : transfer.asset === 'SUGAR' &&
+              transfer.tokenFrom ===
+                '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLocaleLowerCase()
+            ? 'Reward'
             : 'Receive',
       };
 
@@ -487,12 +493,10 @@ export default function PortfolioScreen() {
 
     setTransfers(transactions);
 
-    console.log('getLatest transfers: ', transactions);
+    ///console.log('getLatest transfers: ', transactions);
   };
 
   useEffect(() => {
-    const limit = 5;
-
     getLatest();
 
     //setInterval(() => {
