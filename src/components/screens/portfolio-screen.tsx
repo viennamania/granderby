@@ -107,7 +107,9 @@ import { ChevronDown } from '@/components/icons/chevron-down';
 import { LinkIcon } from '@/components/icons/link-icon';
 
 import { useRouter } from 'next/router';
-import { add } from 'lodash';
+import { add, get } from 'lodash';
+
+import { Refresh } from '@/components/icons/refresh';
 
 import {
   useTable,
@@ -435,68 +437,68 @@ export default function PortfolioScreen() {
   );
   const { pageIndex } = state;
 
+  const getLatest = async () => {
+    ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
+
+    const response = await fetch('/api/ft/user/history/transfer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getLatest',
+        limit: limit,
+        address: address?.toLowerCase(),
+      }),
+    });
+    const data = await response.json();
+
+    const transactions = [] as any;
+
+    data.all?.map((transfer: any, index: number) => {
+      //console.log('transfer: ', transfer);
+
+      const transactionData = {
+        hash: transfer.hash,
+        id: transfer.blockNum,
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+
+        transactionType:
+          transfer.tokenFrom === address?.toLowerCase() ? 'Send' : 'Receive',
+
+        createdAt: transfer.blockTimestamp,
+
+        tokenFrom: transfer.tokenFrom,
+        tokenTo: transfer.tokenTo,
+
+        asset: transfer.asset,
+
+        tokenId: transfer.tokenId,
+        amount:
+          transfer.category === 'erc20'
+            ? Number(transfer.value).toFixed(2)
+            : `#` + transfer.tokenId,
+
+        logs4Address: transfer.logs4Address,
+        category:
+          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
+            ? 'Register'
+            : transfer.tokenFrom ===
+              stakingContractAddressHorseAAA.toLowerCase()
+            ? 'Unregister'
+            : transfer.tokenFrom === address?.toLowerCase()
+            ? 'Send'
+            : 'Receive',
+      };
+
+      transactions.push(transactionData);
+    });
+
+    setTransfers(transactions);
+
+    console.log('getLatest transfers: ', transactions);
+  };
+
   useEffect(() => {
     const limit = 5;
-
-    const getLatest = async () => {
-      ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
-
-      const response = await fetch('/api/nft/user/history/transfer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          method: 'getLatest',
-          limit: limit,
-          address: address?.toLowerCase(),
-        }),
-      });
-      const data = await response.json();
-
-      const transactions = [] as any;
-
-      data.all?.map((transfer: any, index: number) => {
-        //console.log('transfer: ', transfer);
-
-        const transactionData = {
-          hash: transfer.hash,
-          id: transfer.blockNum,
-          //transactionType: transfer.from === address ? 'Send' : 'Receive',
-
-          transactionType:
-            transfer.tokenFrom === address?.toLowerCase() ? 'Send' : 'Receive',
-
-          createdAt: transfer.blockTimestamp,
-
-          tokenFrom: transfer.tokenFrom,
-          tokenTo: transfer.tokenTo,
-
-          asset: transfer.asset,
-
-          tokenId: transfer.tokenId,
-          amount:
-            transfer.category === 'erc20'
-              ? Number(transfer.value).toFixed(2)
-              : `#` + transfer.tokenId,
-
-          logs4Address: transfer.logs4Address,
-          category:
-            transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
-              ? 'Register'
-              : transfer.tokenFrom ===
-                stakingContractAddressHorseAAA.toLowerCase()
-              ? 'Unregister'
-              : transfer.tokenFrom === address?.toLowerCase()
-              ? 'Send'
-              : 'Receive',
-        };
-
-        transactions.push(transactionData);
-      });
-
-      setTransfers(transactions);
-
-      console.log('getLatest transfers: ', transactions);
-    };
 
     getLatest();
 
@@ -563,7 +565,25 @@ export default function PortfolioScreen() {
               </div>
 
               <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-1/3">
-                <span className="text-xl font-bold">Transfers</span>
+                <div className="flex flex-row items-center justify-between gap-2">
+                  <span className="text-xl font-bold">Transfers</span>
+                  {/* reload button */}
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      onClick={() => {
+                        getLatest();
+                      }}
+                      title="Reload"
+                      shape="circle"
+                      variant="transparent"
+                      size="small"
+                      className="text-gray-700 dark:text-white"
+                    >
+                      <Refresh className="h-auto w-4 rtl:rotate-180" />
+                    </Button>
+                  </div>
+                </div>
+
                 <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
                   <Scrollbar
                     style={{ width: '100%' }}

@@ -153,6 +153,29 @@ export const getTransferHistoryByHolder = async (
     .limit(100);
 };
 
+export const getFtTransferHistoryByHolder = async (
+  limit: Number,
+  address: String
+): Promise<ITransferHistory[]> => {
+  console.log('getFtTransferHistoryByHolder', address);
+
+  return await HorseTransferModel.find({
+    $and: [
+      {
+        category: 'erc20',
+      },
+      {
+        $or: [
+          { tokenFrom: address.toLowerCase() },
+          { tokenTo: address.toLowerCase() },
+        ],
+      },
+    ],
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(limit as any);
+};
+
 export const getNftTransferHistoryByHolder = async (
   address: String
 ): Promise<ITransferHistory[]> => {
