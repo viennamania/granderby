@@ -836,7 +836,6 @@ export default function PortfolioScreen() {
           </div>
 
           <div className=" flex flex-col rounded-lg border p-5">
-            <span className=" text-2xl font-bold">News</span>
             <GameHistoryTable address={address} />
           </div>
         </div>

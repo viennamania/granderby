@@ -538,6 +538,25 @@ export default function GameHistoryTable(
 
   return (
     <div className="flex w-full flex-col">
+      <div className="flex flex-row items-center justify-between  gap-2">
+        <span className=" text-2xl font-bold">News</span>
+        {/* reload button */}
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            onClick={() => {
+              getLast20();
+            }}
+            title="Reload"
+            shape="circle"
+            variant="transparent"
+            size="small"
+            className="text-gray-700 dark:text-white"
+          >
+            <Refresh className="h-auto w-4 rtl:rotate-180" />
+          </Button>
+        </div>
+      </div>
+
       <div className="flex flex-row items-center justify-start gap-2">
         {/* reload button */}
         {/*
@@ -576,122 +595,124 @@ export default function GameHistoryTable(
       </div>
       */}
 
-      <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
-        {/*
-        <div className="m-3 flex flex-row items-center justify-start gap-2 ">
-          <span className="text-sm">Total Transfers</span>
-          <span className="text-4xl font-bold text-green-600 xl:text-6xl">
-            {totlaCount}
-          </span>
-        </div>
-        */}
+      <div className="mt-3 flex flex-col rounded-lg border p-5">
+        <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
+          {/*
+          <div className="m-3 flex flex-row items-center justify-start gap-2 ">
+            <span className="text-sm">Total Transfers</span>
+            <span className="text-4xl font-bold text-green-600 xl:text-6xl">
+              {totlaCount}
+            </span>
+          </div>
+          */}
 
-        <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
-          <div className="px-0.5">
-            <table
-              {...getTableProps()}
-              className="transaction-table w-full border-separate border-0"
-            >
-              <thead className="text-sm text-gray-500 dark:text-gray-300">
-                {headerGroups.map((headerGroup, idx) => (
-                  <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
-                    {headerGroup.headers.map((column, idx) => (
-                      <th
-                        {...column.getHeaderProps(
-                          column.getSortByToggleProps()
-                        )}
-                        key={idx}
-                        className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
-                      >
-                        <div className="flex items-center">
-                          {column.render('Header')}
-                          {column.canResize && (
-                            <div
-                              {...column.getResizerProps()}
-                              className={`resizer ${
-                                column.isResizing ? 'isResizing' : ''
-                              }`}
-                            />
-                          )}
-                          <span className="ltr:ml-1 rtl:mr-1">
-                            {column.isSorted ? (
-                              column.isSortedDesc ? (
-                                <ChevronDown />
-                              ) : (
-                                <ChevronDown className="rotate-180" />
-                              )
-                            ) : (
-                              <ChevronDown className="rotate-180 opacity-0 transition group-hover:opacity-50" />
-                            )}
-                          </span>
-                        </div>
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-              <tbody
-                {...getTableBodyProps()}
-                className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+          <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
+            <div className="px-0.5">
+              <table
+                {...getTableProps()}
+                className="transaction-table w-full border-separate border-0"
               >
-                {page.map((row, idx) => {
-                  prepareRow(row);
-                  return (
-                    <tr
-                      {...row.getRowProps()}
-                      key={idx}
-                      className="mb-1 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
-                    >
-                      {row.cells.map((cell, idx) => {
-                        return (
-                          <td
-                            {...cell.getCellProps()}
-                            key={idx}
-                            className="px-2 py-2 tracking-[1px] "
-                          >
-                            {cell.render('Cell')}
-                          </td>
-                        );
-                      })}
+                <thead className="text-sm text-gray-500 dark:text-gray-300">
+                  {headerGroups.map((headerGroup, idx) => (
+                    <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
+                      {headerGroup.headers.map((column, idx) => (
+                        <th
+                          {...column.getHeaderProps(
+                            column.getSortByToggleProps()
+                          )}
+                          key={idx}
+                          className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                        >
+                          <div className="flex items-center">
+                            {column.render('Header')}
+                            {column.canResize && (
+                              <div
+                                {...column.getResizerProps()}
+                                className={`resizer ${
+                                  column.isResizing ? 'isResizing' : ''
+                                }`}
+                              />
+                            )}
+                            <span className="ltr:ml-1 rtl:mr-1">
+                              {column.isSorted ? (
+                                column.isSortedDesc ? (
+                                  <ChevronDown />
+                                ) : (
+                                  <ChevronDown className="rotate-180" />
+                                )
+                              ) : (
+                                <ChevronDown className="rotate-180 opacity-0 transition group-hover:opacity-50" />
+                              )}
+                            </span>
+                          </div>
+                        </th>
+                      ))}
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </Scrollbar>
-      </div>
+                  ))}
+                </thead>
+                <tbody
+                  {...getTableBodyProps()}
+                  className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+                >
+                  {page.map((row, idx) => {
+                    prepareRow(row);
+                    return (
+                      <tr
+                        {...row.getRowProps()}
+                        key={idx}
+                        className="mb-1 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                      >
+                        {row.cells.map((cell, idx) => {
+                          return (
+                            <td
+                              {...cell.getCellProps()}
+                              key={idx}
+                              className="px-2 py-2 tracking-[1px] "
+                            >
+                              {cell.render('Cell')}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </Scrollbar>
+        </div>
 
-      <div className="mt-3 flex items-center justify-center rounded-lg bg-white px-5 py-4 text-sm shadow-card dark:bg-light-dark lg:py-6">
-        <div className="flex items-center gap-5">
-          <Button
-            onClick={() => previousPage()}
-            disabled={!canPreviousPage}
-            title="Previous"
-            shape="circle"
-            variant="transparent"
-            size="small"
-            className="text-gray-700 disabled:text-gray-400 dark:text-white disabled:dark:text-gray-400"
-          >
-            <LongArrowLeft className="h-auto w-4 rtl:rotate-180" />
-          </Button>
-          <div>
-            Page{' '}
-            <strong className="font-semibold">
-              {pageIndex + 1} of {pageOptions.length}
-            </strong>{' '}
+        <div className="mt-3 flex items-center justify-center rounded-lg bg-white px-5 py-4 text-sm shadow-card dark:bg-light-dark lg:py-6">
+          <div className="flex items-center gap-5">
+            <Button
+              onClick={() => previousPage()}
+              disabled={!canPreviousPage}
+              title="Previous"
+              shape="circle"
+              variant="transparent"
+              size="small"
+              className="text-gray-700 disabled:text-gray-400 dark:text-white disabled:dark:text-gray-400"
+            >
+              <LongArrowLeft className="h-auto w-4 rtl:rotate-180" />
+            </Button>
+            <div>
+              Page{' '}
+              <strong className="font-semibold">
+                {pageIndex + 1} of {pageOptions.length}
+              </strong>{' '}
+            </div>
+            <Button
+              onClick={() => nextPage()}
+              disabled={!canNextPage}
+              title="Next"
+              shape="circle"
+              variant="transparent"
+              size="small"
+              className="text-gray-700 disabled:text-gray-400 dark:text-white disabled:dark:text-gray-400"
+            >
+              <LongArrowRight className="h-auto w-4 rtl:rotate-180 " />
+            </Button>
           </div>
-          <Button
-            onClick={() => nextPage()}
-            disabled={!canNextPage}
-            title="Next"
-            shape="circle"
-            variant="transparent"
-            size="small"
-            className="text-gray-700 disabled:text-gray-400 dark:text-white disabled:dark:text-gray-400"
-          >
-            <LongArrowRight className="h-auto w-4 rtl:rotate-180 " />
-          </Button>
         </div>
       </div>
     </div>
