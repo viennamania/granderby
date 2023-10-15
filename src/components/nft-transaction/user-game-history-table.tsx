@@ -256,14 +256,12 @@ export const TransactionData = [
 */
 
 const COLUMNS = [
-  /*
   {
-    Header: 'Type',
-    accessor: 'transactionType',
-    minWidth: 30,
-    maxWidth: 40,
+    Header: 'Action',
+    accessor: 'action',
+    minWidth: 100,
+    maxWidth: 100,
   },
-  */
 
   /*
   {
@@ -488,6 +486,7 @@ export default function GameHistoryTable(
       //console.log('transfer: ', transfer);
 
       const transactionData = {
+        action: transfer.action,
         hash: transfer.hash,
         id: transfer.blockNum,
         //transactionType: transfer.from === address ? 'Send' : 'Receive',

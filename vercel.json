@@ -21,6 +21,11 @@
         {
             "path": "/api/cronjob-reward",
             "schedule": "* * * * *"
+        },
+
+        {
+            "path": "/api/cronjob-reward-airdrop",
+            "schedule": "* * * * *"
         }
 
 

@@ -172,7 +172,13 @@ export const getTransferHistoryByHolder = async (
   console.log('getTransferHistoryByHolder===', address);
 
   return await HorseTransferModel.find({
-    $or: [{ tokenFrom: address }, { tokenTo: address }],
+    $or: [
+      { tokenFrom: address },
+      { tokenTo: address },
+      { buyer: address },
+      { listingCreator: address },
+      { staker: address },
+    ],
   })
     .sort({ blockTimestamp: -1 })
     .limit(100);
