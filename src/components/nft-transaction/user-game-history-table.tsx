@@ -514,12 +514,42 @@ export default function GameHistoryTable(
             'Unregistered'
           ) : transfer.tokenFrom === address?.toLowerCase() ? (
             'Send to ' + transfer.tokenTo?.substring(0, 6) + '...'
-          ) : (
+          ) : transfer.category === 'erc20' ? (
             //'Receive from ' + transfer.tokenFrom?.substring(0, 6) + '...',
             <div className="flex items-center justify-start">
               Received from&nbsp;
               {transfer.tokenFrom?.substring(0, 6) + '...'}
+              {transfer.asset === 'GRD' && (
+                <Image
+                  src="/images/shop/icon-grd.png"
+                  alt="gd"
+                  width={18}
+                  height={18}
+                />
+              )}
+              {transfer.asset === 'CARROT' && (
+                <Image
+                  src="/images/shop/icon-carrot.png"
+                  alt="gd"
+                  width={18}
+                  height={18}
+                />
+              )}
+              {transfer.asset === 'SUGAR' && (
+                <Image
+                  src="/images/shop/icon-sugar.png"
+                  alt="gd"
+                  width={18}
+                  height={18}
+                />
+              )}
             </div>
+          ) : transfer.category === 'erc721' ? (
+            <div className="flex items-center justify-start">
+              Receive from&nbsp;{transfer.tokenFrom?.substring(0, 6) + '...'}
+            </div>
+          ) : (
+            ''
           ),
       };
 

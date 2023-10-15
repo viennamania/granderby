@@ -462,20 +462,6 @@ export async function getStaticPaths() {
   return {
     paths: [{ params: { tokenid: '1' } }],
     fallback: true,
-
-    /*
-    paths: [
-      { params: { tokenid: '1' } },
-      { params: { tokenid: '2' } },
-      { params: { tokenid: '3' } },
-      { params: { tokenid: '4' } },
-      { params: { tokenid: '5' } },
-      { params: { tokenid: '6' } },
-      { params: { tokenid: '7' } },
-    ],
-    fallback: true,
-    
-    */
   };
 }
 
