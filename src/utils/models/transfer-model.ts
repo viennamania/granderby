@@ -166,8 +166,8 @@ export const getFtTransferHistoryByHolder = async (
       },
       {
         $or: [
-          { tokenFrom: address.toLowerCase() },
-          { tokenTo: address.toLowerCase() },
+          { tokenFrom: address?.toLowerCase() },
+          { tokenTo: address?.toLowerCase() },
         ],
       },
     ],

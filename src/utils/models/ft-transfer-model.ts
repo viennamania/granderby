@@ -125,8 +125,8 @@ export const getTransferHistoryByHolder = async (
       },
       {
         $or: [
-          { tokenFrom: address.toLowerCase() },
-          { tokenTo: address.toLowerCase() },
+          { tokenFrom: address?.toLowerCase() },
+          { tokenTo: address?.toLowerCase() },
         ],
       },
     ],

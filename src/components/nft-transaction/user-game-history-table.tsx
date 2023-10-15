@@ -9,6 +9,7 @@ import {
   useSortBy,
   usePagination,
 } from 'react-table';
+
 import Button from '@/components/ui/button';
 import Scrollbar from '@/components/ui/scrollbar';
 import { ChevronDown } from '@/components/icons/chevron-down';
@@ -53,6 +54,7 @@ import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 
 import { HistoryIcon } from '@/components/icons/history';
 import { Refresh } from '@/components/icons/refresh';
+import { InfoIcon } from '@/components/icons/info-icon';
 
 type Price = {
   name: number;
@@ -539,22 +541,34 @@ export default function GameHistoryTable(
   return (
     <div className="flex w-full flex-col">
       <div className="flex flex-row items-center justify-between  gap-2">
-        <span className=" text-2xl font-bold">News</span>
-        {/* reload button */}
-        <div className="flex items-center justify-center gap-2">
-          <Button
-            onClick={() => {
-              getLast20();
-            }}
-            title="Reload"
-            shape="circle"
-            variant="transparent"
-            size="small"
-            className="text-gray-700 dark:text-white"
-          >
-            <Refresh className="h-auto w-4 rtl:rotate-180" />
-          </Button>
+        <div className="flex flex-row gap-2">
+          <span className=" text-2xl font-bold">News</span>
+          {/* reload button */}
+          <div className="flex items-center justify-center gap-2">
+            <Button
+              onClick={() => {
+                getLast20();
+              }}
+              title="Reload"
+              shape="circle"
+              variant="transparent"
+              size="small"
+              className="text-gray-700 dark:text-white"
+            >
+              <Refresh className="h-auto w-4 rtl:rotate-180" />
+            </Button>
+          </div>
         </div>
+
+        <Button
+          className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
+          onClick={() => router.push(`/my-portfolio/game`)}
+        >
+          <span className="flex items-center gap-2">
+            <InfoIcon className="h-3 w-3" />{' '}
+            <span className="text-xs">View All</span>
+          </span>
+        </Button>
       </div>
 
       <div className="flex flex-row items-center justify-start gap-2">

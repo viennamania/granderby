@@ -127,8 +127,7 @@ const HorseTransferSchema = new Schema({
 });
 
 export const HorseTransferModel =
-  models.Gametransfer ||
-  model<ITransferHistory>('Gametransfer', HorseTransferSchema);
+  models.Horsegame || model<ITransferHistory>('Horsegame', HorseTransferSchema);
 
 export const getTransferHistoryByTokenId = async (
   tokenId: String
@@ -170,7 +169,7 @@ export const getTransferHistoryByTokenId = async (
 export const getTransferHistoryByHolder = async (
   address: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByHolder', address);
+  console.log('getTransferHistoryByHolder===', address);
 
   return await HorseTransferModel.find({
     $or: [{ tokenFrom: address }, { tokenTo: address }],
@@ -192,8 +191,8 @@ export const getFtTransferHistoryByHolder = async (
       },
       {
         $or: [
-          { tokenFrom: address.toLowerCase() },
-          { tokenTo: address.toLowerCase() },
+          { tokenFrom: address?.toLowerCase() },
+          { tokenTo: address?.toLowerCase() },
         ],
       },
     ],
@@ -208,17 +207,19 @@ export const getNftTransferHistoryByHolder = async (
   console.log('getTransferHistoryByHolder', address);
 
   return await HorseTransferModel.find({
+    /*
     $and: [
       {
         category: 'erc721',
       },
       {
         $or: [
-          { tokenFrom: address.toLowerCase() },
-          { tokenTo: address.toLowerCase() },
+          { tokenFrom: address?.toLowerCase() },
+          { tokenTo: address?.toLowerCase() },
         ],
       },
     ],
+    */
   })
     .sort({ blockTimestamp: -1 })
     .limit(100);

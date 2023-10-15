@@ -20,7 +20,7 @@ export default async function handler(
 
     //console.log('horse history transfer tokenId', tokenId);
 
-    const all = await getNftTransferHistoryByHolder(address);
+    const all = await getTransferHistoryByHolder(address);
 
     //console.log('getAllByTokenId all', all);
 
