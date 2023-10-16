@@ -32,7 +32,7 @@ import Search from '@/components/search/search-asset-user';
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { userAddress: '' } }],
+    paths: [{ params: { userAddress: '1' } }],
     fallback: true,
   };
 }

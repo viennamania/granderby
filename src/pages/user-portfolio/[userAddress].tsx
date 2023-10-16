@@ -44,7 +44,7 @@ import { useQRCode } from 'next-qrcode';
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { userAddress: '' } }],
+    paths: [{ params: { userAddress: '1' } }],
     fallback: true,
   };
 }
