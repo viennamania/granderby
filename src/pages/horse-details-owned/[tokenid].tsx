@@ -232,6 +232,7 @@ function SinglePrice(tokenid: any) {
 export async function getStaticPaths() {
   return {
     paths: [{ params: { tokenid: '1' } }],
+
     fallback: true,
   };
 }

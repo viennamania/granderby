@@ -219,7 +219,7 @@ export default function UserFeedsNft(
                   //setTokenid(nft.metadata.id.toString()),
                   //setIsOpen(true)
 
-                  router.push('/horse-details-owned/' + nft?.tokenId)
+                  router.push('/horse-details/' + nft?.tokenId)
                 }
                 onMouseOver={() => {
                   //alert("onMouseOver");

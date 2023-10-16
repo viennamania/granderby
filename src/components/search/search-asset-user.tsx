@@ -121,7 +121,7 @@ export default function Search({ userAddress }: { userAddress?: string }) {
         return result.json();
       });
 
-      console.log('getHorses data', data);
+      ///console.log('getHorses data', data);
 
       //searchDataHorse?.nfts.length !== data?.nfts.length &&
 
@@ -217,7 +217,7 @@ export default function Search({ userAddress }: { userAddress?: string }) {
               <OwnedFeedsNft contractAddress={nftDropContractAddressHorse} />
               */}
 
-              <UserFeedsNft searchData={searchDataJockey} />
+              <UserFeedsNft searchData={searchDataHorse} />
             </div>
           </Collapse>
         </div>
