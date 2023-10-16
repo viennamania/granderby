@@ -28,7 +28,7 @@ import { SearchIcon } from '@/components/icons/search';
 
 ///import Search from '@/components/search/search-horse';
 
-import Search from '@/components/search/search-asset';
+import Search from '@/components/search/search-asset-user';
 
 export async function getStaticPaths() {
   return {
@@ -121,7 +121,7 @@ const RentPage: NextPageWithLayout<
         <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
           <div className="text-2xl xl:text-4xl">User NFT</div>
           <div className="text-sm xl:text-lg">
-            User Wallet Address: {userAddress}
+            User Wallet Address: {userAddress.toLowerCase()}
           </div>
 
           {/*
@@ -141,7 +141,7 @@ const RentPage: NextPageWithLayout<
           <Profile />
             */}
 
-          <Search />
+          <Search userAddress={userAddress.toLowerCase()} />
         </div>
 
         {/*
