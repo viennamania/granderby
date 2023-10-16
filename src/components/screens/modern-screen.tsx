@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { NextSeo } from 'next-seo';
 
 import CoinSlider from '@/components/ui/coin-card';
@@ -59,6 +59,8 @@ import {
   stakingContractAddressHorseAAA,
   stakingContractAddressJockey,
   tokenContractAddressGRD,
+  addressAirdropReward,
+  addressRaceReward,
 } from '@/config/contractAddresses';
 
 import { BigNumber, ethers } from 'ethers';
@@ -77,20 +79,194 @@ import CollapseCurrentEvent from '@/components/ui/collapse-current-event';
 
 import CollapsePortfolio from '@/components/ui/collapse-portfolio';
 
-import { useLocalStorage } from '@/lib/hooks/use-local-storage';
-
 import CryptoCurrencyPricingSkeleton from '@/components/ui/skeleton/CryptoCurrencyPricingSkeleton';
 
 import toast from 'react-hot-toast';
 //import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import Button from '@/components/ui/button';
-import AnchorLink from '@/components/ui/links/anchor-link';
-import { InfoIcon } from '@/components/icons/info-icon';
-import { LongArrowRight } from '@/components/icons/long-arrow-right';
-
 import { useRouter } from 'next/router';
+
+import { format } from 'date-fns';
+
+import {
+  useTable,
+  useResizeColumns,
+  useFlexLayout,
+  useSortBy,
+  usePagination,
+} from 'react-table';
+
+import Button from '@/components/ui/button';
+import Scrollbar from '@/components/ui/scrollbar';
+import { ChevronDown } from '@/components/icons/chevron-down';
+import { ArrowRight } from '@/components/icons/arrow-right';
+import { LongArrowRight } from '@/components/icons/long-arrow-right';
+import { LongArrowLeft } from '@/components/icons/long-arrow-left';
+import { LinkIcon } from '@/components/icons/link-icon';
+import { Refresh } from '@/components/icons/refresh';
+import { InfoIcon } from '@/components/icons/info-icon';
+
+import { useDrawer } from '@/components/drawer-views/context';
+
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+
+const COLUMNS = [
+  {
+    Header: 'User',
+    accessor: 'user',
+    minWidth: 100,
+    maxWidth: 100,
+  },
+
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
+    accessor: 'hash',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <button
+        className=" flex flex-row items-center justify-start "
+        onClick={() =>
+          //alert("clicked")
+
+          (location.href = 'https://polygonscan.com/tx/' + value)
+        }
+      >
+        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
+
+        <div className="ml-1 text-left text-xs -tracking-[1px]  ">
+          {value.substring(0, 6) + '...'}
+        </div>
+      </button>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+  */
+
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Item</div>,
+    accessor: 'asset',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-xs font-bold ltr:text-right rtl:text-left xl:text-xs ">
+        {value === 'CARROT' && (
+          <Image
+            src="/images/shop/icon-carrot.png"
+            alt="gd"
+            width={18}
+            height={18}
+          />
+        )}
+        {value === 'SUGAR' && (
+          <Image
+            src="/images/shop/icon-sugar.png"
+            alt="gd"
+            width={18}
+            height={18}
+          />
+        )}
+        {value === 'GRD' && (
+          <Image
+            src="/images/shop/icon-grd.png"
+            alt="gd"
+            width={38}
+            height={38}
+          />
+        )}
+        {value === 'GRANDERBY' && (
+          <Image src="/images/shop/horse.png" alt="gd" width={28} height={28} />
+        )}
+        {value === 'GCOW' && (
+          <Image src="/images/icon-usdc.png" alt="gd" width={18} height={18} />
+        )}
+      </div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">TokenID</div>,
+    accessor: 'amount',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-sm font-bold ltr:text-right rtl:text-left xl:text-xl ">
+        {value}
+      </div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+  */
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Messages</div>,
+    accessor: 'category',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+        {value}
+      </div>
+    ),
+    minWidth: 250,
+    maxWidth: 250,
+  },
+
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">From</div>,
+    accessor: 'tokenFrom',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="flex items-center justify-start">
+        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+        {value == '0x0000000000000000000000000000000000000000'
+          ? 'Drops'
+          : value?.length > 6
+          ? value?.substring(0, 6) + '...'
+          : value}
+      </div>
+    ),
+    minWidth: 90,
+    maxWidth: 90,
+  },
+  */
+
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">To/From</div>,
+    accessor: 'tokenTo',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="flex items-center justify-start">
+        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+        {value == '0x0000000000000000000000000000000000000000'
+          ? 'Drops'
+          : value?.length > 6
+          ? value?.substring(0, 6) + '...'
+          : value}
+      </div>
+    ),
+    minWidth: 120,
+    maxWidth: 120,
+  },
+  */
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
+    accessor: 'createdAt',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="ltr:text-right rtl:text-left">
+        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
+      </div>
+    ),
+    minWidth: 120,
+    maxWidth: 120,
+  },
+];
 
 export default function ModernScreen() {
   const address = useAddress();
@@ -451,6 +627,403 @@ export default function ModernScreen() {
   }, [status]);
   */
 
+  const columns = useMemo(() => COLUMNS, []);
+
+  const [transactions, setTransactions] = useState([]);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    state,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    prepareRow,
+  } = useTable(
+    {
+      // @ts-ignore
+      columns,
+      data: transactions,
+      initialState: { pageSize: 10 },
+    },
+    useSortBy,
+    useResizeColumns,
+    useFlexLayout,
+    usePagination
+  );
+
+  const getLast20 = async () => {
+    ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
+
+    const response = await fetch('/api/nft/history/game', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getLatest',
+        limit: 10,
+        ///address: address?.toLowerCase(),
+      }),
+    });
+    const data = await response.json();
+
+    ///console.log('data.all: ', data.all);
+
+    //console.log('data.total: ', data.total);
+
+    ///setTotalCount(data.total);
+
+    ///setSaleHistory(data.all);
+
+    const transactions = [] as any;
+
+    data.all?.map((transfer: any, index: number) => {
+      //console.log('transfer: ', transfer);
+
+      const transactionData = {
+        user: (
+          <div className="flex items-center justify-start">
+            <Avatar
+              size="sm"
+              image={AuthorImage}
+              alt="Rubywalsh"
+              className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+            />
+
+            <div className="flex items-center justify-start">
+              <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+              {transfer.tokenFrom?.substring(0, 6) + '...'}
+            </div>
+          </div>
+        ),
+
+        action: transfer.action,
+        hash: transfer.hash,
+        id: transfer.blockNum,
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: 'Send',
+        createdAt: transfer.blockTimestamp,
+
+        tokenFrom: transfer.tokenFrom,
+        tokenTo: transfer.tokenTo,
+
+        asset: transfer.asset,
+
+        tokenId: transfer.tokenId,
+        amount:
+          transfer.category === 'erc20'
+            ? Number(transfer.value).toFixed(2)
+            : `#` + transfer.tokenId,
+
+        logs4Address: transfer.logs4Address,
+
+        category:
+          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase() ? (
+            <div className="flex items-center justify-start gap-2">
+              <button
+                className=" flex flex-row items-center justify-start "
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(transfer.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
+                }}
+              >
+                <Image
+                  src="/images/shop/horse.png"
+                  alt="horse"
+                  width={18}
+                  height={18}
+                />
+
+                <span className="text-xl font-bold text-black  underline decoration-sky-500   ">
+                  #{transfer.tokenId}
+                </span>
+              </button>
+
+              <span className="text-xs">Registered</span>
+            </div>
+          ) : transfer.tokenFrom ===
+            stakingContractAddressHorseAAA.toLowerCase() ? (
+            //'Unregistered'
+
+            <div className="flex items-center justify-start gap-2">
+              <button
+                className=" flex flex-row items-center justify-start "
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(transfer.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
+                }}
+              >
+                <Image
+                  src="/images/shop/horse.png"
+                  alt="horse"
+                  width={18}
+                  height={18}
+                />
+
+                <span className="text-xl font-bold text-black underline decoration-sky-500">
+                  #{transfer.tokenId}
+                </span>
+              </button>
+              <span className="text-xs">Unregistered</span>
+            </div>
+          ) : transfer.tokenFrom === address?.toLowerCase() ? (
+            <div className="flex items-center justify-start">
+              {transfer.asset === 'GRD' && (
+                <div className="flex items-center justify-start gap-2">
+                  <Image
+                    src="/images/shop/icon-grd.png"
+                    alt="gd"
+                    width={18}
+                    height={18}
+                  />
+                  <span className="text-xs">Sent to</span>
+
+                  <div className="flex items-center justify-start">
+                    <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                    {transfer.tokenTo?.substring(0, 6) + '...'}
+                  </div>
+
+                  <span className="text-xl font-bold text-black">
+                    {Number(transfer.value).toFixed(2)}
+                  </span>
+                </div>
+              )}
+              {transfer.asset === 'CARROT' && (
+                <div className="flex items-center justify-start gap-2">
+                  <Image
+                    src="/images/shop/icon-carrot.png"
+                    alt="gd"
+                    width={18}
+                    height={18}
+                  />
+                  <span className="text-xs">Sent to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
+                  <span className="text-xl font-bold text-black">
+                    {Number(transfer.value).toFixed(2)}
+                  </span>
+                </div>
+              )}
+              {transfer.asset === 'SUGAR' && (
+                <div className="flex items-center justify-start gap-2">
+                  <Image
+                    src="/images/shop/icon-sugar.png"
+                    alt="gd"
+                    width={18}
+                    height={18}
+                  />
+                  <span className="text-xs">Sent to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
+
+                  <span className="text-xl font-bold text-black">
+                    {Number(transfer.value).toFixed(2)}
+                  </span>
+                </div>
+              )}
+              {transfer.asset === 'GRANDERBY' && (
+                <div className="flex items-center justify-start gap-2">
+                  <button
+                    className=" flex flex-row items-center justify-start "
+                    onClick={() => {
+                      setDrawerHorseInfoTokenId(transfer.tokenId);
+                      openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
+                    }}
+                  >
+                    <Image
+                      src="/images/shop/horse.png"
+                      alt="horse"
+                      width={18}
+                      height={18}
+                    />
+
+                    <span className="text-xl font-bold text-black  underline decoration-sky-500">
+                      #{transfer.tokenId}
+                    </span>
+                  </button>
+                  <span className="text-xs">Sent to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
+                </div>
+              )}
+            </div>
+          ) : transfer.category === 'erc20' ? (
+            <div className="flex items-center justify-start">
+              {transfer.tokenFrom ===
+              '0x0000000000000000000000000000000000000000' ? (
+                <div className="flex items-center justify-start">
+                  {transfer.asset === 'GRD' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-grd.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+
+                      <span className="text-xs">Minted</span>
+
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                  {transfer.asset === 'CARROT' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-carrot.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+                      <span className="text-xs">Baught</span>
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                  {transfer.asset === 'SUGAR' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-sugar.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+                      <span className="text-xs">Minted</span>
+
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center justify-start">
+                  {transfer.asset === 'GRD' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-grd.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+                      <span className="text-xs">Received from</span>
+
+                      <div className="flex items-center justify-start">
+                        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                        {transfer.tokenFrom?.substring(0, 6) + '...'}
+                      </div>
+
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                  {transfer.asset === 'CARROT' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-carrot.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+                      <span className="text-xs">Reveived from</span>
+                      <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                  {transfer.asset === 'SUGAR' && (
+                    <div className="flex items-center justify-start gap-2">
+                      <Image
+                        src="/images/shop/icon-sugar.png"
+                        alt="gd"
+                        width={18}
+                        height={18}
+                      />
+
+                      {transfer.tokenFrom ===
+                      addressAirdropReward.toLowerCase() ? (
+                        <span className="text-xs">Rewarded for trading</span>
+                      ) : transfer.tokenFrom ===
+                        addressRaceReward.toLowerCase() ? (
+                        <span className="text-xs">Rewarded for racing</span>
+                      ) : (
+                        <>
+                          <span className="text-xs">Received from</span>
+                          <div className="flex items-center justify-start">
+                            <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                            {transfer.tokenFrom?.substring(0, 6) + '...'}
+                          </div>
+                        </>
+                      )}
+
+                      <span className="text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          ) : transfer.category === 'erc721' ? (
+            <div className="flex items-center justify-start gap-2">
+              <button
+                className=" flex flex-row items-center justify-start "
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(transfer.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
+                }}
+              >
+                {transfer.asset === 'GRANDERBY' && (
+                  <Image
+                    src="/images/shop/horse.png"
+                    alt="horse"
+                    width={18}
+                    height={18}
+                  />
+                )}
+                <span className="text-xl font-bold text-black underline decoration-sky-500  ">
+                  #{transfer.tokenId}
+                </span>
+              </button>
+
+              <span className="text-xs">Received from horder</span>
+
+              <div className="flex items-center justify-start text-xs">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                {transfer.tokenFrom?.substring(0, 6) + '...'}
+              </div>
+            </div>
+          ) : (
+            ''
+          ),
+      };
+
+      //console.log('transactionData: ', transactionData);
+
+      ////setTransers((transfers) => [...transfers, transactionData]);
+
+      transactions.push(transactionData);
+    });
+
+    ///console.log('transactions: ', transactions);
+
+    setTransactions(transactions);
+  };
+
+  useEffect(() => {
+    getLast20();
+  }, [address]);
+
+  const { openDrawer } = useDrawer();
+
+  const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
+    'drawer-horse-info-tokenid'
+  );
+
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
@@ -465,6 +1038,8 @@ export default function ModernScreen() {
           */}
 
         {address ? (
+          <>
+            {/*
           <div className=" flex flex-col rounded-lg border">
             <CollapsePortfolio label="Last Race Winners">
               <div className="flex h-[490px] flex-col items-center justify-center p-5">
@@ -485,6 +1060,8 @@ export default function ModernScreen() {
               </div>
             </CollapsePortfolio>
           </div>
+          */}
+          </>
         ) : (
           <div className="flex flex-col items-center justify-center gap-5">
             <Image src="/images/logo.png" alt="logo" width={300} height={300} />
@@ -507,8 +1084,124 @@ export default function ModernScreen() {
           </div>
         )}
 
+        <div className="mt-10 flex w-full flex-col  xl:w-2/3">
+          <div className="flex flex-row items-center justify-between  gap-2">
+            <div className="flex flex-row gap-2">
+              <span className=" text-2xl font-bold">News</span>
+              {/* reload button */}
+              <div className="flex items-center justify-center gap-2">
+                <Button
+                  onClick={() => {
+                    getLast20();
+                  }}
+                  title="Reload"
+                  shape="circle"
+                  variant="transparent"
+                  size="small"
+                  className="text-gray-700 dark:text-white"
+                >
+                  <Refresh className="h-auto w-4 rtl:rotate-180" />
+                </Button>
+              </div>
+            </div>
+
+            <Button
+              className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
+              onClick={() => router.push(`/my-portfolio/game`)}
+            >
+              <span className="flex items-center gap-2">
+                <InfoIcon className="h-3 w-3" />{' '}
+                <span className="text-xs">View All</span>
+              </span>
+            </Button>
+          </div>
+
+          <div className="mt-3 flex flex-col rounded-lg border p-5">
+            <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
+              <Scrollbar
+                style={{ width: '100%' }}
+                autoHide="never"
+                className=""
+              >
+                <div className="px-0.5">
+                  <table
+                    {...getTableProps()}
+                    className="transaction-table w-full border-separate border-0"
+                  >
+                    <thead className="text-sm text-gray-500 dark:text-gray-300">
+                      {headerGroups.map((headerGroup, idx) => (
+                        <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
+                          {headerGroup.headers.map((column, idx) => (
+                            <th
+                              {...column.getHeaderProps(
+                                column.getSortByToggleProps()
+                              )}
+                              key={idx}
+                              className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                            >
+                              <div className="flex items-center">
+                                {column.render('Header')}
+                                {column.canResize && (
+                                  <div
+                                    {...column.getResizerProps()}
+                                    className={`resizer ${
+                                      column.isResizing ? 'isResizing' : ''
+                                    }`}
+                                  />
+                                )}
+                                <span className="ltr:ml-1 rtl:mr-1">
+                                  {column.isSorted ? (
+                                    column.isSortedDesc ? (
+                                      <ChevronDown />
+                                    ) : (
+                                      <ChevronDown className="rotate-180" />
+                                    )
+                                  ) : (
+                                    <ChevronDown className="rotate-180 opacity-0 transition group-hover:opacity-50" />
+                                  )}
+                                </span>
+                              </div>
+                            </th>
+                          ))}
+                        </tr>
+                      ))}
+                    </thead>
+                    <tbody
+                      {...getTableBodyProps()}
+                      className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+                    >
+                      {page.map((row, idx) => {
+                        prepareRow(row);
+                        return (
+                          <tr
+                            {...row.getRowProps()}
+                            key={idx}
+                            className=" mb-1 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                          >
+                            {row.cells.map((cell, idx) => {
+                              return (
+                                <td
+                                  {...cell.getCellProps()}
+                                  key={idx}
+                                  className="ml-2 px-2 py-2 tracking-[1px] "
+                                >
+                                  {cell.render('Cell')}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </Scrollbar>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-10 grid grid-cols-1 gap-5 xl:grid-cols-2 ">
-          <div className=" flex flex-col rounded-lg border">
+          <div className=" flex flex-col rounded-lg border  ">
             <CollapseLivePricing label="Live Pricing">
               <div className="flex h-[490px] flex-col items-center justify-start p-5">
                 <LiveNftPricingSlider limits={2} />

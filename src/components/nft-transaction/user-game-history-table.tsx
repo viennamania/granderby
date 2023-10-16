@@ -857,55 +857,8 @@ export default function GameHistoryTable(
         </Button>
       </div>
 
-      <div className="flex flex-row items-center justify-start gap-2">
-        {/* reload button */}
-        {/*
-        <HistoryIcon className="h-6 w-6" />
-        <span className="text-sm">History</span>
-
-
-        <div className="flex items-center justify-center gap-2">
-          <Button
-            onClick={() => {
-              getLast20();
-            }}
-            title="Reload"
-            shape="circle"
-            variant="transparent"
-            size="small"
-            className="text-gray-700 dark:text-white"
-          >
-            <Refresh className="h-auto w-4 rtl:rotate-180" />
-          </Button>
-        </div>
-        */}
-      </div>
-
-      {/*
-      <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
-      */}
-
-      {/*
-      <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
-        <div className="flex flex-col items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 md:flex-row">
-          <h2 className="sm:text-md mb-3 shrink-0 text-lg font-medium uppercase text-black dark:text-white md:mb-0 md:text-xl">
-            Price History
-          </h2>
-        </div>
-      </div>
-      */}
-
       <div className="mt-3 flex flex-col rounded-lg border p-5">
         <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
-          {/*
-          <div className="m-3 flex flex-row items-center justify-start gap-2 ">
-            <span className="text-sm">Total Transfers</span>
-            <span className="text-4xl font-bold text-green-600 xl:text-6xl">
-              {totlaCount}
-            </span>
-          </div>
-          */}
-
           <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
             <div className="px-0.5">
               <table

@@ -285,3 +285,24 @@ export const getTransferHistoryLatestByHolder = async (
     .sort({ blockTimestamp: -1 })
     .limit(limit as any);
 };
+
+export const getTransferHistoryLatest = async (
+  limit: String
+): Promise<ITransferHistory[]> => {
+  console.log('getTransferHistoryLatest', limit);
+
+  return await HorseTransferModel.find({
+    /*
+    $or: [
+      
+      { tokenFrom: address },
+      { tokenTo: address },
+      { buyer: address },
+      { listingCreator: address },
+      { staker: address },
+    ],
+    */
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(limit as any);
+};
