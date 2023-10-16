@@ -347,6 +347,26 @@ export default function PortfolioScreen({
 
   const [npcNames, setNpcNames] = useState<any>([]);
 
+  const [volumn, setVolumn] = useState<any>(0);
+
+  useEffect(() => {
+    async function getVolumn() {
+      const response = await fetch('/api/nft/user/history/game', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          method: 'getVolumn',
+          address: userAddress,
+        }),
+      });
+      const data = await response.json();
+
+      setVolumn(data);
+    }
+
+    getVolumn();
+  }, [userAddress]);
+
   const [horsesCount, setHorsesCount] = useState<any>(0);
   const [jockeysCount, setJockeysCount] = useState<any>(0);
 

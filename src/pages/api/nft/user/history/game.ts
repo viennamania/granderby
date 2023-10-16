@@ -2,6 +2,7 @@ import {
   getTransferHistoryByHolder,
   getTransferHistoryLatestByHolder,
   getNftTransferHistoryByHolder,
+  getDailyVolumnByHolder,
 } from '@/utils/models/game-model';
 
 import { NextApiResponse } from 'next';
@@ -39,6 +40,22 @@ export default async function handler(
     const all = await getTransferHistoryLatestByHolder(limit, address);
 
     //console.log('getAllByTokenId all', all);
+
+    if (!all) return res.status(400).json({ status: false, message: 'Error' });
+
+    const total = all.length;
+
+    return res.status(200).json({ status: true, all, total });
+  }
+
+  if (method === 'getVolumn') {
+    const { address } = req.body;
+
+    console.log('getVolumn address', address);
+
+    const all = await getDailyVolumnByHolder(address.toLowerCase());
+
+    console.log('getVolumn all', all);
 
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
 

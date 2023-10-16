@@ -352,3 +352,102 @@ export const getTransferHistoryLatest = async (
     .sort({ blockTimestamp: -1 })
     .limit(limit as any);
 };
+
+export const getTransferHistoryLatestByHolderByCategory = async (
+  limit: String,
+  address: String,
+  category: String
+): Promise<ITransferHistory[]> => {
+  console.log('getTransferHistoryLatestByHolder', address);
+  if (address === undefined) {
+    return [];
+  }
+  return await HorseTransferModel.find({
+    $and: [
+      {
+        category: category,
+      },
+      {
+        $or: [
+          { tokenFrom: address },
+          { tokenTo: address },
+          { buyer: address },
+          { listingCreator: address },
+          { staker: address },
+        ],
+      },
+    ],
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(limit as any);
+};
+
+// query for dayly volume
+
+export const getDailyVolumnByHolder = async (
+  address: String
+  //): Promise<ITransferHistory[]> => {
+): Promise<any[]> => {
+  console.log('getDailyVolumnByHolder', address);
+
+  if (address === undefined) {
+    return [];
+  }
+
+  return await HorseTransferModel.aggregate([
+    {
+      $match: {
+        $and: [
+          {
+            $or: [
+              { tokenFrom: address },
+              { tokenTo: address },
+              { buyer: address },
+              { listingCreator: address },
+              { staker: address },
+            ],
+          },
+          {
+            $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+          },
+          {
+            $expr: {
+              $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
+            },
+          },
+          {
+            $expr: {
+              $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
+            },
+          },
+          {
+            $expr: {
+              $ne: [
+                '$tokenTo',
+                '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: {
+          //$dateToString: { format: '%Y-%m-%d', date: '$blockTimestamp' },
+          $dateToString: {
+            format: '%Y-%m-%d',
+            date: { $toDate: '$blockTimestamp' },
+          },
+        },
+        total: { $sum: 1 },
+      },
+    },
+    {
+      $sort: { _id: -1 },
+    },
+    {
+      $limit: 30,
+    },
+  ]);
+};
