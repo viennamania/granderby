@@ -415,8 +415,8 @@ const COLUMNS = [
         {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 180,
-    maxWidth: 180,
+    minWidth: 120,
+    maxWidth: 120,
   },
 ];
 
@@ -576,7 +576,12 @@ export default function GameHistoryTable(
                     height={18}
                   />
                   <span className="text-xs">Sent to</span>
-                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
+
+                  <div className="flex items-center justify-start">
+                    <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                    {transfer.tokenTo?.substring(0, 6) + '...'}
+                  </div>
+
                   <span className="text-xl font-bold text-black">
                     {Number(transfer.value).toFixed(2)}
                   </span>
@@ -667,7 +672,7 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Minted</span>
+                      <span className="text-xs">Baught</span>
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
@@ -700,7 +705,12 @@ export default function GameHistoryTable(
                         height={18}
                       />
                       <span className="text-xs">Received from</span>
-                      <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
+
+                      <div className="flex items-center justify-start">
+                        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                        {transfer.tokenFrom?.substring(0, 6) + '...'}
+                      </div>
+
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
@@ -739,9 +749,10 @@ export default function GameHistoryTable(
                       ) : (
                         <>
                           <span className="text-xs">Received from</span>
-                          <span>
+                          <div className="flex items-center justify-start">
+                            <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
                             {transfer.tokenFrom?.substring(0, 6) + '...'}
-                          </span>
+                          </div>
                         </>
                       )}
 
@@ -775,8 +786,12 @@ export default function GameHistoryTable(
                 </span>
               </button>
 
-              <span className="text-xs">Received from</span>
-              <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
+              <span className="text-xs">Received from horder</span>
+
+              <div className="flex items-center justify-start text-xs">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                {transfer.tokenFrom?.substring(0, 6) + '...'}
+              </div>
             </div>
           ) : (
             ''
