@@ -27,6 +27,7 @@ import { add, set } from 'lodash';
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
+  addressAirdropReward,
 } from '@/config/contractAddresses';
 
 import { tr } from 'date-fns/locale';
@@ -727,9 +728,13 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
+
                       {transfer.tokenFrom ===
                       '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase() ? (
                         <span className="text-xs">Rewarded for racing</span>
+                      ) : transfer.tokenFrom ===
+                        addressAirdropReward.toLowerCase() ? (
+                        <span className="text-xs">Rewarded for trading</span>
                       ) : (
                         <>
                           <span className="text-xs">Received from</span>
