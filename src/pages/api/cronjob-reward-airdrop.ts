@@ -50,6 +50,12 @@ export default async function handler(
   var toAddress = '';
   var amount = 0;
 
+  var toAddress2 = '';
+  var amount2 = 0;
+
+  var toAddress3 = '';
+  var amount3 = 0;
+
   /*
   const horsehistories = db.collection('horsehistories');
   const results = await horsehistories
@@ -141,18 +147,57 @@ export default async function handler(
       }
     }
 
-    /*
-      res.status(400).json({
-        txid: '',
-        message: 'debug',
-        contract: '',
-        address: '',
-        amount: 0,
-      });
+    while (true) {
+      // choose a random results
+      const random = Math.floor(Math.random() * results.length);
+      ///console.log('random', random);
 
-      // exit
-      return;
-    */
+      //results[random].holder
+      const tokenId = results[random].tokenId;
+
+      const result2 = db
+        .collection('horsetransfers')
+        .find({ tokenId: tokenId });
+
+      const results2 = await result2.toArray();
+
+      //console.log('results2.length', results2.length);
+
+      if (results2.length > 2) {
+        ///console.log('results2', results2);
+
+        toAddress2 = results[random].holder;
+        amount2 = 1 * results2.length;
+
+        break;
+      }
+    }
+
+    while (true) {
+      // choose a random results
+      const random = Math.floor(Math.random() * results.length);
+      ///console.log('random', random);
+
+      //results[random].holder
+      const tokenId = results[random].tokenId;
+
+      const result2 = db
+        .collection('horsetransfers')
+        .find({ tokenId: tokenId });
+
+      const results2 = await result2.toArray();
+
+      //console.log('results2.length', results2.length);
+
+      if (results2.length > 2) {
+        ///console.log('results2', results2);
+
+        toAddress3 = results[random].holder;
+        amount3 = 1 * results2.length;
+
+        break;
+      }
+    }
 
     /*
     const filter = { _id: results[0]._id };
@@ -174,9 +219,13 @@ export default async function handler(
     console.error(error);
   }
 
-  if (toAddress && amount) {
+  if (toAddress && amount && toAddress2 && amount2 && toAddress3 && amount3) {
     console.log('toAddress', toAddress);
     console.log('amount', amount);
+    console.log('toAddress2', toAddress2);
+    console.log('amount2', amount2);
+    console.log('toAddress3', toAddress3);
+    console.log('amount3', amount3);
 
     const privateKey = process.env.REWARD_PRIVATE_KEY;
 
@@ -315,31 +364,22 @@ export default async function handler(
     try {
       const transaction = await tokenContract.erc20.transfer(toAddress, amount);
 
+      //const transaction2 = await tokenContract.erc20.transfer(toAddress2, amount2);
+
+      //const transaction3 = await tokenContract.erc20.transfer(toAddress3, amount3);
+
+      /*
+      tokenContract.erc20.multiTransfer([
+        { to: toAddress, amount: amount },
+        { to: toAddress2, amount: amount2 },
+        { to: toAddress3, amount: amount3 },
+      ]);
+      */
+
       console.log(
         'transaction.receipt.transactonHash',
         transaction?.receipt?.transactionHash
       );
-
-      /*
-      const horsehistories = db.collection("horsehistories");
-      const filter = { _id: results[0]._id };
-      const updateNft = {
-        $set: {
-          nftOwner: nft.owner,
-          nft: nft,
-        },
-      };
-      const options = { upsert: false };
-  
-      horsehistories.updateOne( filter, updateNft, options, (err, collection) => {
-  
-        if(err) throw err;
-  
-        console.log("Record updated successfully");
-        console.log(collection);
-        
-      });
-      */
 
       if (transaction) {
         res.status(200).json({
