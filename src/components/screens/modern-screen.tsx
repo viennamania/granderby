@@ -990,7 +990,7 @@ export default function ModernScreen() {
                 </span>
               </button>
 
-              <span className="text-xs">Received from horder</span>
+              <span className="text-xs">Received from holder</span>
 
               <div className="flex items-center justify-start text-xs">
                 <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
