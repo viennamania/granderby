@@ -171,6 +171,10 @@ export const getTransferHistoryByHolder = async (
 ): Promise<ITransferHistory[]> => {
   console.log('getTransferHistoryByHolder===', address);
 
+  if (address === undefined) {
+    return [];
+  }
+
   return await HorseTransferModel.find({
     $and: [
       {
@@ -217,7 +221,9 @@ export const getFtTransferHistoryByHolder = async (
   address: String
 ): Promise<ITransferHistory[]> => {
   console.log('getFtTransferHistoryByHolder', address);
-
+  if (address === undefined) {
+    return [];
+  }
   return await HorseTransferModel.find({
     $and: [
       {
@@ -247,8 +253,17 @@ export const getNftTransferHistoryByHolder = async (
   address: String
 ): Promise<ITransferHistory[]> => {
   console.log('getTransferHistoryByHolder', address);
-
+  if (address === undefined) {
+    return [];
+  }
   return await HorseTransferModel.find({
+    $or: [
+      { tokenFrom: address },
+      { tokenTo: address },
+      { buyer: address },
+      { listingCreator: address },
+      { staker: address },
+    ],
     /*
     $and: [
       {
@@ -271,8 +286,10 @@ export const getTransferHistoryLatestByHolder = async (
   limit: String,
   address: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByHolder', address);
-
+  console.log('getTransferHistoryLatestByHolder', address);
+  if (address === undefined) {
+    return [];
+  }
   return await HorseTransferModel.find({
     $or: [
       { tokenFrom: address },
@@ -292,6 +309,8 @@ export const getTransferHistoryLatest = async (
   console.log('getTransferHistoryLatest', limit);
 
   return await HorseTransferModel.find({
+    $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+
     /*
     $or: [
       
