@@ -32,7 +32,7 @@ import Search from '@/components/search/search-asset-user';
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { userAddress: '1' } }],
+    paths: [{ params: { userAddress: '' } }],
     fallback: true,
   };
 }
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   };
 };
 
-const RentPage: NextPageWithLayout<
+const AssetPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
   const { userAddress } = props;
@@ -58,107 +58,76 @@ const RentPage: NextPageWithLayout<
 
   const address = useAddress();
 
-  // render retro layout profile
-  if (layout === LAYOUT_OPTIONS.RETRO) {
-    return (
-      <>
-        <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
+  return (
+    <>
+      <NextSeo title="Asset" description="Granderby - Web3 NFT Game" />
 
-        <div className="relative h-36 w-full overflow-hidden rounded-lg sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
+      {address ? (
+        <>
+          {/*
+        <div className="flex flex-col items-start justify-center gap-2">
+          <span className="text-xs xl:text-sm">My Wallet Address:</span>
+          <span className="text-sm font-bold xl:text-lg">{address}</span>
+        </div>
+        */}
+        </>
+      ) : (
+        <>
+          {/*
+        <div className="relative h-36 w-full overflow-hidden  sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
           <Image
             src={authorData?.cover_image?.thumbnail}
             placeholder="blur"
             fill
-            className="h-full w-full object-fill"
+            //className="object-fill"
+            className="h-full w-full object-cover"
             alt="Cover Image"
           />
         </div>
+        */}
+        </>
+      )}
 
-        <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+      <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+        <div className="text-2xl xl:text-4xl">User NFT</div>
+        <div className="text-sm xl:text-lg">
+          User Wallet Address: {userAddress.toLowerCase()}
+        </div>
+
+        {/*
+        {!address ? (
+          <></>
+        ) : (
           <Avatar
             size="xl"
             image={authorData?.avatar?.thumbnail}
             alt="Author"
             className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
           />
-          <RetroProfile />
-        </div>
-      </>
-    );
-  } else {
-    // render default profile
-
-    return (
-      <>
-        <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
-
-        {address ? (
-          <>
-            {/*
-          <div className="flex flex-col items-start justify-center gap-2">
-            <span className="text-xs xl:text-sm">My Wallet Address:</span>
-            <span className="text-sm font-bold xl:text-lg">{address}</span>
-          </div>
-          */}
-          </>
-        ) : (
-          <>
-            {/*
-          <div className="relative h-36 w-full overflow-hidden  sm:h-44 md:h-64 xl:h-80 2xl:h-96 3xl:h-[448px]">
-            <Image
-              src={authorData?.cover_image?.thumbnail}
-              placeholder="blur"
-              fill
-              //className="object-fill"
-              className="h-full w-full object-cover"
-              alt="Cover Image"
-            />
-          </div>
-          */}
-          </>
         )}
-
-        <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          <div className="text-2xl xl:text-4xl">User NFT</div>
-          <div className="text-sm xl:text-lg">
-            User Wallet Address: {userAddress.toLowerCase()}
-          </div>
-
-          {/*
-          {!address ? (
-            <></>
-          ) : (
-            <Avatar
-              size="xl"
-              image={authorData?.avatar?.thumbnail}
-              alt="Author"
-              className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
-            />
-          )}
-            */}
-
-          {/*
-          <Profile />
-            */}
-
-          <Search userAddress={userAddress.toLowerCase()} />
-        </div>
+          */}
 
         {/*
-        <div className="flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-center text-2xl font-bold">Coming Soon</div>
-            <div className="text-center text-xl font-bold">Rent your horse</div>
-          </div>
-        </div>
+        <Profile />
           */}
-      </>
-    );
-  }
+
+        <Search userAddress={userAddress.toLowerCase()} />
+      </div>
+
+      {/*
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-center text-2xl font-bold">Coming Soon</div>
+          <div className="text-center text-xl font-bold">Rent your horse</div>
+        </div>
+      </div>
+        */}
+    </>
+  );
 };
 
-RentPage.getLayout = function getLayout(page) {
+AssetPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default RentPage;
+export default AssetPage;

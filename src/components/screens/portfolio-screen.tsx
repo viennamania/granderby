@@ -48,7 +48,7 @@ import TransferHistoryTable from '@/components/nft-transaction/user-transfer-his
 
 import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
 
-import OwnedFeedsCoin from '@/components/search/feeds-coin-owned-asset';
+import FeedsCoinOwned from '@/components/search/feeds-coin-owned-asset';
 
 import {
   ConnectWallet,
@@ -690,7 +690,7 @@ export default function PortfolioScreen() {
             {address ? (
               <div className="mt-5 flex flex-col items-start justify-center gap-5">
                 <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
-                  <OwnedFeedsCoin
+                  <FeedsCoinOwned
                   //contractAddress={nftDropContractAddressHorseZedRun}
                   />
                 </div>
@@ -776,7 +776,7 @@ export default function PortfolioScreen() {
                         height={25}
                       />
                     </div>
-                    <span className="text-xs font-bold text-gray-400 xl:text-sm">
+                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
                       No Price Data
                     </span>
                   </button>
@@ -803,7 +803,7 @@ export default function PortfolioScreen() {
                         height={25}
                       />
                     </div>
-                    <span className="text-xs font-bold text-gray-400 xl:text-sm">
+                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
                       No Price Data
                     </span>
                   </button>

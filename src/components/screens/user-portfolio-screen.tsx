@@ -48,7 +48,7 @@ import TransferHistoryTable from '@/components/nft-transaction/user-transfer-his
 
 import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
 
-import FeedsCoinOwned from '@/components/search/feeds-coin-owned-asset';
+import FeedsCoinUser from '@/components/search/feeds-coin-user-asset';
 
 import {
   ConnectWallet,
@@ -107,7 +107,9 @@ import { ChevronDown } from '@/components/icons/chevron-down';
 import { LinkIcon } from '@/components/icons/link-icon';
 
 import { useRouter } from 'next/router';
-import { add } from 'lodash';
+import { add, get } from 'lodash';
+
+import { Refresh } from '@/components/icons/refresh';
 
 import {
   useTable,
@@ -127,10 +129,11 @@ import { time } from 'console';
 const COLUMNS = [
   /*
   {
-    Header: 'Type',
-    accessor: 'transactionType',
-    minWidth: 30,
-    maxWidth: 40,
+
+    Header: 'Action',
+    accessor: 'action',
+    minWidth: 100,
+    maxWidth: 100,
   },
   */
 
@@ -190,23 +193,9 @@ const COLUMNS = [
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Type</div>,
-    accessor: 'transactionType',
+    accessor: 'category',
     // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="ltext-left">
-        {value === 'Send' ? (
-          <div className="-tracking-[1px] ">
-            <LongArrowRight className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-orange-600  dark:text-gray-400">{value}</span>
-          </div>
-        ) : (
-          <div className="-tracking-[1px]">
-            <LongArrowLeft className="h-5 w-5  md:h-6 md:w-6 lg:h-5 lg:w-5 xl:h-7 xl:w-7" />
-            <span className="text-green-600 dark:text-gray-400">{value}</span>
-          </div>
-        )}
-      </div>
-    ),
+    Cell: ({ cell: { value } }) => <div className="ltext-left">{value}</div>,
     minWidth: 60,
     maxWidth: 60,
   },
@@ -289,8 +278,12 @@ const COLUMNS = [
   },
 ];
 
-export default function PerformanceScreen() {
-  const address = useAddress();
+export default function PortfolioScreen({
+  userAddress,
+}: {
+  userAddress?: string;
+}) {
+  /////const address = useAddress();
 
   const router = useRouter();
 
@@ -302,13 +295,16 @@ export default function PerformanceScreen() {
     tokenContractAddressGRD,
     'token'
   );
-  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+  const { data: tokenBalance } = useTokenBalance(tokenContract, userAddress);
 
   const { contract: tokenContractHV } = useContract(
     tokenContractAddressHV,
     'token'
   );
-  const { data: tokenBalanceHV } = useTokenBalance(tokenContractHV, address);
+  const { data: tokenBalanceHV } = useTokenBalance(
+    tokenContractHV,
+    userAddress
+  );
 
   const [claimableRewardsHorse, setClaimableRewardsHorse] =
     useState<BigNumber>();
@@ -322,48 +318,50 @@ export default function PerformanceScreen() {
     useContract(stakingContractAddressJockey);
 
   useEffect(() => {
-    if (!stakingContractHorse || !address) return;
+    if (!stakingContractHorse || !userAddress) return;
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContractHorse?.call('getStakeInfo', [
-        address,
+        userAddress,
       ]);
       ////const stakeInfo = await contract?.call("getStakeInfo", );
       setClaimableRewardsHorse(stakeInfo[1]);
     }
 
     loadClaimableRewards();
-  }, [address, stakingContractHorse]);
+  }, [userAddress, stakingContractHorse]);
 
   useEffect(() => {
-    if (!stakingContractJockey || !address) return;
+    if (!stakingContractJockey || !userAddress) return;
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContractJockey?.call('getStakeInfo', [
-        address,
+        userAddress,
       ]);
       ////const stakeInfo = await contract?.call("getStakeInfo", );
       setClaimableRewardsJockey(stakeInfo[1]);
     }
 
     loadClaimableRewards();
-  }, [address, stakingContractJockey]);
+  }, [userAddress, stakingContractJockey]);
 
   const [npcNames, setNpcNames] = useState<any>([]);
 
   const [horsesCount, setHorsesCount] = useState<any>(0);
   const [jockeysCount, setJockeysCount] = useState<any>(0);
 
+  const [horsesTotalPricePaid, setHorsesTotalPricePaid] = useState<any>(0);
+
   useEffect(() => {
     async function getHorsesCount() {
-      if (!address) return;
+      if (!userAddress) return;
 
       const response = await fetch('/api/nft/getHorsesCount', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           method: 'getAllByHolder',
-          holder: address,
+          holder: userAddress,
           ///grades: selectedGradesStorage,
           grades: [],
           manes: [],
@@ -374,19 +372,21 @@ export default function PerformanceScreen() {
       console.log('getHorsesCount data====', data);
 
       setHorsesCount(data.total);
+
+      setHorsesTotalPricePaid(data.totalPricePaid);
     }
 
     async function getJockeysCount() {
       //console.log("getJokeysCount address====", address);
 
-      if (!address) return;
+      if (!userAddress) return;
 
       const response = await fetch('/api/nft/getJockeysCount', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           method: 'getAllByHolder',
-          holder: address,
+          holder: userAddress,
           ///grades: selectedGradesStorage,
           grades: [],
           manes: [],
@@ -401,9 +401,7 @@ export default function PerformanceScreen() {
 
     getHorsesCount();
     getJockeysCount();
-  }, [address]);
-
-  const limit = 500;
+  }, [userAddress]);
 
   const [transfers, setTransfers] = useState([]);
 
@@ -435,75 +433,85 @@ export default function PerformanceScreen() {
   );
   const { pageIndex } = state;
 
+  const limit = 5;
+
+  const getLatest = async () => {
+    ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
+
+    const response = await fetch('/api/ft/user/history/transfer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method: 'getLatest',
+        limit: limit,
+        address: userAddress?.toLowerCase(),
+      }),
+    });
+    const data = await response.json();
+
+    const transactions = [] as any;
+
+    data.all?.map((transfer: any, index: number) => {
+      ///console.log('transfer: ', transfer);
+
+      const transactionData = {
+        action: transfer.action,
+        hash: transfer.hash,
+        id: transfer.blockNum,
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+
+        transactionType:
+          transfer.tokenFrom === userAddress?.toLowerCase()
+            ? 'Send'
+            : 'Receive',
+
+        createdAt: transfer.blockTimestamp,
+
+        tokenFrom: transfer.tokenFrom,
+        tokenTo: transfer.tokenTo,
+
+        asset: transfer.asset,
+
+        tokenId: transfer.tokenId,
+        amount:
+          transfer.category === 'erc20'
+            ? Number(transfer.value).toFixed(2)
+            : `#` + transfer.tokenId,
+
+        logs4Address: transfer.logs4Address,
+        category:
+          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
+            ? 'Register'
+            : transfer.tokenFrom ===
+              stakingContractAddressHorseAAA.toLowerCase()
+            ? 'Unregister'
+            : transfer.tokenFrom === userAddress?.toLowerCase()
+            ? 'Send'
+            : transfer.tokenFrom ===
+              '0x0000000000000000000000000000000000000000'.toLowerCase()
+            ? 'Mint'
+            : transfer.asset === 'SUGAR' &&
+              transfer.tokenFrom ===
+                '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLocaleLowerCase()
+            ? 'Reward'
+            : 'Receive',
+      };
+
+      transactions.push(transactionData);
+    });
+
+    setTransfers(transactions);
+
+    ///console.log('getLatest transfers: ', transactions);
+  };
+
   useEffect(() => {
-    const limit = 5;
-
-    const getLatest = async () => {
-      ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
-
-      const response = await fetch('/api/nft/user/history/transfer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          method: 'getLatest',
-          limit: limit,
-          address: address?.toLowerCase(),
-        }),
-      });
-      const data = await response.json();
-
-      const transactions = [] as any;
-
-      data.all?.map((transfer: any, index: number) => {
-        //console.log('transfer: ', transfer);
-
-        const transactionData = {
-          hash: transfer.hash,
-          id: transfer.blockNum,
-          //transactionType: transfer.from === address ? 'Send' : 'Receive',
-
-          transactionType:
-            transfer.tokenFrom === address?.toLowerCase() ? 'Send' : 'Receive',
-
-          createdAt: transfer.blockTimestamp,
-
-          tokenFrom: transfer.tokenFrom,
-          tokenTo: transfer.tokenTo,
-
-          asset: transfer.asset,
-
-          tokenId: transfer.tokenId,
-          amount:
-            transfer.category === 'erc20'
-              ? Number(transfer.value).toFixed(2)
-              : `#` + transfer.tokenId,
-
-          logs4Address: transfer.logs4Address,
-          category:
-            transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
-              ? 'Register'
-              : transfer.tokenFrom ===
-                stakingContractAddressHorseAAA.toLowerCase()
-              ? 'Unregister'
-              : transfer.tokenFrom === address?.toLowerCase()
-              ? 'Send'
-              : 'Receive',
-        };
-
-        transactions.push(transactionData);
-      });
-
-      setTransfers(transactions);
-
-      console.log('getLatest transfers: ', transactions);
-    };
-
     getLatest();
 
     //setInterval(() => {
     ///getLatest();
     //}, 10000);
-  }, [address]);
+  }, [userAddress]);
 
   return (
     <div className="mb-10">
@@ -557,13 +565,31 @@ export default function PerformanceScreen() {
               </Button>
             </div>
 
-            <div className=" flex w-full flex-col gap-5 md:flex-row xl:flex-row">
+            <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
               <div className=" rounded-lg p-2 shadow-card  md:w-2/3 xl:w-2/3">
                 <PortfolioChart />
               </div>
 
               <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-1/3">
-                <span className="text-xl font-bold">Transfers</span>
+                <div className="flex flex-row items-center justify-between gap-2">
+                  <span className="text-xl font-bold">Transfers</span>
+                  {/* reload button */}
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      onClick={() => {
+                        getLatest();
+                      }}
+                      title="Reload"
+                      shape="circle"
+                      variant="transparent"
+                      size="small"
+                      className="text-gray-700 dark:text-white"
+                    >
+                      <Refresh className="h-auto w-4 rtl:rotate-180" />
+                    </Button>
+                  </div>
+                </div>
+
                 <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
                   <Scrollbar
                     style={{ width: '100%' }}
@@ -670,11 +696,12 @@ export default function PerformanceScreen() {
             </button>
             */}
 
-            {address ? (
+            {userAddress ? (
               <div className="mt-5 flex flex-col items-start justify-center gap-5">
                 <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
-                  <FeedsCoinOwned
-                  //contractAddress={nftDropContractAddressHorseZedRun}
+                  <FeedsCoinUser
+                    //contractAddress={nftDropContractAddressHorseZedRun}
+                    userAddress={userAddress}
                   />
                 </div>
 
@@ -710,69 +737,85 @@ export default function PerformanceScreen() {
                   */}
 
                   <button
-                    className={`gold-btn flex  flex-row items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
-                      router.push('/my-asset');
+                      router.push(`/user-asset/${userAddress}`);
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-col items-center justify-center gap-5">
-                      <span className="text-lg">Horse</span>
-                      <span className="text-xl font-bold xl:text-2xl">
-                        {horsesCount}
-                      </span>
+                    <div className="flex flex-row items-center justify-center">
+                      <div className="flex flex-col items-center justify-center gap-5">
+                        <span className="text-lg">Horse</span>
+                        <span className="text-xl font-bold xl:text-2xl">
+                          {horsesCount}
+                        </span>
+                      </div>
+                      <Image
+                        src="/images/button/horse.png"
+                        alt="logo"
+                        width={25}
+                        height={25}
+                      />
                     </div>
-                    <Image
-                      src="/images/button/horse.png"
-                      alt="logo"
-                      width={25}
-                      height={25}
-                    />
+
+                    <span className="text-lg font-bold text-green-600 xl:text-xl">
+                      {horsesTotalPricePaid} USD
+                    </span>
                   </button>
 
                   <button
-                    className={`gold-btn flex  flex-row items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-col items-center justify-center gap-5">
-                      <span className="text-lg">Jockey</span>
-                      <span className="text-xl font-bold xl:text-2xl">
-                        {jockeysCount}
-                      </span>
+                    <div className="flex flex-row items-center justify-center">
+                      <div className="flex flex-col items-center justify-center gap-5">
+                        <span className="text-lg">Jockey</span>
+                        <span className="text-xl font-bold xl:text-2xl">
+                          {jockeysCount}
+                        </span>
+                      </div>
+                      <Image
+                        src="/images/button/jockey.png"
+                        alt="logo"
+                        width={25}
+                        height={25}
+                      />
                     </div>
-                    <Image
-                      src="/images/button/jockey.png"
-                      alt="logo"
-                      width={25}
-                      height={25}
-                    />
+                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
+                      No Price Data
+                    </span>
                   </button>
 
                   <button
-                    className={`gold-btn flex  flex-row items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-col items-center justify-center gap-5">
-                      <span className="text-lg">Track</span>
-                      <span className="text-xl font-bold xl:text-2xl">
-                        {Number(tokenBalanceHV?.displayValue).toFixed(0)}
-                      </span>
+                    <div className="flex flex-row items-center justify-center">
+                      <div className="flex flex-col items-center justify-center gap-5">
+                        <span className="text-lg">Track</span>
+                        <span className="text-xl font-bold xl:text-2xl">
+                          {Number(tokenBalanceHV?.displayValue).toFixed(0)}
+                        </span>
+                      </div>
+                      <Image
+                        src="/images/button/track.png"
+                        alt="logo"
+                        width={25}
+                        height={25}
+                      />
                     </div>
-                    <Image
-                      src="/images/button/track.png"
-                      alt="logo"
-                      width={25}
-                      height={25}
-                    />
+                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
+                      No Price Data
+                    </span>
                   </button>
                 </div>
               </div>
@@ -813,6 +856,10 @@ export default function PerformanceScreen() {
                 </div>
               </Collapse>
               */}
+          </div>
+
+          <div className=" flex flex-col rounded-lg border p-5">
+            <GameHistoryTable address={userAddress} />
           </div>
         </div>
       </div>

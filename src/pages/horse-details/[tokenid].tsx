@@ -194,7 +194,7 @@ function SinglePrice(tokenid: any) {
                                   className=" flex flex-row items-center justify-start  "
                                   onClick={() =>
                                     router.push(
-                                      `/user-asset/${nftMetadata?.owner}`
+                                      `/user-portfolio/${nftMetadata?.owner}`
                                     )
                                   }
                                 >
@@ -221,7 +221,9 @@ function SinglePrice(tokenid: any) {
                                 <button
                                   className=" flex flex-row items-center justify-start  "
                                   onClick={() =>
-                                    router.push(`/user-asset/${stakerAddress}`)
+                                    router.push(
+                                      `/user-portfolio/${stakerAddress}`
+                                    )
                                   }
                                 >
                                   <span>
@@ -355,7 +357,7 @@ function SinglePrice(tokenid: any) {
                                   className=" flex flex-row items-center justify-start  "
                                   onClick={() =>
                                     router.push(
-                                      `/user-asset/${nftMetadata?.owner}`
+                                      `/user-portfolio/${nftMetadata?.owner}`
                                     )
                                   }
                                 >
@@ -382,7 +384,9 @@ function SinglePrice(tokenid: any) {
                                 <button
                                   className=" flex flex-row items-center justify-start  "
                                   onClick={() =>
-                                    router.push(`/user-asset/${stakerAddress}`)
+                                    router.push(
+                                      `/user-portfolio/${stakerAddress}`
+                                    )
                                   }
                                 >
                                   <span>

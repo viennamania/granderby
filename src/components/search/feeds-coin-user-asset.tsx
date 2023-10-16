@@ -92,15 +92,15 @@ const data = [
   { name: 'Conway', thumbnail: User10 },
 ];
 
-export default function FeedsCoinOwned(
-  /////{ address } : { address?: string },
+export default function FeedsCoinUser(
+  { userAddress }: { userAddress?: string },
   { className }: { className?: string }
 ) {
   const { isGridCompact } = useGridSwitcher();
 
   const router = useRouter();
 
-  const address = useAddress();
+  //const address = useAddress();
 
   ///console.log('address======>', address);
 
@@ -109,35 +109,35 @@ export default function FeedsCoinOwned(
     'token'
   );
   const { data: tokenBalanceSUGAR, isLoading: isLoadingBalanceSUGAR } =
-    useTokenBalance(tokenContractSUGAR, address);
+    useTokenBalance(tokenContractSUGAR, userAddress);
 
   const { contract: tokenContractCARROT } = useContract(
     tokenContractAddressCARROTDrop,
     'token'
   );
   const { data: tokenBalanceCARROT, isLoading: isLoadingBalanceCARROT } =
-    useTokenBalance(tokenContractCARROT, address);
+    useTokenBalance(tokenContractCARROT, userAddress);
 
   const { contract: tokenContractUSDC } = useContract(
     tokenContractAddressUSDC,
     'token'
   );
   const { data: tokenBalanceUSDC, isLoading: isLoadingBalanceUSDC } =
-    useTokenBalance(tokenContractUSDC, address);
+    useTokenBalance(tokenContractUSDC, userAddress);
 
   const { contract: tokenContractGRD } = useContract(
     tokenContractAddressGRD,
     'token'
   );
   const { data: tokenBalanceGRD, isLoading: isLoadingBalanceGRD } =
-    useTokenBalance(tokenContractGRD, address);
+    useTokenBalance(tokenContractGRD, userAddress);
 
   const { contract: tokenContractGCOW } = useContract(
     tokenContractAddressGCOW,
     'token'
   );
   const { data: tokenBalanceGCOW, isLoading: isLoadingBalanceGCOW } =
-    useTokenBalance(tokenContractGCOW, address);
+    useTokenBalance(tokenContractGCOW, userAddress);
 
   const { contract: contractCoupon } = useContract(
     nftDropContractAddressCoupon
@@ -145,7 +145,7 @@ export default function FeedsCoinOwned(
 
   const { data: ownedCoupons, isLoading: isLoadingCoupons } = useOwnedNFTs(
     contractCoupon,
-    address || ''
+    userAddress || ''
   );
 
   ////console.log("ownedNfts======>", ownedNfts);
@@ -293,7 +293,7 @@ export default function FeedsCoinOwned(
 
   return (
     <div className="mt-5 flex">
-      {!address ? (
+      {!userAddress ? (
         <>
           <div className="flex h-40 w-full flex-col items-center justify-center text-lg"></div>
         </>
