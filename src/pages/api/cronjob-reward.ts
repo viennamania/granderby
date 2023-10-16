@@ -188,19 +188,7 @@ export default async function handler(
     }
     */
 
-    const privatekey = process.env.PRIVATE_KEY;
-
     /*
-    const sdk = ThirdwebSDK.fromPrivateKey(
-      privatekey,
-      "polygon",
-      {
-        clientId: "79125a56ef0c1629d4863b6df0a43cce", // Use client id if using on the client side, get it from dashboard settings
-        ///secretKey: "YOUR_SECRET_KEY", // Use secret key if using on the server, get it from dashboard settings
-      },
-    )
-    */
-
     const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
       ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
       secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
@@ -211,15 +199,33 @@ export default async function handler(
           relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL, // your OZ Defender relayer URL
           //////relayerForwarderAddress: "<open-zeppelin-forwarder-address>", // the OZ defender relayer address (defaults to the standard one)
         },
-        /*
-        biconomy: {
-          apiId: "biconomy-api-id", // your Biconomy API Id
-          apiKey: "biconomy-api-key", // your Biconomy API Key
-          deadlineSeconds: 123, // your Biconomy timeout preference
-        },
-        */
       },
     });
+    */
+
+    // can be any ethers.js signer
+    ///const privateKey = process.env.PRIVATE_KEY;
+    const personalWallet = new PrivateKeyWallet(privateKey);
+
+    const config = {
+      chain: Polygon, // the chain where your smart wallet will be or is deployed
+      factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB', // your own deployed account factory address
+      ///clientId: "3af7ae04bda0e7a51c444c3a9464458d", // Use client id if using on the client side, get it from dashboard settings
+      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
+      gasless: true, // enable or disable gasless transactions
+    };
+
+    // Then, connect the Smart wallet
+    const smartWallet = new SmartWallet(config);
+
+    const smartWalletAddress = await smartWallet.connect({
+      personalWallet: personalWallet,
+    });
+
+    console.log('smartWallet address', smartWalletAddress);
+
+    // You can then use this wallet to perform transactions via the SDK
+    const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
 
     // Sugar Token Contract
     const tokenContract = await sdk.getContract(tokenContractAddressSUGARDrop);
