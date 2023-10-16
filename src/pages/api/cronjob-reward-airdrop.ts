@@ -227,7 +227,7 @@ export default async function handler(
     console.log('toAddress3', toAddress3);
     console.log('amount3', amount3);
 
-    const privateKey = process.env.REWARD_PRIVATE_KEY;
+    const privateKey = process.env.AIRDROP_PRIVATE_KEY;
 
     /*
     // can be any ethers.js signer

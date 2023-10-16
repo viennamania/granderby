@@ -27,6 +27,7 @@ import { add, set } from 'lodash';
 import {
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
+  addressRaceReward,
   addressAirdropReward,
 } from '@/config/contractAddresses';
 
@@ -730,11 +731,11 @@ export default function GameHistoryTable(
                       />
 
                       {transfer.tokenFrom ===
-                      '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase() ? (
-                        <span className="text-xs">Rewarded for racing</span>
-                      ) : transfer.tokenFrom ===
-                        addressAirdropReward.toLowerCase() ? (
+                      addressAirdropReward.toLowerCase() ? (
                         <span className="text-xs">Rewarded for trading</span>
+                      ) : transfer.tokenFrom ===
+                        addressRaceReward.toLowerCase() ? (
+                        <span className="text-xs">Rewarded for racing</span>
                       ) : (
                         <>
                           <span className="text-xs">Received from</span>
