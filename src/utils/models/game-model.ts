@@ -7,6 +7,11 @@ import { Schema, models, model } from 'mongoose';
 
 import dbConnect from '@/lib/db/dbConnect';
 
+import {
+  addressRaceReward,
+  addressAirdropReward,
+} from '@/config/contractAddresses';
+
 dbConnect();
 
 /*
@@ -309,7 +314,21 @@ export const getTransferHistoryLatest = async (
   console.log('getTransferHistoryLatest', limit);
 
   return await HorseTransferModel.find({
-    $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+    $and: [
+      {
+        $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+      },
+      {
+        $expr: {
+          $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
+        },
+      },
+      {
+        $expr: {
+          $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
+        },
+      },
+    ],
 
     /*
     $or: [
