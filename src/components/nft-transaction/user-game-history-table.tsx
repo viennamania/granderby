@@ -470,6 +470,10 @@ export default function GameHistoryTable(
   const [totlaCount, setTotalCount] = useState();
 
   const getLast20 = async () => {
+    if (!address) {
+      return;
+    }
+
     ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
 
     const response = await fetch('/api/nft/user/history/game', {
@@ -493,7 +497,7 @@ export default function GameHistoryTable(
     const transactions = [] as any;
 
     data.all?.map((transfer: any, index: number) => {
-      //console.log('transfer: ', transfer);
+      ///console.log('transfer: ', transfer);
 
       const transactionData = {
         action: transfer.action,

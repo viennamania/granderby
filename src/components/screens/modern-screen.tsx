@@ -684,21 +684,69 @@ export default function ModernScreen() {
       //console.log('transfer: ', transfer);
 
       const transactionData = {
-        user: (
-          <div className="flex items-center justify-start">
-            <Avatar
-              size="sm"
-              image={AuthorImage}
-              alt="Rubywalsh"
-              className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
-            />
-
+        user:
+          transfer.tokenFrom ===
+          '0x0000000000000000000000000000000000000000' ? (
             <div className="flex items-center justify-start">
-              <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-              {transfer.tokenFrom?.substring(0, 6) + '...'}
+              <Avatar
+                size="sm"
+                image={AuthorImage}
+                alt="Rubywalsh"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.tokenTo?.substring(0, 6) + '...'}
+              </div>
             </div>
-          </div>
-        ),
+          ) : transfer.tokenFrom === addressAirdropReward.toLowerCase() ? (
+            <div className="flex items-center justify-start">
+              <Avatar
+                size="sm"
+                image={AuthorImage}
+                alt="Rubywalsh"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.tokenTo?.substring(0, 6) + '...'}
+              </div>
+            </div>
+          ) : transfer.tokenFrom === addressRaceReward.toLowerCase() ? (
+            <div className="flex items-center justify-start">
+              <Avatar
+                size="sm"
+                image={AuthorImage}
+                alt="Rubywalsh"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.tokenTo?.substring(0, 6) + '...'}
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-start">
+              <Avatar
+                size="sm"
+                image={AuthorImage}
+                alt="Rubywalsh"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.tokenFrom?.substring(0, 6) + '...'}
+              </div>
+            </div>
+          ),
 
         action: transfer.action,
         hash: transfer.hash,

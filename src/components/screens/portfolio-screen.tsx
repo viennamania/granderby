@@ -445,7 +445,7 @@ export default function PortfolioScreen() {
     const transactions = [] as any;
 
     data.all?.map((transfer: any, index: number) => {
-      //console.log('transfer: ', transfer);
+      ///console.log('transfer: ', transfer);
 
       const transactionData = {
         action: transfer.action,
