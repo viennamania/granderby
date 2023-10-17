@@ -1,4 +1,4 @@
-import AuthorImage from '@/assets/images/author.jpg';
+import AuthorImage from '@/assets/images/profile.png';
 
 /*
 import NFT1 from '@/assets/images/nft/nft-1.jpg';

@@ -24,7 +24,7 @@ import IcoApple from '@/assets-landing/images/ico-apple.svg';
 import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 
 //images
-import AuthorImage from '@/assets/images/author.jpg';
+import AuthorImage from '@/assets/images/profile.png';
 
 import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
 

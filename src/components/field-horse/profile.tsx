@@ -34,7 +34,7 @@ import { Network, Alchemy } from 'alchemy-sdk';
 
 import { StaticImageData } from 'next/image';
 
-import AuthorImage from '@/assets/images/author.jpg';
+import AuthorImage from '@/assets/images/profile.png';
 
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 

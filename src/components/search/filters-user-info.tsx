@@ -25,6 +25,17 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import PortfolioScreen from '@/components/screens/user-portfolio-screen-drawer';
 
+import Avatar from '@/components/ui/avatar';
+
+import AuthorImage from '@/assets/images/profile.png';
+
+import { useCopyToClipboard } from 'react-use';
+import { Copy } from '@/components/icons/copy';
+import { Check } from '@/components/icons/check';
+
+import { InfoIcon } from '@/components/icons/info-icon';
+import { useRouter } from 'next/router';
+
 export function GridSwitcher() {
   const { isGridCompact, setIsGridCompact } = useGridSwitcher();
 
@@ -452,7 +463,18 @@ export default function DrawerUserInfo(tokenid: any) {
     'drawer-user-info-useraddress'
   );
 
-  ///console.log('drawerUserInfoUserAddress', drawerUserInfoUserAddress)
+  const [copyButtonStatus, setCopyButtonStatus] = useState(false);
+  const [_, copyToClipboard] = useCopyToClipboard();
+
+  function handleCopyToClipboard(address: string) {
+    copyToClipboard(address);
+    setCopyButtonStatus(true);
+    setTimeout(() => {
+      setCopyButtonStatus(copyButtonStatus);
+    }, 2500);
+  }
+
+  const router = useRouter();
 
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark   xs:w-96 ">
@@ -473,10 +495,43 @@ export default function DrawerUserInfo(tokenid: any) {
       <Scrollbar style={{ height: 'calc(100% - 96px)' }}>
         <div className="px-6 pb-20 pt-1">
           {/* user profile */}
-          <span className="text-2xl font-bold">
-            {drawerUserInfoUserAddress?.substring(0, 6)}...
-            {drawerUserInfoUserAddress?.substring(38, 42)}
-          </span>
+          <div className="mb-5 flex flex-row items-center justify-start gap-3">
+            <Avatar
+              size="sm"
+              image={AuthorImage}
+              alt="Rubywalsh"
+              className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+            />
+
+            <span className="text-sm font-bold">
+              {drawerUserInfoUserAddress?.substring(0, 6)}...
+              {drawerUserInfoUserAddress?.substring(38, 42)}
+            </span>
+
+            <button
+              title="Copy Address"
+              onClick={() => handleCopyToClipboard(drawerUserInfoUserAddress)}
+            >
+              {copyButtonStatus ? (
+                <Check className="h-auto w-3.5 text-green-500" />
+              ) : (
+                <Copy className="h-auto w-3.5" />
+              )}
+            </button>
+
+            <Button
+              className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
+              onClick={() => {
+                router.push(`/user-portfolio/${drawerUserInfoUserAddress}`);
+                closeDrawer();
+              }}
+            >
+              <span className="flex items-center gap-2">
+                <InfoIcon className="h-3 w-3" />{' '}
+                <span className="text-xs">View All</span>
+              </span>
+            </Button>
+          </div>
 
           {/*
           <Filters tokenid={drawerHorseInfoTokenId} />

@@ -1,7 +1,7 @@
 import CoverImage from '@/assets/images/profile-cover.png';
 
-//import AuthorImage from '@/assets/images/author.jpg';
-import AuthorImage from '@/assets/images/author.jpg';
+//import AuthorImage from '@/assets/images/profile.png';
+import AuthorImage from '@/assets/images/profile.png';
 
 import { Instagram } from '@/components/icons/brands/instagram';
 import { Twitter } from '@/components/icons/brands/twitter';

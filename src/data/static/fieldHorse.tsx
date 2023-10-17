@@ -1,7 +1,7 @@
 import CoverImage from '@/assets/images/field-cover-horse.png';
 
-//import AuthorImage from '@/assets/images/author.jpg';
-import AuthorImage from '@/assets/images/author.jpg';
+//import AuthorImage from '@/assets/images/profile.png';
+import AuthorImage from '@/assets/images/profile.png';
 
 import { Instagram } from '@/components/icons/brands/instagram';
 import { Twitter } from '@/components/icons/brands/twitter';

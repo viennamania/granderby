@@ -4,8 +4,8 @@ import cn from 'classnames';
 
 import NFTGrid from '@/components/ui/nft-card';
 
-//import AuthorImage from '@/assets/images/author.jpg';
-import AuthorImage from '@/assets/images/author.jpg';
+//import AuthorImage from '@/assets/images/profile.png';
+import AuthorImage from '@/assets/images/profile.png';
 
 import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 

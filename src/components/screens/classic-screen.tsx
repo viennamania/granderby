@@ -11,7 +11,7 @@ import TransactCoin from '@/components/ui/transact-coin';
 import Avatar from '@/components/ui/avatar';
 import TopupButton from '@/components/ui/topup-button';
 //images
-import AuthorImage from '@/assets/images/author.jpg';
+import AuthorImage from '@/assets/images/profile.png';
 
 import {
   ConnectWallet,
