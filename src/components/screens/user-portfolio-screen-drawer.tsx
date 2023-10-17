@@ -578,9 +578,7 @@ export default function PortfolioScreen({
             </div>
 
             <div className="mt-5 flex w-full flex-col gap-5">
-              <div className=" rounded-lg p-2 shadow-card ">
-                <PortfolioChart />
-              </div>
+              <PortfolioChart />
             </div>
           </div>
         </div>
@@ -693,7 +691,7 @@ export default function PortfolioScreen({
                       />
                     </div>
                     <span className="text-lg font-bold text-gray-600 xl:text-xl">
-                      No Price Data
+                      No Data
                     </span>
                   </button>
 
@@ -720,7 +718,7 @@ export default function PortfolioScreen({
                       />
                     </div>
                     <span className="text-lg font-bold text-gray-600 xl:text-xl">
-                      No Price Data
+                      No Data
                     </span>
                   </button>
                 </div>
