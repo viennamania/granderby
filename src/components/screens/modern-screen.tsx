@@ -779,7 +779,7 @@ export default function ModernScreen() {
             <button
               className=" flex flex-row items-center justify-start  "
               onClick={() => {
-                setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                setDrawerUserInfoUserAddress(transfer.tokenTo);
                 openDrawer('DRAWER_USER_INFO', 0);
               }}
             >
@@ -793,7 +793,7 @@ export default function ModernScreen() {
               <div className="flex items-center justify-start">
                 <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
 
-                {transfer.tokenFrom?.substring(0, 6) + '...'}
+                {transfer.tokenTo?.substring(0, 6) + '...'}
               </div>
             </button>
           ),
