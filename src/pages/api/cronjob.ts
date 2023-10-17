@@ -293,161 +293,159 @@ export default async function handler(
 
         console.log('item.rawContract.address', item.rawContract.address);
 
-        //if (item.rawContract.address == contractAddress) {
+        if (item.rawContract.address == contractAddress) {
+          console.log('Transfer');
+          console.log('Transfer item.hash', item.hash);
 
-        console.log('Transfer');
-        console.log('Transfer item.hash', item.hash);
+          const fromInHex = receipt.logs[j].topics[1];
+          const toInHex = receipt.logs[j].topics[2];
+          const tokenIdInHex = receipt.logs[j].topics[3];
 
-        const fromInHex = receipt.logs[j].topics[1];
-        const toInHex = receipt.logs[j].topics[2];
-        const tokenIdInHex = receipt.logs[j].topics[3];
+          const from = '0x' + fromInHex.substring(26, 66);
+          const to = '0x' + toInHex.substring(26, 66);
 
-        const from = '0x' + fromInHex.substring(26, 66);
-        const to = '0x' + toInHex.substring(26, 66);
+          const tokenId = String(parseInt(tokenIdInHex, 16));
 
-        const tokenId = String(parseInt(tokenIdInHex, 16));
+          //console.log ("Transfer from", from);
+          //console.log ("Transfer to", to);
 
-        //console.log ("Transfer from", from);
-        //console.log ("Transfer to", to);
+          const logs4Address = receipt?.logs[4]?.address;
 
-        const logs4Address = receipt?.logs[4]?.address;
+          try {
+            const horsetransfers = db.collection('horsetransfers');
 
-        try {
-          const horsetransfers = db.collection('horsetransfers');
-
-          // create a filter for a movie to update
-          const filterHorsetransfers = { uniqueId: uniqueId };
-          // this option instructs the method to create a document if no documents match the filter
-          const optionsHorsetransfers = { upsert: true };
-          // create a document that sets the plot of the movie
-          const updateHorsetransfers = {
-            $set: {
-              blockNum: item.blockNum,
-              uniqueId: uniqueId,
-              hash: item.hash,
-              from: item.from,
-              to: item.to,
-              value: item.value,
-              erc721TokenId: item.erc721TokenId,
-              erc1155Metadata: item.erc1155Metadata,
-              asset: item.asset,
-              category: item.category,
-              rawContract: item.rawContract,
-              blockTimestamp: item.blockTimestamp,
-              data: receipt.logs[j]?.data,
-
-              tokenId: tokenId,
-
-              tokenFrom: from,
-              tokenTo: to,
-              logs4Address: logs4Address,
-            },
-          };
-
-          await horsetransfers.updateOne(
-            filterHorsetransfers,
-            updateHorsetransfers,
-            optionsHorsetransfers
-          );
-
-          if (
-            to.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()
-          ) {
-          } else {
-            const nfthorses = db.collection('nfthorses');
-
-            const filterNfthorses = { tokenId: tokenId };
-
-            const updateNfthorses = {
+            // create a filter for a movie to update
+            const filterHorsetransfers = { uniqueId: uniqueId };
+            // this option instructs the method to create a document if no documents match the filter
+            const optionsHorsetransfers = { upsert: true };
+            // create a document that sets the plot of the movie
+            const updateHorsetransfers = {
               $set: {
-                holder: to,
+                blockNum: item.blockNum,
+                uniqueId: uniqueId,
+                hash: item.hash,
+                from: item.from,
+                to: item.to,
+                value: item.value,
+                erc721TokenId: item.erc721TokenId,
+                erc1155Metadata: item.erc1155Metadata,
+                asset: item.asset,
+                category: item.category,
+                rawContract: item.rawContract,
+                blockTimestamp: item.blockTimestamp,
+                data: receipt.logs[j]?.data,
+
+                tokenId: tokenId,
+
+                tokenFrom: from,
+                tokenTo: to,
+                logs4Address: logs4Address,
               },
             };
 
-            const optionsNfthorses = { upsert: true };
-
-            await nfthorses.updateOne(
-              filterNfthorses,
-              updateNfthorses,
-              optionsNfthorses
+            await horsetransfers.updateOne(
+              filterHorsetransfers,
+              updateHorsetransfers,
+              optionsHorsetransfers
             );
+
+            if (
+              to.toUpperCase() == stakingContractAddressHorseAAA.toUpperCase()
+            ) {
+            } else {
+              const nfthorses = db.collection('nfthorses');
+
+              const filterNfthorses = { tokenId: tokenId };
+
+              const updateNfthorses = {
+                $set: {
+                  holder: to,
+                },
+              };
+
+              const optionsNfthorses = { upsert: true };
+
+              await nfthorses.updateOne(
+                filterNfthorses,
+                updateNfthorses,
+                optionsNfthorses
+              );
+            }
+
+            const users = db.collection('users');
+
+            const username = to + '@granderby.io';
+            const email = to + '@granderby.io';
+            const pass = '1234';
+            const deposit = 0;
+            const img = '';
+            const admin = false;
+
+            const filterUsers = { walletAddress: to };
+
+            const updateUsers = {
+              $set: {
+                walletAddress: to,
+                username: username,
+                email: email,
+                pass: pass,
+                deposit: deposit,
+                img: img,
+                admin: admin,
+              },
+            };
+
+            const optionsUsers = { upsert: true };
+
+            await users.updateOne(filterUsers, updateUsers, optionsUsers);
+          } catch (error) {
+            console.log('error', error);
+          } finally {
+            ////await client.close();
           }
 
-          const users = db.collection('users');
+          try {
+            const action = 'Transfer';
 
-          const username = to + '@granderby.io';
-          const email = to + '@granderby.io';
-          const pass = '1234';
-          const deposit = 0;
-          const img = '';
-          const admin = false;
+            const horsegames = db.collection('horsegames');
 
-          const filterUsers = { walletAddress: to };
+            // create a filter for a movie to update
+            const filter = { uniqueId: uniqueId };
+            // this option instructs the method to create a document if no documents match the filter
+            const option = { upsert: true };
+            // create a document that sets the plot of the movie
+            const updateDoc = {
+              $set: {
+                action: action,
+                uniqueId: uniqueId,
+                blockNum: item.blockNum,
+                hash: item.hash,
+                from: item.from,
+                to: item.to,
+                value: item.value,
+                erc721TokenId: item.erc721TokenId,
+                erc1155Metadata: item.erc1155Metadata,
+                asset: item.asset,
+                category: item.category,
+                rawContract: item.rawContract,
+                blockTimestamp: item.blockTimestamp,
+                data: receipt.logs[j]?.data,
 
-          const updateUsers = {
-            $set: {
-              walletAddress: to,
-              username: username,
-              email: email,
-              pass: pass,
-              deposit: deposit,
-              img: img,
-              admin: admin,
-            },
-          };
+                tokenId: tokenId,
 
-          const optionsUsers = { upsert: true };
+                tokenFrom: from,
+                tokenTo: to,
+                logs4Address: logs4Address,
+              },
+            };
 
-          await users.updateOne(filterUsers, updateUsers, optionsUsers);
-        } catch (error) {
-          console.log('error', error);
-        } finally {
-          ////await client.close();
+            await horsegames.updateOne(filter, updateDoc, option);
+          } catch (error) {
+            console.log('error', error);
+          } finally {
+            ////await client.close();
+          }
         }
-
-        try {
-          const action = 'Transfer';
-
-          const horsegames = db.collection('horsegames');
-
-          // create a filter for a movie to update
-          const filter = { uniqueId: uniqueId };
-          // this option instructs the method to create a document if no documents match the filter
-          const option = { upsert: true };
-          // create a document that sets the plot of the movie
-          const updateDoc = {
-            $set: {
-              action: action,
-              uniqueId: uniqueId,
-              blockNum: item.blockNum,
-              hash: item.hash,
-              from: item.from,
-              to: item.to,
-              value: item.value,
-              erc721TokenId: item.erc721TokenId,
-              erc1155Metadata: item.erc1155Metadata,
-              asset: item.asset,
-              category: item.category,
-              rawContract: item.rawContract,
-              blockTimestamp: item.blockTimestamp,
-              data: receipt.logs[j]?.data,
-
-              tokenId: tokenId,
-
-              tokenFrom: from,
-              tokenTo: to,
-              logs4Address: logs4Address,
-            },
-          };
-
-          await horsegames.updateOne(filter, updateDoc, option);
-        } catch (error) {
-          console.log('error', error);
-        } finally {
-          ////await client.close();
-        }
-
-        //}
 
         // ToknesStaked
       } else if (
