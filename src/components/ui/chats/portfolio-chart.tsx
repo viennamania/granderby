@@ -116,6 +116,7 @@ export default function PortfolioChart(
 
         //const totalGRD = data.all.filter((item: any) => item._id === name && item.contract?.toLowerCase() === tokenContractAddressGRD.toLowerCase()).total;
 
+        /*
         var totalGRD = 0;
         data.all.map((item: any) => {
           if (
@@ -168,13 +169,14 @@ export default function PortfolioChart(
             return item.total;
           }
         });
+        */
 
         volumn.push({
           name: name,
-          GRD: totalGRD,
-          CARROT: totalCARROT,
-          SUGAR: totalSUGAR,
-          HORSE: totalHORSE,
+          GRD: item.totalGRD,
+          CARROT: item.totalCARROT,
+          SUGAR: item.totalSUGAR,
+          HORSE: item.totalHORSE,
         });
       });
 

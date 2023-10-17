@@ -4,6 +4,7 @@ import {
   getNftTransferHistoryByHolder,
   getDailyVolumnByHolder,
   getDailyVolumn,
+  getDailyVolumnForContract,
 } from '@/utils/models/game-model';
 
 import { NextApiResponse } from 'next';
@@ -65,7 +66,13 @@ export default async function handler(
       return res.status(200).json({ status: true, all, total });
     }
 
+    //const test = await getDailyVolumnForContract();
+
+    //console.log('getVolumn test', test);
+
     const all = await getDailyVolumn();
+
+    console.log('getVolumn all', all);
 
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
 

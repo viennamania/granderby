@@ -13,6 +13,10 @@ import {
   addressInvalid1,
   addressInvalid2,
   addressInvalid3,
+  tokenContractAddressCARROTDrop,
+  tokenContractAddressSUGARDrop,
+  nftDropContractAddressHorse,
+  tokenContractAddressGRD,
 } from '@/config/contractAddresses';
 
 dbConnect();
@@ -477,11 +481,13 @@ export const getDailyVolumnByHolder = async (
       },
     },
     {
-      $sort: { _id: -1 },
+      $sort: { _id: 1 },
     },
+    /*
     {
       $limit: 30,
     },
+    */
   ]);
 };
 
@@ -540,8 +546,109 @@ Promise<any[]> => {
           // $contract: '$rawContract.address',
         },
         //category : { $first: '$category' },
-        contract: { $first: '$rawContract.address' },
-        total: { $sum: 1 },
+        //contract: {
+        //  $first: '$rawContract.address',
+        //},
+
+        /*
+        contract: {
+          $first: {
+            $cond: [
+              { $eq: ['$category', 'erc721'] },
+              '$rawContract.address',
+              '$category',
+            ],
+          },
+        },
+        */
+        // each contract '$rawContract.address' has only one category
+        //contract: { $first: '$rawContract.address' },
+
+        // same contract can have multiple category
+
+        /* total is set for the sum of each contract */
+
+        contract: {
+          $addToSet: '$rawContract.address',
+        },
+
+        category: {
+          $addToSet: '$category',
+        },
+
+        // sum each contract of set
+        totalErc20: {
+          // sum each contract of set
+          $sum: {
+            $cond: [{ $eq: ['$category', 'erc20'] }, 1, 0],
+          },
+        },
+        totalErc721: {
+          // sum each contract of set
+          $sum: {
+            $cond: [{ $eq: ['$category', 'erc721'] }, 1, 0],
+          },
+        },
+        totalGRD: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  tokenContractAddressGRD.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalCARROT: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  tokenContractAddressCARROTDrop.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalSUGAR: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  tokenContractAddressSUGARDrop.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalHORSE: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  nftDropContractAddressHorse.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
       },
     },
     {
@@ -553,3 +660,103 @@ Promise<any[]> => {
     //},
   ]);
 };
+
+// getDailyVolumn for rawContract.address group by date
+export const getDailyVolumnForContract =
+  async (): //): Promise<ITransferHistory[]> => {
+  Promise<any[]> => {
+    console.log('getDailyVolumn===');
+
+    return await HorseTransferModel.aggregate([
+      {
+        /* from now on, 7 days ago */
+
+        $match: {
+          $and: [
+            /*
+          {
+
+            blockTimestamp: {
+              $gte:   new Date(new Date().getTime() - 100 * 24 * 60 * 60 * 1000),
+            },
+          },
+          */
+
+            {
+              $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+            },
+            {
+              $expr: {
+                $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
+              },
+            },
+            {
+              $expr: {
+                $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
+              },
+            },
+            {
+              $expr: {
+                $ne: [
+                  '$tokenTo',
+                  '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
+                ],
+              },
+            },
+            /*
+          {
+            $or: [
+ 
+              { '$rawContract.address': tokenContractAddressCARROTDrop },
+              { '$rawContract.address': tokenContractAddressSUGARDrop },
+              { '$rawContract.address': nftDropContractAddressHorse },
+            ],
+
+          }
+          */
+          ],
+        },
+      },
+      {
+        $group: {
+          _id: {
+            //$dateToString: { format: '%Y-%m-%d', date: '$blockTimestamp' },
+            $dateToString: {
+              format: '%Y-%m-%d',
+              date: { $toDate: '$blockTimestamp' },
+            },
+            // contract
+            //$contract: '$rawContract.address',
+
+            /*
+          $contract0: { '$rawContract.address': tokenContractAddressGRD },
+          $contract1: { '$rawContract.address': tokenContractAddressCARROTDrop },
+          $contract2: { '$rawContract.address': tokenContractAddressSUGARDrop },
+          $contract3: { '$rawContract.address': nftDropContractAddressHorse },
+          */
+          },
+
+          category: {
+            $first: '$category',
+          },
+          /*
+        contract0: { $first: '$contract0' },
+        contract1: { $first: '$contract1' },
+        contract2: { $first: '$contract2' },
+        contract3: { $first: '$contract3' },
+        */
+
+          total: {
+            $sum: 1,
+          },
+        },
+      },
+      {
+        //$sort: { _id: -1 },
+        $sort: { _id: 1 },
+      },
+      //{
+      //  $limit: 30,
+      //},
+    ]);
+  };
