@@ -28,6 +28,8 @@ import {
 } from '@thirdweb-dev/wallets';
 import { Goerli, Polygon } from '@thirdweb-dev/chains';
 
+import { BigNumber } from 'ethers';
+
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
   network: Network.MATIC_MAINNET, // Replace with your network.
@@ -227,59 +229,124 @@ export default async function handler(
 
     console.log('smartWallet address', smartWalletAddress);
 
-    // You can then use this wallet to perform transactions via the SDK
     const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
-
-    /* CARROT Token Contract */
-    const tokenContract = await sdk.getContract(tokenContractAddressCARROTDrop);
-
-    // random amount from 1 to 50
-    const amountCarrot = Math.floor(Math.random() * 50) + 1;
-
-    // if amountCarrot is even, then stop
-    if (amountCarrot % 2 == 0) {
-      res.status(400).json({
-        txid: '',
-        message: 'not work',
-        contract: tokenContractAddressCARROTDrop,
-        address: toAddress,
-        amount: amount,
-      });
-
-      return;
-    }
 
     /* drop to address */
     try {
-      /*
-            const transaction = await tokenContractCARROT?.erc20.claim(amount, {
-        checkERC20Allowance: false, // Set to true if you want to check ERC20 allowance
-        currencyAddress: tokenContractAddressGRD,
-        ///pricePerToken: "0.02",
-      });
-      */
+      const tokenContract = await sdk.getContract(nftDropContractAddressHorse);
 
-      const transaction = await tokenContract.erc20.claim(amountCarrot, {
-        checkERC20Allowance: true, // Set to true if you want to check ERC20 allowance
-        currencyAddress: tokenContractAddressCARROTDrop,
-      });
+      //stakingContractAddressHorseAAA
+      // staking nft
 
-      if (transaction) {
-        res.status(200).json({
-          txid: transaction?.receipt?.transactionHash,
-          message: 'transaction successful',
-          contract: tokenContractAddressCARROTDrop,
-          address: toAddress,
-          amount: amount,
-        });
+      const tokenContractStaking = await sdk.getContract(
+        stakingContractAddressHorseAAA
+      );
+
+      // Address of the wallet to get the NFTs of
+
+      // random choose stake or unstake
+      const randomStake = Math.floor(Math.random() * 2);
+
+      if (randomStake == 0) {
+        const nfts = await tokenContract.erc721.getOwned(smartWalletAddress);
+
+        // random one pick from nfts
+        const random = Math.floor(Math.random() * nfts.length);
+        const tokenId = nfts[random].metadata.id;
+
+        console.log(tokenId);
+
+        const isApproved = await tokenContract.erc721.isApproved(
+          smartWalletAddress,
+          stakingContractAddressHorseAAA
+        );
+
+        console.log('isApproved', isApproved);
+
+        if (!isApproved) {
+          const transaction = await tokenContract.call('approve', [
+            stakingContractAddressHorseAAA,
+            tokenId,
+          ]);
+
+          //console.log("transaction", transaction);
+        }
+
+        const _tokenIds = [tokenId];
+        const transaction = await tokenContractStaking.call('stake', [
+          _tokenIds,
+        ]);
+
+        if (transaction) {
+          res.status(200).json({
+            txid: transaction?.receipt?.transactionHash,
+            message: 'transaction successful',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        } else {
+          res.status(400).json({
+            txid: '',
+            message: 'transaction failed',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        }
       } else {
-        res.status(400).json({
-          txid: '',
-          message: 'transaction failed',
-          contract: tokenContractAddressCARROTDrop,
-          address: toAddress,
-          amount: amount,
-        });
+        //getStakeInfo
+        const getStakeInfo = await tokenContractStaking.call('getStakeInfo', [
+          smartWalletAddress,
+        ]);
+
+        if (getStakeInfo[0]?.length == 0) {
+          res.status(400).json({
+            txid: '',
+            message: 'no staked nfts',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        }
+
+        var stakedTokenIds = [] as string[];
+
+        getStakeInfo[0]?.map(
+          (stakedToken: BigNumber) => (
+            console.log('stakedToken', stakedToken.toString()),
+            stakedTokenIds.push(stakedToken.toString())
+          )
+        );
+
+        const random = Math.floor(Math.random() * stakedTokenIds.length);
+        const stakedTokenId = stakedTokenIds[random];
+
+        const tokenIds = [stakedTokenId];
+        // withdraw staked token
+        const transaction = await tokenContractStaking.call('withdraw', [
+          tokenIds,
+        ]);
+
+        //console.log("transaction", transaction);
+
+        if (transaction) {
+          res.status(200).json({
+            txid: transaction?.receipt?.transactionHash,
+            message: 'transaction successful',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        } else {
+          res.status(400).json({
+            txid: '',
+            message: 'transaction failed',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        }
       }
     } catch (error) {
       console.error(error);

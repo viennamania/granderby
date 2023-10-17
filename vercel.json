@@ -34,7 +34,12 @@
         {
             "path": "/api/cronjob-coffeeman",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-songpastable",
+            "schedule": "* * * * *"
         }
+
 
 
     ]

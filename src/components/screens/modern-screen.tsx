@@ -974,10 +974,11 @@ export default function ModernScreen() {
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Baught</span>
-                      <span className="text-xl font-bold text-black">
+
+                      <span className=" w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
+                      <span className="text-xs">Baught</span>
                     </div>
                   )}
                   {transfer.asset === 'SUGAR' && (
