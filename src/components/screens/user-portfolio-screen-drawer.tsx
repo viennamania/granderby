@@ -691,7 +691,7 @@ export default function PortfolioScreen({
                       />
                     </div>
                     <span className="text-lg font-bold text-gray-600 xl:text-xl">
-                      No Data
+                      0 USD
                     </span>
                   </button>
 
@@ -718,7 +718,7 @@ export default function PortfolioScreen({
                       />
                     </div>
                     <span className="text-lg font-bold text-gray-600 xl:text-xl">
-                      No Data
+                      0 USD
                     </span>
                   </button>
                 </div>
