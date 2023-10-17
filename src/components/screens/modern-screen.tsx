@@ -111,6 +111,8 @@ import { useDrawer } from '@/components/drawer-views/context';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
+import PortfolioChart from '../ui/chats/portfolio-chart';
+
 const COLUMNS = [
   {
     Header: 'User',
@@ -1204,6 +1206,10 @@ export default function ModernScreen() {
             </Button>
           </div>
         )}
+
+        <div className="mt-10 flex w-full flex-col  xl:w-2/3">
+          <PortfolioChart userAddress="0x87B87ADef916b8Ba746c69D9dce8961dfC29F71A" />
+        </div>
 
         <div className="mt-10 flex w-full flex-col  xl:w-2/3">
           <div className="flex flex-row items-center justify-between  gap-2">

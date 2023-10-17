@@ -446,7 +446,11 @@ export const getDailyVolumnByHolder = async (
             format: '%Y-%m-%d',
             date: { $toDate: '$blockTimestamp' },
           },
+          // contract
+          // $contract: '$rawContract.address',
         },
+        //category : { $first: '$category' },
+        contract: { $first: '$rawContract.address' },
         total: { $sum: 1 },
       },
     },
@@ -456,5 +460,74 @@ export const getDailyVolumnByHolder = async (
     {
       $limit: 30,
     },
+  ]);
+};
+
+export const getDailyVolumn = async (): //): Promise<ITransferHistory[]> => {
+Promise<any[]> => {
+  console.log('getDailyVolumn===');
+
+  return await HorseTransferModel.aggregate([
+    {
+      /* from now on, 7 days ago */
+
+      $match: {
+        $and: [
+          /*
+          {
+
+            blockTimestamp: {
+              $gte:   new Date(new Date().getTime() - 100 * 24 * 60 * 60 * 1000),
+            },
+          },
+          */
+
+          {
+            $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+          },
+          {
+            $expr: {
+              $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
+            },
+          },
+          {
+            $expr: {
+              $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
+            },
+          },
+          {
+            $expr: {
+              $ne: [
+                '$tokenTo',
+                '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: {
+          //$dateToString: { format: '%Y-%m-%d', date: '$blockTimestamp' },
+          $dateToString: {
+            format: '%Y-%m-%d',
+            date: { $toDate: '$blockTimestamp' },
+          },
+          // contract
+          // $contract: '$rawContract.address',
+        },
+        //category : { $first: '$category' },
+        contract: { $first: '$rawContract.address' },
+        total: { $sum: 1 },
+      },
+    },
+    {
+      //$sort: { _id: -1 },
+      $sort: { _id: 1 },
+    },
+    //{
+    //  $limit: 30,
+    //},
   ]);
 };

@@ -578,7 +578,7 @@ export default function PortfolioScreen({
             </div>
 
             <div className="mt-5 flex w-full flex-col gap-5">
-              <PortfolioChart />
+              <PortfolioChart userAddress={userAddress ? userAddress : ''} />
             </div>
           </div>
         </div>
