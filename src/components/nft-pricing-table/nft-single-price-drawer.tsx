@@ -644,50 +644,51 @@ export default function NftSinglePrice({
                     </div>
                   </div>
 
-                  <div className="flex flex-row items-center justify-start gap-2.5">
-                    <div className="flex flex-row items-center justify-start gap-2.5">
-                      <span className="text-xs">Speed:</span>
-                      {attributeSpped && (
-                        <div className="text-left text-xl capitalize  text-red-600 dark:text-white">
-                          {attributeSpped}
-                        </div>
-                      )}
+                  {/* owned by */}
+                  <div
+                    className=" flex flex-row items-center justify-start gap-4
+                    
+                    "
+                  >
+                    <div className="flex flex-wrap  text-xs tracking-wider text-[#6B7280]">
+                      Owned by
                     </div>
-
-                    <div className="flex flex-row items-center justify-start gap-2.5">
-                      <span className="text-xs">Stamina:</span>
-                      {attributeStamina && (
-                        <div className="text-left text-xl capitalize  text-green-600 dark:text-white">
-                          {attributeStamina}
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex flex-row items-center justify-start gap-2.5">
-                      <span className="text-xs">Power:</span>
-                      {attributePower && (
-                        <div className="text-left text-xl capitalize  text-blue-600 dark:text-white">
-                          {attributePower}
-                        </div>
+                    <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                      {stakerAddress &&
+                      stakerAddress ===
+                        '0x0000000000000000000000000000000000000000' ? (
+                        <>
+                          {nftMetadata?.owner === address ? (
+                            <div className="text-xl font-bold text-blue-600">
+                              Me
+                            </div>
+                          ) : (
+                            <span>
+                              {nftMetadata?.owner?.substring(0, 10)}...
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {stakerAddress && stakerAddress === address ? (
+                            <div className="text-xl font-bold text-blue-600">
+                              Me
+                            </div>
+                          ) : (
+                            <span>{stakerAddress?.substring(0, 10)}...</span>
+                          )}
+                        </>
                       )}
                     </div>
                   </div>
-
-                  {/*
-                      <Button
-                        size="small"
-                        shape="rounded"
-                        variant="solid"
-                        color="gray"
-                        className="dark:bg-gray-800"
-                        onClick={() => openModal('SHARE_VIEW')}
-                      >
-                        SHARE
-                      </Button>
-                      */}
                 </div>
 
                 {/* registered in */}
-                <div className="mt-2 flex flex-col items-center justify-center gap-2 rounded-lg   p-2 ">
+                <div
+                  className="mt-2 flex flex-col items-center justify-center gap-2 rounded-lg   border-t
+                border-gray-200 p-2 pt-5 dark:border-gray-700
+                "
+                >
                   {isLoadingStaking ? (
                     <div className=" flex flex-col items-center justify-center gap-5">
                       <div className="text-xl font-bold xl:text-2xl">
@@ -696,6 +697,7 @@ export default function NftSinglePrice({
                     </div>
                   ) : (
                     <>
+                      {/*
                       <div className="">
                         {stakerAddress &&
                           stakerAddress ===
@@ -714,17 +716,7 @@ export default function NftSinglePrice({
                               <div className="flex text-sm tracking-wider text-[#6B7280]">
                                 Registered in
                               </div>
-                              {/*
-                              <div className=" rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                                <span>
-                                  {stakingContractAddressHorseAAA?.substring(
-                                    0,
-                                    6
-                                  )}
-                                  ...
-                                </span>
-                              </div>
-                              */}
+                
                               <Image
                                 src="/images/inkent.jpeg"
                                 alt="raceTrack"
@@ -732,25 +724,11 @@ export default function NftSinglePrice({
                                 height={50}
                               />
 
-                              {/*
-                                <div className="flex flex-col text-xs">
-                                  <span>1.8 GRD</span>
-                                  <span>per Hour</span>
-                                </div>
-                                */}
-
-                              {/*
-                            <AnchorLink
-                              href={`/horse-details/${nftMetadata?.metadata?.id}`}
-                              className="inline-flex items-center text-sm -tracking-wider text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white "
-                            >
-                              on {nftMetadata?.metadata?.mintedDate}
-                              <ArrowLinkIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
-                            </AnchorLink>
-                              */}
+                 
                             </div>
                           )}
                       </div>
+                      */}
 
                       <div className="mb-3 flex flex-row">
                         {raceHistory && raceHistory.length === 0 ? (
@@ -826,40 +804,44 @@ export default function NftSinglePrice({
                   )}
                 </div>
 
-                {/* owned by */}
-                <div className="mt-5 flex flex-row items-center justify-center gap-4 ">
-                  <div className="flex w-28 flex-wrap  text-xs tracking-wider text-[#6B7280]">
-                    Owned by
-                  </div>
-                  <div className="flex flex-col rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-xs font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                    {stakerAddress &&
-                    stakerAddress ===
-                      '0x0000000000000000000000000000000000000000' ? (
-                      <>
-                        {nftMetadata?.owner === address ? (
-                          <div className="text-xl font-bold text-blue-600">
-                            Me
-                          </div>
-                        ) : (
-                          <span>{nftMetadata?.owner?.substring(0, 10)}...</span>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {stakerAddress && stakerAddress === address ? (
-                          <div className="text-xl font-bold text-blue-600">
-                            Me
-                          </div>
-                        ) : (
-                          <span>{stakerAddress?.substring(0, 10)}...</span>
-                        )}
-                      </>
-                    )}
-                  </div>
-                </div>
+                <div
+                  className="mt-5 flex w-full flex-col items-center
+                border-t border-gray-200 pt-5 dark:border-gray-700
+                "
+                >
+                  <div
+                    className="flex flex-row items-center justify-start gap-2.5
+             
+                  "
+                  >
+                    <div className="flex flex-row items-center justify-start gap-2.5">
+                      <span className="text-xs">Speed:</span>
+                      {attributeSpped && (
+                        <div className="text-left text-xl capitalize  text-red-600 dark:text-white">
+                          {attributeSpped}
+                        </div>
+                      )}
+                    </div>
 
-                <div className="mt-5 flex w-full flex-col items-center">
-                  <div className="flex flex-row items-center gap-4 ">
+                    <div className="flex flex-row items-center justify-start gap-2.5">
+                      <span className="text-xs">Stamina:</span>
+                      {attributeStamina && (
+                        <div className="text-left text-xl capitalize  text-green-600 dark:text-white">
+                          {attributeStamina}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex flex-row items-center justify-start gap-2.5">
+                      <span className="text-xs">Power:</span>
+                      {attributePower && (
+                        <div className="text-left text-xl capitalize  text-blue-600 dark:text-white">
+                          {attributePower}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-row items-center gap-4 ">
                     <Image
                       //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
                       src={
@@ -868,12 +850,14 @@ export default function NftSinglePrice({
                           : '/default-nft.png'
                       }
                       alt="nft"
-                      width={180}
-                      height={180}
+                      width={300}
+                      height={300}
                       className=" rounded-lg "
                     />
 
+                    {/*
                     <Grade grade={attributeGrade} />
+                    */}
                   </div>
 
                   <div className="mt-5 flex w-full items-center ">
