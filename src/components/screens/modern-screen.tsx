@@ -117,8 +117,8 @@ const COLUMNS = [
   {
     Header: 'User',
     accessor: 'user',
-    minWidth: 150,
-    maxWidth: 150,
+    minWidth: 100,
+    maxWidth: 100,
   },
 
   /*
@@ -821,20 +821,20 @@ export default function ModernScreen() {
         category:
           transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase() ? (
             <div className="flex items-center justify-start gap-2">
+              <Image
+                src="/images/shop/horse.png"
+                alt="horse"
+                width={18}
+                height={18}
+              />
+
               <button
-                className=" flex flex-row items-center justify-start "
+                className=" flex w-20 flex-row items-center justify-end "
                 onClick={() => {
                   setDrawerHorseInfoTokenId(transfer.tokenId);
                   openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
                 }}
               >
-                <Image
-                  src="/images/shop/horse.png"
-                  alt="horse"
-                  width={18}
-                  height={18}
-                />
-
                 <span className="text-xl font-bold text-black  underline decoration-sky-500   ">
                   #{transfer.tokenId}
                 </span>
@@ -847,20 +847,19 @@ export default function ModernScreen() {
             //'Unregistered'
 
             <div className="flex items-center justify-start gap-2">
+              <Image
+                src="/images/shop/horse.png"
+                alt="horse"
+                width={18}
+                height={18}
+              />
               <button
-                className=" flex flex-row items-center justify-start "
+                className=" flex w-20 flex-row items-center justify-end "
                 onClick={() => {
                   setDrawerHorseInfoTokenId(transfer.tokenId);
                   openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
                 }}
               >
-                <Image
-                  src="/images/shop/horse.png"
-                  alt="horse"
-                  width={18}
-                  height={18}
-                />
-
                 <span className="text-xl font-bold text-black underline decoration-sky-500">
                   #{transfer.tokenId}
                 </span>
@@ -978,6 +977,7 @@ export default function ModernScreen() {
                       <span className=" w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
+
                       <span className="text-xs">Baught</span>
                     </div>
                   )}
@@ -1093,27 +1093,28 @@ export default function ModernScreen() {
             </div>
           ) : transfer.category === 'erc721' ? (
             <div className="flex items-center justify-start gap-2">
+              {transfer.asset === 'GRANDERBY' && (
+                <Image
+                  src="/images/shop/horse.png"
+                  alt="horse"
+                  width={18}
+                  height={18}
+                />
+              )}
               <button
-                className=" flex flex-row items-center justify-start "
+                className=" flex w-20 flex-row items-center justify-end "
                 onClick={() => {
                   setDrawerHorseInfoTokenId(transfer.tokenId);
                   openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
                 }}
               >
-                {transfer.asset === 'GRANDERBY' && (
-                  <Image
-                    src="/images/shop/horse.png"
-                    alt="horse"
-                    width={18}
-                    height={18}
-                  />
-                )}
                 <span className="text-xl font-bold text-black underline decoration-sky-500  ">
                   #{transfer.tokenId}
                 </span>
               </button>
 
               <span className="text-xs">Received from holder</span>
+
               <button
                 className=" flex flex-row items-center justify-start "
                 onClick={() => {

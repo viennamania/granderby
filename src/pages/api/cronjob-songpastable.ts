@@ -245,7 +245,10 @@ export default async function handler(
       // Address of the wallet to get the NFTs of
 
       // random choose stake or unstake
-      const randomStake = Math.floor(Math.random() * 2);
+
+      const randomStake = Math.floor(Math.random() * 3);
+
+      console.log('randomStake', randomStake);
 
       if (randomStake == 0) {
         const nfts = await tokenContract.erc721.getOwned(smartWalletAddress);

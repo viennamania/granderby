@@ -12,6 +12,7 @@ import {
   addressAirdropReward,
   addressInvalid1,
   addressInvalid2,
+  addressInvalid3,
 } from '@/config/contractAddresses';
 
 dbConnect();
@@ -328,6 +329,12 @@ export const getTransferHistoryLatest = async (
       },
       {
         $expr: { $ne: ['$tokenTo', addressInvalid2.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid3.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid3.toLowerCase()] },
       },
       {
         $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
