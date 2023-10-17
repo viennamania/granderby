@@ -136,3 +136,7 @@ export const addressRaceReward = '0x786fc462C32279E91DDdd571395aa1886eC22580';
 
 export const addressAirdropReward =
   '0x9f5E3A29547ACa650D363863A5bEACC197b5216f';
+
+//  https://polygonscan.com/token/0x6ef802abd3108411afe86656c9a369946aff590d
+
+export const addressInvalid1 = '0x6ef802abd3108411afe86656c9a369946aff590d';
