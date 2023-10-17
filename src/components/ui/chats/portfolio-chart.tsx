@@ -178,7 +178,7 @@ export default function PortfolioChart(
         });
       });
 
-      console.log('volumn', volumn);
+      ////console.log('volumn', volumn);
 
       setVolumn(volumn);
     }
