@@ -115,8 +115,8 @@ const COLUMNS = [
   {
     Header: 'User',
     accessor: 'user',
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 150,
+    maxWidth: 150,
   },
 
   /*
@@ -265,6 +265,30 @@ const COLUMNS = [
     ),
     minWidth: 120,
     maxWidth: 120,
+  },
+
+  {
+    Header: () => <div className="mr-auto">Hash</div>,
+    accessor: 'hash',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <button
+        className=" flex flex-row items-center justify-start "
+        onClick={() =>
+          //alert("clicked")
+
+          (location.href = 'https://polygonscan.com/tx/' + value)
+        }
+      >
+        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
+
+        <div className="ml-1 text-left text-xs -tracking-[1px]  ">
+          {value.substring(0, 6) + '...'}
+        </div>
+      </button>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
   },
 ];
 
@@ -982,10 +1006,16 @@ export default function ModernScreen() {
                       />
                       <span className="text-xs">Received from</span>
 
-                      <div className="flex items-center justify-start">
+                      <button
+                        className=" flex flex-row items-center justify-start "
+                        onClick={() => {
+                          setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                          openDrawer('DRAWER_USER_INFO', 0);
+                        }}
+                      >
                         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
                         {transfer.tokenFrom?.substring(0, 6) + '...'}
-                      </div>
+                      </button>
 
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
@@ -1000,11 +1030,22 @@ export default function ModernScreen() {
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Reveived from</span>
-                      <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
-                      <span className="text-xl font-bold text-black">
+                      <span className=" w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
+                      <span className="text-xs">Received from</span>
+                      <button
+                        className=" flex flex-row items-center justify-start "
+                        onClick={() => {
+                          setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                          openDrawer('DRAWER_USER_INFO', 0);
+                        }}
+                      >
+                        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                        <span>
+                          {transfer.tokenFrom?.substring(0, 6) + '...'}
+                        </span>
+                      </button>
                     </div>
                   )}
                   {transfer.asset === 'SUGAR' && (
@@ -1015,6 +1056,9 @@ export default function ModernScreen() {
                         width={18}
                         height={18}
                       />
+                      <span className=" w-20 text-right  text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
 
                       {transfer.tokenFrom ===
                       addressAirdropReward.toLowerCase() ? (
@@ -1025,16 +1069,18 @@ export default function ModernScreen() {
                       ) : (
                         <>
                           <span className="text-xs">Received from</span>
-                          <div className="flex items-center justify-start">
+                          <button
+                            className=" flex flex-row items-center justify-start "
+                            onClick={() => {
+                              setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                              openDrawer('DRAWER_USER_INFO', 0);
+                            }}
+                          >
                             <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
                             {transfer.tokenFrom?.substring(0, 6) + '...'}
-                          </div>
+                          </button>
                         </>
                       )}
-
-                      <span className="text-xl font-bold text-black">
-                        {Number(transfer.value).toFixed(2)}
-                      </span>
                     </div>
                   )}
                 </div>
