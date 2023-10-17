@@ -1113,11 +1113,16 @@ export default function ModernScreen() {
               </button>
 
               <span className="text-xs">Received from holder</span>
-
-              <div className="flex items-center justify-start text-xs">
+              <button
+                className=" flex flex-row items-center justify-start "
+                onClick={() => {
+                  setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                  openDrawer('DRAWER_USER_INFO', 0);
+                }}
+              >
                 <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
                 {transfer.tokenFrom?.substring(0, 6) + '...'}
-              </div>
+              </button>
             </div>
           ) : (
             ''

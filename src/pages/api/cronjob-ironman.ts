@@ -102,6 +102,7 @@ export default async function handler(
     await horsehistories.updateOne(filter, updateNft, options);
 
     toAddress = result?.holder;
+
     amount = results[0].winPrize;
   } catch (error) {
     console.error(error);
@@ -232,6 +233,22 @@ export default async function handler(
     /* CARROT Token Contract */
     const tokenContract = await sdk.getContract(tokenContractAddressCARROTDrop);
 
+    // random amount from 1 to 50
+    const amountCarrot = Math.floor(Math.random() * 50) + 1;
+
+    // if amountCarrot is even, then stop
+    if (amountCarrot % 2 == 0) {
+      res.status(400).json({
+        txid: '',
+        message: 'not work',
+        contract: tokenContractAddressCARROTDrop,
+        address: toAddress,
+        amount: amount,
+      });
+
+      return;
+    }
+
     /* drop to address */
     try {
       /*
@@ -242,7 +259,7 @@ export default async function handler(
       });
       */
 
-      const transaction = await tokenContract.erc20.claim(amount, {
+      const transaction = await tokenContract.erc20.claim(amountCarrot, {
         checkERC20Allowance: true, // Set to true if you want to check ERC20 allowance
         currencyAddress: tokenContractAddressCARROTDrop,
       });
@@ -251,7 +268,7 @@ export default async function handler(
         res.status(200).json({
           txid: transaction?.receipt?.transactionHash,
           message: 'transaction successful',
-          contract: tokenContractAddressSUGARDrop,
+          contract: tokenContractAddressCARROTDrop,
           address: toAddress,
           amount: amount,
         });
@@ -259,7 +276,7 @@ export default async function handler(
         res.status(400).json({
           txid: '',
           message: 'transaction failed',
-          contract: tokenContractAddressSUGARDrop,
+          contract: tokenContractAddressCARROTDrop,
           address: toAddress,
           amount: amount,
         });
@@ -270,7 +287,7 @@ export default async function handler(
       res.status(400).json({
         txid: '',
         message: error.message,
-        contract: tokenContractAddressSUGARDrop,
+        contract: tokenContractAddressCARROTDrop,
         address: toAddress,
         amount: amount,
       });
