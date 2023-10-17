@@ -357,6 +357,14 @@ export const getTransferHistoryLatest = async (
           ],
         },
       },
+      {
+        $expr: {
+          $ne: [
+            '$rawContract.address',
+            '0xe36BD65609c08Cd17b53520293523CF4560533d0'.toLowerCase(),
+          ],
+        },
+      },
     ],
 
     /*

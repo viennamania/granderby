@@ -36,7 +36,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const contractAddress = nftDropContractAddressHorse;
+  const contractAddress = nftDropContractAddressHorse.toLowerCase();
 
   var fromBlock: any = await kv.get(contractAddress);
 
@@ -291,6 +291,10 @@ export default async function handler(
       ) {
         ///console.log("receipt?.logs[j].topics", receipt?.logs[j].topics);
 
+        console.log('item.rawContract.address', item.rawContract.address);
+
+        //if (item.rawContract.address == contractAddress) {
+
         console.log('Transfer');
         console.log('Transfer item.hash', item.hash);
 
@@ -442,6 +446,8 @@ export default async function handler(
         } finally {
           ////await client.close();
         }
+
+        //}
 
         // ToknesStaked
       } else if (
@@ -629,6 +635,8 @@ export default async function handler(
     }
 
     //sleep(100);
+
+    fromBlock = item.blockNum;
   }
 
   await kv.set(contractAddress, fromBlock);

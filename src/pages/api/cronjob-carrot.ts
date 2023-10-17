@@ -843,6 +843,8 @@ export default async function handler(
       }
 
       //sleep(100);
+
+      fromBlock = item.blockNum;
     }
 
     await kv.set(contractAddress, fromBlock);
