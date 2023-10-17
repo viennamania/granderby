@@ -79,12 +79,14 @@ export default async function handler(
   console.log('tokenId', results[0].winnerNft.tokenId);
   */
 
-  const tokenId = results[0].winnerNft.tokenId;
+  const tokenId = results[0].winnerNft;
+
+  console.log('tokenId', tokenId);
 
   try {
     const result = await db
       .collection('nfthorses')
-      .findOne({ tokenId: tokenId });
+      .findOne({ tokenId: tokenId.toString() });
 
     //console.log("result", result);
 

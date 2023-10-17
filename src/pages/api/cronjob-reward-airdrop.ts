@@ -129,9 +129,11 @@ export default async function handler(
       //results[random].holder
       const tokenId = results[random].tokenId;
 
+      //console.log('tokenId', tokenId);
+
       const result2 = db
         .collection('horsetransfers')
-        .find({ tokenId: tokenId });
+        .find({ tokenId: tokenId.toString() });
 
       const results2 = await result2.toArray();
 

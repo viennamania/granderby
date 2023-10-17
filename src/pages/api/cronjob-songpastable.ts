@@ -68,6 +68,18 @@ export default async function handler(
 
   //console.log(results);
 
+  if (results.length == 0) {
+    res.status(400).json({
+      txid: '',
+      message: 'no winner',
+      contract: tokenContractAddressCARROTDrop,
+      address: toAddress,
+      amount: amount,
+    });
+
+    return;
+  }
+
   /*
   console.log('_id', results[0]._id);
   console.log('winnerHorse', results[0].winnerHorse);
@@ -81,14 +93,18 @@ export default async function handler(
   console.log('tokenId', results[0].winnerNft.tokenId);
   */
 
-  const tokenId = results[0].winnerNft.tokenId;
+  //console.log('winnerNft', results[0].winnerNft);
+
+  const tokenId = results[0].winnerNft;
+
+  //console.log('tokenId', tokenId);
 
   try {
     const result = await db
       .collection('nfthorses')
-      .findOne({ tokenId: tokenId });
+      .findOne({ tokenId: tokenId.toString() });
 
-    //console.log("result", result);
+    console.log('result', result);
 
     console.log('holder', result?.holder);
 
@@ -110,13 +126,9 @@ export default async function handler(
     console.error(error);
   }
 
-  if (toAddress && amount) {
-    console.log('toAddress', toAddress);
-    console.log('amount', amount);
+  const privateKey = process.env.SONGPASTABLE_PRIVATE_KEY;
 
-    const privateKey = process.env.SONGPASTABLE_PRIVATE_KEY;
-
-    /*
+  /*
     // can be any ethers.js signer
     ///const privateKey = process.env.PRIVATE_KEY;
     const personalWallet = new PrivateKeyWallet(privateKey);
@@ -193,7 +205,7 @@ export default async function handler(
     }
     */
 
-    /*
+  /*
     const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
       ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
       secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
@@ -208,162 +220,160 @@ export default async function handler(
     });
     */
 
-    // can be any ethers.js signer
-    ///const privateKey = process.env.PRIVATE_KEY;
-    const personalWallet = new PrivateKeyWallet(privateKey);
+  // can be any ethers.js signer
+  ///const privateKey = process.env.PRIVATE_KEY;
+  const personalWallet = new PrivateKeyWallet(privateKey);
 
-    const config = {
-      chain: Polygon, // the chain where your smart wallet will be or is deployed
-      factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB', // your own deployed account factory address
-      ///clientId: "3af7ae04bda0e7a51c444c3a9464458d", // Use client id if using on the client side, get it from dashboard settings
-      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
-      gasless: true, // enable or disable gasless transactions
-    };
+  const config = {
+    chain: Polygon, // the chain where your smart wallet will be or is deployed
+    factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB', // your own deployed account factory address
+    ///clientId: "3af7ae04bda0e7a51c444c3a9464458d", // Use client id if using on the client side, get it from dashboard settings
+    secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
+    gasless: true, // enable or disable gasless transactions
+  };
 
-    // Then, connect the Smart wallet
-    const smartWallet = new SmartWallet(config);
+  // Then, connect the Smart wallet
+  const smartWallet = new SmartWallet(config);
 
-    const smartWalletAddress = await smartWallet.connect({
-      personalWallet: personalWallet,
-    });
+  const smartWalletAddress = await smartWallet.connect({
+    personalWallet: personalWallet,
+  });
 
-    console.log('smartWallet address', smartWalletAddress);
+  console.log('smartWallet address', smartWalletAddress);
 
-    const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
+  const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
 
-    /* drop to address */
-    try {
-      const tokenContract = await sdk.getContract(nftDropContractAddressHorse);
+  /* drop to address */
+  try {
+    const tokenContract = await sdk.getContract(nftDropContractAddressHorse);
 
-      //stakingContractAddressHorseAAA
-      // staking nft
+    //stakingContractAddressHorseAAA
+    // staking nft
 
-      const tokenContractStaking = await sdk.getContract(
+    const tokenContractStaking = await sdk.getContract(
+      stakingContractAddressHorseAAA
+    );
+
+    // Address of the wallet to get the NFTs of
+
+    // random choose stake or unstake
+
+    const randomStake = Math.floor(Math.random() * 3);
+
+    console.log('randomStake', randomStake);
+
+    if (randomStake == 0) {
+      const nfts = await tokenContract.erc721.getOwned(smartWalletAddress);
+
+      // random one pick from nfts
+      const random = Math.floor(Math.random() * nfts.length);
+      const tokenId = nfts[random].metadata.id;
+
+      console.log(tokenId);
+
+      const isApproved = await tokenContract.erc721.isApproved(
+        smartWalletAddress,
         stakingContractAddressHorseAAA
       );
 
-      // Address of the wallet to get the NFTs of
+      console.log('isApproved', isApproved);
 
-      // random choose stake or unstake
-
-      const randomStake = Math.floor(Math.random() * 3);
-
-      console.log('randomStake', randomStake);
-
-      if (randomStake == 0) {
-        const nfts = await tokenContract.erc721.getOwned(smartWalletAddress);
-
-        // random one pick from nfts
-        const random = Math.floor(Math.random() * nfts.length);
-        const tokenId = nfts[random].metadata.id;
-
-        console.log(tokenId);
-
-        const isApproved = await tokenContract.erc721.isApproved(
-          smartWalletAddress,
-          stakingContractAddressHorseAAA
-        );
-
-        console.log('isApproved', isApproved);
-
-        if (!isApproved) {
-          const transaction = await tokenContract.call('approve', [
-            stakingContractAddressHorseAAA,
-            tokenId,
-          ]);
-
-          //console.log("transaction", transaction);
-        }
-
-        const _tokenIds = [tokenId];
-        const transaction = await tokenContractStaking.call('stake', [
-          _tokenIds,
-        ]);
-
-        if (transaction) {
-          res.status(200).json({
-            txid: transaction?.receipt?.transactionHash,
-            message: 'transaction successful',
-            contract: tokenContractAddressCARROTDrop,
-            address: toAddress,
-            amount: amount,
-          });
-        } else {
-          res.status(400).json({
-            txid: '',
-            message: 'transaction failed',
-            contract: tokenContractAddressCARROTDrop,
-            address: toAddress,
-            amount: amount,
-          });
-        }
-      } else {
-        //getStakeInfo
-        const getStakeInfo = await tokenContractStaking.call('getStakeInfo', [
-          smartWalletAddress,
-        ]);
-
-        if (getStakeInfo[0]?.length == 0) {
-          res.status(400).json({
-            txid: '',
-            message: 'no staked nfts',
-            contract: tokenContractAddressCARROTDrop,
-            address: toAddress,
-            amount: amount,
-          });
-        }
-
-        var stakedTokenIds = [] as string[];
-
-        getStakeInfo[0]?.map(
-          (stakedToken: BigNumber) => (
-            console.log('stakedToken', stakedToken.toString()),
-            stakedTokenIds.push(stakedToken.toString())
-          )
-        );
-
-        const random = Math.floor(Math.random() * stakedTokenIds.length);
-        const stakedTokenId = stakedTokenIds[random];
-
-        const tokenIds = [stakedTokenId];
-        // withdraw staked token
-        const transaction = await tokenContractStaking.call('withdraw', [
-          tokenIds,
+      if (!isApproved) {
+        const transaction = await tokenContract.call('approve', [
+          stakingContractAddressHorseAAA,
+          tokenId,
         ]);
 
         //console.log("transaction", transaction);
-
-        if (transaction) {
-          res.status(200).json({
-            txid: transaction?.receipt?.transactionHash,
-            message: 'transaction successful',
-            contract: tokenContractAddressCARROTDrop,
-            address: toAddress,
-            amount: amount,
-          });
-        } else {
-          res.status(400).json({
-            txid: '',
-            message: 'transaction failed',
-            contract: tokenContractAddressCARROTDrop,
-            address: toAddress,
-            amount: amount,
-          });
-        }
       }
-    } catch (error) {
-      console.error(error);
 
-      res.status(400).json({
-        txid: '',
-        message: error.message,
-        contract: tokenContractAddressCARROTDrop,
-        address: toAddress,
-        amount: amount,
-      });
+      const _tokenIds = [tokenId];
+      const transaction = await tokenContractStaking.call('stake', [_tokenIds]);
+
+      if (transaction) {
+        res.status(200).json({
+          txid: transaction?.receipt?.transactionHash,
+          message: 'transaction successful',
+          contract: tokenContractAddressCARROTDrop,
+          address: toAddress,
+          amount: amount,
+        });
+      } else {
+        res.status(400).json({
+          txid: '',
+          message: 'transaction failed',
+          contract: tokenContractAddressCARROTDrop,
+          address: toAddress,
+          amount: amount,
+        });
+      }
+    } else {
+      //getStakeInfo
+      const getStakeInfo = await tokenContractStaking.call('getStakeInfo', [
+        smartWalletAddress,
+      ]);
+
+      if (getStakeInfo[0]?.length == 0) {
+        res.status(400).json({
+          txid: '',
+          message: 'no staked nfts',
+          contract: tokenContractAddressCARROTDrop,
+          address: toAddress,
+          amount: amount,
+        });
+      }
+
+      var stakedTokenIds = [] as string[];
+
+      getStakeInfo[0]?.map(
+        (stakedToken: BigNumber) => (
+          console.log('stakedToken', stakedToken.toString()),
+          stakedTokenIds.push(stakedToken.toString())
+        )
+      );
+
+      const random = Math.floor(Math.random() * stakedTokenIds.length);
+      const stakedTokenId = stakedTokenIds[random];
+
+      const tokenIds = [stakedTokenId];
+      // withdraw staked token
+      const transaction = await tokenContractStaking.call('withdraw', [
+        tokenIds,
+      ]);
+
+      //console.log("transaction", transaction);
+
+      if (transaction) {
+        res.status(200).json({
+          txid: transaction?.receipt?.transactionHash,
+          message: 'transaction successful',
+          contract: tokenContractAddressCARROTDrop,
+          address: toAddress,
+          amount: amount,
+        });
+      } else {
+        res.status(400).json({
+          txid: '',
+          message: 'transaction failed',
+          contract: tokenContractAddressCARROTDrop,
+          address: toAddress,
+          amount: amount,
+        });
+      }
     }
+  } catch (error) {
+    console.error(error);
 
-    /*
+    res.status(400).json({
+      txid: '',
+      message: error.message,
+      contract: tokenContractAddressCARROTDrop,
+      address: toAddress,
+      amount: amount,
+    });
+  }
+
+  /*
     // Sugar Token Contract
     const tokenContract = await sdk.getContract(tokenContractAddressSUGARDrop);
 
@@ -399,13 +409,4 @@ export default async function handler(
       console.error(error);
     }
     */
-  } else {
-    res.status(400).json({
-      txid: '',
-      message: 'private key not found',
-      contract: '',
-      address: '',
-      amount: 0,
-    });
-  }
 }
