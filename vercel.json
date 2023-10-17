@@ -38,8 +38,12 @@
         {
             "path": "/api/cronjob-songpastable",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-denpasarstable",
+            "schedule": "* * * * *"
         }
-
+        
 
 
     ]
