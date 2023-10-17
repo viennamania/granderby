@@ -102,7 +102,7 @@ export function LivePricingFeed({
       transactions.push(transactionData);
     });
 
-    console.log('pricing-slider transactions: ', transactions);
+    ///console.log('pricing-slider transactions: ', transactions);
 
     setTransactions1(transactions);
   };

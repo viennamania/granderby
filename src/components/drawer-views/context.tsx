@@ -6,7 +6,8 @@ export type DRAWER_VIEW =
   | 'DRAWER_SEARCH'
   | 'DRAWER_FILTER'
   | 'DRAWER_PREVIEW_NFT'
-  | 'DRAWER_HORSE_INFO';
+  | 'DRAWER_HORSE_INFO'
+  | 'DRAWER_USER_INFO';
 
 const drawerAtom = atom({
   isOpen: false,

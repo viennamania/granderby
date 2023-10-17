@@ -687,7 +687,13 @@ export default function ModernScreen() {
         user:
           transfer.tokenFrom ===
           '0x0000000000000000000000000000000000000000' ? (
-            <div className="flex items-center justify-start">
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.tokenTo);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
               <Avatar
                 size="sm"
                 image={AuthorImage}
@@ -700,9 +706,15 @@ export default function ModernScreen() {
 
                 {transfer.tokenTo?.substring(0, 6) + '...'}
               </div>
-            </div>
+            </button>
           ) : transfer.tokenFrom === addressAirdropReward.toLowerCase() ? (
-            <div className="flex items-center justify-start">
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.tokenTo);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
               <Avatar
                 size="sm"
                 image={AuthorImage}
@@ -715,9 +727,15 @@ export default function ModernScreen() {
 
                 {transfer.tokenTo?.substring(0, 6) + '...'}
               </div>
-            </div>
+            </button>
           ) : transfer.tokenFrom === addressRaceReward.toLowerCase() ? (
-            <div className="flex items-center justify-start">
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.tokenTo);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
               <Avatar
                 size="sm"
                 image={AuthorImage}
@@ -730,9 +748,15 @@ export default function ModernScreen() {
 
                 {transfer.tokenTo?.substring(0, 6) + '...'}
               </div>
-            </div>
+            </button>
           ) : (
-            <div className="flex items-center justify-start">
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
               <Avatar
                 size="sm"
                 image={AuthorImage}
@@ -745,7 +769,7 @@ export default function ModernScreen() {
 
                 {transfer.tokenFrom?.substring(0, 6) + '...'}
               </div>
-            </div>
+            </button>
           ),
 
         action: transfer.action,
@@ -1071,6 +1095,9 @@ export default function ModernScreen() {
   const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
     'drawer-horse-info-tokenid'
   );
+
+  const [drawerUserInfoUserAddress, setDrawerUserInfoUserAddress] =
+    useLocalStorage('drawer-user-info-useraddress');
 
   return (
     <div className="mb-10">

@@ -18,6 +18,10 @@ const DrawerHorseInfo = dynamic(
   () => import('@/components/search/filters-horse-info')
 );
 
+const DrawerUserInfo = dynamic(
+  () => import('@/components/search/filters-user-info')
+);
+
 const DrawerMenu = dynamic(() => import('@/layouts/sidebar/_layout-menu'));
 const PreviewContent = dynamic(
   () => import('@/components/create-nft/nft-preview-content')
@@ -36,6 +40,9 @@ function renderDrawerContent(view: DRAWER_VIEW | string, tokenid: any) {
 
     case 'DRAWER_HORSE_INFO':
       return <DrawerHorseInfo tokenid={tokenid.tokenid} />;
+
+    case 'DRAWER_USER_INFO':
+      return <DrawerUserInfo />;
 
     default:
       return <DrawerMenu />;
