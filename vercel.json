@@ -30,6 +30,10 @@
         {
             "path": "/api/cronjob-ironman",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-coffeeman",
+            "schedule": "* * * * *"
         }
 
 

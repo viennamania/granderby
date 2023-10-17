@@ -139,8 +139,10 @@ export const addressAirdropReward =
 
 //  https://polygonscan.com/token/0x6ef802abd3108411afe86656c9a369946aff590d
 
-export const addressIronman = '0x4F997ddc6DA71809B43926f4B549B8fF71Bd3bfC';
-
 export const addressInvalid1 = '0x6ef802abd3108411afe86656c9a369946aff590d';
 
 export const addressInvalid2 = '0x403d0c79905E5A85EFc953FfbFD9f325e51A9A4A';
+
+export const addressIronman = '0x4F997ddc6DA71809B43926f4B549B8fF71Bd3bfC';
+
+export const addressCoffeeman = '0xaf38B24AD926188b9B191B7644Ec04e8470b1254';
