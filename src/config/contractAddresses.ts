@@ -146,3 +146,5 @@ export const addressInvalid2 = '0x403d0c79905E5A85EFc953FfbFD9f325e51A9A4A';
 export const addressIronman = '0x4F997ddc6DA71809B43926f4B549B8fF71Bd3bfC';
 
 export const addressCoffeeman = '0xaf38B24AD926188b9B191B7644Ec04e8470b1254';
+
+export const addressSongpaStable = '0xe21A9a39B9AcB5d98eFcC6b53D4C012CD2035cac';

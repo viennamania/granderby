@@ -470,156 +470,22 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-  ////export const getStaticProps: GetStaticProps = async (context: any) => {
-
   const tokenid: string = context.params?.tokenid;
 
-  /*
-  // If used on the FRONTEND pass your 'clientId'
-  const sdk = new ThirdwebSDK('polygon', {
-    clientId: '79125a56ef0c1629d4863b6df0a43cce',
-  });
-
-  const contract = await sdk.getContract(nftDropContractAddressHorse);
-
-  const nft = await contract.erc721.get(tokenid);
-
-  ///console.log('nft======>', nft);
-  */
-
-  const res = await fetch('https://granderby.io/api/nft/horse/' + tokenid, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    //body: JSON.stringify(formInputs),
-  });
-
-  const data = await res.json();
-
-  //console.log(data);
-
-  var grade = '';
-  var size = '';
-  var speed = '';
-  var stamina = '';
-  var power = '';
-
-  data?.attributes?.map((attribute: any) => {
-    ///console.log('attribute', attribute);
-    if (attribute.trait_type === 'Grade') {
-      //setAttributeGrade(attribute.value);
-      grade = attribute.value;
-    }
-    if (attribute.trait_type === 'Size') {
-      //setAttributeSize(attribute.value);
-      size = attribute.value;
-    }
-    if (attribute.trait_type === 'Speed') {
-      //setAttributeSpeed(attribute.value);
-      speed = attribute.value;
-
-      //console.log('attributeSpeed', attribute.value);
-    }
-    if (attribute.trait_type === 'Stamina') {
-      //setAttributeStamina(attribute.value);
-      stamina = attribute.value;
-    }
-    if (attribute.trait_type === 'Power') {
-      //setAttributePower(attribute.value);
-      power = attribute.value;
-    }
-  });
-
-  const title = data?.name + ' - #' + tokenid;
-  const description =
-    'Speed: ' +
-    speed +
-    ' | ' +
-    'Stamina: ' +
-    stamina +
-    ' | ' +
-    'Power: ' +
-    power;
-  const image = data?.image;
-
   return {
     props: {
       tokenid: tokenid,
-      //////nftMetadata: nft,
-      title: title,
-      //description: nft?.metadata?.description,
-      description: description,
-      //image: '/images/logo.png',
-      //image: data?.metadata?.image,
-      //image: nft?.metadata?.image,
-      image: image,
     },
   };
 }
-
-/*
-export async function getServerSideProps(context:any) {
-  const tokenid: any = context.params?.tokenid;
-
-  console.log("tokenid", tokenid);
-
-  //const tokenid: any = context.query.slug;
-
-  // If used on the FRONTEND pass your 'clientId'
-  const sdk = new ThirdwebSDK('polygon', {
-    clientId: '79125a56ef0c1629d4863b6df0a43cce',
-  });
-
-  const contract = await sdk.getContract(nftDropContractAddressHorse);
-
-  const nft = await contract.erc721.get(tokenid);
-
-  ///console.log('nft======>', nft);
-
-  return {
-    props: {
-      tokenid: tokenid,
-      //////nftMetadata: nft,
-      title: '#' + tokenid + '-' + nft?.metadata?.name,
-      description: nft?.metadata?.description,
-      //image: '/images/logo.png',
-      //image: data?.metadata?.image,
-      image: nft?.metadata?.image,
-    },
-  };
-}
-*/
 
 const AssetSinglePrice: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = (props) => {
-  const { tokenid, title, description, image } = props;
+  const { tokenid } = props;
 
   return (
     <>
-      {/*
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1 maximum-scale=1"
-        />
-        <meta property="og:type" content="website"></meta>
-
-        <meta property="og:site_name" content="GRANDERBY"></meta>
-
-        <meta property="og:image:width" content="1400"></meta>
-        <meta property="og:image:height" content="1400"></meta>
-
-        <meta property="og:title" content={title}></meta>
-        <meta property="og:description" content={description}></meta>
-        <meta property="og:image" content={image}></meta>
-
-        <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:image" content={image}></meta>
-
-        <title>{title}</title>
-      </Head>
-      */}
-
       <SinglePrice tokenid={tokenid} />
     </>
   );
