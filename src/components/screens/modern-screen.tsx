@@ -1067,7 +1067,9 @@ export default function ModernScreen() {
                         <span className="text-xs">Rewarded for trading</span>
                       ) : transfer.tokenFrom ===
                         addressRaceReward.toLowerCase() ? (
-                        <span className="text-xs">Rewarded for racing</span>
+                        <span className="text-xs">
+                          Wined a prize for racing
+                        </span>
                       ) : (
                         <>
                           <span className="text-xs">Received from</span>
@@ -1151,7 +1153,7 @@ export default function ModernScreen() {
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
 
-      <div className="mb-20 flex flex-wrap items-center justify-center">
+      <div className="mb-20 flex flex-wrap items-center justify-center gap-10">
         {/*
         <div className="  mt-3 w-full sm:mb-0 sm:w-1/2 sm:ltr:pr-6 sm:rtl:pl-6 md:w-[calc(100%-256px)] lg:w-[calc(100%-288px)] 2xl:w-[calc(100%-320px)] 3xl:w-[calc(100%-358px)]">
         */}
@@ -1161,30 +1163,11 @@ export default function ModernScreen() {
           */}
 
         {address ? (
-          <>
-            {/*
-          <div className=" flex flex-col rounded-lg border">
-            <CollapsePortfolio label="Last Race Winners">
-              <div className="flex h-[490px] flex-col items-center justify-center p-5">
-                <LastWinners npcs={npcNames} status={status} />
+          <div className="flex flex-col items-center justify-center gap-5">
+            <Image src="/images/logo.png" alt="logo" width={150} height={150} />
 
-                <div className="mb-5 flex h-full  items-end justify-center">
-                  <Button
-                    className="mt-5"
-                    shape="rounded"
-                    color="success"
-                    onClick={() => {
-                      router.push('/my-asset');
-                    }}
-                  >
-                    <div className="text-2xl">My NFT</div>
-                  </Button>
-                </div>
-              </div>
-            </CollapsePortfolio>
+            <div className="text-2xl font-bold xl:text-4xl">NFT GRANDERBY</div>
           </div>
-          */}
-          </>
         ) : (
           <div className="flex flex-col items-center justify-center gap-5">
             <Image src="/images/logo.png" alt="logo" width={300} height={300} />
@@ -1208,7 +1191,10 @@ export default function ModernScreen() {
         )}
 
         <div className="mt-10 flex w-full flex-col  xl:w-2/3">
-          <PortfolioChart userAddress="0x87B87ADef916b8Ba746c69D9dce8961dfC29F71A" />
+          <span className=" text-2xl font-bold">Transfer Performance</span>
+          <div className="mt-3">
+            <PortfolioChart userAddress="0x87B87ADef916b8Ba746c69D9dce8961dfC29F71A" />
+          </div>
         </div>
 
         <div className="mt-10 flex w-full flex-col  xl:w-2/3">

@@ -196,9 +196,6 @@ export default function PortfolioChart(
         }
       )}
     >
-      <h3 className="text-xl font-medium tracking-tighter text-black sm:text-3xl">
-        Transfer Performance
-      </h3>
       <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={volumn}>
