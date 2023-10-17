@@ -641,7 +641,7 @@ export default function PortfolioScreen({
                   */}
 
                   <button
-                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`   gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push(`/user-asset/${userAddress}`);
@@ -663,13 +663,13 @@ export default function PortfolioScreen({
                       />
                     </div>
 
-                    <span className="text-lg font-bold text-green-600 xl:text-xl">
+                    <span className=" h-16 text-lg font-bold text-green-600 xl:text-xl">
                       {horsesTotalPricePaid} USD
                     </span>
                   </button>
 
                   <button
-                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`   gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
@@ -690,13 +690,13 @@ export default function PortfolioScreen({
                         height={25}
                       />
                     </div>
-                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
+                    <span className=" h-16 text-lg font-bold text-gray-600 xl:text-xl">
                       0 USD
                     </span>
                   </button>
 
                   <button
-                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`  gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
@@ -717,7 +717,7 @@ export default function PortfolioScreen({
                         height={25}
                       />
                     </div>
-                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
+                    <span className=" h-16  text-lg font-bold text-gray-600 xl:text-xl">
                       0 USD
                     </span>
                   </button>

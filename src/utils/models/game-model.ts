@@ -11,6 +11,7 @@ import {
   addressRaceReward,
   addressAirdropReward,
   addressInvalid1,
+  addressInvalid2,
 } from '@/config/contractAddresses';
 
 dbConnect();
@@ -317,10 +318,16 @@ export const getTransferHistoryLatest = async (
   return await HorseTransferModel.find({
     $and: [
       {
-        $expr: { $ne: ['$tokenFrom', addressInvalid1] },
+        $expr: { $ne: ['$tokenFrom', addressInvalid1.toLowerCase()] },
       },
       {
-        $expr: { $ne: ['$tokenTo', addressInvalid1] },
+        $expr: { $ne: ['$tokenTo', addressInvalid1.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid2.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid2.toLowerCase()] },
       },
       {
         $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
