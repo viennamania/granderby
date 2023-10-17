@@ -627,6 +627,8 @@ export default async function handler(
         ) {
           ///console.log("receipt?.logs[j].topics", receipt?.logs[j].topics);
 
+          if (receipt?.logs[j].address != contractAddress) continue;
+
           console.log('Transfer');
           console.log('Transfer item.hash', item.hash);
 
@@ -857,9 +859,10 @@ export default async function handler(
     });
   };
 
-  function1(tokenContractAddressCARROTDrop);
-  function1(tokenContractAddressSUGARDrop);
-  function1(tokenContractAddressGCOW);
-  function1(tokenContractAddressSTEC);
-  function1(tokenContractAddressHV);
+  function1(tokenContractAddressCARROTDrop.toLowerCase());
+
+  //function1(tokenContractAddressSUGARDrop.toLowerCase());
+  //function1(tokenContractAddressGCOW.toLowerCase());
+  //function1(tokenContractAddressSTEC.toLowerCase());
+  //function1(tokenContractAddressHV.toLowerCase());
 }
