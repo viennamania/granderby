@@ -328,6 +328,16 @@ export default async function handler(
           )
         );
 
+        if (stakedTokenIds.length == 0) {
+          res.status(400).json({
+            txid: '',
+            message: 'no staked nfts',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        }
+
         const random = Math.floor(Math.random() * stakedTokenIds.length);
         const stakedTokenId = stakedTokenIds[random];
 
