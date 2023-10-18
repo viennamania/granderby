@@ -119,6 +119,8 @@ import CommitIcon from '@mui/icons-material/Commit';
 
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
+import AvTimerOutlinedIcon from '@mui/icons-material/AvTimerOutlined';
+
 const COLUMNS = [
   {
     Header: 'User',
@@ -267,8 +269,52 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">
-        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
+      <div className=" flex flex-row items-center justify-end gap-2 ">
+        {/* AvTimerOutlinedIcon color gray */}
+        {/*
+        <AvTimerOutlinedIcon fontSize='small' />
+        */}
+        {/* differece between now and createdAt */}
+
+        {Math.floor(
+          (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
+        ) > 0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor(
+              (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
+            )}{' '}
+            days ago
+          </div>
+        ) : Math.floor(
+            (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
+          ) > 0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor(
+              (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
+            )}{' '}
+            hours ago
+          </div>
+        ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60) >
+          0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60)}{' '}
+            minutes ago
+          </div>
+        ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000) >
+          0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor((new Date().getTime() - Date.parse(value)) / 1000)}{' '}
+            seconds ago
+          </div>
+        ) : (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            just now
+          </div>
+        )}
+
+        {/*
+          format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')
+        */}
       </div>
     ),
     minWidth: 120,
@@ -299,6 +345,7 @@ const COLUMNS = [
     maxWidth: 50,
   },
 
+  /*
   {
     Header: 'Type',
     accessor: 'type',
@@ -309,6 +356,7 @@ const COLUMNS = [
     minWidth: 80,
     maxWidth: 80,
   },
+  */
 ];
 
 export default function ModernScreen() {
@@ -405,150 +453,7 @@ export default function ModernScreen() {
   const [betAmount9, setBetAmount9] = useState<any>(0);
   const [betAmount10, setBetAmount10] = useState<any>(0);
 
-  setTimeout(() => {
-    setHorses([
-      {
-        id: 1,
-        progress: progress1,
-        name: `${npcNames.horse1}`,
-        nft: `${npcNames.nft1?.tokenId}`,
-        media: `${
-          npcNames.media1?.thumbnail ||
-          //'/images/logo.png'
-          `/horseRace/${npcNames.nft1?.contract}.png`
-        }`,
-      },
-      {
-        id: 2,
-        progress: progress2,
-        name: `${npcNames.horse2}`,
-        nft: `${npcNames.nft2?.tokenId}`,
-        media: `${
-          npcNames.media2?.thumbnail ||
-          //'/images/logo.png'
-          `/horseRace/${npcNames.nft2?.contract}.png`
-        }`,
-      },
-      {
-        id: 3,
-        progress: progress3,
-        name: `${npcNames.horse3}`,
-        nft: `${npcNames.nft3?.tokenId}`,
-        media: `${
-          npcNames.media3?.thumbnail ||
-          //'/images/logo.png'
-          `/horseRace/${npcNames.nft3?.contract}.png`
-        }`,
-      },
-      {
-        id: 4,
-        progress: progress4,
-        name: `${npcNames.horse4}`,
-        nft: `${npcNames.nft4?.tokenId}`,
-        media: `${
-          npcNames.media4?.thumbnail ||
-          //'/images/logo.png'
-          `/horseRace/${npcNames.nft4?.contract}.png`
-        }`,
-      },
-      {
-        id: 5,
-        progress: progress5,
-        name: `${npcNames.horse5}`,
-        nft: `${npcNames.nft5?.tokenId}`,
-        media: `${
-          npcNames.media5?.thumbnail ||
-          //'/images/logo.png'
-          `/horseRace/${npcNames.nft5?.contract}.png`
-        }`,
-      },
-    ]);
-  }, 40);
-
-  useEffect(() => {
-    ////socketInitializer();
-  }, []);
-
-  const socketInitializer = () => {
-    ///console.log("snailRace socketInitializer socket", socket);
-
-    if (socket) return;
-
-    const socketa = io(process.env.NEXT_PUBLIC_HORSE_RACE_SOCKET_URL as string);
-
-    setSocket(socketa);
-
-    socketa.on('status', (data: any) => {
-      console.log('socket status======', data);
-
-      setStatus(data);
-    });
-
-    socketa.on('time', (data: any) => {
-      setTime(data);
-    });
-
-    socketa.on('horse1Rate', (data: any) => {
-      setHorse1Oran(data);
-    });
-    socketa.on('horse2Rate', (data: any) => {
-      setHorse2Oran(data);
-    });
-    socketa.on('horse3Rate', (data: any) => {
-      setHorse3Oran(data);
-    });
-    socketa.on('horse4Rate', (data: any) => {
-      setHorse4Oran(data);
-    });
-    socketa.on('horse5Rate', (data: any) => {
-      setHorse5Oran(data);
-    });
-    socketa.on('horse6Rate', (data: any) => {
-      setHorse6Oran(data);
-    });
-    socketa.on('horse7Rate', (data: any) => {
-      setHorse7Oran(data);
-    });
-    socketa.on('horse8Rate', (data: any) => {
-      setHorse8Oran(data);
-    });
-    socketa.on('horse9Rate', (data: any) => {
-      setHorse9Oran(data);
-    });
-    socketa.on('horse10Rate', (data: any) => {
-      setHorse10Oran(data);
-    });
-
-    /*
-    socketa.on('flag', (data: any) => {
-      setFlag(data);
-    });
-    */
-
-    socketa.on('horse1', (data: any) => {
-      setProgress1(data);
-    });
-
-    socketa.on('horse2', (data: any) => {
-      setProgress2(data);
-    });
-
-    socketa.on('horse3', (data: any) => {
-      setProgress3(data);
-    });
-
-    socketa.on('horse4', (data: any) => {
-      setProgress4(data);
-    });
-
-    socketa.on('horse5', (data: any) => {
-      setProgress5(data);
-    });
-
-    return () => {
-      socketa.disconnect();
-    };
-  };
+  /*
 
   useEffect(() => {
     if (status === false) {
@@ -571,7 +476,9 @@ export default function ModernScreen() {
 
     getNpcNames();
   }, [status]);
+  */
 
+  /*
   const getGames = async () => {
     const res = await fetch('/api/games/horseRace/game', {
       method: 'POST',
@@ -638,7 +545,9 @@ export default function ModernScreen() {
       }
     });
   };
+  */
 
+  /*
   useEffect(() => {
     //getGames();
 
@@ -648,6 +557,7 @@ export default function ModernScreen() {
 
     //return () => clearInterval(interval);
   }, []);
+  */
 
   /*
   useEffect(() => {
@@ -1203,7 +1113,9 @@ export default function ModernScreen() {
                         }}
                       >
                         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-                        {transfer.tokenFrom?.substring(0, 6) + '...'}
+                        <span className="text-black">
+                          {transfer.tokenFrom?.substring(0, 6) + '...'}
+                        </span>
                       </button>
                     </div>
                   )}
@@ -1227,7 +1139,7 @@ export default function ModernScreen() {
                         }}
                       >
                         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-                        <span>
+                        <span className="text-black">
                           {transfer.tokenFrom?.substring(0, 6) + '...'}
                         </span>
                       </button>
@@ -1266,7 +1178,9 @@ export default function ModernScreen() {
                             }}
                           >
                             <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-                            {transfer.tokenFrom?.substring(0, 6) + '...'}
+                            <span className="text-black">
+                              {transfer.tokenFrom?.substring(0, 6) + '...'}
+                            </span>
                           </button>
                         </>
                       )}
@@ -1307,7 +1221,9 @@ export default function ModernScreen() {
                 }}
               >
                 <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-                {transfer.tokenFrom?.substring(0, 6) + '...'}
+                <span className="text-black">
+                  {transfer.tokenFrom?.substring(0, 6) + '...'}
+                </span>
               </button>
             </div>
           ) : (
@@ -1332,7 +1248,7 @@ export default function ModernScreen() {
 
     const interval = setInterval(() => {
       getLast20();
-    }, 10000);
+    }, 1000);
   }, []);
 
   const { openDrawer } = useDrawer();

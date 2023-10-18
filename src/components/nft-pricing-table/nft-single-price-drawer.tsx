@@ -476,6 +476,7 @@ export default function NftSinglePrice({
   const [attributeStamina, setAttributeStamina] = useState(null);
   const [attributePower, setAttributePower] = useState(null);
 
+  /*
   useEffect(() => {
     nftMetadata?.metadata?.attributes?.map((attribute: any) => {
       if (attribute.trait_type === 'Grade') {
@@ -497,7 +498,9 @@ export default function NftSinglePrice({
       }
     });
   }, [nftMetadata?.metadata?.attributes]);
+  */
 
+  /*
   const [indexPriceFeedData, setIndexPriceFeedData] = useState(0);
 
   useEffect(() => {
@@ -526,6 +529,7 @@ export default function NftSinglePrice({
 
     console.log('indexPriceFeedData', indexPriceFeedData);
   }, [nftMetadata?.metadata?.attributes]);
+  */
 
   const [raceHistory, setRaceHistory] = useState([]);
 
@@ -606,7 +610,9 @@ export default function NftSinglePrice({
   };
 
   useEffect(() => {
-    getLast20();
+    if (nftMetadata?.metadata?.id) {
+      getLast20();
+    }
   }, [nftMetadata?.metadata?.id]);
 
   return (

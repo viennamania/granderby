@@ -366,7 +366,9 @@ export default function PortfolioScreen({
       setVolumn(data);
     }
 
-    getVolumn();
+    if (userAddress) {
+      getVolumn();
+    }
   }, [userAddress]);
 
   const [horsesCount, setHorsesCount] = useState<any>(0);

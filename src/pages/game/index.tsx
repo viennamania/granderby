@@ -84,6 +84,8 @@ import { LinkIcon } from '@/components/icons/link-icon';
 import AuthorImage from '@/assets/images/profile.png';
 import SystemImage from '@/assets/images/logo.png';
 
+import AvTimerOutlinedIcon from '@mui/icons-material/AvTimerOutlined';
+
 const COLUMNS = [
   {
     Header: 'User',
@@ -232,12 +234,76 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">
-        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
+      <div className=" flex flex-row items-center justify-end gap-2 ">
+        {/* AvTimerOutlinedIcon color gray */}
+        <AvTimerOutlinedIcon fontSize="small" />
+        {/* differece between now and createdAt */}
+
+        {Math.floor(
+          (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
+        ) > 0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor(
+              (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
+            )}{' '}
+            days ago
+          </div>
+        ) : Math.floor(
+            (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
+          ) > 0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor(
+              (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
+            )}{' '}
+            hours ago
+          </div>
+        ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60) >
+          0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60)}{' '}
+            minutes ago
+          </div>
+        ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000) >
+          0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor((new Date().getTime() - Date.parse(value)) / 1000)}{' '}
+            seconds ago
+          </div>
+        ) : (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            just now
+          </div>
+        )}
+
+        {/*
+          format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')
+        */}
       </div>
     ),
     minWidth: 120,
     maxWidth: 120,
+  },
+
+  {
+    Header: 'Asset',
+    accessor: 'asset',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-xs ltr:text-right rtl:text-left">{value}</div>
+    ),
+    minWidth: 50,
+    maxWidth: 50,
+  },
+
+  {
+    Header: 'Type',
+    accessor: 'type',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-xs ltr:text-right rtl:text-left">{value}</div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
   },
 
   {
@@ -262,27 +328,6 @@ const COLUMNS = [
     ),
     minWidth: 50,
     maxWidth: 50,
-  },
-  {
-    Header: 'Asset',
-    accessor: 'asset',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="text-xs ltr:text-right rtl:text-left">{value}</div>
-    ),
-    minWidth: 50,
-    maxWidth: 50,
-  },
-
-  {
-    Header: 'Type',
-    accessor: 'type',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="text-xs ltr:text-right rtl:text-left">{value}</div>
-    ),
-    minWidth: 80,
-    maxWidth: 80,
   },
 ];
 
@@ -628,7 +673,7 @@ const GamePage: NextPageWithLayout<
                 </span>
               </button>
 
-              <span className="text-xs">Unregistered</span>
+              <span className="text-xs">Unregistered from racing</span>
             </div>
           ) : transfer.action === 'ToknesStaked' ? (
             <div className="flex items-center justify-start gap-2">
@@ -699,7 +744,7 @@ const GamePage: NextPageWithLayout<
                   #{transfer.tokenId}
                 </span>
               </button>
-              <span className="text-xs">Unregistered</span>
+              <span className="text-xs">Unregistered from racing</span>
             </div>
           ) : transfer.tokenFrom === address?.toLowerCase() ? (
             <div className="flex items-center justify-start">
@@ -856,7 +901,9 @@ const GamePage: NextPageWithLayout<
                         }}
                       >
                         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-                        {transfer.tokenFrom?.substring(0, 6) + '...'}
+                        <span className="text-black">
+                          {transfer.tokenFrom?.substring(0, 6) + '...'}
+                        </span>
                       </button>
                     </div>
                   )}
@@ -880,7 +927,7 @@ const GamePage: NextPageWithLayout<
                         }}
                       >
                         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-                        <span>
+                        <span className=" text-black ">
                           {transfer.tokenFrom?.substring(0, 6) + '...'}
                         </span>
                       </button>
@@ -919,6 +966,7 @@ const GamePage: NextPageWithLayout<
                             }}
                           >
                             <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
                             {transfer.tokenFrom?.substring(0, 6) + '...'}
                           </button>
                         </>
@@ -960,7 +1008,9 @@ const GamePage: NextPageWithLayout<
                 }}
               >
                 <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-                {transfer.tokenFrom?.substring(0, 6) + '...'}
+                <span className="text-black">
+                  {transfer.tokenFrom?.substring(0, 6) + '...'}
+                </span>
               </button>
             </div>
           ) : (

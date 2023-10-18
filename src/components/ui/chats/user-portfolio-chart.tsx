@@ -27,8 +27,6 @@ import {
 import { time } from 'console';
 import { m } from 'framer-motion';
 
-import { useAddress } from '@thirdweb-dev/react';
-
 const data = [
   {
     name: '10 / 7',
@@ -90,18 +88,10 @@ export default function PortfolioChart(
 ) {
   const { layout } = useLayout();
 
-  const address = useAddress();
-
   const [volumn, setVolumn] = useState([] as any);
 
   useEffect(() => {
     async function getVolumn() {
-      console.log('portfolio chart  userAddress', userAddress);
-
-      if (!userAddress) {
-        return;
-      }
-
       const response = await fetch('/api/nft/user/history/game', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -197,87 +187,12 @@ export default function PortfolioChart(
       setVolumn(volumn);
     }
 
-    //const interval = setInterval(() => {
-    //  getVolumn();
-    //}, 10000);
-  }, [userAddress]);
+    getVolumn();
 
-  /* if address is empty then loading view */
-  if (!address) {
-    return (
-      <div
-        className={cn(
-          ///'rounded-lg bg-light-dark p-6 text-white shadow-card sm:p-8',
-          'rounded-lg  p-2 shadow-card',
-          {
-            'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
-          }
-        )}
-      >
-        <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
-              <Line
-                type="natural"
-                dataKey="CARROT"
-                stroke="#1E40AF"
-                strokeWidth={4}
-                dot={false}
-              />
-              <Line
-                type="natural"
-                dataKey="GRD"
-                stroke="#374151"
-                strokeWidth={4}
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    );
-  }
-
-  /* if empoty volumn then loading view */
-  if (volumn.length === 0) {
-    return (
-      <div
-        className={cn(
-          ///'rounded-lg bg-light-dark p-6 text-white shadow-card sm:p-8',
-          'rounded-lg  p-2 shadow-card',
-          {
-            'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
-          }
-        )}
-      >
-        <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
-              <Line
-                type="natural"
-                dataKey="CARROT"
-                stroke="#1E40AF"
-                strokeWidth={4}
-                dot={false}
-              />
-              <Line
-                type="natural"
-                dataKey="GRD"
-                stroke="#374151"
-                strokeWidth={4}
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* loading view overlap */}
-        <div className=" left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
-          <div className=" text-2xl text-white">Loading...</div>
-        </div>
-      </div>
-    );
-  }
+    const interval = setInterval(() => {
+      getVolumn();
+    }, 10000);
+  }, []);
 
   return (
     <div

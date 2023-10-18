@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import CoinSlider from '@/components/ui/coin-card';
 import AssetSlider from '@/components/ui/asset-card';
 
-import PortfolioChart from '@/components/ui/chats/my-portfolio-chart';
+import PortfolioChart from '@/components/ui/chats/user-portfolio-chart';
 
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
@@ -351,10 +351,12 @@ export default function PortfolioScreen({
 
   const [npcNames, setNpcNames] = useState<any>([]);
 
+  /*
   const [volumn, setVolumn] = useState<any>(0);
 
   useEffect(() => {
     async function getVolumn() {
+
       const response = await fetch('/api/nft/user/history/game', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -368,8 +370,11 @@ export default function PortfolioScreen({
       setVolumn(data);
     }
 
-    getVolumn();
+    if (userAddress) {
+      getVolumn();
+    }
   }, [userAddress]);
+  */
 
   const [horsesCount, setHorsesCount] = useState<any>(0);
   const [jockeysCount, setJockeysCount] = useState<any>(0);
@@ -530,6 +535,8 @@ export default function PortfolioScreen({
   };
 
   useEffect(() => {
+    if (!userAddress) return;
+
     getLatest();
 
     //setInterval(() => {
