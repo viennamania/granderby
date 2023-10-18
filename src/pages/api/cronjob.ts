@@ -629,6 +629,44 @@ export default async function handler(
         } finally {
           ////await client.close();
         }
+
+        try {
+          const action = 'TokensWithdrawn';
+
+          const horsegames = db.collection('horsegames');
+
+          // create a filter for a movie to update
+          const filter = { uniqueId: uniqueId };
+          // this option instructs the method to create a document if no documents match the filter
+          const option = { upsert: true };
+          // create a document that sets the plot of the movie
+          const updateDoc = {
+            $set: {
+              action: action,
+              uniqueId: uniqueId,
+              blockNum: item.blockNum,
+              hash: item.hash,
+              from: item.from,
+              to: item.to,
+              value: item.value,
+              erc721TokenId: item.erc721TokenId,
+              erc1155Metadata: item.erc1155Metadata,
+              asset: item.asset,
+              category: item.category,
+              rawContract: item.rawContract,
+              blockTimestamp: item.blockTimestamp,
+              tokenId: tokenId,
+              register: address,
+              staker: staker,
+            },
+          };
+
+          await horsegames.updateOne(filter, updateDoc, option);
+        } catch (error) {
+          console.log('error', error);
+        } finally {
+          ////await client.close();
+        }
       }
     }
 
