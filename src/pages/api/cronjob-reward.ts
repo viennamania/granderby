@@ -109,10 +109,10 @@ export default async function handler(
     console.error(error);
   }
 
-  if (toAddress && amount) {
-    console.log('toAddress', toAddress);
-    console.log('amount', amount);
+  console.log('toAddress', toAddress);
+  console.log('amount', amount);
 
+  if (toAddress && amount) {
     const privateKey = process.env.REWARD_PRIVATE_KEY;
 
     /*
@@ -288,8 +288,8 @@ export default async function handler(
       txid: '',
       message: 'private key not found',
       contract: '',
-      address: '',
-      amount: 0,
+      address: toAddress,
+      amount: amount,
     });
   }
 }

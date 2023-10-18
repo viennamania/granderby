@@ -292,20 +292,17 @@ const COLUMNS = [
     minWidth: 50,
     maxWidth: 50,
   },
-  /*
+
   {
     Header: 'Type',
     accessor: 'action',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left text-xs">
-        {value}
-      </div>
+      <div className="text-xs ltr:text-right rtl:text-left">{value}</div>
     ),
     minWidth: 80,
     maxWidth: 80,
   },
-  */
 ];
 
 export default function ModernScreen() {
