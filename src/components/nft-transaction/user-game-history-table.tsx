@@ -525,6 +525,12 @@ export default function GameHistoryTable(
         category:
           transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase() ? (
             <div className="flex items-center justify-start gap-2">
+              <Image
+                src="/images/shop/horse.png"
+                alt="horse"
+                width={18}
+                height={18}
+              />
               <button
                 className=" flex flex-row items-center justify-start "
                 onClick={() => {
@@ -532,14 +538,7 @@ export default function GameHistoryTable(
                   openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
                 }}
               >
-                <Image
-                  src="/images/shop/horse.png"
-                  alt="horse"
-                  width={18}
-                  height={18}
-                />
-
-                <span className="text-xl font-bold text-black  underline decoration-sky-500   ">
+                <span className="w-20  text-xl font-bold text-black  underline decoration-sky-500   ">
                   #{transfer.tokenId}
                 </span>
               </button>
@@ -551,6 +550,12 @@ export default function GameHistoryTable(
             //'Unregistered'
 
             <div className="flex items-center justify-start gap-2">
+              <Image
+                src="/images/shop/horse.png"
+                alt="horse"
+                width={18}
+                height={18}
+              />
               <button
                 className=" flex flex-row items-center justify-start "
                 onClick={() => {
@@ -558,14 +563,7 @@ export default function GameHistoryTable(
                   openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
                 }}
               >
-                <Image
-                  src="/images/shop/horse.png"
-                  alt="horse"
-                  width={18}
-                  height={18}
-                />
-
-                <span className="text-xl font-bold text-black underline decoration-sky-500">
+                <span className="w-20 text-xl font-bold text-black underline decoration-sky-500">
                   #{transfer.tokenId}
                 </span>
               </button>
@@ -581,16 +579,15 @@ export default function GameHistoryTable(
                     width={18}
                     height={18}
                   />
+                  <span className="w-20 text-xl font-bold text-black">
+                    {Number(transfer.value).toFixed(2)}
+                  </span>
                   <span className="text-xs">Sent to</span>
 
                   <div className="flex items-center justify-start">
                     <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
                     {transfer.tokenTo?.substring(0, 6) + '...'}
                   </div>
-
-                  <span className="text-xl font-bold text-black">
-                    {Number(transfer.value).toFixed(2)}
-                  </span>
                 </div>
               )}
               {transfer.asset === 'CARROT' && (
@@ -601,11 +598,11 @@ export default function GameHistoryTable(
                     width={18}
                     height={18}
                   />
-                  <span className="text-xs">Sent to</span>
-                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
-                  <span className="text-xl font-bold text-black">
+                  <span className="w-20 text-xl font-bold text-black">
                     {Number(transfer.value).toFixed(2)}
                   </span>
+                  <span className="text-xs">Sent to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
                 </div>
               )}
               {transfer.asset === 'SUGAR' && (
@@ -616,12 +613,11 @@ export default function GameHistoryTable(
                     width={18}
                     height={18}
                   />
-                  <span className="text-xs">Sent to</span>
-                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
-
-                  <span className="text-xl font-bold text-black">
+                  <span className="w-20 text-xl font-bold text-black">
                     {Number(transfer.value).toFixed(2)}
                   </span>
+                  <span className="text-xs">Sent to</span>
+                  <span>{transfer.tokenTo?.substring(0, 6) + '...'}</span>
                 </div>
               )}
               {transfer.asset === 'GRANDERBY' && (
@@ -640,7 +636,7 @@ export default function GameHistoryTable(
                       height={18}
                     />
 
-                    <span className="text-xl font-bold text-black  underline decoration-sky-500">
+                    <span className="w-20 text-xl font-bold text-black  underline decoration-sky-500">
                       #{transfer.tokenId}
                     </span>
                   </button>
@@ -663,7 +659,7 @@ export default function GameHistoryTable(
                         height={18}
                       />
 
-                      <span className="text-xl font-bold text-black">
+                      <span className="w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
                       <span className="text-xs">Minted</span>
@@ -678,7 +674,7 @@ export default function GameHistoryTable(
                         height={18}
                       />
 
-                      <span className="text-xl font-bold text-black">
+                      <span className="w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
                       <span className="text-xs">Baught</span>
@@ -693,7 +689,7 @@ export default function GameHistoryTable(
                         height={18}
                       />
 
-                      <span className="text-xl font-bold text-black">
+                      <span className="w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
                       <span className="text-xs">Minted</span>
@@ -710,7 +706,7 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
-                      <span className="text-xl font-bold text-black">
+                      <span className="w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
                       <span className="text-xs">Received from</span>
@@ -729,11 +725,21 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Reveived from</span>
-                      <span>{transfer.tokenFrom?.substring(0, 6) + '...'}</span>
-                      <span className="text-xl font-bold text-black">
+                      <span className="w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
+                      <span className="text-xs">Received from</span>
+
+                      <button
+                        className=" flex flex-row items-center justify-start "
+                        onClick={() => {
+                          setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                          openDrawer('DRAWER_USER_INFO', 0);
+                        }}
+                      >
+                        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                        {transfer.tokenFrom?.substring(0, 6) + '...'}
+                      </button>
                     </div>
                   )}
                   {transfer.asset === 'SUGAR' && (
@@ -744,6 +750,9 @@ export default function GameHistoryTable(
                         width={18}
                         height={18}
                       />
+                      <span className="w-20 text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
 
                       {transfer.tokenFrom ===
                       addressAirdropReward.toLowerCase() ? (
@@ -762,10 +771,6 @@ export default function GameHistoryTable(
                           </div>
                         </>
                       )}
-
-                      <span className="text-xl font-bold text-black">
-                        {Number(transfer.value).toFixed(2)}
-                      </span>
                     </div>
                   )}
                 </div>
@@ -788,17 +793,23 @@ export default function GameHistoryTable(
                     height={18}
                   />
                 )}
-                <span className="text-xl font-bold text-black underline decoration-sky-500  ">
+                <span className="w-20 text-xl font-bold text-black underline decoration-sky-500  ">
                   #{transfer.tokenId}
                 </span>
               </button>
 
               <span className="text-xs">Received from holder</span>
 
-              <div className="flex items-center justify-start text-xs">
+              <button
+                className=" flex flex-row items-center justify-start "
+                onClick={() => {
+                  setDrawerUserInfoUserAddress(transfer.tokenFrom);
+                  openDrawer('DRAWER_USER_INFO', 0);
+                }}
+              >
                 <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
                 {transfer.tokenFrom?.substring(0, 6) + '...'}
-              </div>
+              </button>
             </div>
           ) : (
             ''
@@ -830,6 +841,9 @@ export default function GameHistoryTable(
   const [drawerHorseInfoTokenId, setDrawerHorseInfoTokenId] = useLocalStorage(
     'drawer-horse-info-tokenid'
   );
+
+  const [drawerUserInfoUserAddress, setDrawerUserInfoUserAddress] =
+    useLocalStorage('drawer-user-info-useraddress');
 
   return (
     <div className="flex w-full flex-col">
