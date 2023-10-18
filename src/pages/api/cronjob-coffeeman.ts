@@ -55,7 +55,13 @@ export default async function handler(
     .aggregate([
       //{"$project": {"author": 1, "title": 1, "tags": 1, "date": 1}},
 
-      { $match: { nftOwner: { $exists: false } } },
+      //{ $match: { nftOwner: { $exists: false } } },
+
+      {
+        $match: {
+          $or: [{ nftOwner: { $exists: false } }, { nftOwner: null }],
+        },
+      },
 
       ///{"$match": {"nft": {"$exists": false}}},
 
@@ -108,7 +114,8 @@ export default async function handler(
     console.error(error);
   }
 
-  if (toAddress && amount) {
+  //if (toAddress && amount) {
+  if (true) {
     console.log('toAddress', toAddress);
     console.log('amount', amount);
 
