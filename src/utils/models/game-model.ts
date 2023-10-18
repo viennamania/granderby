@@ -142,6 +142,30 @@ const HorseTransferSchema = new Schema({
 export const HorseTransferModel =
   models.Horsegame || model<ITransferHistory>('Horsegame', HorseTransferSchema);
 
+export const getTransferHistory = async (): Promise<ITransferHistory[]> => {
+  console.log('getTransferHistory=======');
+
+  return await HorseTransferModel.find({
+    $and: [
+      {
+        $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+      },
+    ],
+
+    /*
+      $or: [
+        { tokenFrom: address },
+        { tokenTo: address },
+        { buyer: address },
+        { listingCreator: address },
+        { staker: address },
+      ],
+      */
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(100);
+};
+
 export const getTransferHistoryByTokenId = async (
   tokenId: String
 ): Promise<ITransferHistory[]> => {
@@ -417,7 +441,7 @@ export const getTransferHistoryLatestByHolderByCategory = async (
   address: String,
   category: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryLatestByHolder', address);
+  console.log('getTransferHistoryLatestByHolderByCategory', address);
   if (address === undefined) {
     return [];
   }

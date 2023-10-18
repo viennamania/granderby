@@ -1,4 +1,6 @@
 import {
+  getTransferHistory,
+  getTransferHistoryLatest,
   getTransferHistoryByHolder,
   getTransferHistoryLatestByHolder,
   getNftTransferHistoryByHolder,
@@ -16,9 +18,23 @@ export default async function handler(
 ) {
   const { method } = req.body;
 
-  //console.log('method', method);
+  console.log('====method', method);
 
   if (method === 'getAll') {
+    //console.log('horse history transfer tokenId', tokenId);
+
+    const all = await getTransferHistory();
+
+    //console.log('getAllByTokenId all', all);
+
+    if (!all) return res.status(400).json({ status: false, message: 'Error' });
+
+    const total = all.length;
+
+    return res.status(200).json({ status: true, all, total });
+  }
+
+  if (method === 'getAllByHolder') {
     const { address } = req.body;
 
     //console.log('horse history transfer tokenId', tokenId);
