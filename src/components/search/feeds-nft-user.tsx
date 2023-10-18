@@ -148,54 +148,6 @@ export default function UserFeedsNft(
         <>
           <div className="m-10 flex flex-col items-center justify-center ">
             <div className=" text-xl">No assets found</div>
-
-            <div className="mt-10 flex flex-row items-center justify-center gap-3">
-              <button
-                //className="ml-5 flex flex-row items-center justify-center gap-3"
-
-                /*
-                className={`gold-btn block border border-black p-1 text-center text-black ${
-                  userAddress === 0
-                    ? 'gold-btn-active'
-                    : userAddress === 1000
-                    ? 'bg-[#ffc000]'
-                    : 'bg-transparent'
-                } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-                */
-
-                className={`gold-btn flex  flex-row items-center justify-center gap-2   border-none p-2 text-center text-black ${
-                  limit === 0
-                    ? 'gold-btn-active'
-                    : limit === 1000
-                    ? 'bg-[#ffc000]'
-                    : 'bg-transparent'
-                } disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
-                ///onClick={(e) => router.push('/coin/usdc')}
-                onClick={() => {
-                  router.push('https://granderby.market');
-                  ///router.push('/horse-details/' + nft?.metadata?.id);
-                }}
-              >
-                <Image
-                  src="/images/market.png"
-                  alt="market"
-                  width={25}
-                  height={20}
-                />
-                {/*
-                <Image
-                  src="/images/logo-opensea.svg"
-                  alt="market"
-                  width={80}
-                  height={50}
-                />
-                */}
-
-                <span>GRANDERBY MARKET</span>
-
-                <ChevronForward className=" rtl:rotate-180" />
-              </button>
-            </div>
           </div>
         </>
       ) : (

@@ -59,6 +59,8 @@ import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby
 
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
+import DefaultProfileImage from '@/assets/images/profile-default.png';
+
 //import { FlagIcon } from 'flag-icons'
 
 function NotificationButton() {
@@ -293,7 +295,15 @@ function HeaderRightArea() {
               className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               aria-expanded={isOpenLogout}
             >
-              <span>{address?.substring(0, 6)}...</span>
+              {/* profile image */}
+              <Image
+                src={DefaultProfileImage}
+                alt="avatar"
+                width={30}
+                height={30}
+              />
+
+              <span className="ml-2 ">{address?.substring(0, 6)}...</span>
               <svg
                 className="-me-1 ms-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"

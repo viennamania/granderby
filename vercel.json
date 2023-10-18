@@ -5,6 +5,10 @@
             "schedule": "* * * * *"
         },
         {
+            "path": "/api/cronjob-coupon",
+            "schedule": "* * * * *"
+        },
+        {
             "path": "/api/cronjob-grd",
             "schedule": "* * * * *"
         },

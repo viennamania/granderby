@@ -24,6 +24,12 @@ import { LivePricing } from '@/components/icons/live-pricing';
 
 import { Ranking } from '@/components/icons/ranking';
 
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+
+import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
+
+import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
+
 import { Live } from '@/components/icons/live-icon';
 
 import { RaceIcon } from '@/components/icons/race-icon';
@@ -68,7 +74,7 @@ export const menuItems = [
 
       {
         name: 'Asset Management',
-        icon: <DiskIcon />,
+        icon: <VideogameAssetOutlinedIcon />,
         href: routes.intro,
       },
 
@@ -186,7 +192,7 @@ export const menuItems = [
 
   {
     name: 'ASSET MANAGEMENT',
-    icon: <CompassIcon />,
+    icon: <VideogameAssetOutlinedIcon />,
     href: routes.myasset,
     dropdownItems: [
       {
@@ -371,7 +377,8 @@ export const menuItems = [
   },
   {
     name: 'RANK',
-    icon: <Ranking />,
+    //icon: <Ranking />,
+    icon: <MilitaryTechOutlinedIcon />,
     href: routes.rankHorse,
     dropdownItems: [
       {
@@ -405,7 +412,8 @@ export const menuItems = [
 
   {
     name: 'SHOP',
-    icon: <ExchangeIcon />,
+    //icon: <ExchangeIcon />,
+    icon: <ShoppingBagOutlinedIcon />,
     href: routes.mintCoupon,
     dropdownItems: [
       {
