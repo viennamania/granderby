@@ -627,7 +627,14 @@ export default async function handler(
         ) {
           ///console.log("receipt?.logs[j].topics", receipt?.logs[j].topics);
 
-          if (receipt?.logs[j].address != contractAddress) continue;
+          //console.log(receipt?.logs[j].address);
+          //console.log(contractAddress.toLowerCase());
+
+          if (
+            receipt?.logs[j].address.toLowerCase() !=
+            contractAddress.toLowerCase()
+          )
+            continue;
 
           console.log('Transfer');
           console.log('Transfer item.hash', item.hash);
