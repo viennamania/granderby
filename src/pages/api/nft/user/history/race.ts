@@ -14,7 +14,7 @@ export default async function handler(
   if (method === 'getWinPrize') {
     const all = await getDailyWinPrize();
 
-    ///console.log('getWinPrize all', all);
+    //console.log('getWinPrize all', all);
 
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
 

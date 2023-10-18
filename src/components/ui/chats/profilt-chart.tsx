@@ -114,7 +114,11 @@ export default function ProfitChart({ chartWrapperClass }: Props) {
 
         volumn.push({
           name: item._id,
-          WinPrize: item.totalWinPrize,
+          total: item.totalWinPrize,
+          sum: item.totalHorse1 + item.totalHorse2 + item.totalHorse3,
+          horse1: item.totalHorse1,
+          horse2: item.totalHorse2,
+          horse3: item.totalHorse3,
         });
       });
 
@@ -145,12 +149,14 @@ export default function ProfitChart({ chartWrapperClass }: Props) {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="WinPrize" stroke="#8884d8" />
-            {/*
-            <Line type="monotone" dataKey="CARROT" stroke="#ff0000" />
-            <Line type="monotone" dataKey="SUGAR" stroke="#8884d8" />
-            <Line type="monotone" dataKey="HORSE" stroke=" #82ca9d  " />
+            {/*}
+            <Line type="monotone" dataKey="total" stroke="#666666" />
             */}
+
+            <Line type="monotone" dataKey="sum" stroke="#666666" />
+            <Line type="monotone" dataKey="horse1" stroke="#ff0000" />
+            <Line type="monotone" dataKey="horse2" stroke="#8884d8" />
+            <Line type="monotone" dataKey="horse3" stroke=" #82ca9d  " />
           </LineChart>
 
           {/*

@@ -95,6 +95,43 @@ export const getDailyWinPrize = async (): Promise<any[]> => {
         //  $addToSet: '$category',
         //},
 
+        totalHorse1: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: ['$winnerNft.tokenId', '0'],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalHorse2: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: ['$winnerNft.tokenId', '10'],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalHorse3: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: ['$winnerNft.tokenId', '1001'],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+
         // sum each contract of set
         totalWinPrize: {
           // sum each contract of set
