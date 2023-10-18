@@ -853,7 +853,7 @@ export default function GameHistoryTable(
 
         <Button
           className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
-          onClick={() => router.push(`/my-portfolio/game`)}
+          onClick={() => router.push(`/mypage/game`)}
         >
           <span className="flex items-center gap-2">
             <InfoIcon className="h-3 w-3" />{' '}

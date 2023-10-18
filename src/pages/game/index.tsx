@@ -332,7 +332,7 @@ const GamePage: NextPageWithLayout<
       // @ts-ignore
       columns,
       data: transactions,
-      initialState: { pageSize: 10 },
+      initialState: { pageSize: 20 },
     },
     useSortBy,
     useResizeColumns,
@@ -350,7 +350,7 @@ const GamePage: NextPageWithLayout<
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         method: 'getAll',
-        limit: 10,
+        //limit: 10,
         ///address: address?.toLowerCase(),
       }),
     });

@@ -30,6 +30,7 @@ import { SearchIcon } from '@/components/icons/search';
 import AnchorLink from '@/components/ui/links/anchor-link';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 
 import {
   ThirdwebProvider,
@@ -55,6 +56,8 @@ import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
 
 import CollapseLastWinners from '@/components/ui/collapse-last-winners';
 import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby';
+
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 //import { FlagIcon } from 'flag-icons'
 
@@ -340,6 +343,45 @@ function HeaderRightArea() {
               </div>
             </div>
           )}
+
+          {/* message view button */}
+          {/* route to message page */}
+          <div className="items-cneter ml-2 flex">
+            <button
+              onClick={() => router.push('/mypage/inbox/game')}
+              type="button"
+              className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              {/* message icon MailOutlineIcon */}
+              <MailOutlineIcon className="h-5 w-5" />
+
+              {/* notify icon */}
+              {/* if new message then show notify icon */}
+              {/*
+              <span className="ml-2">
+                <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
+              </span>
+              */}
+            </button>
+          </div>
+          <div className="items-cneter ml-2 flex">
+            <button
+              onClick={() => router.push('/mypage/inbox/gift')}
+              type="button"
+              className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              {/* message icon CardGiftcardIcon */}
+              <CardGiftcardIcon className="h-5 w-5" />
+
+              {/* notify icon */}
+              {/* if new message then show notify icon */}
+              {/*
+              <span className="ml-2">
+                <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
+              </span>
+              */}
+            </button>
+          </div>
         </>
       )}
 
