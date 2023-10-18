@@ -274,12 +274,14 @@ export default function Feeds(
                 >
                   <button
                     className="flex h-full w-full flex-col"
+                    /*
                     onClick={() =>
                       //setTokenid(nft.metadata.id.toString()),
                       //setIsOpen(true)
 
                       router.push('/jockey-details/' + nft?.tokenId)
                     }
+                    */
                     onMouseOver={() => {
                       //alert("onMouseOver");
                       //setDrawerHorseInfoTokenId(nft?.tokenId);

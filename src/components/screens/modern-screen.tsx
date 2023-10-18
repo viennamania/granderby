@@ -112,7 +112,10 @@ import { useDrawer } from '@/components/drawer-views/context';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
-import PortfolioChart from '../ui/chats/portfolio-chart';
+import PortfolioChart from '@/components/ui/chats/portfolio-chart';
+
+import ProfitChart from '@/components/ui/chats/profilt-chart';
+
 import { tr } from 'date-fns/locale';
 
 import CommitIcon from '@mui/icons-material/Commit';
@@ -1301,7 +1304,7 @@ export default function ModernScreen() {
           </div>
         )}
 
-        <div className="mt-10 flex w-full flex-col  xl:w-2/3">
+        <div className="mt-10 flex w-full flex-col   xl:w-2/3">
           {/* CommitIcon */}
           <div className="flex flex-row items-center justify-start gap-2">
             <CommitIcon className="h-[18px] w-[18px]" />
@@ -1310,6 +1313,15 @@ export default function ModernScreen() {
 
           <div className="mt-3">
             <PortfolioChart userAddress="0x87B87ADef916b8Ba746c69D9dce8961dfC29F71A" />
+          </div>
+
+          {/* CommitIcon */}
+          <div className="mt-5 flex flex-row items-center justify-start gap-2">
+            <CommitIcon className="h-[18px] w-[18px]" />
+            <span className=" text-2xl font-bold">Profit Performance</span>
+          </div>
+          <div className="mt-3">
+            <ProfitChart />
           </div>
         </div>
 

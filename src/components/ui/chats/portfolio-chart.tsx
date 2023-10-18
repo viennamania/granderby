@@ -215,8 +215,8 @@ export default function PortfolioChart(
             <Legend />
             <Line type="monotone" dataKey="GRD" stroke="#666666" />
             <Line type="monotone" dataKey="CARROT" stroke="#ff0000" />
-            <Line type="monotone" dataKey="SUGAR" stroke="#82ca9d" />
-            <Line type="monotone" dataKey="HORSE" stroke=" #8884d8  " />
+            <Line type="monotone" dataKey="SUGAR" stroke="#8884d8" />
+            <Line type="monotone" dataKey="HORSE" stroke=" #82ca9d  " />
           </LineChart>
 
           {/*

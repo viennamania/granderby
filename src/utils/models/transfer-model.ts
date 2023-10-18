@@ -107,7 +107,7 @@ export const HorseTransferModel =
 export const getTransferHistoryByTokenId = async (
   tokenId: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByTokenId', tokenId);
+  ///console.log('getTransferHistoryByTokenId', tokenId);
 
   if (tokenId === undefined) {
     return await HorseTransferModel.find({})

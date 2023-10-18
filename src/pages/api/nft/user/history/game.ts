@@ -18,7 +18,7 @@ export default async function handler(
 ) {
   const { method } = req.body;
 
-  console.log('====method', method);
+  ////console.log('====method', method);
 
   if (method === 'getAll') {
     //console.log('horse history transfer tokenId', tokenId);
@@ -81,7 +81,7 @@ export default async function handler(
   if (method === 'getVolumnByHolder') {
     const { address } = req.body;
 
-    console.log('getVolumnByHolder address', address);
+    ////console.log('getVolumnByHolder address', address);
 
     if (address) {
       const all = await getDailyVolumnByHolder(address.toLowerCase());

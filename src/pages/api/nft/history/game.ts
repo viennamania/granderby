@@ -15,7 +15,7 @@ export default async function handler(
 ) {
   const { method } = req.body;
 
-  console.log('/api/nft/history/game method', method);
+  ////console.log('/api/nft/history/game method', method);
 
   if (method === 'getAll') {
     //console.log('horse history transfer tokenId', tokenId);

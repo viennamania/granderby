@@ -194,7 +194,7 @@ export const getTransferHistory = async (): Promise<ITransferHistory[]> => {
 export const getTransferHistoryLatest = async (
   limit: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryLatest', limit);
+  ////console.log('getTransferHistoryLatest', limit);
 
   return await HorseTransferModel.find({
     $and: [
@@ -290,7 +290,7 @@ export const getTransferHistoryLatest = async (
 export const getTransferHistoryByTokenId = async (
   tokenId: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByTokenId', tokenId);
+  ///console.log('getTransferHistoryByTokenId', tokenId);
 
   if (tokenId === undefined) {
     return await HorseTransferModel.find({})
@@ -496,7 +496,7 @@ export const getDailyVolumnByHolder = async (
   address: String
   //): Promise<ITransferHistory[]> => {
 ): Promise<any[]> => {
-  console.log('getDailyVolumnByHolder', address);
+  ///console.log('getDailyVolumnByHolder', address);
 
   if (address === undefined) {
     return [];
@@ -649,7 +649,7 @@ export const getDailyVolumnByHolder = async (
 
 export const getDailyVolumn = async (): //): Promise<ITransferHistory[]> => {
 Promise<any[]> => {
-  console.log('getDailyVolumn===');
+  ///console.log('getDailyVolumn===');
 
   return await HorseTransferModel.aggregate([
     {
@@ -657,41 +657,9 @@ Promise<any[]> => {
 
       $match: {
         $and: [
-          /*
-          {
-
-            blockTimestamp: {
-              $gte:   new Date(new Date().getTime() - 100 * 24 * 60 * 60 * 1000),
-            },
-          },
-          */
-
           {
             $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
           },
-
-          /*
-          {
-            $expr: {
-              $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
-            },
-          },
-          {
-            $expr: {
-              $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
-            },
-          },
-          */
-          /*
-          {
-            $expr: {
-              $ne: [
-                '$tokenTo',
-                '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
-              ],
-            },
-          },
-          */
         ],
       },
     },
@@ -806,7 +774,7 @@ Promise<any[]> => {
 export const getDailyVolumnForContract =
   async (): //): Promise<ITransferHistory[]> => {
   Promise<any[]> => {
-    console.log('getDailyVolumn===');
+    ///console.log('getDailyVolumn===');
 
     return await HorseTransferModel.aggregate([
       {

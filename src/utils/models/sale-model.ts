@@ -118,7 +118,7 @@ export const getSaleHistory = async (): Promise<ISaleHistory[]> => {
 export const getSaleHistoryByTokenId = async (
   tokenId: String
 ): Promise<ISaleHistory[]> => {
-  console.log('getSaleHistoryByTokenId', tokenId);
+  ///console.log('getSaleHistoryByTokenId', tokenId);
 
   return await HorseSaleModel.find({
     /*
