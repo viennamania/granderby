@@ -323,6 +323,7 @@ export const getTransferHistoryLatest = async (
 
   return await HorseTransferModel.find({
     $and: [
+      /*
       {
         $expr: {
           $ne: [
@@ -331,6 +332,7 @@ export const getTransferHistoryLatest = async (
           ],
         },
       },
+      */
       {
         $expr: {
           $ne: ['$tokenTo', stakingContractAddressHorseAAA.toLowerCase()],
