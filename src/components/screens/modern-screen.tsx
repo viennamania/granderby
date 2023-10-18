@@ -289,9 +289,23 @@ const COLUMNS = [
         </div>
       </button>
     ),
+    minWidth: 50,
+    maxWidth: 50,
+  },
+  /*
+  {
+    Header: 'Type',
+    accessor: 'action',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="ltr:text-right rtl:text-left text-xs">
+        {value}
+      </div>
+    ),
     minWidth: 80,
     maxWidth: 80,
   },
+  */
 ];
 
 export default function ModernScreen() {
@@ -711,8 +725,29 @@ export default function ModernScreen() {
 
       const transactionData = {
         user:
-          transfer.tokenFrom ===
-          '0x0000000000000000000000000000000000000000' ? (
+          transfer.action === 'ToknesStaked' ? (
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.staker);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
+              <Avatar
+                size="sm"
+                image={AuthorImage}
+                alt="Rubywalsh"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.staker?.substring(0, 6) + '...'}
+              </div>
+            </button>
+          ) : transfer.tokenFrom ===
+            '0x0000000000000000000000000000000000000000' ? (
             <button
               className=" flex flex-row items-center justify-start  "
               onClick={() => {
@@ -775,6 +810,28 @@ export default function ModernScreen() {
                 {transfer.tokenTo?.substring(0, 6) + '...'}
               </div>
             </button>
+          ) : transfer.tokenTo ===
+            stakingContractAddressHorseAAA.toLowerCase() ? (
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.staker);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
+              <Avatar
+                size="sm"
+                image={AuthorImage}
+                alt="Rubywalsh"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.staker?.substring(0, 6) + '...'}
+              </div>
+            </button>
           ) : (
             <button
               className=" flex flex-row items-center justify-start  "
@@ -799,6 +856,34 @@ export default function ModernScreen() {
           ),
 
         action: transfer.action,
+
+        type:
+          transfer.action === 'ToknesStaked' ? (
+            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+              Staked
+            </span>
+          ) : transfer.action === 'Transfer' ? (
+            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+              Transfer
+            </span>
+          ) : transfer.action === 'Withdraw' ? (
+            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+              Withdraw
+            </span>
+          ) : transfer.action === 'Claim' ? (
+            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+              Claim
+            </span>
+          ) : transfer.action === 'Buy' ? (
+            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+              Buy
+            </span>
+          ) : (
+            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+              {transfer.action}
+            </span>
+          ),
+
         hash: transfer.hash,
         id: transfer.blockNum,
         //transactionType: transfer.from === address ? 'Send' : 'Receive',
@@ -819,7 +904,31 @@ export default function ModernScreen() {
         logs4Address: transfer.logs4Address,
 
         category:
-          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase() ? (
+          transfer.action === 'ToknesStaked' ? (
+            <div className="flex items-center justify-start gap-2">
+              <Image
+                src="/images/shop/horse.png"
+                alt="horse"
+                width={18}
+                height={18}
+              />
+
+              <button
+                className=" flex w-20 flex-row items-center justify-end "
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(transfer.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
+                }}
+              >
+                <span className="text-xl font-bold text-black  underline decoration-sky-500   ">
+                  #{transfer.tokenId}
+                </span>
+              </button>
+
+              <span className="text-xs">Registered</span>
+            </div>
+          ) : transfer.tokenTo ===
+            stakingContractAddressHorseAAA.toLowerCase() ? (
             <div className="flex items-center justify-start gap-2">
               <Image
                 src="/images/shop/horse.png"

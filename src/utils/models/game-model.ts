@@ -17,6 +17,7 @@ import {
   tokenContractAddressSUGARDrop,
   nftDropContractAddressHorse,
   tokenContractAddressGRD,
+  stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
 
 dbConnect();
@@ -323,6 +324,12 @@ export const getTransferHistoryLatest = async (
   return await HorseTransferModel.find({
     $and: [
       {
+        $expr: {
+          $ne: ['$tokenTo', stakingContractAddressHorseAAA.toLowerCase()],
+        },
+      },
+
+      {
         $expr: { $ne: ['$tokenFrom', addressInvalid1.toLowerCase()] },
       },
       {
@@ -340,9 +347,11 @@ export const getTransferHistoryLatest = async (
       {
         $expr: { $ne: ['$tokenTo', addressInvalid3.toLowerCase()] },
       },
+      /*
       {
         $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
       },
+      
       {
         $expr: {
           $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
@@ -361,14 +370,16 @@ export const getTransferHistoryLatest = async (
           ],
         },
       },
+      
       {
         $expr: {
           $ne: [
             '$rawContract.address',
-            '0xe36BD65609c08Cd17b53520293523CF4560533d0'.toLowerCase(),
+            '0xe36BD65609c08Cd17b53520293523CF4560533d0'.toLowerCase(), // G1 Contract
           ],
         },
       },
+      */
     ],
 
     /*
