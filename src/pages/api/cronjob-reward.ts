@@ -92,7 +92,7 @@ export default async function handler(
   try {
     const result = await db
       .collection('nfthorses')
-      .findOne({ tokenId: tokenId.toString() });
+      .findOne({ tokenId: tokenId?.toString() });
 
     //console.log("result", result);
 
