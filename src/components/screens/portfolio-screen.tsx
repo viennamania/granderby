@@ -126,6 +126,10 @@ import { useModal } from '@/components/modal-views/context';
 import { Twitter } from '@/components/icons/brands/twitter';
 import { time } from 'console';
 
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
+import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
+
 const COLUMNS = [
   /*
   {
@@ -543,8 +547,13 @@ export default function PortfolioScreen() {
         <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
           <div className=" flex w-full flex-col">
             <div className="  flex flex-row items-center justify-between gap-2">
-              <span className=" text-2xl font-bold">Performance</span>
+              {/* MailOutlineIcon */}
+              <div className="flex items-center justify-center gap-2">
+                <MailOutlineIcon className="h-5 w-5" />
+                <span className=" text-2xl font-bold">Performance</span>
+              </div>
 
+              {/*
               <Button
                 className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
                 onClick={() => router.push(`/my-portfolio/performance`)}
@@ -554,6 +563,7 @@ export default function PortfolioScreen() {
                   <span className="text-xs">View All</span>
                 </span>
               </Button>
+              */}
             </div>
 
             <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
@@ -672,7 +682,13 @@ export default function PortfolioScreen() {
 
         <div className="mt-10 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-2 ">
           <div className=" flex flex-col rounded-lg border p-5">
-            <span className=" text-2xl font-bold">Assets</span>
+            {/* VideogameAssetOutlinedIcon */}
+
+            <div className="flex items-center justify-start gap-2">
+              <VideogameAssetOutlinedIcon className="h-5 w-5" />
+
+              <span className=" text-2xl font-bold">Assets</span>
+            </div>
 
             {/*
             <button
