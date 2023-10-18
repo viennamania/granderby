@@ -328,6 +328,11 @@ export const getTransferHistoryLatest = async (
           $ne: ['$tokenTo', stakingContractAddressHorseAAA.toLowerCase()],
         },
       },
+      {
+        $expr: {
+          $ne: ['$tokenFrom', stakingContractAddressHorseAAA.toLowerCase()],
+        },
+      },
 
       {
         $expr: { $ne: ['$tokenFrom', addressInvalid1.toLowerCase()] },

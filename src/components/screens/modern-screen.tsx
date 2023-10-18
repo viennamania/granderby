@@ -112,6 +112,7 @@ import { useDrawer } from '@/components/drawer-views/context';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import PortfolioChart from '../ui/chats/portfolio-chart';
+import { tr } from 'date-fns/locale';
 
 const COLUMNS = [
   {
@@ -295,7 +296,7 @@ const COLUMNS = [
 
   {
     Header: 'Type',
-    accessor: 'action',
+    accessor: 'type',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="text-xs ltr:text-right rtl:text-left">{value}</div>
@@ -722,7 +723,28 @@ export default function ModernScreen() {
 
       const transactionData = {
         user:
-          transfer.action === 'ToknesStaked' ? (
+          transfer.action === 'TokensWithdrawn' ? (
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.staker);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
+              <Avatar
+                size="sm"
+                image={AuthorImage}
+                alt="Rubywalsh"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.staker?.substring(0, 6) + '...'}
+              </div>
+            </button>
+          ) : transfer.action === 'ToknesStaked' ? (
             <button
               className=" flex flex-row items-center justify-start  "
               onClick={() => {
@@ -856,27 +878,31 @@ export default function ModernScreen() {
 
         type:
           transfer.action === 'ToknesStaked' ? (
-            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
-              Staked
+            <span className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+              Register
+            </span>
+          ) : transfer.action === 'TokensWithdrawn' ? (
+            <span className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+              Unregister
             </span>
           ) : transfer.action === 'Transfer' ? (
-            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+            <span className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
               Transfer
             </span>
-          ) : transfer.action === 'Withdraw' ? (
-            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
-              Withdraw
+          ) : transfer.action === 'TokensWithdrawn' ? (
+            <span className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+              Unregister
             </span>
           ) : transfer.action === 'Claim' ? (
-            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+            <span className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
               Claim
             </span>
           ) : transfer.action === 'Buy' ? (
-            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+            <span className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
               Buy
             </span>
           ) : (
-            <span className="text-xs text-green-600 ltr:text-right rtl:text-left xl:text-sm">
+            <span className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
               {transfer.action}
             </span>
           ),
@@ -901,7 +927,30 @@ export default function ModernScreen() {
         logs4Address: transfer.logs4Address,
 
         category:
-          transfer.action === 'ToknesStaked' ? (
+          transfer.action === 'TokensWithdrawn' ? (
+            <div className="flex items-center justify-start gap-2">
+              <Image
+                src="/images/shop/horse.png"
+                alt="horse"
+                width={18}
+                height={18}
+              />
+
+              <button
+                className=" flex w-20 flex-row items-center justify-end "
+                onClick={() => {
+                  setDrawerHorseInfoTokenId(transfer.tokenId);
+                  openDrawer('DRAWER_HORSE_INFO', transfer.tokenId);
+                }}
+              >
+                <span className="text-xl font-bold text-black  underline decoration-sky-500   ">
+                  #{transfer.tokenId}
+                </span>
+              </button>
+
+              <span className="text-xs">Unregistered</span>
+            </div>
+          ) : transfer.action === 'ToknesStaked' ? (
             <div className="flex items-center justify-start gap-2">
               <Image
                 src="/images/shop/horse.png"
