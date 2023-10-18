@@ -62,6 +62,8 @@ import { useDrawer } from '@/components/drawer-views/context';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 type Price = {
   name: number;
   value: number;
@@ -832,10 +834,27 @@ export default function GameHistoryTable(
   return (
     <div className="flex w-full flex-col">
       <div className="flex flex-row items-center justify-between  gap-2">
-        <div className="flex flex-row gap-2">
-          <span className=" text-2xl font-bold">News</span>
-          {/* reload button */}
+        <div className="flex flex-row items-center  justify-center gap-2 ">
+          {/* message icon MailOutlineIcon */}
           <div className="flex items-center justify-center gap-2">
+            <Button
+              onClick={() => {
+                router.push(`/mypage/inbox/game`);
+              }}
+              title="Messages"
+              shape="circle"
+              variant="transparent"
+              size="small"
+              className="text-gray-700 dark:text-white"
+            >
+              <MailOutlineIcon className="h-auto w-4 rtl:rotate-180" />
+            </Button>
+          </div>
+
+          <span className=" text-2xl font-bold">Messages</span>
+
+          {/* reload button */}
+          <div className="flex items-center justify-center ">
             <Button
               onClick={() => {
                 getLast20();
@@ -851,15 +870,17 @@ export default function GameHistoryTable(
           </div>
         </div>
 
+        {/*
         <Button
           className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
-          onClick={() => router.push(`/mypage/game`)}
+          onClick={() => router.push(`/mypage/inbox/game`)}
         >
           <span className="flex items-center gap-2">
             <InfoIcon className="h-3 w-3" />{' '}
             <span className="text-xs">View All</span>
           </span>
         </Button>
+        */}
       </div>
 
       <div className="mt-3 flex flex-col rounded-lg border p-5">

@@ -1391,7 +1391,7 @@ export default function ModernScreen() {
         <div className="mt-10 flex w-full flex-col  xl:w-2/3">
           <div className="flex flex-row items-center justify-between  gap-2">
             <div className="flex flex-row gap-2">
-              <span className=" text-2xl font-bold">News</span>
+              <span className=" text-2xl font-bold">Messages</span>
               {/* reload button */}
               <div className="flex items-center justify-center gap-2">
                 <Button

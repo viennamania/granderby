@@ -993,7 +993,7 @@ const GamePage: NextPageWithLayout<
         <div className="mt-5 flex w-full flex-col">
           <div className="flex flex-row items-center justify-between  gap-2">
             <div className="flex flex-row gap-2">
-              <span className=" text-2xl font-bold">News</span>
+              <span className=" text-2xl font-bold">Messages</span>
               {/* reload button */}
               <div className="flex items-center justify-center gap-2">
                 <Button

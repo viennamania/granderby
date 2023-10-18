@@ -364,6 +364,7 @@ function HeaderRightArea() {
               */}
             </button>
           </div>
+
           <div className="items-cneter ml-2 flex">
             <button
               onClick={() => router.push('/mypage/inbox/gift')}

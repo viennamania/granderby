@@ -737,9 +737,13 @@ export default function PortfolioScreen() {
                     <div className="flex flex-row items-center justify-center">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Horse</span>
-                        <span className="text-xl font-bold xl:text-2xl">
-                          {horsesCount}
-                        </span>
+
+                        <div className="flex flex-row items-center justify-center gap-2">
+                          <span className="text-xl font-bold xl:text-2xl">
+                            {horsesCount}
+                          </span>
+                          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                        </div>
                       </div>
                       <Image
                         src="/images/button/horse.png"
@@ -765,10 +769,15 @@ export default function PortfolioScreen() {
                     <div className="flex flex-row items-center justify-center">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Jockey</span>
-                        <span className="text-xl font-bold xl:text-2xl">
-                          {jockeysCount}
-                        </span>
+
+                        <div className="flex flex-row items-center justify-center gap-2">
+                          <span className="text-xl font-bold xl:text-2xl">
+                            {jockeysCount}
+                          </span>
+                          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                        </div>
                       </div>
+
                       <Image
                         src="/images/button/jockey.png"
                         alt="logo"
@@ -792,6 +801,7 @@ export default function PortfolioScreen() {
                     <div className="flex flex-row items-center justify-center">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Track</span>
+
                         <span className="text-xl font-bold xl:text-2xl">
                           {Number(tokenBalanceHV?.displayValue).toFixed(0)}
                         </span>
@@ -851,6 +861,17 @@ export default function PortfolioScreen() {
           <div className=" flex flex-col rounded-lg border p-5">
             <GameHistoryTable address={address} />
           </div>
+        </div>
+
+        {/* message list */}
+        {/* comming soon */}
+        <div className="mt-10 flex w-full flex-col items-center justify-center gap-2 rounded-lg border p-10">
+          <span className="text-lg font-bold text-gray-600 xl:text-xl">
+            Race Entry List
+          </span>
+          <span className="text-lg font-bold text-gray-600 xl:text-xl">
+            Coming Soon
+          </span>
         </div>
       </div>
 
