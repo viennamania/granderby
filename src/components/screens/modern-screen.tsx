@@ -115,6 +115,10 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import PortfolioChart from '../ui/chats/portfolio-chart';
 import { tr } from 'date-fns/locale';
 
+import CommitIcon from '@mui/icons-material/Commit';
+
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 const COLUMNS = [
   {
     Header: 'User',
@@ -1382,7 +1386,12 @@ export default function ModernScreen() {
         )}
 
         <div className="mt-10 flex w-full flex-col  xl:w-2/3">
-          <span className=" text-2xl font-bold">Transfer Performance</span>
+          {/* CommitIcon */}
+          <div className="flex flex-row items-center justify-start gap-2">
+            <CommitIcon className="h-[18px] w-[18px]" />
+            <span className=" text-2xl font-bold">Transfer Performance</span>
+          </div>
+
           <div className="mt-3">
             <PortfolioChart userAddress="0x87B87ADef916b8Ba746c69D9dce8961dfC29F71A" />
           </div>
@@ -1390,7 +1399,12 @@ export default function ModernScreen() {
 
         <div className="mt-10 flex w-full flex-col  xl:w-2/3">
           <div className="flex flex-row items-center justify-between  gap-2">
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <div className="flex flex-row items-center justify-start ">
+                {/* message icon MailOutlineIcon */}
+                <MailOutlineIcon className="h-5 w-5" />
+              </div>
+
               <span className=" text-2xl font-bold">Messages</span>
               {/* reload button */}
               <div className="flex items-center justify-center gap-2">

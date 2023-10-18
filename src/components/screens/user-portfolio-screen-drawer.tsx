@@ -126,6 +126,8 @@ import { useModal } from '@/components/modal-views/context';
 import { Twitter } from '@/components/icons/brands/twitter';
 import { time } from 'console';
 
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 const COLUMNS = [
   /*
   {
@@ -573,7 +575,12 @@ export default function PortfolioScreen({
 
         <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
           <div className=" flex w-full flex-col">
-            <div className="  flex flex-row items-center justify-between gap-2">
+            <div className="  flex flex-row items-center justify-start gap-2">
+              {/* MailOutlineIcon */}
+              <div className="flex flex-row items-center justify-start gap-2">
+                <MailOutlineIcon className="h-5 w-5" />
+              </div>
+
               <span className=" text-2xl font-bold">Performance</span>
             </div>
 

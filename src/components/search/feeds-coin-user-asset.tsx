@@ -354,9 +354,11 @@ export default function FeedsCoinUser(
                 Number(tokenBalanceGRD?.displayValue).toFixed(2)
               )}
             </div>
+            {/*
             <div className="ml-2 w-14 text-right text-xs font-bold text-green-600 xl:w-48 xl:text-lg ">
               +5,543 (10.0%)
             </div>
+            */}
 
             <button
               className="ml-10 flex flex-row items-center justify-center gap-3"
@@ -388,9 +390,11 @@ export default function FeedsCoinUser(
                 Number(tokenBalanceCARROT?.displayValue).toFixed(2)
               )}
             </div>
+            {/*
             <div className="ml-2 w-14 text-right text-xs font-bold text-red-600 xl:w-48 xl:text-lg ">
               -634(5.0%)
             </div>
+            */}
 
             <button
               className="ml-10 flex flex-row items-center justify-center gap-3"
@@ -422,9 +426,11 @@ export default function FeedsCoinUser(
                 Number(tokenBalanceSUGAR?.displayValue).toFixed(2)
               )}
             </div>
+            {/*
             <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
               0(0.0%)
             </div>
+            */}
 
             <button
               className="ml-10 flex flex-row items-center justify-center gap-3"
@@ -439,6 +445,7 @@ export default function FeedsCoinUser(
             </button>
           </div>
 
+          {/*
           <div className="mt-2 flex flex-row gap-5">
             <Button
               className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
@@ -466,6 +473,7 @@ export default function FeedsCoinUser(
               </span>
             </Button>
           </div>
+          */}
 
           {/*
           <button

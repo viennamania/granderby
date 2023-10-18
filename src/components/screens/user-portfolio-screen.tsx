@@ -126,6 +126,8 @@ import { useModal } from '@/components/modal-views/context';
 import { Twitter } from '@/components/icons/brands/twitter';
 import { time } from 'console';
 
+import CommitIcon from '@mui/icons-material/Commit';
+
 const COLUMNS = [
   /*
   {
@@ -572,7 +574,11 @@ export default function PortfolioScreen({
         <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
           <div className=" flex w-full flex-col">
             <div className="  flex flex-row items-center justify-between gap-2">
-              <span className=" text-2xl font-bold">Performance</span>
+              {/* CommitIcon */}
+              <div className="flex items-center justify-center gap-2">
+                <CommitIcon className="h-auto w-4 rtl:rotate-180" />
+                <span className=" text-2xl font-bold">Performance</span>
+              </div>
 
               <Button
                 className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
