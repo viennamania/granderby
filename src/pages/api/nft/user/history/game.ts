@@ -72,7 +72,7 @@ export default async function handler(
 
     const all = await getDailyVolumn();
 
-    /////console.log('getVolumn all', all);
+    ///console.log('getVolumn all', all);
 
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
 

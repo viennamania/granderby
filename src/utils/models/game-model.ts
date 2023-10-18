@@ -524,6 +524,8 @@ Promise<any[]> => {
           {
             $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
           },
+
+          /*
           {
             $expr: {
               $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
@@ -534,6 +536,8 @@ Promise<any[]> => {
               $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
             },
           },
+          */
+          /*
           {
             $expr: {
               $ne: [
@@ -542,6 +546,7 @@ Promise<any[]> => {
               ],
             },
           },
+          */
         ],
       },
     },

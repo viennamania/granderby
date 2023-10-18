@@ -1113,6 +1113,10 @@ export default function ModernScreen() {
                         width={18}
                         height={18}
                       />
+                      <span className=" w-20 text-xl font-bold text-black">
+                        {Number(transfer.value).toFixed(2)}
+                      </span>
+
                       <span className="text-xs">Received from</span>
 
                       <button
@@ -1125,10 +1129,6 @@ export default function ModernScreen() {
                         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
                         {transfer.tokenFrom?.substring(0, 6) + '...'}
                       </button>
-
-                      <span className="text-xl font-bold text-black">
-                        {Number(transfer.value).toFixed(2)}
-                      </span>
                     </div>
                   )}
                   {transfer.asset === 'CARROT' && (
