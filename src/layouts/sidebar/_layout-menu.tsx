@@ -23,6 +23,8 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useDirection } from '@/lib/hooks/use-direction';
 import { useThemeColor } from '@/lib/hooks/use-theme-color';
 
+import { useState } from 'react';
+
 function EditInactiveIcon(props: any) {
   return (
     <svg
@@ -371,6 +373,24 @@ export default function DrawerMenu() {
 
   const address = useAddress();
 
+  const [isOpenLng, setIsOpenLng] = useState<boolean>(false);
+
+  const LANGUAGE_SELECTOR_ID = 'language-selector';
+
+  const [languages, setLanguages] = useState<any[]>([]);
+
+  const handleLanguageChange = async (language: any) => {
+    ///await i18n.changeLanguage(language.key);
+    setIsOpenLng(false);
+  };
+
+  const [languageKey, setLanguageKey] = useState('en_US'); // kr , en_US
+
+  const selectedLanguage = languages.find(
+    //(language) => language.key === i18n.language
+    (language) => language.key === languageKey
+  );
+
   return (
     <div className="relative w-full max-w-full bg-white dark:bg-dark xs:w-80">
       <div className="flex h-24 items-center justify-between overflow-hidden px-6 py-4">
@@ -426,6 +446,8 @@ export default function DrawerMenu() {
               )}
 
               {address && (
+                <>
+                  {/*
                 <button
                   //onClick={() => setIsOpenLng(!isOpenLng)}
                   type="button"
@@ -435,6 +457,80 @@ export default function DrawerMenu() {
                 >
                   My Page
                 </button>
+                */}
+
+                  <div className="items-cneter ml-2 flex">
+                    <button
+                      onClick={() => setIsOpenLng(!isOpenLng)}
+                      type="button"
+                      className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      id={LANGUAGE_SELECTOR_ID}
+                      aria-expanded={isOpenLng}
+                    >
+                      {selectedLanguage?.key === 'kr' ? (
+                        <span className="fi fis fi-kr " />
+                      ) : (
+                        <span className="fi fis fi-us " />
+                      )}
+                      {/*
+                      <FlagIcon countryCode={selectedLanguage.key}/>
+                      */}
+                      &nbsp;{selectedLanguage?.name}
+                      <svg
+                        className="-me-1 ms-2 h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {isOpenLng && (
+                    <div
+                      className="absolute right-5 mt-40 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby={LANGUAGE_SELECTOR_ID}
+                    >
+                      <div className="grid grid-cols-1 gap-2 py-1" role="none">
+                        {languages.map((language, index) => {
+                          return (
+                            <button
+                              key={language.key}
+                              onClick={() => handleLanguageChange(language)}
+                              className={`${
+                                selectedLanguage?.key === language.key
+                                  ? 'bg-gray-100 text-gray-900'
+                                  : 'text-gray-700'
+                              } block inline-flex items-center px-4 py-2 text-start text-sm hover:bg-gray-100 ${
+                                index % 2 === 0 ? 'rounded-r' : 'rounded-l'
+                              }`}
+                              role="menuitem"
+                            >
+                              {/*
+                                      <FlagIcon countryCode={language.key}/>
+                                      */}
+                              {language.key === 'kr' ? (
+                                <span className="fi fis fi-kr " />
+                              ) : (
+                                <span className="fi fis fi-us " />
+                              )}
+                              &nbsp;
+                              <span className="truncate">{language.name}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>

@@ -133,6 +133,7 @@ function HeaderRightArea() {
     //(language) => language.key === i18n.language
     (language) => language.key === languageKey
   );
+
   // ...
 
   const { contract: nftDropContract, isLoading: isLoadingContract } =
@@ -292,7 +293,7 @@ function HeaderRightArea() {
               className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               aria-expanded={isOpenLogout}
             >
-              <span>{address?.substring(0, 10)}...</span>
+              <span>{address?.substring(0, 6)}...</span>
               <svg
                 className="-me-1 ms-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -386,38 +387,40 @@ function HeaderRightArea() {
         </>
       )}
 
-      <div className="items-cneter ml-2 flex">
-        <button
-          onClick={() => setIsOpenLng(!isOpenLng)}
-          type="button"
-          className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          id={LANGUAGE_SELECTOR_ID}
-          aria-expanded={isOpenLng}
-        >
-          {selectedLanguage?.key === 'kr' ? (
-            <span className="fi fis fi-kr " />
-          ) : (
-            <span className="fi fis fi-us " />
-          )}
-          {/*
-          <FlagIcon countryCode={selectedLanguage.key}/>
-          */}
-          &nbsp;{selectedLanguage?.name}
-          <svg
-            className="-me-1 ms-2 h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
+      {!address && (
+        <div className="items-cneter ml-2 flex">
+          <button
+            onClick={() => setIsOpenLng(!isOpenLng)}
+            type="button"
+            className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            id={LANGUAGE_SELECTOR_ID}
+            aria-expanded={isOpenLng}
           >
-            <path
-              fillRule="evenodd"
-              d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </div>
+            {selectedLanguage?.key === 'kr' ? (
+              <span className="fi fis fi-kr " />
+            ) : (
+              <span className="fi fis fi-us " />
+            )}
+            {/*
+            <FlagIcon countryCode={selectedLanguage.key}/>
+            */}
+            &nbsp;{selectedLanguage?.name}
+            <svg
+              className="-me-1 ms-2 h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      )}
 
       {isOpenLng && (
         <div

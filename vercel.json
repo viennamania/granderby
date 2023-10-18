@@ -41,6 +41,10 @@
             "schedule": "* * * * *"
         },
         {
+            "path": "/api/cronjob-lawnmowerman",
+            "schedule": "* * * * *"
+        },
+        {
             "path": "/api/cronjob-songpastable",
             "schedule": "* * * * *"
         },
