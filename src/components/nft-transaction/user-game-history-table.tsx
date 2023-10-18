@@ -745,7 +745,9 @@ export default function GameHistoryTable(
 
                       {transfer.tokenFrom ===
                       addressAirdropReward.toLowerCase() ? (
-                        <span className="text-xs">Rewarded for trading</span>
+                        <span className="text-xs">
+                          Rewarded for trading bonus
+                        </span>
                       ) : transfer.tokenFrom ===
                         addressRaceReward.toLowerCase() ? (
                         <span className="text-xs">Rewarded for racing</span>

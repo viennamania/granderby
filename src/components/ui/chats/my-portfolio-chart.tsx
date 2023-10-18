@@ -27,6 +27,8 @@ import {
 import { time } from 'console';
 import { m } from 'framer-motion';
 
+import { useAddress } from '@thirdweb-dev/react';
+
 const data = [
   {
     name: '10 / 7',
@@ -87,6 +89,8 @@ export default function PortfolioChart(
   { chartWrapperClass }: Props
 ) {
   const { layout } = useLayout();
+
+  const address = useAddress();
 
   const [volumn, setVolumn] = useState([] as any);
 
@@ -197,6 +201,42 @@ export default function PortfolioChart(
       getVolumn();
     }, 10000);
   }, [userAddress]);
+
+  /* if address is empty then loading view */
+  if (!address) {
+    return (
+      <div
+        className={cn(
+          ///'rounded-lg bg-light-dark p-6 text-white shadow-card sm:p-8',
+          'rounded-lg  p-2 shadow-card',
+          {
+            'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
+          }
+        )}
+      >
+        <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <Line
+                type="natural"
+                dataKey="CARROT"
+                stroke="#1E40AF"
+                strokeWidth={4}
+                dot={false}
+              />
+              <Line
+                type="natural"
+                dataKey="GRD"
+                stroke="#374151"
+                strokeWidth={4}
+                dot={false}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    );
+  }
 
   /* if empoty volumn then loading view */
   if (volumn.length === 0) {
