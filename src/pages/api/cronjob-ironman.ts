@@ -120,98 +120,6 @@ export default async function handler(
 
     const privateKey = process.env.IRONMAN_PRIVATE_KEY;
 
-    /*
-    // can be any ethers.js signer
-    ///const privateKey = process.env.PRIVATE_KEY;
-    const personalWallet = new PrivateKeyWallet(privateKey);
-
-    const config = {
-      chain: Polygon, // the chain where your smart wallet will be or is deployed
-      factoryAddress: '0xaC1fb0e77770ee3BE8e0Fa1E2eC8e313C8526660', // your own deployed account factory address
-      ///clientId: "3af7ae04bda0e7a51c444c3a9464458d", // Use client id if using on the client side, get it from dashboard settings
-      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
-      gasless: true, // enable or disable gasless transactions
-    };
-
-    // Then, connect the Smart wallet
-    const smartWallet = new SmartWallet(config);
-
-    const smartWalletAddress = await smartWallet.connect({
-      personalWallet: personalWallet,
-    });
-
-    console.log('smartWallet address', smartWalletAddress);
-
-    const contract = tokenContractAddressSUGARDrop;
-    const address = '0x1d54e58e4519d576be8D61DD86c3054Dc4A9642c';
-    const amount = 2;
-
-    try {
-      // You can then use this wallet to perform transactions via the SDK
-      const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
-
-      // Token (ERC20)
-      const tokenContract = await sdk.getContract(contract);
-
-      // Address of the wallet you want to send the tokens to
-      const toAddress = address;
-      // The amount of tokens you want to send
-      const transferAmount = amount;
-      const transaction = await tokenContract.erc20.transfer(
-        toAddress,
-        transferAmount
-      );
-
-      console.log(
-        'transaction.receipt.transactonHash',
-        transaction?.receipt?.transactionHash
-      );
-
-      if (transaction) {
-        res.status(200).json({
-          txid: transaction?.receipt?.transactionHash,
-          message: 'transaction successful',
-          contract: contract,
-          address: address,
-          amount: amount,
-        });
-      } else {
-        res.status(400).json({
-          txid: '',
-          message: 'transaction failed',
-          contract: contract,
-          address: address,
-          amount: amount,
-        });
-      }
-    } catch (error: any) {
-      console.error(error);
-
-      res.status(400).json({
-        txid: '',
-        message: error.message,
-        contract: contract,
-        address: address,
-        amount: amount,
-      });
-    }
-    */
-
-    /*
-    const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
-      ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
-      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
-
-      gasless: {
-        // By specifying a gasless configuration - all transactions will get forwarded to enable gasless transactions
-        openzeppelin: {
-          relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL, // your OZ Defender relayer URL
-          //////relayerForwarderAddress: "<open-zeppelin-forwarder-address>", // the OZ defender relayer address (defaults to the standard one)
-        },
-      },
-    });
-    */
-
     // can be any ethers.js signer
     ///const privateKey = process.env.PRIVATE_KEY;
     const personalWallet = new PrivateKeyWallet(privateKey);
@@ -235,6 +143,62 @@ export default async function handler(
 
     // You can then use this wallet to perform transactions via the SDK
     const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
+
+    const random = Math.floor(Math.random() * 3);
+
+    console.log('random', random);
+
+    if (random == 0) {
+      /* transfer to address CARROT */
+      const toAddress = '0xC767953AEbf77A22c8D2Bc22E880C0FA36CCBfF3'; // LAWNMOWERMAN smart wallet
+
+      const amount = Math.floor(Math.random() * 100) + 1;
+
+      /* CARROT Token Contract */
+      const tokenContract = await sdk.getContract(
+        tokenContractAddressCARROTDrop
+      );
+
+      try {
+        const transaction = await tokenContract.erc20.transfer(
+          toAddress,
+          amount
+        );
+
+        console.log(
+          'transaction.receipt.transactonHash',
+          transaction?.receipt?.transactionHash
+        );
+
+        if (transaction) {
+          res.status(200).json({
+            txid: transaction?.receipt?.transactionHash,
+            message: 'transaction successful',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        } else {
+          res.status(400).json({
+            txid: '',
+            message: 'transaction failed',
+            contract: tokenContractAddressCARROTDrop,
+            address: toAddress,
+            amount: amount,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+      return res.status(200).json({
+        txid: '',
+        message: 'transaction successful',
+        contract: tokenContractAddressSUGARDrop,
+        address: toAddress,
+        amount: amount,
+      });
+    }
 
     /* CARROT Token Contract */
     const tokenContract = await sdk.getContract(tokenContractAddressCARROTDrop);
