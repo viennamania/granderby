@@ -110,7 +110,8 @@ export default async function handler(
     await horsehistories.updateOne(filter, updateNft, options);
 
     toAddress = result?.holder;
-    amount = results[0].winPrize;
+
+    amount = results[0].winPrize * 10;
   } catch (error) {
     console.error(error);
   }
