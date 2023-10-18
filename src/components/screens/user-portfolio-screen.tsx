@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import CoinSlider from '@/components/ui/coin-card';
 import AssetSlider from '@/components/ui/asset-card';
 
-import PortfolioChart from '@/components/ui/chats/my-portfolio-chart';
+import PortfolioChart from '@/components/ui/chats/user-portfolio-chart';
 
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
@@ -247,8 +247,52 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">
-        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
+      <div className=" flex flex-row items-center justify-end gap-2 ">
+        {/* AvTimerOutlinedIcon color gray */}
+        {/*
+        <AvTimerOutlinedIcon fontSize='small' />
+        */}
+        {/* differece between now and createdAt */}
+
+        {Math.floor(
+          (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
+        ) > 0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor(
+              (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
+            )}{' '}
+            days ago
+          </div>
+        ) : Math.floor(
+            (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
+          ) > 0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor(
+              (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
+            )}{' '}
+            hours ago
+          </div>
+        ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60) >
+          0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60)}{' '}
+            minutes ago
+          </div>
+        ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000) >
+          0 ? (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            {Math.floor((new Date().getTime() - Date.parse(value)) / 1000)}{' '}
+            seconds ago
+          </div>
+        ) : (
+          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+            just now
+          </div>
+        )}
+
+        {/*
+          format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')
+        */}
       </div>
     ),
     minWidth: 120,

@@ -44,6 +44,7 @@ import LivePricingSliderRetro from '@/components/ui/live-pricing-slider-retro';
 import {
   nftDropContractAddressCoupon,
   tokenContractAddressGRD,
+  tokenContractAddressCARROTDrop,
 } from '@/config/contractAddresses';
 
 import {
@@ -95,8 +96,8 @@ const Product = (props) => {
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      title: 'Granderby - Mint',
-      description: 'powered by MOMOCON',
+      title: 'VIENNA - Mint',
+      description: 'powered by VIENNA',
       image: '/mint-bg.png',
     },
   };
@@ -112,22 +113,28 @@ const MintPage: NextPageWithLayout<
 
   const { layout } = useLayout();
 
+  const address = useAddress();
+
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressCoupon
     //'nft-drop'
   );
 
   const { contract: tokenContract } = useContract(
-    tokenContractAddressGRD,
+    tokenContractAddressCARROTDrop,
     'token'
   );
+
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  const [tokenid, setTokenid] = useState(0);
+
+  //const tokenid = 5;
 
   const [loading, setLoading] = useState(true);
   const [hasNFT, setHasNFT] = useState(false);
 
   const [sdkClientSecret, setSdkClientSecret] = useState();
-
-  const tokenid = 5;
 
   const contractQuery = useContract(nftDropContractAddressCoupon);
 
@@ -139,8 +146,6 @@ const MintPage: NextPageWithLayout<
   const theme = 'dark';
   //const root = window.document.documentElement;
   //root.classList.add(theme);
-
-  const address = useAddress();
 
   console.log('address', address);
 
@@ -494,16 +499,25 @@ const MintPage: NextPageWithLayout<
     }
   };
 
+  {
+    /* align center with 70% */
+  }
+
   return (
     <>
       {/* page content here */}
-      <div className="flex flex-col justify-center text-center">
+      <div
+        className="flex flex-col items-center justify-center text-center
+      
+        xl:mx-auto xl:w-2/3
+      "
+      >
         {/* Header */}
         <h1 className="mb-2 mt-2 text-3xl">Coupon</h1>
 
         {/*
         <video id="intro-video" src="/mov/nft.mp4" muted autoPlay></video>
-  */}
+        */}
 
         {/*
         <LiveNftPricingSlider limits={2} />
@@ -576,14 +590,14 @@ const MintPage: NextPageWithLayout<
         </div>
           */}
 
-        <div className="grid grid-cols-3 gap-2">
+        <div className="flex flex-row items-center  justify-center gap-2">
           {ownedNfts?.map((nft) => (
             <div
               className="mb-2 flex flex-col  items-center justify-center gap-3"
               key={nft.metadata.id.toString()}
             >
-              <div className="justifiy-center flex flex-row items-center gap-2">
-                {nft.metadata.name} x {nft.quantityOwned}
+              <div className="justifiy-center flex flex-row items-center gap-2 text-2xl font-bold xl:text-4xl">
+                {/*nft.metadata.name*/} x {nft.quantityOwned}
               </div>
               {/*
               <ThirdwebNftMedia
@@ -593,8 +607,8 @@ const MintPage: NextPageWithLayout<
               */}
               <Image
                 src={nft.metadata.image || ''}
-                width={200}
-                height={200}
+                width={300}
+                height={300}
                 alt={String(nft.metadata.name) || ''}
                 className="rounded-lg "
               />
@@ -657,7 +671,23 @@ const MintPage: NextPageWithLayout<
       )}
         */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-12">
+        {/* select option for tokenid */}
+
+        <select
+          onChange={(e) => {
+            setTokenid(parseInt(e.target.value));
+          }}
+          className="mt-10  w-36 rounded-lg border p-5"
+        >
+          <option value={0}>Coupon U</option>
+          <option value={1}>Coupon S</option>
+          <option value={2}>Coupon A</option>
+          <option value={3}>Coupon B</option>
+          <option value={4}>Coupon C</option>
+          <option value={5}>Coupon D</option>
+        </select>
+
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12">
           <div className="hidden h-full w-full items-center justify-center lg:col-span-5 lg:flex lg:px-12">
             <HeadingImage
               src={
@@ -758,7 +788,7 @@ const MintPage: NextPageWithLayout<
                         >
                           -
                         </button>
-                        <p className="flex h-full w-full items-center justify-center text-center font-mono dark:text-white lg:w-full">
+                        <p className=" flex h-full w-full items-center justify-center text-center font-mono text-xl font-bold dark:text-white lg:w-full">
                           {!isLoading && isSoldOut ? 'Sold Out' : quantity}
                         </p>
                         <button
@@ -798,6 +828,8 @@ const MintPage: NextPageWithLayout<
                         action={(cntr) => cntr.erc1155.claim(tokenid, quantity)}
                         isDisabled={!canClaim || buttonLoading}
                         onError={(err) => {
+                          alert('Failed to mint drop');
+
                           console.error(err);
                           console.log({ err });
 
@@ -809,6 +841,8 @@ const MintPage: NextPageWithLayout<
                           });
                         }}
                         onSuccess={() => {
+                          alert('NFT Claimed!');
+
                           toast({
                             title: 'Successfully minted',
                             description:
@@ -847,6 +881,29 @@ const MintPage: NextPageWithLayout<
                 )}
               </div>
 
+              {/* carrot balance */}
+
+              <div className="mt-10 flex flex-col gap-2">
+                {tokenBalance ? (
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <div className="flex flex-row items-center justify-center gap-2">
+                      <Image
+                        src="/images/shop/icon-carrot.png"
+                        width={30}
+                        height={30}
+                        alt="CARROT"
+                      />
+                      <span className="text-xl text-gray-500 xl:text-2xl">
+                        {tokenBalance?.displayValue}&nbsp;{tokenBalance?.symbol}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+
+              {/*
               <div className="mt-8 flex w-full items-center justify-center xs:mb-8 xs:mt-0 lg:hidden">
                 <HeadingImage
                   src={
@@ -858,12 +915,11 @@ const MintPage: NextPageWithLayout<
                   isLoading={isLoading}
                 />
               </div>
+              */}
             </div>
           </div>
         </div>
       </div>
-
-      {/* delete footer */}
     </>
   );
 };

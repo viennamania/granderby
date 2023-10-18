@@ -84,10 +84,7 @@ interface Props {
   chartWrapperClass?: string;
 }
 
-export default function PortfolioChart(
-  { userAddress }: { userAddress: string },
-  { chartWrapperClass }: Props
-) {
+export default function PortfolioChart({ chartWrapperClass }: Props) {
   const { layout } = useLayout();
 
   const address = useAddress();
@@ -96,9 +93,7 @@ export default function PortfolioChart(
 
   useEffect(() => {
     async function getVolumn() {
-      console.log('portfolio chart  userAddress', userAddress);
-
-      if (!userAddress) {
+      if (!address) {
         return;
       }
 
@@ -107,7 +102,7 @@ export default function PortfolioChart(
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           method: 'getVolumnByHolder',
-          address: userAddress.toLowerCase(),
+          address: address.toLowerCase(),
         }),
       });
 
@@ -197,10 +192,10 @@ export default function PortfolioChart(
       setVolumn(volumn);
     }
 
-    //const interval = setInterval(() => {
-    //  getVolumn();
-    //}, 10000);
-  }, [userAddress]);
+    const interval = setInterval(() => {
+      getVolumn();
+    }, 10000);
+  }, [address]);
 
   /* if address is empty then loading view */
   if (!address) {

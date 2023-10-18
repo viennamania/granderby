@@ -32,7 +32,7 @@ import Search from '@/components/search/search-portfolio';
 import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
 import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
 
-import PortfolioScreen from '@/components/screens/portfolio-screen';
+import PortfolioScreen from '@/components/screens/my-portfolio-screen';
 
 import { useState } from 'react';
 

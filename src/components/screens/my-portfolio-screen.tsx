@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import CoinSlider from '@/components/ui/coin-card';
 import AssetSlider from '@/components/ui/asset-card';
 
-import PortfolioChart from '@/components/ui/chats/user-portfolio-chart';
+import PortfolioChart from '@/components/ui/chats/my-portfolio-chart';
 
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
@@ -42,13 +42,13 @@ import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby
 import OwnedFeeds from '@/components/search/feeds-horse-owned-widget';
 //import OwnedFeeds from '@/components/search/feeds-horse-owned';
 
-import GameHistoryTable from '@/components/nft-transaction/user-game-history-table';
+import GameHistoryTable from '@/components/nft-transaction/my-game-history-table';
 
 import TransferHistoryTable from '@/components/nft-transaction/user-transfer-history-table';
 
 import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
 
-import FeedsCoinUser from '@/components/search/feeds-coin-user-asset';
+import FeedsCoinOwned from '@/components/search/feeds-coin-owned-asset';
 
 import {
   ConnectWallet,
@@ -107,7 +107,7 @@ import { ChevronDown } from '@/components/icons/chevron-down';
 import { LinkIcon } from '@/components/icons/link-icon';
 
 import { useRouter } from 'next/router';
-import { add, get, stubString } from 'lodash';
+import { add, get } from 'lodash';
 
 import { Refresh } from '@/components/icons/refresh';
 
@@ -127,6 +127,8 @@ import { Twitter } from '@/components/icons/brands/twitter';
 import { time } from 'console';
 
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
+import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
 
 const COLUMNS = [
   /*
@@ -324,14 +326,8 @@ const COLUMNS = [
   },
 ];
 
-export default function PortfolioScreen({
-  userAddress,
-}: {
-  userAddress?: string;
-}) {
-  console.log('PortfolioScreen userAddress: ', userAddress);
-
-  /////const address = useAddress();
+export default function PortfolioScreen() {
+  const address = useAddress();
 
   const router = useRouter();
 
@@ -343,16 +339,13 @@ export default function PortfolioScreen({
     tokenContractAddressGRD,
     'token'
   );
-  const { data: tokenBalance } = useTokenBalance(tokenContract, userAddress);
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
   const { contract: tokenContractHV } = useContract(
     tokenContractAddressHV,
     'token'
   );
-  const { data: tokenBalanceHV } = useTokenBalance(
-    tokenContractHV,
-    userAddress
-  );
+  const { data: tokenBalanceHV } = useTokenBalance(tokenContractHV, address);
 
   const [claimableRewardsHorse, setClaimableRewardsHorse] =
     useState<BigNumber>();
@@ -366,59 +359,34 @@ export default function PortfolioScreen({
     useContract(stakingContractAddressJockey);
 
   useEffect(() => {
-    if (!stakingContractHorse || !userAddress) return;
+    if (!stakingContractHorse || !address) return;
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContractHorse?.call('getStakeInfo', [
-        userAddress,
+        address,
       ]);
       ////const stakeInfo = await contract?.call("getStakeInfo", );
       setClaimableRewardsHorse(stakeInfo[1]);
     }
 
     loadClaimableRewards();
-  }, [userAddress, stakingContractHorse]);
+  }, [address, stakingContractHorse]);
 
   useEffect(() => {
-    if (!stakingContractJockey || !userAddress) return;
+    if (!stakingContractJockey || !address) return;
 
     async function loadClaimableRewards() {
       const stakeInfo = await stakingContractJockey?.call('getStakeInfo', [
-        userAddress,
+        address,
       ]);
       ////const stakeInfo = await contract?.call("getStakeInfo", );
       setClaimableRewardsJockey(stakeInfo[1]);
     }
 
     loadClaimableRewards();
-  }, [userAddress, stakingContractJockey]);
+  }, [address, stakingContractJockey]);
 
   const [npcNames, setNpcNames] = useState<any>([]);
-
-  /*
-  const [volumn, setVolumn] = useState<any>(0);
-
-  useEffect(() => {
-    async function getVolumn() {
-
-      const response = await fetch('/api/nft/user/history/game', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          method: 'getVolumn',
-          address: userAddress,
-        }),
-      });
-      const data = await response.json();
-
-      setVolumn(data);
-    }
-
-    if (userAddress) {
-      getVolumn();
-    }
-  }, [userAddress]);
-  */
 
   const [horsesCount, setHorsesCount] = useState<any>(0);
   const [jockeysCount, setJockeysCount] = useState<any>(0);
@@ -427,14 +395,14 @@ export default function PortfolioScreen({
 
   useEffect(() => {
     async function getHorsesCount() {
-      if (!userAddress) return;
+      if (!address) return;
 
       const response = await fetch('/api/nft/getHorsesCount', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           method: 'getAllByHolder',
-          holder: userAddress,
+          holder: address,
           ///grades: selectedGradesStorage,
           grades: [],
           manes: [],
@@ -452,14 +420,14 @@ export default function PortfolioScreen({
     async function getJockeysCount() {
       //console.log("getJokeysCount address====", address);
 
-      if (!userAddress) return;
+      if (!address) return;
 
       const response = await fetch('/api/nft/getJockeysCount', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           method: 'getAllByHolder',
-          holder: userAddress,
+          holder: address,
           ///grades: selectedGradesStorage,
           grades: [],
           manes: [],
@@ -474,7 +442,7 @@ export default function PortfolioScreen({
 
     getHorsesCount();
     getJockeysCount();
-  }, [userAddress]);
+  }, [address]);
 
   const [transfers, setTransfers] = useState([]);
 
@@ -517,7 +485,7 @@ export default function PortfolioScreen({
       body: JSON.stringify({
         method: 'getLatest',
         limit: limit,
-        address: userAddress?.toLowerCase(),
+        address: address?.toLowerCase(),
       }),
     });
     const data = await response.json();
@@ -534,9 +502,7 @@ export default function PortfolioScreen({
         //transactionType: transfer.from === address ? 'Send' : 'Receive',
 
         transactionType:
-          transfer.tokenFrom === userAddress?.toLowerCase()
-            ? 'Send'
-            : 'Receive',
+          transfer.tokenFrom === address?.toLowerCase() ? 'Send' : 'Receive',
 
         createdAt: transfer.blockTimestamp,
 
@@ -558,7 +524,7 @@ export default function PortfolioScreen({
             : transfer.tokenFrom ===
               stakingContractAddressHorseAAA.toLowerCase()
             ? 'Unregister'
-            : transfer.tokenFrom === userAddress?.toLowerCase()
+            : transfer.tokenFrom === address?.toLowerCase()
             ? 'Send'
             : transfer.tokenFrom ===
               '0x0000000000000000000000000000000000000000'.toLowerCase()
@@ -579,14 +545,12 @@ export default function PortfolioScreen({
   };
 
   useEffect(() => {
-    if (!userAddress) return;
-
     getLatest();
 
     //setInterval(() => {
     ///getLatest();
     //}, 10000);
-  }, [userAddress]);
+  }, [address]);
 
   return (
     <div className="mb-10">
@@ -626,24 +590,149 @@ export default function PortfolioScreen({
 
         <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
           <div className=" flex w-full flex-col">
-            <div className="  flex flex-row items-center justify-start gap-2">
+            <div className="  flex flex-row items-center justify-between gap-2">
               {/* MailOutlineIcon */}
-              <div className="flex flex-row items-center justify-start gap-2">
+              <div className="flex items-center justify-center gap-2">
                 <MailOutlineIcon className="h-5 w-5" />
+                <span className=" text-2xl font-bold">Performance</span>
               </div>
 
-              <span className=" text-2xl font-bold">Performance</span>
+              {/*
+              <Button
+                className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
+                onClick={() => router.push(`/my-portfolio/performance`)}
+              >
+                <span className="flex items-center gap-2">
+                  <InfoIcon className="h-3 w-3" />{' '}
+                  <span className="text-xs">View All</span>
+                </span>
+              </Button>
+              */}
             </div>
 
-            <div className="mt-5 flex w-full flex-col gap-5">
-              <PortfolioChart userAddress={userAddress ? userAddress : ''} />
+            <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
+              <div className=" md:w-2/3 xl:w-2/3">
+                <PortfolioChart />
+              </div>
+
+              <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-1/3">
+                <div className="flex flex-row items-center justify-between gap-2">
+                  <span className="text-xl font-bold">Transfers</span>
+                  {/* reload button */}
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      onClick={() => {
+                        getLatest();
+                      }}
+                      title="Reload"
+                      shape="circle"
+                      variant="transparent"
+                      size="small"
+                      className="text-gray-700 dark:text-white"
+                    >
+                      <Refresh className="h-auto w-4 rtl:rotate-180" />
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
+                  <Scrollbar
+                    style={{ width: '100%' }}
+                    autoHide="never"
+                    className=""
+                  >
+                    <div className="px-0.5">
+                      <table
+                        {...getTableProps()}
+                        className="transaction-table w-full border-separate border-0"
+                      >
+                        <thead className="text-sm text-gray-500 dark:text-gray-300">
+                          {headerGroups.map((headerGroup, idx) => (
+                            <tr
+                              {...headerGroup.getHeaderGroupProps()}
+                              key={idx}
+                            >
+                              {headerGroup.headers.map((column, idx) => (
+                                <th
+                                  {...column.getHeaderProps(
+                                    column.getSortByToggleProps()
+                                  )}
+                                  key={idx}
+                                  className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                                >
+                                  <div className="flex items-center">
+                                    {column.render('Header')}
+                                    {column.canResize && (
+                                      <div
+                                        {...column.getResizerProps()}
+                                        className={`resizer ${
+                                          column.isResizing ? 'isResizing' : ''
+                                        }`}
+                                      />
+                                    )}
+                                    <span className="ltr:ml-1 rtl:mr-1">
+                                      {column.isSorted ? (
+                                        column.isSortedDesc ? (
+                                          <ChevronDown />
+                                        ) : (
+                                          <ChevronDown className="rotate-180" />
+                                        )
+                                      ) : (
+                                        <ChevronDown className="rotate-180 opacity-0 transition group-hover:opacity-50" />
+                                      )}
+                                    </span>
+                                  </div>
+                                </th>
+                              ))}
+                            </tr>
+                          ))}
+                        </thead>
+                        <tbody
+                          {...getTableBodyProps()}
+                          className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+                        >
+                          {page.map((row, idx) => {
+                            prepareRow(row);
+                            return (
+                              <tr
+                                {...row.getRowProps()}
+                                key={idx}
+                                className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                              >
+                                {row.cells.map((cell, idx) => {
+                                  return (
+                                    <td
+                                      {...cell.getCellProps()}
+                                      key={idx}
+                                      //className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                                      className="px-2 py-1 tracking-[1px] "
+                                    >
+                                      {cell.render('Cell')}
+                                    </td>
+                                  );
+                                })}
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </Scrollbar>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 grid w-full grid-cols-1 gap-5 ">
+        <div className="mt-10 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-2 ">
           <div className=" flex flex-col rounded-lg border p-5">
-            <span className=" text-2xl font-bold">Assets</span>
+            {/* VideogameAssetOutlinedIcon */}
+
+            <div className="flex items-center justify-start gap-2">
+              <VideogameAssetOutlinedIcon className="h-5 w-5" />
+
+              <span className=" text-2xl font-bold">Assets</span>
+            </div>
 
             {/*
             <button
@@ -658,12 +747,11 @@ export default function PortfolioScreen({
             </button>
             */}
 
-            {userAddress ? (
+            {address ? (
               <div className="mt-5 flex flex-col items-start justify-center gap-5">
                 <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
-                  <FeedsCoinUser
-                    //contractAddress={nftDropContractAddressHorseZedRun}
-                    userAddress={userAddress}
+                  <FeedsCoinOwned
+                  //contractAddress={nftDropContractAddressHorseZedRun}
                   />
                 </div>
 
@@ -699,19 +787,23 @@ export default function PortfolioScreen({
                   */}
 
                   <button
-                    className={`   gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
-                      router.push(`/user-asset/${userAddress}`);
+                      router.push('/my-asset');
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
                     <div className="flex flex-row items-center justify-center">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Horse</span>
-                        <span className="text-xl font-bold xl:text-2xl">
-                          {horsesCount}
-                        </span>
+
+                        <div className="flex flex-row items-center justify-center gap-2">
+                          <span className="text-xl font-bold xl:text-2xl">
+                            {horsesCount}
+                          </span>
+                          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                        </div>
                       </div>
                       <Image
                         src="/images/button/horse.png"
@@ -721,13 +813,13 @@ export default function PortfolioScreen({
                       />
                     </div>
 
-                    <span className=" h-16 text-lg font-bold text-green-600 xl:text-xl">
+                    <span className="text-lg font-bold text-green-600 xl:text-xl">
                       {horsesTotalPricePaid} USD
                     </span>
                   </button>
 
                   <button
-                    className={`   gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
@@ -737,10 +829,15 @@ export default function PortfolioScreen({
                     <div className="flex flex-row items-center justify-center">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Jockey</span>
-                        <span className="text-xl font-bold xl:text-2xl">
-                          {jockeysCount}
-                        </span>
+
+                        <div className="flex flex-row items-center justify-center gap-2">
+                          <span className="text-xl font-bold xl:text-2xl">
+                            {jockeysCount}
+                          </span>
+                          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                        </div>
                       </div>
+
                       <Image
                         src="/images/button/jockey.png"
                         alt="logo"
@@ -748,13 +845,13 @@ export default function PortfolioScreen({
                         height={25}
                       />
                     </div>
-                    <span className=" h-16 text-lg font-bold text-gray-600 xl:text-xl">
+                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
                       0 USD
                     </span>
                   </button>
 
                   <button
-                    className={`  gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
@@ -764,6 +861,7 @@ export default function PortfolioScreen({
                     <div className="flex flex-row items-center justify-center">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Track</span>
+
                         <span className="text-xl font-bold xl:text-2xl">
                           {Number(tokenBalanceHV?.displayValue).toFixed(0)}
                         </span>
@@ -775,7 +873,7 @@ export default function PortfolioScreen({
                         height={25}
                       />
                     </div>
-                    <span className=" h-16  text-lg font-bold text-gray-600 xl:text-xl">
+                    <span className="text-lg font-bold text-gray-600 xl:text-xl">
                       0 USD
                     </span>
                   </button>
@@ -821,8 +919,19 @@ export default function PortfolioScreen({
           </div>
 
           <div className=" flex flex-col rounded-lg border p-5">
-            <GameHistoryTable address={userAddress} />
+            <GameHistoryTable />
           </div>
+        </div>
+
+        {/* message list */}
+        {/* comming soon */}
+        <div className="mt-10 flex w-full flex-col items-center justify-center gap-2 rounded-lg border p-10">
+          <span className="text-lg font-bold text-gray-600 xl:text-xl">
+            Race Entry List
+          </span>
+          <span className="text-lg font-bold text-gray-600 xl:text-xl">
+            Coming Soon
+          </span>
         </div>
       </div>
 

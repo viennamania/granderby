@@ -1138,7 +1138,7 @@ export default function ModernScreen() {
                           openDrawer('DRAWER_USER_INFO', 0);
                         }}
                       >
-                        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2  " />
                         <span className="text-black">
                           {transfer.tokenFrom?.substring(0, 6) + '...'}
                         </span>
@@ -1220,7 +1220,7 @@ export default function ModernScreen() {
                   openDrawer('DRAWER_USER_INFO', 0);
                 }}
               >
-                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2 " />
                 <span className="text-black">
                   {transfer.tokenFrom?.substring(0, 6) + '...'}
                 </span>

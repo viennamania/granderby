@@ -450,12 +450,11 @@ const COLUMNS = [
   },
 ];
 
-export default function GameHistoryTable(
-  //nftMetadata: any
-
-  { address }: { address?: any }
-) {
+export default function GameHistoryTable() {
+//nftMetadata: any
   const router = useRouter();
+
+  const address = useAddress();
 
   ///console.log('PriceHistoryTable nftMetadata: ', nftMetadata);
 
@@ -780,6 +779,7 @@ export default function GameHistoryTable(
                       #{transfer.tokenId}
                     </span>
                   </button>
+
                   <span className="text-xs">Sent to</span>
 
                   <button
@@ -1053,7 +1053,7 @@ export default function GameHistoryTable(
               shape="circle"
               variant="transparent"
               size="small"
-              className="text-gray-700 dark:text-white"
+              className=" text-gray-700 dark:text-white"
             >
               <Refresh className="h-auto w-4 rtl:rotate-180" />
             </Button>

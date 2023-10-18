@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import CoinSlider from '@/components/ui/coin-card';
 import AssetSlider from '@/components/ui/asset-card';
 
-import PortfolioChart from '@/components/ui/chats/my-portfolio-chart';
+import PortfolioChart from '@/components/ui/chats/portfolio-chart';
 
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
@@ -568,7 +568,7 @@ export default function PortfolioScreen() {
 
             <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
               <div className=" md:w-2/3 xl:w-2/3">
-                <PortfolioChart userAddress={address ? address : ''} />
+                <PortfolioChart />
               </div>
 
               <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-1/3">
