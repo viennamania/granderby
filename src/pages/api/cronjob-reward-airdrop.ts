@@ -124,7 +124,7 @@ export default async function handler(
     while (true) {
       // choose a random results
       const random = Math.floor(Math.random() * results.length);
-      ///console.log('random', random);
+      //console.log('random', random);
 
       //results[random].holder
       const tokenId = results[random].tokenId;
@@ -143,7 +143,10 @@ export default async function handler(
         ///console.log('results2', results2);
 
         toAddress = results[random].holder;
-        amount = 1 * results2.length;
+        //amount = 1 * results2.length;
+
+        // random amount
+        amount = Math.floor(Math.random() * 10) + 1;
 
         break;
       }
@@ -169,7 +172,9 @@ export default async function handler(
         ///console.log('results2', results2);
 
         toAddress2 = results[random].holder;
-        amount2 = 1 * results2.length;
+        ///amount2 = 1 * results2.length;
+        // random amount
+        amount2 = Math.floor(Math.random() * 10) + 1;
 
         break;
       }
@@ -195,7 +200,9 @@ export default async function handler(
         ///console.log('results2', results2);
 
         toAddress3 = results[random].holder;
-        amount3 = 1 * results2.length;
+        //amount3 = 1 * results2.length;
+        // random amount
+        amount3 = Math.floor(Math.random() * 10) + 1;
 
         break;
       }
