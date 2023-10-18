@@ -24,6 +24,7 @@ import {
   tokenContractAddressSUGARDrop,
   nftDropContractAddressHorse,
 } from '@/config/contractAddresses';
+import { time } from 'console';
 
 const data = [
   {
@@ -186,7 +187,11 @@ export default function PortfolioChart(
     }
 
     getVolumn();
-  }, [userAddress]);
+
+    const interval = setInterval(() => {
+      getVolumn();
+    }, 10000);
+  }, []);
 
   return (
     <div

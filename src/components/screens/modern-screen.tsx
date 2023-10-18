@@ -1251,7 +1251,11 @@ export default function ModernScreen() {
 
   useEffect(() => {
     getLast20();
-  }, [address]);
+
+    const interval = setInterval(() => {
+      getLast20();
+    }, 10000);
+  }, []);
 
   const { openDrawer } = useDrawer();
 
