@@ -325,6 +325,14 @@ export const getTransferHistoryLatest = async (
     $and: [
       {
         $expr: {
+          $ne: [
+            '$tokenFrom',
+            '0x0000000000000000000000000000000000000000'.toLowerCase(),
+          ],
+        },
+      },
+      {
+        $expr: {
           $ne: ['$tokenTo', stakingContractAddressHorseAAA.toLowerCase()],
         },
       },
