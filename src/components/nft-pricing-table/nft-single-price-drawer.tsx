@@ -731,7 +731,11 @@ export default function NftSinglePrice({
                       */}
 
                       <div className="mb-3 flex flex-row">
-                        {raceHistory && raceHistory.length === 0 ? (
+                        {!raceHistory ? (
+                          <div className="text-sm font-bold xl:text-lg">
+                            <b>Loading...</b>
+                          </div>
+                        ) : raceHistory.length === 0 ? (
                           <div>
                             <div className="text-sm font-bold xl:text-lg">
                               <b>No record </b>

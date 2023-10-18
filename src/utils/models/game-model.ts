@@ -147,23 +147,144 @@ export const getTransferHistory = async (): Promise<ITransferHistory[]> => {
 
   return await HorseTransferModel.find({
     $and: [
+      /*
       {
         $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
       },
-    ],
 
-    /*
-      $or: [
-        { tokenFrom: address },
-        { tokenTo: address },
-        { buyer: address },
-        { listingCreator: address },
-        { staker: address },
-      ],
+      {
+        $expr: {
+          $ne: ['$tokenTo', stakingContractAddressHorseAAA.toLowerCase()],
+        },
+      },
       */
+      {
+        $expr: {
+          $ne: ['$tokenFrom', stakingContractAddressHorseAAA.toLowerCase()],
+        },
+      },
+
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid1.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid1.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid2.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid2.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid3.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid3.toLowerCase()] },
+      },
+      //{
+      //  asset: 'GRANDERBY'
+      //},
+    ],
   })
     .sort({ blockTimestamp: -1 })
     .limit(100);
+};
+
+export const getTransferHistoryLatest = async (
+  limit: String
+): Promise<ITransferHistory[]> => {
+  console.log('getTransferHistoryLatest', limit);
+
+  return await HorseTransferModel.find({
+    $and: [
+      /*
+      {
+        $expr: {
+          $ne: [
+            '$tokenFrom',
+            '0x0000000000000000000000000000000000000000'.toLowerCase(),
+          ],
+        },
+      },
+      */
+      {
+        $expr: {
+          $ne: ['$tokenTo', stakingContractAddressHorseAAA.toLowerCase()],
+        },
+      },
+      {
+        $expr: {
+          $ne: ['$tokenFrom', stakingContractAddressHorseAAA.toLowerCase()],
+        },
+      },
+
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid1.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid1.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid2.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid2.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenFrom', addressInvalid3.toLowerCase()] },
+      },
+      {
+        $expr: { $ne: ['$tokenTo', addressInvalid3.toLowerCase()] },
+      },
+      /*
+      {
+        $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
+      },
+      
+      {
+        $expr: {
+          $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
+        },
+      },
+      {
+        $expr: {
+          $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
+        },
+      },
+      {
+        $expr: {
+          $ne: [
+            '$tokenTo',
+            '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
+          ],
+        },
+      },
+      
+      {
+        $expr: {
+          $ne: [
+            '$rawContract.address',
+            '0xe36BD65609c08Cd17b53520293523CF4560533d0'.toLowerCase(), // G1 Contract
+          ],
+        },
+      },
+      */
+    ],
+
+    /*
+    $or: [
+      
+      { tokenFrom: address },
+      { tokenTo: address },
+      { buyer: address },
+      { listingCreator: address },
+      { staker: address },
+    ],
+    */
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(limit as any);
 };
 
 export const getTransferHistoryByTokenId = async (
@@ -335,102 +456,6 @@ export const getTransferHistoryLatestByHolder = async (
       { listingCreator: address },
       { staker: address },
     ],
-  })
-    .sort({ blockTimestamp: -1 })
-    .limit(limit as any);
-};
-
-export const getTransferHistoryLatest = async (
-  limit: String
-): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryLatest', limit);
-
-  return await HorseTransferModel.find({
-    $and: [
-      /*
-      {
-        $expr: {
-          $ne: [
-            '$tokenFrom',
-            '0x0000000000000000000000000000000000000000'.toLowerCase(),
-          ],
-        },
-      },
-      */
-      {
-        $expr: {
-          $ne: ['$tokenTo', stakingContractAddressHorseAAA.toLowerCase()],
-        },
-      },
-      {
-        $expr: {
-          $ne: ['$tokenFrom', stakingContractAddressHorseAAA.toLowerCase()],
-        },
-      },
-
-      {
-        $expr: { $ne: ['$tokenFrom', addressInvalid1.toLowerCase()] },
-      },
-      {
-        $expr: { $ne: ['$tokenTo', addressInvalid1.toLowerCase()] },
-      },
-      {
-        $expr: { $ne: ['$tokenFrom', addressInvalid2.toLowerCase()] },
-      },
-      {
-        $expr: { $ne: ['$tokenTo', addressInvalid2.toLowerCase()] },
-      },
-      {
-        $expr: { $ne: ['$tokenFrom', addressInvalid3.toLowerCase()] },
-      },
-      {
-        $expr: { $ne: ['$tokenTo', addressInvalid3.toLowerCase()] },
-      },
-      /*
-      {
-        $expr: { $ne: ['$tokenFrom', '$tokenTo'] },
-      },
-      
-      {
-        $expr: {
-          $ne: ['$tokenTo', addressRaceReward.toLowerCase()],
-        },
-      },
-      {
-        $expr: {
-          $ne: ['$tokenTo', addressAirdropReward.toLowerCase()],
-        },
-      },
-      {
-        $expr: {
-          $ne: [
-            '$tokenTo',
-            '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase(),
-          ],
-        },
-      },
-      
-      {
-        $expr: {
-          $ne: [
-            '$rawContract.address',
-            '0xe36BD65609c08Cd17b53520293523CF4560533d0'.toLowerCase(), // G1 Contract
-          ],
-        },
-      },
-      */
-    ],
-
-    /*
-    $or: [
-      
-      { tokenFrom: address },
-      { tokenTo: address },
-      { buyer: address },
-      { listingCreator: address },
-      { staker: address },
-    ],
-    */
   })
     .sort({ blockTimestamp: -1 })
     .limit(limit as any);

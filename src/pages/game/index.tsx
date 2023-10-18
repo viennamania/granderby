@@ -263,6 +263,16 @@ const COLUMNS = [
     minWidth: 50,
     maxWidth: 50,
   },
+  {
+    Header: 'Asset',
+    accessor: 'asset',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-xs ltr:text-right rtl:text-left">{value}</div>
+    ),
+    minWidth: 50,
+    maxWidth: 50,
+  },
 
   {
     Header: 'Type',
@@ -518,7 +528,7 @@ const GamePage: NextPageWithLayout<
               <div className="flex items-center justify-start">
                 <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
 
-                {transfer.staker?.substring(0, 6) + '...'}
+                {transfer.tokenFrom?.substring(0, 6) + '...'}
               </div>
             </button>
           ) : (
@@ -641,7 +651,7 @@ const GamePage: NextPageWithLayout<
                 </span>
               </button>
 
-              <span className="text-xs">Registered</span>
+              <span className="text-xs">Registered for racing</span>
             </div>
           ) : transfer.tokenTo ===
             stakingContractAddressHorseAAA.toLowerCase() ? (
@@ -665,7 +675,7 @@ const GamePage: NextPageWithLayout<
                 </span>
               </button>
 
-              <span className="text-xs">Registered</span>
+              <span className="text-xs">Registered for racing</span>
             </div>
           ) : transfer.tokenFrom ===
             stakingContractAddressHorseAAA.toLowerCase() ? (
