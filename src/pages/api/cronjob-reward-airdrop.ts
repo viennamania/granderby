@@ -121,6 +121,13 @@ export default async function handler(
       return;
     }
 
+    const random = Math.floor(Math.random() * 3);
+
+    if (random > 0) {
+      // exit
+      return;
+    }
+
     while (true) {
       // choose a random results
       const random = Math.floor(Math.random() * results.length);
