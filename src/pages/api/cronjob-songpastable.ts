@@ -57,9 +57,15 @@ export default async function handler(
     .aggregate([
       //{"$project": {"author": 1, "title": 1, "tags": 1, "date": 1}},
 
-      { $match: { nftOwner: { $exists: false } } },
+      ///{ $match: { nftOwner: { $exists: false } } },
 
       ///{"$match": {"nft": {"$exists": false}}},
+      /* match nftOwner is null or not exists  */
+      {
+        $match: {
+          $or: [{ nftOwner: { $exists: false } }, { nftOwner: null }],
+        },
+      },
 
       { $sort: { date: -1 } },
       { $limit: 1 },
@@ -95,7 +101,7 @@ export default async function handler(
 
   //console.log('winnerNft', results[0].winnerNft);
 
-  const tokenId = results[0].winnerNft;
+  const tokenId = results[0].winnerNft.tokenId;
 
   //console.log('tokenId', tokenId);
 
@@ -104,7 +110,7 @@ export default async function handler(
       .collection('nfthorses')
       .findOne({ tokenId: tokenId.toString() });
 
-    console.log('result', result);
+    ////console.log('result', result);
 
     console.log('holder', result?.holder);
 
@@ -322,6 +328,8 @@ export default async function handler(
           amount: amount,
         });
       }
+
+      ///console.log('getStakeInfo', getStakeInfo);
 
       var stakedTokenIds = [] as string[];
 

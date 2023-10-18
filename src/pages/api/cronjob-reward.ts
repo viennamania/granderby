@@ -55,7 +55,13 @@ export default async function handler(
     .aggregate([
       //{"$project": {"author": 1, "title": 1, "tags": 1, "date": 1}},
 
-      { $match: { nftOwner: { $exists: false } } },
+      //{ $match: { nftOwner: { $exists: false } } },
+      /* match nftOwner is null or not exists  */
+      {
+        $match: {
+          $or: [{ nftOwner: { $exists: false } }, { nftOwner: null }],
+        },
+      },
 
       ///{"$match": {"nft": {"$exists": false}}},
 
@@ -64,7 +70,7 @@ export default async function handler(
     ])
     .toArray();
 
-  //console.log(results);
+  ///console.log("result[0]", results[0]);
 
   /*
   console.log('_id', results[0]._id);
@@ -79,7 +85,7 @@ export default async function handler(
   console.log('tokenId', results[0].winnerNft.tokenId);
   */
 
-  const tokenId = results[0].winnerNft;
+  const tokenId = results[0].winnerNft.tokenId;
 
   console.log('tokenId', tokenId);
 
