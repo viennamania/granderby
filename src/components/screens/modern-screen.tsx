@@ -24,6 +24,7 @@ import IcoAndroid from '@/assets-landing/images/ico-android.svg';
 
 //images
 import AuthorImage from '@/assets/images/profile.png';
+import SystemImage from '@/assets/images/logo.png';
 
 import WalkingAnim from '@/components/horseRace/watchScreen/walkingAnim';
 
@@ -723,7 +724,29 @@ export default function ModernScreen() {
 
       const transactionData = {
         user:
-          transfer.action === 'TokensWithdrawn' ? (
+          transfer.tokenTo ===
+          '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLowerCase() ? (
+            <button
+              className=" flex flex-row items-center justify-start  "
+              onClick={() => {
+                setDrawerUserInfoUserAddress(transfer.tokenTo);
+                openDrawer('DRAWER_USER_INFO', 0);
+              }}
+            >
+              <Avatar
+                size="sm"
+                image={SystemImage}
+                alt="Momocon"
+                className="border-white bg-gray-300 ltr:mr-3 rtl:ml-3 dark:bg-gray-400"
+              />
+
+              <div className="flex items-center justify-start">
+                <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
+
+                {transfer.tokenTo?.substring(0, 6) + '...'}
+              </div>
+            </button>
+          ) : transfer.action === 'TokensWithdrawn' ? (
             <button
               className=" flex flex-row items-center justify-start  "
               onClick={() => {
