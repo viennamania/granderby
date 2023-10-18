@@ -64,7 +64,8 @@ export default async function handler(req: NextRequest) {
     }
   }
 
-  var ogPowerUrl = 'https://granderby.io/images/og-power1.png';
+  ///var ogPowerUrl = 'https://granderby.io/images/og-power1.png';
+  var ogPowerUrl = 'https://granderby.io/images/logo.png';
 
   if (tokenid === '555') {
     ogPowerUrl = 'https://granderby.io/images/og-power-555.jpeg';
