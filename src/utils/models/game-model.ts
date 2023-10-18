@@ -487,8 +487,89 @@ export const getDailyVolumnByHolder = async (
           // $contract: '$rawContract.address',
         },
         //category : { $first: '$category' },
-        contract: { $first: '$rawContract.address' },
-        total: { $sum: 1 },
+        /* total is set for the sum of each contract */
+
+        contract: {
+          $addToSet: '$rawContract.address',
+        },
+
+        category: {
+          $addToSet: '$category',
+        },
+
+        // sum each contract of set
+        totalErc20: {
+          // sum each contract of set
+          $sum: {
+            $cond: [{ $eq: ['$category', 'erc20'] }, 1, 0],
+          },
+        },
+        totalErc721: {
+          // sum each contract of set
+          $sum: {
+            $cond: [{ $eq: ['$category', 'erc721'] }, 1, 0],
+          },
+        },
+        totalGRD: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  tokenContractAddressGRD.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalCARROT: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  tokenContractAddressCARROTDrop.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalSUGAR: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  tokenContractAddressSUGARDrop.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalHORSE: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  nftDropContractAddressHorse.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
       },
     },
     {
@@ -562,26 +643,6 @@ Promise<any[]> => {
           // $contract: '$rawContract.address',
         },
         //category : { $first: '$category' },
-        //contract: {
-        //  $first: '$rawContract.address',
-        //},
-
-        /*
-        contract: {
-          $first: {
-            $cond: [
-              { $eq: ['$category', 'erc721'] },
-              '$rawContract.address',
-              '$category',
-            ],
-          },
-        },
-        */
-        // each contract '$rawContract.address' has only one category
-        //contract: { $first: '$rawContract.address' },
-
-        // same contract can have multiple category
-
         /* total is set for the sum of each contract */
 
         contract: {

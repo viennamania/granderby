@@ -51,9 +51,21 @@ export default async function handler(
   }
 
   if (method === 'getVolumn') {
+    const all = await getDailyVolumn();
+
+    ///console.log('getVolumn all', all);
+
+    if (!all) return res.status(400).json({ status: false, message: 'Error' });
+
+    const total = all.length;
+
+    return res.status(200).json({ status: true, all, total });
+  }
+
+  if (method === 'getVolumnByHolder') {
     const { address } = req.body;
 
-    console.log('getVolumn address', address);
+    console.log('getVolumnByHolder address', address);
 
     if (address) {
       const all = await getDailyVolumnByHolder(address.toLowerCase());

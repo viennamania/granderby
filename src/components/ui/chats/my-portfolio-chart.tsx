@@ -92,11 +92,17 @@ export default function PortfolioChart(
 
   useEffect(() => {
     async function getVolumn() {
+      console.log('portfolio chart  userAddress', userAddress);
+
+      if (!userAddress) {
+        return;
+      }
+
       const response = await fetch('/api/nft/user/history/game', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          method: 'getVolumn',
+          method: 'getVolumnByHolder',
           address: userAddress.toLowerCase(),
         }),
       });
@@ -187,12 +193,51 @@ export default function PortfolioChart(
       setVolumn(volumn);
     }
 
-    getVolumn();
-
     const interval = setInterval(() => {
       getVolumn();
     }, 10000);
-  }, []);
+  }, [userAddress]);
+
+  /* if empoty volumn then loading view */
+  if (volumn.length === 0) {
+    return (
+      <div
+        className={cn(
+          ///'rounded-lg bg-light-dark p-6 text-white shadow-card sm:p-8',
+          'rounded-lg  p-2 shadow-card',
+          {
+            'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
+          }
+        )}
+      >
+        <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <Line
+                type="natural"
+                dataKey="CARROT"
+                stroke="#1E40AF"
+                strokeWidth={4}
+                dot={false}
+              />
+              <Line
+                type="natural"
+                dataKey="GRD"
+                stroke="#374151"
+                strokeWidth={4}
+                dot={false}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* loading view overlap */}
+        <div className=" left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+          <div className=" text-2xl text-white">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
