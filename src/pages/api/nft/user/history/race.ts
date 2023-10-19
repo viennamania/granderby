@@ -2,6 +2,7 @@ import {
   getDailyWinPrize,
   getDailyWinPrizeUsers,
   getUserDailyWinPrize,
+  getHorseDailyWinPrize,
 } from '@/utils/models/horseRace/history';
 
 import { NextApiResponse } from 'next';
@@ -17,6 +18,20 @@ export default async function handler(
 
   if (method === 'getWinPrize') {
     const all = await getDailyWinPrize();
+
+    //console.log('getWinPrize all', all);
+
+    if (!all) return res.status(400).json({ status: false, message: 'Error' });
+
+    const total = all.length;
+
+    return res.status(200).json({ status: true, all, total });
+  }
+
+  if (method === 'getHorseWinPrize') {
+    const { tokenid } = req.body;
+
+    const all = await getHorseDailyWinPrize(tokenid);
 
     //console.log('getWinPrize all', all);
 

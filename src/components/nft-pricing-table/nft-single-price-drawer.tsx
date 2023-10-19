@@ -72,6 +72,9 @@ import Button from '@/components/ui/button';
 import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 import { is } from 'date-fns/locale';
 
+import HorseProfitChart from '@/components/ui/chats/horse-profilt-chart';
+import CommitIcon from '@mui/icons-material/Commit';
+
 type Price = {
   name: number;
   value: number;
@@ -687,6 +690,29 @@ export default function NftSinglePrice({
                       )}
                     </div>
                   </div>
+
+                  <Image
+                    src={
+                      nftMetadata?.metadata?.image
+                        ? nftMetadata?.metadata?.image
+                        : '/default-nft.png'
+                    }
+                    alt="nft"
+                    width={300}
+                    height={300}
+                    className=" rounded-lg "
+                  />
+                </div>
+
+                {/* CommitIcon */}
+                <div className="mt-10 flex flex-row items-center justify-start gap-2">
+                  <CommitIcon className="h-[18px] w-[18px]" />
+                  <span className=" text-sm font-bold">
+                    Profit Performance -
+                  </span>
+                </div>
+                <div className="mt-3">
+                  <HorseProfitChart tokenid={nftMetadata?.metadata?.id} />
                 </div>
 
                 {/* registered in */}
@@ -819,6 +845,7 @@ export default function NftSinglePrice({
                 border-t border-gray-200 pt-5 dark:border-gray-700
                 "
                 >
+                  {/*}
                   <div
                     className="flex flex-row items-center justify-start gap-2.5
              
@@ -850,10 +877,10 @@ export default function NftSinglePrice({
                       )}
                     </div>
                   </div>
+                  
 
                   <div className="mt-5 flex flex-row items-center gap-4 ">
                     <Image
-                      //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
                       src={
                         nftMetadata?.metadata?.image
                           ? nftMetadata?.metadata?.image
@@ -864,11 +891,9 @@ export default function NftSinglePrice({
                       height={300}
                       className=" rounded-lg "
                     />
-
-                    {/*
-                    <Grade grade={attributeGrade} />
-                    */}
+        
                   </div>
+                  */}
 
                   <div className="mt-5 flex w-full items-center ">
                     <Collapse label="Race History" initialOpen={true}>

@@ -330,6 +330,67 @@ export const getUserDailyWinPrize = async (
   ]);
 };
 
+export const getHorseDailyWinPrize = async (
+  tokenid: string
+): Promise<any[]> => {
+  console.log('getHorseDailyWinPrize===');
+
+  return await HorseHistoryModel.aggregate([
+    {
+      $match: {
+        $and: [
+          {
+            $expr: { $ne: ['$winnerHorse', ''] },
+          },
+          {
+            $expr: { $eq: ['$winnerNft.tokenId', tokenid] },
+          },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: {
+          //$dateToString: { format: '%Y-%m-%d', date: '$blockTimestamp' },
+          $dateToString: {
+            format: '%Y-%m-%d',
+            date: { $toDate: '$date' },
+          },
+          // contract
+          // $contract: '$rawContract.address',
+        },
+        //category : { $first: '$category' },
+
+        //contract: {
+        //  $addToSet: '$rawContract.address',
+        //},
+
+        //category: {
+        //  $addToSet: '$category',
+        //},
+
+        // sum each contract of set
+        totalWinPrize: {
+          // sum each contract of set
+          /*
+          $sum: {
+            $cond: [{ $eq: ['$winnerHorse', '1'] }, 1, 0],
+          },
+          */
+          $sum: '$winPrize',
+        },
+      },
+    },
+    {
+      //$sort: { _id: -1 },
+      $sort: { _id: 1 },
+    },
+    //{
+    //  $limit: 30,
+    //},
+  ]);
+};
+
 /*
 export const getDailyVolumn = async (): //): Promise<ITransferHistory[]> => {
 Promise<any[]> => {
