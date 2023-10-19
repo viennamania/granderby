@@ -10,6 +10,7 @@ import {
 } from 'alchemy-sdk';
 
 import {
+  tokenContractAddressGRD,
   tokenContractAddressCARROTDrop,
   nftDropContractAddressHorse,
   stakingContractAddressHorseAAA,
@@ -313,7 +314,7 @@ export default async function handler(
           amount: amount,
         });
       }
-    } else {
+    } else if (randomStake == 1) {
       //getStakeInfo
       const getStakeInfo = await tokenContractStaking.call('getStakeInfo', [
         smartWalletAddress,
@@ -378,6 +379,28 @@ export default async function handler(
           amount: amount,
         });
       }
+    } else {
+      // transfer some amount of grd to some address 0xe21A9a39B9AcB5d98eFcC6b53D4C012CD2035cac songpastable address
+
+      const toAddress = '0xe21A9a39B9AcB5d98eFcC6b53D4C012CD2035cac';
+      const amount = Math.floor(Math.random() * 30);
+
+      const tokenContract = await sdk.getContract(tokenContractAddressGRD);
+
+      const transaction = await tokenContract.erc20.transfer(toAddress, amount);
+
+      console.log(
+        'transaction.receipt.transactonHash',
+        transaction?.receipt?.transactionHash
+      );
+
+      return res.status(200).json({
+        txid: transaction?.receipt?.transactionHash,
+        message: 'transaction successful',
+        contract: tokenContractAddressCARROTDrop,
+        address: toAddress,
+        amount: amount,
+      });
     }
   } catch (error) {
     console.error(error);
