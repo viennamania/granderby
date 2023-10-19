@@ -131,6 +131,8 @@ import CommitIcon from '@mui/icons-material/Commit';
 
 import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
 
+import UserProfitChartUsers from '@/components/ui/chats/user-profit-chart-users';
+
 const COLUMNS = [
   /*
   {
@@ -595,20 +597,10 @@ export default function PortfolioScreen() {
               {/* MailOutlineIcon */}
               <div className="flex items-center justify-center gap-2">
                 <CommitIcon className="h-5 w-5" />
-                <span className=" text-2xl font-bold">Performance</span>
-              </div>
-
-              {/*
-              <Button
-                className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
-                onClick={() => router.push(`/my-portfolio/performance`)}
-              >
-                <span className="flex items-center gap-2">
-                  <InfoIcon className="h-3 w-3" />{' '}
-                  <span className="text-xs">View All</span>
+                <span className=" text-2xl font-bold">
+                  Transfer Performance
                 </span>
-              </Button>
-              */}
+              </div>
             </div>
 
             <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
@@ -722,6 +714,18 @@ export default function PortfolioScreen() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-10 flex w-full flex-col items-center justify-center gap-2">
+          {/* MailOutlineIcon */}
+          <div className="flex items-center justify-start gap-2">
+            <CommitIcon className="h-5 w-5" />
+            <span className=" text-2xl font-bold">Profit Performance</span>
+          </div>
+
+          <div className=" flex w-full flex-col gap-5">
+            <UserProfitChartUsers userAddress={address?.toLowerCase()} />
           </div>
         </div>
 

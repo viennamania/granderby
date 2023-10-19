@@ -653,9 +653,7 @@ export default function PortfolioScreen({
               <span className=" text-xl font-bold">Profit Performance</span>
             </div>
             <div className="mt-5 flex w-full flex-col gap-5">
-              <UserProfitChartUsers
-                userAddress={userAddress ? userAddress : ''}
-              />
+              <UserProfitChartUsers userAddress={userAddress?.toLowerCase()} />
             </div>
           </div>
         </div>
