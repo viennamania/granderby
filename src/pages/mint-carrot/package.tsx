@@ -249,6 +249,114 @@ const MintPage: NextPageWithLayout<
     quantityPackage,
   ]);
 
+  const priceToMint2 = useMemo(() => {
+    const quantity = quantityPackage[2];
+
+    if (quantity) {
+      const bnPrice = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      /*
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+        */
+
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} GRD`;
+    }
+  }, [
+    activeClaimCondition.data?.currencyMetadata.decimals,
+    activeClaimCondition.data?.currencyMetadata.symbol,
+    activeClaimCondition.data?.currencyMetadata.value,
+    quantityPackage,
+  ]);
+
+  const priceToMint3 = useMemo(() => {
+    const quantity = quantityPackage[3];
+
+    if (quantity) {
+      const bnPrice = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      /*
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+        */
+
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} GRD`;
+    }
+  }, [
+    activeClaimCondition.data?.currencyMetadata.decimals,
+    activeClaimCondition.data?.currencyMetadata.symbol,
+    activeClaimCondition.data?.currencyMetadata.value,
+    quantityPackage,
+  ]);
+
+  const priceToMint4 = useMemo(() => {
+    const quantity = quantityPackage[4];
+
+    if (quantity) {
+      const bnPrice = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      /*
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+        */
+
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} GRD`;
+    }
+  }, [
+    activeClaimCondition.data?.currencyMetadata.decimals,
+    activeClaimCondition.data?.currencyMetadata.symbol,
+    activeClaimCondition.data?.currencyMetadata.value,
+    quantityPackage,
+  ]);
+
+  const priceToMint5 = useMemo(() => {
+    const quantity = quantityPackage[5];
+
+    if (quantity) {
+      const bnPrice = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      /*
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+        */
+
+      return `${utils.formatUnits(
+        bnPrice.mul(quantity).toString(),
+        activeClaimCondition.data?.currencyMetadata.decimals || 18
+      )} GRD`;
+    }
+  }, [
+    activeClaimCondition.data?.currencyMetadata.decimals,
+    activeClaimCondition.data?.currencyMetadata.symbol,
+    activeClaimCondition.data?.currencyMetadata.value,
+    quantityPackage,
+  ]);
+
   const maxClaimable = useMemo(() => {
     let bnMaxClaimable;
     try {
@@ -462,6 +570,162 @@ const MintPage: NextPageWithLayout<
     quantityPackage,
   ]);
 
+  const buttonTextPackage2 = useMemo(() => {
+    if (isSoldOut) {
+      return 'Sold Out';
+    }
+
+    if (canClaim) {
+      const pricePerToken = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      if (pricePerToken.eq(0)) {
+        return 'Pay (Free)';
+      }
+
+      return `Pay (${priceToMint2})`;
+    }
+
+    if (claimIneligibilityReasons.data?.length) {
+      return parseIneligibility(
+        claimIneligibilityReasons.data,
+        quantityPackage[2]
+      );
+    }
+
+    if (buttonLoading) {
+      return 'Checking eligibility...';
+    }
+
+    return 'Claiming not available';
+  }, [
+    isSoldOut,
+    canClaim,
+    claimIneligibilityReasons.data,
+    buttonLoading,
+    activeClaimCondition.data?.currencyMetadata.value,
+    priceToMint2,
+    quantityPackage,
+  ]);
+
+  const buttonTextPackage3 = useMemo(() => {
+    if (isSoldOut) {
+      return 'Sold Out';
+    }
+
+    if (canClaim) {
+      const pricePerToken = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      if (pricePerToken.eq(0)) {
+        return 'Pay (Free)';
+      }
+
+      return `Pay (${priceToMint3})`;
+    }
+
+    if (claimIneligibilityReasons.data?.length) {
+      return parseIneligibility(
+        claimIneligibilityReasons.data,
+        quantityPackage[3]
+      );
+    }
+
+    if (buttonLoading) {
+      return 'Checking eligibility...';
+    }
+
+    return 'Claiming not available';
+  }, [
+    isSoldOut,
+    canClaim,
+    claimIneligibilityReasons.data,
+    buttonLoading,
+    activeClaimCondition.data?.currencyMetadata.value,
+    priceToMint3,
+    quantityPackage,
+  ]);
+
+  const buttonTextPackage4 = useMemo(() => {
+    if (isSoldOut) {
+      return 'Sold Out';
+    }
+
+    if (canClaim) {
+      const pricePerToken = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      if (pricePerToken.eq(0)) {
+        return 'Pay (Free)';
+      }
+
+      return `Pay (${priceToMint4})`;
+    }
+
+    if (claimIneligibilityReasons.data?.length) {
+      return parseIneligibility(
+        claimIneligibilityReasons.data,
+        quantityPackage[4]
+      );
+    }
+
+    if (buttonLoading) {
+      return 'Checking eligibility...';
+    }
+
+    return 'Claiming not available';
+  }, [
+    isSoldOut,
+    canClaim,
+    claimIneligibilityReasons.data,
+    buttonLoading,
+    activeClaimCondition.data?.currencyMetadata.value,
+    priceToMint4,
+    quantityPackage,
+  ]);
+
+  const buttonTextPackage5 = useMemo(() => {
+    if (isSoldOut) {
+      return 'Sold Out';
+    }
+
+    if (canClaim) {
+      const pricePerToken = BigNumber.from(
+        activeClaimCondition.data?.currencyMetadata.value || 0
+      );
+
+      if (pricePerToken.eq(0)) {
+        return 'Pay (Free)';
+      }
+
+      return `Pay (${priceToMint5})`;
+    }
+
+    if (claimIneligibilityReasons.data?.length) {
+      return parseIneligibility(
+        claimIneligibilityReasons.data,
+        quantityPackage[5]
+      );
+    }
+
+    if (buttonLoading) {
+      return 'Checking eligibility...';
+    }
+
+    return 'Claiming not available';
+  }, [
+    isSoldOut,
+    canClaim,
+    claimIneligibilityReasons.data,
+    buttonLoading,
+    activeClaimCondition.data?.currencyMetadata.value,
+    priceToMint5,
+    quantityPackage,
+  ]);
+
   /*
 const address = "0x6CdA16E0fA6E6b8e957Db2cb5936AfA3A69A29FE"; // address of the wallet you want to claim the NFTs
 const quantity = 42.69; // how many tokens you want to claim
@@ -530,13 +794,18 @@ const receipt = tx.receipt; // the transaction receipt
   }
 
   return (
-    <div className="text-center">
+    <div className="mx-auto w-full text-center xl:w-2/3   ">
       {/* Header */}
 
-      <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-black pb-5 pt-5 text-white">
-        <div className="text-2xl font-bold">
-          Buy {tokenBalanceCARROT?.symbol}
-        </div>
+      <div className=" mt-5 flex flex-row items-center justify-center gap-3 rounded-lg bg-black pb-5 pt-5 text-white">
+        <Image
+          src="/images/icon-carrot.png"
+          alt={tokenBalanceCARROT?.symbol!}
+          width={50}
+          height={50}
+          style={{ objectFit: 'contain' }}
+        />
+        <div className="text-2xl font-bold">Buy Carrot</div>
       </div>
 
       {address ? (
@@ -546,13 +815,6 @@ const receipt = tx.receipt; // the transaction receipt
           </h3>
 
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            <Image
-              src="/images/icon-carrot.png"
-              alt={tokenBalanceCARROT?.symbol!}
-              width={50}
-              height={50}
-              style={{ objectFit: 'contain' }}
-            />
             <b>
               {tokenBalanceCARROT === undefined ? (
                 <>Loading...</>
@@ -644,7 +906,7 @@ const receipt = tx.receipt; // the transaction receipt
         */}
 
         <div className="mb-5 mt-5 flex w-full flex-col items-center justify-center">
-          <div className="flex flex-row items-center justify-center gap-10">
+          <div className="flex flex-wrap items-center justify-center gap-10">
             <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
               <Image
                 src="/images/shop/33carrots.png"
@@ -653,7 +915,7 @@ const receipt = tx.receipt; // the transaction receipt
                 height={100}
                 style={{ objectFit: 'contain' }}
               />
-              {quantityPackage[0]} {tokenBalanceCARROT?.symbol}
+              x{quantityPackage[0]}
               {address && (
                 <Web3Button
                   theme="light"
@@ -680,7 +942,7 @@ const receipt = tx.receipt; // the transaction receipt
                 height={100}
                 style={{ objectFit: 'contain' }}
               />
-              {quantityPackage[1]} {tokenBalanceCARROT?.symbol}
+              x{quantityPackage[1]}
               {address && (
                 <Web3Button
                   theme="light"
@@ -698,10 +960,118 @@ const receipt = tx.receipt; // the transaction receipt
                 </Web3Button>
               )}
             </div>
+
+            <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
+              <Image
+                src="/images/shop/500carrots.png"
+                alt="500 Carrots"
+                width={100}
+                height={100}
+                style={{ objectFit: 'contain' }}
+              />
+              x{quantityPackage[2]}
+              {address && (
+                <Web3Button
+                  theme="light"
+                  contractAddress={tokenContractAddressCARROTDrop}
+                  action={(contract) =>
+                    contract.erc20.claimTo(address, quantityPackage[2])
+                  }
+                  onSuccess={() => alert(`🌊 Successfully payed!`)}
+                  onError={(err) =>
+                    //alert(err)
+                    console.log(err)
+                  }
+                >
+                  {buttonTextPackage2}
+                </Web3Button>
+              )}
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
+              <Image
+                src="/images/shop/1000carrots.png"
+                alt="1000 Carrots"
+                width={100}
+                height={100}
+                style={{ objectFit: 'contain' }}
+              />
+              x{quantityPackage[3]}
+              {address && (
+                <Web3Button
+                  theme="light"
+                  contractAddress={tokenContractAddressCARROTDrop}
+                  action={(contract) =>
+                    contract.erc20.claimTo(address, quantityPackage[3])
+                  }
+                  onSuccess={() => alert(`🌊 Successfully payed!`)}
+                  onError={(err) =>
+                    //alert(err)
+                    console.log(err)
+                  }
+                >
+                  {buttonTextPackage3}
+                </Web3Button>
+              )}
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
+              <Image
+                src="/images/shop/1670carrots.png"
+                alt="1670 Carrots"
+                width={100}
+                height={100}
+                style={{ objectFit: 'contain' }}
+              />
+              x{quantityPackage[4]}
+              {address && (
+                <Web3Button
+                  theme="light"
+                  contractAddress={tokenContractAddressCARROTDrop}
+                  action={(contract) =>
+                    contract.erc20.claimTo(address, quantityPackage[4])
+                  }
+                  onSuccess={() => alert(`🌊 Successfully payed!`)}
+                  onError={(err) =>
+                    //alert(err)
+                    console.log(err)
+                  }
+                >
+                  {buttonTextPackage4}
+                </Web3Button>
+              )}
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-5 text-2xl font-bold xl:text-4xl">
+              <Image
+                src="/images/shop/3338carrots.png"
+                alt="3338 Carrots"
+                width={100}
+                height={100}
+                style={{ objectFit: 'contain' }}
+              />
+              x{quantityPackage[5]}
+              {address && (
+                <Web3Button
+                  theme="light"
+                  contractAddress={tokenContractAddressCARROTDrop}
+                  action={(contract) =>
+                    contract.erc20.claimTo(address, quantityPackage[5])
+                  }
+                  onSuccess={() => alert(`🌊 Successfully payed!`)}
+                  onError={(err) =>
+                    //alert(err)
+                    console.log(err)
+                  }
+                >
+                  {buttonTextPackage5}
+                </Web3Button>
+              )}
+            </div>
           </div>
 
           {address && (
-            <div className="mt-10 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+            <div className="mt-20 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
               <b>
                 {tokenBalanceGRD === undefined ? (
                   <>Loading...</>
@@ -709,7 +1079,7 @@ const receipt = tx.receipt; // the transaction receipt
                   <>{Number(tokenBalanceGRD?.displayValue).toFixed(2)}</>
                 )}
               </b>{' '}
-              <span className="text-[#2b57a2]">GRDB</span>
+              <span className="text-[#2b57a2]">GRD</span>
             </div>
           )}
         </div>
