@@ -6,6 +6,7 @@ import CoinSlider from '@/components/ui/coin-card';
 import AssetSlider from '@/components/ui/asset-card';
 
 import PortfolioChart from '@/components/ui/chats/user-portfolio-chart';
+import UserProfitChartUsers from '@/components/ui/chats/user-profit-chart-users';
 
 import LiquidityChart from '@/components/ui/chats/liquidity-chart';
 import VolumeChart from '@/components/ui/chats/volume-chart';
@@ -633,11 +634,28 @@ export default function PortfolioScreen({
                 <CommitIcon className="h-5 w-5" />
               </div>
 
-              <span className=" text-2xl font-bold">Performance</span>
+              <span className=" text-xl font-bold">Transfer Performance</span>
             </div>
-
             <div className="mt-5 flex w-full flex-col gap-5">
               <PortfolioChart userAddress={userAddress ? userAddress : ''} />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
+          <div className=" flex w-full flex-col">
+            <div className="  flex flex-row items-center justify-start gap-2">
+              {/* MailOutlineIcon */}
+              <div className="flex flex-row items-center justify-start gap-2">
+                <CommitIcon className="h-5 w-5" />
+              </div>
+
+              <span className=" text-xl font-bold">Profit Performance</span>
+            </div>
+            <div className="mt-5 flex w-full flex-col gap-5">
+              <UserProfitChartUsers
+                userAddress={userAddress ? userAddress : ''}
+              />
             </div>
           </div>
         </div>

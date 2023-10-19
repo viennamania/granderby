@@ -480,7 +480,7 @@ export default function DrawerUserInfo(tokenid: any) {
     <div className="relative w-full max-w-full bg-white dark:bg-dark   xs:w-96 ">
       <div className="flex h-20 items-center justify-between overflow-hidden px-6 py-4">
         <h2 className="text-xl font-medium uppercase tracking-wider text-gray-900 dark:text-white">
-          User Portfolio
+          Portfolio
         </h2>
         <Button
           shape="circle"

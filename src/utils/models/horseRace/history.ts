@@ -256,6 +256,80 @@ export const getDailyWinPrizeUsers = async (): Promise<any[]> => {
   ]);
 };
 
+export const getUserDailyWinPrize = async (
+  userAddress: string
+): Promise<any[]> => {
+  console.log('getUserDailyWinPrize===');
+
+  return await HorseHistoryModel.aggregate([
+    {
+      $match: {
+        $and: [
+          {
+            $expr: { $ne: ['$winnerHorse', ''] },
+          },
+          {
+            $expr: { $eq: ['$nftOwner', userAddress.toLowerCase()] },
+          },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: {
+          //$dateToString: { format: '%Y-%m-%d', date: '$blockTimestamp' },
+          $dateToString: {
+            format: '%Y-%m-%d',
+            date: { $toDate: '$date' },
+          },
+          // contract
+          // $contract: '$rawContract.address',
+        },
+        //category : { $first: '$category' },
+
+        //contract: {
+        //  $addToSet: '$rawContract.address',
+        //},
+
+        //category: {
+        //  $addToSet: '$category',
+        //},
+
+        totalUser1: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: ['$nftOwner', userAddress.toLowerCase()],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+
+        // sum each contract of set
+        totalWinPrize: {
+          // sum each contract of set
+          /*
+          $sum: {
+            $cond: [{ $eq: ['$winnerHorse', '1'] }, 1, 0],
+          },
+          */
+          $sum: '$winPrize',
+        },
+      },
+    },
+    {
+      //$sort: { _id: -1 },
+      $sort: { _id: 1 },
+    },
+    //{
+    //  $limit: 30,
+    //},
+  ]);
+};
+
 /*
 export const getDailyVolumn = async (): //): Promise<ITransferHistory[]> => {
 Promise<any[]> => {
