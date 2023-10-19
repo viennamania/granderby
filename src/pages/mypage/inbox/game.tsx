@@ -896,17 +896,21 @@ const PortfolioPage: NextPageWithLayout<
       <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:w-2/3 md:px-4 xl:w-2/3 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        {/* title */}
-        <div className="flex items-center justify-start">
-          <div className="text-center text-2xl font-bold">Message Box</div>
-        </div>
-
         {!address ? (
           <></>
         ) : (
           <div className="mt-5 flex w-full flex-col">
             <div className="flex flex-row items-center justify-between  gap-2">
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row items-center justify-start gap-2">
+                {/* icon MailOutlineIcon */}
+                <MailOutlineIcon className="h-6 w-6" />
+
+                {/* title */}
+                <div className="flex items-center justify-start">
+                  <div className="text-center text-2xl font-bold">
+                    Message Box
+                  </div>
+                </div>
                 {/* reload button */}
                 <div className="flex items-center justify-center gap-2">
                   <Button

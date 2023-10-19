@@ -127,6 +127,7 @@ import { Twitter } from '@/components/icons/brands/twitter';
 import { time } from 'console';
 
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import CommitIcon from '@mui/icons-material/Commit';
 
 import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
 
@@ -593,7 +594,7 @@ export default function PortfolioScreen() {
             <div className="  flex flex-row items-center justify-between gap-2">
               {/* MailOutlineIcon */}
               <div className="flex items-center justify-center gap-2">
-                <MailOutlineIcon className="h-5 w-5" />
+                <CommitIcon className="h-5 w-5" />
                 <span className=" text-2xl font-bold">Performance</span>
               </div>
 

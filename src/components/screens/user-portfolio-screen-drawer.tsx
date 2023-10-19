@@ -127,6 +127,7 @@ import { Twitter } from '@/components/icons/brands/twitter';
 import { time } from 'console';
 
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import CommitIcon from '@mui/icons-material/Commit';
 
 const COLUMNS = [
   /*
@@ -629,7 +630,7 @@ export default function PortfolioScreen({
             <div className="  flex flex-row items-center justify-start gap-2">
               {/* MailOutlineIcon */}
               <div className="flex flex-row items-center justify-start gap-2">
-                <MailOutlineIcon className="h-5 w-5" />
+                <CommitIcon className="h-5 w-5" />
               </div>
 
               <span className=" text-2xl font-bold">Performance</span>

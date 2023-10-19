@@ -86,12 +86,14 @@ import SystemImage from '@/assets/images/logo.png';
 
 import AvTimerOutlinedIcon from '@mui/icons-material/AvTimerOutlined';
 
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 const COLUMNS = [
   {
     Header: 'User',
     accessor: 'user',
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 120,
+    maxWidth: 120,
   },
 
   /*
@@ -1048,11 +1050,15 @@ const GamePage: NextPageWithLayout<
       <NextSeo title="Game" description="Granderby - Web3 NFT Game" />
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <h1 className="text-2xl xl:text-4xl">Game Messages</h1>
-
-        <div className="mt-5 flex w-full flex-col">
+        <div className="xl:max mx-auto mt-5 flex w-full flex-col xl:w-2/3">
           <div className="flex flex-row items-center justify-between  gap-2">
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row  items-center justify-start gap-2">
+              {/* inbox icon */}
+              <div className="flex flex-row items-center justify-start ">
+                {/* message icon MailOutlineIcon */}
+                <MailOutlineIcon className="h-5 w-5" />
+              </div>
+
               <span className=" text-2xl font-bold">Messages</span>
               {/* reload button */}
               <div className="flex items-center justify-center gap-2">

@@ -451,7 +451,7 @@ const COLUMNS = [
 ];
 
 export default function GameHistoryTable() {
-//nftMetadata: any
+  //nftMetadata: any
   const router = useRouter();
 
   const address = useAddress();
@@ -603,7 +603,7 @@ export default function GameHistoryTable() {
                 </span>
               </button>
 
-              <span className="text-xs">Unregistered</span>
+              <span className="text-xs">Unregistered from racing</span>
             </div>
           ) : transfer.action === 'ToknesStaked' ? (
             <div className="flex items-center justify-start gap-2">
@@ -626,7 +626,7 @@ export default function GameHistoryTable() {
                 </span>
               </button>
 
-              <span className="text-xs">Registered</span>
+              <span className="text-xs">Registered for racing</span>
             </div>
           ) : transfer.tokenTo ===
             stakingContractAddressHorseAAA.toLowerCase() ? (
@@ -650,7 +650,7 @@ export default function GameHistoryTable() {
                 </span>
               </button>
 
-              <span className="text-xs">Registered</span>
+              <span className="text-xs">Registered for racing</span>
             </div>
           ) : transfer.tokenFrom ===
             stakingContractAddressHorseAAA.toLowerCase() ? (
@@ -674,7 +674,7 @@ export default function GameHistoryTable() {
                   #{transfer.tokenId}
                 </span>
               </button>
-              <span className="text-xs">Unregistered</span>
+              <span className="text-xs">Unregistered from racing</span>
             </div>
           ) : transfer.tokenFrom === address?.toLowerCase() ? (
             <div className="flex items-center justify-start">
