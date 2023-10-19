@@ -154,6 +154,108 @@ export const getDailyWinPrize = async (): Promise<any[]> => {
   ]);
 };
 
+export const getDailyWinPrizeUsers = async (): Promise<any[]> => {
+  console.log('getDailyWinPrizeUsers===');
+
+  return await HorseHistoryModel.aggregate([
+    {
+      $match: {
+        $and: [
+          {
+            $expr: { $ne: ['$winnerHorse', ''] },
+          },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: {
+          //$dateToString: { format: '%Y-%m-%d', date: '$blockTimestamp' },
+          $dateToString: {
+            format: '%Y-%m-%d',
+            date: { $toDate: '$date' },
+          },
+          // contract
+          // $contract: '$rawContract.address',
+        },
+        //category : { $first: '$category' },
+
+        //contract: {
+        //  $addToSet: '$rawContract.address',
+        //},
+
+        //category: {
+        //  $addToSet: '$category',
+        //},
+
+        totalUser1: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$nftOwner',
+                  '0x3bfd59e4d21b99d8a63d543f7097af5ab8ebb83c'.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalUser2: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$nftOwner',
+                  '0x0902fe8ee59cae2c203fc0ce5ab02cce3c842e6b'.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        totalUser3: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$nftOwner',
+                  '0xa5d98d7a65ad8899d216d8af53ecf11acefde91b'.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+
+        // sum each contract of set
+        totalWinPrize: {
+          // sum each contract of set
+          /*
+          $sum: {
+            $cond: [{ $eq: ['$winnerHorse', '1'] }, 1, 0],
+          },
+          */
+          $sum: '$winPrize',
+        },
+      },
+    },
+    {
+      //$sort: { _id: -1 },
+      $sort: { _id: 1 },
+    },
+    //{
+    //  $limit: 30,
+    //},
+  ]);
+};
+
 /*
 export const getDailyVolumn = async (): //): Promise<ITransferHistory[]> => {
 Promise<any[]> => {

@@ -115,6 +115,7 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import PortfolioChart from '@/components/ui/chats/portfolio-chart';
 
 import ProfitChart from '@/components/ui/chats/profilt-chart';
+import ProfitChartUsers from '@/components/ui/chats/profilt-chart-users';
 
 import { tr } from 'date-fns/locale';
 
@@ -1308,7 +1309,9 @@ export default function ModernScreen() {
           {/* CommitIcon */}
           <div className="flex flex-row items-center justify-start gap-2">
             <CommitIcon className="h-[18px] w-[18px]" />
-            <span className=" text-2xl font-bold">Transfer Performance</span>
+            <span className=" text-2xl font-bold">
+              Transfer Performance (Assets)
+            </span>
           </div>
 
           <div className="mt-3">
@@ -1316,12 +1319,25 @@ export default function ModernScreen() {
           </div>
 
           {/* CommitIcon */}
-          <div className="mt-5 flex flex-row items-center justify-start gap-2">
+          <div className="mt-10 flex flex-row items-center justify-start gap-2">
             <CommitIcon className="h-[18px] w-[18px]" />
-            <span className=" text-2xl font-bold">Profit Performance</span>
+            <span className=" text-2xl font-bold">
+              Profit Performance (Horses)
+            </span>
           </div>
           <div className="mt-3">
             <ProfitChart />
+          </div>
+
+          {/* CommitIcon */}
+          <div className="mt-10 flex flex-row items-center justify-start gap-2">
+            <CommitIcon className="h-[18px] w-[18px]" />
+            <span className=" text-2xl font-bold">
+              Profit Performance (Users)
+            </span>
+          </div>
+          <div className="mt-3">
+            <ProfitChartUsers />
           </div>
         </div>
 
