@@ -153,7 +153,9 @@ export default function ProfitChart({ chartWrapperClass }: Props) {
             <Line type="monotone" dataKey="total" stroke="#666666" />
             */}
 
+            {/*
             <Line type="monotone" dataKey="sum" stroke="#666666" />
+            */}
             <Line type="monotone" dataKey="horse1" stroke="#ff0000" />
             <Line type="monotone" dataKey="horse2" stroke="#8884d8" />
             <Line type="monotone" dataKey="horse3" stroke=" #82ca9d  " />
