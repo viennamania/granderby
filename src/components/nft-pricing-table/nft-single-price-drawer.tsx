@@ -72,7 +72,7 @@ import Button from '@/components/ui/button';
 import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 import { is } from 'date-fns/locale';
 
-import HorseProfitChart from '@/components/ui/chats/horse-profilt-chart';
+import HorseProfitChart from '@/components/ui/chats/horse-profit-chart';
 import CommitIcon from '@mui/icons-material/Commit';
 
 type Price = {

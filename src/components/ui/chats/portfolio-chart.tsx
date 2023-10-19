@@ -181,6 +181,11 @@ export default function PortfolioChart(
 
         volumn.push({
           name: name,
+          sum:
+            item.totalGRD +
+            item.totalCARROT +
+            item.totalSUGAR +
+            item.totalHORSE,
           GRD: item.totalGRD,
           CARROT: item.totalCARROT,
           SUGAR: item.totalSUGAR,
@@ -303,6 +308,7 @@ export default function PortfolioChart(
             <YAxis />
             <Tooltip />
             <Legend />
+            <Line type="monotone" dataKey="sum" stroke="#666666" />
             <Line type="monotone" dataKey="GRD" stroke="#666666" />
             <Line type="monotone" dataKey="CARROT" stroke="#ff0000" />
             <Line type="monotone" dataKey="SUGAR" stroke="#8884d8" />
