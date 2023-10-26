@@ -25,6 +25,10 @@
             "path": "/api/cronjob-sugar",
             "schedule": "* * * * *"
         },
+        {
+            "path": "/api/cronjob-shk",
+            "schedule": "* * * * *"
+        },
 
 
         {

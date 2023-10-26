@@ -132,6 +132,9 @@ export const tokenContractAddressHV =
 export const tokenContractAddressSTEC =
   '0x96451Ce84a33dFCAAd776c99308fABe27e0b183B';
 
+export const tokenContractAddressSHK =
+  '0x1E249E27f47631B4A069452fd3541B02aAE7381a';
+
 export const addressRaceReward = '0x786fc462C32279E91DDdd571395aa1886eC22580';
 
 export const addressAirdropReward =

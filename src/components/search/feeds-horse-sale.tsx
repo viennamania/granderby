@@ -1,27 +1,5 @@
 import cn from 'classnames';
 
-import { NFTList } from '@/data/static/horse-list';
-
-import NFTGrid from '@/components/ui/nft-card';
-
-//import AuthorImage from '@/assets/images/profile.png';
-import AuthorImage from '@/assets/images/profile.png';
-
-import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
-
-import { Network, Alchemy } from 'alchemy-sdk';
-
-import { useEffect, useState } from 'react';
-
-import useSWR from 'swr';
-import { fetcher } from '../../lib/utils';
-
-import { StaticImageData } from 'next/image';
-import { OptionalPropertiesInput } from '@thirdweb-dev/sdk';
-import { set } from 'date-fns';
-
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useInfiniteQuery } from 'react-query';
 import Image from 'next/image';
 
 import Button from '@/components/ui/button/button';
@@ -50,8 +28,6 @@ import {
 } from '@thirdweb-dev/react';
 
 export default function SaleFeeds({ className }: { className?: string }) {
-  const { isGridCompact } = useGridSwitcher();
-
   const router = useRouter();
 
   const address = useAddress();
@@ -263,9 +239,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
             <div
               className={cn(
                 'grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-5',
-                isGridCompact
-                  ? '3xl:!grid-cols-4 4xl:!grid-cols-5'
-                  : '3xl:!grid-cols-5 4xl:!grid-cols-8',
+                '3xl:!grid-cols-5 4xl:!grid-cols-8',
                 className
               )}
             >
@@ -338,11 +312,11 @@ export default function SaleFeeds({ className }: { className?: string }) {
             </div>
 
             {/*
-          </InfiniteScroll>
+           </InfiniteScroll>
 
-        )}
+          )}
 
-*/}
+          */}
           </div>
         )
       }

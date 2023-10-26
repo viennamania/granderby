@@ -187,6 +187,14 @@ export const getTransferHistory = async (): Promise<ITransferHistory[]> => {
       //{
       //  asset: 'GRANDERBY'
       //},
+
+      /*
+      {
+        $expr: {
+          $ne: { '$rawContract.address': '0xe36BD65609c08Cd17b53520293523CF4560533d0'.toLowerCase() },
+        }
+      },
+      */
     ],
   })
     .sort({ blockTimestamp: -1 })
@@ -271,6 +279,41 @@ export const getTransferHistoryLatest = async (
           ],
         },
       },
+      */
+      /*
+      {
+        $expr: {
+          $ne: { '$rawContract.address': '0xe36BD65609c08Cd17b53520293523CF4560533d0'.toLowerCase() },
+        }
+      },
+      */
+
+      /*
+      {
+        $expr: {
+          $and: [
+            {
+              $eq: [
+                '$category', 'erc721'
+              ],
+            },
+            {
+              $ne: [
+                '$tokenId', 'NaN'
+              ]
+            },
+          ]
+        },
+      }
+      */
+      /*
+      {
+          $expr: {
+            $ne: [
+              '$tokenId', 'NaN'
+            ]
+          },
+      }
       */
     ],
 

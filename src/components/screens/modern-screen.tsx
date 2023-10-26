@@ -1173,7 +1173,7 @@ export default function ModernScreen() {
                         </span>
                       ) : (
                         <>
-                          <span className="text-xs">Received from</span>
+                          <span className=" text-xs">Received from</span>
                           <button
                             className=" flex flex-row items-center justify-start "
                             onClick={() => {

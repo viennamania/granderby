@@ -920,7 +920,7 @@ const GamePage: NextPageWithLayout<
                       <span className=" w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
-                      <span className="text-xs">Received from</span>
+                      <span className="text-left text-xs">Received from</span>
                       <button
                         className=" flex flex-row items-center justify-start "
                         onClick={() => {
@@ -959,7 +959,9 @@ const GamePage: NextPageWithLayout<
                         </span>
                       ) : (
                         <>
-                          <span className="text-xs">Received from</span>
+                          <span className="text-left text-xs">
+                            Received from
+                          </span>
                           <button
                             className=" flex flex-row items-center justify-start "
                             onClick={() => {
@@ -1000,7 +1002,7 @@ const GamePage: NextPageWithLayout<
                 </span>
               </button>
 
-              <span className="text-xs">Received from holder</span>
+              <span className="text-left text-xs">Received from holder</span>
 
               <button
                 className=" flex flex-row items-center justify-start "

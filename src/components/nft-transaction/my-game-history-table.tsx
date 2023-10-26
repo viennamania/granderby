@@ -864,7 +864,7 @@ export default function GameHistoryTable() {
                         {Number(transfer.value).toFixed(2)}
                       </span>
 
-                      <span className="text-xs">Received from</span>
+                      <span className="text-left text-xs">Received from</span>
 
                       <button
                         className=" flex flex-row items-center justify-start "
@@ -891,7 +891,7 @@ export default function GameHistoryTable() {
                       <span className=" w-20 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
-                      <span className="text-xs">Received from</span>
+                      <span className="text-left text-xs">Received from</span>
                       <button
                         className=" flex flex-row items-center justify-start "
                         onClick={() => {
@@ -930,7 +930,9 @@ export default function GameHistoryTable() {
                         </span>
                       ) : (
                         <>
-                          <span className="text-xs">Received from</span>
+                          <span className="text-left text-xs">
+                            Received from
+                          </span>
                           <button
                             className=" flex flex-row items-center justify-start "
                             onClick={() => {
@@ -1073,6 +1075,7 @@ export default function GameHistoryTable() {
         */}
       </div>
 
+      {data}
       <div className="mt-3 flex flex-col rounded-lg border p-5">
         <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
           <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
