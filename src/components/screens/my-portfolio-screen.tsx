@@ -594,7 +594,6 @@ export default function PortfolioScreen() {
         <div className="flex w-full flex-row items-center justify-center rounded-lg border p-5">
           <div className=" flex w-full flex-col">
             <div className="  flex flex-row items-center justify-between gap-2">
-              {/* MailOutlineIcon */}
               <div className="flex items-center justify-center gap-2">
                 <CommitIcon className="h-5 w-5" />
                 <span className=" text-2xl font-bold">
@@ -717,15 +716,16 @@ export default function PortfolioScreen() {
           </div>
         </div>
 
-        <div className="mt-10 flex w-full flex-col items-center justify-center gap-2">
-          {/* MailOutlineIcon */}
-          <div className="flex items-center justify-start gap-2">
-            <CommitIcon className="h-5 w-5" />
-            <span className=" text-2xl font-bold">Profit Performance</span>
-          </div>
+        <div className="mt-10 flex w-full flex-row items-center justify-center rounded-lg border p-5">
+          <div className=" flex w-full flex-col items-center justify-center gap-2 ">
+            <div className="flex w-full items-center justify-start gap-2">
+              <CommitIcon className="h-5 w-5" />
+              <span className=" text-2xl font-bold">Profit Performance</span>
+            </div>
 
-          <div className=" flex w-full flex-col gap-5">
-            <UserProfitChartUsers userAddress={address?.toLowerCase()} />
+            <div className=" flex w-full flex-col gap-5">
+              <UserProfitChartUsers userAddress={address?.toLowerCase()} />
+            </div>
           </div>
         </div>
 

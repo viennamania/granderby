@@ -115,7 +115,7 @@ export default function UserProfitChartUsers(
       const volumn = [] as any;
 
       data?.all?.map((item: any) => {
-        ///console.log('item', item);
+        console.log('user-profit-char-users item', item);
 
         volumn.push({
           name: item._id,
@@ -135,7 +135,70 @@ export default function UserProfitChartUsers(
     if (userAddress) {
       getVolumn();
     }
-  }, []);
+  }, [userAddress]);
+
+  /* if address is empty then loading view */
+  if (!userAddress) {
+    return (
+      <div
+        className={cn(
+          ///'rounded-lg bg-light-dark p-6 text-white shadow-card sm:p-8',
+          'rounded-lg  p-2 shadow-card',
+          {
+            'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
+          }
+        )}
+      >
+        <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="total" stroke="#666666" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    );
+  }
+
+  /* if empoty volumn then loading view */
+  if (volumn.length === 0) {
+    return (
+      <div
+        className={cn(
+          ///'rounded-lg bg-light-dark p-6 text-white shadow-card sm:p-8',
+          'rounded-lg  p-2 shadow-card',
+          {
+            'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
+          }
+        )}
+      >
+        <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <Line
+                type="monotone"
+                dataKey="total"
+                stroke="#666666"
+                strokeWidth={4}
+                dot={false}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* loading view overlap */}
+        <div className=" left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+          <div className=" text-2xl text-white">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

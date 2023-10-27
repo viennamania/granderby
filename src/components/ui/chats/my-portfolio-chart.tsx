@@ -197,7 +197,6 @@ export default function PortfolioChart({ chartWrapperClass }: Props) {
     }, 10000);
   }, [address]);
 
-  /* if address is empty then loading view */
   if (!address) {
     return (
       <div
@@ -212,20 +211,13 @@ export default function PortfolioChart({ chartWrapperClass }: Props) {
         <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data}>
-              <Line
-                type="natural"
-                dataKey="CARROT"
-                stroke="#1E40AF"
-                strokeWidth={4}
-                dot={false}
-              />
-              <Line
-                type="natural"
-                dataKey="GRD"
-                stroke="#374151"
-                strokeWidth={4}
-                dot={false}
-              />
+              <CartesianGrid strokeDasharray="3 3" />
+
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="total" stroke="#666666" />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -249,16 +241,9 @@ export default function PortfolioChart({ chartWrapperClass }: Props) {
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data}>
               <Line
-                type="natural"
-                dataKey="CARROT"
-                stroke="#1E40AF"
-                strokeWidth={4}
-                dot={false}
-              />
-              <Line
-                type="natural"
-                dataKey="GRD"
-                stroke="#374151"
+                type="monotone"
+                dataKey="total"
+                stroke="#666666"
                 strokeWidth={4}
                 dot={false}
               />
