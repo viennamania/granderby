@@ -1075,7 +1075,6 @@ export default function GameHistoryTable() {
         */}
       </div>
 
-      {data}
       <div className="mt-3 flex flex-col rounded-lg border p-5">
         <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
           <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
