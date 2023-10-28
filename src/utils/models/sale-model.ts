@@ -145,3 +145,128 @@ export const getSaleHistoryByTokenId = async (
     .sort({ blockTimestamp: -1 })
     .limit(10);
 };
+
+export const getSaleHistoryByHolder = async (
+  address: String
+): Promise<ISaleHistory[]> => {
+  ///console.log('getSaleHistoryByTokenId', tokenId);
+
+  return await HorseSaleModel.find({
+    /*
+    'placements': {
+      $elemMatch: {
+        nft: tokenId,
+        //value: grades,
+        //value: { $in: grades },
+      },
+    },
+    */
+    //'placements.nft': tokenId,
+
+    //'placements': { $in: [ {"nft" : tokenId} ] } ,
+
+    /*
+    placements: {
+      $elemMatch: { 'nft.tokenId': tokenId },
+    },
+    */
+
+    to: address.toLowerCase(),
+  })
+    .sort({ blockTimestamp: -1 })
+    .limit(10);
+};
+
+export const getUserDailyTradePrice = async (
+  address: String
+  //): Promise<ITransferHistory[]> => {
+): Promise<any[]> => {
+  ///console.log('getDailyVolumnByHolder', address);
+
+  if (address === undefined) {
+    return [];
+  }
+
+  return await HorseSaleModel.aggregate([
+    {
+      $match: {
+        $and: [
+          {
+            $or: [
+              { to: address.toLowerCase() },
+              { from: address.toLowerCase() },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: {
+          //$dateToString: { format: '%Y-%m-%d', date: '$blockTimestamp' },
+          $dateToString: {
+            format: '%Y-%m-%d',
+            date: { $toDate: '$blockTimestamp' },
+          },
+          // contract
+          // $contract: '$rawContract.address',
+        },
+
+        //category : { $first: '$category' },
+        /* total is set for the sum of each contract */
+        /*
+        contract: {
+          $addToSet: '$rawContract.address',
+        },
+
+        category: {
+          $addToSet: '$category',
+        },
+
+        // sum each contract of set
+        totalErc20: {
+          // sum each contract of set
+          $sum: {
+            $cond: [{ $eq: ['$category', 'erc20'] }, 1, 0],
+          },
+        },
+        totalErc721: {
+          // sum each contract of set
+          $sum: {
+            $cond: [{ $eq: ['$category', 'erc721'] }, 1, 0],
+          },
+        },
+        totalGRD: {
+          // sum each contract of set
+          $sum: {
+            $cond: [
+              {
+                $eq: [
+                  '$rawContract.address',
+                  tokenContractAddressGRD.toLowerCase(),
+                ],
+              },
+              1,
+              0,
+            ],
+          },
+        },
+        */
+        /* sum of totalPricePaid */
+        total: {
+          $sum: {
+            $toDouble: '$totalPricePaid',
+          },
+        },
+      },
+    },
+    {
+      $sort: { _id: 1 },
+    },
+    /*
+    {
+      $limit: 30,
+    },
+    */
+  ]);
+};

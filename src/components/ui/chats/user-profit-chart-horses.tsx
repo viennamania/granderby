@@ -82,7 +82,7 @@ interface Props {
   chartWrapperClass?: string;
 }
 
-export default function UserProfitChartUsers(
+export default function UserProfitCharHorses(
   { userAddress }: { userAddress: string },
   { chartWrapperClass }: Props
 ) {
@@ -94,18 +94,18 @@ export default function UserProfitChartUsers(
 
   useEffect(() => {
     async function getVolumn() {
-      const response = await fetch('/api/nft/user/history/race', {
+      const response = await fetch('/api/nft/user/history/trade', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          method: 'getUserWinPrize',
-          userAddress: userAddress?.toLowerCase(),
+          method: 'getUserDailyTradePrice',
+          address: userAddress?.toLowerCase(),
         }),
       });
 
       const data = await response.json();
 
-      ///console.log('data===========', data);
+      console.log('user-profit-chart-horses data===========', data);
 
       /*
   { _id: '2023-10-17', totalWinPrize: 636.984 },
@@ -119,11 +119,11 @@ export default function UserProfitChartUsers(
 
         volumn.push({
           name: item._id,
-          total: item.totalWinPrize,
-          sum: item.totalUser1 + item.totalUser2 + item.totalUser3,
-          user1: item.totalUser1,
-          user2: item.totalUser2,
-          user3: item.totalUser3,
+          total: item.total,
+          //sum: item.totalUser1 + item.totalUser2 + item.totalUser3,
+          //user1: item.totalUser1,
+          //user2: item.totalUser2,
+          //user3: item.totalUser3,
         });
       });
 

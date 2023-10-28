@@ -579,7 +579,7 @@ export const getTransferHistoryLatestByHolderByCategory = async (
     .limit(limit as any);
 };
 
-// query for dayly volume
+// query for daily volume
 
 export const getDailyVolumnByHolder = async (
   address: String

@@ -133,6 +133,8 @@ import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlin
 
 import UserProfitChartUsers from '@/components/ui/chats/user-profit-chart-users';
 
+import UserProfitChartHorses from '@/components/ui/chats/user-profit-chart-horses';
+
 const COLUMNS = [
   /*
   {
@@ -720,11 +722,24 @@ export default function PortfolioScreen() {
           <div className=" flex w-full flex-col items-center justify-center gap-2 ">
             <div className="flex w-full items-center justify-start gap-2">
               <CommitIcon className="h-5 w-5" />
-              <span className=" text-2xl font-bold">Profit Performance</span>
+              <span className=" text-2xl font-bold">Race Performance</span>
             </div>
 
             <div className=" flex w-full flex-col gap-5">
               <UserProfitChartUsers userAddress={address?.toLowerCase()} />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 flex w-full flex-row items-center justify-center rounded-lg border p-5">
+          <div className=" flex w-full flex-col items-center justify-center gap-2 ">
+            <div className="flex w-full items-center justify-start gap-2">
+              <CommitIcon className="h-5 w-5" />
+              <span className=" text-2xl font-bold">Profit Performance</span>
+            </div>
+
+            <div className=" flex w-full flex-col gap-5">
+              <UserProfitChartHorses userAddress={address?.toLowerCase()} />
             </div>
           </div>
         </div>
