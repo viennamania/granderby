@@ -444,7 +444,7 @@ export default function OwnedFeeds(
                           onClick={() => {
                             closeInventories();
                             router.push(
-                              '/horse-details-owned/' + nft?.metadata?.id
+                              '/my-horse-details/' + nft?.metadata?.id
                             );
                           }}
                         >
