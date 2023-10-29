@@ -13,60 +13,31 @@ import RetroProfile from '@/components/rent-horse/retro-profile';
 import { authorData } from '@/data/static/authorHorse';
 import RootLayout from '@/layouts/_root-layout';
 
-import { useAddress } from '@thirdweb-dev/react';
-
-import AnchorLink from '@/components/ui/links/anchor-link';
-
-import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
-
-import { Github } from '@/components/icons/brands/github';
-import { Instagram } from '@/components/icons/brands/instagram';
-import { Twitter } from '@/components/icons/brands/twitter';
-
-import { SearchIcon } from '@/components/icons/search';
-
-///import Search from '@/components/search/search-horse';
-
-import Search from '@/components/search/search-portfolio';
-
-import CollapseLivePricing from '@/components/ui/collapse-live-pricing';
-import LiveNftPricingSlider from '@/components/ui/live-nft-horse-pricing-slider';
-
-import PerformanceScreen from '@/components/screens/performance-screen';
-
-import { useState } from 'react';
-
-import { useCopyToClipboard } from 'react-use';
-import { Copy } from '@/components/icons/copy';
-import { Check } from '@/components/icons/check';
-
-import { useQRCode } from 'next-qrcode';
-
-export const getStaticProps: GetStaticProps = async () => {
+export async function getStaticPaths() {
   return {
-    props: {},
+    paths: [{ params: { userAddress: '1' } }],
+    fallback: true,
+  };
+}
+
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const userAddress: string = context.params?.userAddress;
+
+  return {
+    props: {
+      userAddress: userAddress,
+    },
   };
 };
 
-const PortfolioPage: NextPageWithLayout<
+const PerformancePage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
-> = () => {
+> = (props) => {
   const { layout } = useLayout();
 
-  const address = useAddress();
+  const { userAddress } = props;
 
-  const { Canvas } = useQRCode();
-
-  const [copyButtonStatus, setCopyButtonStatus] = useState(false);
-  const [_, copyToClipboard] = useCopyToClipboard();
-
-  function handleCopyToClipboard() {
-    copyToClipboard(address as string);
-    setCopyButtonStatus(true);
-    setTimeout(() => {
-      setCopyButtonStatus(copyButtonStatus);
-    }, 2500);
-  }
+  console.log('user-portfolio performance userAddress', userAddress);
 
   return (
     <>
@@ -88,7 +59,7 @@ const PortfolioPage: NextPageWithLayout<
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
         <h1 className="text-2x xl:text-4xl">Performance</h1>
 
-        {!address ? (
+        {!userAddress ? (
           <></>
         ) : (
           <div className="mt-5 flex flex-col items-start justify-center"></div>
@@ -98,7 +69,9 @@ const PortfolioPage: NextPageWithLayout<
         <Profile />
         */}
 
+        {/*
         <PerformanceScreen />
+        */}
       </div>
 
       {/*
@@ -113,8 +86,8 @@ const PortfolioPage: NextPageWithLayout<
   );
 };
 
-PortfolioPage.getLayout = function getLayout(page) {
+PerformancePage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default PortfolioPage;
+export default PerformancePage;

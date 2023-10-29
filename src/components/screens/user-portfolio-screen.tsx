@@ -623,12 +623,16 @@ export default function PortfolioScreen({
               {/* CommitIcon */}
               <div className="flex items-center justify-center gap-2">
                 <CommitIcon className="h-auto w-4 rtl:rotate-180" />
-                <span className=" text-2xl font-bold">Performance</span>
+                <span className=" text-2xl font-bold">
+                  Transfer Performance
+                </span>
               </div>
 
               <Button
                 className="h-8 bg-green-500 font-normal text-black hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-8 xl:h-8 "
-                onClick={() => router.push(`/my-portfolio/performance`)}
+                onClick={() =>
+                  router.push(`/user-portfolio/performance/${userAddress}`)
+                }
               >
                 <span className="flex items-center gap-2">
                   <InfoIcon className="h-3 w-3" />{' '}
