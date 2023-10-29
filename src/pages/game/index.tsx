@@ -1052,7 +1052,7 @@ const GamePage: NextPageWithLayout<
       <NextSeo title="Game" description="Granderby - Web3 NFT Game" />
 
       <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <div className="xl:max mx-auto mt-5 flex w-full flex-col xl:w-2/3">
+        <div className="xl:max mx-auto mt-5 flex w-full flex-col 3xl:w-2/3">
           <div className="flex flex-row items-center justify-between  gap-2">
             <div className="flex flex-row  items-center justify-start gap-2">
               {/* inbox icon */}
