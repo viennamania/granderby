@@ -18,7 +18,7 @@ export default async function handler(
 ) {
   const { method } = req.body;
 
-  ////console.log('====method', method);
+  console.log('====method', method);
 
   if (method === 'getAll') {
     //console.log('horse history transfer tokenId', tokenId);
@@ -37,11 +37,9 @@ export default async function handler(
   if (method === 'getAllByHolder') {
     const { address } = req.body;
 
-    //console.log('horse history transfer tokenId', tokenId);
-
     const all = await getTransferHistoryByHolder(address);
 
-    //console.log('getAllByTokenId all', all);
+    ///console.log('getAllByHolder all', all);
 
     if (!all) return res.status(400).json({ status: false, message: 'Error' });
 

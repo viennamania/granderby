@@ -453,11 +453,11 @@ const COLUMNS = [
 export default function GameHistoryTable(
   //nftMetadata: any
 
-  { address }: { address?: any }
+  { userAddress }: { userAddress?: any }
 ) {
   const router = useRouter();
 
-  ///console.log('PriceHistoryTable nftMetadata: ', nftMetadata);
+  /////console.log('GameHistoryTable userAddress: ', userAddress);
 
   //const data = React.useMemo(() => transactionData, [ ]);
 
@@ -500,7 +500,7 @@ export default function GameHistoryTable(
   const [totlaCount, setTotalCount] = useState();
 
   const getLast20 = async () => {
-    if (!address) {
+    if (!userAddress) {
       return;
     }
 
@@ -510,8 +510,8 @@ export default function GameHistoryTable(
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        method: 'getAll',
-        address: address?.toLowerCase(),
+        method: 'getAllByHolder',
+        address: userAddress?.toLowerCase(),
       }),
     });
     const data = await response.json();
@@ -677,7 +677,7 @@ export default function GameHistoryTable(
               </button>
               <span className="text-xs">Unregistered from racing</span>
             </div>
-          ) : transfer.tokenFrom === address?.toLowerCase() ? (
+          ) : transfer.tokenFrom === userAddress?.toLowerCase() ? (
             <div className="flex items-center justify-start">
               {transfer.asset === 'GRD' && (
                 <div className="flex items-center justify-start gap-2">
@@ -1006,7 +1006,7 @@ export default function GameHistoryTable(
 
   useEffect(() => {
     getLast20();
-  }, [address]);
+  }, [userAddress]);
 
   const [attributeGrade, setAttributeGrade] = useState(null);
 
