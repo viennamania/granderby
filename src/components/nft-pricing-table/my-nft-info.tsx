@@ -1,6 +1,6 @@
 import { coinIdData } from '@/data/static/coin-id';
 import { CoinExplore } from '@/data/static/coin-list';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { useCopyToClipboard } from 'react-use';
 import { Github } from '@/components/icons/brands/github';
 import { Instagram } from '@/components/icons/brands/instagram';
@@ -50,6 +50,7 @@ import {
 import { ChainId } from '@thirdweb-dev/sdk';
 
 import { RaceIcon } from '@/components/icons/race-icon';
+import { set } from 'lodash';
 
 function NftInfo({ nftMetadata }: any) {
   ///console.log('nftMetadata', nftMetadata);
@@ -136,6 +137,51 @@ function NftInfo({ nftMetadata }: any) {
   );
   const { data: tokenBalanceUSDC, isLoading: isLoadingTokenBalanceUSDC } =
     useTokenBalance(tokenContractUSDC, address);
+
+  ///console.log("nftmetadata",nftMetadata);
+
+  const [price, setPrice] = useState(0);
+
+  /* /api/nft/getOneByTokenId */
+  const [nft, setNft] = useState<any>(null);
+  useEffect(() => {
+    async function getNft() {
+      const response = await fetch('/api/nft/getOneByTokenId', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenId: nftMetadata?.metadata?.id,
+        }),
+      });
+      const data = await response.json();
+
+      console.log('data.horse', data?.horse);
+
+      setNft(data?.horse);
+
+      data?.horse?.totalPricePaid;
+
+      if (
+        data?.horse?.paidToken === '0x0000000000000000000000000000000000001010'
+      ) {
+        const price =
+          (data?.horse?.totalPricePaid / 1000000000000000000) * 0.66;
+        setPrice(price);
+      } else if (
+        data?.horse?.paidToken === '0xe426D2410f20B0434FE2ce56299a1543d3fDe450'
+      ) {
+        const price = data?.horse?.totalPricePaid / 1000000000000000000;
+        setPrice(price);
+      } else if (
+        data?.horse?.paidToken === '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
+      ) {
+        const price = data?.horse?.totalPricePaid / 1000000;
+        setPrice(price);
+      }
+    }
+
+    getNft();
+  }, [nftMetadata?.metadata?.id]);
 
   const [saleHistory, setSaleHistory] = useState([] as any);
 
@@ -275,8 +321,6 @@ function NftInfo({ nftMetadata }: any) {
     }
   }
 
-  const [price, setPrice] = useState();
-
   const [toAddress, setToAddress] = useState('');
   const [isSending, setIsSending] = useState(false);
 
@@ -364,13 +408,14 @@ function NftInfo({ nftMetadata }: any) {
             affiliated to City One Field
           </span>
           <span className="flex flex-row items-center justify-center gap-2 text-xl font-extrabold xl:text-2xl">
-            {`43,223,344.42`}
+            {price} USDC
           </span>
         </div>
 
         <div className=" flex flex-col items-center justify-center gap-5  ">
+          {/*
           <Collapse label="Sale Information" initialOpen={true}>
-            {/* sale info */}
+           
             <div className="  flex flex-col items-center justify-center gap-5  ">
               {loadingListings ? (
                 <div className="m-5 p-5 text-sm font-bold xl:text-lg">
@@ -380,7 +425,7 @@ function NftInfo({ nftMetadata }: any) {
                 <div className="flex  w-full flex-col gap-5 p-5">
                   {!directListing || directListing.quantity === '0' ? (
                     <>
-                      {/* Last Price */}
+                      
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Last Price</b>
                       </div>
@@ -401,29 +446,7 @@ function NftInfo({ nftMetadata }: any) {
                               height={30}
                             />
                           </button>
-                          {/*
-                          <button
-                            className="flex w-24 flex-row items-center justify-start "
-                            onClick={() =>
-                              //alert("clicked")
-
-                              (location.href =
-                                'https://polygonscan.com/tx/' +
-                                saleHistory[0]?.hash)
-                            }
-                          >
-                            <Image
-                              src="/images/logo-polygon.png"
-                              alt="gd"
-                              width={13}
-                              height={13}
-                            />
-
-                            <div className="ml-1 text-left text-xs -tracking-[1px]">
-                              {saleHistory[0]?.hash.substring(0, 6) + '...'}
-                            </div>
-                          </button>
-                          */}
+           
 
                           <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
                             {saleHistory[0]?.paidToken ===
@@ -461,14 +484,7 @@ function NftInfo({ nftMetadata }: any) {
                           </span>
                         </div>
 
-                        {/*
-                        <div className=" flex flex-row items-center justify-start text-xs">
-                          {format(
-                            Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                            'yyy-MM-dd hh:mm:ss'
-                          )}
-                        </div>
-                        */}
+                
 
                         <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                           <button
@@ -497,7 +513,6 @@ function NftInfo({ nftMetadata }: any) {
                               <b>Not for sale</b>
                             </div>
 
-                            {/* Sell NFT */}
                             <div className=" grid grid-cols-1 items-center justify-start gap-3 xl:grid-cols-2">
                               <div className=" flex flex-row items-center justify-start gap-2">
                                 <div className=" flex w-20 flex-col gap-1">
@@ -528,7 +543,7 @@ function NftInfo({ nftMetadata }: any) {
                               </Web3Button>
                             </div>
 
-                            {/* Send NFT */}
+                         
                             {nftMetadata?.owner === address && (
                               <div className="mt-3 grid grid-cols-1 items-center justify-center gap-3 xl:grid-cols-2">
                                 <div className=" flex flex-row items-center justify-start gap-2">
@@ -545,7 +560,7 @@ function NftInfo({ nftMetadata }: any) {
                                   />
                                 </div>
 
-                                {/*{isTransferTokensLoading ? (*/}
+                            
 
                                 {isSending ? (
                                   <div className="flex flex-row items-center justify-center gap-2">
@@ -573,12 +588,7 @@ function NftInfo({ nftMetadata }: any) {
 
                                         transferNft(nftMetadata?.id, toAddress);
 
-                                        /*
-                                                  transferTokens({
-                                                    to: toAddress, // Address to transfer to
-                                                    amount: amount, // Amount to transfer
-                                                  })
-                                                  */
+                             
                                       }}
                                       onSuccess={() => {
                                         //setAmount(0);
@@ -621,7 +631,7 @@ function NftInfo({ nftMetadata }: any) {
                     </>
                   ) : (
                     <>
-                      {/* Last Price */}
+                     
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Last Price</b>
                       </div>
@@ -694,14 +704,7 @@ function NftInfo({ nftMetadata }: any) {
                           )}
                         </div>
 
-                        {/*
-                            <div className=" flex flex-row items-center justify-start text-xs">
-                              {format(
-                                Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                                'yyy-MM-dd hh:mm:ss'
-                              )}
-                            </div>
-                            */}
+                 
 
                         <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                           <button
@@ -723,7 +726,7 @@ function NftInfo({ nftMetadata }: any) {
                         </div>
                       </div>
 
-                      {/* sell price */}
+                     
                       <div className="mt-5 text-sm font-bold xl:text-lg">
                         <b>Sell Price</b>
                       </div>
@@ -851,13 +854,16 @@ function NftInfo({ nftMetadata }: any) {
               )}
             </div>
           </Collapse>
+          */}
         </div>
 
         {/* Race Information */}
+        {/*
+
         <div className=" flex flex-col items-center justify-center gap-5  ">
           <Collapse label="Race Information" initialOpen={true}>
             <div className="itmes-start flex flex-col justify-center p-5">
-              {/* Last Ranke */}
+              
               <div className="text-sm font-bold xl:text-lg">
                 <b>Last Rank</b>
               </div>
@@ -912,7 +918,7 @@ function NftInfo({ nftMetadata }: any) {
 
               {stakerAddress && stakeInfo && (
                 <div className="itmes-start mt-5 flex flex-col justify-center ">
-                  {/* Staking Infomation */}
+                  
                   <div className="text-sm font-bold xl:text-lg">
                     <b>Registered</b>
                   </div>
@@ -947,6 +953,8 @@ function NftInfo({ nftMetadata }: any) {
             </div>
           </Collapse>
         </div>
+
+        */}
       </div>
 
       {/*

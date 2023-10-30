@@ -73,7 +73,7 @@ dbConnect();
 
 const HorseSchema = new Schema({
   tokenId: {
-    type: Number,
+    type: String,
     required: true,
     default: false,
   },
@@ -130,23 +130,6 @@ export interface IHorse {
 
 export const HorseModel =
   models.nfthorse || model<IHorse>('nfthorse', HorseSchema);
-
-//export const getAllHorses = async (): Promise<IHorse[]> => {
-
-/*
-3
-const result  = await findOne({color: "gray", "object.name":"apple" })
-*/
-/*
-{ 
-    "names": {
-        "$in": [
-            { "firstname": "Tom", "lastname": "Smith" }, 
-            { "firstname": "Bob", "lastname": "Smith" }  
-        ]
-    }
-}
-*/
 
 export const getAllHorses = async (
   pageNumber: number,
@@ -529,4 +512,23 @@ export const getRegisteredHorses = async (
   }
 
   return { nfts: data, pageNumber: pageNumber + 1 };
+};
+
+/* get one horse */
+export const getOneHorse = async (tokenId: string) => {
+  ///console.log('getOneHorse tokenId', tokenId);
+
+  const data = await HorseModel.findOne({
+    tokenId: tokenId,
+  }).catch((err) => {
+    ////return err;
+  });
+
+  ///console.log('getOneHorse data', data);
+
+  if (data) {
+    return { success: true, horse: data };
+  } else {
+    return { success: false, message: 'horse not found' };
+  }
 };

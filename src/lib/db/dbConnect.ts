@@ -20,8 +20,11 @@ async function dbConnect() {
 
   if (!cached.promise) {
     cached.promise = mongoose
-      //.set({ debug: true, strictQuery: false })
+
+      ///.set({ debug: true, strictQuery: false })
+
       .set({ debug: false, strictQuery: false })
+
       .connect(`${DB_URI}`)
       .then((mongoose) => mongoose);
   }
