@@ -208,7 +208,7 @@ export default function Search() {
             } / 3645 `}
             initialOpen={true}
           >
-            <div className=" itmes-start  flex flex-col justify-center p-0 pb-10">
+            <div className=" itmes-start  flex flex-col justify-center p-3 pb-10">
               {/*
               <OwnedFeedsNft contractAddress={nftDropContractAddressHorse} />
               */}

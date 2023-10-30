@@ -145,7 +145,7 @@ export default function OwnedFeedsNft(
   if (address === undefined) {
     return (
       <>
-        <div className="flex flex-col items-center justify-center ">
+        <div className=" flex h-28 flex-col items-center justify-center ">
           <div className="text-xl">Please connect wallet</div>
         </div>
       </>
