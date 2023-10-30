@@ -52,7 +52,16 @@ import { ChainId } from '@thirdweb-dev/sdk';
 import { RaceIcon } from '@/components/icons/race-icon';
 import { set } from 'lodash';
 
-function NftInfo({ nftMetadata }: any) {
+import { StaticImageData } from 'next/image';
+import ParamTab, { TabPanel } from '@/components/ui/param-tab';
+import FeaturedCard from '@/components/nft/featured-card';
+import ListCard from '@/components/ui/list-card';
+
+import Avatar from '@/components/ui/avatar';
+
+import { nftData } from '@/data/static/single-nft';
+
+export default function NftInfo({ nftMetadata }: any) {
   ///console.log('nftMetadata', nftMetadata);
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
@@ -140,7 +149,7 @@ function NftInfo({ nftMetadata }: any) {
 
   ///console.log("nftmetadata",nftMetadata);
 
-  const [price, setPrice] = useState(0);
+  const [lastPrice, setLastPrice] = useState(0);
 
   /* /api/nft/getOneByTokenId */
   const [nft, setNft] = useState<any>(null);
@@ -166,17 +175,17 @@ function NftInfo({ nftMetadata }: any) {
       ) {
         const price =
           (data?.horse?.totalPricePaid / 1000000000000000000) * 0.66;
-        setPrice(price);
+        setLastPrice(price);
       } else if (
         data?.horse?.paidToken === '0xe426D2410f20B0434FE2ce56299a1543d3fDe450'
       ) {
         const price = data?.horse?.totalPricePaid / 1000000000000000000;
-        setPrice(price);
+        setLastPrice(price);
       } else if (
         data?.horse?.paidToken === '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
       ) {
         const price = data?.horse?.totalPricePaid / 1000000;
-        setPrice(price);
+        setLastPrice(price);
       }
     }
 
@@ -396,9 +405,11 @@ function NftInfo({ nftMetadata }: any) {
     }
   }
 
+  const [block_chains, setBlock_chains] = useState<any>(null);
+
   return (
-    <div className=" ">
-      <div className=" flex flex-col gap-3 rounded-lg border ">
+    <div className="flex">
+      <div className="flex h-full w-full flex-col gap-3 rounded-lg border ">
         {/* nft title */}
         <div className="mt-5 flex flex-col items-center justify-center gap-2  ">
           <div className=" flex flex-row items-center justify-center text-2xl font-extrabold xl:text-3xl">
@@ -408,8 +419,110 @@ function NftInfo({ nftMetadata }: any) {
             affiliated to City One Field
           </span>
           <span className="flex flex-row items-center justify-center gap-2 text-xl font-extrabold xl:text-2xl">
-            {price} USDC
+            {lastPrice} USDC
           </span>
+        </div>
+
+        <div className="  ml-5 mr-5 flex flex-col  xl:ml-20 xl:mr-20">
+          <ParamTab
+            tabMenu={[
+              {
+                title: 'Profit',
+                path: 'profit',
+              },
+              {
+                title: 'Profile',
+                path: 'profile',
+              },
+              {
+                title: 'Career',
+                path: 'career',
+              },
+              {
+                title: 'Misc.',
+                path: 'misc',
+              },
+            ]}
+          >
+            <TabPanel className="focus:outline-none">
+              <div className="space-y-6">
+                <div className="block">
+                  <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
+                    Description
+                  </h3>
+                  <div className="text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400">
+                    {nftMetadata?.metadata?.description}
+                  </div>
+                </div>
+                <div className="block">
+                  <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
+                    Owner
+                  </h3>
+                  <AnchorLink href={''} className="inline-block">
+                    <ListCard
+                      item={nftMetadata?.owner}
+                      className="rounded-full p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                    />
+                  </AnchorLink>
+                </div>
+                <div className="block">
+                  <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
+                    Block Chain
+                  </h3>
+                  <div className="flex flex-col gap-2">
+                    {block_chains?.map((item: any) => (
+                      <AnchorLink
+                        href="#"
+                        className="inline-flex"
+                        key={item?.id}
+                      >
+                        <ListCard
+                          item={item}
+                          className="rounded-full p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                        />
+                      </AnchorLink>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </TabPanel>
+
+            <TabPanel className="focus:outline-none">
+              <div className="flex flex-col-reverse">
+                {nftData?.bids?.map((bid) => (
+                  <FeaturedCard
+                    item={bid}
+                    key={bid?.id}
+                    className="mb-3 first:mb-0"
+                  />
+                ))}
+              </div>
+            </TabPanel>
+
+            <TabPanel className="focus:outline-none">
+              <div className="flex flex-col-reverse">
+                {nftData?.history?.map((item) => (
+                  <FeaturedCard
+                    item={item}
+                    key={item?.id}
+                    className="mb-3 first:mb-0"
+                  />
+                ))}
+              </div>
+            </TabPanel>
+
+            <TabPanel className="focus:outline-none">
+              <div className="flex flex-col-reverse">
+                {nftData?.history?.map((item) => (
+                  <FeaturedCard
+                    item={item}
+                    key={item?.id}
+                    className="mb-3 first:mb-0"
+                  />
+                ))}
+              </div>
+            </TabPanel>
+          </ParamTab>
         </div>
 
         <div className=" flex flex-col items-center justify-center gap-5  ">
@@ -1076,5 +1189,3 @@ function NftInfo({ nftMetadata }: any) {
     </div>
   );
 }
-
-export default NftInfo;

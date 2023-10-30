@@ -58,6 +58,10 @@ import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import Button from '@/components/ui/button/button';
 import { useModal } from '@/components/modal-views/context';
 
+import UserProfitChartUsers from '@/components/ui/chats/user-profit-chart-users';
+
+import UserProfitChartHorses from '@/components/ui/chats/user-profit-chart-horses';
+
 //// GetStaticPaths
 
 export async function getStaticPaths() {
@@ -176,80 +180,82 @@ const MyHorseDetails: NextPageWithLayout<
           <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>
       ) : (
-        <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
-          <div
-            className={`w-full 
-            ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
-          >
-            <div className=" flex flex-col">
-              {/* nft title */}
+        <div className="flex flex-col gap-6">
+          {/* nft title */}
+          <div className="items-left  w-full flex-col justify-center ">
+            <Link
+              className=" text-left text-lg capitalize text-blue-500 dark:text-white "
+              href={`/my-asset`}
+            >
+              My NFT
+            </Link>
 
-              <div className="items-left  mb-5  w-full flex-col justify-center ">
-                <Link
-                  className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                  href={`/my-asset`}
-                >
-                  My NFT
-                </Link>
+            {/*
+            <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+              <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
+                {nftMetadata?.metadata?.name}
+              </div>
+            </div>
+
+            <div className="mt-2 flex flex-row items-center justify-between  ">
+              <button
+                className=" flex flex-row items-center justify-start "
+                onClick={() =>
+                  router.push(
+                    `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                  )
+                }
+              >
+                <Image
+                  src="/images/logo-polygon.png"
+                  alt="gd"
+                  width={18}
+                  height={18}
+                />
+
+                <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                  #{nftMetadata?.metadata?.id}
+                </span>
+              </button>
+            </div>
+            */}
+          </div>
+          {/* end of nft title */}
+
+          <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
+            <div className={`w-full lg:w-1/3`}>
+              <div className=" flex flex-col">
+                <Image
+                  src={
+                    nftMetadata?.metadata?.image
+                      ? nftMetadata?.metadata?.image
+                      : '/default-nft.png'
+                  }
+                  alt="nft"
+                  width={1024}
+                  height={1024}
+                  className=" rounded-lg "
+                />
 
                 {/*
-                <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                  <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
-                    {nftMetadata?.metadata?.name}
-                  </div>
-                </div>
-
-                <div className="mt-2 flex flex-row items-center justify-between  ">
-                  <button
-                    className=" flex flex-row items-center justify-start "
-                    onClick={() =>
-                      router.push(
-                        `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
-                      )
-                    }
-                  >
-                    <Image
-                      src="/images/logo-polygon.png"
-                      alt="gd"
-                      width={18}
-                      height={18}
-                    />
-
-                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                      #{nftMetadata?.metadata?.id}
-                    </span>
-                  </button>
-                </div>
+                <NftSinglePrice
+                  nftMetadata={nftMetadata}
+                  contractAddress={nftDropContractAddressHorse}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                />
                 */}
               </div>
+            </div>
 
-              {/* end of nft title */}
-
-              <Image
-                src={
-                  nftMetadata?.metadata?.image
-                    ? nftMetadata?.metadata?.image
-                    : '/default-nft.png'
-                }
-                alt="nft"
-                width={1024}
-                height={1024}
-                className=" rounded-lg "
-              />
-
-              {/*
-              <NftSinglePrice
-                nftMetadata={nftMetadata}
-                contractAddress={nftDropContractAddressHorse}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-              />
-              */}
+            <div className="flex w-full flex-col  lg:w-2/3 ">
+              <NftInfo nftMetadata={nftMetadata} />
             </div>
           </div>
 
-          <div className=" flex w-full flex-col">
-            <NftInfo nftMetadata={nftMetadata} />
+          <div className="flex w-full flex-row gap-5 border">
+            <UserProfitChartUsers userAddress={address?.toLowerCase()} />
+            <UserProfitChartHorses userAddress={address?.toLowerCase()} />
           </div>
         </div>
       )}
