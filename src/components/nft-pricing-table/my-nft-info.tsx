@@ -353,608 +353,600 @@ function NftInfo({ nftMetadata }: any) {
   }
 
   return (
-    <div className="p-3  ">
-      {/*{nftMetadata?.owner === address && (*/}
+    <div className=" ">
+      <div className=" flex flex-col gap-3 rounded-lg border ">
+        {/* nft title */}
+        <div className="mt-5 flex flex-col items-center justify-center gap-2  ">
+          <div className=" flex flex-row items-center justify-center text-2xl font-extrabold xl:text-3xl">
+            {nftMetadata?.metadata?.name}
+          </div>
+          <span className="flex flex-row items-center justify-center gap-2">
+            affiliated to City One Field
+          </span>
+          <span className="flex flex-row items-center justify-center gap-2 text-xl font-extrabold xl:text-2xl">
+            {`43,223,344.42`}
+          </span>
+        </div>
 
-      <div className=" flex flex-col rounded-lg border ">
-        <Collapse label="Sale Information" initialOpen={true}>
-          {/* sale info */}
-          <div className="  flex flex-col items-center justify-center gap-5  ">
-            {loadingListings ? (
-              <div className="m-5 p-5 text-sm font-bold xl:text-lg">
-                <b>Loading sale...</b>
-              </div>
-            ) : (
-              <div className="flex  w-full flex-col gap-5 p-5">
-                {!directListing || directListing.quantity === '0' ? (
-                  <>
-                    {/* Last Price */}
-                    <div className="text-sm font-bold xl:text-lg">
-                      <b>Last Price</b>
-                    </div>
-                    <div className="flex flex-col ">
-                      <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
-                        <button
-                          className=" w-12 text-sm font-bold xl:text-xl "
-                          onClick={() =>
-                            router.push(
-                              `https://granderby.market/horse-details/${nftMetadata?.id}`
-                            )
-                          }
-                        >
-                          <Image
-                            src="/images/market.png"
-                            alt="live"
-                            width={30}
-                            height={30}
-                          />
-                        </button>
+        <div className=" flex flex-col items-center justify-center gap-5  ">
+          <Collapse label="Sale Information" initialOpen={true}>
+            {/* sale info */}
+            <div className="  flex flex-col items-center justify-center gap-5  ">
+              {loadingListings ? (
+                <div className="m-5 p-5 text-sm font-bold xl:text-lg">
+                  <b>Loading sale...</b>
+                </div>
+              ) : (
+                <div className="flex  w-full flex-col gap-5 p-5">
+                  {!directListing || directListing.quantity === '0' ? (
+                    <>
+                      {/* Last Price */}
+                      <div className="text-sm font-bold xl:text-lg">
+                        <b>Last Price</b>
+                      </div>
+                      <div className="flex flex-col ">
+                        <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                          <button
+                            className=" w-12 text-sm font-bold xl:text-xl "
+                            onClick={() =>
+                              router.push(
+                                `https://granderby.market/horse-details/${nftMetadata?.id}`
+                              )
+                            }
+                          >
+                            <Image
+                              src="/images/market.png"
+                              alt="live"
+                              width={30}
+                              height={30}
+                            />
+                          </button>
+                          {/*
+                          <button
+                            className="flex w-24 flex-row items-center justify-start "
+                            onClick={() =>
+                              //alert("clicked")
+
+                              (location.href =
+                                'https://polygonscan.com/tx/' +
+                                saleHistory[0]?.hash)
+                            }
+                          >
+                            <Image
+                              src="/images/logo-polygon.png"
+                              alt="gd"
+                              width={13}
+                              height={13}
+                            />
+
+                            <div className="ml-1 text-left text-xs -tracking-[1px]">
+                              {saleHistory[0]?.hash.substring(0, 6) + '...'}
+                            </div>
+                          </button>
+                          */}
+
+                          <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
+                            {saleHistory[0]?.paidToken ===
+                              '0x0000000000000000000000000000000000001010' &&
+                              (
+                                saleHistory[0]?.totalPricePaid /
+                                1000000000000000000
+                              ).toFixed(2)}
+                            {saleHistory[0]?.paidToken ===
+                              '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                              (
+                                saleHistory[0]?.totalPricePaid /
+                                1000000000000000000
+                              ).toFixed(2)}
+                            {saleHistory[0]?.paidToken ===
+                              '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                              (
+                                saleHistory[0]?.totalPricePaid / 1000000
+                              ).toFixed(2)}
+                          </span>
+                          <span>
+                            {saleHistory[0]?.paidToken ===
+                              '0x0000000000000000000000000000000000001010' && (
+                              <span className="pt-1">MATIC</span>
+                            )}
+                            {saleHistory[0]?.paidToken ===
+                              '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
+                              <span className="pt-1">GRD</span>
+                            )}
+
+                            {saleHistory[0]?.paidToken ===
+                              '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
+                              <span className="pt-1">USDC</span>
+                            )}
+                          </span>
+                        </div>
+
                         {/*
-                        <button
-                          className="flex w-24 flex-row items-center justify-start "
-                          onClick={() =>
-                            //alert("clicked")
-
-                            (location.href =
-                              'https://polygonscan.com/tx/' +
-                              saleHistory[0]?.hash)
-                          }
-                        >
-                          <Image
-                            src="/images/logo-polygon.png"
-                            alt="gd"
-                            width={13}
-                            height={13}
-                          />
-
-                          <div className="ml-1 text-left text-xs -tracking-[1px]">
-                            {saleHistory[0]?.hash.substring(0, 6) + '...'}
-                          </div>
-                        </button>
+                        <div className=" flex flex-row items-center justify-start text-xs">
+                          {format(
+                            Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                            'yyy-MM-dd hh:mm:ss'
+                          )}
+                        </div>
                         */}
 
-                        <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
-                          {saleHistory[0]?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' &&
-                            (
-                              saleHistory[0]?.totalPricePaid /
-                              1000000000000000000
-                            ).toFixed(2)}
-                          {saleHistory[0]?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
-                            (
-                              saleHistory[0]?.totalPricePaid /
-                              1000000000000000000
-                            ).toFixed(2)}
-                          {saleHistory[0]?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
-                            (saleHistory[0]?.totalPricePaid / 1000000).toFixed(
-                              2
-                            )}
-                        </span>
-                        <span>
-                          {saleHistory[0]?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' && (
-                            <span className="pt-1">MATIC</span>
-                          )}
-                          {saleHistory[0]?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
-                            <span className="pt-1">GRD</span>
-                          )}
-
-                          {saleHistory[0]?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
-                            <span className="pt-1">USDC</span>
-                          )}
-                        </span>
+                        <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                          <button
+                            className=" w-36 text-sm font-bold xl:text-xl "
+                            onClick={() =>
+                              router.push(
+                                `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.id}`
+                              )
+                            }
+                          >
+                            <Image
+                              src="/images/logo-opensea.png"
+                              alt="live"
+                              width={30}
+                              height={30}
+                            />
+                          </button>
+                          <span className="flex ">No record</span>
+                        </div>
                       </div>
 
-                      {/*
-                      <div className=" flex flex-row items-center justify-start text-xs">
-                        {format(
-                          Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                          'yyy-MM-dd hh:mm:ss'
-                        )}
-                      </div>
-                      */}
-
-                      <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
-                        <button
-                          className=" w-36 text-sm font-bold xl:text-xl "
-                          onClick={() =>
-                            router.push(
-                              `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.id}`
-                            )
-                          }
-                        >
-                          <Image
-                            src="/images/logo-opensea.png"
-                            alt="live"
-                            width={30}
-                            height={30}
-                          />
-                        </button>
-                        <span className="flex ">No record</span>
-                      </div>
-                    </div>
-
-                    {address === nftMetadata?.owner &&
-                      address !== stakerAddress && (
-                        <div className="mt-5 flex flex-col gap-2">
-                          <div className="text-sm font-bold xl:text-lg">
-                            <b>Not for sale</b>
-                          </div>
-
-                          {/* Sell NFT */}
-                          <div className=" grid grid-cols-1 items-center justify-start gap-3 xl:grid-cols-2">
-                            <div className=" flex flex-row items-center justify-start gap-2">
-                              <div className=" flex w-20 flex-col gap-1">
-                                <span>Listing</span>
-                                <span className=" font-bold text-blue-600">
-                                  USDC
-                                </span>
-                              </div>
-
-                              <input
-                                className=" w-full text-right text-xl font-bold text-black"
-                                type="number"
-                                name="price"
-                                placeholder="Price"
-                                value={price}
-                                onChange={(e) => {
-                                  setPrice(e.target.value as any);
-                                }}
-                              />
+                      {address === nftMetadata?.owner &&
+                        address !== stakerAddress && (
+                          <div className="mt-5 flex flex-col gap-2">
+                            <div className="text-sm font-bold xl:text-lg">
+                              <b>Not for sale</b>
                             </div>
 
-                            <Web3Button
-                              theme="light"
-                              contractAddress={marketplaceContractAddress}
-                              action={() => sellNft(nftMetadata?.id || '')}
-                            >
-                              Sell
-                            </Web3Button>
-                          </div>
-
-                          {/* Send NFT */}
-                          {nftMetadata?.owner === address && (
-                            <div className="mt-3 grid grid-cols-1 items-center justify-center gap-3 xl:grid-cols-2">
+                            {/* Sell NFT */}
+                            <div className=" grid grid-cols-1 items-center justify-start gap-3 xl:grid-cols-2">
                               <div className=" flex flex-row items-center justify-start gap-2">
-                                <div className="w-20">Transfer</div>
+                                <div className=" flex w-20 flex-col gap-1">
+                                  <span>Listing</span>
+                                  <span className=" font-bold text-blue-600">
+                                    USDC
+                                  </span>
+                                </div>
+
                                 <input
-                                  className=" w-full text-black"
-                                  type="text"
-                                  name="toAddress"
-                                  placeholder="To Address"
-                                  value={toAddress}
+                                  className=" w-full text-right text-xl font-bold text-black"
+                                  type="number"
+                                  name="price"
+                                  placeholder="Price"
+                                  value={price}
                                   onChange={(e) => {
-                                    setToAddress(e.target.value);
+                                    setPrice(e.target.value as any);
                                   }}
                                 />
                               </div>
 
-                              {/*{isTransferTokensLoading ? (*/}
+                              <Web3Button
+                                theme="light"
+                                contractAddress={marketplaceContractAddress}
+                                action={() => sellNft(nftMetadata?.id || '')}
+                              >
+                                Sell
+                              </Web3Button>
+                            </div>
 
-                              {isSending ? (
-                                <div className="flex flex-row items-center justify-center gap-2">
-                                  <div className="animate-spin">
-                                    <RaceIcon className="h-35 w-35" />
-                                  </div>
-                                  <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                                    <span>Sending #{nftMetadata?.id} to</span>
-                                    <span>Please wait...</span>
-                                  </div>
+                            {/* Send NFT */}
+                            {nftMetadata?.owner === address && (
+                              <div className="mt-3 grid grid-cols-1 items-center justify-center gap-3 xl:grid-cols-2">
+                                <div className=" flex flex-row items-center justify-start gap-2">
+                                  <div className="w-20">Transfer</div>
+                                  <input
+                                    className=" w-full text-black"
+                                    type="text"
+                                    name="toAddress"
+                                    placeholder="To Address"
+                                    value={toAddress}
+                                    onChange={(e) => {
+                                      setToAddress(e.target.value);
+                                    }}
+                                  />
                                 </div>
+
+                                {/*{isTransferTokensLoading ? (*/}
+
+                                {isSending ? (
+                                  <div className="flex flex-row items-center justify-center gap-2">
+                                    <div className="animate-spin">
+                                      <RaceIcon className="h-35 w-35" />
+                                    </div>
+                                    <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                                      <span>Sending #{nftMetadata?.id} to</span>
+                                      <span>Please wait...</span>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <>
+                                    <Web3Button
+                                      theme="light"
+                                      contractAddress={
+                                        nftDropContractAddressHorse
+                                      }
+                                      action={() => {
+                                        //contract?.call('withdraw', [[nft.metadata.id]])
+                                        //contract?.call('withdraw', [[nft.metadata.id]])
+                                        //contract.erc1155.claim(0, 1);
+
+                                        ///contract.erc20.transfer(toAddress, amount);
+
+                                        transferNft(nftMetadata?.id, toAddress);
+
+                                        /*
+                                                  transferTokens({
+                                                    to: toAddress, // Address to transfer to
+                                                    amount: amount, // Amount to transfer
+                                                  })
+                                                  */
+                                      }}
+                                      onSuccess={() => {
+                                        //setAmount(0);
+                                        //setToAddress('');
+
+                                        console.log(
+                                          `🌊 Successfully transfered!`
+                                        );
+                                        //alert('Successfully transfered!');
+
+                                        //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                                        //handleClickSucc();
+                                      }}
+                                      onError={(error) => {
+                                        console.error(
+                                          'Failed to transfer',
+                                          error
+                                        );
+                                        alert('Failed to transfer');
+                                        //setErrMsgSnackbar('Failed to transfer');
+                                        //handleClickErr();
+                                      }}
+                                    >
+                                      Send
+                                    </Web3Button>
+                                  </>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                      {address !== nftMetadata?.owner && (
+                        <>
+                          <div className="mt-5 text-sm font-bold xl:text-lg">
+                            <b>Not for sale</b>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {/* Last Price */}
+                      <div className="text-sm font-bold xl:text-lg">
+                        <b>Last Price</b>
+                      </div>
+                      <div className="flex flex-col ">
+                        <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                          <button
+                            className=" w-12 text-sm font-bold xl:text-xl "
+                            onClick={() =>
+                              router.push(
+                                `https://granderby.market/horse-details/${nftMetadata?.id}`
+                              )
+                            }
+                          >
+                            <Image
+                              src="/images/market.png"
+                              alt="live"
+                              width={30}
+                              height={30}
+                            />
+                          </button>
+
+                          {saleHistory[0] ? (
+                            <>
+                              <button
+                                className="flex w-24 flex-row items-center justify-start "
+                                onClick={() =>
+                                  //alert("clicked")
+
+                                  (location.href =
+                                    'https://polygonscan.com/tx/' +
+                                    saleHistory[0]?.hash)
+                                }
+                              >
+                                <Image
+                                  src="/images/logo-polygon.png"
+                                  alt="gd"
+                                  width={13}
+                                  height={13}
+                                />
+
+                                <div className="ml-1 text-left text-xs -tracking-[1px]">
+                                  {saleHistory[0]?.hash.substring(0, 6) + '...'}
+                                </div>
+                              </button>
+
+                              <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
+                                {saleHistory[0]?.paidToken ===
+                                '0x0000000000000000000000000000000000001010'
+                                  ? (
+                                      saleHistory[0]?.totalPricePaid /
+                                      1000000000000000000
+                                    ).toFixed(2)
+                                  : (
+                                      saleHistory[0]?.totalPricePaid / 1000000
+                                    ).toFixed(2)}
+                              </span>
+
+                              {saleHistory[0]?.paidToken ===
+                              '0x0000000000000000000000000000000000001010' ? (
+                                <span className="flex "> MATIC</span>
                               ) : (
-                                <>
-                                  <Web3Button
-                                    theme="light"
-                                    contractAddress={
-                                      nftDropContractAddressHorse
-                                    }
-                                    action={() => {
-                                      //contract?.call('withdraw', [[nft.metadata.id]])
-                                      //contract?.call('withdraw', [[nft.metadata.id]])
-                                      //contract.erc1155.claim(0, 1);
+                                <span className="flex"> USDC</span>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <div className="w-24"></div>
+                              <span className="flex ">No record</span>
+                            </>
+                          )}
+                        </div>
 
-                                      ///contract.erc20.transfer(toAddress, amount);
-
-                                      transferNft(nftMetadata?.id, toAddress);
-
-                                      /*
-                                                transferTokens({
-                                                  to: toAddress, // Address to transfer to
-                                                  amount: amount, // Amount to transfer
-                                                })
-                                                */
-                                    }}
-                                    onSuccess={() => {
-                                      //setAmount(0);
-                                      //setToAddress('');
-
-                                      console.log(
-                                        `🌊 Successfully transfered!`
-                                      );
-                                      //alert('Successfully transfered!');
-
-                                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                                      //handleClickSucc();
-                                    }}
-                                    onError={(error) => {
-                                      console.error(
-                                        'Failed to transfer',
-                                        error
-                                      );
-                                      alert('Failed to transfer');
-                                      //setErrMsgSnackbar('Failed to transfer');
-                                      //handleClickErr();
-                                    }}
-                                  >
-                                    Send
-                                  </Web3Button>
-                                </>
+                        {/*
+                            <div className=" flex flex-row items-center justify-start text-xs">
+                              {format(
+                                Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                                'yyy-MM-dd hh:mm:ss'
                               )}
                             </div>
-                          )}
-                        </div>
-                      )}
+                            */}
 
-                    {address !== nftMetadata?.owner && (
-                      <>
-                        <div className="mt-5 text-sm font-bold xl:text-lg">
-                          <b>Not for sale</b>
+                        <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                          <button
+                            className=" w-36 text-sm font-bold xl:text-xl "
+                            onClick={() =>
+                              router.push(
+                                `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.id}`
+                              )
+                            }
+                          >
+                            <Image
+                              src="/images/logo-opensea.png"
+                              alt="live"
+                              width={30}
+                              height={30}
+                            />
+                          </button>
+                          <span className="flex ">No record</span>
                         </div>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {/* Last Price */}
-                    <div className="text-sm font-bold xl:text-lg">
-                      <b>Last Price</b>
-                    </div>
-                    <div className="flex flex-col ">
-                      <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
-                        <button
-                          className=" w-12 text-sm font-bold xl:text-xl "
-                          onClick={() =>
-                            router.push(
-                              `https://granderby.market/horse-details/${nftMetadata?.id}`
-                            )
-                          }
-                        >
+                      </div>
+
+                      {/* sell price */}
+                      <div className="mt-5 text-sm font-bold xl:text-lg">
+                        <b>Sell Price</b>
+                      </div>
+                      <div className=" text-xl font-bold xl:text-2xl">
+                        <div className="flex flex-row items-center justify-start gap-2">
+                          <Image
+                            src="/images/sale.png"
+                            alt="sale"
+                            width={30}
+                            height={30}
+                          />
+
                           <Image
                             src="/images/market.png"
-                            alt="live"
+                            alt="market"
                             width={30}
                             height={30}
                           />
-                        </button>
 
-                        {saleHistory[0] ? (
-                          <>
-                            <button
-                              className="flex w-24 flex-row items-center justify-start "
-                              onClick={() =>
-                                //alert("clicked")
-
-                                (location.href =
-                                  'https://polygonscan.com/tx/' +
-                                  saleHistory[0]?.hash)
+                          <div className="flex flex-row items-center justify-center gap-3">
+                            <span className="text-2xl font-bold text-green-600 xl:text-4xl ">
+                              {
+                                directListing?.currencyValuePerToken
+                                  .displayValue
                               }
-                            >
-                              <Image
-                                src="/images/logo-polygon.png"
-                                alt="gd"
-                                width={13}
-                                height={13}
-                              />
-
-                              <div className="ml-1 text-left text-xs -tracking-[1px]">
-                                {saleHistory[0]?.hash.substring(0, 6) + '...'}
-                              </div>
-                            </button>
-
-                            <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
-                              {saleHistory[0]?.paidToken ===
-                              '0x0000000000000000000000000000000000001010'
-                                ? (
-                                    saleHistory[0]?.totalPricePaid /
-                                    1000000000000000000
-                                  ).toFixed(2)
-                                : (
-                                    saleHistory[0]?.totalPricePaid / 1000000
-                                  ).toFixed(2)}
                             </span>
-
-                            {saleHistory[0]?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' ? (
-                              <span className="flex "> MATIC</span>
-                            ) : (
-                              <span className="flex"> USDC</span>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            <div className="w-24"></div>
-                            <span className="flex ">No record</span>
-                          </>
-                        )}
+                            <span className="text-sm xl:text-lg">
+                              {' '}
+                              {directListing?.currencyValuePerToken.symbol}
+                            </span>
+                          </div>
+                        </div>
                       </div>
 
-                      {/*
-                          <div className=" flex flex-row items-center justify-start text-xs">
-                            {format(
-                              Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                              'yyy-MM-dd hh:mm:ss'
-                            )}
-                          </div>
-                          */}
+                      <span className="text-xs">
+                        {format(
+                          new Date(directListing?.startTimeInSeconds * 1000),
+                          'yyy-MM-dd hh:mm:ss'
+                        )}
+                      </span>
 
-                      <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
-                        <button
-                          className=" w-36 text-sm font-bold xl:text-xl "
-                          onClick={() =>
-                            router.push(
-                              `https://opensea.io/assets/matic/0x41fba0bd9f4dc9a968a10aebb792af6a09969f60/${nftMetadata?.id}`
+                      {address && address === nftMetadata?.owner && (
+                        <Web3Button
+                          theme="light"
+                          action={(contract) =>
+                            //contract?.call('withdraw', [[nft?.metadata?.id]])
+                            //contract?.call('cancel', [[directListing?.id]])
+
+                            contract?.directListings.cancelListing(
+                              directListing?.id
                             )
                           }
+                          onSuccess={() =>
+                            alert(`🌊 Successfully canceled listing!`)
+                          }
+                          contractAddress={marketplaceContractAddress}
                         >
-                          <Image
-                            src="/images/logo-opensea.png"
-                            alt="live"
-                            width={30}
-                            height={30}
-                          />
-                        </button>
-                        <span className="flex ">No record</span>
-                      </div>
-                    </div>
-
-                    {/* sell price */}
-                    <div className="mt-5 text-sm font-bold xl:text-lg">
-                      <b>Sell Price</b>
-                    </div>
-                    <div className=" text-xl font-bold xl:text-2xl">
-                      <div className="flex flex-row items-center justify-start gap-2">
-                        <Image
-                          src="/images/sale.png"
-                          alt="sale"
-                          width={30}
-                          height={30}
-                        />
-
-                        <Image
-                          src="/images/market.png"
-                          alt="market"
-                          width={30}
-                          height={30}
-                        />
-
-                        <div className="flex flex-row items-center justify-center gap-3">
-                          <span className="text-2xl font-bold text-green-600 xl:text-4xl ">
-                            {directListing?.currencyValuePerToken.displayValue}
+                          <span className="flex items-center gap-2">
+                            Cancel Sale
                           </span>
-                          <span className="text-sm xl:text-lg">
-                            {' '}
-                            {directListing?.currencyValuePerToken.symbol}
+                        </Web3Button>
+                      )}
+
+                      {!address && (
+                        <div className="flex flex-row items-center justify-center">
+                          <ConnectWallet theme="light" btnTitle="Login" />
+                          <span className="text-sm font-bold xl:text-xl">
+                            &nbsp;&nbsp;for Buy Now
                           </span>
                         </div>
-                      </div>
-                    </div>
-
-                    <span className="text-xs">
-                      {format(
-                        new Date(directListing?.startTimeInSeconds * 1000),
-                        'yyy-MM-dd hh:mm:ss'
                       )}
+
+                      {address && address !== nftMetadata?.owner && (
+                        <>
+                          <div className="text-sm font-bold xl:text-xl">
+                            <Web3Button
+                              theme="light"
+                              action={(contract) =>
+                                //contract?.call('withdraw', [[nftMetadata?.tokenId]])
+                                buyNft()
+                              }
+                              contractAddress={marketplaceContractAddress}
+                            >
+                              <span className="flex items-center gap-2">
+                                Buy
+                              </span>
+                            </Web3Button>
+                            {!address && (
+                              <span className="text-sm font-bold xl:text-xl">
+                                &nbsp;&nbsp;for Buy Now
+                              </span>
+                            )}
+                          </div>
+
+                          <div className=" flex flex-row items-center justify-center  gap-2">
+                            <span className="text-md  xl:text-xl">
+                              My Balance:
+                            </span>
+
+                            {isLoadingTokenBalanceUSDC && (
+                              <div className=" text-md  xl:text-xl">
+                                Loading...
+                              </div>
+                            )}
+                            <div className="text-md  xl:text-xl">
+                              {Number(tokenBalanceUSDC?.displayValue).toFixed(
+                                2
+                              )}{' '}
+                              {tokenBalanceUSDC?.symbol}
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
+
+                  <div className="itmes-start mt-5 flex flex-col justify-center">
+                    <span className="text-lg font-bold">
+                      <b>Price History</b>
                     </span>
 
-                    {address && address === nftMetadata?.owner && (
-                      <Web3Button
-                        theme="light"
-                        action={(contract) =>
-                          //contract?.call('withdraw', [[nft?.metadata?.id]])
-                          //contract?.call('cancel', [[directListing?.id]])
+                    <PriceHistoryTable nftMetadata={nftMetadata} />
+                  </div>
+                </div>
+              )}
+            </div>
+          </Collapse>
+        </div>
 
-                          contract?.directListings.cancelListing(
-                            directListing?.id
-                          )
-                        }
-                        onSuccess={() =>
-                          alert(`🌊 Successfully canceled listing!`)
-                        }
-                        contractAddress={marketplaceContractAddress}
-                      >
-                        <span className="flex items-center gap-2">
-                          Cancel Sale
-                        </span>
-                      </Web3Button>
-                    )}
+        {/* Race Information */}
+        <div className=" flex flex-col items-center justify-center gap-5  ">
+          <Collapse label="Race Information" initialOpen={true}>
+            <div className="itmes-start flex flex-col justify-center p-5">
+              {/* Last Ranke */}
+              <div className="text-sm font-bold xl:text-lg">
+                <b>Last Rank</b>
+              </div>
+              <div className="flex flex-col ">
+                <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
+                  <button
+                    className=" w-24 text-sm font-bold xl:text-xl "
+                    //onClick={() =>
+                    //  router.push(
+                    //</div>    `https://granderby.market/horse-details/${nftMetadata?.id}`
+                    //  )
+                    //}
+                  >
+                    <Image
+                      src="/images/inkent.jpeg"
+                      alt="live"
+                      width={60}
+                      height={30}
+                    />
+                  </button>
 
-                    {!address && (
-                      <div className="flex flex-row items-center justify-center">
-                        <ConnectWallet theme="light" btnTitle="Login" />
-                        <span className="text-sm font-bold xl:text-xl">
-                          &nbsp;&nbsp;for Buy Now
-                        </span>
-                      </div>
-                    )}
+                  <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
+                    3
+                  </span>
+                </div>
 
-                    {address && address !== nftMetadata?.owner && (
-                      <>
-                        <div className="text-sm font-bold xl:text-xl">
-                          <Web3Button
-                            theme="light"
-                            action={(contract) =>
-                              //contract?.call('withdraw', [[nftMetadata?.tokenId]])
-                              buyNft()
-                            }
-                            contractAddress={marketplaceContractAddress}
-                          >
-                            <span className="flex items-center gap-2">Buy</span>
-                          </Web3Button>
-                          {!address && (
-                            <span className="text-sm font-bold xl:text-xl">
-                              &nbsp;&nbsp;for Buy Now
-                            </span>
-                          )}
-                        </div>
+                <div className=" flex flex-row items-center justify-start text-xs">
+                  {format(
+                    Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                    'yyy-MM-dd hh:mm:ss'
+                  )}
+                </div>
+              </div>
 
-                        <div className=" flex flex-row items-center justify-center  gap-2">
-                          <span className="text-md  xl:text-xl">
-                            My Balance:
-                          </span>
+              {address &&
+                address === nftMetadata?.owner &&
+                address !== stakerAddress && (
+                  <>
+                    <span className="mt-5 text-lg font-bold">
+                      <b>Not for race</b>
+                    </span>
 
-                          {isLoadingTokenBalanceUSDC && (
-                            <div className=" text-md  xl:text-xl">
-                              Loading...
-                            </div>
-                          )}
-                          <div className="text-md  xl:text-xl">
-                            {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}{' '}
-                            {tokenBalanceUSDC?.symbol}
-                          </div>
-                        </div>
-                      </>
-                    )}
+                    <Web3Button
+                      theme="light"
+                      contractAddress={stakingContractAddressHorseAAA}
+                      action={() => stakeNft(nftMetadata?.id || '')}
+                    >
+                      Register for race
+                    </Web3Button>
                   </>
                 )}
 
-                <div className="itmes-start mt-5 flex flex-col justify-center">
-                  <span className="text-lg font-bold">
-                    <b>Price History</b>
-                  </span>
-
-                  <PriceHistoryTable nftMetadata={nftMetadata} />
+              {stakerAddress && stakeInfo && (
+                <div className="itmes-start mt-5 flex flex-col justify-center ">
+                  {/* Staking Infomation */}
+                  <div className="text-sm font-bold xl:text-lg">
+                    <b>Registered</b>
+                  </div>
+                  <div className="flex flex-col ">
+                    <div className=" flex flex-row items-center justify-start text-xs">
+                      {format(
+                        Date.parse(saleHistory[0]?.blockTimestamp || 0),
+                        'yyy-MM-dd hh:mm:ss'
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        </Collapse>
-      </div>
+              )}
 
-      {/*
-        <div className="ml-2 mt-2 flex flex-row items-center justify-between gap-2">
-
-          <div className=" flex flex-row justify-center">Data Source:</div>
-          <Button
-            className=" flex"
-            title="Go"
-            color="white"
-            shape="rounded"
-            variant="transparent"
-            size="small"
-            onClick={() => {
-              router.push('https://granderby.market/');
-            }}
-          >
-            <div className="flex flex-row gap-2">
-              <Image
-                src="/images/market.png"
-                alt="market"
-                width={34}
-                height={34}
-              />
-            </div>
-          </Button>
-
-        </div>
-          */}
-
-      {/* Race Information */}
-      <div className="mt-5 flex flex-col rounded-lg border ">
-        <Collapse label="Race Information" initialOpen={true}>
-          <div className="itmes-start flex flex-col justify-center p-5">
-            {/* Last Ranke */}
-            <div className="text-sm font-bold xl:text-lg">
-              <b>Last Rank</b>
-            </div>
-            <div className="flex flex-col ">
-              <div className="flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
-                <button
-                  className=" w-24 text-sm font-bold xl:text-xl "
-                  //onClick={() =>
-                  //  router.push(
-                  //</div>    `https://granderby.market/horse-details/${nftMetadata?.id}`
-                  //  )
-                  //}
-                >
-                  <Image
-                    src="/images/inkent.jpeg"
-                    alt="live"
-                    width={60}
-                    height={30}
-                  />
-                </button>
-
-                <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
-                  3
-                </span>
-              </div>
-
-              <div className=" flex flex-row items-center justify-start text-xs">
-                {format(
-                  Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                  'yyy-MM-dd hh:mm:ss'
-                )}
-              </div>
-            </div>
-
-            {address &&
-              address === nftMetadata?.owner &&
-              address !== stakerAddress && (
-                <>
-                  <span className="mt-5 text-lg font-bold">
-                    <b>Not for race</b>
-                  </span>
-
+              {address && address === stakerAddress && (
+                <div className="mt-5">
                   <Web3Button
                     theme="light"
                     contractAddress={stakingContractAddressHorseAAA}
-                    action={() => stakeNft(nftMetadata?.id || '')}
+                    action={() => withdrawNft(nftMetadata?.id || '')}
                   >
-                    Register for race
+                    Unregister
                   </Web3Button>
-                </>
+                </div>
               )}
 
-            {stakerAddress && stakeInfo && (
-              <div className="itmes-start mt-5 flex flex-col justify-center ">
-                {/* Staking Infomation */}
-                <div className="text-sm font-bold xl:text-lg">
-                  <b>Registered</b>
-                </div>
-                <div className="flex flex-col ">
-                  <div className=" flex flex-row items-center justify-start text-xs">
-                    {format(
-                      Date.parse(saleHistory[0]?.blockTimestamp || 0),
-                      'yyy-MM-dd hh:mm:ss'
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
+              <span className="mt-5 text-lg font-bold">
+                <b>Race History</b>
+              </span>
 
-            {address && address === stakerAddress && (
-              <div className="mt-5">
-                <Web3Button
-                  theme="light"
-                  contractAddress={stakingContractAddressHorseAAA}
-                  action={() => withdrawNft(nftMetadata?.id || '')}
-                >
-                  Unregister
-                </Web3Button>
-              </div>
-            )}
-
-            <span className="mt-5 text-lg font-bold">
-              <b>Race History</b>
-            </span>
-
-            <RaceHistoryTable tokenId={nftMetadata?.id} />
-          </div>
-        </Collapse>
+              <RaceHistoryTable tokenId={nftMetadata?.id} />
+            </div>
+          </Collapse>
+        </div>
       </div>
 
       {/*

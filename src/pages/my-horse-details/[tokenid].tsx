@@ -12,7 +12,8 @@ import { Twitter } from '@/components/icons/brands/twitter';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
 
-import NftInfo from '@/components/nft-pricing-table/nft-info';
+import NftInfo from '@/components/nft-pricing-table/my-nft-info';
+
 import NftSinglePrice from '@/components/nft-pricing-table/nft-single-price';
 
 import { CoinConverter } from '@/components/ui/transact-coin';
@@ -175,122 +176,82 @@ const MyHorseDetails: NextPageWithLayout<
           <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>
       ) : (
-        <>
-          <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
-            <div
-              className={`w-full 
-              ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
-            >
-              <div className=" flex flex-col">
-                {/* nft title */}
+        <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
+          <div
+            className={`w-full 
+            ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
+          >
+            <div className=" flex flex-col">
+              {/* nft title */}
 
-                <div className="items-left  mb-5  w-full flex-col justify-center ">
-                  <Link
-                    className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                    href={`/my-asset`}
+              <div className="items-left  mb-5  w-full flex-col justify-center ">
+                <Link
+                  className=" text-left text-lg capitalize text-blue-500 dark:text-white "
+                  href={`/my-asset`}
+                >
+                  My NFT
+                </Link>
+
+                {/*
+                <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                  <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
+                    {nftMetadata?.metadata?.name}
+                  </div>
+                </div>
+
+                <div className="mt-2 flex flex-row items-center justify-between  ">
+                  <button
+                    className=" flex flex-row items-center justify-start "
+                    onClick={() =>
+                      router.push(
+                        `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                      )
+                    }
                   >
-                    {/*nftMetadata?.metadata?.description*/}
-                    My NFT
-                  </Link>
+                    <Image
+                      src="/images/logo-polygon.png"
+                      alt="gd"
+                      width={18}
+                      height={18}
+                    />
 
-                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
-                      {nftMetadata?.metadata?.name}
-                    </div>
-                  </div>
-
-                  <div className="mt-2 flex flex-row items-center justify-between  ">
-                    <button
-                      className=" flex flex-row items-center justify-start "
-                      onClick={() =>
-                        router.push(
-                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
-                        )
-                      }
-                    >
-                      <Image
-                        src="/images/logo-polygon.png"
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
-
-                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        #{nftMetadata?.metadata?.id}
-                      </span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* end of nft title */}
-
-                <Image
-                  //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                  src={
-                    nftMetadata?.metadata?.image
-                      ? nftMetadata?.metadata?.image
-                      : '/default-nft.png'
-                  }
-                  alt="nft"
-                  width={1024}
-                  height={1024}
-                  className=" rounded-lg "
-                />
-
-                <NftSinglePrice
-                  nftMetadata={nftMetadata}
-                  contractAddress={nftDropContractAddressHorse}
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                />
-              </div>
-            </div>
-
-            <div className=" flex w-full flex-col">
-              <div className=" w-full rounded-lg bg-white  shadow-card dark:bg-light-dark ">
-                {/*
-                <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-                  NFT Info
-                </h2>
-                */}
-
-                <NftInfo nftMetadata={nftMetadata} />
-
-                {/*
-                <div>
-                  <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
-                  <CoinConverter />
-                </div>
-                */}
-
-                {/*
-                <div className="px-8 pb-10">
-                  <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-                    Top Coins
-                  </h2>
-                  <TopCoin />
+                    <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                      #{nftMetadata?.metadata?.id}
+                    </span>
+                  </button>
                 </div>
                 */}
               </div>
+
+              {/* end of nft title */}
+
+              <Image
+                src={
+                  nftMetadata?.metadata?.image
+                    ? nftMetadata?.metadata?.image
+                    : '/default-nft.png'
+                }
+                alt="nft"
+                width={1024}
+                height={1024}
+                className=" rounded-lg "
+              />
+
+              {/*
+              <NftSinglePrice
+                nftMetadata={nftMetadata}
+                contractAddress={nftDropContractAddressHorse}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+              */}
             </div>
           </div>
 
-          <div className="mt-0">
-            {/*
-            <TransactionTable />
-          */}
-
-            {/*
-        <HistoryTable />
-        */}
+          <div className=" flex w-full flex-col">
+            <NftInfo nftMetadata={nftMetadata} />
           </div>
-
-          {/*
-      <div className="mt-10">
-        <CoinTabs />
-      </div> 
-      */}
-        </>
+        </div>
       )}
 
       {/* delete footer */}
