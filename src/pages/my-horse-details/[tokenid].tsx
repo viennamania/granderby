@@ -57,7 +57,45 @@ import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import Button from '@/components/ui/button/button';
 import { useModal } from '@/components/modal-views/context';
 
-function SinglePrice(tokenid: any) {
+//// GetStaticPaths
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { tokenid: '1' } }],
+    fallback: true,
+  };
+}
+
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const tokenid: string = context.params?.tokenid;
+
+  return {
+    props: {
+      tokenid: tokenid,
+    },
+  };
+};
+
+const MyHorseDetails: NextPageWithLayout<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = (props) => {
+  const { tokenid } = props;
+
+  {
+    /*
+  return (
+    
+    <>
+
+      <SinglePrice tokenid={tokenid} />
+    </>
+
+  );
+  */
+  }
+
+  console.log(' MyHorseDetails tokenid======>', tokenid);
+
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
   const isMounted = useIsMounted();
@@ -69,7 +107,7 @@ function SinglePrice(tokenid: any) {
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
-  const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
+  const { data: nftMetadata, isLoading } = useNFT(contract, tokenid);
 
   //console.log('nftMetadata======>', nftMetadata);
 
@@ -258,42 +296,10 @@ function SinglePrice(tokenid: any) {
       {/* delete footer */}
     </>
   );
-}
-
-//// GetStaticPaths
-
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { tokenid: '1' } }],
-
-    fallback: true,
-  };
-}
-
-export async function getStaticProps(context: any) {
-  const tokenid: string = context.params?.tokenid;
-
-  return {
-    props: {
-      tokenid: tokenid,
-    },
-  };
-}
-
-const AssetSinglePrice: NextPageWithLayout<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = (props) => {
-  const { tokenid } = props;
-
-  return (
-    <>
-      <SinglePrice tokenid={tokenid} />
-    </>
-  );
 };
 
-AssetSinglePrice.getLayout = function getLayout(page: any) {
+MyHorseDetails.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default AssetSinglePrice;
+export default MyHorseDetails;
