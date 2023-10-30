@@ -253,9 +253,14 @@ const MyHorseDetails: NextPageWithLayout<
             </div>
           </div>
 
-          <div className="flex w-full flex-row gap-5 border">
-            <UserProfitChartUsers userAddress={address?.toLowerCase()} />
-            <UserProfitChartHorses userAddress={address?.toLowerCase()} />
+          <div className="flex w-full  flex-col gap-5 rounded-lg border p-5">
+            <div className="flex flex-row items-center justify-start text-2xl font-extrabold xl:text-3xl">
+              Status
+            </div>
+            <div className="mt-5 flex flex-row items-center justify-center gap-5">
+              <UserProfitChartUsers userAddress={address?.toLowerCase()} />
+              <UserProfitChartHorses userAddress={address?.toLowerCase()} />
+            </div>
           </div>
         </div>
       )}

@@ -204,10 +204,10 @@ export default function UserProfitCharHorses(
     <div
       className={cn(
         ///'rounded-lg bg-light-dark p-6 text-white shadow-card sm:p-8',
-        'rounded-lg  p-2 shadow-card',
-        {
-          'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
-        }
+        'w-full  rounded-lg p-2 shadow-card'
+        //{
+        //  'w-full lg:w-[49%]': layout === LAYOUT_OPTIONS.RETRO,
+        //}
       )}
     >
       <div className={cn('mt-5 h-80 w-full', chartWrapperClass)}>
