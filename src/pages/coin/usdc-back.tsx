@@ -300,7 +300,7 @@ const WalletPage: NextPageWithLayout<
 
     try {
       if (signer === undefined) {
-        alert(`🌊 Please connect wallet`);
+        alert(`🌊 Please login`);
         return;
       }
 

@@ -146,7 +146,7 @@ export default function OwnedFeedsNft(
     return (
       <>
         <div className=" flex h-28 flex-col items-center justify-center ">
-          <div className="text-xl">Please connect wallet</div>
+          <div className="text-xl">Please login for your asset</div>
         </div>
       </>
     );

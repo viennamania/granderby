@@ -412,14 +412,27 @@ export default function NftInfo({ nftMetadata }: any) {
       <div className="flex h-full w-full flex-col gap-3 rounded-lg border ">
         {/* nft title */}
         <div className="mt-5 flex flex-col items-center justify-center gap-2  ">
-          <div className=" flex flex-row items-center justify-center text-2xl font-extrabold xl:text-3xl">
-            {nftMetadata?.metadata?.name}
+          <div className=" flex flex-row items-center justify-center gap-5">
+            <Image
+              src="/images/horse-male.png"
+              alt="live"
+              width={25}
+              height={25}
+            />
+            <span className="text-2xl font-extrabold xl:text-3xl">
+              {nftMetadata?.metadata?.name}
+            </span>
           </div>
           <span className="flex flex-row items-center justify-center gap-2">
             affiliated to City One Field
           </span>
-          <span className="flex flex-row items-center justify-center gap-2 text-xl font-extrabold xl:text-2xl">
-            {lastPrice} USDC
+          <span className="flex flex-col items-center justify-center gap-2 ">
+            <span className="text-xl font-extrabold xl:text-2xl">
+              {lastPrice} USDC
+            </span>
+            <span className="  text-lg font-bold text-green-600">
+              (+2,422.25)
+            </span>
           </span>
         </div>
 
@@ -445,43 +458,40 @@ export default function NftInfo({ nftMetadata }: any) {
             ]}
           >
             <TabPanel className="focus:outline-none">
-              <div className="space-y-6">
-                <div className="block">
-                  <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
-                    Description
-                  </h3>
-                  <div className="text-sm leading-6 -tracking-wider text-gray-600 dark:text-gray-400">
-                    {nftMetadata?.metadata?.description}
+              <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
+                <div className="flex w-full flex-row items-center justify-center gap-5">
+                  <span className="text-xl font-bold">ALLOWANCE</span>
+                  <div className=" flex  w-52 flex-row items-center justify-between gap-2  rounded-lg bg-slate-100 p-3 pl-5 pr-5">
+                    <Image
+                      src="/images/shop/icon-sugar.png"
+                      alt="sugar"
+                      width={30}
+                      height={30}
+                    />
+                    <div className="flex flex-col items-end justify-center gap-2">
+                      <span className="  text-xl font-bold">332,562</span>
+                      <span className="  text-lg font-bold text-green-600">
+                        +45.42
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="block">
-                  <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
-                    Owner
-                  </h3>
-                  <AnchorLink href={''} className="inline-block">
-                    <ListCard
-                      item={nftMetadata?.owner}
-                      className="rounded-full p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+
+                <div className="flex w-full flex-row items-center justify-center gap-5">
+                  <span className="text-xl font-bold">WIN POINTS</span>
+                  <div className=" flex  w-52 flex-row items-center justify-between gap-2  rounded-lg bg-slate-100 p-3 pl-5 pr-5">
+                    <Image
+                      src="/images/shop/icon-carrot.png"
+                      alt="sugar"
+                      width={30}
+                      height={30}
                     />
-                  </AnchorLink>
-                </div>
-                <div className="block">
-                  <h3 className="text-heading-style mb-2 uppercase text-gray-900 dark:text-white">
-                    Block Chain
-                  </h3>
-                  <div className="flex flex-col gap-2">
-                    {block_chains?.map((item: any) => (
-                      <AnchorLink
-                        href="#"
-                        className="inline-flex"
-                        key={item?.id}
-                      >
-                        <ListCard
-                          item={item}
-                          className="rounded-full p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                        />
-                      </AnchorLink>
-                    ))}
+                    <div className="flex flex-col items-end justify-center gap-2">
+                      <span className="  text-xl font-bold">332,562</span>
+                      <span className="  text-lg font-bold text-green-600">
+                        +45.42
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
