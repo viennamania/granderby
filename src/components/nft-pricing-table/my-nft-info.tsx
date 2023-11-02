@@ -500,21 +500,29 @@ export default function NftInfo({ nftMetadata }: any) {
             <TabPanel className="focus:outline-none">
               <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
                 <div className="flex  flex-wrap items-center justify-center gap-5">
-                  <span className="text-xl font-bold">Running Ability</span>
+                  <span className="text-xl font-extrabold xl:text-2xl">
+                    Running Ability
+                  </span>
 
                   <div className=" grid grid-cols-4 items-center justify-between gap-5 p-3">
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">80</span>
+                      <span className="  text-xl font-extrabold xl:text-2xl">
+                        80
+                      </span>
                       <span className="  text-lg">SPEED</span>
                     </div>
 
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">80</span>
+                      <span className="  text-xl font-extrabold xl:text-2xl">
+                        80
+                      </span>
                       <span className="  text-lg">PRECEDE</span>
                     </div>
 
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">80</span>
+                      <span className="  text-xl font-extrabold xl:text-2xl">
+                        80
+                      </span>
                       <span className="  text-lg">AGILITY</span>
                     </div>
 
@@ -523,26 +531,36 @@ export default function NftInfo({ nftMetadata }: any) {
                 </div>
 
                 <div className="flex  flex-wrap items-center justify-center gap-5">
-                  <span className="text-xl font-bold">Physical Ability</span>
+                  <span className="text-xl font-extrabold xl:text-2xl">
+                    Physical Ability
+                  </span>
 
                   <div className=" grid grid-cols-4 items-center justify-between gap-5 p-3">
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">80</span>
+                      <span className="  text-xl font-extrabold xl:text-2xl">
+                        80
+                      </span>
                       <span className="  text-lg">STAMINA</span>
                     </div>
 
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">80</span>
+                      <span className="  text-xl font-extrabold xl:text-2xl">
+                        80
+                      </span>
                       <span className="  text-lg">SPIRIT</span>
                     </div>
 
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">80</span>
+                      <span className="  text-xl font-extrabold xl:text-2xl">
+                        80
+                      </span>
                       <span className="  text-lg">POWER</span>
                     </div>
 
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">80</span>
+                      <span className="  text-xl font-extrabold xl:text-2xl">
+                        80
+                      </span>
                       <span className="  text-lg">AGILITY</span>
                     </div>
                   </div>
