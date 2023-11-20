@@ -70,7 +70,7 @@ export default async function handler(
     ])
     .toArray();
 
-  ///console.log("result[0]", results[0]);
+  ///console.log("result[0] from horsehistories", results[0]);
 
   /*
   console.log('_id', results[0]._id);
@@ -94,7 +94,7 @@ export default async function handler(
       .collection('nfthorses')
       .findOne({ tokenId: tokenId?.toString() });
 
-    //console.log("result", result);
+    console.log('result from nfthorses', result);
 
     console.log('holder', result?.holder);
 
