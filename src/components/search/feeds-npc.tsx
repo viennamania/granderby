@@ -26,7 +26,9 @@ import { OptionalPropertiesInput } from '@thirdweb-dev/sdk';
 import { set } from 'date-fns';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 import { useInfiniteQuery } from 'react-query';
+
 import Image from 'next/image';
 
 import { useRouter } from 'next/router';
