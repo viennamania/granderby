@@ -594,10 +594,8 @@ export default function NftInfo({ nftMetadata }: any) {
           </ParamTab>
         </div>
 
-        <div className=" flex flex-col items-center justify-center gap-5  ">
-          {/*
+        <div className=" mb-10 flex flex-col items-center justify-center  gap-5 ">
           <Collapse label="Sale Information" initialOpen={true}>
-           
             <div className="  flex flex-col items-center justify-center gap-5  ">
               {loadingListings ? (
                 <div className="m-5 p-5 text-sm font-bold xl:text-lg">
@@ -607,7 +605,6 @@ export default function NftInfo({ nftMetadata }: any) {
                 <div className="flex  w-full flex-col gap-5 p-5">
                   {!directListing || directListing.quantity === '0' ? (
                     <>
-                      
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Last Price</b>
                       </div>
@@ -628,7 +625,6 @@ export default function NftInfo({ nftMetadata }: any) {
                               height={30}
                             />
                           </button>
-           
 
                           <span className="flex text-4xl font-bold text-green-600 xl:text-6xl ">
                             {saleHistory[0]?.paidToken ===
@@ -665,8 +661,6 @@ export default function NftInfo({ nftMetadata }: any) {
                             )}
                           </span>
                         </div>
-
-                
 
                         <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                           <button
@@ -709,10 +703,13 @@ export default function NftInfo({ nftMetadata }: any) {
                                   type="number"
                                   name="price"
                                   placeholder="Price"
-                                  value={price}
-                                  onChange={(e) => {
-                                    setPrice(e.target.value as any);
-                                  }}
+
+                                  //value={price}
+
+                                  //onChange={(e) => {
+                                  //  setPrice(e.target.value as any);
+
+                                  //}}
                                 />
                               </div>
 
@@ -725,7 +722,6 @@ export default function NftInfo({ nftMetadata }: any) {
                               </Web3Button>
                             </div>
 
-                         
                             {nftMetadata?.owner === address && (
                               <div className="mt-3 grid grid-cols-1 items-center justify-center gap-3 xl:grid-cols-2">
                                 <div className=" flex flex-row items-center justify-start gap-2">
@@ -741,8 +737,6 @@ export default function NftInfo({ nftMetadata }: any) {
                                     }}
                                   />
                                 </div>
-
-                            
 
                                 {isSending ? (
                                   <div className="flex flex-row items-center justify-center gap-2">
@@ -769,8 +763,6 @@ export default function NftInfo({ nftMetadata }: any) {
                                         ///contract.erc20.transfer(toAddress, amount);
 
                                         transferNft(nftMetadata?.id, toAddress);
-
-                             
                                       }}
                                       onSuccess={() => {
                                         //setAmount(0);
@@ -813,7 +805,6 @@ export default function NftInfo({ nftMetadata }: any) {
                     </>
                   ) : (
                     <>
-                     
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Last Price</b>
                       </div>
@@ -886,8 +877,6 @@ export default function NftInfo({ nftMetadata }: any) {
                           )}
                         </div>
 
-                 
-
                         <div className="mt-3 flex flex-row items-center  gap-2 text-sm font-bold xl:text-lg">
                           <button
                             className=" w-36 text-sm font-bold xl:text-xl "
@@ -908,7 +897,6 @@ export default function NftInfo({ nftMetadata }: any) {
                         </div>
                       </div>
 
-                     
                       <div className="mt-5 text-sm font-bold xl:text-lg">
                         <b>Sell Price</b>
                       </div>
@@ -1036,7 +1024,6 @@ export default function NftInfo({ nftMetadata }: any) {
               )}
             </div>
           </Collapse>
-          */}
         </div>
 
         {/* Race Information */}
