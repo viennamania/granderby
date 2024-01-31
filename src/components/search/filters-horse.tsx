@@ -80,20 +80,35 @@ export const sort = [
 ];
 
 export function SortList() {
-  const [selectedGSortStorage, setSelectedSortStorage] =
+  const [selectedSortStorage, setSelectedSortStorage] =
     useLocalStorage('selected-sort');
 
-  if (!selectedGSortStorage) {
+  if (!selectedSortStorage) {
     setSelectedSortStorage(sort[0]);
   }
 
-  const [selectedItem, setSelectedItem] = useState(selectedGSortStorage);
+  //const [selectedItem, setSelectedItem] = useState(selectedSortStorage);
 
   return (
     <div className="relative">
-      <Listbox value={selectedItem} onChange={setSelectedItem}>
+      <Listbox
+        value={
+          //selectedItem
+          selectedSortStorage
+        }
+        onChange={
+          //setSelectedItem
+
+          setSelectedSortStorage
+        }
+      >
         <Listbox.Button className="flex h-10 w-auto items-center justify-between rounded-lg bg-gray-100 px-4 text-xs text-gray-900 dark:bg-gray-800 dark:text-white sm:w-56 sm:text-sm lg:h-11">
-          {selectedItem.name}
+          {
+            //selectedItem.name
+
+            selectedSortStorage?.name
+          }
+
           <ChevronDown className="ltr:ml-2 rtl:mr-2" />
         </Listbox.Button>
 
@@ -109,7 +124,9 @@ export function SortList() {
             {sort.map((item) => (
               <Listbox.Option key={item.id} value={item}>
                 {({ selected }) => {
-                  ////setSelectedSortStorage(item);
+                  ///setSelectedSortStorage(item);
+
+                  //console.log('item', item);
 
                   return (
                     <div

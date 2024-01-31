@@ -1,6 +1,7 @@
 import Button from '@/components/ui/button';
 
 import Feeds from './feeds-horse-granderby';
+
 import SaleFeeds from './feeds-horse-sale';
 
 //import ListedFeeds from '.feeds-horse-listed';
@@ -58,11 +59,7 @@ export default function Search() {
   const [lastWinersIsOpen] = useLocalStorage('last-winners-isopen');
 
   const [selectedGradesStorage, setSelectedGradesStorage] =
-    useLocalStorage('selected-grades');
-
-  if (!selectedGradesStorage) {
-    setSelectedGradesStorage([]);
-  }
+    useLocalStorage('selected-grades') ?? ([] as Array<string>);
 
   const [selectedManesStorage, setSelectedManesStorage] =
     useLocalStorage('selected-manes');

@@ -571,7 +571,7 @@ export default function TransferHistoryTable(
   }, [nftMetadata?.metadata?.attributes]);
 
   return (
-    <div className="flex flex-col items-center justify-center  ">
+    <div className=" flex flex-col items-center justify-center   ">
       {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
       */}
@@ -587,13 +587,6 @@ export default function TransferHistoryTable(
       */}
 
       <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
-        <div className="m-3 flex flex-row items-center justify-start gap-2 ">
-          <span className="text-sm">Total Transfers</span>
-          <span className="text-4xl font-bold text-green-600 xl:text-6xl">
-            {totlaCount}
-          </span>
-        </div>
-
         <Scrollbar style={{ width: '100%' }} autoHide="never">
           <div className="flex w-[500px] flex-row px-0.5 2xl:w-full ">
             <table

@@ -16,6 +16,11 @@ export default async function handler(
 
   const { grades, manes, holder, sort } = req.body;
 
+  console.log('getHorses pageNumber', pageNumber);
+  console.log('getHorses pageSize', pageSize);
+  console.log('getHorses grades', grades);
+  console.log('getHorses sort', sort);
+
   //console.log('getHorses grades', grades);
   //console.log('getHorses manes', manes);
   //console.log('getHorses holder', holder);

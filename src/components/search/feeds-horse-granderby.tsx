@@ -120,7 +120,12 @@ export default function Feeds(
 
   ///console.log('feeds-horse selectedGradesStorage=====', selectedGradesStorage);
 
-  ///const [selectedGSortStorage, setSelectedSortStorage] = useLocalStorage('selected-sort');
+  const [selectedGSortStorage, setSelectedSortStorage] =
+    useLocalStorage('selected-sort');
+
+  if (selectedGSortStorage === undefined) {
+    setSelectedSortStorage('tokenId');
+  }
 
   // useLocalStrage change event
 
@@ -160,7 +165,8 @@ export default function Feeds(
             grades: selectedGradesStorage ?? [],
             manes: selectedManesStorage ?? [],
             holder: holderAddress,
-            //sort: selectedGSortStorage,
+
+            sort: selectedGSortStorage,
           }),
         }
       ).then((result) => {

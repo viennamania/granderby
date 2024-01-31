@@ -58,6 +58,10 @@ import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import Button from '@/components/ui/button/button';
 import { useModal } from '@/components/modal-views/context';
 
+import Collapse from '@/components/ui/collapse';
+
+import TransferHistoryTable from '@/components/nft-transaction/transfer-history-table';
+
 function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
@@ -105,55 +109,56 @@ function SinglePrice(tokenid: any) {
           <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>
       ) : (
-        <>
-          <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
-            <div
-              className={`w-full 2xl:w-full 
+        <div className="flex flex-col items-center justify-center  gap-6">
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
+              <div
+                className={`w-full 2xl:w-full 
               ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-1/2'}`}
-            >
-              <div className=" flex flex-col">
-                {/* nft title */}
+              >
+                <div className=" flex flex-col">
+                  {/* nft title */}
 
-                <div className="items-left  mb-5  w-full flex-col justify-center  lg:hidden xl:hidden">
-                  <Link
-                    className=" text-left text-lg capitalize text-blue-500 dark:text-white "
-                    href={`/horse`}
-                  >
-                    {nftMetadata?.metadata?.description}
-                  </Link>
+                  <div className="items-left  mb-5  w-full flex-col justify-center  lg:hidden xl:hidden">
+                    <Link
+                      className=" text-left text-lg capitalize text-blue-500 dark:text-white "
+                      href={`/horse`}
+                    >
+                      {nftMetadata?.metadata?.description}
+                    </Link>
 
-                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                    <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
-                      {nftMetadata?.metadata?.name}
+                    <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                      <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
+                        {nftMetadata?.metadata?.name}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="mt-2 flex flex-row items-center justify-between  ">
-                    <button
-                      className=" flex flex-row items-center justify-start "
-                      onClick={() =>
-                        router.push(
-                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
-                        )
-                      }
-                    >
-                      <Image
-                        src="/images/logo-polygon.png"
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
+                    <div className="mt-2 flex flex-row items-center justify-between  ">
+                      <button
+                        className=" flex flex-row items-center justify-start "
+                        onClick={() =>
+                          router.push(
+                            `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                          )
+                        }
+                      >
+                        <Image
+                          src="/images/logo-polygon.png"
+                          alt="gd"
+                          width={18}
+                          height={18}
+                        />
 
-                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        #{nftMetadata?.metadata?.id}
-                      </span>
-                    </button>
+                        <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                          #{nftMetadata?.metadata?.id}
+                        </span>
+                      </button>
 
-                    <button
-                      className="ml-10 flex flex-row items-center justify-start "
-                      onClick={() => openModal('SHARE_VIEW')}
-                    >
-                      {/*
+                      <button
+                        className="ml-10 flex flex-row items-center justify-start "
+                        onClick={() => openModal('SHARE_VIEW')}
+                      >
+                        {/*
                       <Image
                         src="/images/logo-polygon.png"
                         alt="gd"
@@ -161,158 +166,158 @@ function SinglePrice(tokenid: any) {
                         height={18}
                       />
                     */}
-                      <Twitter className="h-5 w-5" />
+                        <Twitter className="h-5 w-5" />
 
-                      <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        share
-                      </span>
-                    </button>
-                  </div>
+                        <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                          share
+                        </span>
+                      </button>
+                    </div>
 
-                  {/* owned by */}
-                  <div className="mt-5 flex w-full items-center justify-start  gap-4 ">
-                    {isLoadingStakerAddress ? (
-                      <div className="text-sm font-bold xl:text-lg">
-                        <b>Loading Owner...</b>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
-                          Owned by
+                    {/* owned by */}
+                    <div className="mt-5 flex w-full items-center justify-start  gap-4 ">
+                      {isLoadingStakerAddress ? (
+                        <div className="text-sm font-bold xl:text-lg">
+                          <b>Loading Owner...</b>
                         </div>
-                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                          {stakerAddress &&
-                          stakerAddress ===
-                            '0x0000000000000000000000000000000000000000' ? (
-                            <>
-                              {nftMetadata?.owner === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(
-                                      `/user-portfolio/${nftMetadata?.owner}`
-                                    )
-                                  }
-                                >
-                                  <span>
-                                    {nftMetadata?.owner?.substring(0, 10)}...
-                                  </span>
-                                  {/*
+                      ) : (
+                        <>
+                          <div className="w-[140px] text-sm tracking-wider text-[#6B7280]">
+                            Owned by
+                          </div>
+                          <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                            {stakerAddress &&
+                            stakerAddress ===
+                              '0x0000000000000000000000000000000000000000' ? (
+                              <>
+                                {nftMetadata?.owner === address ? (
+                                  <div className="text-xl font-bold text-blue-600">
+                                    Me
+                                  </div>
+                                ) : (
+                                  <button
+                                    className=" flex flex-row items-center justify-start  "
+                                    onClick={() =>
+                                      router.push(
+                                        `/user-portfolio/${nftMetadata?.owner}`
+                                      )
+                                    }
+                                  >
+                                    <span>
+                                      {nftMetadata?.owner?.substring(0, 10)}...
+                                    </span>
+                                    {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
                                 */}
-                                </button>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              {stakerAddress && stakerAddress === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(
-                                      `/user-portfolio/${stakerAddress}`
-                                    )
-                                  }
-                                >
-                                  <span>
-                                    {stakerAddress?.substring(0, 10)}...
-                                  </span>
-                                  Registered
-                                  {/*
+                                  </button>
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                {stakerAddress && stakerAddress === address ? (
+                                  <div className="text-xl font-bold text-blue-600">
+                                    Me
+                                  </div>
+                                ) : (
+                                  <button
+                                    className=" flex flex-row items-center justify-start  "
+                                    onClick={() =>
+                                      router.push(
+                                        `/user-portfolio/${stakerAddress}`
+                                      )
+                                    }
+                                  >
+                                    <span>
+                                      {stakerAddress?.substring(0, 10)}...
+                                    </span>
+                                    Registered
+                                    {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
                                 */}
-                                </button>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {/* end of nft title */}
-
-                <Image
-                  //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                  src={
-                    nftMetadata?.metadata?.image
-                      ? nftMetadata?.metadata?.image
-                      : '/default-nft.png'
-                  }
-                  alt="nft"
-                  width={1024}
-                  height={1024}
-                  className=" rounded-lg "
-                />
-
-                <NftSinglePrice
-                  //tokenid={tokenid.tokenid}
-                  nftMetadata={nftMetadata}
-                  contractAddress={nftDropContractAddressHorse}
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                />
-              </div>
-            </div>
-
-            {layout === LAYOUT_OPTIONS.RETRO ? (
-              <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
-            ) : (
-              <div className=" flex w-full flex-col">
-                <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
-                  <Link
-                    className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
-                    href={`/horse`}
-                  >
-                    {nftMetadata?.metadata?.description}
-                    {/*Granderby Horse NFT*/}
-                  </Link>
-
-                  <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                    <div className="text-left text-2xl font-bold capitalize text-black  dark:text-white xl:text-4xl">
-                      {nftMetadata?.metadata?.name}
+                                  </button>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
 
-                  <div className="mr-5 flex flex-row items-center justify-between ">
-                    <button
-                      className=" flex flex-row items-center justify-start  "
-                      onClick={() =>
-                        router.push(
-                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
-                        )
-                      }
+                  {/* end of nft title */}
+
+                  <Image
+                    //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
+                    src={
+                      nftMetadata?.metadata?.image
+                        ? nftMetadata?.metadata?.image
+                        : '/default-nft.png'
+                    }
+                    alt="nft"
+                    width={1024}
+                    height={1024}
+                    className=" rounded-lg "
+                  />
+
+                  <NftSinglePrice
+                    //tokenid={tokenid.tokenid}
+                    nftMetadata={nftMetadata}
+                    contractAddress={nftDropContractAddressHorse}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                  />
+                </div>
+              </div>
+
+              {layout === LAYOUT_OPTIONS.RETRO ? (
+                <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
+              ) : (
+                <div className=" flex w-full flex-col">
+                  <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
+                    <Link
+                      className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
+                      href={`/horse`}
                     >
-                      <Image
-                        src="/images/logo-polygon.png"
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
+                      {nftMetadata?.metadata?.description}
+                      {/*Granderby Horse NFT*/}
+                    </Link>
 
-                      <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        #{nftMetadata?.metadata?.id}
-                      </span>
-                    </button>
+                    <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                      <div className="text-left text-2xl font-bold capitalize text-black  dark:text-white xl:text-4xl">
+                        {nftMetadata?.metadata?.name}
+                      </div>
+                    </div>
 
-                    {/*
+                    <div className="mr-5 flex flex-row items-center justify-between ">
+                      <button
+                        className=" flex flex-row items-center justify-start  "
+                        onClick={() =>
+                          router.push(
+                            `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                          )
+                        }
+                      >
+                        <Image
+                          src="/images/logo-polygon.png"
+                          alt="gd"
+                          width={18}
+                          height={18}
+                        />
+
+                        <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                          #{nftMetadata?.metadata?.id}
+                        </span>
+                      </button>
+
+                      {/*
                     <button
                       className="ml-10 flex flex-row items-center justify-start "
                       onClick={() => openModal('SHARE_VIEW')}
@@ -325,101 +330,101 @@ function SinglePrice(tokenid: any) {
                       </span>
                     </button>
                     */}
-                  </div>
+                    </div>
 
-                  {/* owned by */}
-                  <div className="mt-3 flex w-full items-center justify-start  gap-4 ">
-                    {isLoadingStakerAddress ? (
-                      <div className="text-sm font-bold xl:text-lg">
-                        <b>Loading Owner...</b>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="flex  items-center justify-start text-sm tracking-wider text-black ">
-                          Owned by
+                    {/* owned by */}
+                    <div className="mt-3 flex w-full items-center justify-start  gap-4 ">
+                      {isLoadingStakerAddress ? (
+                        <div className="text-sm font-bold xl:text-lg">
+                          <b>Loading Owner...</b>
                         </div>
-                        <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
-                          {stakerAddress &&
-                          stakerAddress ===
-                            '0x0000000000000000000000000000000000000000' ? (
-                            <>
-                              {nftMetadata?.owner === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(
-                                      `/user-portfolio/${nftMetadata?.owner}`
-                                    )
-                                  }
-                                >
-                                  <span>
-                                    {nftMetadata?.owner?.substring(0, 10)}...
-                                  </span>
-                                  {/*
+                      ) : (
+                        <>
+                          <div className="flex  items-center justify-start text-sm tracking-wider text-black ">
+                            Owned by
+                          </div>
+                          <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
+                            {stakerAddress &&
+                            stakerAddress ===
+                              '0x0000000000000000000000000000000000000000' ? (
+                              <>
+                                {nftMetadata?.owner === address ? (
+                                  <div className="text-xl font-bold text-blue-600">
+                                    Me
+                                  </div>
+                                ) : (
+                                  <button
+                                    className=" flex flex-row items-center justify-start  "
+                                    onClick={() =>
+                                      router.push(
+                                        `/user-portfolio/${nftMetadata?.owner}`
+                                      )
+                                    }
+                                  >
+                                    <span>
+                                      {nftMetadata?.owner?.substring(0, 10)}...
+                                    </span>
+                                    {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )}
                                 */}
-                                </button>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              {stakerAddress && stakerAddress === address ? (
-                                <div className="text-xl font-bold text-blue-600">
-                                  Me
-                                </div>
-                              ) : (
-                                <button
-                                  className=" flex flex-row items-center justify-start  "
-                                  onClick={() =>
-                                    router.push(
-                                      `/user-portfolio/${stakerAddress}`
-                                    )
-                                  }
-                                >
-                                  <span>
-                                    {stakerAddress?.substring(0, 10)}...
-                                  </span>
-                                  Registered
-                                  {/*stakeInfoCount && stakeInfoCount > 1 && (
+                                  </button>
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                {stakerAddress && stakerAddress === address ? (
+                                  <div className="text-xl font-bold text-blue-600">
+                                    Me
+                                  </div>
+                                ) : (
+                                  <button
+                                    className=" flex flex-row items-center justify-start  "
+                                    onClick={() =>
+                                      router.push(
+                                        `/user-portfolio/${stakerAddress}`
+                                      )
+                                    }
+                                  >
+                                    <span>
+                                      {stakerAddress?.substring(0, 10)}...
+                                    </span>
+                                    Registered
+                                    {/*stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
                                     +{stakeInfoCount - 1}
                                   </span>
                                 )*/}
-                                </button>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </>
-                    )}
+                                  </button>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <div className="mt-5 w-full rounded-lg bg-white dark:bg-light-dark ">
-                  {/*
+                  <div className="mt-5 w-full rounded-lg bg-white dark:bg-light-dark ">
+                    {/*
                   <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
                     NFT Info
                   </h2>
                   */}
 
-                  <NftInfo nftMetadata={nftMetadata} />
+                    <NftInfo nftMetadata={nftMetadata} />
 
-                  {/*
+                    {/*
                   <div>
                     <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
                     <CoinConverter />
                   </div>
                   */}
 
-                  {/*
+                    {/*
                   <div className="px-8 pb-10">
                     <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
                       Top Coins
@@ -427,27 +432,18 @@ function SinglePrice(tokenid: any) {
                     <TopCoin />
                   </div>
                   */}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
-          <div className="mt-0">
-            {/*
-            <TransactionTable />
-          */}
-
-            {/*
-        <HistoryTable />
-        */}
+          <div className=" flex flex-row rounded-lg  border  ">
+            <Collapse label="Item Activity" initialOpen={true}>
+              <TransferHistoryTable nftMetadata={nftMetadata} />
+            </Collapse>
           </div>
-
-          {/*
-      <div className="mt-10">
-        <CoinTabs />
-      </div> 
-      */}
-        </>
+        </div>
       )}
 
       {/* delete footer */}
