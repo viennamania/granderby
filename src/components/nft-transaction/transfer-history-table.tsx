@@ -571,10 +571,10 @@ export default function TransferHistoryTable(
   }, [nftMetadata?.metadata?.attributes]);
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex flex-col items-center justify-center  ">
       {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
-  */}
+      */}
 
       {/*
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
@@ -594,13 +594,13 @@ export default function TransferHistoryTable(
           </span>
         </div>
 
-        <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
-          <div className="px-0.5">
+        <Scrollbar style={{ width: '100%' }} autoHide="never">
+          <div className="flex w-[500px] flex-row px-0.5 2xl:w-full ">
             <table
-              {...getTableProps()}
-              className="transaction-table w-full border-separate border-0"
+              //{...getTableProps()}
+              className="transaction-table border-separate border-0"
             >
-              <thead className="text-sm text-gray-500 dark:text-gray-300">
+              <thead className="  text-sm text-gray-500 dark:text-gray-300">
                 {headerGroups.map((headerGroup, idx) => (
                   <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
                     {headerGroup.headers.map((column, idx) => (
@@ -613,6 +613,7 @@ export default function TransferHistoryTable(
                       >
                         <div className="flex items-center">
                           {column.render('Header')}
+
                           {column.canResize && (
                             <div
                               {...column.getResizerProps()}
@@ -638,9 +639,10 @@ export default function TransferHistoryTable(
                   </tr>
                 ))}
               </thead>
+
               <tbody
                 {...getTableBodyProps()}
-                className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+                className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm  "
               >
                 {page.map((row, idx) => {
                   prepareRow(row);
@@ -670,7 +672,7 @@ export default function TransferHistoryTable(
         </Scrollbar>
       </div>
 
-      <div className="mt-3 flex items-center justify-center rounded-lg bg-white px-5 py-4 text-sm shadow-card dark:bg-light-dark lg:py-6">
+      <div className="mt-3 flex w-full items-center justify-center rounded-lg bg-white px-5 py-4 text-sm shadow-card dark:bg-light-dark lg:py-6">
         <div className="flex items-center gap-5">
           <Button
             onClick={() => previousPage()}

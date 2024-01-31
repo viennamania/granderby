@@ -588,7 +588,7 @@ export default function NftSinglePrice({
   useEffect(() => {
     setAttributes([]);
     //attributes = [];
-    let arrAttribute = [];
+    let arrAttribute = [] as any;
 
     setAttributeGrade(null);
     setAttributeMane(null);
@@ -986,10 +986,9 @@ export default function NftSinglePrice({
   }
 
   return (
-    <div className=" h-full rounded-lg  bg-white p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
-      <div className="  flex flex-col justify-between gap-2 md:items-start lg:flex-row lg:items-center lg:gap-4">
-        <div className=" flex flex-wrap items-center justify-center gap-3 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 sm:text-base">
-          {/*
+    <div className=" flex flex-row items-center justify-center  rounded-lg   p-4 shadow-card dark:bg-light-dark sm:p-6 md:p-8">
+      <div className=" flex flex-col items-center justify-center gap-3 text-sm  text-gray-600 dark:text-gray-400 sm:text-base">
+        {/*
                 <Collapse label="Grade" initialOpen={true}>
                   <Grade {...{ grade: attributeGrade }} />
                 </Collapse>
@@ -1003,54 +1002,53 @@ export default function NftSinglePrice({
                 </Collapse>
                 */}
 
-          <div className=" flex items-center justify-center rounded-lg border ">
-            <Collapse label="Attributes" initialOpen={true}>
-              {/* nft attributes details */}
+        <div className=" flex flex-row items-center justify-center rounded-lg border ">
+          <Collapse label="Attributes" initialOpen={true}>
+            {/* nft attributes details */}
 
-              <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-5 2xl:grid-cols-4  ">
-                {
-                  //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
-                  attributes?.map((attribute: any) => (
-                    <div key={attribute?.trait_type}>
-                      <div
-                        className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+            <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-4 2xl:grid-cols-4  ">
+              {
+                //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+                attributes?.map((attribute: any) => (
+                  <div key={attribute?.trait_type}>
+                    <div
+                      className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
                             lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                    >
+                      <span
+                        className={cn(
+                          'flex ',
+                          toggleCoin ? 'flex-row-reverse' : 'flex-row'
+                        )}
                       >
-                        <span
-                          className={cn(
-                            'flex ',
-                            toggleCoin ? 'flex-row-reverse' : 'flex-row'
-                          )}
-                        >
-                          <span>{attribute?.trait_type}</span>
-                        </span>
+                        <span>{attribute?.trait_type}</span>
+                      </span>
 
-                        <span className="xl:text-md  text-sm font-semibold">
-                          {/*
+                      <span className="xl:text-md  text-sm font-semibold">
+                        {/*
                                 {attribute?.value?.toString().length < 8
                                   ? attribute?.value?.toString()
                                   : attribute?.value?.toString().substring(0, 8)}
                                 ...
                                 */}
-                          {attribute?.value}
-                        </span>
-                      </div>
+                        {attribute?.value}
+                      </span>
                     </div>
-                  ))
-                }
-              </div>
-            </Collapse>
-          </div>
+                  </div>
+                ))
+              }
+            </div>
+          </Collapse>
+        </div>
 
-          <div className="mt-3 flex w-full flex-col rounded-lg border ">
-            <Collapse label="Transfers" initialOpen={true}>
-              {/*
+        <div className="mt-3 flex flex-row rounded-lg border ">
+          <Collapse label="Transfers" initialOpen={true}>
+            {/*
                 <TransferHistoryTable data={saleHistory} />
                 */}
 
-              <TransferHistoryTable nftMetadata={nftMetadata} />
-            </Collapse>
-          </div>
+            <TransferHistoryTable nftMetadata={nftMetadata} />
+          </Collapse>
         </div>
       </div>
 

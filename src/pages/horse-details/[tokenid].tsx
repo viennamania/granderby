@@ -109,7 +109,7 @@ function SinglePrice(tokenid: any) {
           <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
             <div
               className={`w-full 2xl:w-full 
-              ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-2/3'}`}
+              ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-1/2'}`}
             >
               <div className=" flex flex-col">
                 {/* nft title */}
@@ -123,7 +123,7 @@ function SinglePrice(tokenid: any) {
                   </Link>
 
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-3xl">
+                    <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
                       {nftMetadata?.metadata?.name}
                     </div>
                   </div>
@@ -286,12 +286,12 @@ function SinglePrice(tokenid: any) {
                   </Link>
 
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
-                    <div className="text-left text-2xl font-bold capitalize text-black underline decoration-sky-500 dark:text-white xl:text-4xl">
+                    <div className="text-left text-2xl font-bold capitalize text-black  dark:text-white xl:text-4xl">
                       {nftMetadata?.metadata?.name}
                     </div>
                   </div>
 
-                  <div className="mr-5 mt-2 flex flex-row items-center justify-between ">
+                  <div className="mr-5 flex flex-row items-center justify-between ">
                     <button
                       className=" flex flex-row items-center justify-start  "
                       onClick={() =>
@@ -312,35 +312,30 @@ function SinglePrice(tokenid: any) {
                       </span>
                     </button>
 
+                    {/*
                     <button
                       className="ml-10 flex flex-row items-center justify-start "
                       onClick={() => openModal('SHARE_VIEW')}
                     >
-                      {/*
-                      <Image
-                        src={"/images/logo-polygon.png"}
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
-                      */}
+          
                       <Twitter className="h-5 w-5" />
 
                       <span className="text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                         Share
                       </span>
                     </button>
+                    */}
                   </div>
 
                   {/* owned by */}
-                  <div className="mt-10 flex w-full items-center justify-start  gap-4 ">
+                  <div className="mt-3 flex w-full items-center justify-start  gap-4 ">
                     {isLoadingStakerAddress ? (
                       <div className="text-sm font-bold xl:text-lg">
                         <b>Loading Owner...</b>
                       </div>
                     ) : (
                       <>
-                        <div className="flex w-[140px] items-center justify-start text-sm tracking-wider text-[#6B7280] ">
+                        <div className="flex  items-center justify-start text-sm tracking-wider text-black ">
                           Owned by
                         </div>
                         <div className="rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white">
@@ -408,7 +403,7 @@ function SinglePrice(tokenid: any) {
                   </div>
                 </div>
 
-                <div className="mt-10 w-full rounded-lg bg-white  shadow-card dark:bg-light-dark ">
+                <div className="mt-5 w-full rounded-lg bg-white dark:bg-light-dark ">
                   {/*
                   <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
                     NFT Info

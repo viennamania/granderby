@@ -410,6 +410,7 @@ export const menuItems = [
     ],
   },
 
+  /*
   {
     name: 'SHOP',
     //icon: <ExchangeIcon />,
@@ -433,6 +434,7 @@ export const menuItems = [
       },
     ],
   },
+  */
 
   /*
   {
