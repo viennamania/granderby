@@ -62,6 +62,10 @@ import Collapse from '@/components/ui/collapse';
 
 import TransferHistoryTable from '@/components/nft-transaction/transfer-history-table';
 
+import cn from 'classnames';
+
+import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
+
 function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
@@ -102,6 +106,66 @@ function SinglePrice(tokenid: any) {
 
   const address = useAddress();
 
+  const [attributes, setAttributes] = useState([] as string[]);
+
+  useEffect(() => {
+    let arrAttribute = [] as any;
+
+    //nftMetadata?.metadata?.attributes?.map((attribute: any) => {
+
+    // nftMetadata?.metadata?.attributes is array of objects
+    // type assertion to any
+
+    ///nftMetadata?.metadata?.attributes?.map((attribute: any) => {
+
+    const attributes = nftMetadata?.metadata?.attributes as any;
+
+    attributes?.map((attribute: any) => {
+      if (false) {
+      } else if (attribute.trait_type === 'Grade') {
+      } else if (attribute.trait_type === 'Preceding') {
+      } else if (attribute.trait_type === 'Overtaking') {
+      } else if (attribute.trait_type === 'Spirit') {
+      } else if (attribute.trait_type === 'Agility') {
+      } else if (attribute.trait_type === 'Weight') {
+      } else if (attribute.trait_type === 'Drivinghabits') {
+      } else if (attribute.trait_type === 'Record') {
+      } else if (attribute.trait_type === 'textureKey') {
+      } else if (attribute.trait_type === 'Texture Key') {
+      } else if (attribute.trait_type === 'BodyMask') {
+      } else if (attribute.trait_type === 'HeadMask') {
+      } else if (attribute.trait_type === 'LegMask') {
+      } else if (attribute.trait_type === 'BodyAcc') {
+      } else if (attribute.trait_type === 'HeadAcc') {
+      } else if (attribute.trait_type === 'LegAcc') {
+      } else if (attribute.trait_type === 'Comment') {
+      } else if (attribute.trait_type === 'World') {
+      } else if (attribute.trait_type === 'BodyColor') {
+      } else if (attribute.trait_type === 'ManeColor') {
+      } else if (attribute.trait_type === 'TailColor') {
+      } else if (attribute.trait_type === 'BodyMaskColor') {
+      } else if (attribute.trait_type === 'HeadMaskColor') {
+      } else if (attribute.trait_type === 'LegMaskColor') {
+      } else if (attribute.trait_type === 'ManeMaskColor') {
+      } else if (attribute.trait_type === 'TailMaskColor') {
+      } else if (attribute.trait_type === 'BodyAccColor') {
+      } else if (attribute.trait_type === 'HeadAccColor') {
+      } else if (attribute.trait_type === 'LegAccColor') {
+      } else {
+        if (attribute) {
+          arrAttribute.push(attribute);
+          //attributes.push(attribute);
+        }
+      }
+    });
+
+    ///console.log("arrAttribute", arrAttribute);
+
+    setAttributes(arrAttribute);
+  }, [nftMetadata?.metadata?.attributes]);
+
+  ///console.log('attributes======>', attributes);
+
   return (
     <>
       {isLoading ? (
@@ -112,11 +176,8 @@ function SinglePrice(tokenid: any) {
         <div className="flex flex-col items-center justify-center  gap-6">
           <div className="flex flex-col gap-6">
             <div className="flex flex-wrap gap-6 lg:flex-nowrap ">
-              <div
-                className={`w-full 2xl:w-full 
-              ${layout === LAYOUT_OPTIONS.RETRO ? '' : 'lg:w-1/2'}`}
-              >
-                <div className=" flex flex-col">
+              <div className="flex flex-col items-center justify-center gap-6  lg:w-2/5 xl:w-2/5 2xl:w-2/5">
+                <div className=" flex flex-col ">
                   {/* nft title */}
 
                   <div className="items-left  mb-5  w-full flex-col justify-center  lg:hidden xl:hidden">
@@ -154,24 +215,19 @@ function SinglePrice(tokenid: any) {
                         </span>
                       </button>
 
+                      {/*
                       <button
                         className="ml-10 flex flex-row items-center justify-start "
                         onClick={() => openModal('SHARE_VIEW')}
                       >
-                        {/*
-                      <Image
-                        src="/images/logo-polygon.png"
-                        alt="gd"
-                        width={18}
-                        height={18}
-                      />
-                    */}
+                        
                         <Twitter className="h-5 w-5" />
 
                         <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
                           share
                         </span>
                       </button>
+                      */}
                     </div>
 
                     {/* owned by */}
@@ -251,22 +307,58 @@ function SinglePrice(tokenid: any) {
                       )}
                     </div>
                   </div>
-
                   {/* end of nft title */}
 
-                  <Image
-                    //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
-                    src={
-                      nftMetadata?.metadata?.image
-                        ? nftMetadata?.metadata?.image
-                        : '/default-nft.png'
-                    }
-                    alt="nft"
-                    width={1024}
-                    height={1024}
-                    className=" rounded-lg "
-                  />
+                  <div className="mb-5 flex flex-col items-center justify-center gap-6 ">
+                    <Image
+                      src={
+                        nftMetadata?.metadata?.image
+                          ? nftMetadata?.metadata?.image
+                          : '/default-nft.png'
+                      }
+                      alt="nft"
+                      width={1024}
+                      height={1024}
+                      className=" rounded-lg "
+                    />
+                  </div>
 
+                  <div className=" flex flex-col rounded-lg border ">
+                    <Collapse label="Attributes" initialOpen={true}>
+                      {/* nft attributes details */}
+
+                      <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-4 2xl:grid-cols-4  ">
+                        {
+                          //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+
+                          attributes?.map((attribute: any) => (
+                            <div key={attribute?.trait_type}>
+                              <div
+                                className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+                                      lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                              >
+                                <span className={cn('flex ', 'flex-row')}>
+                                  <span>{attribute?.trait_type}</span>
+                                </span>
+
+                                <span className="xl:text-md  text-sm font-semibold">
+                                  {/*
+                                          {attribute?.value?.toString().length < 8
+                                            ? attribute?.value?.toString()
+                                            : attribute?.value?.toString().substring(0, 8)}
+                                          ...
+                                          */}
+                                  {attribute?.value}
+                                </span>
+                              </div>
+                            </div>
+                          ))
+                        }
+                      </div>
+                    </Collapse>
+                  </div>
+
+                  {/*
                   <NftSinglePrice
                     //tokenid={tokenid.tokenid}
                     nftMetadata={nftMetadata}
@@ -274,14 +366,15 @@ function SinglePrice(tokenid: any) {
                     isOpen={isOpen}
                     setIsOpen={setIsOpen}
                   />
+                  */}
                 </div>
               </div>
 
               {layout === LAYOUT_OPTIONS.RETRO ? (
                 <InfoDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
               ) : (
-                <div className=" flex w-full flex-col">
-                  <div className="items-left hidden w-full flex-col justify-center lg:flex xl:flex  ">
+                <div className=" flex  w-3/5 flex-col ">
+                  <div className="items-left mb-10 hidden w-full flex-col justify-center lg:flex xl:flex  ">
                     <Link
                       className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
                       href={`/horse`}
@@ -408,37 +501,23 @@ function SinglePrice(tokenid: any) {
                     </div>
                   </div>
 
-                  <div className="mt-5 w-full rounded-lg bg-white dark:bg-light-dark ">
-                    {/*
-                  <h2 className="px-8 text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-                    NFT Info
-                  </h2>
-                  */}
-
+                  {/*
+                  <div className=" flex flex-col rounded-lg border ">
                     <NftInfo nftMetadata={nftMetadata} />
-
-                    {/*
-                  <div>
-                    <span className="block border-t border-dashed border-t-gray-200 dark:border-t-gray-700" />
-                    <CoinConverter />
                   </div>
                   */}
 
-                    {/*
-                  <div className="px-8 pb-10">
-                    <h2 className="text-base font-medium uppercase text-gray-700 dark:text-gray-200">
-                      Top Coins
-                    </h2>
-                    <TopCoin />
-                  </div>
-                  */}
+                  <div className=" flex flex-col rounded-lg border ">
+                    <Collapse label="Price History" initialOpen={true}>
+                      <PriceHistoryTable nftMetadata={nftMetadata} />
+                    </Collapse>
                   </div>
                 </div>
               )}
             </div>
           </div>
 
-          <div className=" flex flex-row rounded-lg  border  ">
+          <div className=" flex flex-col rounded-lg border ">
             <Collapse label="Item Activity" initialOpen={true}>
               <TransferHistoryTable nftMetadata={nftMetadata} />
             </Collapse>

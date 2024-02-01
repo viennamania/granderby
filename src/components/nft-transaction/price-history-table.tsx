@@ -633,11 +633,12 @@ export default function PriceHistoryTable(
       <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
         <div className="m-3 flex flex-row items-center justify-start gap-2 ">
           <span className="text-sm">Total Sales</span>
-          <span className="text-4xl font-bold text-green-600 xl:text-6xl">
+          <span className="text-4xl font-bold text-green-600 xl:text-4xl">
             {totlaCount}
           </span>
           <span className="text-sm">sales</span>
         </div>
+
         <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
           <div className="px-0.5">
             <table
