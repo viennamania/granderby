@@ -77,6 +77,9 @@ export const sort = [
 
   { id: 1, name: 'Token ID: Ascending' }, // tokenid
   { id: 2, name: 'Token ID: Descending' },
+
+  { id: 3, name: 'Price: Ascending' },
+  { id: 4, name: 'Price: Descending' },
 ];
 
 export function SortList() {

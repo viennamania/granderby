@@ -163,14 +163,30 @@ export const getAllHorses = async (
         ],
       })
 
-      // tokenId is string, so conver tokenId to number and sort
-
       .sort(
-        sort === 'asc'
+        sort === 'Token ID: Ascending'
           ? {
               // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
 
               tokenId: 1,
+            }
+          : sort === 'Token ID: Descending'
+          ? {
+              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+              tokenId: -1,
+            }
+          : sort === 'Price: Ascending'
+          ? {
+              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+              totalPricePaid: 1,
+            }
+          : sort === 'Price: Descending'
+          ? {
+              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+              totalPricePaid: -1,
             }
           : {
               // sort number in descending order, tokenId is string, so conver tokenId to number and sort
@@ -224,6 +240,24 @@ export const getAllHorses = async (
               // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
 
               tokenId: 1,
+            }
+          : sort === 'Token ID: Descending'
+          ? {
+              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+              tokenId: -1,
+            }
+          : sort === 'Price: Ascending'
+          ? {
+              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+              totalPricePaid: 1,
+            }
+          : sort === 'Price: Descending'
+          ? {
+              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+              totalPricePaid: -1,
             }
           : {
               // sort number in descending order, tokenId is string, so conver tokenId to number and sort
@@ -318,10 +352,25 @@ export const getAllHorses = async (
         ? {
             // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
 
-            //tokenId: 1,
-            // covert tokenId to number and sort
-
             tokenId: 1,
+          }
+        : sort === 'Token ID: Descending'
+        ? {
+            // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+            tokenId: -1,
+          }
+        : sort === 'Price: Ascending'
+        ? {
+            // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+            totalPricePaid: 1,
+          }
+        : sort === 'Price: Descending'
+        ? {
+            // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+            totalPricePaid: -1,
           }
         : {
             // sort number in descending order, tokenId is string, so conver tokenId to number and sort

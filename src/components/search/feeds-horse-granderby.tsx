@@ -355,46 +355,34 @@ export default function Feeds({
                       </div>
 
                       <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                        <span>Last Price:</span>
-                        <span>
-                          {nft?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' &&
-                            //(nft?.totalPricePaid / 1000000000000000000).toFixed(2)
-                            (
-                              (nft?.totalPricePaid / 1000000000000000000) *
-                              0.66
-                            ).toFixed(2)}
+                        {nft?.paidToken === 'false' ? (
+                          <span>Not Sold</span>
+                        ) : (
+                          <>
+                            <span>Last Price:</span>
 
-                          {nft?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
-                            (nft?.totalPricePaid / 1000000000000000000).toFixed(
-                              2
-                            )}
-                          {nft?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
-                            (nft?.totalPricePaid / 1000000).toFixed(2)}
-                        </span>
+                            <span>
+                              {nft?.paidToken ===
+                                '0x0000000000000000000000000000000000001010' &&
+                                //(nft?.totalPricePaid / 1000000000000000000).toFixed(2)
+                                (
+                                  (nft?.totalPricePaid / 1000000000000000000) *
+                                  0.66
+                                ).toFixed(2)}
 
-                        <span>USD</span>
+                              {nft?.paidToken ===
+                                '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                                (
+                                  nft?.totalPricePaid / 1000000000000000000
+                                ).toFixed(2)}
+                              {nft?.paidToken ===
+                                '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                                (nft?.totalPricePaid / 1000000).toFixed(2)}
+                            </span>
 
-                        {/*
-                        <span>
-                          
-                          {nft?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' && (
-                            <span>MATIC</span>
-                          )}
-                          {nft?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
-                            <span>GRD</span>
-                          )}
-
-                          {nft?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
                             <span>USDC</span>
-                          )}
-                        </span>
-                            */}
+                          </>
+                        )}
                       </div>
 
                       {nft?.register ? (
