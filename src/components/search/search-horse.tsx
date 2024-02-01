@@ -45,10 +45,6 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { Input } from '@/components/ui/input';
 import { PiMagnifyingGlassBold } from 'react-icons/pi';
 
-import { Listbox } from '@/components/ui/listbox';
-import { ChevronDown } from '@/components/icons/chevron-down';
-import { Transition } from '@headlessui/react';
-
 export default function Search() {
   const { openDrawer } = useDrawer();
 
