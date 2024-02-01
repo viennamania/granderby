@@ -324,7 +324,7 @@ function SinglePrice(tokenid: any) {
                   </div>
 
                   <div className=" flex flex-col rounded-lg border ">
-                    <Collapse label="Attributes" initialOpen={true}>
+                    <Collapse label="Properties" initialOpen={true}>
                       {/* nft attributes details */}
 
                       <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-4 2xl:grid-cols-4  ">
@@ -373,46 +373,36 @@ function SinglePrice(tokenid: any) {
                       {/*Granderby Horse NFT*/}
                     </Link>
 
-                    <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
+                    <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-5">
                       <div className="text-left text-2xl font-bold capitalize text-black  dark:text-white xl:text-4xl">
                         {nftMetadata?.metadata?.name}
                       </div>
+
+                      <div className="mr-5 flex flex-row items-center justify-between ">
+                        <button
+                          className=" flex flex-row items-center justify-start  "
+                          onClick={() =>
+                            router.push(
+                              `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                            )
+                          }
+                        >
+                          <Image
+                            src="/images/logo-polygon.png"
+                            alt="gd"
+                            width={18}
+                            height={18}
+                          />
+
+                          <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                            #{nftMetadata?.metadata?.id}
+                          </span>
+                        </button>
+                      </div>
                     </div>
 
-                    <div className="mr-5 flex flex-row items-center justify-between ">
-                      <button
-                        className=" flex flex-row items-center justify-start  "
-                        onClick={() =>
-                          router.push(
-                            `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
-                          )
-                        }
-                      >
-                        <Image
-                          src="/images/logo-polygon.png"
-                          alt="gd"
-                          width={18}
-                          height={18}
-                        />
-
-                        <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                          #{nftMetadata?.metadata?.id}
-                        </span>
-                      </button>
-
-                      {/*
-                    <button
-                      className="ml-10 flex flex-row items-center justify-start "
-                      onClick={() => openModal('SHARE_VIEW')}
-                    >
-          
-                      <Twitter className="h-5 w-5" />
-
-                      <span className="text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        Share
-                      </span>
-                    </button>
-                    */}
+                    <div className="font-sm mt-2 flex flex-row items-center justify-between text-black  ">
+                      affiliated to City One Field
                     </div>
 
                     {/* owned by */}
@@ -506,6 +496,12 @@ function SinglePrice(tokenid: any) {
 
                   <div className=" flex flex-col rounded-lg border ">
                     <Collapse label="Price History" initialOpen={true}>
+                      <PriceHistoryTable nftMetadata={nftMetadata} />
+                    </Collapse>
+                  </div>
+
+                  <div className="mt-5 flex flex-col rounded-lg border ">
+                    <Collapse label="Listings" initialOpen={true}>
                       <PriceHistoryTable nftMetadata={nftMetadata} />
                     </Collapse>
                   </div>
