@@ -252,7 +252,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     //setIsOpen(true)
                     router.push(
                       //`/listing/${listing.id}`
-                      `/sale-details/${listing.asset?.id}`
+                      `/horse-details/${listing.asset?.id}`
                     )
                   }
                 >
