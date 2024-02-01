@@ -106,11 +106,13 @@ export default function Feeds(
 export default function Feeds({
   searchTerm,
   sort,
+  selectedGrades,
   holderAddress,
   className,
 }: {
   searchTerm?: string;
   sort?: string;
+  selectedGrades?: [string];
   holderAddress?: string;
   className?: string;
 }) {
@@ -185,7 +187,9 @@ export default function Feeds({
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ///grades: selectedGradesStorage,
-            grades: selectedGradesStorage ?? [],
+
+            grades: selectedGrades ?? [],
+
             manes: selectedManesStorage ?? [],
             holder: holderAddress,
 
@@ -221,8 +225,10 @@ export default function Feeds({
       selectedGradesStorage
     );
     */
+    console.log('feeds-horse useEffect selectedGrades=====', selectedGrades);
+
     refetch();
-  }, [searchTerm, sort, selectedGradesStorage, selectedManesStorage, refetch]);
+  }, [searchTerm, sort, selectedGrades, refetch]);
 
   return (
     <>

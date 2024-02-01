@@ -45,6 +45,13 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { Input } from '@/components/ui/input';
 import { PiMagnifyingGlassBold } from 'react-icons/pi';
 
+import { RadioGroup } from '@/components/ui/radio-group';
+import { motion } from 'framer-motion';
+
+///import { Checkbox } from '@mui/material';
+
+import { Checkbox } from '@/components/ui/checkbox';
+
 export default function Search() {
   const { openDrawer } = useDrawer();
 
@@ -63,6 +70,8 @@ export default function Search() {
 
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades') ?? ([] as Array<string>);
+
+  const [selectedGrades, setSelectedGrades] = useState<any>([]);
 
   const [selectedManesStorage, setSelectedManesStorage] =
     useLocalStorage('selected-manes');
@@ -175,6 +184,17 @@ export default function Search() {
 
   console.log('search-horse selectedSortStorage====', selectedSortStorage);
 
+  const [grade, setGrade] = useState('U');
+
+  const [checkedU, setCheckedU] = useState(false);
+  const [checkedS, setCheckedS] = useState(false);
+  const [checkedA, setCheckedA] = useState(false);
+  const [checkedB, setCheckedB] = useState(false);
+  const [checkedC, setCheckedC] = useState(false);
+  const [checkedD, setCheckedD] = useState(false);
+
+  const [checkedAll, setCheckedAll] = useState(false);
+
   return (
     <>
       <div className=" flex flex-col items-start justify-center  text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl">
@@ -266,22 +286,13 @@ export default function Search() {
           </div>
 
           <div className="relative z-10 mb-6 flex items-center justify-between ">
+            {/*
             <div className="flex flex-col gap-2 ">
               <div className="flex flex-col gap-2 xl:flex-row ">
                 {selectedGradesStorage
                   //.sort(function(a:any, b:any) {return a - b})
                   // sort grades
-                  /*
-                        .sort(function (a: any, b: any) {
-                          if (a < b) {
-                            return -1;
-                          }
-                          if (a > b) {
-                            return 1;
-                          }
-                          return 0;
-                        })
-                        */
+    
                   .map((grade: any, index: number) => (
                     <div
                       key={index}
@@ -329,6 +340,7 @@ export default function Search() {
                 ))}
               </div>
             </div>
+            */}
 
             {/* search input */}
 
@@ -367,6 +379,7 @@ export default function Search() {
               <div className="flex gap-6 3xl:gap-8 ">
                 <SortList />
 
+                {/*
                 <Button
                   shape="rounded"
                   size="small"
@@ -377,13 +390,13 @@ export default function Search() {
                 >
                   <OptionIcon className="relative h-auto w-[18px]" />
                 </Button>
+                */}
+
+                <div className="hidden 3xl:block">
+                  <GridSwitcher />
+                </div>
 
                 {/*
-                  <div className="hidden 3xl:block">
-                    <GridSwitcher />
-                  </div>
-
-                  
                   <div
                     className="
                       hidden
@@ -407,11 +420,161 @@ export default function Search() {
             </div>
           </div>
 
+          {/* select check box */}
+          {/* grades */}
+          {/* U, S, A, B, C, D */}
+
+          <div className="mb-10 mt-10 flex w-full flex-row gap-5 ">
+            <h4 className="text-sm font-medium text-gray-900 dark:text-white">
+              Grades
+            </h4>
+
+            <Checkbox
+              label="All"
+              checked={
+                checkedU &&
+                checkedS &&
+                checkedA &&
+                checkedB &&
+                checkedC &&
+                checkedD
+              }
+              // if checked this will check or uncheck all grades
+              onChange={() => {
+                setCheckedAll(!checkedAll);
+
+                if (checkedAll) {
+                  setCheckedU(false);
+                  setCheckedS(false);
+                  setCheckedA(false);
+                  setCheckedB(false);
+                  setCheckedC(false);
+                  setCheckedD(false);
+
+                  setSelectedGrades([]);
+                } else {
+                  setCheckedU(true);
+                  setCheckedS(true);
+                  setCheckedA(true);
+                  setCheckedB(true);
+                  setCheckedC(true);
+                  setCheckedD(true);
+
+                  setSelectedGrades(['U', 'S', 'A', 'B', 'C', 'D']);
+                }
+              }}
+              className="mr-5"
+            />
+
+            <Checkbox
+              label="Grade U"
+              checked={checkedU}
+              onChange={() => {
+                setCheckedU(!checkedU);
+
+                if (checkedU) {
+                  const temp = selectedGrades?.filter(
+                    (item: any) => item !== 'U'
+                  );
+                  setSelectedGrades(temp);
+                } else {
+                  setSelectedGrades([...selectedGrades, 'U']);
+                }
+              }}
+            />
+
+            <Checkbox
+              label="Grade S"
+              checked={checkedS}
+              onChange={() => {
+                setCheckedS(!checkedS);
+
+                if (checkedS) {
+                  const temp = selectedGrades?.filter(
+                    (item: any) => item !== 'S'
+                  );
+                  setSelectedGrades(temp);
+                } else {
+                  setSelectedGrades([...selectedGrades, 'S']);
+                }
+              }}
+            />
+
+            <Checkbox
+              label="Grade A"
+              checked={checkedA}
+              onChange={() => {
+                setCheckedA(!checkedA);
+
+                if (checkedA) {
+                  const temp = selectedGrades?.filter(
+                    (item: any) => item !== 'A'
+                  );
+                  setSelectedGrades(temp);
+                } else {
+                  setSelectedGrades([...selectedGrades, 'A']);
+                }
+              }}
+            />
+
+            <Checkbox
+              label="Grade B"
+              checked={checkedB}
+              onChange={() => {
+                setCheckedB(!checkedB);
+
+                if (checkedB) {
+                  const temp = selectedGrades?.filter(
+                    (item: any) => item !== 'B'
+                  );
+                  setSelectedGrades(temp);
+                } else {
+                  setSelectedGrades([...selectedGrades, 'B']);
+                }
+              }}
+            />
+
+            <Checkbox
+              label="Grade C"
+              checked={checkedC}
+              onChange={() => {
+                setCheckedC(!checkedC);
+
+                if (checkedC) {
+                  const temp = selectedGrades?.filter(
+                    (item: any) => item !== 'C'
+                  );
+                  setSelectedGrades(temp);
+                } else {
+                  setSelectedGrades([...selectedGrades, 'C']);
+                }
+              }}
+            />
+
+            <Checkbox
+              label="Grade D"
+              checked={checkedD}
+              onChange={() => {
+                setCheckedD(!checkedD);
+
+                if (checkedD) {
+                  const temp = selectedGrades?.filter(
+                    (item: any) => item !== 'D'
+                  );
+                  setSelectedGrades(temp);
+                } else {
+                  setSelectedGrades([...selectedGrades, 'D']);
+                }
+              }}
+            />
+          </div>
+
           <Feeds
             searchTerm={searchTerm}
             sort={
               selectedSortStorage?.name ? selectedSortStorage?.name : 'Newest'
             }
+            selectedGrades={selectedGrades}
             holderAddress={''}
             className={''}
           />

@@ -142,7 +142,7 @@ export const getAllHorses = async (
 ) => {
   //console.log('getAllHorses pageNumber', pageNumber);
   //console.log('getAllHorses pagination', pagination);
-  //console.log('getAllHorses grades', grades);
+  console.log('getAllHorses grades', grades);
   //console.log('getAllHorses manes', manes);
 
   //console.log('getAllHorses sort', sort);
