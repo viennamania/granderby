@@ -209,6 +209,8 @@ export const getAllHorses = async (
 
       // search nft.title by q
 
+      // if q is not '', then search nft.title by q
+
       .find({
         $or: [
           { 'nft.title': { $regex: q, $options: 'i' } },
@@ -217,7 +219,7 @@ export const getAllHorses = async (
       })
 
       .sort(
-        sort === 'asc'
+        sort === 'Token ID: Ascending'
           ? {
               // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
 
@@ -301,8 +303,34 @@ export const getAllHorses = async (
       },
     },
   })
-    .sort({ tokenId: 1 })
-    .collation({ locale: 'en_US', numericOrdering: true })
+
+    /* if q is not '', then search nft.title by q */
+
+    .find({
+      $or: [
+        { 'nft.title': { $regex: q, $options: 'i' } },
+        //{ 'nft.description': { $regex: q, $options: 'i' } },
+      ],
+    })
+
+    .sort(
+      sort === 'Token ID: Ascending'
+        ? {
+            // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+            //tokenId: 1,
+            // covert tokenId to number and sort
+
+            tokenId: 1,
+          }
+        : {
+            // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+            tokenId: -1,
+          }
+    )
+
+    //.collation({ locale: 'en_US', numericOrdering: true })
 
     // sort number in descending order
 

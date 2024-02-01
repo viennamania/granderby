@@ -45,6 +45,10 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import { Input } from '@/components/ui/input';
 import { PiMagnifyingGlassBold } from 'react-icons/pi';
 
+import { Listbox } from '@/components/ui/listbox';
+import { ChevronDown } from '@/components/icons/chevron-down';
+import { Transition } from '@headlessui/react';
+
 export default function Search() {
   const { openDrawer } = useDrawer();
 
@@ -70,6 +74,9 @@ export default function Search() {
   if (!selectedManesStorage) {
     setSelectedManesStorage([]);
   }
+
+  const [selectedSortStorage, setSelectedSortStorage] =
+    useLocalStorage('selected-sort');
 
   const tabMenu = [
     {
@@ -169,6 +176,8 @@ export default function Search() {
   const handleSearch = (searchTerm: string) => {
     setSearchTerm(searchTerm);
   };
+
+  console.log('search-horse selectedSortStorage====', selectedSortStorage);
 
   return (
     <>
@@ -340,7 +349,9 @@ export default function Search() {
                 
               />
               */}
+            </div>
 
+            <div className="items-right flex w-full justify-end">
               <Input
                 type="search"
                 //placeholder={searchPlaceholder}
@@ -351,14 +362,12 @@ export default function Search() {
                 //clearable
 
                 prefix={<PiMagnifyingGlassBold className="h-4 w-4" />}
-                labelClassName="text-base font-medium "
+                labelClassName="text-base font-medium  "
                 //className="w-full px-4 py-2 text-sm font-bold text-gray-900 placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none focus:border-transparent"
 
-                className="w-full px-4 py-2  "
+                className=" w-52 pr-3 "
               />
-            </div>
 
-            <div className="items-right flex w-full justify-end">
               <div className="flex gap-6 3xl:gap-8 ">
                 <SortList />
 
@@ -402,14 +411,23 @@ export default function Search() {
             </div>
           </div>
 
-          <Feeds searchTerm={searchTerm} holderAddress={''} className={''} />
+          <Feeds
+            searchTerm={searchTerm}
+            sort={
+              selectedSortStorage?.name ? selectedSortStorage?.name : 'Newest'
+            }
+            holderAddress={''}
+            className={''}
+          />
         </div>
 
+        {/*
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
           <Button onClick={() => openDrawer('DRAWER_SEARCH', '')} fullWidth>
             Filters
           </Button>
         </div>
+        */}
       </div>
     </>
   );

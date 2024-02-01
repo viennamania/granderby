@@ -105,10 +105,12 @@ export default function Feeds(
 
 export default function Feeds({
   searchTerm,
+  sort,
   holderAddress,
   className,
 }: {
   searchTerm?: string;
+  sort?: string;
   holderAddress?: string;
   className?: string;
 }) {
@@ -177,6 +179,7 @@ export default function Feeds({
           '&pageSize=20' +
           '&q=' +
           searchTerm,
+
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -186,7 +189,9 @@ export default function Feeds({
             manes: selectedManesStorage ?? [],
             holder: holderAddress,
 
-            sort: selectedGSortStorage,
+            ///sort: selectedGSortStorage,
+
+            sort: sort,
           }),
         }
       ).then((result) => {
@@ -217,7 +222,7 @@ export default function Feeds({
     );
     */
     refetch();
-  }, [searchTerm, selectedGradesStorage, selectedManesStorage, refetch]);
+  }, [searchTerm, sort, selectedGradesStorage, selectedManesStorage, refetch]);
 
   return (
     <>
