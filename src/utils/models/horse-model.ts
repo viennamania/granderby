@@ -137,7 +137,8 @@ export const getAllHorses = async (
   grades: string,
   manes: string,
   holder: string,
-  sort: string
+  sort: string,
+  q: string = ''
 ) => {
   //console.log('getAllHorses pageNumber', pageNumber);
   //console.log('getAllHorses pagination', pagination);
@@ -153,7 +154,32 @@ export const getAllHorses = async (
       holder: holder.toLowerCase(),
     })
 
-      .sort({ tokenId: 1 })
+      // search nft.title by q
+
+      .find({
+        $or: [
+          { 'nft.title': { $regex: q, $options: 'i' } },
+          //{ 'nft.description': { $regex: q, $options: 'i' } },
+        ],
+      })
+
+      // tokenId is string, so conver tokenId to number and sort
+
+      .sort(
+        sort === 'asc'
+          ? {
+              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+              tokenId: 1,
+            }
+          : {
+              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+              tokenId: -1,
+            }
+      )
+
+      //.sort({ tokenId: 1 })
 
       .skip((pageNumber - 1) * pagination)
       //limit is number of Records we want to display
@@ -179,7 +205,30 @@ export const getAllHorses = async (
   if (grades.length === 0) {
     const data = await HorseModel.find({})
 
-      .sort({ tokenId: 1 })
+      ///.sort({ tokenId: 1 })
+
+      // search nft.title by q
+
+      .find({
+        $or: [
+          { 'nft.title': { $regex: q, $options: 'i' } },
+          //{ 'nft.description': { $regex: q, $options: 'i' } },
+        ],
+      })
+
+      .sort(
+        sort === 'asc'
+          ? {
+              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+              tokenId: 1,
+            }
+          : {
+              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+              tokenId: -1,
+            }
+      )
 
       .skip((pageNumber - 1) * pagination)
       //limit is number of Records we want to display

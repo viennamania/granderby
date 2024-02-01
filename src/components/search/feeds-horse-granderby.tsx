@@ -94,10 +94,26 @@ function ScrollToTopButton() {
 }
 */
 
+/*
 export default function Feeds(
+  { searchTerm }: { searchTerm?: string },
   { holderAddress }: { holderAddress?: string },
   { className }: { className?: string }
+
 ) {
+*/
+
+export default function Feeds({
+  searchTerm,
+  holderAddress,
+  className,
+}: {
+  searchTerm?: string;
+  holderAddress?: string;
+  className?: string;
+}) {
+  console.log('feeds-horse-granderby searchTerm======>', searchTerm);
+
   const address = useAddress();
 
   const { isGridCompact } = useGridSwitcher();
@@ -156,7 +172,11 @@ export default function Feeds(
       //pageParam = '',
     }) =>
       await fetch(
-        '/api/nft/getHorses?pageNumber=' + pageParam + '&pageSize=20',
+        '/api/nft/getHorses?pageNumber=' +
+          pageParam +
+          '&pageSize=20' +
+          '&q=' +
+          searchTerm,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -187,7 +207,7 @@ export default function Feeds(
     }
   );
 
-  console.log('feeds-horse-granderby searchData======>', searchData);
+  /////console.log('feeds-horse-granderby searchData======>', searchData);
 
   useEffect(() => {
     /*
@@ -197,7 +217,7 @@ export default function Feeds(
     );
     */
     refetch();
-  }, [selectedGradesStorage, selectedManesStorage, refetch]);
+  }, [searchTerm, selectedGradesStorage, selectedManesStorage, refetch]);
 
   return (
     <>

@@ -12,7 +12,7 @@ export default async function handler(
   //res: NextApiResponse<Data>
   res: NextApiResponse
 ) {
-  const { pageNumber, pageSize } = req.query;
+  const { pageNumber, pageSize, q } = req.query;
 
   const { grades, manes, holder, sort } = req.body;
 
@@ -20,6 +20,7 @@ export default async function handler(
   console.log('getHorses pageSize', pageSize);
   console.log('getHorses grades', grades);
   console.log('getHorses sort', sort);
+  console.log('getHorses q', q);
 
   //console.log('getHorses grades', grades);
   //console.log('getHorses manes', manes);
@@ -33,7 +34,8 @@ export default async function handler(
     grades,
     manes,
     holder,
-    sort
+    sort,
+    q
   );
 
   ///console.log('getHorses data====', data);

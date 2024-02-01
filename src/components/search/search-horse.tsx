@@ -42,6 +42,9 @@ import { useRouter } from 'next/router';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
+import { Input } from '@/components/ui/input';
+import { PiMagnifyingGlassBold } from 'react-icons/pi';
+
 export default function Search() {
   const { openDrawer } = useDrawer();
 
@@ -159,6 +162,13 @@ export default function Search() {
 
     getHorsesCount();
   }, [selectedGradesStorage, selectedManesStorage]);
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // handleSearch
+  const handleSearch = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+  };
 
   return (
     <>
@@ -315,6 +325,39 @@ export default function Search() {
               </div>
             </div>
 
+            {/* search input */}
+
+            <div className="flex items-center justify-center gap-2">
+              {/*
+              <input
+                className="w-full px-4 py-2 text-sm font-bold text-gray-900 placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none focus:border-transparent"
+                type="text"
+                
+                placeholder="Search by name"
+
+                onChange={(e) => setSearchTerm(e.target.value)}
+
+                
+              />
+              */}
+
+              <Input
+                type="search"
+                //placeholder={searchPlaceholder}
+                placeholder="Search by name"
+                value={searchTerm}
+                onClear={() => handleSearch('')}
+                onChange={(event) => handleSearch(event.target.value)}
+                //clearable
+
+                prefix={<PiMagnifyingGlassBold className="h-4 w-4" />}
+                labelClassName="text-base font-medium "
+                //className="w-full px-4 py-2 text-sm font-bold text-gray-900 placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none focus:border-transparent"
+
+                className="w-full px-4 py-2  "
+              />
+            </div>
+
             <div className="items-right flex w-full justify-end">
               <div className="flex gap-6 3xl:gap-8 ">
                 <SortList />
@@ -359,7 +402,7 @@ export default function Search() {
             </div>
           </div>
 
-          <Feeds />
+          <Feeds searchTerm={searchTerm} holderAddress={''} className={''} />
         </div>
 
         <div className="fixed bottom-6 left-1/2 z-10 w-full -translate-x-1/2 px-9 sm:hidden">
