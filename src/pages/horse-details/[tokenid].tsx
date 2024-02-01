@@ -70,6 +70,7 @@ import cn from 'classnames';
 import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
 
 import { format } from 'date-fns';
+import { add } from 'lodash';
 
 function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -170,6 +171,50 @@ function SinglePrice(tokenid: any) {
   }, [nftMetadata?.metadata?.attributes]);
 
   ///console.log('attributes======>', attributes);
+
+  const { contract: nftDropContract } = useContract(
+    nftDropContractAddressHorse,
+    'nft-drop'
+  );
+
+  const [toAddress, setToAddress] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  async function transferNft(id: string, toAddress: string) {
+    if (id === undefined) {
+      alert(`🌊 Please enter a valid tokenId`);
+      return;
+    }
+
+    if (toAddress === '') {
+      alert(`🌊 Please enter a valid address`);
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      const transaction = await nftDropContract?.erc721.transfer(toAddress, id);
+
+      console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+
+      //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+
+      alert(`🌊 Successfully transfered!`);
+
+      setIsSending(false);
+
+      setToAddress('');
+
+      return transaction;
+    } catch (error) {
+      console.error(error);
+
+      alert(`🌊 Failed to send transaction with hash: ${error}`);
+
+      setIsSending(false);
+    }
+  }
 
   const { contract: marketplace } = useContract(
     marketplaceContractAddress,
@@ -566,6 +611,56 @@ function SinglePrice(tokenid: any) {
                         </>
                       )}
                     </div>
+
+                    {address && address === nftMetadata?.owner && (
+                      <div className="mt-5 flex flex-row items-center justify-center gap-2">
+                        <input
+                          className=" w-full text-black"
+                          type="text"
+                          name="toAddress"
+                          placeholder="To Address"
+                          value={toAddress}
+                          onChange={(e) => {
+                            setToAddress(e.target.value);
+                          }}
+                        />
+                        <Web3Button
+                          theme="light"
+                          contractAddress={nftDropContractAddressHorse}
+                          action={() => {
+                            //contract?.call('withdraw', [[nft.metadata.id]])
+                            //contract?.call('withdraw', [[nft.metadata.id]])
+                            //contract.erc1155.claim(0, 1);
+
+                            ///contract.erc20.transfer(toAddress, amount);
+
+                            transferNft(
+                              nftMetadata?.metadata?.id as string,
+
+                              toAddress
+                            );
+                          }}
+                          onSuccess={() => {
+                            //setAmount(0);
+                            //setToAddress('');
+
+                            console.log(`🌊 Successfully transfered!`);
+                            //alert('Successfully transfered!');
+
+                            //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                            //handleClickSucc();
+                          }}
+                          onError={(error) => {
+                            console.error('Failed to transfer', error);
+                            alert('Failed to transfer');
+                            //setErrMsgSnackbar('Failed to transfer');
+                            //handleClickErr();
+                          }}
+                        >
+                          Send
+                        </Web3Button>
+                      </div>
+                    )}
                   </div>
 
                   {/*

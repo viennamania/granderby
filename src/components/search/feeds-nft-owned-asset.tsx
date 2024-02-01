@@ -450,9 +450,7 @@ export default function OwnedFeeds(
                           className=" overflow-hidden rounded-lg bg-white shadow-lg"
                           onClick={() => {
                             closeInventories();
-                            router.push(
-                              '/my-horse-details/' + nft?.metadata?.id
-                            );
+                            router.push('/horse-details/' + nft?.metadata?.id);
                           }}
                         >
                           <Image

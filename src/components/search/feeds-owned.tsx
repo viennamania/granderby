@@ -196,7 +196,7 @@ export default function OwnedFeeds(
                   //setTokenid(nft.metadata.id.toString()),
                   //setIsOpen(true)
 
-                  router.push('/my-horse-details/' + nft?.tokenId)
+                  router.push('/horse-details/' + nft?.tokenId)
                 }
                 onMouseOver={() => {
                   //alert("onMouseOver");
