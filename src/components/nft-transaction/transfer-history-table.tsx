@@ -9,6 +9,7 @@ import {
   useSortBy,
   usePagination,
 } from 'react-table';
+
 import Button from '@/components/ui/button';
 import Scrollbar from '@/components/ui/scrollbar';
 import { ChevronDown } from '@/components/icons/chevron-down';
@@ -282,6 +283,23 @@ const COLUMNS = [
   },
 
   {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Event</div>,
+    accessor: 'log4Address',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="font-bold text-green-600 ltr:text-right rtl:text-left">
+        {
+          //value
+          'Transfer'
+        }
+      </div>
+    ),
+    minWidth: 150,
+    maxWidth: 150,
+  },
+
+  /*
+  {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">TokenID</div>,
     accessor: 'tokenId',
     // @ts-ignore
@@ -293,19 +311,7 @@ const COLUMNS = [
     minWidth: 80,
     maxWidth: 80,
   },
-
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
-    accessor: 'createdAt',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="ltr:text-right rtl:text-left">
-        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
-      </div>
-    ),
-    minWidth: 150,
-    maxWidth: 150,
-  },
+  */
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">From</div>,
@@ -316,13 +322,13 @@ const COLUMNS = [
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         {value == '0x0000000000000000000000000000000000000000'
           ? 'Drops'
-          : value?.length > 10
-          ? value?.substring(0, 10) + '...'
-          : value}
+          : //: value?.length > 10
+            //? value?.substring(0, 10) + '...'
+            value}
       </div>
     ),
-    minWidth: 90,
-    maxWidth: 150,
+    minWidth: 370,
+    maxWidth: 370,
   },
 
   {
@@ -334,26 +340,26 @@ const COLUMNS = [
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         {value == '0x0000000000000000000000000000000000000000'
           ? 'Drops'
-          : value?.length > 10
-          ? value?.substring(0, 10) + '...'
-          : value}
+          : //: value?.length > 10
+            //? value?.substring(0, 10) + '...'
+            value}
       </div>
     ),
-    minWidth: 90,
-    maxWidth: 150,
+    minWidth: 370,
+    maxWidth: 370,
   },
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Action</div>,
-    accessor: 'log4Address',
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
+    accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="font-bold text-green-600 ltr:text-right rtl:text-left">
-        {value}
+      <div className="ltr:text-right rtl:text-left">
+        {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 70,
-    maxWidth: 100,
+    minWidth: 200,
+    maxWidth: 200,
   },
 ];
 
@@ -588,10 +594,10 @@ export default function TransferHistoryTable(
 
       <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
         <Scrollbar style={{ width: '100%' }} autoHide="never">
-          <div className="flex  w-full flex-row px-0.5 ">
+          <div className="flex  flex-row px-0.5 ">
             <table
               //{...getTableProps()}
-              className="transaction-table border-separate border-0"
+              className="transaction-table border-separate border-0  "
             >
               <thead className="  text-sm text-gray-500 dark:text-gray-300">
                 {headerGroups.map((headerGroup, idx) => (
@@ -639,6 +645,7 @@ export default function TransferHistoryTable(
               >
                 {page.map((row, idx) => {
                   prepareRow(row);
+
                   return (
                     <tr
                       {...row.getRowProps()}

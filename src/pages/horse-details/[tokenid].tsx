@@ -334,7 +334,7 @@ function SinglePrice(tokenid: any) {
                           attributes?.map((attribute: any) => (
                             <div key={attribute?.trait_type}>
                               <div
-                                className=" flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
+                                className="   flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
                                       lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
                               >
                                 <span className={cn('flex ', 'flex-row')}>
@@ -357,16 +357,6 @@ function SinglePrice(tokenid: any) {
                       </div>
                     </Collapse>
                   </div>
-
-                  {/*
-                  <NftSinglePrice
-                    //tokenid={tokenid.tokenid}
-                    nftMetadata={nftMetadata}
-                    contractAddress={nftDropContractAddressHorse}
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                  />
-                  */}
                 </div>
               </div>
 
@@ -455,7 +445,14 @@ function SinglePrice(tokenid: any) {
                                     }
                                   >
                                     <span>
+                                      {/*
                                       {nftMetadata?.owner?.substring(0, 10)}...
+                                      */}
+                                      {
+                                        // capitalize all
+
+                                        nftMetadata?.owner.toUpperCase()
+                                      }
                                     </span>
                                     {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
