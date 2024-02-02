@@ -42,6 +42,9 @@ import { Check } from '@/components/icons/check';
 
 import { useQRCode } from 'next-qrcode';
 
+import Button from '@/components/ui/button/button';
+import { InfoIcon } from '@/components/icons/info-icon';
+
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
@@ -91,7 +94,40 @@ const PortfolioPage: NextPageWithLayout<
         {!address ? (
           <></>
         ) : (
-          <div className="mt-5 flex flex-col items-start justify-center">
+          <div className=" flex flex-col items-start justify-center">
+            <div className="mb-5 flex w-full flex-row items-center justify-end gap-5">
+              <Button
+                className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+                onClick={() => {
+                  /*
+                openModal('SALE_VIEW', {
+                  title: 'Followers',
+                  count: '1,845',
+                  users: data,
+                })
+                */
+
+                  alert('Coming Soon');
+                }}
+              >
+                <span className="flex items-center gap-2">
+                  <InfoIcon className="h-3 w-3" /> Charge
+                </span>
+              </Button>
+
+              <Button
+                className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+                onClick={() => {
+                  //router.push('/coin/grd');
+                  alert('Coming Soon');
+                }}
+              >
+                <span className="flex items-center gap-2">
+                  <InfoIcon className="h-3 w-3" /> Withraw
+                </span>
+              </Button>
+            </div>
+
             {/*
             <div className="mb-5 mt-5 flex flex-row items-center justify-center gap-3">
               <span className=" text-sm">{address}</span>

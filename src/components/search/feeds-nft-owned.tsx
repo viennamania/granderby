@@ -255,6 +255,60 @@ export default function OwnedFeedsNft(
                       className="absolute left-0 top-0"
                     />
                   )}
+
+                  {/* overlay */}
+                  <div className="absolute bottom-0 right-0 w-full ">
+                    <div className="m-2 flex flex-col items-center justify-center gap-2">
+                      <div className="bg-black bg-opacity-50 p-2 text-sm font-extrabold text-white">
+                        {nft?.title}
+                      </div>
+
+                      <div className=" flex w-full flex-col items-center justify-center gap-3 rounded-lg bg-white bg-opacity-80 pb-3  pt-3 ">
+                        <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  font-bold xl:text-sm">
+                          <span>Last Price:</span>
+                          <span>
+                            {nft?.paidToken ===
+                              '0x0000000000000000000000000000000000001010' &&
+                              //(nft?.totalPricePaid / 1000000000000000000).toFixed(2)
+                              (
+                                (nft?.totalPricePaid / 1000000000000000000) *
+                                0.66
+                              ).toFixed(2)}
+
+                            {nft?.paidToken ===
+                              '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' &&
+                              (
+                                nft?.totalPricePaid / 1000000000000000000
+                              ).toFixed(2)}
+                            {nft?.paidToken ===
+                              '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' &&
+                              (nft?.totalPricePaid / 1000000).toFixed(2)}
+                          </span>
+
+                          <span>USDT</span>
+
+                          {/*
+                              <span>
+                                
+                                {nft?.paidToken ===
+                                  '0x0000000000000000000000000000000000001010' && (
+                                  <span>MATIC</span>
+                                )}
+                                {nft?.paidToken ===
+                                  '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
+                                  <span>GRD</span>
+                                )}
+
+                                {nft?.paidToken ===
+                                  '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
+                                  <span>USDC</span>
+                                )}
+                              </span>
+                                  */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 {/*
@@ -273,18 +327,10 @@ export default function OwnedFeedsNft(
                   </div>
                 */}
 
+                {/*
                 <div className=" h-18 mb-2  mt-4 flex w-full  flex-col items-center  justify-center  gap-1 xl:h-24   ">
                   <div className="text-sm font-bold ">{nft?.title}</div>
 
-                  <div className="ml-5 flex w-full flex-row items-center justify-start gap-1">
-                    <Image
-                      src="/images/logo-polygon.png"
-                      alt="logo"
-                      width={12}
-                      height={12}
-                    />
-                    <div className="text-left text-sm">#{nft?.tokenId}</div>
-                  </div>
 
                   <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
                     <span>Last Price:</span>
@@ -305,54 +351,29 @@ export default function OwnedFeedsNft(
                         (nft?.totalPricePaid / 1000000).toFixed(2)}
                     </span>
 
-                    <span>USD</span>
+                    <span>USDT</span>
 
-                    {/*
-                        <span>
-                          
-                          {nft?.paidToken ===
-                            '0x0000000000000000000000000000000000001010' && (
-                            <span>MATIC</span>
-                          )}
-                          {nft?.paidToken ===
-                            '0xe426D2410f20B0434FE2ce56299a1543d3fDe450' && (
-                            <span>GRD</span>
-                          )}
-
-                          {nft?.paidToken ===
-                            '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' && (
-                            <span>USDC</span>
-                          )}
-                        </span>
-                            */}
                   </div>
 
-                  {nft?.register ? (
-                    <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                      Registered
-                    </div>
-                  ) : (
-                    <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-sm">
-                      Not Registered
-                    </div>
-                  )}
                 </div>
+                */}
 
                 {/*
-              <div className="m-2 flex items-center justify-center ">
-                Owner:{' '}
-                <div className="text-sm  ">
-                  {nft?.holder?.substring(0, 10)}...
+                <div className="m-2 flex items-center justify-center ">
+                  Owner:{' '}
+                  <div className="text-sm  ">
+                    {nft?.holder?.substring(0, 10)}...
+                  </div>
                 </div>
-              </div>
-              */}
+                */}
               </button>
+
               {/*
-            <button
-              className="text-white text-md font-bold bg-sky-500  p-3
-                opacity-0 hover:opacity-100"
-            >
-            */}
+                <button
+                  className="text-white text-md font-bold bg-sky-500  p-3
+                    opacity-0 hover:opacity-100"
+                >
+                */}
               {/*
               <button
                 className="bg-sky-600 p-2 text-sm font-bold  text-white

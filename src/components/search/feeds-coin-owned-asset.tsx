@@ -410,10 +410,11 @@ export default function FeedsCoinOwned(
           <div className="ml-10 flex flex-row items-center justify-start">
             <div className=" flex  w-10 ">
               <Image
-                src="/images/icon-sugar.png"
+                //src="/images/icon-sugar.png"
+                src="/images/icon-grd.png"
                 alt="sugar"
-                width={30}
-                height={30}
+                width={50}
+                height={50}
               />
             </div>
 
@@ -433,7 +434,10 @@ export default function FeedsCoinOwned(
               ///onClick={(e) => router.push('/coin/usdc')}
               onClick={() => {
                 closeInventories();
-                router.push('/coin/sugar');
+                ///router.push('/coin/sugar');
+
+                router.push('/coin/grd');
+
                 ///router.push('/horse-details/' + nft?.metadata?.id);
               }}
             >

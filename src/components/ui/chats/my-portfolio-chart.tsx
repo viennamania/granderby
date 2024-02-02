@@ -182,7 +182,10 @@ export default function PortfolioChart({ chartWrapperClass }: Props) {
           name: name,
           GRD: item.totalGRD,
           CARROT: item.totalCARROT,
+
           SUGAR: item.totalSUGAR,
+          GRT: item.totalSUGAR,
+
           HORSE: item.totalHORSE,
         });
       });
@@ -285,7 +288,7 @@ export default function PortfolioChart({ chartWrapperClass }: Props) {
             <Line type="monotone" dataKey="CARROT" stroke="#ff0000" />
             */}
 
-            <Line type="monotone" dataKey="SUGAR" stroke="#8884d8" />
+            <Line type="monotone" dataKey="GRT" stroke="#8884d8" />
             {/*
             <Line type="monotone" dataKey="HORSE" stroke=" #82ca9d  " />
             */}
