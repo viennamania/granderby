@@ -205,7 +205,7 @@ export default function Search() {
                 : !searchDataHorse
                 ? 'Loading...'
                 : searchDataHorse?.nfts.length
-            } / 3645 `}
+            } `}
             initialOpen={true}
           >
             <div className=" itmes-start  flex flex-col justify-center p-3 pb-10">
@@ -226,7 +226,7 @@ export default function Search() {
                 : !searchDataJockey
                 ? 'Loading...'
                 : searchDataJockey?.nfts.length
-            } / 0 `}
+            } `}
             initialOpen={true}
           >
             <div className="itmes-start flex flex-col justify-center p-3 pb-10">

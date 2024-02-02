@@ -104,8 +104,6 @@ const RentPage: NextPageWithLayout<
         )}
 
         <div className=" mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-          <div className="text-2xl xl:text-4xl">My NFT</div>
-
           {/*
           {!address ? (
             <></>

@@ -34,12 +34,12 @@ export default function Collapse({
     >
       <button
         //className="flex h-13 w-full items-center justify-between px-5 py-2 text-sm font-medium uppercase tracking-wider text-gray-900 dark:text-white"
-        className=" flex  h-16 w-full items-center justify-between px-5 py-2 text-sm font-medium uppercase tracking-wider text-gray-900 dark:text-white xl:h-20"
+        className=" flex  h-16 w-full items-center justify-between px-5 py-2 text-sm font-medium  tracking-wider text-gray-900 dark:text-white xl:h-20"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="flex w-full flex-row items-center justify-start gap-5 ">
           <span className=" text-left text-xl xl:text-2xl">{label}</span>
-          <span className=" mr-5 w-full text-right text-2xl font-bold underline  decoration-sky-500 xl:text-4xl  ">
+          <span className=" mr-5 w-full text-right text-2xl font-bold xl:text-4xl  ">
             {description}
           </span>
         </div>
