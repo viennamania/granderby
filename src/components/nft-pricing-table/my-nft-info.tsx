@@ -459,11 +459,11 @@ export default function NftInfo({ nftMetadata }: any) {
           >
             <TabPanel className="focus:outline-none">
               <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
-                <div className="flex w-full flex-row items-center justify-center gap-5">
+                <div className="flex w-full flex-row items-center justify-center gap-20">
                   <span className="text-xl font-bold">ALLOWANCE</span>
                   <div className=" flex  w-52 flex-row items-center justify-between gap-2  rounded-lg bg-slate-100 p-3 pl-5 pr-5">
                     <Image
-                      src="/images/shop/icon-sugar.png"
+                      src="/images/icon-gdp.png"
                       alt="sugar"
                       width={30}
                       height={30}
@@ -477,6 +477,7 @@ export default function NftInfo({ nftMetadata }: any) {
                   </div>
                 </div>
 
+                {/*
                 <div className="flex w-full flex-row items-center justify-center gap-5">
                   <span className="text-xl font-bold">WIN POINTS</span>
                   <div className=" flex  w-52 flex-row items-center justify-between gap-2  rounded-lg bg-slate-100 p-3 pl-5 pr-5">
@@ -494,17 +495,18 @@ export default function NftInfo({ nftMetadata }: any) {
                     </div>
                   </div>
                 </div>
+                */}
               </div>
             </TabPanel>
 
             <TabPanel className="focus:outline-none">
               <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
-                <div className="flex  flex-wrap items-center justify-center gap-5">
-                  <span className="text-xl font-extrabold xl:text-2xl">
+                <div className="flex w-full  flex-row items-center justify-start gap-5">
+                  <span className=" w-28 text-xl font-extrabold xl:text-2xl">
                     Running Ability
                   </span>
 
-                  <div className=" grid grid-cols-4 items-center justify-between gap-5 p-3">
+                  <div className=" grid grid-cols-3 items-center justify-between gap-5 p-3">
                     <div className="flex flex-col items-end justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         80
@@ -525,13 +527,11 @@ export default function NftInfo({ nftMetadata }: any) {
                       </span>
                       <span className="  text-lg">AGILITY</span>
                     </div>
-
-                    <div></div>
                   </div>
                 </div>
 
-                <div className="flex  flex-wrap items-center justify-center gap-5">
-                  <span className="text-xl font-extrabold xl:text-2xl">
+                <div className="flex w-full  flex-row items-center justify-start gap-5">
+                  <span className=" w-28 text-xl font-extrabold xl:text-2xl">
                     Physical Ability
                   </span>
 
@@ -565,11 +565,152 @@ export default function NftInfo({ nftMetadata }: any) {
                     </div>
                   </div>
                 </div>
+
+                <div className="flex w-full  flex-col items-center justify-start gap-5">
+                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className=" w-28 text-left text-xl font-extrabold xl:text-2xl">
+                        Age
+                      </span>
+                      <span className="w-full text-right  text-lg">3y</span>
+                    </div>
+                    <div className="flex flex-row items-center justify-start gap-2">
+                      <span className=" w-28 text-xl font-extrabold xl:text-2xl">
+                        Condition
+                      </span>
+                      <span className=" w-full text-right text-lg">100</span>
+                    </div>
+                  </div>
+
+                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className="w-28 text-left text-xl font-extrabold xl:text-2xl">
+                        Weight
+                      </span>
+                      <span className=" w-full text-right text-lg">500kg</span>
+                    </div>
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className="w-28  text-xl font-extrabold xl:text-2xl">
+                        Training
+                      </span>
+                      <span className="w-full text-right  text-lg">300</span>
+                    </div>
+                  </div>
+
+                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className="w-28 text-left text-xl font-extrabold xl:text-2xl">
+                        Impost
+                      </span>
+                      <span className=" w-full text-right text-lg">+0.5</span>
+                    </div>
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className="w-28  text-xl font-extrabold xl:text-2xl">
+                        Running Style
+                      </span>
+                      <span className="w-full text-right  text-lg">
+                        Front Runner
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </TabPanel>
 
             <TabPanel className="focus:outline-none">
-              <div className="flex flex-col-reverse">
+              <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
+                <div className="grid w-full grid-cols-7 gap-2">
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-xl font-extrabold">40</span>
+                    <span className="text-lg">Total</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-xl font-extrabold">9</span>
+                    <span className="text-lg">1st</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-xl font-extrabold">11</span>
+                    <span className="text-lg">2nd</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-xl font-extrabold">20</span>
+                    <span className="text-lg">3rd</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-xl font-extrabold">28.3%</span>
+                    <span className="text-lg">Win</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-xl font-extrabold">34.6%</span>
+                    <span className="text-lg">Place</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-xl font-extrabold">76.5%</span>
+                    <span className="text-lg">Quinella</span>
+                  </div>
+                </div>
+
+                <div className="mt-10 flex w-full flex-row items-center justify-center gap-10">
+                  <span className="text-2xl font-extrabold">Last 5 Runs</span>
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <Image
+                      src="/images/game/icon_lastrun_1.png"
+                      alt="live"
+                      width={35}
+                      height={35}
+                    />
+                    <Image
+                      src="/images/game/icon_lastrun_2.png"
+                      alt="live"
+                      width={35}
+                      height={35}
+                    />
+                    <Image
+                      src="/images/game/icon_lastrun_3.png"
+                      alt="live"
+                      width={35}
+                      height={35}
+                    />
+                    <Image
+                      src="/images/game/icon_lastrun_4.png"
+                      alt="live"
+                      width={35}
+                      height={35}
+                    />
+                    <Image
+                      src="/images/game/icon_lastrun_4.png"
+                      alt="live"
+                      width={35}
+                      height={35}
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-10 flex flex-row items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    className="
+                      w-28
+                      rounded-full
+                      bg-slate-200
+                      p-3
+                      pl-5
+                      pr-5
+                      text-sm
+                      font-bold
+                      xl:text-xl
+                    "
+                    //onClick={() =>
+                    //  router.push(
+                    //</div>    `https://granderby.market/horse-details/${nftMetadata?.id}`
+                    //  )
+                    //}
+                  >
+                    History
+                  </button>
+                </div>
+
+                {/*
                 {nftData?.history?.map((item) => (
                   <FeaturedCard
                     item={item}
@@ -577,18 +718,41 @@ export default function NftInfo({ nftMetadata }: any) {
                     className="mb-3 first:mb-0"
                   />
                 ))}
+                */}
               </div>
             </TabPanel>
 
             <TabPanel className="focus:outline-none">
-              <div className="flex flex-col-reverse">
-                {nftData?.history?.map((item) => (
-                  <FeaturedCard
-                    item={item}
-                    key={item?.id}
-                    className="mb-3 first:mb-0"
-                  />
-                ))}
+              <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
+                <div className="flex w-full  flex-col items-center justify-start gap-5">
+                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className=" w-28 text-left text-xl font-extrabold xl:text-2xl">
+                        Birthday
+                      </span>
+                      <span className="w-full text-right  text-lg">
+                        2022.11.8
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center justify-start gap-2">
+                      <span className=" w-28 text-xl font-extrabold xl:text-2xl">
+                        Recent Price
+                      </span>
+                      <span className=" w-full text-right text-lg">
+                        3,662 USDC
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className="w-28 text-left text-xl font-extrabold xl:text-2xl">
+                        TokenID
+                      </span>
+                      <span className=" w-full text-right text-lg">#533</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </TabPanel>
           </ParamTab>
