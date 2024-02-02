@@ -842,7 +842,7 @@ export default function PortfolioScreen() {
                     </div>
 
                     <span className="text-lg font-bold text-green-600 xl:text-xl">
-                      {horsesTotalPricePaid} USD
+                      {horsesTotalPricePaid} USDC
                     </span>
                   </button>
 
@@ -874,7 +874,7 @@ export default function PortfolioScreen() {
                       />
                     </div>
                     <span className="text-lg font-bold text-gray-600 xl:text-xl">
-                      0 USD
+                      0 USDC
                     </span>
                   </button>
 
@@ -902,7 +902,7 @@ export default function PortfolioScreen() {
                       />
                     </div>
                     <span className="text-lg font-bold text-gray-600 xl:text-xl">
-                      0 USD
+                      0 USDC
                     </span>
                   </button>
                 </div>
