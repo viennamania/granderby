@@ -337,6 +337,7 @@ export default function FeedsCoinOwned(
           </div>
           */}
 
+          {/*
           <div className="ml-10 flex flex-row items-center justify-start">
             <div className=" flex  w-10 ">
               <Image
@@ -404,6 +405,7 @@ export default function FeedsCoinOwned(
               <ChevronForward className="mr-10 rtl:rotate-180" />
             </button>
           </div>
+          */}
 
           <div className="ml-10 flex flex-row items-center justify-start">
             <div className=" flex  w-10 ">
@@ -439,6 +441,7 @@ export default function FeedsCoinOwned(
             </button>
           </div>
 
+          {/*
           <div className="mt-2 flex flex-row gap-5">
             <Button
               className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
@@ -467,6 +470,7 @@ export default function FeedsCoinOwned(
               </span>
             </Button>
           </div>
+          */}
 
           {/*
           <button

@@ -107,8 +107,10 @@
 .gold-btn:hover {
   background-color: #ffc000;
   color: #ffffff;
+  /*
   box-shadow: 0px 0px 5px #ffc000, 0px 0px 25px #ffc000, 0px 0px 50px #ffc000,
-    0px 0px 100px #ffc000;
+  0px 0px 100px #ffc000;
+  */
 }
 
 .gold-btn:disabled {

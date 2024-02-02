@@ -598,21 +598,23 @@ export default function PortfolioScreen() {
             <div className="  flex flex-row items-center justify-between gap-2">
               <div className="flex items-center justify-center gap-2">
                 <CommitIcon className="h-5 w-5" />
-                <span className=" text-2xl font-bold">
-                  Transfer Performance
-                </span>
+                <span className=" text-2xl font-bold">Asset Report</span>
               </div>
             </div>
 
             <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
-              <div className=" md:w-2/3 xl:w-2/3">
+              <div className=" w-full">
                 <PortfolioChart />
               </div>
 
+              {/*
+              <div className=" md:w-2/3 xl:w-2/3">
+                <PortfolioChart />
+              </div>
               <div className=" rounded-lg p-2 shadow-card  md:w-1/3 xl:w-1/3">
                 <div className="flex flex-row items-center justify-between gap-2">
                   <span className="text-xl font-bold">Transfers</span>
-                  {/* reload button */}
+                  
                   <div className="flex items-center justify-center gap-2">
                     <Button
                       onClick={() => {
@@ -714,10 +716,12 @@ export default function PortfolioScreen() {
                   </Scrollbar>
                 </div>
               </div>
+              */}
             </div>
           </div>
         </div>
 
+        {/*
         <div className="mt-10 flex w-full flex-row items-center justify-center rounded-lg border p-5">
           <div className=" flex w-full flex-col items-center justify-center gap-2 ">
             <div className="flex w-full items-center justify-start gap-2">
@@ -730,7 +734,9 @@ export default function PortfolioScreen() {
             </div>
           </div>
         </div>
+        */}
 
+        {/*
         <div className="mt-10 flex w-full flex-row items-center justify-center rounded-lg border p-5">
           <div className=" flex w-full flex-col items-center justify-center gap-2 ">
             <div className="flex w-full items-center justify-start gap-2">
@@ -743,6 +749,7 @@ export default function PortfolioScreen() {
             </div>
           </div>
         </div>
+        */}
 
         <div className="mt-10 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-2 ">
           <div className=" flex flex-col rounded-lg border p-5">
@@ -807,7 +814,8 @@ export default function PortfolioScreen() {
                   */}
 
                   <button
-                    className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    //className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
+                    className={` gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
                       router.push('/my-asset');
