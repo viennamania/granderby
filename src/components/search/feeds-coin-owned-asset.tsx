@@ -411,10 +411,10 @@ export default function FeedsCoinOwned(
             <div className=" flex  w-10 ">
               <Image
                 //src="/images/icon-sugar.png"
-                src="/images/icon-grd.png"
-                alt="sugar"
-                width={50}
-                height={50}
+                src="/images/icon-gdp.png"
+                alt="gdp"
+                width={30}
+                height={30}
               />
             </div>
 

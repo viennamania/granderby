@@ -110,8 +110,8 @@ const PortfolioPage: NextPageWithLayout<
                   alert('Coming Soon');
                 }}
               >
-                <span className="flex items-center gap-2">
-                  <InfoIcon className="h-3 w-3" /> Charge
+                <span className="flex items-center gap-2 font-extrabold ">
+                  <InfoIcon className="h-5 w-5" /> Charge
                 </span>
               </Button>
 
@@ -122,8 +122,8 @@ const PortfolioPage: NextPageWithLayout<
                   alert('Coming Soon');
                 }}
               >
-                <span className="flex items-center gap-2">
-                  <InfoIcon className="h-3 w-3" /> Withraw
+                <span className="flex items-center gap-2 font-extrabold">
+                  <InfoIcon className="h-5 w-5" /> Withraw
                 </span>
               </Button>
             </div>

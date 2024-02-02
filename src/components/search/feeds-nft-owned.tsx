@@ -259,12 +259,27 @@ export default function OwnedFeedsNft(
                   {/* overlay */}
                   <div className="absolute bottom-0 right-0 w-full ">
                     <div className="m-2 flex flex-col items-center justify-center gap-2">
-                      <div className="bg-black bg-opacity-50 p-2 text-sm font-extrabold text-white">
-                        {nft?.title}
-                      </div>
+                      <div className="flex w-full flex-col items-start justify-center gap-3 rounded-lg bg-white bg-opacity-90 p-3 pb-3  pt-3 ">
+                        <div className="rounded-md  bg-black p-1 text-xs font-extrabold text-white">
+                          {nft?.title}
+                        </div>
 
-                      <div className=" flex w-full flex-col items-center justify-center gap-3 rounded-lg bg-white bg-opacity-80 pb-3  pt-3 ">
-                        <div className="ml-5 flex w-full flex-row items-center justify-start gap-1 text-xs  font-bold xl:text-sm">
+                        <div className="flex w-full flex-row items-center justify-start gap-2">
+                          <div className=" flex  w-4 ">
+                            <Image
+                              //src="/images/icon-sugar.png"
+                              src="/images/icon-gdp.png"
+                              alt="gdp"
+                              width={30}
+                              height={30}
+                            />
+                          </div>
+                          <div className=" text-lg font-extrabold text-black">
+                            {244.64}
+                          </div>
+                        </div>
+
+                        <div className=" flex w-full flex-row items-center justify-start gap-1 text-xs  xl:text-xs">
                           <span>Last Price:</span>
                           <span>
                             {nft?.paidToken ===
