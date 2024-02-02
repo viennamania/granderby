@@ -285,7 +285,7 @@ export default function Search() {
             {horsesCount} {horsesCount > 1 ? 'Horses' : 'Horse'}
           </div>
 
-          <div className="relative z-10 mb-6 flex items-center justify-between ">
+          <div className="relative z-10 flex items-center justify-between ">
             {/*
             <div className="flex flex-col gap-2 ">
               <div className="flex flex-col gap-2 xl:flex-row ">
@@ -424,149 +424,151 @@ export default function Search() {
           {/* grades */}
           {/* U, S, A, B, C, D */}
 
-          <div className="mb-10 mt-10 flex w-full flex-row gap-5 ">
+          <div className=" flex w-full  flex-row items-center justify-center gap-5 ">
             <h4 className="text-sm font-medium text-gray-900 dark:text-white">
               Grades
             </h4>
 
-            <Checkbox
-              label="All"
-              checked={
-                checkedU &&
-                checkedS &&
-                checkedA &&
-                checkedB &&
-                checkedC &&
-                checkedD
-              }
-              // if checked this will check or uncheck all grades
-              onChange={() => {
-                setCheckedAll(!checkedAll);
-
-                if (checkedAll) {
-                  setCheckedU(false);
-                  setCheckedS(false);
-                  setCheckedA(false);
-                  setCheckedB(false);
-                  setCheckedC(false);
-                  setCheckedD(false);
-
-                  setSelectedGrades([]);
-                } else {
-                  setCheckedU(true);
-                  setCheckedS(true);
-                  setCheckedA(true);
-                  setCheckedB(true);
-                  setCheckedC(true);
-                  setCheckedD(true);
-
-                  setSelectedGrades(['U', 'S', 'A', 'B', 'C', 'D']);
+            <div className="mb-10 mt-10 flex flex-wrap  justify-between gap-5 ">
+              <Checkbox
+                label="All"
+                checked={
+                  checkedU &&
+                  checkedS &&
+                  checkedA &&
+                  checkedB &&
+                  checkedC &&
+                  checkedD
                 }
-              }}
-              className="mr-5"
-            />
+                // if checked this will check or uncheck all grades
+                onChange={() => {
+                  setCheckedAll(!checkedAll);
 
-            <Checkbox
-              label="Grade U"
-              checked={checkedU}
-              onChange={() => {
-                setCheckedU(!checkedU);
+                  if (checkedAll) {
+                    setCheckedU(false);
+                    setCheckedS(false);
+                    setCheckedA(false);
+                    setCheckedB(false);
+                    setCheckedC(false);
+                    setCheckedD(false);
 
-                if (checkedU) {
-                  const temp = selectedGrades?.filter(
-                    (item: any) => item !== 'U'
-                  );
-                  setSelectedGrades(temp);
-                } else {
-                  setSelectedGrades([...selectedGrades, 'U']);
-                }
-              }}
-            />
+                    setSelectedGrades([]);
+                  } else {
+                    setCheckedU(true);
+                    setCheckedS(true);
+                    setCheckedA(true);
+                    setCheckedB(true);
+                    setCheckedC(true);
+                    setCheckedD(true);
 
-            <Checkbox
-              label="Grade S"
-              checked={checkedS}
-              onChange={() => {
-                setCheckedS(!checkedS);
+                    setSelectedGrades(['U', 'S', 'A', 'B', 'C', 'D']);
+                  }
+                }}
+                className="mr-5"
+              />
 
-                if (checkedS) {
-                  const temp = selectedGrades?.filter(
-                    (item: any) => item !== 'S'
-                  );
-                  setSelectedGrades(temp);
-                } else {
-                  setSelectedGrades([...selectedGrades, 'S']);
-                }
-              }}
-            />
+              <Checkbox
+                label="Grade U"
+                checked={checkedU}
+                onChange={() => {
+                  setCheckedU(!checkedU);
 
-            <Checkbox
-              label="Grade A"
-              checked={checkedA}
-              onChange={() => {
-                setCheckedA(!checkedA);
+                  if (checkedU) {
+                    const temp = selectedGrades?.filter(
+                      (item: any) => item !== 'U'
+                    );
+                    setSelectedGrades(temp);
+                  } else {
+                    setSelectedGrades([...selectedGrades, 'U']);
+                  }
+                }}
+              />
 
-                if (checkedA) {
-                  const temp = selectedGrades?.filter(
-                    (item: any) => item !== 'A'
-                  );
-                  setSelectedGrades(temp);
-                } else {
-                  setSelectedGrades([...selectedGrades, 'A']);
-                }
-              }}
-            />
+              <Checkbox
+                label="Grade S"
+                checked={checkedS}
+                onChange={() => {
+                  setCheckedS(!checkedS);
 
-            <Checkbox
-              label="Grade B"
-              checked={checkedB}
-              onChange={() => {
-                setCheckedB(!checkedB);
+                  if (checkedS) {
+                    const temp = selectedGrades?.filter(
+                      (item: any) => item !== 'S'
+                    );
+                    setSelectedGrades(temp);
+                  } else {
+                    setSelectedGrades([...selectedGrades, 'S']);
+                  }
+                }}
+              />
 
-                if (checkedB) {
-                  const temp = selectedGrades?.filter(
-                    (item: any) => item !== 'B'
-                  );
-                  setSelectedGrades(temp);
-                } else {
-                  setSelectedGrades([...selectedGrades, 'B']);
-                }
-              }}
-            />
+              <Checkbox
+                label="Grade A"
+                checked={checkedA}
+                onChange={() => {
+                  setCheckedA(!checkedA);
 
-            <Checkbox
-              label="Grade C"
-              checked={checkedC}
-              onChange={() => {
-                setCheckedC(!checkedC);
+                  if (checkedA) {
+                    const temp = selectedGrades?.filter(
+                      (item: any) => item !== 'A'
+                    );
+                    setSelectedGrades(temp);
+                  } else {
+                    setSelectedGrades([...selectedGrades, 'A']);
+                  }
+                }}
+              />
 
-                if (checkedC) {
-                  const temp = selectedGrades?.filter(
-                    (item: any) => item !== 'C'
-                  );
-                  setSelectedGrades(temp);
-                } else {
-                  setSelectedGrades([...selectedGrades, 'C']);
-                }
-              }}
-            />
+              <Checkbox
+                label="Grade B"
+                checked={checkedB}
+                onChange={() => {
+                  setCheckedB(!checkedB);
 
-            <Checkbox
-              label="Grade D"
-              checked={checkedD}
-              onChange={() => {
-                setCheckedD(!checkedD);
+                  if (checkedB) {
+                    const temp = selectedGrades?.filter(
+                      (item: any) => item !== 'B'
+                    );
+                    setSelectedGrades(temp);
+                  } else {
+                    setSelectedGrades([...selectedGrades, 'B']);
+                  }
+                }}
+              />
 
-                if (checkedD) {
-                  const temp = selectedGrades?.filter(
-                    (item: any) => item !== 'D'
-                  );
-                  setSelectedGrades(temp);
-                } else {
-                  setSelectedGrades([...selectedGrades, 'D']);
-                }
-              }}
-            />
+              <Checkbox
+                label="Grade C"
+                checked={checkedC}
+                onChange={() => {
+                  setCheckedC(!checkedC);
+
+                  if (checkedC) {
+                    const temp = selectedGrades?.filter(
+                      (item: any) => item !== 'C'
+                    );
+                    setSelectedGrades(temp);
+                  } else {
+                    setSelectedGrades([...selectedGrades, 'C']);
+                  }
+                }}
+              />
+
+              <Checkbox
+                label="Grade D"
+                checked={checkedD}
+                onChange={() => {
+                  setCheckedD(!checkedD);
+
+                  if (checkedD) {
+                    const temp = selectedGrades?.filter(
+                      (item: any) => item !== 'D'
+                    );
+                    setSelectedGrades(temp);
+                  } else {
+                    setSelectedGrades([...selectedGrades, 'D']);
+                  }
+                }}
+              />
+            </div>
           </div>
 
           <Feeds
