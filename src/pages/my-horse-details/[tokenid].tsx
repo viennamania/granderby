@@ -62,6 +62,8 @@ import UserProfitChartUsers from '@/components/ui/chats/user-profit-chart-users'
 
 import UserProfitChartHorses from '@/components/ui/chats/user-profit-chart-horses';
 
+import { Network, Alchemy } from 'alchemy-sdk';
+
 //// GetStaticPaths
 
 export async function getStaticPaths() {
@@ -114,7 +116,7 @@ const MyHorseDetails: NextPageWithLayout<
 
   const { data: nftMetadata, isLoading } = useNFT(contract, tokenid);
 
-  //console.log('nftMetadata======>', nftMetadata);
+  console.log('nftMetadata======>', nftMetadata);
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
@@ -139,6 +141,82 @@ const MyHorseDetails: NextPageWithLayout<
   }, [stakeInfo]);
 
   const address = useAddress();
+
+  /*
+  const settings = {
+    ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
+
+    ///apiKey: '8YyZWFtcbLkYveYaB9sjOC3KPWInNu07', // Replace with your Alchemy API Key. songpalabs@gmail.com
+    apiKey: process.env.ALCHEMY_API_KEY,
+    network: Network.MATIC_MAINNET, // Replace with your network.
+  };
+
+  const alchemy = new Alchemy(settings);
+
+  useEffect(() => {
+    const main = async () => {
+      // getNftMetadata(npcNames[0].nft1.contract, npcNames[0].nft1.tokenId)
+
+      const response = await alchemy.nft?.getNftMetadata(
+        nftDropContractAddressHorse,
+        tokenid
+      );
+
+      console.log('getNftMetadata response=', response);
+
+   
+
+  
+    };
+
+    main();
+  }, []);
+  */
+
+  /* /api/nft/getOneByTokenId */
+  const [nft, setNft] = useState<any>(null);
+  useEffect(() => {
+    async function getNft() {
+      const response = await fetch('/api/nft/getOneByTokenId', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenId: tokenid,
+        }),
+      });
+      const data = await response.json();
+
+      //console.log('data.horse.nft', data?.horse?.nft);
+
+      //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
+
+      setNft(data?.horse?.nft);
+
+      /*
+      data?.horse?.totalPricePaid;
+
+      if (
+        data?.horse?.paidToken === '0x0000000000000000000000000000000000001010'
+      ) {
+        const price =
+          (data?.horse?.totalPricePaid / 1000000000000000000) * 0.66;
+        setLastPrice(price);
+      } else if (
+        data?.horse?.paidToken === '0xe426D2410f20B0434FE2ce56299a1543d3fDe450'
+      ) {
+        const price = data?.horse?.totalPricePaid / 1000000000000000000;
+        setLastPrice(price);
+      } else if (
+        data?.horse?.paidToken === '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
+      ) {
+        const price = data?.horse?.totalPricePaid / 1000000;
+        setLastPrice(price);
+      }
+      */
+    }
+
+    getNft();
+  }, [tokenid]);
 
   if (!address) {
     return (
@@ -226,9 +304,16 @@ const MyHorseDetails: NextPageWithLayout<
             <div className={`w-full lg:w-1/3`}>
               <div className=" flex flex-col">
                 <Image
+                  /*
                   src={
                     nftMetadata?.metadata?.image
                       ? nftMetadata?.metadata?.image
+                      : '/default-nft.png'
+                  }
+                  */
+                  src={
+                    nft?.rawMetadata?.image
+                      ? nft?.rawMetadata?.image
                       : '/default-nft.png'
                   }
                   alt="nft"
@@ -249,7 +334,10 @@ const MyHorseDetails: NextPageWithLayout<
             </div>
 
             <div className="flex w-full flex-col  lg:w-2/3 ">
+              {/*}
               <NftInfo nftMetadata={nftMetadata} />
+              */}
+              <NftInfo nftMetadata={nft?.rawMetadata} />
             </div>
           </div>
 
