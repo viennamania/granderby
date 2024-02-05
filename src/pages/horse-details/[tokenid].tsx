@@ -84,16 +84,72 @@ function SinglePrice(tokenid: any) {
 
   const { contract } = useContract(nftDropContractAddressHorse, 'nft-drop');
 
-  const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
+  //const { data: nftMetadata, isLoading } = useNFT(contract, tokenid.tokenid);
 
   ///console.log('nftMetadata======>', nftMetadata);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [owner, setOwner] = useState('');
+  const [nftMetadata, setNftMetadata] = useState<any>(null);
+  /* /api/nft/getOneByTokenId */
+
+  useEffect(() => {
+    async function getNft() {
+      setIsLoading(true);
+      const response = await fetch('/api/nft/getOneByTokenId', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenId: tokenid.tokenid,
+        }),
+      });
+      const data = await response.json();
+
+      //console.log('tokenid.tokenid======', tokenid.tokenid);
+      //console.log('data.horse', data?.horse);
+
+      //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
+
+      setOwner(data?.horse?.holder);
+
+      setNftMetadata(data?.horse?.nft);
+
+      /*
+      data?.horse?.totalPricePaid;
+
+      if (
+        data?.horse?.paidToken === '0x0000000000000000000000000000000000001010'
+      ) {
+        const price =
+          (data?.horse?.totalPricePaid / 1000000000000000000) * 0.66;
+        setLastPrice(price);
+      } else if (
+        data?.horse?.paidToken === '0xe426D2410f20B0434FE2ce56299a1543d3fDe450'
+      ) {
+        const price = data?.horse?.totalPricePaid / 1000000000000000000;
+        setLastPrice(price);
+      } else if (
+        data?.horse?.paidToken === '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
+      ) {
+        const price = data?.horse?.totalPricePaid / 1000000;
+        setLastPrice(price);
+      }
+      */
+
+      setIsLoading(false);
+    }
+
+    getNft();
+  }, [tokenid]);
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
 
   const { data: stakerAddress, isLoading: isLoadingStakerAddress } =
     useContractRead(contractStaking, 'stakerAddress', [
-      nftMetadata?.metadata?.id,
+      //nftMetadata?.metadata?.id,
+
+      tokenid.tokenid,
     ]);
 
   const { data: stakeInfo, isLoading: isLoadingStakeInfo } = useContractRead(
@@ -124,7 +180,9 @@ function SinglePrice(tokenid: any) {
 
     ///nftMetadata?.metadata?.attributes?.map((attribute: any) => {
 
-    const attributes = nftMetadata?.metadata?.attributes as any;
+    ///const attributes = nftMetadata?.metadata?.attributes as any;
+
+    const attributes = nftMetadata?.rawMetadata?.attributes as any;
 
     attributes?.map((attribute: any) => {
       if (false) {
@@ -168,7 +226,9 @@ function SinglePrice(tokenid: any) {
     ///console.log("arrAttribute", arrAttribute);
 
     setAttributes(arrAttribute);
-  }, [nftMetadata?.metadata?.attributes]);
+
+    //}, [nftMetadata?.metadata?.attributes]);
+  }, [nftMetadata?.rawMetadata?.attributes]);
 
   ///console.log('attributes======>', attributes);
 
@@ -236,7 +296,9 @@ function SinglePrice(tokenid: any) {
 
     if (directListings) {
       directListings.map((listing: any) => {
-        if (listing.tokenId === nftMetadata?.metadata?.id) {
+        /////if (listing.tokenId === nftMetadata?.metadata?.id) {
+
+        if (listing.tokenId === tokenid.tokenid) {
           //setListingId(listing.id);
 
           setDirectListing(listing);
@@ -247,7 +309,8 @@ function SinglePrice(tokenid: any) {
         }
       });
     }
-  }, [directListings, nftMetadata?.metadata?.id]);
+    ////}, [directListings, nftMetadata?.metadata?.id]);
+  }, [directListings, tokenid.tokenid]);
 
   // Hooks to detect user is on the right network and switch them if they are not
   const networkMismatch = useNetworkMismatch();
@@ -303,7 +366,8 @@ function SinglePrice(tokenid: any) {
                     className=" text-left text-lg capitalize text-blue-500 dark:text-white "
                     href={`/horse`}
                   >
-                    {nftMetadata?.metadata?.description}
+                    {/*nftMetadata?.metadata?.description*/}
+                    {nftMetadata?.rawMetadata?.description}
                   </Link>
 
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
@@ -317,7 +381,8 @@ function SinglePrice(tokenid: any) {
                       className=" flex flex-row items-center justify-start "
                       onClick={() =>
                         router.push(
-                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                          ///`https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                          `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${tokenid.tokenid}`
                         )
                       }
                     >
@@ -329,7 +394,7 @@ function SinglePrice(tokenid: any) {
                       />
 
                       <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                        #{nftMetadata?.metadata?.id}
+                        #{tokenid.tokenid}
                       </span>
                     </button>
 
@@ -364,7 +429,7 @@ function SinglePrice(tokenid: any) {
                           stakerAddress ===
                             '0x0000000000000000000000000000000000000000' ? (
                             <>
-                              {nftMetadata?.owner === address ? (
+                              {owner === address ? (
                                 <div className="text-xl font-bold text-blue-600">
                                   Me
                                 </div>
@@ -372,14 +437,10 @@ function SinglePrice(tokenid: any) {
                                 <button
                                   className=" flex flex-row items-center justify-start  "
                                   onClick={() =>
-                                    router.push(
-                                      `/user-portfolio/${nftMetadata?.owner}`
-                                    )
+                                    router.push(`/user-portfolio/${owner}`)
                                   }
                                 >
-                                  <span>
-                                    {nftMetadata?.owner?.substring(0, 10)}...
-                                  </span>
+                                  <span>{owner?.substring(0, 10)}...</span>
                                   {/*
                                 {stakeInfoCount && stakeInfoCount > 1 && (
                                   <span className="text-xs text-gray-400">
@@ -429,9 +490,16 @@ function SinglePrice(tokenid: any) {
 
                 <div className=" flex flex-col items-center justify-center gap-6 ">
                   <Image
+                    /*
                     src={
                       nftMetadata?.metadata?.image
                         ? nftMetadata?.metadata?.image
+                        : '/default-nft.png'
+                    }
+                    */
+                    src={
+                      nftMetadata?.rawMetadata?.image
+                        ? nftMetadata?.rawMetadata?.image
                         : '/default-nft.png'
                     }
                     alt="nft"
@@ -508,7 +576,7 @@ function SinglePrice(tokenid: any) {
                           className=" flex flex-row items-center justify-start  "
                           onClick={() =>
                             router.push(
-                              `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${nftMetadata?.metadata?.id}`
+                              `https://polygonscan.com/nft/${nftDropContractAddressHorse}/${tokenid.tokenid}`
                             )
                           }
                         >
@@ -520,7 +588,7 @@ function SinglePrice(tokenid: any) {
                           />
 
                           <span className="ml-2 text-left text-lg font-bold text-black dark:text-white xl:text-xl">
-                            #{nftMetadata?.metadata?.id}
+                            #{tokenid.tokenid}
                           </span>
                         </button>
                       </div>
@@ -546,7 +614,7 @@ function SinglePrice(tokenid: any) {
                             stakerAddress ===
                               '0x0000000000000000000000000000000000000000' ? (
                               <>
-                                {nftMetadata?.owner === address ? (
+                                {owner === address ? (
                                   <div className="text-xl font-bold text-blue-600">
                                     Me
                                   </div>
@@ -554,19 +622,17 @@ function SinglePrice(tokenid: any) {
                                   <button
                                     className=" flex flex-row items-center justify-start  "
                                     onClick={() =>
-                                      router.push(
-                                        `/user-portfolio/${nftMetadata?.owner}`
-                                      )
+                                      router.push(`/user-portfolio/${owner}`)
                                     }
                                   >
                                     <span>
                                       {/*
-                                      {nftMetadata?.owner?.substring(0, 10)}...
+                                      {owner?.substring(0, 10)}...
                                       */}
                                       {
                                         // capitalize all
 
-                                        nftMetadata?.owner.toUpperCase()
+                                        owner.toUpperCase()
                                       }
                                     </span>
                                     {/*
@@ -612,7 +678,7 @@ function SinglePrice(tokenid: any) {
                       )}
                     </div>
 
-                    {address && address === nftMetadata?.owner && (
+                    {address && address === owner && (
                       <div className="mt-5 flex flex-row items-center justify-center gap-2">
                         <input
                           className=" w-full text-black"
@@ -635,7 +701,7 @@ function SinglePrice(tokenid: any) {
                             ///contract.erc20.transfer(toAddress, amount);
 
                             transferNft(
-                              nftMetadata?.metadata?.id as string,
+                              tokenid.tokenid as string,
 
                               toAddress
                             );
@@ -733,7 +799,7 @@ function SinglePrice(tokenid: any) {
                               )}
                             </span>
 
-                            {address && address === nftMetadata?.owner && (
+                            {address && address === owner && (
                               <Web3Button
                                 theme="light"
                                 action={(contract) =>
@@ -766,7 +832,7 @@ function SinglePrice(tokenid: any) {
                         )}
                         */}
 
-                            {address && address !== nftMetadata?.owner && (
+                            {address && address !== owner && (
                               <>
                                 {/*
                             <div className="text-sm font-bold xl:text-xl">
@@ -807,7 +873,7 @@ function SinglePrice(tokenid: any) {
                           </div>
 
                           {/*
-                        {address && address !== nftMetadata?.owner && (
+                        {address && address !== owner && (
                           <>
                             <div className="text-sm font-bold xl:text-xl">
                               <Web3Button

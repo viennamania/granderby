@@ -360,7 +360,7 @@ export default function Feeds({
                         <div className="text-left text-sm">#{nft?.tokenId}</div>
                       </div>
 
-                      <div className="ml-5 flex w-full flex-col items-start justify-start gap-1 text-xs  xl:text-xs">
+                      <div className="ml-5 flex w-full flex-row items-start justify-start gap-1 text-xs  xl:text-xs">
                         {!nft?.totalPricePaid ||
                         nft?.totalPricePaid === '' ||
                         nft?.totalPricePaid === undefined ? (
