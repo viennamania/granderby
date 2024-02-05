@@ -134,6 +134,8 @@ function SinglePrice(tokenid: any) {
 
       setNftMetadata(data?.horse?.nft);
 
+      console.log('data?.horse?.nft', data?.horse?.nft);
+
       /*
       data?.horse?.totalPricePaid;
 
@@ -387,12 +389,12 @@ function SinglePrice(tokenid: any) {
                     href={`/horse`}
                   >
                     {/*nftMetadata?.metadata?.description*/}
-                    {nftMetadata?.rawMetadata?.description}
+                    {nftMetadata?.description}
                   </Link>
 
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
                     <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
-                      {nftMetadata?.metadata?.name}
+                      {nftMetadata?.title}
                     </div>
                   </div>
 
@@ -617,13 +619,13 @@ function SinglePrice(tokenid: any) {
                       className=" text-left text-sm font-bold text-blue-500  dark:text-white xl:text-lg "
                       href={`/horse`}
                     >
-                      {nftMetadata?.metadata?.description}
+                      {nftMetadata?.description}
                       {/*Granderby Horse NFT*/}
                     </Link>
 
                     <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-5">
                       <div className="text-left text-2xl font-bold capitalize text-black  dark:text-white xl:text-4xl">
-                        {nftMetadata?.metadata?.name}
+                        {nftMetadata?.title}
                       </div>
 
                       <div className="mr-5 flex flex-row items-center justify-between ">
