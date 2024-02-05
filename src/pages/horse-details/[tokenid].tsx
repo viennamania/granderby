@@ -70,7 +70,7 @@ import cn from 'classnames';
 import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
 
 import { format } from 'date-fns';
-import { add } from 'lodash';
+import { add, at } from 'lodash';
 
 function SinglePrice(tokenid: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,6 +95,8 @@ function SinglePrice(tokenid: any) {
 
   const [gameHorseInfo, setGameHorseInfo] = useState<any>(null);
 
+  const [gameHorseStatus, setGameHorseStatus] = useState<any>(null);
+
   useEffect(() => {
     async function getNft() {
       setIsLoading(true);
@@ -112,6 +114,14 @@ function SinglePrice(tokenid: any) {
       //console.log('tokenid.tokenid======', tokenid.tokenid);
       //console.log('data.horse', data?.horse);
 
+      //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
+
+      setOwner(data?.horse?.holder);
+
+      setNftMetadata(data?.horse?.nft);
+
+      console.log('data?.horse?.nft', data?.horse?.nft);
+
       setGameHorseInfo(data?.horse?.gameHorseInfo);
       /*
         BODY_PATTERN: 'Smoke',
@@ -128,13 +138,7 @@ function SinglePrice(tokenid: any) {
         COLOR_SET_NO: 482,
       */
 
-      //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
-
-      setOwner(data?.horse?.holder);
-
-      setNftMetadata(data?.horse?.nft);
-
-      console.log('data?.horse?.nft', data?.horse?.nft);
+      setGameHorseStatus(data?.horse?.gameHorseStatus);
 
       /*
       data?.horse?.totalPricePaid;
@@ -543,21 +547,21 @@ function SinglePrice(tokenid: any) {
                   <Collapse label="Properties" initialOpen={true}>
                     {/* nft attributes details */}
 
-                    <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-2 2xl:grid-cols-2  ">
+                    <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-3 2xl:grid-cols-3  ">
                       {
                         //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
 
                         gameHorseInfo?.map((attribute: any) => (
                           <div key={attribute?.trait_type}>
                             <div
-                              className="   xl:text-md flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900
-                                      dark:text-white lg:flex-wrap 2xl:flex-nowrap  "
+                              className="   flex flex-col items-center gap-3 rounded-md bg-gray-100 p-1 text-sm font-medium text-gray-900 dark:text-white
+                                      lg:flex-wrap xl:text-sm 2xl:flex-nowrap  "
                             >
                               <span className={cn('flex ', 'flex-row')}>
                                 <span>{attribute?.trait_type}</span>
                               </span>
 
-                              <span className="xl:text-md  text-xs font-semibold">
+                              <span className="text-xs  font-semibold xl:text-sm">
                                 {/*
                                           {attribute?.value?.toString().length < 8
                                             ? attribute?.value?.toString()
@@ -575,9 +579,46 @@ function SinglePrice(tokenid: any) {
                 </div>
 
                 <div className=" flex w-full flex-col rounded-lg border ">
-                  <Collapse label="Properties" initialOpen={true}>
+                  <Collapse label="Status" initialOpen={true}>
                     {/* nft attributes details */}
 
+                    <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-3 2xl:grid-cols-3  ">
+                      {
+                        //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+
+                        gameHorseStatus?.map((attribute: any) => (
+                          <div key={attribute?.trait_type}>
+                            <div
+                              className="   flex flex-col items-center gap-3 rounded-md bg-gray-100 p-1 text-sm font-medium text-gray-900 dark:text-white
+                                      lg:flex-wrap xl:text-sm 2xl:flex-nowrap  "
+                            >
+                              <span className={cn('flex ', 'flex-row')}>
+                                <span>{attribute?.trait_type}</span>
+                              </span>
+
+                              <span className="text-xs  font-semibold xl:text-sm">
+                                {/*
+                                          {attribute?.value?.toString().length < 8
+                                            ? attribute?.value?.toString()
+                                            : attribute?.value?.toString().substring(0, 8)}
+                                          ...
+                                          */}
+                                {attribute?.value !== ''
+                                  ? attribute?.value
+                                  : '0'}
+                              </span>
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </Collapse>
+                </div>
+
+                {/*
+                <div className=" flex w-full flex-col rounded-lg border ">
+                  <Collapse label="Properties" initialOpen={true}>
+                 
                     <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-4 2xl:grid-cols-4  ">
                       {
                         //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
@@ -593,12 +634,7 @@ function SinglePrice(tokenid: any) {
                               </span>
 
                               <span className="xl:text-md  text-xs font-semibold">
-                                {/*
-                                          {attribute?.value?.toString().length < 8
-                                            ? attribute?.value?.toString()
-                                            : attribute?.value?.toString().substring(0, 8)}
-                                          ...
-                                          */}
+                               
                                 {attribute?.value}
                               </span>
                             </div>
@@ -608,6 +644,7 @@ function SinglePrice(tokenid: any) {
                     </div>
                   </Collapse>
                 </div>
+                */}
               </div>
 
               {layout === LAYOUT_OPTIONS.RETRO ? (

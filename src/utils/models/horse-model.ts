@@ -957,9 +957,50 @@ export const getOneHorse = async (tokenId: string) => {
     value: json.COLOR_SET_NO,
   });
 
+  /*
+        AGE: '',
+      OVERALL: '',
+      FRONT: '',
+      STRETCH: '',
+      WEIGHT: '',
+      RUNTYPE: ''
+      */
+  const gameHorseStatus = [] as any;
+
+  gameHorseStatus.push({
+    trait_type: 'AGE',
+    value: json.AGE,
+  });
+
+  gameHorseStatus.push({
+    trait_type: 'OVERALL',
+    value: json.OVERALL,
+  });
+
+  gameHorseStatus.push({
+    trait_type: 'FRONT',
+    value: json.FRONT,
+  });
+
+  gameHorseStatus.push({
+    trait_type: 'STRETCH',
+    value: json.STRETCH,
+  });
+
+  gameHorseStatus.push({
+    trait_type: 'WEIGHT',
+    value: json.WEIGHT,
+  });
+
+  gameHorseStatus.push({
+    trait_type: 'RUNTYPE',
+    value: json.RUNTYPE,
+  });
+
   const horse = {
     ...data?._doc,
     gameHorseInfo: gameHorseInfo,
+    gameHorseStatus: gameHorseStatus,
   };
 
   if (data) {
