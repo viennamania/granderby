@@ -131,6 +131,17 @@ export interface IHorse {
 export const HorseModel =
   models.nfthorse || model<IHorse>('nfthorse', HorseSchema);
 
+const GameHorseKeySchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    default: false,
+  },
+});
+
+export const GameHorseKeyModel =
+  models.game_horsekey || model('game_horsekey', GameHorseKeySchema);
+
 export const getAllHorses = async (
   pageNumber: number,
   pagination: number,
@@ -651,6 +662,325 @@ export const getOneHorse = async (tokenId: string) => {
   });
 
   ///console.log('getOneHorse data', data);
+
+  let gameHorseKey = '';
+
+  if (Number(tokenId) === 0) {
+    gameHorseKey = '00000000';
+  } else if (Number(tokenId) === 1) {
+    gameHorseKey = '00000001';
+  } else if (Number(tokenId) === 2) {
+    gameHorseKey = '00000002';
+  } else if (Number(tokenId) === 3) {
+    gameHorseKey = '00000003';
+  } else if (Number(tokenId) === 4) {
+    gameHorseKey = '00000004';
+  } else if (Number(tokenId) === 5) {
+    gameHorseKey = '00000005';
+  } else if (Number(tokenId) === 6) {
+    gameHorseKey = '00000006';
+  } else if (Number(tokenId) === 7) {
+    gameHorseKey = '00000007';
+  } else if (Number(tokenId) === 8) {
+    gameHorseKey = '00000008';
+  } else if (Number(tokenId) === 9) {
+    gameHorseKey = '00000009';
+  } else if (Number(tokenId) === 10) {
+    gameHorseKey = '00000010';
+  } else {
+    //console.log('tokenId', tokenId);
+
+    // A Grade
+    if (Number(tokenId) >= 11 && Number(tokenId) <= 58) {
+      console.log('A Grade tokenId', tokenId);
+
+      var formattedNumber = Number(tokenId) - 11 + '';
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+      formattedNumber = '00001' + formattedNumber;
+
+      gameHorseKey = '' + formattedNumber + '';
+
+      // B Grade
+    } else if (Number(tokenId) >= 59 && Number(tokenId) <= 299) {
+      //console.log('B Grade tokenId', tokenId);
+
+      //const filename = util.format("%08d", Number(tokenId));
+
+      //const formattedNumber = ("0000600" + Number(tokenId)).slice(-8);
+
+      //Number(tokenId).padStart(2, "0");
+
+      //gameHorseKey = '00006000';
+
+      var formattedNumber = Number(tokenId) - 59 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+      formattedNumber = '0002' + formattedNumber;
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else {
+      gameHorseKey = '00006000';
+    }
+
+    // C Grade
+    if (Number(tokenId) >= 300 && Number(tokenId) <= 599) {
+      var formattedNumber = Number(tokenId) - 300 + '';
+
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00100' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 600 && Number(tokenId) < 1000) {
+      var formattedNumber = Number(tokenId) - 600 + '';
+
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00200' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 1000 && Number(tokenId) < 1800) {
+      var formattedNumber = Number(tokenId) - 600 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0020' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 1800 && Number(tokenId) < 1805) {
+      var formattedNumber = Number(tokenId) - 1700 + '';
+
+      while (formattedNumber.length < 5) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '000' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 1805 && Number(tokenId) < 1810) {
+      var formattedNumber = Number(tokenId) - 1700 + '';
+
+      while (formattedNumber.length < 5) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0000' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 1815 && Number(tokenId) < 1915) {
+      var formattedNumber = Number(tokenId) - 1700 + '';
+
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00001' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 1915 && Number(tokenId) < 2115) {
+      //var formattedNumber = Number(tokenId) - 1800 + 59 + '';
+
+      var formattedNumber = Number(tokenId) - 1915 + 241 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+      formattedNumber = '0002' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 2115 && Number(tokenId) < 2645) {
+      //var formattedNumber = Number(tokenId) - 2000 + '';
+      var formattedNumber = Number(tokenId) - 1700 + '';
+
+      while (formattedNumber.length < 3) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00100' + formattedNumber;
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 2645 && Number(tokenId) < 5000) {
+      var formattedNumber = Number(tokenId) - 1000 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0020' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
+    } else {
+      ////gameHorseKey = '00006000';
+    }
+  }
+
+  // select horseinfo from game_horsekey collection when name is gameHorseKey
+
+  // game_horsekey collection is not created yet
+
+  const name = '#' + gameHorseKey;
+
+  const data2 = await GameHorseKeyModel.findOne({
+    name: name,
+  }).catch((err) => {
+    ////return err;
+  });
+
+  ///console.log('data2', data2);
+
+  const json = await data2?.toJSON();
+
+  /*
+    gameHorse {
+      _id: new ObjectId("65c059da41577a794571d2af"),
+      name: '#00200402',
+      description: 'Granderby NFT Horses\n' +
+        'Enjoy amazing horse racing game.\n' +
+        'STADIUM - Jockey Club',
+      image: 'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00200402.png',
+      animation_url: '',
+      external_url: 'https://thirdweb.com',
+      background_color: '',
+      youtube_url: '',
+      BODY_PATTERN: 'Nebula',
+      HEAD_PATTERN: 'Nebula',
+      LEG_PATTERN: 'Long Boots',
+      MANE: 'Sporty',
+      MANE_PATTERN: 'None',
+      TAIL: 'Brush',
+      TAIL_PATTERN: 'Gradation',
+      LEG_HAIR: 'None',
+      LEG_HAIR_PATTERN: 'Long Boots',
+      WING: 'None',
+      HORN: 'None',
+      COLOR_SET_NO: 484,
+      AGE: '',
+      OVERALL: '',
+      FRONT: '',
+      STRETCH: '',
+      WEIGHT: '',
+      RUNTYPE: ''
+    }
+  */
+
+  const gameHorseInfo = [] as any;
+
+  gameHorseInfo.push({
+    trait_type: 'BODY PATTERN',
+    value: json.BODY_PATTERN,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'HEAD PATTERN',
+    value: json.HEAD_PATTERN,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'LEG PATTERN',
+    value: json.LEG_PATTERN,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'MANE',
+    value: json.MANE,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'MANE PATTERN',
+    value: json.MANE_PATTERN,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'TAIL',
+    value: json.TAIL,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'TAIL PATTERN',
+    value: json.TAIL_PATTERN,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'LEG HAIR',
+    value: json.LEG_HAIR,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'LEG HAIR PATTERN',
+    value: json.LEG_HAIR_PATTERN,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'WING',
+    value: json.WING,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'HORN',
+    value: json.HORN,
+  });
+
+  gameHorseInfo.push({
+    trait_type: 'COLOR SET NO.',
+    value: json.COLOR_SET_NO,
+  });
+
+  const horse = {
+    ...data?._doc,
+    gameHorseInfo: gameHorseInfo,
+  };
+
+  if (data) {
+    return { success: true, horse: horse };
+  } else {
+    return { success: false, message: 'horse not found' };
+  }
+};
+
+export const getOneGameHorseData = async (gameHorseKey: string) => {
+  console.log('gameHorseKey', gameHorseKey);
+
+  const name = '#' + gameHorseKey;
+
+  const data = await GameHorseKeyModel.findOne({
+    name: name,
+  }).catch((err) => {
+    ////return err;
+  });
+
+  //console.log('data', data);
 
   if (data) {
     return { success: true, horse: data };

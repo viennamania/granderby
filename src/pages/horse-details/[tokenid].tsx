@@ -93,6 +93,8 @@ function SinglePrice(tokenid: any) {
   const [nftMetadata, setNftMetadata] = useState<any>(null);
   /* /api/nft/getOneByTokenId */
 
+  const [gameHorseInfo, setGameHorseInfo] = useState<any>(null);
+
   useEffect(() => {
     async function getNft() {
       setIsLoading(true);
@@ -105,8 +107,26 @@ function SinglePrice(tokenid: any) {
       });
       const data = await response.json();
 
+      ///console.log('data', data);
+
       //console.log('tokenid.tokenid======', tokenid.tokenid);
       //console.log('data.horse', data?.horse);
+
+      setGameHorseInfo(data?.horse?.gameHorseInfo);
+      /*
+        BODY_PATTERN: 'Smoke',
+        HEAD_PATTERN: 'Smoke',
+        LEG_PATTERN: 'Long Boots',
+        MANE: 'Sporty',
+        MANE_PATTERN: 'None',
+        TAIL: 'Brush',
+        TAIL_PATTERN: 'None',
+        LEG_HAIR: 'None',
+        LEG_HAIR_PATTERN: 'Long Boots',
+        WING: 'None',
+        HORN: 'None',
+        COLOR_SET_NO: 482,
+      */
 
       //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
 
@@ -521,6 +541,41 @@ function SinglePrice(tokenid: any) {
                   <Collapse label="Properties" initialOpen={true}>
                     {/* nft attributes details */}
 
+                    <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-2 2xl:grid-cols-2  ">
+                      {
+                        //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
+
+                        gameHorseInfo?.map((attribute: any) => (
+                          <div key={attribute?.trait_type}>
+                            <div
+                              className="   xl:text-md flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900
+                                      dark:text-white lg:flex-wrap 2xl:flex-nowrap  "
+                            >
+                              <span className={cn('flex ', 'flex-row')}>
+                                <span>{attribute?.trait_type}</span>
+                              </span>
+
+                              <span className="xl:text-md  text-xs font-semibold">
+                                {/*
+                                          {attribute?.value?.toString().length < 8
+                                            ? attribute?.value?.toString()
+                                            : attribute?.value?.toString().substring(0, 8)}
+                                          ...
+                                          */}
+                                {attribute?.value}
+                              </span>
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </Collapse>
+                </div>
+
+                <div className=" flex w-full flex-col rounded-lg border ">
+                  <Collapse label="Properties" initialOpen={true}>
+                    {/* nft attributes details */}
+
                     <div className=" grid grid-cols-2  items-center justify-between gap-2 p-2 xl:grid-cols-4 2xl:grid-cols-4  ">
                       {
                         //nftMetadata?.metadata?.attributes?.map((attribute: any) => (
@@ -528,8 +583,8 @@ function SinglePrice(tokenid: any) {
                         attributes?.map((attribute: any) => (
                           <div key={attribute?.trait_type}>
                             <div
-                              className="   flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900 dark:text-white
-                                      lg:flex-wrap xl:text-lg 2xl:flex-nowrap  "
+                              className="   xl:text-md flex flex-col items-center gap-3 rounded-md bg-gray-100 p-3 text-sm font-medium text-gray-900
+                                      dark:text-white lg:flex-wrap 2xl:flex-nowrap  "
                             >
                               <span className={cn('flex ', 'flex-row')}>
                                 <span>{attribute?.trait_type}</span>

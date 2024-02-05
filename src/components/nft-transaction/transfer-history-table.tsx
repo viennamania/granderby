@@ -318,13 +318,13 @@ const COLUMNS = [
     accessor: 'tokenFrom',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-start">
+      <div className="flex items-center justify-center">
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         {value == '0x0000000000000000000000000000000000000000'
           ? 'Drops'
-          : //: value?.length > 10
-            //? value?.substring(0, 10) + '...'
-            value}
+          : value?.length > 10
+          ? value?.substring(0, 10) + '...'
+          : value}
       </div>
     ),
     minWidth: 370,
@@ -336,13 +336,13 @@ const COLUMNS = [
     accessor: 'tokenTo',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex items-center justify-start">
+      <div className="flex items-center justify-center">
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         {value == '0x0000000000000000000000000000000000000000'
           ? 'Drops'
-          : //: value?.length > 10
-            //? value?.substring(0, 10) + '...'
-            value}
+          : value?.length > 10
+          ? value?.substring(0, 10) + '...'
+          : value}
       </div>
     ),
     minWidth: 370,

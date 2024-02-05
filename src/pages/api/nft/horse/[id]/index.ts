@@ -10,6 +10,8 @@ import { at } from 'lodash';
 
 import { getNpcFromTextureKey } from '@/utils/models/npc-model';
 
+import { getOneGameHorseData } from '@/utils/models/horse-model';
+
 import { el } from 'date-fns/locale';
 
 //const util = require('util');
@@ -660,6 +662,91 @@ export default async function handler(
     attributes.push({
       trait_type: 'World',
       value: world,
+    });
+  }
+
+  console.log('imagesrc', imagesrc);
+
+  const gameHorseKey = imagesrc.slice(4, -4);
+
+  const gameHorse = await getOneGameHorseData(gameHorseKey);
+
+  if (gameHorse.success) {
+    //console.log("gameHorse.horse", gameHorse.horse);
+
+    /*
+    BODY_PATTERN: 'Smoke',
+    HEAD_PATTERN: 'Smoke',
+    LEG_PATTERN: 'Long Boots',
+    MANE: 'Sporty',
+    MANE_PATTERN: 'None',
+    TAIL: 'Brush',
+    TAIL_PATTERN: 'None',
+    LEG_HAIR: 'None',
+    LEG_HAIR_PATTERN: 'Long Boots',
+    WING: 'None',
+    HORN: 'None',
+    COLOR_SET_NO: 482,
+    */
+
+    attributes.push({
+      trait_type: 'BODY_PATTERN',
+      value: gameHorse.horse.BODY_PATTERN,
+    });
+
+    attributes.push({
+      trait_type: 'HEAD_PATTERN',
+      value: gameHorse.horse.HEAD_PATTERN,
+    });
+
+    attributes.push({
+      trait_type: 'LEG_PATTERN',
+      value: gameHorse.horse.LEG_PATTERN,
+    });
+
+    attributes.push({
+      trait_type: 'MANE',
+      value: gameHorse.horse.MANE,
+    });
+
+    attributes.push({
+      trait_type: 'MANE_PATTERN',
+      value: gameHorse.horse.MANE_PATTERN,
+    });
+
+    attributes.push({
+      trait_type: 'TAIL',
+      value: gameHorse.horse.TAIL,
+    });
+
+    attributes.push({
+      trait_type: 'TAIL_PATTERN',
+      value: gameHorse.horse.TAIL_PATTERN,
+    });
+
+    attributes.push({
+      trait_type: 'LEG_HAIR',
+      value: gameHorse.horse.LEG_HAIR,
+    });
+
+    attributes.push({
+      trait_type: 'LEG_HAIR_PATTERN',
+      value: gameHorse.horse.LEG_HAIR_PATTERN,
+    });
+
+    attributes.push({
+      trait_type: 'WING',
+      value: gameHorse.horse.WING,
+    });
+
+    attributes.push({
+      trait_type: 'HORN',
+      value: gameHorse.horse.HORN,
+    });
+
+    attributes.push({
+      trait_type: 'COLOR_SET_NO',
+      value: gameHorse.horse.COLOR_SET_NO,
     });
   }
 
