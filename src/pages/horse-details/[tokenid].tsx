@@ -215,6 +215,8 @@ function SinglePrice(tokenid: any) {
 
   const address = useAddress();
 
+  ///console.log('address===========>>>>>>>>', address);
+
   const [attributes, setAttributes] = useState([] as string[]);
 
   useEffect(() => {
@@ -478,7 +480,7 @@ function SinglePrice(tokenid: any) {
                           stakerAddress ===
                             '0x0000000000000000000000000000000000000000' ? (
                             <>
-                              {owner === address ? (
+                              {owner === address?.toUpperCase() ? (
                                 <div className="text-xl font-bold text-blue-600">
                                   Me
                                 </div>
@@ -502,7 +504,8 @@ function SinglePrice(tokenid: any) {
                             </>
                           ) : (
                             <>
-                              {stakerAddress && stakerAddress === address ? (
+                              {stakerAddress &&
+                              stakerAddress === address?.toUpperCase() ? (
                                 <div className="text-xl font-bold text-blue-600">
                                   Me
                                 </div>
@@ -554,7 +557,15 @@ function SinglePrice(tokenid: any) {
                     alt="nft"
                     width={1024}
                     height={1024}
-                    className=" rounded-lg "
+                    /*
+                    style={{
+                      objectFit: "contain",
+                      //objectFit: "cover",
+                      objectPosition: "center",
+                    }}
+                    */
+
+                    className=" w-auto rounded-lg "
                   />
                 </div>
 
@@ -732,7 +743,7 @@ function SinglePrice(tokenid: any) {
                             stakerAddress ===
                               '0x0000000000000000000000000000000000000000' ? (
                               <>
-                                {owner === address ? (
+                                {owner === address?.toUpperCase() ? (
                                   <div className="text-xl font-bold text-blue-600">
                                     Me
                                   </div>
@@ -765,7 +776,8 @@ function SinglePrice(tokenid: any) {
                               </>
                             ) : (
                               <>
-                                {stakerAddress && stakerAddress === address ? (
+                                {stakerAddress &&
+                                stakerAddress === address?.toUpperCase() ? (
                                   <div className="text-xl font-bold text-blue-600">
                                     Me
                                   </div>
@@ -796,62 +808,57 @@ function SinglePrice(tokenid: any) {
                       )}
                     </div>
 
-                    {address && address === owner && (
-                      <div className="mt-5 flex flex-row items-center justify-center gap-2">
-                        <input
-                          className=" w-full text-black"
-                          type="text"
-                          name="toAddress"
-                          placeholder="To Address"
-                          value={toAddress}
-                          onChange={(e) => {
-                            setToAddress(e.target.value);
-                          }}
-                        />
-                        <Web3Button
-                          theme="light"
-                          contractAddress={nftDropContractAddressHorse}
-                          action={() => {
-                            //contract?.call('withdraw', [[nft.metadata.id]])
-                            //contract?.call('withdraw', [[nft.metadata.id]])
-                            //contract.erc1155.claim(0, 1);
+                    {address &&
+                      address.toUpperCase() === owner.toUpperCase() && (
+                        <div className="mt-5 flex flex-row items-center justify-center gap-2">
+                          <input
+                            className=" w-full text-black"
+                            type="text"
+                            name="toAddress"
+                            placeholder="To Address"
+                            value={toAddress}
+                            onChange={(e) => {
+                              setToAddress(e.target.value);
+                            }}
+                          />
+                          <Web3Button
+                            theme="light"
+                            contractAddress={nftDropContractAddressHorse}
+                            action={() => {
+                              //contract?.call('withdraw', [[nft.metadata.id]])
+                              //contract?.call('withdraw', [[nft.metadata.id]])
+                              //contract.erc1155.claim(0, 1);
 
-                            ///contract.erc20.transfer(toAddress, amount);
+                              ///contract.erc20.transfer(toAddress, amount);
 
-                            transferNft(
-                              tokenid.tokenid as string,
+                              transferNft(
+                                tokenid.tokenid as string,
 
-                              toAddress
-                            );
-                          }}
-                          onSuccess={() => {
-                            //setAmount(0);
-                            //setToAddress('');
+                                toAddress
+                              );
+                            }}
+                            onSuccess={() => {
+                              //setAmount(0);
+                              //setToAddress('');
 
-                            console.log(`🌊 Successfully transfered!`);
-                            //alert('Successfully transfered!');
+                              console.log(`🌊 Successfully transfered!`);
+                              //alert('Successfully transfered!');
 
-                            //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                            //handleClickSucc();
-                          }}
-                          onError={(error) => {
-                            console.error('Failed to transfer', error);
-                            alert('Failed to transfer');
-                            //setErrMsgSnackbar('Failed to transfer');
-                            //handleClickErr();
-                          }}
-                        >
-                          Send
-                        </Web3Button>
-                      </div>
-                    )}
+                              //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                              //handleClickSucc();
+                            }}
+                            onError={(error) => {
+                              console.error('Failed to transfer', error);
+                              alert('Failed to transfer');
+                              //setErrMsgSnackbar('Failed to transfer');
+                              //handleClickErr();
+                            }}
+                          >
+                            Send
+                          </Web3Button>
+                        </div>
+                      )}
                   </div>
-
-                  {/*
-                  <div className=" flex flex-col rounded-lg border ">
-                    <NftInfo nftMetadata={nftMetadata} />
-                  </div>
-                  */}
 
                   <div className=" flex w-full flex-col rounded-lg border ">
                     <Collapse label="Price History" initialOpen={true}>
@@ -917,7 +924,7 @@ function SinglePrice(tokenid: any) {
                               )}
                             </span>
 
-                            {address && address === owner && (
+                            {address && address.toUpperCase() === owner && (
                               <Web3Button
                                 theme="light"
                                 action={(contract) =>
@@ -950,7 +957,7 @@ function SinglePrice(tokenid: any) {
                         )}
                         */}
 
-                            {address && address !== owner && (
+                            {address && address.toUpperCase() !== owner && (
                               <>
                                 {/*
                             <div className="text-sm font-bold xl:text-xl">

@@ -62,7 +62,7 @@ import Avatar from '@/components/ui/avatar';
 import { nftData } from '@/data/static/single-nft';
 
 export default function NftInfo({ nftMetadata }: any) {
-  ///console.log('nftMetadata', nftMetadata);
+  ///console.log('nftMetadata=========================', nftMetadata.id);
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
@@ -153,22 +153,60 @@ export default function NftInfo({ nftMetadata }: any) {
 
   /* /api/nft/getOneByTokenId */
   const [nft, setNft] = useState<any>(null);
+
+  const [owner, setOwner] = useState('');
+  ////const [nftMetadata, setNftMetadata] = useState<any>(null);
+  /* /api/nft/getOneByTokenId */
+
+  const [gameHorseName, setGameHorseName] = useState<any>(null);
+  const [gameHorseDescription, setGameHorseDescription] = useState<any>(null);
+
+  const [gameHorseInfo, setGameHorseInfo] = useState<any>(null);
+
+  const [gameHorseStatus, setGameHorseStatus] = useState<any>(null);
+
   useEffect(() => {
     async function getNft() {
+      if (!nftMetadata?.id) return;
+
       const response = await fetch('/api/nft/getOneByTokenId', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          tokenId: nftMetadata?.metadata?.id,
+          tokenId: nftMetadata?.id,
         }),
       });
       const data = await response.json();
 
-      console.log('data.horse', data?.horse);
+      ///console.log('data', data);
+
+      ///console.log('data.horse', data?.horse);
 
       setNft(data?.horse);
 
-      data?.horse?.totalPricePaid;
+      setOwner(data?.horse?.holder);
+
+      ///setNftMetadata(data?.horse?.nft);
+
+      console.log('data?.horse?.nft', data?.horse?.nft);
+
+      // gameHorseDescription => {trait_type: "name"}
+      setGameHorseName(
+        data?.horse?.gameHorseDescription?.find(
+          (item: any) => item?.trait_type === 'name'
+        )?.value
+      );
+
+      console.log('gameHorseName', gameHorseName);
+
+      // gameHorseDescription => {trait_type: "desription"}
+      setGameHorseDescription(
+        data?.horse?.gameHorseDescription?.find(
+          (item: any) => item?.trait_type === 'description'
+        )?.value
+      );
+
+      //data?.horse?.totalPricePaid;
 
       if (
         data?.horse?.paidToken === '0x0000000000000000000000000000000000001010'
@@ -190,29 +228,31 @@ export default function NftInfo({ nftMetadata }: any) {
     }
 
     getNft();
-  }, [nftMetadata?.metadata?.id]);
+  }, [nftMetadata?.id]);
+
+  console.log('lastPrice', lastPrice);
 
   const [saleHistory, setSaleHistory] = useState([] as any);
 
-  const getLastSale20 = async () => {
-    console.log('price-history-table nftMetadata?.id: ', nftMetadata?.id);
-
-    const response = await fetch('/api/nft/horse/history/price', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        method: 'getAllByTokenId',
-        tokenId: nftMetadata?.id,
-      }),
-    });
-    const data = await response.json();
-
-    ///console.log('data.all: ', data.all);
-
-    setSaleHistory(data.all);
-  };
-
   useEffect(() => {
+    const getLastSale20 = async () => {
+      console.log('price-history-table nftMetadata?.id: ', nftMetadata?.id);
+
+      const response = await fetch('/api/nft/horse/history/price', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          method: 'getAllByTokenId',
+          tokenId: nftMetadata?.id,
+        }),
+      });
+      const data = await response.json();
+
+      ///console.log('data.all: ', data.all);
+
+      setSaleHistory(data.all);
+    };
+
     getLastSale20();
   }, [nftMetadata?.id]);
 
@@ -413,14 +453,16 @@ export default function NftInfo({ nftMetadata }: any) {
         {/* nft title */}
         <div className="mt-5 flex flex-col items-center justify-center gap-2  ">
           <div className=" flex flex-row items-center justify-center gap-5">
+            {/*
             <Image
               src="/images/horse-male.png"
               alt="live"
               width={25}
               height={25}
             />
+            */}
             <span className="text-2xl font-extrabold xl:text-3xl">
-              {nftMetadata?.metadata?.name}
+              {gameHorseName}
             </span>
           </div>
           <span className="flex flex-row items-center justify-center gap-2">
@@ -500,9 +542,9 @@ export default function NftInfo({ nftMetadata }: any) {
             </TabPanel>
 
             <TabPanel className="focus:outline-none">
-              <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
-                <div className="flex w-full  flex-row items-center justify-start gap-5">
-                  <span className=" w-28 text-xl font-extrabold xl:text-2xl">
+              <div className="flex w-full flex-col items-center justify-center gap-5 p-5">
+                <div className="flex w-full  flex-row items-center justify-start gap-5 ">
+                  <span className=" w-52 text-xl font-extrabold xl:text-2xl">
                     Running Ability
                   </span>
 
@@ -531,7 +573,7 @@ export default function NftInfo({ nftMetadata }: any) {
                 </div>
 
                 <div className="flex w-full  flex-row items-center justify-start gap-5">
-                  <span className=" w-28 text-xl font-extrabold xl:text-2xl">
+                  <span className=" w-52 text-xl font-extrabold xl:text-2xl">
                     Physical Ability
                   </span>
 
@@ -568,14 +610,14 @@ export default function NftInfo({ nftMetadata }: any) {
 
                 <div className="flex w-full  flex-col items-center justify-start gap-5">
                   <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
-                    <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className=" w-28 text-left text-xl font-extrabold xl:text-2xl">
+                    <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
+                      <span className=" w-full text-left  font-extrabold ">
                         Age
                       </span>
                       <span className="w-full text-right  text-lg">3y</span>
                     </div>
                     <div className="flex flex-row items-center justify-start gap-2">
-                      <span className=" w-28 text-xl font-extrabold xl:text-2xl">
+                      <span className=" w-full  font-extrabold ">
                         Condition
                       </span>
                       <span className=" w-full text-right text-lg">100</span>
@@ -583,34 +625,30 @@ export default function NftInfo({ nftMetadata }: any) {
                   </div>
 
                   <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
-                    <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className="w-28 text-left text-xl font-extrabold xl:text-2xl">
+                    <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
+                      <span className="w-28 text-left font-extrabold ">
                         Weight
                       </span>
                       <span className=" w-full text-right text-lg">500kg</span>
                     </div>
                     <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className="w-28  text-xl font-extrabold xl:text-2xl">
-                        Training
-                      </span>
+                      <span className="w-full font-extrabold">Training</span>
                       <span className="w-full text-right  text-lg">300</span>
                     </div>
                   </div>
 
                   <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
-                    <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className="w-28 text-left text-xl font-extrabold xl:text-2xl">
+                    <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
+                      <span className="w-full text-left  font-extrabold ">
                         Impost
                       </span>
                       <span className=" w-full text-right text-lg">+0.5</span>
                     </div>
-                    <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className="w-28  text-xl font-extrabold xl:text-2xl">
+                    <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
+                      <span className=" w-full font-extrabold ">
                         Running Style
                       </span>
-                      <span className="w-full text-right  text-lg">
-                        Front Runner
-                      </span>
+                      <span className="w-full text-right ">Front Runner</span>
                     </div>
                   </div>
                 </div>
@@ -723,11 +761,11 @@ export default function NftInfo({ nftMetadata }: any) {
             </TabPanel>
 
             <TabPanel className="focus:outline-none">
-              <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
+              <div className="flex w-full flex-col items-center justify-center gap-5 p-5">
                 <div className="flex w-full  flex-col items-center justify-start gap-5">
                   <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
                     <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className=" w-28 text-left text-xl font-extrabold xl:text-2xl">
+                      <span className=" w-full text-left text-lg font-extrabold xl:text-xl">
                         Birthday
                       </span>
                       <span className="w-full text-right  text-lg">
@@ -735,21 +773,23 @@ export default function NftInfo({ nftMetadata }: any) {
                       </span>
                     </div>
                     <div className="flex flex-row items-center justify-start gap-2">
-                      <span className=" w-28 text-xl font-extrabold xl:text-2xl">
+                      <span className="w-full text-lg font-extrabold xl:text-xl">
                         Recent Price
                       </span>
                       <span className=" w-full text-right text-lg">
-                        3,662 USDC
+                        {lastPrice === 0 ? 'Not for sale' : lastPrice + ' USDC'}
                       </span>
                     </div>
                   </div>
 
                   <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
                     <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className="w-28 text-left text-xl font-extrabold xl:text-2xl">
+                      <span className="w-full text-left text-lg font-extrabold xl:text-xl">
                         TokenID
                       </span>
-                      <span className=" w-full text-right text-lg">#533</span>
+                      <span className=" w-full text-right text-lg">
+                        #{nftMetadata?.id}
+                      </span>
                     </div>
                   </div>
                 </div>
