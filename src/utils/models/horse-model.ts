@@ -895,6 +895,18 @@ export const getOneHorse = async (tokenId: string) => {
     }
   */
 
+  const gameHorseDescription = [] as any;
+
+  gameHorseDescription.push({
+    trait_type: 'name',
+    value: json.name,
+  });
+
+  gameHorseDescription.push({
+    trait_type: 'description',
+    value: json.description,
+  });
+
   const gameHorseInfo = [] as any;
 
   gameHorseInfo.push({
@@ -999,6 +1011,7 @@ export const getOneHorse = async (tokenId: string) => {
 
   const horse = {
     ...data?._doc,
+    gameHorseDescription: gameHorseDescription,
     gameHorseInfo: gameHorseInfo,
     gameHorseStatus: gameHorseStatus,
   };

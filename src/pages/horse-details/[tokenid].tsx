@@ -93,6 +93,9 @@ function SinglePrice(tokenid: any) {
   const [nftMetadata, setNftMetadata] = useState<any>(null);
   /* /api/nft/getOneByTokenId */
 
+  const [gameHorseName, setGameHorseName] = useState<any>(null);
+  const [gameHorseDescription, setGameHorseDescription] = useState<any>(null);
+
   const [gameHorseInfo, setGameHorseInfo] = useState<any>(null);
 
   const [gameHorseStatus, setGameHorseStatus] = useState<any>(null);
@@ -121,6 +124,24 @@ function SinglePrice(tokenid: any) {
       setNftMetadata(data?.horse?.nft);
 
       console.log('data?.horse?.nft', data?.horse?.nft);
+
+      // gameHorseDescription => {trait_type: "name"}
+      setGameHorseName(
+        data?.horse?.gameHorseDescription?.find(
+          (item: any) => item?.trait_type === 'name'
+        )?.value
+      );
+
+      console.log('gameHorseName', gameHorseName);
+
+      // gameHorseDescription => {trait_type: "desription"}
+      setGameHorseDescription(
+        data?.horse?.gameHorseDescription?.find(
+          (item: any) => item?.trait_type === 'description'
+        )?.value
+      );
+
+      console.log('gameHorseDescription', gameHorseDescription);
 
       setGameHorseInfo(data?.horse?.gameHorseInfo);
       /*
@@ -398,7 +419,9 @@ function SinglePrice(tokenid: any) {
 
                   <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-2.5">
                     <div className="text-left text-2xl font-bold capitalize text-black dark:text-white xl:text-3xl">
-                      {nftMetadata?.title}
+                      {/*nftMetadata?.title*/}
+
+                      {gameHorseDescription}
                     </div>
                   </div>
 
@@ -538,7 +561,7 @@ function SinglePrice(tokenid: any) {
                 <div className=" flex w-full flex-col rounded-lg border ">
                   <Collapse label="Description" initialOpen={true}>
                     <div className="p-5 text-sm font-medium text-gray-900 dark:text-white">
-                      By InKenter
+                      {gameHorseDescription}
                     </div>
                   </Collapse>
                 </div>
@@ -662,7 +685,8 @@ function SinglePrice(tokenid: any) {
 
                     <div className="mb-3 mt-3 flex w-full flex-row items-center justify-start gap-5">
                       <div className="text-left text-2xl font-bold capitalize text-black  dark:text-white xl:text-4xl">
-                        {nftMetadata?.title}
+                        {/*nftMetadata?.title*/}
+                        {gameHorseName}
                       </div>
 
                       <div className="mr-5 flex flex-row items-center justify-between ">
