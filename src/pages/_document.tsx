@@ -35,6 +35,7 @@ class CustomDocument extends Document {
           <Main />
           <NextScript />
 
+          {/*}
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -44,6 +45,7 @@ class CustomDocument extends Document {
               `,
             }}
           />
+          */}
 
           {/*
           <script src="/js/jquery-latest.js"></script>
