@@ -105,10 +105,14 @@ export default function Search() {
     async function getHorses() {
       //setSearchDataHorse(undefined);
 
-      const data = await fetch('/api/nft/getHorses?pageNumber=1&pageSize=100', {
+      ///const data = await fetch('/api/nft/getHorses?pageNumber=1&pageSize=100', {
+      const data = await fetch('/api/nft/getHorses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          q: '',
+          pageNumber: 1,
+          pageSize: 100,
           ///grades: selectedGradesStorage,
           grades: [],
           manes: [],
@@ -118,6 +122,8 @@ export default function Search() {
       }).then((result) => {
         return result.json();
       });
+
+      console.log('search-asset data', data);
 
       ///console.log('search-asset data', data);
 

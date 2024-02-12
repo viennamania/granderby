@@ -261,7 +261,7 @@ export default function OwnedFeedsNft(
                     <div className="m-2 flex flex-col items-center justify-center gap-2">
                       <div className="flex w-full flex-col items-start justify-center gap-3 rounded-lg bg-white bg-opacity-90 p-3 pb-3  pt-3 ">
                         <div className="rounded-md  bg-black p-1 text-xs font-extrabold text-white">
-                          {nft?.title}
+                          #{nft?.gameTitle}
                         </div>
 
                         <div className="flex w-full flex-row items-center justify-start gap-2">

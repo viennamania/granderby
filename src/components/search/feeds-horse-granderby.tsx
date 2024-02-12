@@ -186,6 +186,10 @@ export default function Feeds({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            q: searchTerm,
+            pageNumber: pageParam,
+            pageSize: 20,
+
             ///grades: selectedGradesStorage,
 
             grades: selectedGrades ?? [],
@@ -348,7 +352,9 @@ export default function Feeds({
                    */}
 
                     <div className=" h-18 mb-2  mt-4 flex w-full  flex-col items-center  justify-center  gap-1 xl:h-24   ">
-                      <div className="text-sm font-bold ">{nft?.title}</div>
+                      <div className="text-sm font-bold ">
+                        #{nft?.gameTitle}
+                      </div>
 
                       <div className="ml-5 flex w-full flex-row items-center justify-start gap-1">
                         <Image

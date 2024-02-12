@@ -143,13 +143,13 @@ export const GameHorseKeyModel =
   models.game_horsekey || model('game_horsekey', GameHorseKeySchema);
 
 export const getAllHorses = async (
+  q: string = '',
   pageNumber: number,
   pagination: number,
   grades: string,
   manes: string,
   holder: string,
-  sort: string,
-  q: string = ''
+  sort: string
 ) => {
   //console.log('getAllHorses pageNumber', pageNumber);
   //console.log('getAllHorses pagination', pagination);
