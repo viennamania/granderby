@@ -4,6 +4,10 @@
         {
             "path": "/api/cronjob",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-game",
+            "schedule": "* * * * *"
         }
 
 
