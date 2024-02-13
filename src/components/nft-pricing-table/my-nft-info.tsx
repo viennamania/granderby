@@ -569,9 +569,9 @@ export default function NftInfo({ nftMetadata }: any) {
 
                     <div className="flex flex-col items-end justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
-                        {liveHorseInfo?.AGILIGHTY}
+                        {liveHorseInfo?.OVERTAKING}
                       </span>
-                      <span className="  text-lg">AGILITY</span>
+                      <span className="  text-lg">OVERTAKING</span>
                     </div>
                   </div>
                 </div>
