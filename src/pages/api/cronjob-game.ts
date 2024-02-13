@@ -36,7 +36,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const contractAddress = 'granderby';
+  const contractAddress = 'stadium1001';
 
   var gameId: any = await kv.get(contractAddress);
 
@@ -98,6 +98,16 @@ export default async function handler(
     expireTime: '2024-02-23T03:36:04.527Z'
   },
   */
+
+  if (data?.recordset?.length === 0) {
+    res.status(200).json({
+      address: contractAddress,
+      length: 0,
+      error: 'no data',
+    });
+
+    return;
+  }
 
   try {
     const games = db.collection('games');
