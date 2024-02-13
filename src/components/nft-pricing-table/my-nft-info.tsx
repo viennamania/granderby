@@ -547,27 +547,27 @@ export default function NftInfo({ nftMetadata }: any) {
 
             <TabPanel className="focus:outline-none">
               <div className="flex w-full flex-col items-center justify-center gap-5 p-5">
-                <div className="flex w-full  flex-row items-center justify-start gap-5 ">
-                  <span className=" w-52 text-xl font-extrabold xl:text-2xl">
+                <div className="flex w-full  flex-row items-center justify-between gap-5 ">
+                  <span className="  text-xl font-extrabold xl:text-2xl">
                     Running Ability
                   </span>
 
-                  <div className=" grid grid-cols-3 items-center justify-between gap-5 p-3">
-                    <div className="flex flex-col items-end justify-center gap-2">
+                  <div className=" flex flex-col items-center justify-between gap-5 p-3 xl:grid xl:grid-cols-3">
+                    <div className="flex flex-col items-center justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         {liveHorseInfo?.SPEED}
                       </span>
                       <span className="  text-lg">SPEED</span>
                     </div>
 
-                    <div className="flex flex-col items-end justify-center gap-2">
+                    <div className="flex flex-col items-center justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         {liveHorseInfo?.PRECENDING}
                       </span>
                       <span className="  text-lg">PRECEDE</span>
                     </div>
 
-                    <div className="flex flex-col items-end justify-center gap-2">
+                    <div className="flex flex-col items-center justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         {liveHorseInfo?.OVERTAKING}
                       </span>
@@ -576,34 +576,34 @@ export default function NftInfo({ nftMetadata }: any) {
                   </div>
                 </div>
 
-                <div className="flex w-full  flex-row items-center justify-start gap-5">
-                  <span className=" w-52 text-xl font-extrabold xl:text-2xl">
+                <div className="  flex w-full  flex-row items-center justify-between gap-5">
+                  <span className="  text-xl font-extrabold xl:text-2xl">
                     Physical Ability
                   </span>
 
-                  <div className=" grid grid-cols-4 items-center justify-between gap-5 p-3">
-                    <div className="flex flex-col items-end justify-center gap-2">
+                  <div className=" flex flex-col items-center justify-between gap-5 p-3 xl:grid xl:grid-cols-4">
+                    <div className="flex flex-col items-center justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         {liveHorseInfo?.STAMINA}
                       </span>
                       <span className="  text-lg">STAMINA</span>
                     </div>
 
-                    <div className="flex flex-col items-end justify-center gap-2">
+                    <div className="flex flex-col items-center justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         {liveHorseInfo?.SPRIT}
                       </span>
                       <span className="  text-lg">SPIRIT</span>
                     </div>
 
-                    <div className="flex flex-col items-end justify-center gap-2">
+                    <div className="flex flex-col items-center justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         {liveHorseInfo?.POWER}
                       </span>
                       <span className="  text-lg">POWER</span>
                     </div>
 
-                    <div className="flex flex-col items-end justify-center gap-2">
+                    <div className="flex flex-col items-center justify-center gap-2">
                       <span className="  text-xl font-extrabold xl:text-2xl">
                         {liveHorseInfo?.AGILIGHTY}
                       </span>
@@ -613,7 +613,7 @@ export default function NftInfo({ nftMetadata }: any) {
                 </div>
 
                 <div className="flex w-full  flex-col items-center justify-start gap-5">
-                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                  <div className="flex w-full flex-col items-start  justify-start gap-10 xl:grid xl:grid-cols-2">
                     <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
                       <span className=" w-full text-left  font-extrabold ">
                         Age
@@ -622,8 +622,8 @@ export default function NftInfo({ nftMetadata }: any) {
                         {liveHorseInfo?.AGE}y
                       </span>
                     </div>
-                    <div className="flex flex-row items-center justify-start gap-2">
-                      <span className=" w-full  font-extrabold ">
+                    <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
+                      <span className=" w-full  text-left font-extrabold ">
                         Condition
                       </span>
                       <span className=" w-full text-right text-lg">
@@ -632,7 +632,7 @@ export default function NftInfo({ nftMetadata }: any) {
                     </div>
                   </div>
 
-                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                  <div className=" flex w-full flex-col items-start justify-start gap-10 xl:grid xl:grid-cols-2">
                     <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
                       <span className="w-28 text-left font-extrabold ">
                         Weight
@@ -641,15 +641,17 @@ export default function NftInfo({ nftMetadata }: any) {
                         {liveHorseInfo?.WEIGHT}kg
                       </span>
                     </div>
-                    <div className="flex w-full flex-row items-center justify-start gap-2">
-                      <span className="w-full font-extrabold">Training</span>
+                    <div className="flex w-full  flex-row items-center justify-start gap-2 text-lg">
+                      <span className="w-full text-left font-extrabold">
+                        Training
+                      </span>
                       <span className="w-full text-right  text-lg">
                         {liveHorseInfo?.TRANNING}
                       </span>
                     </div>
                   </div>
 
-                  <div className="grid w-full grid-cols-2 items-start justify-start gap-10">
+                  <div className="flex w-full flex-col items-start  justify-start gap-10 xl:grid xl:grid-cols-2">
                     <div className="flex w-full flex-row items-center justify-start gap-2 text-lg">
                       <span className="w-full text-left  font-extrabold ">
                         Impost
