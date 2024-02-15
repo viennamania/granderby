@@ -323,6 +323,16 @@ const COLUMNS = [
   },
   */
   {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">gameId</div>,
+    accessor: 'gameId',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-right text-xs">#{value}</div>
+    ),
+    minWidth: 100,
+    maxWidth: 100,
+  },
+  {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
     accessor: 'createdAt',
     // @ts-ignore
@@ -543,6 +553,7 @@ export default function RaceHistoryTable(tokenId: any) {
   ///const [last20Game, setLast20Game] = useState<any>();
 
   const getLast20 = async () => {
+    /*
     const response = await fetch('/api/games/horseRace/history', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -554,39 +565,194 @@ export default function RaceHistoryTable(tokenId: any) {
     const data = await response.json();
     ///setLast20Game(data.all);
 
-    //console.log('data.all: ', data.all);
+    console.log('data.all: ', data.all);
+    */
+
+    const response = await fetch('/api/games/granderby/history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ///method: 'getAll',
+      }),
+    });
+
+    const data = await response.json();
+
+    console.log('data.all.games: ', data?.all?.games);
+
+    const games = data?.all?.games;
 
     const raceHistoryData = [] as any;
 
+    /*
+    {
+    "_id": "65cdbb9aebce7fb017e4e953",
+    "gameId": "1001031347",
+    "line1": {
+        "stadiumId": 1001,
+        "gameId": "1001031347",
+        "horseIndex": 0,
+        "horseUid": "384",
+        "horseSpeed": 94,
+        "horsePrecending": 52,
+        "horseOvertaking": 86,
+        "horseBrawn": 40,
+        "horseSprit": 40,
+        "horsePower": 91,
+        "horseStamina": 80,
+        "horseHandicap": -0.5,
+        "horseCharacter": 5,
+        "horseWeight": 452,
+        "horseGrade": 2,
+        "horseRecord": 44,
+        "horseRecord1R": 8,
+        "horseRecord2R": 3,
+        "horseRecord3R": 9,
+        "horseRecord4R": 5,
+        "horseRecord5R": 4,
+        "horseFirstArrive": 2,
+        "horseSecondArrive": 3,
+        "horseThirdArrive": 3,
+        "horseTranning": 63,
+        "horseCondition": 0,
+        "horseTrend": 60,
+        "horseRunRecords": "{\"1000\":{\"EarlyAverage\":13.914,\"LateAverage\":11.535},\"1200\":{\"EarlyAverage\":13.888,\"LateAverage\":10.769}}",
+        "horseLastRecordByTrack": "{\"1000\":[14.086,25.011,37.118,48.987,59.029],\"1200\":[13.729,24.249,35.713,47.894,59.682,69.357]}",
+        "horseScore": 226.172,
+        "horsemanUid": "3585",
+        "horsemanRecord": 96,
+        "horsemanRecord1R": 11,
+        "horsemanRecord2R": 10,
+        "horsemanMultiPro": 53,
+        "expireTime": "2024-02-25T07:21:05.797Z"
+    },
+
+
+}
+*/
+
+    games?.map((item: any) => {
+      const raceData = {
+        gameId: item.gameId,
+
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: item.nft?.title,
+        createdAt: item.date,
+
+        placements: [
+          {
+            line: 1,
+            nft: {
+              tokenId: item.line1.horseUid,
+              title: item.line1.nft?.title,
+              image: item.line1.nft?.image,
+            },
+          },
+          {
+            line: 2,
+            nft: {
+              tokenId: item.line2.horseUid,
+              title: item.line2.nft?.title,
+              image: item.line2.nft?.image,
+            },
+          },
+          {
+            line: 3,
+            nft: {
+              tokenId: item.line3.horseUid,
+              title: item.line3.nft?.title,
+              image: item.line3.nft?.image,
+            },
+          },
+          {
+            line: 4,
+            nft: {
+              tokenId: item.line4.horseUid,
+              title: item.line4.nft?.title,
+              image: item.line4.nft?.image,
+            },
+          },
+          {
+            line: 5,
+            nft: {
+              tokenId: item.line5.horseUid,
+              title: item.line5.nft?.title,
+              image: item.line5.nft?.image,
+            },
+          },
+          {
+            line: 6,
+            nft: {
+              tokenId: item.line6.horseUid,
+              title: item.line6.nft?.title,
+              image: item.line6.nft?.image,
+            },
+          },
+          {
+            line: 7,
+            nft: {
+              tokenId: item.line7.horseUid,
+              title: item.line7.nft?.title,
+              image: item.line7.nft?.image,
+            },
+          },
+          {
+            line: 8,
+            nft: {
+              tokenId: item.line8.horseUid,
+              title: item.line8.nft?.title,
+              image: item.line8.nft?.image,
+            },
+          },
+          {
+            line: 9,
+            nft: {
+              tokenId: item.line9.horseUid,
+              title: item.line9.nft?.title,
+              image: item.line9.nft?.image,
+            },
+          },
+          {
+            line: 10,
+            nft: {
+              tokenId: item.line10.horseUid,
+              title: item.line10.nft?.title,
+              image: item.line10.nft?.image,
+            },
+          },
+          {
+            line: 11,
+            nft: {
+              tokenId: item.line11.horseUid,
+              title: item.line11.nft?.title,
+              image: item.line11.nft?.image,
+            },
+          },
+          {
+            line: 12,
+            nft: {
+              tokenId: item.line12.horseUid,
+              title: item.line12.nft?.title,
+              image: item.line12.nft?.image,
+            },
+          },
+        ],
+
+        amount: {
+          balance: item.nft?.tokenId,
+          usdBalance: '11,032.24',
+        },
+      };
+
+      ///console.log('raceData: ', raceData);
+
+      raceHistoryData.push(raceData);
+    });
+
+    /*
     data?.all?.map((item: any) => {
       ////console.log('item: ', item);
 
-      /*
-      const placements =
-
-        '#' +
-        item.placements[0]?.nft?.tokenId +
-       
-
-        ' #' +
-        item.placements[1]?.nft?.tokenId +
-        ' #' +
-        item.placements[2]?.nft?.tokenId +
-        ' #' +
-        item.placements[3]?.nft?.tokenId +
-        ' #' +
-        item.placements[4]?.nft?.tokenId +
-        ' #' +
-        item.placements[5]?.nft?.tokenId +
-        ' #' +
-        item.placements[6]?.nft?.tokenId +
-        ' #' +
-        item.placements[7]?.nft?.tokenId +
-        ' #' +
-        item.placements[8]?.nft?.tokenId +
-        ' #' +
-        item.placements[9]?.nft?.tokenId;
-      */
 
       var line = '';
 
@@ -619,6 +785,7 @@ export default function RaceHistoryTable(tokenId: any) {
 
       raceHistoryData.push(raceData);
     });
+    */
 
     setRaceHistory(raceHistoryData);
   };
