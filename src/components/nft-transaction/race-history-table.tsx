@@ -578,60 +578,113 @@ export default function RaceHistoryTable(tokenId: any) {
 
     const data = await response.json();
 
-    console.log('data.all.games: ', data?.all?.games);
+    //console.log('data.all.games: ', data?.all?.games);
+    console.log('data.all.ranks: ', data?.all?.ranks);
 
-    const games = data?.all?.games;
+    const ranks = data?.all?.ranks;
 
     const raceHistoryData = [] as any;
 
     /*
-    {
-    "_id": "65cdbb9aebce7fb017e4e953",
-    "gameId": "1001031347",
-    "line1": {
-        "stadiumId": 1001,
-        "gameId": "1001031347",
-        "horseIndex": 0,
-        "horseUid": "384",
-        "horseSpeed": 94,
-        "horsePrecending": 52,
-        "horseOvertaking": 86,
-        "horseBrawn": 40,
-        "horseSprit": 40,
-        "horsePower": 91,
-        "horseStamina": 80,
-        "horseHandicap": -0.5,
-        "horseCharacter": 5,
-        "horseWeight": 452,
-        "horseGrade": 2,
-        "horseRecord": 44,
-        "horseRecord1R": 8,
-        "horseRecord2R": 3,
-        "horseRecord3R": 9,
-        "horseRecord4R": 5,
-        "horseRecord5R": 4,
-        "horseFirstArrive": 2,
-        "horseSecondArrive": 3,
-        "horseThirdArrive": 3,
-        "horseTranning": 63,
-        "horseCondition": 0,
-        "horseTrend": 60,
-        "horseRunRecords": "{\"1000\":{\"EarlyAverage\":13.914,\"LateAverage\":11.535},\"1200\":{\"EarlyAverage\":13.888,\"LateAverage\":10.769}}",
-        "horseLastRecordByTrack": "{\"1000\":[14.086,25.011,37.118,48.987,59.029],\"1200\":[13.729,24.249,35.713,47.894,59.682,69.357]}",
-        "horseScore": 226.172,
-        "horsemanUid": "3585",
-        "horsemanRecord": 96,
-        "horsemanRecord1R": 11,
-        "horsemanRecord2R": 10,
-        "horsemanMultiPro": 53,
-        "expireTime": "2024-02-25T07:21:05.797Z"
-    },
-
-
+{
+    "_id": "65cdd843ebce7fb017e76174",
+    "gameId": "1001031388",
+    "ranking": [
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 0,
+            "HORSE_UID": "7920",
+            "RANKING": 11,
+            "RESULT_MONEY": "0",
+            "DURATION": "7250",
+            "INTERVAL_DURATION": "13.985,24.995,36.728,49.026,61.41,72.509"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 1,
+            "HORSE_UID": "6226",
+            "RANKING": 2,
+            "RESULT_MONEY": "20000",
+            "DURATION": "6985",
+            "INTERVAL_DURATION": "13.739,24.339,35.77,47.404,59.038,69.856"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 2,
+            "HORSE_UID": "7921",
+            "RANKING": 0,
+            "RESULT_MONEY": "50000",
+            "DURATION": "6952",
+            "INTERVAL_DURATION": "13.189,23.528,34.775,46.015,57.262,69.529"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 3,
+            "HORSE_UID": "7914",
+            "RANKING": 10,
+            "RESULT_MONEY": "0",
+            "DURATION": "7083",
+            "INTERVAL_DURATION": "13.638,24.496,36.035,47.812,60.166,70.83"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 4,
+            "HORSE_UID": "8165",
+            "RANKING": 9,
+            "RESULT_MONEY": "0",
+            "DURATION": "7080",
+            "INTERVAL_DURATION": "13.854,24.628,36.032,48.027,60.337,70.802"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 5,
+            "HORSE_UID": "8164",
+            "RANKING": 6,
+            "RESULT_MONEY": "0",
+            "DURATION": "7048",
+            "INTERVAL_DURATION": "13.727,24.524,36.157,48.625,60.433,70.487"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 6,
+            "HORSE_UID": "7916",
+            "RANKING": 4,
+            "RESULT_MONEY": "0",
+            "DURATION": "7025",
+            "INTERVAL_DURATION": "13.957,24.413,35.93,48.452,60.121,70.257"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 7,
+            "HORSE_UID": "6227",
+            "RANKING": 3,
+            "RESULT_MONEY": "0",
+            "DURATION": "7004",
+            "INTERVAL_DURATION": "13.524,23.945,35.54,47.576,59.451,70.049"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 8,
+            "HORSE_UID": "7919",
+            "RANKING": 5,
+            "RESULT_MONEY": "0",
+            "DURATION": "7031",
+            "INTERVAL_DURATION": "13.873,24.978,36.678,49.007,60.644,70.317"
+        },
+        {
+            "GAME_UID": "1001031388",
+            "HORSE_INDEX": 9,
+            "HORSE_UID": "7915",
+            "RANKING": 7,
+            "RESULT_MONEY": "0",
+            "DURATION": "7058",
+            "INTERVAL_DURATION": "13.987,24.615,36.207,48.469,60.207,70.587"
+        }
+    ]
 }
 */
 
-    games?.map((item: any) => {
+    ranks?.map((item: any) => {
       const raceData = {
         gameId: item.gameId,
 
@@ -643,100 +696,106 @@ export default function RaceHistoryTable(tokenId: any) {
           {
             line: 1,
             nft: {
-              tokenId: item.line1.horseUid,
-              title: item.line1.nft?.title,
-              image: item.line1.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.HORSE_UID,
+
+              title: 'Horse',
             },
           },
           {
             line: 2,
             nft: {
-              tokenId: item.line2.horseUid,
-              title: item.line2.nft?.title,
-              image: item.line2.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 1)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
+
           {
             line: 3,
             nft: {
-              tokenId: item.line3.horseUid,
-              title: item.line3.nft?.title,
-              image: item.line3.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 2)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
+
           {
             line: 4,
             nft: {
-              tokenId: item.line4.horseUid,
-              title: item.line4.nft?.title,
-              image: item.line4.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 3)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
           {
             line: 5,
             nft: {
-              tokenId: item.line5.horseUid,
-              title: item.line5.nft?.title,
-              image: item.line5.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 4)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
           {
             line: 6,
             nft: {
-              tokenId: item.line6.horseUid,
-              title: item.line6.nft?.title,
-              image: item.line6.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 5)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
           {
             line: 7,
             nft: {
-              tokenId: item.line7.horseUid,
-              title: item.line7.nft?.title,
-              image: item.line7.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 6)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
           {
             line: 8,
             nft: {
-              tokenId: item.line8.horseUid,
-              title: item.line8.nft?.title,
-              image: item.line8.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 7)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
           {
             line: 9,
             nft: {
-              tokenId: item.line9.horseUid,
-              title: item.line9.nft?.title,
-              image: item.line9.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 8)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
           {
             line: 10,
             nft: {
-              tokenId: item.line10.horseUid,
-              title: item.line10.nft?.title,
-              image: item.line10.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 9)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
           {
             line: 11,
             nft: {
-              tokenId: item.line11.horseUid,
-              title: item.line11.nft?.title,
-              image: item.line11.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 10)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
+
           {
             line: 12,
             nft: {
-              tokenId: item.line12.horseUid,
-              title: item.line12.nft?.title,
-              image: item.line12.nft?.image,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 11)
+                ?.HORSE_UID,
+              title: 'Horse',
             },
           },
         ],
+
+        //rank: item.ranking[0].RANKING,
 
         amount: {
           balance: item.nft?.tokenId,

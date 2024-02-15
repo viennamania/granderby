@@ -53,6 +53,37 @@ export const getAll = async (
   return { games, total };
 };
 
+const GameRankSchema = new Schema({
+  gameId: {
+    type: String,
+    required: true,
+    default: false,
+  },
+});
+
+export const GameRankModel =
+  models.game_ranks || model('game_ranks', GameRankSchema);
+
+export const getRank = async (
+  q: string = '',
+  pageNumber: number = 1,
+  pagination: number = 10,
+  sort: string = 'gameId'
+) => {
+  const query = {
+    $or: [{ gameId: { $regex: q, $options: 'i' } }],
+  };
+
+  const ranks = await GameRankModel.find(query)
+    .sort({ [sort]: -1 })
+    .skip((pageNumber - 1) * pagination)
+    .limit(pagination);
+
+  const total = await GameRankModel.countDocuments(query);
+
+  return { ranks, total };
+};
+
 const HorseTransferSchema = new Schema({
   blockTimestamp: {
     type: String,
