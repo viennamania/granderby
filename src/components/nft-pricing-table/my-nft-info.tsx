@@ -236,6 +236,8 @@ export default function NftInfo({ nftMetadata }: any) {
     getNft();
   }, [nftMetadata?.id]);
 
+  const [raceHistory, setRaceHistory] = useState([] as any);
+
   const [saleHistory, setSaleHistory] = useState([] as any);
 
   useEffect(() => {

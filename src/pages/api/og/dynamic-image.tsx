@@ -75,6 +75,10 @@ export default async function handler(req: NextRequest) {
     ogPowerUrl = 'https://granderby.io/images/og-power-500.jpeg';
   }
 
+  if (tokenid === '1') {
+    ogPowerUrl = 'https://granderby.io/images/og-power-1.jpeg';
+  }
+
   return new ImageResponse(
     (
       <div

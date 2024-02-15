@@ -22,25 +22,36 @@ import {
 
 dbConnect();
 
-/*
-            blockNum: item.blockNum,
-            uniqueId: item.uniqueId,
-            hash: item.hash,
-            from: item.from,
-            to: item.to,
-            value: item.value,
-            erc721TokenId: item.erc721TokenId,
-            erc1155Metadata: item.erc1155Metadata,
-            tokenId: item.tokenId,
-            asset: item.asset,
-            category: item.category,
-            rawContract: item.rawContract,
-            blockTimestamp: item.blockTimestamp,
-            data: receipt.logs[4]?.data,
-            buyer: buyer,
-            quantityBought: quantityBought,
-            totalPricePaid: totalPricePaid,
-*/
+const GameHistorySchema = new Schema({
+  gameId: {
+    type: String,
+    required: true,
+    default: false,
+  },
+});
+
+export const GameHistoryModel =
+  models.games || model('games', GameHistorySchema);
+
+export const getAll = async (
+  q: string = '',
+  pageNumber: number = 1,
+  pagination: number = 10,
+  sort: string = 'gameId'
+) => {
+  const query = {
+    $or: [{ gameId: { $regex: q, $options: 'i' } }],
+  };
+
+  const games = await GameHistoryModel.find(query)
+    .sort({ [sort]: -1 })
+    .skip((pageNumber - 1) * pagination)
+    .limit(pagination);
+
+  const total = await GameHistoryModel.countDocuments(query);
+
+  return { games, total };
+};
 
 const HorseTransferSchema = new Schema({
   blockTimestamp: {
