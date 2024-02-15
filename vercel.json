@@ -8,6 +8,10 @@
         {
             "path": "/api/cronjob-game",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-ranking",
+            "schedule": "* * * * *"
         }
 
 

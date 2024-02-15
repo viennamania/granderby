@@ -109,6 +109,10 @@ export default async function handler(
     return;
   }
 
+  /*
+http://3.38.2.94:3001/api/game/ranking?gameId=1001031371
+*/
+
   try {
     const games = db.collection('games');
 
