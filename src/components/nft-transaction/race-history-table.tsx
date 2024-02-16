@@ -327,7 +327,7 @@ const COLUMNS = [
     accessor: 'gameId',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-right text-xs">#{value}</div>
+      <div className="text-right text-lg">#{value}</div>
     ),
     minWidth: 100,
     maxWidth: 100,
@@ -337,7 +337,7 @@ const COLUMNS = [
     accessor: 'createdAt',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-right text-xs">
+      <div className="text-right text-lg">
         {format(Date.parse(value || 0), 'yyyy-MM-dd hh:mm:ss')}
       </div>
     ),
@@ -378,7 +378,7 @@ const COLUMNS = [
                 <span className="text-lg  text-red-600">{item.line}:</span>
 
                 <span className="text-lg  text-sky-600">
-                  #{item.nft?.tokenId}&nbsp;&nbsp;&nbsp;
+                  {item.nft?.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
               </div>
             );
@@ -390,7 +390,7 @@ const COLUMNS = [
               >
                 <span className="text-lg text-red-600">{item.line}:</span>
                 <span className="text-lg  text-sky-600">
-                  #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
+                  {item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
               </div>
             );
@@ -403,7 +403,7 @@ const COLUMNS = [
                 >
                   <span className="text-lg text-red-600">{item.line}:</span>
                   <span className="text-lg  text-sky-600">
-                    #{item.nft.tokenId}&nbsp;&nbsp;&nbsp;
+                    {item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                   </span>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -416,7 +416,7 @@ const COLUMNS = [
                 className="flex items-center justify-center text-xs"
               >
                 <span className="text-sm">{item.line}:</span>
-                <span className="">#{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
+                <span className="">{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
               </div>
             );
           }
@@ -686,11 +686,13 @@ export default function RaceHistoryTable(tokenId: any) {
 
     ranks?.map((item: any) => {
       const raceData = {
-        gameId: item.gameId,
+        gameId: item?.gameInfo?.GAME_NAME,
+
+        trackLength: item?.gameInfo?.TRACK_LENGTH,
 
         //transactionType: transfer.from === address ? 'Send' : 'Receive',
         transactionType: item.nft?.title,
-        createdAt: item.date,
+        createdAt: item?.gameInfo?.BET_END_TIME,
 
         placements: [
           {
@@ -838,7 +840,13 @@ export default function RaceHistoryTable(tokenId: any) {
   };
 
   useEffect(() => {
-    getLast20();
+    // get last 20 games time interval 10 seconds
+
+    const interval = setInterval(() => {
+      getLast20();
+    }, 10000);
+
+    //getLast20();
   }, [tokenId.tokenId]);
 
   return (
