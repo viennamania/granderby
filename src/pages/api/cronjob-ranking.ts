@@ -107,7 +107,7 @@ export default async function handler(
     const updateDoc = {
       $set: {
         gameId: gameId,
-        gameInfo: gameInfoData?.recordset,
+        gameInfo: gameInfoData?.recordset[0],
         ranking: data?.recordset,
       },
     };
