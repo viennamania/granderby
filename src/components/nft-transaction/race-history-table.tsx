@@ -696,8 +696,7 @@ export default function RaceHistoryTable(tokenId: any) {
           {
             line: 1,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 0)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 0)?.NAME,
 
               title: 'Horse',
             },
@@ -705,8 +704,7 @@ export default function RaceHistoryTable(tokenId: any) {
           {
             line: 2,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 1)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 1)?.NAME,
               title: 'Horse',
             },
           },
@@ -714,8 +712,7 @@ export default function RaceHistoryTable(tokenId: any) {
           {
             line: 3,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 2)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 2)?.NAME,
               title: 'Horse',
             },
           },
@@ -723,64 +720,56 @@ export default function RaceHistoryTable(tokenId: any) {
           {
             line: 4,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 3)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 3)?.NAME,
               title: 'Horse',
             },
           },
           {
             line: 5,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 4)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 4)?.NAME,
               title: 'Horse',
             },
           },
           {
             line: 6,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 5)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 5)?.NAME,
               title: 'Horse',
             },
           },
           {
             line: 7,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 6)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 6)?.NAME,
               title: 'Horse',
             },
           },
           {
             line: 8,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 7)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 7)?.NAME,
               title: 'Horse',
             },
           },
           {
             line: 9,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 8)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 8)?.NAME,
               title: 'Horse',
             },
           },
           {
             line: 10,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 9)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 9)?.NAME,
               title: 'Horse',
             },
           },
           {
             line: 11,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 10)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 10)?.NAME,
               title: 'Horse',
             },
           },
@@ -788,8 +777,7 @@ export default function RaceHistoryTable(tokenId: any) {
           {
             line: 12,
             nft: {
-              tokenId: item.ranking.find((x: any) => x.RANKING === 11)
-                ?.HORSE_UID,
+              tokenId: item.ranking.find((x: any) => x.RANKING === 11)?.NAME,
               title: 'Horse',
             },
           },

@@ -36,47 +36,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const contractAddress = 'stadium1001-ranking';
+  const response = await fetch('http://3.38.2.94:3001/api/horsedata');
 
-  var gameId: any = await kv.get(contractAddress);
-
-  if (gameId) {
-    // gameId += 1;
-
-    gameId = parseInt(gameId) + 1;
-    gameId = gameId.toString();
-  } else {
-    gameId = '1001031377';
-  }
-
-  const response = await fetch(
-    /////`http://3.38.2.94:3001/api/game/history?gameId=${gameId}`
-
-    `http://3.38.2.94:3001/api/game/ranking?gameId=${gameId}`
-  );
   const data = await response.json();
-
-  //console.log(data?.recordset);
-  /*
-    [
-      {
-        "GAME_UID": "1001031371",
-        "LASTGAMETIME":"2024-02-17T13:36:00.000Z",
-        "HORSE_INDEX": 0,
-        "HORSE_UID": "3036",
-        "NAME":"#00001592",
-        "RANKING": 6,
-        "RESULT_MONEY": "0",
-        "DURATION": "6044",
-        "INTERVAL_DURATION": "13.759,24.407,36.479,48.624,60.441"
-      },
-
-    ]
-  */
 
   if (data?.recordset?.length === 0) {
     res.status(200).json({
-      address: contractAddress,
+      address: '',
       length: 0,
       error: 'no data',
     });
@@ -92,22 +58,15 @@ export default async function handler(
 
   //const horseUids = data?.recordset?.map((item: any) => item.HORSE_UID);
 
-  //http://3.38.2.94:3001/api/gameinfo?uid=1001030305
-
-  const gameInfoResponse = await fetch(
-    `http://3.38.2.94:3001/api/gameinfo?uid=${gameId}`
-  );
-  const gameInfoData = await gameInfoResponse.json();
-
+  /*
   try {
-    const ranks = db.collection('game_ranks');
+    const ranks = db.collection('game_horses');
 
-    const filter = { gameId: gameId };
+    const filter = { horseId: gameId };
 
     const updateDoc = {
       $set: {
         gameId: gameId,
-        gameInfo: gameInfoData?.recordset,
         ranking: data?.recordset,
       },
     };
@@ -120,11 +79,10 @@ export default async function handler(
   } finally {
     ////await client.close();
   }
-
-  await kv.set(contractAddress, gameId);
+  */
 
   res.status(200).json({
-    address: contractAddress,
+    address: '',
     length: 0,
     error: '',
   });
