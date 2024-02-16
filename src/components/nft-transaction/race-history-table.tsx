@@ -989,6 +989,8 @@ export default function RaceHistoryTable(tokenId: any) {
   };
 
   useEffect(() => {
+    getLast20();
+
     // get last 20 games time interval 10 seconds
 
     const interval = setInterval(() => {
