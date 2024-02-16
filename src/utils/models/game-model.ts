@@ -74,6 +74,9 @@ export const getRank = async (
     $or: [{ gameId: { $regex: q, $options: 'i' } }],
   };
 
+  // game_ranks collection
+  //
+
   const ranks = await GameRankModel.find(query)
     .sort({ [sort]: -1 })
     .skip((pageNumber - 1) * pagination)

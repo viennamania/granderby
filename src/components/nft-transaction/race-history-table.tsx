@@ -48,6 +48,8 @@ import { format } from 'date-fns';
 
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
+import Image from 'next/image';
+
 type Price = {
   name: number;
   value: number;
@@ -329,8 +331,8 @@ const COLUMNS = [
     Cell: ({ cell: { value } }) => (
       <div className="text-right text-lg">#{value}</div>
     ),
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 80,
+    maxWidth: 80,
   },
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
@@ -341,8 +343,8 @@ const COLUMNS = [
         {format(Date.parse(value || 0), 'yyyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 80,
+    maxWidth: 80,
   },
 
   /*
@@ -391,7 +393,7 @@ const COLUMNS = [
     accessor: 'placements',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex flex-wrap items-center justify-start">
+      <div className="flex flex-wrap items-center justify-start gap-10">
         {/*
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         */}
@@ -408,6 +410,17 @@ const COLUMNS = [
                 <span className="text-lg  text-sky-600">
                   {item.nft?.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
+
+                {/* image */}
+                <div className="flex items-center justify-center">
+                  <Image
+                    src={item.nft?.image}
+                    alt="horse"
+                    width={40}
+                    height={40}
+                    className="rounded-lg"
+                  />
+                </div>
               </div>
             );
           } else if (item.line === 2) {
@@ -420,6 +433,17 @@ const COLUMNS = [
                 <span className="text-lg  text-sky-600">
                   {item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
+
+                {/* image */}
+                <div className="flex items-center justify-center">
+                  <Image
+                    src={item.nft?.image}
+                    alt="horse"
+                    width={40}
+                    height={40}
+                    className="rounded-lg"
+                  />
+                </div>
               </div>
             );
           } else if (item.line === 3) {
@@ -433,6 +457,17 @@ const COLUMNS = [
                   <span className="text-lg  text-sky-600">
                     {item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                   </span>
+
+                  {/* image */}
+                  <div className="flex items-center justify-center">
+                    <Image
+                      src={item.nft?.image}
+                      alt="horse"
+                      width={40}
+                      height={40}
+                      className="rounded-lg"
+                    />
+                  </div>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </>
@@ -607,7 +642,7 @@ export default function RaceHistoryTable(tokenId: any) {
     const data = await response.json();
 
     //console.log('data.all.games: ', data?.all?.games);
-    console.log('data.all.ranks: ', data?.all?.ranks);
+    //console.log('data.all.ranks: ', data?.all?.ranks);
 
     const ranks = data?.all?.ranks;
 
@@ -730,6 +765,14 @@ export default function RaceHistoryTable(tokenId: any) {
               tokenId: item.ranking.find((x: any) => x.RANKING === 0)?.NAME,
 
               title: 'Horse',
+
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -737,6 +780,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 1)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
 
@@ -745,6 +795,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 2)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
 
@@ -753,6 +810,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 3)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -760,6 +824,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 4)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -767,6 +838,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 5)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -774,6 +852,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 6)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -781,6 +866,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 7)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -788,6 +880,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 8)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -795,6 +894,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 9)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
           {
@@ -802,6 +908,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 10)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
 
@@ -810,6 +923,13 @@ export default function RaceHistoryTable(tokenId: any) {
             nft: {
               tokenId: item.ranking.find((x: any) => x.RANKING === 11)?.NAME,
               title: 'Horse',
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
             },
           },
         ],
