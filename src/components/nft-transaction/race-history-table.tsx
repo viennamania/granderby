@@ -345,9 +345,37 @@ const COLUMNS = [
     maxWidth: 100,
   },
 
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Rank</div>,
     accessor: 'rank',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-center text-2xl font-bold text-green-600">
+        {value}
+      </div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+  */
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Track Length</div>,
+    accessor: 'trackLength',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-center text-2xl font-bold text-green-600">
+        {value}m
+      </div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Game Class</div>,
+    accessor: 'gameClass',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="text-center text-2xl font-bold text-green-600">
@@ -689,6 +717,7 @@ export default function RaceHistoryTable(tokenId: any) {
         gameId: item?.gameInfo?.GAME_NAME,
 
         trackLength: item?.gameInfo?.TRACK_LENGTH,
+        gameClass: item?.gameInfo?.GAMECLASS,
 
         //transactionType: transfer.from === address ? 'Send' : 'Receive',
         transactionType: item.nft?.title,
