@@ -148,6 +148,8 @@ http://3.38.2.94:3001/api/game/ranking?gameId=1001031371
     ////await client.close();
   }
 
+  console.log('gameId==============', gameId);
+
   await kv.set(contractAddress, gameId);
 
   res.status(200).json({

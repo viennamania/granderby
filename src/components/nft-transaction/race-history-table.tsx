@@ -381,7 +381,74 @@ const COLUMNS = [
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="text-center text-2xl font-bold text-green-600">
-        {value}
+        {
+          /*
+          UU  0 
+US  1 
+UA  2 
+UB  3 
+UC  4 
+UD  5 
+SS  6 
+SA  7 
+SB  8 
+SC  9 
+SD  10 
+AA  11 
+AB  12 
+AC  13 
+AD  14 
+BB  15 
+BC  16 
+BD  17 
+CC  18 
+CD  19 
+DD  20
+*/
+          value === 1 ? (
+            <span>US</span>
+          ) : value === 2 ? (
+            <span>UA</span>
+          ) : value === 3 ? (
+            <span>UB</span>
+          ) : value === 4 ? (
+            <span>UC</span>
+          ) : value === 5 ? (
+            <span>UD</span>
+          ) : value === 6 ? (
+            <span>SS</span>
+          ) : value === 7 ? (
+            <span>SA</span>
+          ) : value === 8 ? (
+            <span>SB</span>
+          ) : value === 9 ? (
+            <span>SC</span>
+          ) : value === 10 ? (
+            <span>SD</span>
+          ) : value === 11 ? (
+            <span>AA</span>
+          ) : value === 12 ? (
+            <span>AB</span>
+          ) : value === 13 ? (
+            <span>AC</span>
+          ) : value === 14 ? (
+            <span>AD</span>
+          ) : value === 15 ? (
+            <span>BB</span>
+          ) : value === 16 ? (
+            <span>BC</span>
+          ) : value === 17 ? (
+            <span>BD</span>
+          ) : value === 18 ? (
+            <span>CC</span>
+          ) : value === 19 ? (
+            <span>CD</span>
+          ) : value === 20 ? (
+            <span>DD</span>
+          ) : (
+            <span>UU</span>
+          )
+        }
       </div>
     ),
     minWidth: 80,
