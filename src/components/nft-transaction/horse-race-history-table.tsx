@@ -476,7 +476,7 @@ DD  20
     accessor: 'placements',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="flex flex-col items-start justify-center gap-10">
+      <div className="flex flex-col items-start justify-center gap-3">
         {/*
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
         */}
@@ -585,7 +585,10 @@ DD  20
   },
 ];
 
-export default function RaceHistoryTable(tokenId: any) {
+export default function RaceHistoryTable(
+  tokenId: any
+  //tokenId: { tokenId: string }
+) {
   /*
   const { openDrawer } = useDrawer();
   */
@@ -729,7 +732,8 @@ export default function RaceHistoryTable(tokenId: any) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        ///method: 'getAll',
+        method: 'getHistoryByHorseId',
+        horseId: tokenId?.tokenId,
       }),
     });
 

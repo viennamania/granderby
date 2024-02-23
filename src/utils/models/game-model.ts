@@ -87,6 +87,30 @@ export const getRank = async (
   return { ranks, total };
 };
 
+export const getRankByHorseId = async (
+  horseId: string,
+  q: string = '',
+  pageNumber: number = 1,
+  pagination: number = 10,
+  sort: string = 'gameId'
+) => {
+  const query = {
+    $or: [{ gameId: { $regex: q, $options: 'i' } }],
+  };
+
+  // game_ranks collection
+  //
+
+  const ranks = await GameRankModel.find(query)
+    .sort({ [sort]: -1 })
+    .skip((pageNumber - 1) * pagination)
+    .limit(pagination);
+
+  const total = await GameRankModel.countDocuments(query);
+
+  return { ranks, total };
+};
+
 const HorseTransferSchema = new Schema({
   blockTimestamp: {
     type: String,

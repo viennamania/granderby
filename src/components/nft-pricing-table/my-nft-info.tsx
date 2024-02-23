@@ -166,6 +166,9 @@ export default function NftInfo({ nftMetadata }: any) {
   /* /api/nft/getOneByTokenId */
 
   const [gameHorseName, setGameHorseName] = useState<any>(null);
+
+  const [gameHorseId, setGameHorseId] = useState<any>(null);
+
   const [gameHorseDescription, setGameHorseDescription] = useState<any>(null);
 
   const [gameHorseStatus, setGameHorseStatus] = useState<any>(null);
@@ -205,6 +208,8 @@ export default function NftInfo({ nftMetadata }: any) {
           (item: any) => item?.trait_type === 'name'
         )?.value
       );
+
+      // gameHorseId is remove '#'
 
       console.log('gameHorseName', gameHorseName);
 
