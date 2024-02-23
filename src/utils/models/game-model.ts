@@ -98,13 +98,26 @@ export const getRankByHorseId = async (
     $or: [{ gameId: { $regex: q, $options: 'i' } }],
   };
 
-  // game_ranks collection
-  //
+  console.log('getRankByHorseId horseId', horseId);
 
+  // game_ranks collection
+  // ranking is array
+  // ranking[?].HORSE_UID[0] == horseId
+
+  const ranks = await GameRankModel.find({
+    $or: [{ gameId: { $regex: q, $options: 'i' } }],
+    'ranking.HORSE_UID': horseId,
+  })
+    .sort({ [sort]: -1 })
+    .skip((pageNumber - 1) * pagination)
+    .limit(pagination);
+
+  /*
   const ranks = await GameRankModel.find(query)
     .sort({ [sort]: -1 })
     .skip((pageNumber - 1) * pagination)
     .limit(pagination);
+  */
 
   const total = await GameRankModel.countDocuments(query);
 

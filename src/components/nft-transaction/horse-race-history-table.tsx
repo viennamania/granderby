@@ -22,7 +22,7 @@ import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
 
 import { useAddress } from '@thirdweb-dev/react';
-import { add, set } from 'lodash';
+import { add, get, set } from 'lodash';
 
 import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 
@@ -339,59 +339,6 @@ const COLUMNS = [
   */
 
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Game Name</div>,
-    accessor: 'gameName',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="flex flex-col items-center justify-center gap-3">
-        <div className="text-right text-lg">#{value}</div>
-      </div>
-    ),
-    minWidth: 100,
-    maxWidth: 100,
-  },
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
-    accessor: 'createdAt',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="text-right text-lg">
-        {format(Date.parse(value || 0), 'yyyy-MM-dd hh:mm:ss')}
-      </div>
-    ),
-    minWidth: 150,
-    maxWidth: 150,
-  },
-
-  /*
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Rank</div>,
-    accessor: 'rank',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="text-center text-2xl font-bold text-green-600">
-        {value}
-      </div>
-    ),
-    minWidth: 80,
-    maxWidth: 80,
-  },
-  */
-
-  {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Track Length</div>,
-    accessor: 'trackLength',
-    // @ts-ignore
-    Cell: ({ cell: { value } }) => (
-      <div className="text-center text-2xl font-bold text-green-600">
-        {value}m
-      </div>
-    ),
-    minWidth: 80,
-    maxWidth: 80,
-  },
-
-  {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Game Class</div>,
     accessor: 'gameClass',
     // @ts-ignore
@@ -467,19 +414,70 @@ DD  20
         }
       </div>
     ),
+    minWidth: 100,
+    maxWidth: 100,
+  },
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Game Name</div>,
+    accessor: 'gameName',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="flex flex-col items-center justify-center gap-3">
+        <div className="text-right text-lg">#{value}</div>
+      </div>
+    ),
+    minWidth: 100,
+    maxWidth: 100,
+  },
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Date</div>,
+    accessor: 'createdAt',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-right text-lg">
+        {format(Date.parse(value || 0), 'yyyy-MM-dd hh:mm:ss')}
+      </div>
+    ),
+    minWidth: 150,
+    maxWidth: 150,
+  },
+
+  /*
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Rank</div>,
+    accessor: 'rank',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-center text-2xl font-bold text-green-600">
+        {value}
+      </div>
+    ),
     minWidth: 80,
     maxWidth: 80,
   },
+  */
 
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Track Length</div>,
+    accessor: 'trackLength',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-center text-2xl font-bold text-green-600">
+        {value}m
+      </div>
+    ),
+    minWidth: 100,
+    maxWidth: 100,
+  },
+
+  /*
   {
     Header: () => <div className="">Placements</div>,
     accessor: 'placements',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="flex flex-col items-start justify-center gap-3">
-        {/*
-        <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-        */}
 
         {value?.map((item: any) => {
           if (item.line === 1) {
@@ -496,7 +494,7 @@ DD  20
                   {item.nft?.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
 
-                {/* image */}
+          
                 <div className="flex items-center justify-center">
                   <Image
                     src={item.nft?.image}
@@ -521,7 +519,7 @@ DD  20
                   {item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                 </span>
 
-                {/* image */}
+               
                 <div className="flex items-center justify-center">
                   <Image
                     src={item.nft?.image}
@@ -547,7 +545,7 @@ DD  20
                     {item.nft.tokenId}&nbsp;&nbsp;&nbsp;
                   </span>
 
-                  {/* image */}
+               
                   <div className="flex items-center justify-center">
                     <Image
                       src={item.nft?.image}
@@ -562,20 +560,7 @@ DD  20
               </>
             );
           } else {
-            /*
-            return (
-
-              <div
-                key={item.line}
-                className="flex items-center justify-center text-xs"
-              >
-                
-                <span className="text-sm">{item.line}:</span>
-                <span className="">{item.nft.tokenId}&nbsp;&nbsp;&nbsp;</span>
-              
-              </div>
-            );
-            */
+      
           }
         })}
       </div>
@@ -583,6 +568,7 @@ DD  20
     minWidth: 100,
     maxWidth: 100,
   },
+  */
 ];
 
 export default function RaceHistoryTable(
@@ -728,6 +714,8 @@ export default function RaceHistoryTable(
     console.log('data.all: ', data.all);
     */
 
+    ///const horseUid = "5009";
+
     const response = await fetch('/api/games/granderby/history', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -738,6 +726,8 @@ export default function RaceHistoryTable(
     });
 
     const data = await response.json();
+
+    /////console.log("data.all: ", data.all);
 
     //console.log('data.all.games: ', data?.all?.games);
     //console.log('data.all.ranks: ', data?.all?.ranks);

@@ -186,13 +186,13 @@ export default function NftInfo({ nftMetadata }: any) {
       });
       const data = await response.json();
 
-      console.log('data', data);
+      //console.log('data', data);
 
       ///console.log('data.horse', data?.horse);
 
       setNft(data?.horse);
 
-      console.log('data?.horse?.liveHorseInfo', data?.horse?.liveHorseInfo);
+      //console.log('data?.horse?.liveHorseInfo', data?.horse?.liveHorseInfo);
 
       setLiveHorseInfo(data?.horse?.liveHorseInfo);
 
@@ -200,7 +200,7 @@ export default function NftInfo({ nftMetadata }: any) {
 
       ///setNftMetadata(data?.horse?.nft);
 
-      console.log('data?.horse?.nft', data?.horse?.nft);
+      ///console.log('data?.horse?.nft', data?.horse?.nft);
 
       // gameHorseDescription => {trait_type: "name"}
       setGameHorseName(
@@ -780,7 +780,14 @@ export default function NftInfo({ nftMetadata }: any) {
                   </button>
                 </div>
 
-                <RaceHistoryTable tokenId={nftMetadata?.id} />
+                <RaceHistoryTable
+                  tokenId={
+                    ////nftMetadata?.id
+
+                    /// remove first character from liveHorseInfo?.HORSE_UID
+                    liveHorseInfo?.HORSE_UID?.slice(1)
+                  }
+                />
 
                 {/*
                 {nftData?.history?.map((item) => (
