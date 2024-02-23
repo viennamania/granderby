@@ -16,7 +16,10 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 
 import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
-import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
+
+///import RaceHistoryTable from '@/components/nft-transaction/race-history-table';
+
+import RaceHistoryTable from '@/components/nft-transaction/horse-race-history-table';
 
 import Image from 'next/image';
 import Button from '@/components/ui/button/button';
@@ -771,6 +774,8 @@ export default function NftInfo({ nftMetadata }: any) {
                     History
                   </button>
                 </div>
+
+                <RaceHistoryTable tokenId={nftMetadata?.id} />
 
                 {/*
                 {nftData?.history?.map((item) => (
