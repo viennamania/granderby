@@ -186,7 +186,7 @@ export default function NftInfo({ nftMetadata }: any) {
       });
       const data = await response.json();
 
-      ///console.log('data', data);
+      console.log('data', data);
 
       ///console.log('data.horse', data?.horse);
 
@@ -823,6 +823,14 @@ export default function NftInfo({ nftMetadata }: any) {
                       </span>
                       <span className=" w-full text-right text-lg">
                         #{nftMetadata?.id}
+                      </span>
+                    </div>
+                    <div className="flex w-full flex-row items-center justify-start gap-2">
+                      <span className="w-full text-left text-lg font-extrabold xl:text-xl">
+                        UID
+                      </span>
+                      <span className=" w-full text-right text-lg">
+                        #{liveHorseInfo?.HORSE_UID}
                       </span>
                     </div>
                   </div>
