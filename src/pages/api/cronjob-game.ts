@@ -46,7 +46,9 @@ export default async function handler(
     gameId = parseInt(gameId) + 1;
     gameId = gameId.toString();
   } else {
-    gameId = '1001030309';
+    ///gameId = '1001030309';
+
+    gameId = '1001035010';
   }
 
   // fetch api

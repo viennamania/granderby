@@ -324,9 +324,21 @@ const COLUMNS = [
     maxWidth: 120,
   },
   */
+
   {
-    Header: () => <div className="ltr:ml-auto rtl:mr-auto">gameId</div>,
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Game UID</div>,
     accessor: 'gameId',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="text-right text-lg">#{value}</div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Game Name</div>,
+    accessor: 'gameName',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="text-right text-lg">#{value}</div>
@@ -816,7 +828,8 @@ export default function RaceHistoryTable(tokenId: any) {
 
     ranks?.map((item: any) => {
       const raceData = {
-        gameId: item?.gameInfo?.GAME_NAME,
+        gameId: item?.gameInfo?.GAME_UID,
+        gameName: item?.gameInfo?.GAME_NAME,
 
         trackLength: item?.gameInfo?.TRACK_LENGTH,
         gameClass: item?.gameInfo?.GAMECLASS,
