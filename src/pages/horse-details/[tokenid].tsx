@@ -416,6 +416,7 @@ function SinglePrice(tokenid: any) {
                     href={`/horse`}
                   >
                     {/*nftMetadata?.metadata?.description*/}
+
                     {nftMetadata?.description}
                   </Link>
 
@@ -721,6 +722,17 @@ function SinglePrice(tokenid: any) {
                           </span>
                         </button>
                       </div>
+
+                      <button
+                        className="ml-10 flex flex-row items-center justify-start "
+                        onClick={() => openModal('SHARE_VIEW')}
+                      >
+                        <Twitter className="h-5 w-5" />
+
+                        <span className=" text-left text-lg font-bold text-black dark:text-white xl:text-xl">
+                          share
+                        </span>
+                      </button>
                     </div>
 
                     <div className="font-sm mt-2 flex flex-row items-center justify-between text-black  ">

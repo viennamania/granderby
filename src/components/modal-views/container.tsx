@@ -25,6 +25,12 @@ const PreviewContent = dynamic(
   () => import('@/components/create-nft/nft-preview-content')
 );
 
+const RaceHistoryView = dynamic(
+  () => import('@/components/profile/race-history-view')
+);
+
+////import RaceHistoryView from '@/components/profile/race-history-view';
+
 function renderModalContent(view: MODAL_VIEW | string) {
   switch (view) {
     case 'SEARCH_VIEW':
@@ -45,6 +51,9 @@ function renderModalContent(view: MODAL_VIEW | string) {
     case 'SALE_VIEW':
       return <Sale />;
 
+    case 'RACE_HISTORY_VIEW':
+      return <RaceHistoryView />;
+
     default:
       return null;
   }
@@ -63,6 +72,7 @@ export default function ModalContainer() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog

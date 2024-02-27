@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -49,6 +49,8 @@ import { format } from 'date-fns';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import Image from 'next/image';
+
+import { useModal } from '@/components/modal-views/context';
 
 type Price = {
   name: number;
@@ -249,6 +251,33 @@ export const TransactionData = [
 ];
 */
 
+// dummy data
+import User1 from '@/assets/images/game/icon_rank_1.jpg';
+import User2 from '@/assets/images/game/icon_rank_2.jpg';
+import User3 from '@/assets/images/game/icon_rank_3.jpg';
+import User4 from '@/assets/images/game/icon_rank_3.jpg';
+import User5 from '@/assets/images/game/icon_rank_3.jpg';
+import User6 from '@/assets/images/game/icon_rank_3.jpg';
+import User7 from '@/assets/images/game/icon_rank_3.jpg';
+import User8 from '@/assets/images/game/icon_rank_3.jpg';
+import User9 from '@/assets/images/game/icon_rank_3.jpg';
+import User10 from '@/assets/images/game/icon_rank_3.jpg';
+
+const data = [
+  { name: '#00202486', thumbnail: User1 },
+  { name: '#00202486', thumbnail: User2 },
+  { name: '#00202486', thumbnail: User3 },
+  { name: '#00202486', thumbnail: User4 },
+  { name: '#00202486', thumbnail: User5 },
+  { name: '#00202486', thumbnail: User6 },
+  { name: '#00202486', thumbnail: User7 },
+  { name: '#00202486', thumbnail: User8 },
+  { name: '#00202486', thumbnail: User4 },
+  { name: '#00202486', thumbnail: User9 },
+  { name: '#00202486', thumbnail: User3 },
+  { name: '#00202486', thumbnail: User10 },
+];
+
 const COLUMNS = [
   /*
   {
@@ -338,36 +367,48 @@ const COLUMNS = [
   },
   */
 
+  /*
+        Header: 'Action',
+        accessor: 'action',
+        Cell: props => <button className="btn1" onClick={() => handleShow(props)}>Details</button>,
+        */
+
+  /* handler for row click event */
+
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Game Class</div>,
     accessor: 'gameClass',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-center text-2xl font-bold text-green-600">
+      <div
+        className="
+          text-center text-2xl font-bold text-green-600
+        "
+      >
         {
           /*
           UU  0 
-US  1 
-UA  2 
-UB  3 
-UC  4 
-UD  5 
-SS  6 
-SA  7 
-SB  8 
-SC  9 
-SD  10 
-AA  11 
-AB  12 
-AC  13 
-AD  14 
-BB  15 
-BC  16 
-BD  17 
-CC  18 
-CD  19 
-DD  20
-*/
+          US  1 
+          UA  2 
+          UB  3 
+          UC  4 
+          UD  5 
+          SS  6 
+          SA  7 
+          SB  8 
+          SC  9 
+          SD  10 
+          AA  11 
+          AB  12 
+          AC  13 
+          AD  14 
+          BB  15 
+          BC  16 
+          BD  17 
+          CC  18 
+          CD  19 
+          DD  20
+          */
           value === 1 ? (
             <span>US</span>
           ) : value === 2 ? (
@@ -589,6 +630,8 @@ export default function RaceHistoryTable(
 
   const columns = React.useMemo(() => COLUMNS, []);
 
+  // handler for row click event
+
   const [transactions, setTransactions] = useState([]);
 
   const [raceHistory, setRaceHistory] = useState([]);
@@ -598,6 +641,7 @@ export default function RaceHistoryTable(
   const {
     getTableProps,
     getTableBodyProps,
+
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -607,25 +651,102 @@ export default function RaceHistoryTable(
     nextPage,
     previousPage,
     prepareRow,
+    // row selected event
+    // hanndler for row selection
+    toggleRowSelected,
+
+    // handler for click on row
+
+    getToggleAllRowsSelectedProps,
+
+    selectedFlatRows,
+
+    // handler for row click event
   } = useTable(
     {
       // @ts-ignore
-      columns,
+      columns: columns,
+
       //data,
       //data: transactions,
       data: raceHistory,
-      initialState: { pageSize: 20 },
+
+      initialState: {
+        pageSize: 20,
+        pageIndex: 0,
+      },
     },
     useSortBy,
     useResizeColumns,
     useFlexLayout,
     usePagination
+
+    // handler for row selection
   );
 
   const { pageIndex } = state;
 
   const pageKey = '1';
   const pageSize = '20';
+
+  /// handle click on row
+
+  const handleClick = (row: any) => {
+    console.log('row: ', row);
+
+    ///setDrawerHorseInfoTokenId(row.original?.gameId);
+  };
+
+  // event handler for row selection
+  const handleRowSelection = (row: any) => {
+    console.log('row: ', row);
+  };
+
+  const { openModal } = useModal();
+
+  // event handler for clicking on row of the table
+  const handleRowClick = (row: any) => {
+    console.log('row: ', row);
+
+    openModal('RACE_HISTORY_VIEW', {
+      title: 'Following',
+      count: '1,504',
+      users: data,
+    });
+  };
+
+  ///getTableProps
+
+  const getTableProps1 = getTableProps();
+
+  const getTableBodyProps1 = getTableBodyProps();
+
+  const getTrProps1 = (row: any) => {
+    //console.log('row: ', row);
+    return {
+      onClick: () => handleClick(row),
+    };
+  };
+
+  const getTdProps1 = (row: any) => {
+    return {
+      onClick: () => handleRowClick(row),
+    };
+  };
+
+  const getTheadProps1 = (header: any) => {
+    return {
+      onClick: () => console.log('header: ', header),
+    };
+  };
+
+  const getTbodyProps1 = (body: any) => {
+    return {
+      onClick: () => console.log('body: ', body),
+    };
+  };
+
+  // getTableProps, getTableBodyProps, getTrProps, getTdProps, getTheadProps, getTbodyProps
 
   /*
   useEffect(() => {
@@ -1082,11 +1203,11 @@ export default function RaceHistoryTable(
 
     // get last 20 games time interval 10 seconds
 
+    /*
     const interval = setInterval(() => {
       getLast20();
     }, 10000);
-
-    //getLast20();
+    */
   }, [tokenId.tokenId]);
 
   return (
@@ -1125,6 +1246,7 @@ export default function RaceHistoryTable(
                       >
                         <div className="flex items-center">
                           {column.render('Header')}
+
                           {column.canResize && (
                             <div
                               {...column.getResizerProps()}
@@ -1150,6 +1272,7 @@ export default function RaceHistoryTable(
                   </tr>
                 ))}
               </thead>
+
               <tbody
                 {...getTableBodyProps()}
                 className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
@@ -1161,23 +1284,31 @@ export default function RaceHistoryTable(
                 {page.map((row, idx) => {
                   prepareRow(row);
                   return (
-                    <tr
-                      {...row.getRowProps()}
+                    <button
                       key={idx}
-                      className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"
+                      onClick={() => handleRowClick(row)}
+                      className="h-full w-full"
                     >
-                      {row.cells.map((cell, idx) => {
-                        return (
-                          <td
-                            {...cell.getCellProps()}
-                            key={idx}
-                            className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
-                          >
-                            {cell.render('Cell')}
-                          </td>
-                        );
-                      })}
-                    </tr>
+                      <tr
+                        {...row.getRowProps()}
+                        key={idx}
+                        className=" mb-3
+                        items-center rounded-lg bg-white uppercase shadow-card last:mb-0 hover:bg-gray-50 dark:bg-light-dark
+                      "
+                      >
+                        {row.cells.map((cell, idx) => {
+                          return (
+                            <td
+                              {...cell.getCellProps()}
+                              key={idx}
+                              className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                            >
+                              {cell.render('Cell')}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    </button>
                   );
                 })}
 

@@ -64,6 +64,35 @@ import Avatar from '@/components/ui/avatar';
 
 import { nftData } from '@/data/static/single-nft';
 
+import { useModal } from '@/components/modal-views/context';
+
+// dummy data
+import User1 from '@/assets/images/game/icon_rank_1.jpg';
+import User2 from '@/assets/images/game/icon_rank_2.jpg';
+import User3 from '@/assets/images/game/icon_rank_3.jpg';
+import User4 from '@/assets/images/avatar/11.jpg';
+import User5 from '@/assets/images/collection/collection-1.jpg';
+import User6 from '@/assets/images/collection/collection-2.jpg';
+import User7 from '@/assets/images/collection/collection-3.jpg';
+import User8 from '@/assets/images/collection/collection-4.jpg';
+import User9 from '@/assets/images/collection/collection-5.jpg';
+import User10 from '@/assets/images/collection/collection-6.jpg';
+
+const data = [
+  { name: 'Amanda Jones', thumbnail: User1 },
+  { name: 'Marcos Llanos', thumbnail: User2 },
+  { name: 'Garry Heffernan', thumbnail: User3 },
+  { name: 'Teresa J. Brown', thumbnail: User4 },
+  { name: 'Williams Sarah', thumbnail: User5 },
+  { name: 'Teresa W. Luter', thumbnail: User6 },
+  { name: 'Dorothy Pacheco', thumbnail: User7 },
+  { name: 'Christopher', thumbnail: User8 },
+  { name: 'Ted Luster', thumbnail: User4 },
+  { name: 'R. Foster', thumbnail: User9 },
+  { name: 'Domingo', thumbnail: User3 },
+  { name: 'Conway', thumbnail: User10 },
+];
+
 export default function NftInfo({ nftMetadata }: any) {
   ///console.log('nftMetadata=========================', nftMetadata.id);
 
@@ -461,6 +490,8 @@ export default function NftInfo({ nftMetadata }: any) {
 
   const [block_chains, setBlock_chains] = useState<any>(null);
 
+  const { openModal } = useModal();
+
   return (
     <div className="flex">
       <div className="flex h-full w-full flex-col gap-3 rounded-lg border ">
@@ -775,6 +806,58 @@ export default function NftInfo({ nftMetadata }: any) {
                     //</div>    `https://granderby.market/horse-details/${nftMetadata?.id}`
                     //  )
                     //}
+
+                    /*
+                    onClick={() => openModal(
+                      
+                      //'SHARE_VIEW'
+
+                      //'SALE_VIEW'
+
+                      //'FOLLOWERS_VIEW'
+
+                      //'FOLLOWING_VIEW'
+
+                      //'SEARCH_VIEW'
+
+                      //'NFT_PREVIEW'
+
+                      //'PROFILE_INFO_VIEW'
+
+                      'WALLET_CONNECT_VIEW'
+
+
+
+                      )}
+                      */
+
+                    /*
+                      onClick={() =>
+                        openModal('FOLLOWERS_VIEW', {
+                          title: 'Followers',
+                          count: '1,845',
+                          users: data,
+                        })
+                      }
+                      */
+
+                    /*
+                      onClick={() =>
+                        openModal('FOLLOWING_VIEW', {
+                          title: 'Following',
+                          count: '1,504',
+                          users: data,
+                        })
+                      }
+                      */
+
+                    onClick={() =>
+                      openModal('RACE_HISTORY_VIEW', {
+                        title: 'Following',
+                        count: '1,504',
+                        users: data,
+                      })
+                    }
                   >
                     History
                   </button>
