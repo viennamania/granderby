@@ -5,6 +5,10 @@ import Scrollbar from '@/components/ui/scrollbar';
 
 import Image from 'next/image';
 
+import User1 from '@/assets/images/game/icon_rank_1.jpg';
+import User2 from '@/assets/images/game/icon_rank_2.jpg';
+import User3 from '@/assets/images/game/icon_rank_3.jpg';
+
 export default function RaceHistory({ ...props }) {
   const { data } = useModal();
 
@@ -24,11 +28,46 @@ export default function RaceHistory({ ...props }) {
       )}
       <Scrollbar style={{ height: 'calc(100% - 60px)' }}>
         <div className="ltr:pr-2 rtl:pl-2">
-          {data?.users.map((user: any, index: number) => (
+          {data?.users?.map((user: any, index: number) => (
             <div
-              className="flex items-center border-b border-dashed border-gray-200 py-4 text-center dark:border-gray-700"
+              className="flex flex-row items-center gap-5 border-b border-dashed border-gray-200 py-4 text-center dark:border-gray-700 "
               key={user.name + index}
             >
+              <div className=" flex h-24  w-24 items-center justify-center ">
+                {index === 0 ? (
+                  <Image
+                    src={User1}
+                    alt="Ranking"
+                    width={100}
+                    height={100}
+                    className="rounded-full"
+                  />
+                ) : index === 1 ? (
+                  <Image
+                    src={User2}
+                    alt="Ranking"
+                    width={90}
+                    height={90}
+                    className="rounded-full"
+                  />
+                ) : index === 2 ? (
+                  <Image
+                    src={User3}
+                    alt="Ranking"
+                    width={80}
+                    height={80}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <div
+                    className="
+                    flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-lg font-bold dark:bg-gray-700"
+                  >
+                    {index + 1}
+                  </div>
+                )}
+              </div>
+
               {/*
               <Avatar
                 className="!h-12 !w-12"
@@ -39,9 +78,9 @@ export default function RaceHistory({ ...props }) {
               <Image
                 src={user?.thumbnail}
                 alt="Ranking"
-                width={48}
-                height={48}
-                className="rounded-full"
+                width={100}
+                height={100}
+                className="rounded-lg"
               />
               <h3 className="text-md tracking-tighter text-gray-900 ltr:ml-4 rtl:mr-4 dark:text-white">
                 {user?.name}

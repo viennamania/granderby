@@ -638,6 +638,68 @@ export default function RaceHistoryTable(
 
   const address = useAddress();
 
+  const [gameDetailsArray, setGameDetailsArray] = useState<any>([
+    [
+      { name: '#00202333', thumbnail: User1 },
+      { name: '#00202333', thumbnail: User2 },
+      { name: '#00202333', thumbnail: User3 },
+      { name: '#00202333', thumbnail: User4 },
+      { name: '#00202333', thumbnail: User5 },
+      { name: '#00202333', thumbnail: User6 },
+      { name: '#00202333', thumbnail: User7 },
+      { name: '#00202333', thumbnail: User8 },
+      { name: '#00202333', thumbnail: User4 },
+      { name: '#00202333', thumbnail: User9 },
+      { name: '#00202333', thumbnail: User3 },
+      { name: '#00202333', thumbnail: User10 },
+    ],
+
+    [
+      { name: '#00202486', thumbnail: User1 },
+      { name: '#00202486', thumbnail: User2 },
+      { name: '#00202486', thumbnail: User3 },
+      { name: '#00202486', thumbnail: User4 },
+      { name: '#00202486', thumbnail: User5 },
+      { name: '#00202486', thumbnail: User6 },
+      { name: '#00202486', thumbnail: User7 },
+      { name: '#00202486', thumbnail: User8 },
+      { name: '#00202486', thumbnail: User4 },
+      { name: '#00202486', thumbnail: User9 },
+      { name: '#00202486', thumbnail: User3 },
+      { name: '#00202486', thumbnail: User10 },
+    ],
+
+    [
+      { name: '#00202486', thumbnail: User1 },
+      { name: '#00202486', thumbnail: User2 },
+      { name: '#00202486', thumbnail: User3 },
+      { name: '#00202486', thumbnail: User4 },
+      { name: '#00202486', thumbnail: User5 },
+      { name: '#00202486', thumbnail: User6 },
+      { name: '#00202486', thumbnail: User7 },
+      { name: '#00202486', thumbnail: User8 },
+      { name: '#00202486', thumbnail: User4 },
+      { name: '#00202486', thumbnail: User9 },
+      { name: '#00202486', thumbnail: User3 },
+      { name: '#00202486', thumbnail: User10 },
+    ],
+
+    [
+      { name: '#00202486', thumbnail: User1 },
+      { name: '#00202486', thumbnail: User2 },
+      { name: '#00202486', thumbnail: User3 },
+      { name: '#00202486', thumbnail: User4 },
+      { name: '#00202486', thumbnail: User5 },
+      { name: '#00202486', thumbnail: User6 },
+      { name: '#00202486', thumbnail: User7 },
+      { name: '#00202486', thumbnail: User8 },
+      { name: '#00202486', thumbnail: User4 },
+      { name: '#00202486', thumbnail: User9 },
+      { name: '#00202486', thumbnail: User3 },
+      { name: '#00202486', thumbnail: User10 },
+    ],
+  ]);
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -708,10 +770,22 @@ export default function RaceHistoryTable(
   const handleRowClick = (row: any) => {
     console.log('row: ', row);
 
+    console.log('index: ', row.index);
+
+    console.log('gameDetailsArray[0]: ', gameDetailsArray[0]);
+
+    console.log(
+      'gameDetailsArray[0][row.index]: ',
+      gameDetailsArray[0][row.index]
+    );
+
     openModal('RACE_HISTORY_VIEW', {
       title: 'Following',
       count: '1,504',
-      users: data,
+
+      users: gameDetailsArray[0][row.index],
+
+      //users: data,
     });
   };
 
@@ -848,7 +922,7 @@ export default function RaceHistoryTable(
 
     const data = await response.json();
 
-    /////console.log("data.all: ", data.all);
+    console.log('data.all: ', data.all);
 
     //console.log('data.all.games: ', data?.all?.games);
     //console.log('data.all.ranks: ', data?.all?.ranks);
@@ -1156,6 +1230,274 @@ export default function RaceHistoryTable(
 
       raceHistoryData.push(raceData);
     });
+
+    /*
+
+    */
+
+    /*
+    ranks?.map((item: any) => {
+
+      const gameDetails = [] as any;
+
+      item?.gameInfo?.HORSES?.map((horse: any) => {
+        const horseData = {
+          name: horse.NAME,
+          //thumbnail: horse.TEXTURE_KEY,
+          thumbnail: 'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' + horse.TEXTURE_KEY + '.png',
+        };
+
+        gameDetails.push(horseData);
+      });
+
+      gameDetailsArray.push(gameDetails);
+
+
+
+    } );
+    */
+
+    /*
+        ranks?.map((item: any) => {
+
+      const raceData = {
+        gameId: item?.gameInfo?.GAME_UID,
+        gameName: item?.gameInfo?.GAME_NAME,
+
+        trackLength: item?.gameInfo?.TRACK_LENGTH,
+        gameClass: item?.gameInfo?.GAMECLASS,
+
+        //transactionType: transfer.from === address ? 'Send' : 'Receive',
+        transactionType: item.nft?.title,
+        createdAt: item?.gameInfo?.BET_END_TIME,
+
+        placements: [
+          {
+            line: 1,
+            nft: {
+              tokenId: item.ranking.find((x: any) => x.RANKING === 0)?.NAME,
+
+              title: 'Horse',
+
+              textureKey: item.ranking.find((x: any) => x.RANKING === 0)
+                ?.TEXTURE_KEY,
+
+              image:
+                'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+                item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+                '.png',
+            },
+          },
+
+          */
+
+    const gameDetailsArray = [] as any;
+
+    gameDetailsArray.push(
+      ranks?.map((item: any) => {
+        const gameDetails = [] as any;
+
+        console.log('item: ', item);
+
+        // line 1
+        const name = item.ranking.find((x: any) => x.RANKING === 0)?.NAME;
+        const imageUrl =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 0)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 1,
+          name: name,
+          thumbnail: imageUrl,
+        });
+
+        // line 2
+        const name2 = item.ranking.find((x: any) => x.RANKING === 1)?.NAME;
+        const imageUrl2 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 1)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 2,
+          name: name2,
+          thumbnail: imageUrl2,
+        });
+
+        // line 3
+        const name3 = item.ranking.find((x: any) => x.RANKING === 2)?.NAME;
+        const imageUrl3 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 2)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 3,
+          name: name3,
+          thumbnail: imageUrl3,
+        });
+
+        // line 4
+        const name4 = item.ranking.find((x: any) => x.RANKING === 3)?.NAME;
+        const imageUrl4 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 3)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 4,
+          name: name4,
+          thumbnail: imageUrl4,
+        });
+
+        // line 5
+        const name5 = item.ranking.find((x: any) => x.RANKING === 4)?.NAME;
+        const imageUrl5 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 4)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 5,
+          name: name5,
+          thumbnail: imageUrl5,
+        });
+
+        // line 6
+        const name6 = item.ranking.find((x: any) => x.RANKING === 5)?.NAME;
+        const imageUrl6 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 5)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 6,
+          name: name6,
+          thumbnail: imageUrl6,
+        });
+
+        // line 7
+        const name7 = item.ranking.find((x: any) => x.RANKING === 6)?.NAME;
+        const imageUrl7 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 6)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 7,
+          name: name7,
+          thumbnail: imageUrl7,
+        });
+
+        // line 8
+        const name8 = item.ranking.find((x: any) => x.RANKING === 7)?.NAME;
+        const imageUrl8 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 7)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 8,
+          name: name8,
+          thumbnail: imageUrl8,
+        });
+
+        // line 9
+        const name9 = item.ranking.find((x: any) => x.RANKING === 8)?.NAME;
+        const imageUrl9 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 8)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 9,
+          name: name9,
+          thumbnail: imageUrl9,
+        });
+
+        // line 10
+        const name10 = item.ranking.find((x: any) => x.RANKING === 9)?.NAME;
+        const imageUrl10 =
+          'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/' +
+          item.ranking.find((x: any) => x.RANKING === 9)?.TEXTURE_KEY +
+          '.png';
+        gameDetails.push({
+          line: 10,
+          name: name10,
+          thumbnail: imageUrl10,
+        });
+
+        console.log('======gameDetails: ', gameDetails);
+
+        return gameDetails;
+      })
+    );
+
+    console.log('gameDetailsArray: ', gameDetailsArray);
+
+    setGameDetailsArray(gameDetailsArray);
+
+    /*
+    setGameDetailsArray(
+
+      [
+        [
+          { name: '#00202333', thumbnail: User1 },
+          { name: '#00202333', thumbnail: User2 },
+          { name: '#00202333', thumbnail: User3 },
+          { name: '#00202333', thumbnail: User4 },
+          { name: '#00202333', thumbnail: User5 },
+          { name: '#00202333', thumbnail: User6 },
+          { name: '#00202333', thumbnail: User7 },
+          { name: '#00202333', thumbnail: User8 },
+          { name: '#00202333', thumbnail: User4 },
+          { name: '#00202333', thumbnail: User9 },
+          { name: '#00202333', thumbnail: User3 },
+          { name: '#00202333', thumbnail: User10 },
+        ],
+
+        [
+          { name: '#00202486', thumbnail: User1 },
+          { name: '#00202486', thumbnail: User2 },
+          { name: '#00202486', thumbnail: User3 },
+          { name: '#00202486', thumbnail: User4 },
+          { name: '#00202486', thumbnail: User5 },
+          { name: '#00202486', thumbnail: User6 },
+          { name: '#00202486', thumbnail: User7 },
+          { name: '#00202486', thumbnail: User8 },
+          { name: '#00202486', thumbnail: User4 },
+          { name: '#00202486', thumbnail: User9 },
+          { name: '#00202486', thumbnail: User3 },
+          { name: '#00202486', thumbnail: User10 },
+        ],
+
+        [
+          { name: '#00202486', thumbnail: User1 },
+          { name: '#00202486', thumbnail: User2 },
+          { name: '#00202486', thumbnail: User3 },
+          { name: '#00202486', thumbnail: User4 },
+          { name: '#00202486', thumbnail: User5 },
+          { name: '#00202486', thumbnail: User6 },
+          { name: '#00202486', thumbnail: User7 },
+          { name: '#00202486', thumbnail: User8 },
+          { name: '#00202486', thumbnail: User4 },
+          { name: '#00202486', thumbnail: User9 },
+          { name: '#00202486', thumbnail: User3 },
+          { name: '#00202486', thumbnail: User10 },
+        ],
+
+
+        [
+          { name: '#00202486', thumbnail: User1 },
+          { name: '#00202486', thumbnail: User2 },
+          { name: '#00202486', thumbnail: User3 },
+          { name: '#00202486', thumbnail: User4 },
+          { name: '#00202486', thumbnail: User5 },
+          { name: '#00202486', thumbnail: User6 },
+          { name: '#00202486', thumbnail: User7 },
+          { name: '#00202486', thumbnail: User8 },
+          { name: '#00202486', thumbnail: User4 },
+          { name: '#00202486', thumbnail: User9 },
+          { name: '#00202486', thumbnail: User3 },
+          { name: '#00202486', thumbnail: User10 },
+        ],
+
+      ]
+
+    );
+    */
 
     /*
     data?.all?.map((item: any) => {

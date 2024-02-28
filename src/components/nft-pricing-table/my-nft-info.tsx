@@ -851,6 +851,7 @@ export default function NftInfo({ nftMetadata }: any) {
                       }
                       */
 
+                    /*
                     onClick={() =>
                       openModal('RACE_HISTORY_VIEW', {
                         title: 'Following',
@@ -858,6 +859,7 @@ export default function NftInfo({ nftMetadata }: any) {
                         users: data,
                       })
                     }
+                    */
                   >
                     History
                   </button>
@@ -917,7 +919,7 @@ export default function NftInfo({ nftMetadata }: any) {
                     </div>
                     <div className="flex w-full flex-row items-center justify-start gap-2">
                       <span className="w-full text-left text-lg font-extrabold xl:text-xl">
-                        UID
+                        UID (test)
                       </span>
                       <span className=" w-full text-right text-lg">
                         #{liveHorseInfo?.HORSE_UID}
