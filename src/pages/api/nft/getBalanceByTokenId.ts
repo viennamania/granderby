@@ -36,14 +36,14 @@ export default async function handler(
   // get balance from api
   // http://3.38.2.94:3001/api/balanceByHorseUid?uid=2262
 
-  const uid = data?.horse?.liveHorseInfo?.HORSE_UID?.slice(1);
+  const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
 
   if (!uid) {
     res.status(404).json({ error: 'Horse uid not found' });
     return;
   }
 
-  console.log('uid', uid);
+  console.log('uid========', uid);
 
   const result = await fetch(
     `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
