@@ -11,7 +11,7 @@ import { useGridSwitcher } from '@/lib/hooks/use-grid-switcher';
 
 import { Network, Alchemy } from 'alchemy-sdk';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
@@ -291,6 +291,47 @@ export default function FeedsCoinOwned(
 
   const { openModal } = useModal();
 
+  /*
+  get balance by many horse uid
+  http://3.38.2.94:3001/api/balanceByManyHorseUid?manyUid=2316,2315,2310,2306
+  and sum all balance
+  */
+
+  const [totalBalance, setTotalBalance] = useState(0);
+
+  useEffect(() => {
+    const main = async () => {
+      // Call api for get balance by many horse uid
+      const response = await fetch('/api/nft/getBalanceByHolder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          holder: address,
+        }),
+      });
+
+      const data = await response.json();
+
+      ///console.log('data======>', data);
+
+      let totalBalance = 0;
+
+      data?.recordset?.map((item: any) => {
+        ///console.log('item', item);
+
+        totalBalance += parseInt(item.Horse_balance);
+      });
+
+      setTotalBalance(totalBalance);
+    };
+
+    main();
+  }, [address]);
+
+  console.log('totalBalance======>', totalBalance);
+
   return (
     <div className="mt-5 flex">
       {!address ? (
@@ -419,16 +460,28 @@ export default function FeedsCoinOwned(
             </div>
 
             <div className=" w-32 text-right text-2xl font-bold ">
+              {
+                // price format (333,333,333)
+                //totalBalance
+
+                totalBalance?.toLocaleString('en-US', {
+                  style: 'currency',
+                  currency: 'GDP',
+                })
+              }
+              {/*
               {isLoadingBalanceSUGAR ? (
                 <span className="text-xs">Loading...</span>
               ) : (
                 Number(tokenBalanceSUGAR?.displayValue).toFixed(2)
               )}
+              */}
             </div>
             <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
               0(0.0%)
             </div>
 
+            {/*
             <button
               className="ml-10 flex flex-row items-center justify-center gap-3"
               ///onClick={(e) => router.push('/coin/usdc')}
@@ -443,6 +496,7 @@ export default function FeedsCoinOwned(
             >
               <ChevronForward className="mr-10 rtl:rotate-180" />
             </button>
+            */}
           </div>
 
           {/*

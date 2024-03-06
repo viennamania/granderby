@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, use } from 'react';
 import { NextSeo } from 'next-seo';
 
 import CoinSlider from '@/components/ui/coin-card';
@@ -449,6 +449,30 @@ export default function PortfolioScreen() {
     getJockeysCount();
   }, [address]);
 
+  // get horses by holder
+
+  const [horses, setHorses] = useState([]);
+  useEffect(() => {
+    async function getHorses() {
+      if (!address) return;
+
+      const response = await fetch('/api/nft/getBalanceByHolder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          holder: address,
+        }),
+      });
+      const data = await response.json();
+
+      console.log('getHorses data====', data);
+
+      setHorses(data.nfts);
+    }
+
+    getHorses();
+  }, [address]);
+
   const [transfers, setTransfers] = useState([]);
 
   const columns = useMemo(() => COLUMNS, []);
@@ -481,75 +505,75 @@ export default function PortfolioScreen() {
 
   const limit = 5;
 
-  const getLatest = async () => {
-    ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
-
-    const response = await fetch('/api/ft/user/history/transfer', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        method: 'getLatest',
-        limit: limit,
-        address: address?.toLowerCase(),
-      }),
-    });
-    const data = await response.json();
-
-    const transactions = [] as any;
-
-    data.all?.map((transfer: any, index: number) => {
-      ///console.log('transfer: ', transfer);
-
-      const transactionData = {
-        action: transfer.action,
-        hash: transfer.hash,
-        id: transfer.blockNum,
-        //transactionType: transfer.from === address ? 'Send' : 'Receive',
-
-        transactionType:
-          transfer.tokenFrom === address?.toLowerCase() ? 'Send' : 'Receive',
-
-        createdAt: transfer.blockTimestamp,
-
-        tokenFrom: transfer.tokenFrom,
-        tokenTo: transfer.tokenTo,
-
-        asset: transfer.asset,
-
-        tokenId: transfer.tokenId,
-        amount:
-          transfer.category === 'erc20'
-            ? Number(transfer.value).toFixed(2)
-            : `#` + transfer.tokenId,
-
-        logs4Address: transfer.logs4Address,
-        category:
-          transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
-            ? 'Register'
-            : transfer.tokenFrom ===
-              stakingContractAddressHorseAAA.toLowerCase()
-            ? 'Unregister'
-            : transfer.tokenFrom === address?.toLowerCase()
-            ? 'Send'
-            : transfer.tokenFrom ===
-              '0x0000000000000000000000000000000000000000'.toLowerCase()
-            ? 'Mint'
-            : transfer.asset === 'SUGAR' &&
-              transfer.tokenFrom ===
-                '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLocaleLowerCase()
-            ? 'Reward'
-            : 'Receive',
-      };
-
-      transactions.push(transactionData);
-    });
-
-    setTransfers(transactions);
-
-    ///console.log('getLatest transfers: ', transactions);
-  };
-
   useEffect(() => {
+    const getLatest = async () => {
+      ///console.log('price-history-table nftMetadata?.metadata?.id: ', nftMetadata?.metadata?.id);
+
+      const response = await fetch('/api/ft/user/history/transfer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          method: 'getLatest',
+          limit: limit,
+          address: address?.toLowerCase(),
+        }),
+      });
+      const data = await response.json();
+
+      const transactions = [] as any;
+
+      data.all?.map((transfer: any, index: number) => {
+        ///console.log('transfer: ', transfer);
+
+        const transactionData = {
+          action: transfer.action,
+          hash: transfer.hash,
+          id: transfer.blockNum,
+          //transactionType: transfer.from === address ? 'Send' : 'Receive',
+
+          transactionType:
+            transfer.tokenFrom === address?.toLowerCase() ? 'Send' : 'Receive',
+
+          createdAt: transfer.blockTimestamp,
+
+          tokenFrom: transfer.tokenFrom,
+          tokenTo: transfer.tokenTo,
+
+          asset: transfer.asset,
+
+          tokenId: transfer.tokenId,
+          amount:
+            transfer.category === 'erc20'
+              ? Number(transfer.value).toFixed(2)
+              : `#` + transfer.tokenId,
+
+          logs4Address: transfer.logs4Address,
+          category:
+            transfer.tokenTo === stakingContractAddressHorseAAA.toLowerCase()
+              ? 'Register'
+              : transfer.tokenFrom ===
+                stakingContractAddressHorseAAA.toLowerCase()
+              ? 'Unregister'
+              : transfer.tokenFrom === address?.toLowerCase()
+              ? 'Send'
+              : transfer.tokenFrom ===
+                '0x0000000000000000000000000000000000000000'.toLowerCase()
+              ? 'Mint'
+              : transfer.asset === 'SUGAR' &&
+                transfer.tokenFrom ===
+                  '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C'.toLocaleLowerCase()
+              ? 'Reward'
+              : 'Receive',
+        };
+
+        transactions.push(transactionData);
+      });
+
+      setTransfers(transactions);
+
+      ///console.log('getLatest transfers: ', transactions);
+    };
+
     getLatest();
 
     //setInterval(() => {
