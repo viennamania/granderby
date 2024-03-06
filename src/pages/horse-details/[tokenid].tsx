@@ -4,7 +4,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import RootLayout from '@/layouts/_root-layout';
 import { NextPageWithLayout } from '@/types';
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
@@ -102,6 +102,8 @@ function SinglePrice(tokenid: any) {
 
   const [gameHorseBalance, setGameHorseBalance] = useState<number>(0);
 
+  const [liveHorseInfo, setLiveHorseInfo] = useState<any>(null);
+
   useEffect(() => {
     async function getNft() {
       setIsLoading(true);
@@ -134,7 +136,7 @@ function SinglePrice(tokenid: any) {
         )?.value
       );
 
-      console.log('gameHorseName', gameHorseName);
+      ///console.log('gameHorseName', gameHorseName);
 
       // gameHorseDescription => {trait_type: "desription"}
       setGameHorseDescription(
@@ -143,7 +145,7 @@ function SinglePrice(tokenid: any) {
         )?.value
       );
 
-      console.log('gameHorseDescription', gameHorseDescription);
+      ///console.log('gameHorseDescription', gameHorseDescription);
 
       setGameHorseInfo(data?.horse?.gameHorseInfo);
       /*
@@ -161,7 +163,89 @@ function SinglePrice(tokenid: any) {
         COLOR_SET_NO: 482,
       */
 
-      setGameHorseStatus(data?.horse?.gameHorseStatus);
+      ////setGameHorseStatus(data?.horse?.gameHorseStatus);
+
+      /*
+      [
+        {
+            "trait_type": "AGE",
+            "value": ""
+        },
+        {
+            "trait_type": "OVERALL",
+            "value": ""
+        },
+        {
+            "trait_type": "FRONT",
+            "value": ""
+        },
+        {
+            "trait_type": "STRETCH",
+            "value": ""
+        },
+        {
+            "trait_type": "WEIGHT",
+            "value": ""
+        },
+        {
+            "trait_type": "RUNTYPE",
+            "value": ""
+        }
+      ]
+      */
+
+      setGameHorseStatus([
+        {
+          trait_type: 'AGE',
+          value:
+            data?.horse?.liveHorseInfo?.AGE &&
+            data?.horse?.liveHorseInfo?.AGE !== ''
+              ? data?.horse?.liveHorseInfo?.AGE
+              : '0',
+        },
+        {
+          trait_type: 'OVERALL',
+          value:
+            data?.horse?.liveHorseInfo?.OVERALL &&
+            data?.horse?.liveHorseInfo?.OVERALL !== ''
+              ? data?.horse?.liveHorseInfo?.OVERALL
+              : '0',
+        },
+        {
+          trait_type: 'FRONT',
+          value:
+            data?.horse?.liveHorseInfo?.FRONT &&
+            data?.horse?.liveHorseInfo?.FRONT !== ''
+              ? data?.horse?.liveHorseInfo?.FRONT
+              : '0',
+        },
+        {
+          trait_type: 'STRETCH',
+          value:
+            data?.horse?.liveHorseInfo?.STRETCH &&
+            data?.horse?.liveHorseInfo?.STRETCH !== ''
+              ? data?.horse?.liveHorseInfo?.STRETCH
+              : '0',
+        },
+        {
+          trait_type: 'WEIGHT',
+          value:
+            data?.horse?.liveHorseInfo?.WEIGHT &&
+            data?.horse?.liveHorseInfo?.WEIGHT !== ''
+              ? data?.horse?.liveHorseInfo?.WEIGHT
+              : '0',
+        },
+        {
+          trait_type: 'RUNTYPE',
+          value:
+            data?.horse?.liveHorseInfo?.RUNTYPE &&
+            data?.horse?.liveHorseInfo?.RUNTYPE !== ''
+              ? data?.horse?.liveHorseInfo?.RUNTYPE
+              : '0',
+        },
+      ]);
+
+      setLiveHorseInfo(data?.horse?.liveHorseInfo);
 
       /*
       data?.horse?.totalPricePaid;
@@ -210,6 +294,10 @@ function SinglePrice(tokenid: any) {
     getNftBalance();
   }, [tokenid.tokenid]);
 
+  console.log('gameHorseStatus', gameHorseStatus);
+
+  console.log('liveHorseInfo', liveHorseInfo);
+
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
 
@@ -253,6 +341,8 @@ function SinglePrice(tokenid: any) {
     ///const attributes = nftMetadata?.metadata?.attributes as any;
 
     const attributes = nftMetadata?.rawMetadata?.attributes as any;
+
+    console.log('attributes', attributes);
 
     attributes?.map((attribute: any) => {
       if (false) {
