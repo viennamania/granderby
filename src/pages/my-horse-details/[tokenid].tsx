@@ -101,7 +101,7 @@ const MyHorseDetails: NextPageWithLayout<
   */
   }
 
-  console.log(' MyHorseDetails tokenid======>', tokenid);
+  ////console.log(' MyHorseDetails tokenid======>', tokenid);
 
   const [isOpen, setIsOpen] = useState(false);
   const { layout } = useLayout();
@@ -116,7 +116,7 @@ const MyHorseDetails: NextPageWithLayout<
 
   const { data: nftMetadata, isLoading } = useNFT(contract, tokenid);
 
-  console.log('nftMetadata======>', nftMetadata);
+  ////console.log('nftMetadata======>', nftMetadata);
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);

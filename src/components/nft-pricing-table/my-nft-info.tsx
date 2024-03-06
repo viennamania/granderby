@@ -202,6 +202,8 @@ export default function NftInfo({ nftMetadata }: any) {
 
   const [gameHorseStatus, setGameHorseStatus] = useState<any>(null);
 
+  const [gameHorseBalance, setGameHorseBalance] = useState<number>(0);
+
   useEffect(() => {
     async function getNft() {
       if (!nftMetadata?.id) return;
@@ -215,7 +217,11 @@ export default function NftInfo({ nftMetadata }: any) {
       });
       const data = await response.json();
 
-      //console.log('data', data);
+      console.log('data', data);
+
+      //console.log('nftMetadata?.id', nftMetadata?.id);
+
+      //console.log('data=====', data);
 
       ///console.log('data.horse', data?.horse);
 
@@ -268,9 +274,30 @@ export default function NftInfo({ nftMetadata }: any) {
         const price = data?.horse?.totalPricePaid / 1000000;
         setLastPrice(price);
       }
+
+      ////setGameHorseBalance(data?.horseBalance || 0);
+    }
+
+    async function getNftBalance() {
+      if (!nftMetadata?.id) return;
+
+      const response = await fetch('/api/nft/getBalanceByTokenId', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenId: nftMetadata?.id,
+        }),
+      });
+      const data = await response.json();
+
+      console.log('data', data);
+
+      setGameHorseBalance(data?.balance || 0);
     }
 
     getNft();
+
+    getNftBalance();
   }, [nftMetadata?.id]);
 
   const [raceHistory, setRaceHistory] = useState([] as any);
@@ -279,6 +306,8 @@ export default function NftInfo({ nftMetadata }: any) {
 
   useEffect(() => {
     const getLastSale20 = async () => {
+      if (!nftMetadata?.id) return;
+
       console.log('price-history-table nftMetadata?.id: ', nftMetadata?.id);
 
       const response = await fetch('/api/nft/horse/history/price', {
@@ -547,19 +576,49 @@ export default function NftInfo({ nftMetadata }: any) {
             <TabPanel className="focus:outline-none">
               <div className="flex w-full flex-col items-center justify-center gap-5 p-10">
                 <div className="flex w-full flex-row items-center justify-center gap-20">
-                  <span className="text-xl font-bold">ALLOWANCE</span>
-                  <div className=" flex  w-52 flex-row items-center justify-between gap-2  rounded-lg bg-slate-100 p-3 pl-5 pr-5">
+                  <div className="flex flex-col items-center justify-center gap-5">
+                    <span className="text-xl font-bold">ALLOWANCE</span>
                     <Image
                       src="/images/icon-gdp.png"
                       alt="sugar"
                       width={30}
                       height={30}
                     />
+                  </div>
+
+                  <div className=" flex w-64 flex-row items-center justify-between gap-2  rounded-lg bg-slate-100 p-3 pl-5 pr-5">
                     <div className="flex flex-col items-end justify-center gap-2">
-                      <span className="  text-xl font-bold">332,562</span>
-                      <span className="  text-lg font-bold text-green-600">
-                        +45.42
-                      </span>
+                      <div className="flex flex-row items-center justify-center gap-2">
+                        <div className="  text-xl font-bold">Accumulate:</div>
+                        <div className=" flex w-20 flex-row items-center justify-end gap-2">
+                          <span className="  text-xl font-bold">
+                            {
+                              // dollar format
+
+                              gameHorseBalance
+                            }
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-row items-center justify-center gap-2">
+                        <div className="  text-xl font-bold">Keep:</div>
+                        <div className=" flex w-20 flex-row items-center justify-end gap-2">
+                          <span className="  text-xl font-bold">
+                            {gameHorseBalance}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-row items-center justify-center gap-2">
+                        <div className="  text-xl font-bold">Last:</div>
+
+                        <div className="flex w-20 flex-row items-center justify-end gap-2">
+                          <span className="  text-lg font-bold text-green-600">
+                            +{gameHorseBalance}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

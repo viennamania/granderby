@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@belivvr/aframe-react": "^0.4.2",
+    "@floating-ui/react": "^0.26.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
@@ -42,7 +43,6 @@
     "@vercel/analytics": "^1.0.1",
     "@vercel/kv": "^0.2.3",
     "@vercel/og": "^0.5.17",
-    "@floating-ui/react": "^0.26.2",
     "add": "^2.0.6",
     "aframe": "^1.4.2",
     "alchemy-sdk": "^2.10.1",

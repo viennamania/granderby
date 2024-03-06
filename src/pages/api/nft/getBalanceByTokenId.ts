@@ -17,7 +17,7 @@ export default async function handler(
   // POST tokenId
   const tokenId = req.body.tokenId;
 
-  console.log('getOneByTokenId tokenId', tokenId);
+  console.log('getBalanceByTokenId tokenId', tokenId);
 
   if (!tokenId) {
     res.status(400).json({ error: 'Missing tokenId' });
@@ -33,18 +33,10 @@ export default async function handler(
     return;
   }
 
-  res.status(200).json(data);
-
   // get balance from api
   // http://3.38.2.94:3001/api/balanceByHorseUid?uid=2262
 
-  /*
-  const horseInfo = data?.horse;
-
- 
   const uid = data?.horse?.liveHorseInfo?.HORSE_UID?.slice(1);
-
-
 
   if (!uid) {
     res.status(404).json({ error: 'Horse uid not found' });
@@ -53,41 +45,19 @@ export default async function handler(
 
   console.log('uid', uid);
 
-
-  const result = await fetch(`http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`);
+  const result = await fetch(
+    `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
+  );
 
   const balanceData = await result.json();
-
 
   const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
 
   console.log('balance', horseBalance);
 
-
   ///console.log('getOneByTokenId horse', horse);
 
-  res.status(200).json(
-
-
-
-
-    {
-      tokenId: data?.tokenId,
-      horse: {
-        name: horseInfo?.name,
-        tokenId: data?.tokenId,
-        uid: uid,
-        balance: horseBalance,
-        liveHorseInfo: horseInfo?.liveHorseInfo,
-        birth: horseInfo?.birth,
-        breed: horseInfo?.breed,
-        color: horseInfo?.color,
-
-
-
- 
-    
-  );
-
-  */
+  res.status(200).json({
+    balance: horseBalance,
+  });
 }
