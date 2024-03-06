@@ -229,6 +229,10 @@ export const getAllHorses = async (
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
 
+  // nft.media[0].raw
+  // https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00020023.png
+  // subtract 00020023 from url
+
   if (grades.length === 0) {
     const data = await HorseModel.find({})
 
@@ -240,8 +244,14 @@ export const getAllHorses = async (
 
       .find({
         $or: [
-          { 'nft.title': { $regex: q, $options: 'i' } },
+          //{ 'nft.title': { $regex: q, $options: 'i' } },
           //{ 'nft.description': { $regex: q, $options: 'i' } },
+
+          ///{ 'nft.media[0].raw': { $regex: q, $options: 'i' } },
+
+          //{ 'nft.media[0].raw': { $regex: q, $options: 'i' } },
+
+          { 'nft.media.raw': { $regex: q, $options: 'i' } },
         ],
       })
 
