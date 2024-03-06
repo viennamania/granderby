@@ -867,7 +867,6 @@ function SinglePrice(tokenid: any) {
                         {/*nftMetadata?.title*/}
                         {gameHorseName}
                       </div>
-
                       <div className="mr-5 flex flex-row items-center justify-between ">
                         <button
                           className=" flex flex-row items-center justify-start  "
@@ -889,7 +888,7 @@ function SinglePrice(tokenid: any) {
                           </span>
                         </button>
                       </div>
-
+                      {/*
                       <button
                         className="ml-10 flex flex-row items-center justify-start "
                         onClick={() => openModal('SHARE_VIEW')}
@@ -900,6 +899,8 @@ function SinglePrice(tokenid: any) {
                           share
                         </span>
                       </button>
+                      */}
+                      UID: {liveHorseInfo?.HORSE_UID}
                     </div>
 
                     <div className="font-sm mt-2 flex flex-row items-center justify-between text-black  ">
