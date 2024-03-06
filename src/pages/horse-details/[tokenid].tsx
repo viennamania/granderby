@@ -194,6 +194,10 @@ function SinglePrice(tokenid: any) {
       ]
       */
 
+      //Overall -speed
+      //Front -precending
+      //Stretch -Overtaking
+
       setGameHorseStatus([
         {
           trait_type: 'AGE',
@@ -206,25 +210,25 @@ function SinglePrice(tokenid: any) {
         {
           trait_type: 'OVERALL',
           value:
-            data?.horse?.liveHorseInfo?.OVERALL &&
-            data?.horse?.liveHorseInfo?.OVERALL !== ''
-              ? data?.horse?.liveHorseInfo?.OVERALL
+            data?.horse?.liveHorseInfo?.SPEED &&
+            data?.horse?.liveHorseInfo?.SPEED !== ''
+              ? data?.horse?.liveHorseInfo?.SPEED
               : '0',
         },
         {
           trait_type: 'FRONT',
           value:
-            data?.horse?.liveHorseInfo?.FRONT &&
-            data?.horse?.liveHorseInfo?.FRONT !== ''
-              ? data?.horse?.liveHorseInfo?.FRONT
+            data?.horse?.liveHorseInfo?.PRECENDING &&
+            data?.horse?.liveHorseInfo?.PRECENDING !== ''
+              ? data?.horse?.liveHorseInfo?.PRECENDING
               : '0',
         },
         {
           trait_type: 'STRETCH',
           value:
-            data?.horse?.liveHorseInfo?.STRETCH &&
-            data?.horse?.liveHorseInfo?.STRETCH !== ''
-              ? data?.horse?.liveHorseInfo?.STRETCH
+            data?.horse?.liveHorseInfo?.OVERTAKING &&
+            data?.horse?.liveHorseInfo?.OVERTAKING !== ''
+              ? data?.horse?.liveHorseInfo?.OVERTAKING
               : '0',
         },
         {
