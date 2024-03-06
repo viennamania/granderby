@@ -195,6 +195,7 @@ export default async function handler(
     }
 
     return {
+      gameHorseName: gameHorseName,
       register: register,
       logsNewSale: logsNewSale,
       totalPricePaid: totalPricePaid,

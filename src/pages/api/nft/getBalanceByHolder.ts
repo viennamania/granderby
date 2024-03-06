@@ -97,7 +97,7 @@ export default async function handler(
 
     const uid = data?.horse?.liveHorseInfo?.HORSE_UID?.slice(1);
 
-    console.log('uid', uid);
+    ///console.log('uid', uid);
 
     if (uid) {
       // last uid has no comma

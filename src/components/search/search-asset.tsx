@@ -44,7 +44,7 @@ import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 
 import Collapse from '@/components/ui/collapse-asset';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 import {
   useAddress,
@@ -55,6 +55,8 @@ import {
   useNFTBalance,
   Web3Button,
 } from '@thirdweb-dev/react';
+import { sub } from 'date-fns';
+import { set } from 'lodash';
 
 export default function Search() {
   const tabMenu = [
@@ -142,6 +144,85 @@ export default function Search() {
     } , 10000);
     */
   }, [address]);
+
+  // getBalanceByHolder
+
+  const [balanceCollection, setBalanceCollection] = useState<any>();
+
+  /*
+  useEffect(() => {
+
+    const getBalanceByHolder = async () => {
+      const data = await fetch('/api/nft/getBalanceByHolder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          holder: address,
+        }),
+      }).then((result) => {
+        return result.json();
+      });
+
+      ///console.log('getBalanceByHolder data', data);
+
+      setBalanceCollection(data?.recordset);
+
+        // 1. get all nfts
+        // 2. for each nft, get the texture key
+        // 3. get the balance by texture key
+        // 4. display the balance
+
+        // TEXTURE_KEY: "Hrs_99990001"
+
+     
+        
+        let updatedNft = [] as any;
+
+        searchDataHorse?.nfts.map((nft: any) => {
+          const gameHorseName = nft?.gameHorseName;
+
+          //let balance = 0;
+
+          data?.recordset.map((record: any) => {
+            const TEXTURE_KEY = record?.TEXTURE_KEY;
+            const Horse_balance = record?.Horse_balance;
+
+          
+
+            // TEXTURE_KEY: "Hrs_99990001"
+            // gameHorseName: "99990001"
+            // substring(4) to remove "Hrs_"
+
+            if (gameHorseName === TEXTURE_KEY?.substring(4)) {
+
+              updatedNft.push({
+                ...nft,
+                balance: Horse_balance,
+              });
+
+              return;
+
+            }
+
+          } );
+
+        } );
+
+ 
+
+             
+
+    }
+
+    if (address !== undefined) {
+      getBalanceByHolder();
+    }
+
+  } , [address , searchDataHorse]);
+  
+  */
+
+  console.log('searchDataHorse', searchDataHorse);
 
   const [searchDataJockey, setSearchDataJockey] = useState<any>();
 
