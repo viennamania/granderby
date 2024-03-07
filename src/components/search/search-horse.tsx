@@ -497,7 +497,7 @@ export default function Search() {
 
             {/* search input */}
 
-            <div className="items-right flex w-full justify-end">
+            <div className="items-right flex w-full justify-end gap-2">
               <Input
                 type="search"
                 //placeholder={searchPlaceholder}
@@ -505,13 +505,18 @@ export default function Search() {
                 value={searchTerm}
                 onClear={() => handleSearch('')}
                 onChange={(event) => handleSearch(event.target.value)}
-                //clearable
+                ///clearable
 
-                prefix={<PiMagnifyingGlassBold className="h-4 w-4" />}
+                prefix={
+                  <div className=" flex w-6 items-center justify-start gap-2">
+                    <PiMagnifyingGlassBold className="h-4 w-4 " />
+                  </div>
+                }
+                inputClassName=" w-full px-4 py-2 text-sm font-bold text-gray-900 placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none focus:border-transparent"
                 labelClassName="text-base font-medium  "
                 //className="w-full px-4 py-2 text-sm font-bold text-gray-900 placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none focus:border-transparent"
 
-                className=" w-52 pr-3 "
+                className=" w-52 "
               />
 
               <div className="flex gap-6 3xl:gap-8 ">
