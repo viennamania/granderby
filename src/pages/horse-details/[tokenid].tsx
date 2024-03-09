@@ -69,6 +69,8 @@ import cn from 'classnames';
 
 import PriceHistoryTable from '@/components/nft-transaction/price-history-table';
 
+import PointHistoryTable from '@/components/nft-transaction/point-history-table';
+
 import { format } from 'date-fns';
 import { add, at } from 'lodash';
 
@@ -765,10 +767,11 @@ function SinglePrice(tokenid: any) {
                   </Collapse>
                 </div>
 
+                {/* nft profits */}
+                {/*
                 <div className=" flex w-full flex-col rounded-lg border ">
                   <Collapse label="Profits" initialOpen={true}>
-                    {/* nft profits */}
-
+                
                     <div className="flex w-full flex-row items-center justify-center gap-20 p-3">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-xl font-bold">ALLOWANCE</span>
@@ -820,6 +823,8 @@ function SinglePrice(tokenid: any) {
                     </div>
                   </Collapse>
                 </div>
+                */}
+                {/* end of nft profits */}
 
                 {/*
                 <div className=" flex w-full flex-col rounded-lg border ">
@@ -1221,6 +1226,68 @@ function SinglePrice(tokenid: any) {
                       )}
                     </Collapse>
                   </div>
+
+                  {/* nft profits */}
+                  <div className="mt-5 flex w-full flex-col rounded-lg border ">
+                    <Collapse label="Profits" initialOpen={true}>
+                      <div className=" flex flex-col items-center justify-center gap-5">
+                        <div className="flex w-full flex-row items-center justify-center gap-20 p-3">
+                          <div className="flex flex-col items-center justify-center gap-5">
+                            <span className="text-xl font-bold">ALLOWANCE</span>
+                            <Image
+                              src="/images/icon-gdp.png"
+                              alt="sugar"
+                              width={30}
+                              height={30}
+                            />
+                          </div>
+
+                          <div className=" flex w-64 flex-row items-center justify-between gap-2  rounded-lg bg-slate-100 p-3 pl-5 pr-5">
+                            <div className="flex flex-col items-end justify-center gap-2">
+                              <div className="flex flex-row items-center justify-center gap-2">
+                                <div className="  text-xl font-bold">
+                                  Accumulate:
+                                </div>
+                                <div className=" flex w-20 flex-row items-center justify-end gap-2">
+                                  <span className="  text-xl font-bold">
+                                    {
+                                      // dollar format
+
+                                      gameHorseBalance
+                                    }
+                                  </span>
+                                </div>
+                              </div>
+
+                              <div className="flex flex-row items-center justify-center gap-2">
+                                <div className="  text-xl font-bold">Keep:</div>
+                                <div className=" flex w-20 flex-row items-center justify-end gap-2">
+                                  <span className="  text-xl font-bold">
+                                    {gameHorseBalance}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <div className="flex flex-row items-center justify-center gap-2">
+                                <div className="  text-xl font-bold">Last:</div>
+
+                                <div className="flex w-20 flex-row items-center justify-end gap-2">
+                                  <span className="  text-lg font-bold text-green-600">
+                                    +{gameHorseBalance}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className=" flex w-full flex-col  ">
+                          <PointHistoryTable nftMetadata={nftMetadata} />
+                        </div>
+                      </div>
+                    </Collapse>
+                  </div>
+                  {/* end of nft profits */}
                 </div>
               )}
             </div>
