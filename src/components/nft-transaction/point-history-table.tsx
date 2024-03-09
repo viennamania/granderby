@@ -300,8 +300,8 @@ const COLUMNS = [
         {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 160,
-    maxWidth: 160,
+    minWidth: 200,
+    maxWidth: 200,
   },
 
   {
@@ -349,13 +349,15 @@ const COLUMNS = [
 ];
 
 export default function PointHistoryTable({
-  nftMetadata,
+  //nftMetadata,
+  tokenid,
 }: {
-  nftMetadata?: any;
+  //nftMetadata?: any;
+  tokenid?: any;
 }) {
   const router = useRouter();
 
-  console.log('PointHistoryTable nftMetadata: ', nftMetadata);
+  console.log('PointHistoryTable tokenid: ', tokenid);
 
   //const data = React.useMemo(() => transactionData, [ ]);
 
@@ -365,20 +367,20 @@ export default function PointHistoryTable({
 
   useEffect(() => {
     const getBalanceHistory = async () => {
-      console.log('getBalanceHistory nftMetadata.tokenId', nftMetadata.tokenId);
+      console.log('getBalanceHistory tokenId', tokenid);
 
-      if (!nftMetadata.tokenId) return;
+      if (!tokenid) return;
 
       const response = await fetch('/api/nft/getBalanceHistoryByTokenId', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          tokenId: nftMetadata.tokenId,
+          tokenId: tokenid,
         }),
       });
       const data = await response.json();
 
-      console.log('point-history-table data', data);
+      ////console.log('point-history-table data', data);
 
       /*
           {
@@ -398,7 +400,7 @@ export default function PointHistoryTable({
     };
 
     getBalanceHistory();
-  }, [nftMetadata.tokenId]);
+  }, [tokenid]);
 
   const address = useAddress();
 
@@ -508,40 +510,6 @@ export default function PointHistoryTable({
   const [attributeGrade, setAttributeGrade] = useState(null);
 
   const [priceFeedDataIndex, setPriceFeedDataIndex] = useState(0);
-
-  useEffect(() => {
-    var grade = null;
-
-    nftMetadata?.metadata?.attributes?.map((attribute: any) => {
-      ///console.log('attribute', attribute);
-      if (attribute.trait_type === 'Grade') {
-        //console.log('attribute.value', attribute.value);
-
-        grade = attribute.value;
-        return;
-      }
-    });
-
-    setAttributeGrade(grade);
-
-    console.log('grade', grade);
-
-    if (grade === 'U') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'S') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'A') {
-      setPriceFeedDataIndex(3);
-    } else if (grade === 'B') {
-      setPriceFeedDataIndex(2);
-    } else if (grade === 'C') {
-      setPriceFeedDataIndex(2);
-    } else if (grade === 'D') {
-      setPriceFeedDataIndex(0);
-    } else {
-      setPriceFeedDataIndex(0);
-    }
-  }, [nftMetadata?.metadata?.attributes]);
 
   return (
     <div>

@@ -1282,7 +1282,7 @@ function SinglePrice(tokenid: any) {
                         </div>
 
                         <div className=" flex w-full flex-col  ">
-                          <PointHistoryTable nftMetadata={nftMetadata} />
+                          <PointHistoryTable tokenid={nftMetadata.tokenId} />
                         </div>
                       </div>
                     </Collapse>

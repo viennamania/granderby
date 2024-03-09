@@ -66,6 +66,8 @@ import { nftData } from '@/data/static/single-nft';
 
 import { useModal } from '@/components/modal-views/context';
 
+import PointHistoryTable from '@/components/nft-transaction/point-history-table';
+
 // dummy data
 import User1 from '@/assets/images/game/icon_rank_1.jpg';
 import User2 from '@/assets/images/game/icon_rank_2.jpg';
@@ -621,6 +623,10 @@ export default function NftInfo({ nftMetadata }: any) {
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="flex w-full flex-row items-center justify-center gap-20">
+                  <PointHistoryTable tokenid={nftMetadata.id} />
                 </div>
 
                 {/*
