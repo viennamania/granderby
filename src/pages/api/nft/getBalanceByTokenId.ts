@@ -57,7 +57,27 @@ export default async function handler(
 
   ///console.log('getOneByTokenId horse', horse);
 
+  const result2 = await fetch(
+    ////`http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
+
+    `http://3.38.2.94:3001/api/horse/allowance?uid=${uid}`
+  );
+
+  const json = await result2.json();
+
+  ///console.log('getOneByTokenId horse', horse);
+
+  //res.status(200).json({
+  //  balanceHistory: json?.recordset,
+  //});
+  //console.log('json?.recordset[0]', json?.recordset[0]);
+
+  const latestAmount = json?.recordset[0]?.Amount;
+
+  //console.log('latestAmount', latestAmount);
+
   res.status(200).json({
     balance: horseBalance,
+    latestAmount: latestAmount,
   });
 }

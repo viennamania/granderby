@@ -104,6 +104,8 @@ function SinglePrice(tokenid: any) {
 
   const [gameHorseBalance, setGameHorseBalance] = useState<number>(0);
 
+  const [gameHorseLatestAmount, setGameHorseLatestAmount] = useState<number>(0);
+
   const [liveHorseInfo, setLiveHorseInfo] = useState<any>(null);
 
   useEffect(() => {
@@ -293,6 +295,8 @@ function SinglePrice(tokenid: any) {
       console.log('data', data);
 
       setGameHorseBalance(data?.balance || 0);
+
+      setGameHorseLatestAmount(data?.latestAmount || 0);
     }
 
     getNft();
@@ -1273,7 +1277,7 @@ function SinglePrice(tokenid: any) {
 
                                 <div className="flex w-20 flex-row items-center justify-end gap-2">
                                   <span className="  text-lg font-bold text-green-600">
-                                    +{gameHorseBalance}
+                                    +{gameHorseLatestAmount}
                                   </span>
                                 </div>
                               </div>
