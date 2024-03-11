@@ -51,6 +51,8 @@ export default async function handler(
 
   const balanceData = await result.json();
 
+  //console.log('balanceData', balanceData);
+
   const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
 
   console.log('balance', horseBalance);
