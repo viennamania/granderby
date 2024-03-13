@@ -332,20 +332,18 @@ const COLUMNS = [
     maxWidth: 120,
   },
 
-  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Status</div>,
-    accessor: 'status',
+    accessor: 'Payment_Status',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="font-bold text-green-600 ltr:text-right rtl:text-left">
-        {value}
+        {value === 1 ? 'Completed' : 'Pending'}
       </div>
     ),
-    minWidth: 70,
-    maxWidth: 100,
+    minWidth: 80,
+    maxWidth: 120,
   },
-  */
 ];
 
 export default function PointHistoryTable({
@@ -380,7 +378,7 @@ export default function PointHistoryTable({
       });
       const data = await response.json();
 
-      ////console.log('point-history-table data', data);
+      console.log('point-history-table data', data);
 
       /*
           {

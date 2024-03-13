@@ -617,7 +617,7 @@ export default function NftInfo({ nftMetadata }: any) {
                       </div>
 
                       <div className="flex flex-row items-center justify-center gap-2">
-                        <div className="  text-xl font-bold">Last:</div>
+                        <div className="  text-xl font-bold">Yesterday:</div>
 
                         <div className="flex w-20 flex-row items-center justify-end gap-2">
                           <span className="  text-lg font-bold text-green-600">
