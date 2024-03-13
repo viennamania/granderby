@@ -204,6 +204,9 @@ export default function NftInfo({ nftMetadata }: any) {
 
   const [gameHorseStatus, setGameHorseStatus] = useState<any>(null);
 
+  const [gameHorseAccumulatedBalance, setGameHorseAccumulatedBalance] =
+    useState<number>(0);
+
   const [gameHorseBalance, setGameHorseBalance] = useState<number>(0);
 
   const [gameHorseLatestAmount, setGameHorseLatestAmount] = useState<number>(0);
@@ -294,7 +297,9 @@ export default function NftInfo({ nftMetadata }: any) {
       });
       const data = await response.json();
 
-      console.log('data', data);
+      ////console.log('getNftBalance data', data);
+
+      setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
 
       setGameHorseBalance(data?.balance || 0);
 
@@ -601,7 +606,7 @@ export default function NftInfo({ nftMetadata }: any) {
                             {
                               // dollar format
 
-                              gameHorseBalance
+                              gameHorseAccumulatedBalance
                             }
                           </span>
                         </div>

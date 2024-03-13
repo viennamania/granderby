@@ -102,6 +102,9 @@ function SinglePrice(tokenid: any) {
 
   const [gameHorseStatus, setGameHorseStatus] = useState<any>(null);
 
+  const [gameHorseAccumulatedBalance, setGameHorseAccumulatedBalance] =
+    useState<number>(0);
+
   const [gameHorseBalance, setGameHorseBalance] = useState<number>(0);
 
   const [gameHorseLatestAmount, setGameHorseLatestAmount] = useState<number>(0);
@@ -292,7 +295,9 @@ function SinglePrice(tokenid: any) {
       });
       const data = await response.json();
 
-      console.log('data', data);
+      ///console.log('getBalanceByTokenId data', data);
+
+      setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
 
       setGameHorseBalance(data?.balance || 0);
 
@@ -1257,7 +1262,7 @@ function SinglePrice(tokenid: any) {
                                     {
                                       // dollar format
 
-                                      gameHorseBalance
+                                      gameHorseAccumulatedBalance
                                     }
                                   </span>
                                 </div>

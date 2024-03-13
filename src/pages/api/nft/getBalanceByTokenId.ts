@@ -51,7 +51,7 @@ export default async function handler(
 
   const balanceData = await result.json();
 
-  //console.log('balanceData', balanceData);
+  ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
 
   const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
 
@@ -76,9 +76,21 @@ export default async function handler(
 
   const latestAmount = json?.recordset[0]?.Amount;
 
-  //console.log('latestAmount', latestAmount);
+  //   completed balance
+  // sum of all the completed transactions
+
+  let accumulatedBalance = 0;
+
+  json?.recordset.forEach((element: any) => {
+    if (element?.Payment_Status === 1) {
+      accumulatedBalance = accumulatedBalance + element?.Amount;
+    }
+  });
+
+  ///console.log('accumulatedBalance', accumulatedBalance);
 
   res.status(200).json({
+    accumulatedBalance: accumulatedBalance,
     balance: horseBalance,
     latestAmount: latestAmount,
   });
