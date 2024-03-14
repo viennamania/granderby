@@ -221,18 +221,6 @@ export default function OwnedFeedsNft(
 
   useEffect(() => {
     searchData?.nfts?.map((nft: any) => {
-      /*
-      setGameHorseAccumulatedBalanceArray([
-
-        ...gameHorseAccumulatedBalanceArray,
-        {
-          tokenId: nft?.tokenId,
-          accumulatedBalance: 0,
-        },
-
-      ]);
-      */
-
       setGameHorseAccumulatedBalanceArray((prev: any) => {
         return [
           ...prev,
@@ -245,8 +233,12 @@ export default function OwnedFeedsNft(
     });
   }, [searchData]);
 
+  const [balanceArray, setBalanceArray] = useState<any>([]);
+
   useEffect(() => {
     //searchData?.map((item : any) => {
+
+    setBalanceArray([]);
 
     gameHorseAccumulatedBalanceArray?.map((item: any) => {
       async function getBalanceByTokenId(tokenId: string) {
@@ -264,10 +256,14 @@ export default function OwnedFeedsNft(
 
         // udpate search data with accumulatedBalance
 
-        searchData?.nfts?.map((nft: any) => {
-          if (nft?.tokenId === tokenId) {
-            nft.accumulatedBalance = accumulatedBalance;
-          }
+        setBalanceArray((prev: any) => {
+          return [
+            ...prev,
+            {
+              tokenId: tokenId,
+              accumulatedBalance: accumulatedBalance,
+            },
+          ];
         });
       }
 
@@ -277,7 +273,7 @@ export default function OwnedFeedsNft(
 
   ///console.log('gameHorseAccumulatedBalanceArray', gameHorseAccumulatedBalanceArray);
 
-  console.log('searchData', searchData);
+  console.log('balanceArray', balanceArray);
 
   const limit = 1000;
 
@@ -414,7 +410,11 @@ export default function OwnedFeedsNft(
                             />
                           </div>
                           <div className=" text-lg font-extrabold text-black">
-                            {nft?.accumulatedBalance}
+                            {balanceArray?.map((item: any) => {
+                              if (item?.tokenId === nft?.tokenId) {
+                                return item?.accumulatedBalance;
+                              }
+                            })}
                           </div>
                         </div>
 
