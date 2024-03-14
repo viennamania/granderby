@@ -224,7 +224,7 @@ export default function NftInfo({ nftMetadata }: any) {
       });
       const data = await response.json();
 
-      console.log('data', data);
+      /////console.log('my-nft-info getOneByTokenId data', data);
 
       //console.log('nftMetadata?.id', nftMetadata?.id);
 

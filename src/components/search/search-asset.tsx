@@ -145,10 +145,6 @@ export default function Search() {
     */
   }, [address]);
 
-  // getBalanceByHolder
-
-  const [balanceCollection, setBalanceCollection] = useState<any>();
-
   /*
   useEffect(() => {
 
@@ -222,7 +218,7 @@ export default function Search() {
   
   */
 
-  console.log('searchDataHorse', searchDataHorse);
+  //////console.log('searchDataHorse', searchDataHorse);
 
   const [searchDataJockey, setSearchDataJockey] = useState<any>();
 

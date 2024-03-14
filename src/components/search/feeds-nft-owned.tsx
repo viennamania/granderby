@@ -13,7 +13,10 @@ import useSWR from 'swr';
 import { fetcher } from '../../lib/utils';
 
 import { StaticImageData } from 'next/image';
-import { OptionalPropertiesInput } from '@thirdweb-dev/sdk';
+import {
+  OptionalPropertiesInput,
+  TokenDropInitializer,
+} from '@thirdweb-dev/sdk';
 import { set } from 'date-fns';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -45,6 +48,7 @@ import {
   nftDropContractAddressHorseZedRun,
   stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
+import { get } from 'lodash';
 
 export default function OwnedFeedsNft(
   //{ contractAddress }: { contractAddress?: string },
@@ -139,6 +143,141 @@ export default function OwnedFeedsNft(
     }
   }, [address, selectedGradesStorage, selectedManesStorage, contractAddress]);
   */
+
+  /*
+
+  // getBalanceByHolder
+
+  const [balanceCollection, setBalanceCollection] = useState<any>();
+
+  // get balance of each nft by holder from api
+
+
+
+
+  useEffect(() => {
+
+
+    const getBalanceByTokenId = async (tokenId: string) => {
+
+      const response = await fetch('/api/nft/getBalanceByTokenId', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenId: tokenId,
+        }),
+      });
+      const data = await response.json();
+  
+      ////console.log('getNftBalance data', data);
+  
+      ///setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
+  
+      console.log('getBalanceByTokenId data.accumulatedBalance', data?.accumulatedBalance);
+  
+  
+  
+      // update balanceCollection with accumulatedBalance by tokenId
+      // balanceCollection = [{tokenId: "1", accumulatedBalance: 100}, {tokenId: "2", accumulatedBalance: 200}]
+      let updatedBalanceCollection = [] as any;
+  
+      balanceCollection?.map((item: any) => {
+        if (item?.tokenId === tokenId) {
+          updatedBalanceCollection.push({
+            ...item,
+            accumulatedBalance: data?.accumulatedBalance,
+          });
+        } else {
+          updatedBalanceCollection.push(item);
+        }
+      });
+      
+    }
+
+
+    searchDataHorse?.nfts.map((nft: any) => {
+        
+      getBalanceByTokenId(nft?.tokenId);
+
+    } );
+
+
+
+  } , [searchDataHorse , balanceCollection]);
+  */
+
+  // get accumulated balance of horse tokenId
+
+  const [
+    gameHorseAccumulatedBalanceArray,
+    setGameHorseAccumulatedBalanceArray,
+  ] = useState<any>([]);
+
+  //let gameHorseAccumulatedBalanceArray = [] as any;
+
+  /*
+  [{tokenId: "1", accumulatedBalance: 100}, {tokenId: "2", accumulatedBalance: 200}]
+  */
+
+  useEffect(() => {
+    searchData?.nfts?.map((nft: any) => {
+      /*
+      setGameHorseAccumulatedBalanceArray([
+
+        ...gameHorseAccumulatedBalanceArray,
+        {
+          tokenId: nft?.tokenId,
+          accumulatedBalance: 0,
+        },
+
+      ]);
+      */
+
+      setGameHorseAccumulatedBalanceArray((prev: any) => {
+        return [
+          ...prev,
+          {
+            tokenId: nft?.tokenId,
+            accumulatedBalance: 0,
+          },
+        ];
+      });
+    });
+  }, [searchData]);
+
+  useEffect(() => {
+    //searchData?.map((item : any) => {
+
+    gameHorseAccumulatedBalanceArray?.map((item: any) => {
+      async function getBalanceByTokenId(tokenId: string) {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: tokenId,
+          }),
+        });
+
+        const data = await response.json();
+
+        const accumulatedBalance = data?.accumulatedBalance;
+
+        // udpate search data with accumulatedBalance
+
+        searchData?.nfts?.map((nft: any) => {
+          if (nft?.tokenId === tokenId) {
+            nft.accumulatedBalance = accumulatedBalance;
+          }
+        });
+      }
+
+      getBalanceByTokenId(item?.tokenId);
+    });
+  }, [gameHorseAccumulatedBalanceArray]);
+
+  ///console.log('gameHorseAccumulatedBalanceArray', gameHorseAccumulatedBalanceArray);
+
+  console.log('searchData', searchData);
 
   const limit = 1000;
 
@@ -275,7 +414,7 @@ export default function OwnedFeedsNft(
                             />
                           </div>
                           <div className=" text-lg font-extrabold text-black">
-                            {244.64}
+                            {nft?.accumulatedBalance}
                           </div>
                         </div>
 
