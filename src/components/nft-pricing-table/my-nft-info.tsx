@@ -557,9 +557,11 @@ export default function NftInfo({ nftMetadata }: any) {
             <span className="text-xl font-extrabold xl:text-2xl">
               {lastPrice} USDC
             </span>
+            {/*
             <span className="  text-lg font-bold text-green-600">
               (+2,422.25)
             </span>
+            */}
           </span>
         </div>
 

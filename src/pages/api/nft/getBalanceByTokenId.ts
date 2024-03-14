@@ -74,7 +74,24 @@ export default async function handler(
   //});
   //console.log('json?.recordset[0]', json?.recordset[0]);
 
-  const latestAmount = json?.recordset[0]?.Amount;
+  ///const latestAmount = json?.recordset[0]?.Amount;
+
+  let latestAmount = 0;
+  // find yesterday's amount
+  // yesterday's amount is the latest amount which is completed
+  // Payment_Date is the date of the transaction
+  // from now to yesterday
+  // check daydiff = 1 and Payment_Status = 1
+
+  json?.recordset.forEach((element: any) => {
+    if (
+      element?.Payment_Status === 1 &&
+      new Date(element?.Payment_Date).toDateString() ===
+        new Date(new Date().setDate(new Date().getDate() - 1)).toDateString()
+    ) {
+      latestAmount = element?.Amount;
+    }
+  });
 
   //   completed balance
   // sum of all the completed transactions
