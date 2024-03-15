@@ -1272,7 +1272,10 @@ function SinglePrice(tokenid: any) {
                                 <div className="  text-xl font-bold">Keep:</div>
                                 <div className=" flex w-20 flex-row items-center justify-end gap-2">
                                   <span className="  text-xl font-bold">
-                                    {gameHorseBalance}
+                                    {
+                                      //gameHorseBalance
+                                      gameHorseAccumulatedBalance
+                                    }
                                   </span>
                                 </div>
                               </div>
@@ -1292,9 +1295,11 @@ function SinglePrice(tokenid: any) {
                           </div>
                         </div>
 
+                        {/*
                         <div className=" flex w-full flex-col  ">
                           <PointHistoryTable tokenid={nftMetadata.tokenId} />
                         </div>
+                        */}
                       </div>
                     </Collapse>
                   </div>

@@ -618,7 +618,10 @@ export default function NftInfo({ nftMetadata }: any) {
                         <div className="  text-xl font-bold">Keep:</div>
                         <div className=" flex w-20 flex-row items-center justify-end gap-2">
                           <span className="  text-xl font-bold">
-                            {gameHorseBalance}
+                            {
+                              //gameHorseBalance
+                              gameHorseAccumulatedBalance
+                            }
                           </span>
                         </div>
                       </div>
@@ -636,9 +639,11 @@ export default function NftInfo({ nftMetadata }: any) {
                   </div>
                 </div>
 
+                {/*
                 <div className="flex w-full flex-row items-center justify-center gap-20">
                   <PointHistoryTable tokenid={nftMetadata.id} />
                 </div>
+                */}
 
                 {/*
                 <div className="flex w-full flex-row items-center justify-center gap-5">
