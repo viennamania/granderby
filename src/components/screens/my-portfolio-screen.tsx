@@ -628,7 +628,10 @@ export default function PortfolioScreen() {
 
             <div className="mt-5 flex w-full flex-col gap-5 md:flex-row xl:flex-row">
               <div className=" w-full">
+                Comming Soon
+                {/*
                 <PortfolioChart />
+                */}
               </div>
 
               {/*
