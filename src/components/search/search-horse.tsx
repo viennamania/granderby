@@ -233,7 +233,7 @@ export default function Search() {
         </div>
 
         <span className="mt-3 text-xs lg:text-sm xl:text-lg">
-          Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
+          Items 7,079 · Created Jun 2023 · Creator earnings 0% · Chain Polygon ·
           Category Gaming
         </span>
       </div>

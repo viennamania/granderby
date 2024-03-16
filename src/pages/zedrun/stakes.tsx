@@ -12,7 +12,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const pageid = 'horse';
   const title = 'Granderby Horse NFT';
   const description =
-    'Items 3,645 · Created Jun 2023 · Creator earnings 0% · Chain Polygon · Category Gaming';
+    'Items 7,079 · Created Jun 2023 · Creator earnings 0% · Chain Polygon · Category Gaming';
 
   return {
     props: {
