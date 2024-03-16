@@ -868,7 +868,7 @@ export const getOneHorse = async (tokenId: string) => {
     ////return err;
   });
 
-  ///console.log('data2', data2);
+  //console.log('data2', data2);
 
   const json = await data2?.toJSON();
 
@@ -1021,15 +1021,17 @@ export const getOneHorse = async (tokenId: string) => {
 
   // http://3.38.2.94:3001/api/horse?name=00100242
 
+  console.log('gameHorseKey', gameHorseKey);
+
   const response = await fetch(
     `http://3.38.2.94:3001/api/horse?name=${gameHorseKey}`
   );
 
   const data3 = await response.json();
 
-  //console.log('data.recordset[0]', data?.recordset[0]);
+  //console.log('data3.recordset[0]', data3?.recordset?.[0]);
 
-  const liveHorseInfo = data3?.recordset[0];
+  const liveHorseInfo = data3?.recordset?.[0] || {};
 
   const horse = {
     ...data?._doc,
@@ -1038,6 +1040,8 @@ export const getOneHorse = async (tokenId: string) => {
     gameHorseStatus: gameHorseStatus,
     liveHorseInfo: liveHorseInfo,
   };
+
+  ///console.log('horse', horse);
 
   if (data) {
     return { success: true, horse: horse };

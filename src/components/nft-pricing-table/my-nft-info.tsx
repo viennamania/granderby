@@ -95,8 +95,10 @@ const data = [
   { name: 'Conway', thumbnail: User10 },
 ];
 
-export default function NftInfo({ nftMetadata }: any) {
-  ///console.log('nftMetadata=========================', nftMetadata.id);
+//export default function NftInfo({ nftMetadata }: any) {
+
+export default function NftInfo({ horseData }: any) {
+  console.log('horseData=========================', horseData);
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
@@ -112,6 +114,7 @@ export default function NftInfo({ nftMetadata }: any) {
 
   const address = useAddress();
 
+  /*
   const { contract: nftDropContract } = useContract(
     nftDropContractAddressHorse,
     'nft-drop'
@@ -182,11 +185,13 @@ export default function NftInfo({ nftMetadata }: any) {
     useTokenBalance(tokenContractUSDC, address);
 
   ///console.log("nftmetadata",nftMetadata);
+  */
 
   const [lastPrice, setLastPrice] = useState(0);
 
-  /* /api/nft/getOneByTokenId */
+  /*
   const [nft, setNft] = useState<any>(null);
+  */
 
   const [gameHorseInfo, setGameHorseInfo] = useState<any>(null);
 
@@ -194,7 +199,6 @@ export default function NftInfo({ nftMetadata }: any) {
 
   const [owner, setOwner] = useState('');
   ////const [nftMetadata, setNftMetadata] = useState<any>(null);
-  /* /api/nft/getOneByTokenId */
 
   const [gameHorseName, setGameHorseName] = useState<any>(null);
 
@@ -211,6 +215,60 @@ export default function NftInfo({ nftMetadata }: any) {
 
   const [gameHorseLatestAmount, setGameHorseLatestAmount] = useState<number>(0);
 
+  useEffect(() => {
+    if (!horseData) return;
+
+    console.log('horseData', horseData);
+
+    setGameHorseInfo(horseData?.gameHorseInfo);
+
+    setLiveHorseInfo(horseData?.liveHorseInfo);
+
+    setOwner(horseData?.holder);
+
+    setGameHorseName(
+      horseData?.gameHorseDescription?.find(
+        (item: any) => item?.trait_type === 'name'
+      )?.value
+    );
+
+    setGameHorseDescription(
+      horseData?.gameHorseDescription?.find(
+        (item: any) => item?.trait_type === 'description'
+      )?.value
+    );
+
+    setGameHorseStatus(horseData?.status);
+
+    setGameHorseId(horseData?.id);
+  }, [horseData]);
+
+  useEffect(() => {
+    async function getNftBalance() {
+      if (!horseData?.nft?.tokenId) return;
+
+      const response = await fetch('/api/nft/getBalanceByTokenId', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenId: horseData?.nft?.tokenId,
+        }),
+      });
+      const data = await response.json();
+
+      ////console.log('getNftBalance data', data);
+
+      setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
+
+      setGameHorseBalance(data?.balance || 0);
+
+      setGameHorseLatestAmount(data?.latestAmount || 0);
+    }
+
+    getNftBalance();
+  }, [horseData?.nft?.tokenId]);
+
+  /*
   useEffect(() => {
     async function getNft() {
       if (!nftMetadata?.id) return;
@@ -285,6 +343,8 @@ export default function NftInfo({ nftMetadata }: any) {
       ////setGameHorseBalance(data?.horseBalance || 0);
     }
 
+  
+
     async function getNftBalance() {
       if (!nftMetadata?.id) return;
 
@@ -311,6 +371,9 @@ export default function NftInfo({ nftMetadata }: any) {
     getNftBalance();
   }, [nftMetadata?.id]);
 
+  */
+
+  /*
   const [raceHistory, setRaceHistory] = useState([] as any);
 
   const [saleHistory, setSaleHistory] = useState([] as any);
@@ -368,23 +431,19 @@ export default function NftInfo({ nftMetadata }: any) {
 
         alert('staking success');
 
-        /*
-        setSuccessMsgSnackbar('Your request has been sent successfully');
-        handleClickSucc();
-        */
+
       } else {
         console.log('error');
 
-        /*
-        setErrMsgSnackbar(data);
-        handleClickErr();
-        */
+
       }
     } catch (error) {
       console.log('stake error', error);
     }
   }
+  */
 
+  /*
   async function withdrawNft(id: string) {
     if (!address) return;
 
@@ -394,16 +453,10 @@ export default function NftInfo({ nftMetadata }: any) {
 
     if (data) {
       alert('Your request has been sent successfully');
-      /*
-      setSuccessMsgSnackbar('Your request has been sent successfully');
-      handleClickSucc();
-      */
+
     } else {
       alert(data);
-      /*
-      setErrMsgSnackbar(data);
-      handleClickErr();
-      */
+
     }
   }
 
@@ -415,18 +468,7 @@ export default function NftInfo({ nftMetadata }: any) {
       return;
     }
 
-    /*
-    const isApproved = await nftDropContract?.isApproved(
-      address,
-      stakingContractAddressHorseAAA
-    );
 
-    if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(stakingContractAddressHorseAAA, true);
-    }
-
-    const data = await stakingContract?.call('stake', [id]);
-    */
 
     //console.log("data",data);
 
@@ -452,7 +494,9 @@ export default function NftInfo({ nftMetadata }: any) {
       console.error(error);
     }
   }
+  */
 
+  /*
   const [toAddress, setToAddress] = useState('');
   const [isSending, setIsSending] = useState(false);
 
@@ -506,9 +550,7 @@ export default function NftInfo({ nftMetadata }: any) {
       }
 
       // Simple one-liner for buying the NFT
-      /*
-        await marketplace?.buyFromListing(listingId.listingId, 1);
-        */
+
 
       // The ID of the listing you want to buy from
       //const listingId = 0;
@@ -529,6 +571,8 @@ export default function NftInfo({ nftMetadata }: any) {
   }
 
   const [block_chains, setBlock_chains] = useState<any>(null);
+
+  */
 
   const { openModal } = useModal();
 
@@ -995,7 +1039,7 @@ export default function NftInfo({ nftMetadata }: any) {
                         TokenID
                       </span>
                       <span className=" w-full text-right text-lg">
-                        #{nftMetadata?.id}
+                        #{horseData?.nft?.tokenId}
                       </span>
                     </div>
                     <div className="flex w-full flex-row items-center justify-start gap-2">

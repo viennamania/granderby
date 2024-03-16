@@ -93,6 +93,9 @@ function SinglePrice(tokenid: any) {
   const [isLoading, setIsLoading] = useState(true);
   const [owner, setOwner] = useState('');
   const [nftMetadata, setNftMetadata] = useState<any>(null);
+
+  const [HorseData, setHorseData] = useState<any>(null);
+
   /* /api/nft/getOneByTokenId */
 
   const [gameHorseName, setGameHorseName] = useState<any>(null);
@@ -129,6 +132,8 @@ function SinglePrice(tokenid: any) {
       //console.log('data.horse', data?.horse);
 
       //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
+
+      setNftMetadata(data?.horse?.nft);
 
       setOwner(data?.horse?.holder);
 

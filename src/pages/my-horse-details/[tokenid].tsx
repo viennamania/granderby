@@ -175,6 +175,10 @@ const MyHorseDetails: NextPageWithLayout<
 
   /* /api/nft/getOneByTokenId */
   const [nft, setNft] = useState<any>(null);
+  const [horseData, setHorseData] = useState<any>(null);
+
+  const [imageUrl, setImageUrl] = useState<any>(null);
+
   useEffect(() => {
     async function getNft() {
       const response = await fetch('/api/nft/getOneByTokenId', {
@@ -186,9 +190,25 @@ const MyHorseDetails: NextPageWithLayout<
       });
       const data = await response.json();
 
-      //console.log('data.horse.nft', data?.horse?.nft);
+      ///console.log('data.horse', data?.horse);
+
+      setHorseData(data?.horse);
+
+      //console.log('data.horse.nft.tokenUri.raw', data?.horse?.nft?.tokenUri.raw);
+
+      /*
+      {"id":"3647","name":"Granderby Horse #3647","description":"Granderby NFT Horses","image":"https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00202647.png","attributes":[{"trait_type":"Speed","value":83},{"trait_type":"Preceding","value":0},{"trait_type":"Overtaking","value":0},{"trait_type":"Stamina","value":193},{"trait_type":"Spirit","value":0},{"trait_type":"Power","value":102},{"trait_type":"Agility","value":0},{"trait_type":"Weight","value":0},{"trait_type":"Drivinghabits","value":0},{"trait_type":"Record","value":0},{"trait_type":"textureKey","value":"Hrs_00202647"},{"trait_type":"Texture Key"},{"trait_type":"Mane","value":"Sporty Mane"},{"trait_type":"Tail","value":"Brush Tail"},{"trait_type":"BodyMask","value":"Ho_Pa_01_20_BodyPa"},{"trait_type":"HeadMask","value":"Ho_Pa_02_20_HeadPa"},{"trait_type":"LegMask","value":"Ho_Pa_03_03_LegPa"},{"trait_type":"ManeMask","value":"Zebra"},{"trait_type":"TailMask","value":"Gradation"},{"trait_type":"BodyAcc","value":"None"},{"trait_type":"HeadAcc","value":"None"},{"trait_type":"LegAcc","value":"None"},{"trait_type":"Size","value":"Normal"},{"trait_type":"BodyColor","value":"F6F6F6"},{"trait_type":"ManeColor","value":"1E56A0"},{"trait_type":"TailColor","value":"1E56A0"},{"trait_type":"BodyMaskColor","value":"163172"},{"trait_type":"HeadMaskColor","value":"163172"},{"trait_type":"LegMaskColor","value":"D6E4F0"},{"trait_type":"ManeMaskColor","value":"D6E4F0"},{"trait_type":"TailMaskColor","value":"D6E4F0"},{"trait_type":"BodyAccColor","value":"FFFFFF"},{"trait_type":"HeadAccColor","value":"FFFFFF"},{"trait_type":"LegAccColor","value":"1E56A0"},{"trait_type":"Comment","value":""},{"trait_type":"Grade","value":"D"},{"trait_type":"World","value":""},{"trait_type":"BODY_PATTERN"},{"trait_type":"HEAD_PATTERN"},{"trait_type":"LEG_PATTERN"},{"trait_type":"MANE"},{"trait_type":"MANE_PATTERN"},{"trait_type":"TAIL"},{"trait_type":"TAIL_PATTERN"},{"trait_type":"LEG_HAIR"},{"trait_type":"LEG_HAIR_PATTERN"},{"trait_type":"WING"},{"trait_type":"HORN"},{"trait_type":"COLOR_SET_NO"}],"animation_url":"","external_url":"https://granderby.io/horse-details/3647"}
+      */
 
       //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
+
+      const tokenUrl = data?.horse?.nft?.tokenUri?.raw;
+      const responseNft = await fetch(tokenUrl);
+      const dataNft = await responseNft.json();
+
+      ///console.log('dataNft', dataNft);
+
+      setImageUrl(dataNft?.image);
 
       setNft(data?.horse?.nft);
 
@@ -311,11 +331,15 @@ const MyHorseDetails: NextPageWithLayout<
                       : '/default-nft.png'
                   }
                   */
+                  /*
                   src={
                     nft?.rawMetadata?.image
                       ? nft?.rawMetadata?.image
                       : '/default-nft.png'
                   }
+                  */
+
+                  src={imageUrl ? imageUrl : '/default-nft.png'}
                   alt="nft"
                   width={1024}
                   height={1024}
@@ -337,7 +361,11 @@ const MyHorseDetails: NextPageWithLayout<
               {/*}
               <NftInfo nftMetadata={nftMetadata} />
               */}
+              {/*
               <NftInfo nftMetadata={nft?.rawMetadata} />
+              */}
+
+              <NftInfo horseData={horseData} />
             </div>
           </div>
 

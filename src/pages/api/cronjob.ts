@@ -40,6 +40,9 @@ export default async function handler(
 
   var fromBlock: any = await kv.get(contractAddress);
 
+  // 54650341 => 0x341e5e5
+  ////var fromBlock: any = '0x341e5e5';
+
   if (fromBlock) {
   } else {
     fromBlock = '0x2e43f16';
