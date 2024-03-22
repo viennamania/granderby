@@ -43,10 +43,16 @@ export default async function handler(
   // 54650341 => 0x341e5e5
   ////var fromBlock: any = '0x341e5e5';
 
+  //var fromBlock = '0x345121a' as any;
+
+  ///var fromBlock = '0x345121a' as any;
+
   if (fromBlock) {
   } else {
     fromBlock = '0x2e43f16';
   }
+
+  console.log('fromBlock', fromBlock);
 
   let transfers = [] as any;
 
@@ -159,6 +165,10 @@ export default async function handler(
     console.log('item.blockNum', item.blockNum);
 
     const receipt = await alchemy.core.getTransactionReceipt(item.hash);
+
+    if (receipt == null) {
+      continue;
+    }
 
     for (let j = 0; j < receipt?.logs?.length; j++) {
       //console.log("address", receipt?.logs[j].address);
@@ -677,6 +687,8 @@ export default async function handler(
 
     fromBlock = item.blockNum;
   }
+
+  console.log('fromBlock', fromBlock);
 
   await kv.set(contractAddress, fromBlock);
 

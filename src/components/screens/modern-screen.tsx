@@ -125,6 +125,9 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 import AvTimerOutlinedIcon from '@mui/icons-material/AvTimerOutlined';
 
+import { kv } from '@vercel/kv';
+import { set } from 'lodash';
+
 const COLUMNS = [
   {
     Header: 'User',
@@ -622,6 +625,28 @@ export default function ModernScreen() {
   const [drawerUserInfoUserAddress, setDrawerUserInfoUserAddress] =
     useLocalStorage('drawer-user-info-useraddress');
 
+  const [blockNumber, setBlockNumber] = useState<any>(0);
+  useEffect(() => {
+    const getBlockNumber = async () => {
+      const res = await fetch('/api/getCurrentBlockNumber');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setBlockNumber(
+        // hex to decimal
+        data?.blockNumber ? parseInt(data?.blockNumber, 16) : 0
+      );
+    };
+
+    getBlockNumber();
+
+    // time interval
+    const interval = setInterval(() => {
+      getBlockNumber();
+    }, 10000);
+  }, []);
+
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
@@ -634,6 +659,10 @@ export default function ModernScreen() {
           <div className="items-center justify-center p-2 text-xl xl:text-2xl">
             NFT horse racing game where you can experience all the fun of horse
             racing
+          </div>
+          {/* blockNumber */}
+          <div className="items-center justify-center p-2 text-xl xl:text-2xl">
+            Block Number: {blockNumber}
           </div>
 
           <Button
