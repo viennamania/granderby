@@ -300,7 +300,7 @@ function SinglePrice(tokenid: any) {
       });
       const data = await response.json();
 
-      ///console.log('getBalanceByTokenId data', data);
+      console.log('getBalanceByTokenId data=======', data);
 
       setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
 
@@ -314,9 +314,9 @@ function SinglePrice(tokenid: any) {
     getNftBalance();
   }, [tokenid.tokenid]);
 
-  console.log('gameHorseStatus', gameHorseStatus);
+  //console.log('gameHorseStatus', gameHorseStatus);
 
-  console.log('liveHorseInfo', liveHorseInfo);
+  //console.log('liveHorseInfo', liveHorseInfo);
 
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);

@@ -83,6 +83,8 @@ export default async function handler(
   // from now to yesterday
   // check daydiff = 1 and Payment_Status = 1
 
+  ///console.log('json?.recordset', json?.recordset);
+
   json?.recordset.forEach((element: any) => {
     if (
       element?.Payment_Status === 1 &&
@@ -100,11 +102,14 @@ export default async function handler(
 
   json?.recordset.forEach((element: any) => {
     if (element?.Payment_Status === 1) {
-      accumulatedBalance = accumulatedBalance + element?.Amount;
+      //console.log('element?.Amount', element?.Amount);
+
+      accumulatedBalance = accumulatedBalance + parseInt(element?.Amount);
     }
   });
 
-  ///console.log('accumulatedBalance', accumulatedBalance);
+  console.log('accumulatedBalance', accumulatedBalance);
+  console.log('latestAmount', latestAmount);
 
   res.status(200).json({
     accumulatedBalance: accumulatedBalance,
