@@ -1,7 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getAllHorses } from '@/utils/models/horse-model';
+import {
+  getAllHorses,
+  getAllHorsesCount,
+} from '@/utils/models/horse-model';
 
 type Data = {
   name: string;
@@ -21,6 +24,8 @@ export default async function handler(
   console.log('getHorses pageSize', pageSize);
   console.log('getHorses grades', grades);
   console.log('getHorses sort', sort);
+  console.log('getHorses holder', holder);
+
 
   //console.log('getHorses grades', grades);
   //console.log('getHorses manes', manes);
@@ -46,7 +51,7 @@ export default async function handler(
 
   const pageKey = data.pageNumber;
 
-  const total = data.total;
+  
 
   const formattedNfts = nfts?.map((nft: any) => {
     const {
@@ -224,12 +229,25 @@ export default async function handler(
     };
   });
 
+
+
+  //const total = data.total;
+
+  const horsesCount = await getAllHorsesCount(
+    grades,
+    manes,
+    holder
+  );
+
+
+
+
   res.status(200).json({
     nfts: formattedNfts ? formattedNfts : [],
     //pageKey: nfts.pageKey,
     ///pageKey: null,
     pageKey: pageKey,
-    total: total,
+    total: horsesCount?.total,
   });
 
   ///return res.status(200).json({ success: true, nfts: response, pageKey: 'aaaaa' });

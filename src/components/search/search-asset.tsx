@@ -4,7 +4,16 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
+
 import OwnedFeedsNft from './feeds-nft-owned';
+
+
+import { getColumns, getWidgetColumns } from '@/shared/feed/columns';
+
+
+import FeedsNftOwnedTable from './feeds-nft-owned-table';
+
+
 
 import OwnedFeedsFt from './feeds-ft-owned';
 
@@ -99,8 +108,12 @@ export default function Search() {
     */
   ];
 
+
+
   const address = useAddress();
 
+
+  /*
   const [searchDataHorse, setSearchDataHorse] = useState<any>();
 
   useEffect(() => {
@@ -138,12 +151,12 @@ export default function Search() {
       getHorses();
     }
 
-    /*
-    setInterval(() => {
-      getHorses();
-    } , 10000);
-    */
+
   }, [address]);
+  */
+
+
+
 
   /*
   useEffect(() => {
@@ -222,6 +235,7 @@ export default function Search() {
 
   const [searchDataJockey, setSearchDataJockey] = useState<any>();
 
+  /*
   useEffect(() => {
     async function getJockeys() {
       setSearchDataJockey(undefined);
@@ -252,6 +266,7 @@ export default function Search() {
       getJockeys();
     }
   }, [address]);
+  */
 
   const { contract: tokenContractHV } = useContract(
     tokenContractAddressHV,
@@ -259,6 +274,8 @@ export default function Search() {
   );
   const { data: tokenBalanceHV, isLoading: isLoadingBalanceHV } =
     useTokenBalance(tokenContractHV, address);
+
+
 
   return (
     <>
@@ -282,6 +299,8 @@ export default function Search() {
         <div className="mt-5 flex  w-full flex-col rounded-lg border ">
           <Collapse
             label="Horse"
+
+            /*
             description={`${
               !address
                 ? ''
@@ -289,17 +308,49 @@ export default function Search() {
                 ? 'Loading...'
                 : searchDataHorse?.nfts.length
             } `}
+            */
+           description=''
+
             initialOpen={true}
           >
             <div className=" itmes-start  flex flex-col justify-center p-3 pb-10">
               {/*
               <OwnedFeedsNft contractAddress={nftDropContractAddressHorse} />
               */}
+              {/*
               <OwnedFeedsNft searchData={searchDataHorse} />
+              */}
+
+              <FeedsNftOwnedTable
+                title=""
+                variant="minimal"
+
+                //data={data}
+                //data={searchDataHorse?.nfts}
+
+                
+
+                sticky
+                ///scroll={{ x: 1300, y: 760 }}
+                scroll={{ x: 600, }}
+                
+                // @ts-ignore
+                getColumns={getColumns}
+                enablePagination={true}
+                
+                searchPlaceholder="name"
+
+                ////setPageSize={setPageSize}
+
+                //className="min-h-[480px] [&_.widget-card-header]:items-center [&_.widget-card-header_h5]:font-medium"
+                
+              />
+
             </div>
           </Collapse>
         </div>
 
+        {/*
         <div className="mt-5 flex w-full flex-col rounded-lg border ">
           <Collapse
             label="Jockey"
@@ -313,20 +364,19 @@ export default function Search() {
             initialOpen={true}
           >
             <div className="itmes-start flex flex-col justify-center p-3 pb-10">
-              {/*
-              <OwnedFeedsNft contractAddress={nftDropContractAddressJockey} />
-              */}
+            
               <OwnedFeedsNft searchData={searchDataJockey} />
             </div>
           </Collapse>
         </div>
+        */}
 
         <div className="mt-5 flex w-full flex-col rounded-lg border ">
           <Collapse
             label="Track"
             description={`${Number(tokenBalanceHV?.displayValue).toFixed(
               0
-            )} / 1000 `}
+            )} / 10000 `}
             initialOpen={true}
           >
             <div className="itmes-start flex flex-col justify-center p-3 pb-10">
