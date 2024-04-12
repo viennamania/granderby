@@ -851,6 +851,19 @@ export const getOneHorse = async (tokenId: string) => {
       console.log('formattedNumber', formattedNumber);
 
       gameHorseKey = '' + formattedNumber + '';
+    } else if (Number(tokenId) >= 5000 && Number(tokenId) < 10000) {
+      var formattedNumber = Number(tokenId) - 1000 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0020' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      gameHorseKey = '' + formattedNumber + '';
     } else {
       ////gameHorseKey = '00006000';
     }
@@ -904,6 +917,10 @@ export const getOneHorse = async (tokenId: string) => {
       RUNTYPE: ''
     }
   */
+
+  if (!json) {
+    return { success: false, message: 'horse not found' };
+  }
 
   const gameHorseDescription = [] as any;
 

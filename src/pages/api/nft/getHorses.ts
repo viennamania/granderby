@@ -1,10 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import {
-  getAllHorses,
-  getAllHorsesCount,
-} from '@/utils/models/horse-model';
+import { getAllHorses, getAllHorsesCount } from '@/utils/models/horse-model';
 
 type Data = {
   name: string;
@@ -25,7 +22,6 @@ export default async function handler(
   console.log('getHorses grades', grades);
   console.log('getHorses sort', sort);
   console.log('getHorses holder', holder);
-
 
   //console.log('getHorses grades', grades);
   //console.log('getHorses manes', manes);
@@ -50,8 +46,6 @@ export default async function handler(
   //console.log('getHorses nfts====', nfts);
 
   const pageKey = data.pageNumber;
-
-  
 
   const formattedNfts = nfts?.map((nft: any) => {
     const {
@@ -194,6 +188,13 @@ export default async function handler(
           formattedNumber = '0' + formattedNumber;
         }
         gameHorseName = '0020' + formattedNumber;
+      } else if (Number(tokenId) >= 5000 && Number(tokenId) < 10000) {
+        var formattedNumber = Number(tokenId) - 1000 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        gameHorseName = '0020' + formattedNumber;
       } else {
         ////gameHorseName = 'Hrs_00006000.png';
       }
@@ -208,10 +209,12 @@ export default async function handler(
       holder: holder,
       contract: contract?.address,
       symbol: contract?.symbol,
+
       media:
         media && media[0]?.gateway
           ? media[0]?.gateway
           : 'https://via.placeholder.com/500',
+
       collectionName: contract?.openSea?.collectionName,
       verified: contract?.openSea?.safelistRequestStatus,
       tokenType,
@@ -223,24 +226,17 @@ export default async function handler(
 
       //attributes: rawMetadata?.attributes,
 
-      grade: rawMetadata?.attributes?.find(
-        (attribute: any) => attribute.trait_type === 'Grade'
-      )?.value,
+      grade: rawMetadata
+        ? rawMetadata.attributes?.find(
+            (attribute: any) => attribute.trait_type === 'Grade'
+          )?.value
+        : 'D',
     };
   });
 
-
-
   //const total = data.total;
 
-  const horsesCount = await getAllHorsesCount(
-    grades,
-    manes,
-    holder
-  );
-
-
-
+  const horsesCount = await getAllHorsesCount(grades, manes, holder);
 
   res.status(200).json({
     nfts: formattedNfts ? formattedNfts : [],
