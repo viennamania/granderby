@@ -47,12 +47,17 @@ export default async function handler(
 
   ///var fromBlock = '0x345121a' as any;
 
+  //fromBlock = '0x3473bc0';
+  //fromBlock = '0x35098f6';
+
+  ///fromBlock = '0x35098f7';
+
   if (fromBlock) {
   } else {
     fromBlock = '0x2e43f16';
   }
 
-  console.log('fromBlock', fromBlock);
+  console.log('start fromBlock', fromBlock);
 
   let transfers = [] as any;
 
@@ -688,7 +693,9 @@ export default async function handler(
     fromBlock = item.blockNum;
   }
 
-  console.log('fromBlock', fromBlock);
+  console.log('last fromBlock====', fromBlock);
+
+  // Save the last block number to KV
 
   await kv.set(contractAddress, fromBlock);
 
