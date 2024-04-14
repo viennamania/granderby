@@ -4,16 +4,11 @@ import Button from '@/components/ui/button';
 
 import Feeds from '@/components/search/feeds-horse-inventory';
 
-
 import OwnedFeedsNft from './feeds-nft-owned';
-
 
 import { getColumns, getWidgetColumns } from '@/shared/feed/columns';
 
-
 import FeedsNftOwnedTable from './feeds-nft-owned-table';
-
-
 
 import OwnedFeedsFt from './feeds-ft-owned';
 
@@ -108,10 +103,7 @@ export default function Search() {
     */
   ];
 
-
-
   const address = useAddress();
-
 
   /*
   const [searchDataHorse, setSearchDataHorse] = useState<any>();
@@ -154,9 +146,6 @@ export default function Search() {
 
   }, [address]);
   */
-
-
-
 
   /*
   useEffect(() => {
@@ -275,7 +264,34 @@ export default function Search() {
   const { data: tokenBalanceHV, isLoading: isLoadingBalanceHV } =
     useTokenBalance(tokenContractHV, address);
 
+  const [totalBalanceHorse, setTotalBalanceHorse] = useState(0);
 
+  useEffect(() => {
+    const main = async () => {
+      // Call api for get balance by many horse uid
+      // getBalanceByHolder
+
+      const response = await fetch('/api/nft/getHorsesBalanceByHolder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          holder: address,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log('data======>', data);
+
+      setTotalBalanceHorse(data?.accumulatedBalance);
+    };
+
+    if (address) {
+      main();
+    }
+  }, [address]);
 
   return (
     <>
@@ -299,7 +315,6 @@ export default function Search() {
         <div className="mt-5 flex  w-full flex-col rounded-lg border ">
           <Collapse
             label="Horse"
-
             /*
             description={`${
               !address
@@ -309,8 +324,7 @@ export default function Search() {
                 : searchDataHorse?.nfts.length
             } `}
             */
-           description=''
-
+            description=""
             initialOpen={true}
           >
             <div className=" itmes-start  flex flex-col justify-center p-3 pb-10">
@@ -321,31 +335,30 @@ export default function Search() {
               <OwnedFeedsNft searchData={searchDataHorse} />
               */}
 
+              <div className="flex flex-row items-center justify-between">
+                <span className="text-xl font-bold">
+                  Total Allowance: {totalBalanceHorse.toLocaleString()}
+                </span>
+              </div>
+
               <FeedsNftOwnedTable
                 title=""
                 variant="minimal"
-
                 //data={data}
                 //data={searchDataHorse?.nfts}
 
-                
-
                 sticky
                 ///scroll={{ x: 1300, y: 760 }}
-                scroll={{ x: 600, }}
-                
+                scroll={{ x: 600 }}
                 // @ts-ignore
                 getColumns={getColumns}
                 enablePagination={true}
-                
                 searchPlaceholder="name"
 
                 ////setPageSize={setPageSize}
 
                 //className="min-h-[480px] [&_.widget-card-header]:items-center [&_.widget-card-header_h5]:font-medium"
-                
               />
-
             </div>
           </Collapse>
         </div>

@@ -68,6 +68,8 @@ import { useModal } from '@/components/modal-views/context';
 
 import PointHistoryTable from '@/components/nft-transaction/point-history-table';
 
+import { InfoIcon } from '@/components/icons/info-icon';
+
 // dummy data
 import User1 from '@/assets/images/game/icon_rank_1.jpg';
 import User2 from '@/assets/images/game/icon_rank_2.jpg';
@@ -652,7 +654,7 @@ export default function NftInfo({ horseData }: any) {
                             {
                               // dollar format
 
-                              gameHorseAccumulatedBalance
+                              gameHorseAccumulatedBalance.toLocaleString()
                             }
                           </span>
                         </div>
@@ -664,7 +666,7 @@ export default function NftInfo({ horseData }: any) {
                           <span className="  text-xl font-bold">
                             {
                               //gameHorseBalance
-                              gameHorseAccumulatedBalance
+                              gameHorseAccumulatedBalance.toLocaleString()
                             }
                           </span>
                         </div>
@@ -681,6 +683,27 @@ export default function NftInfo({ horseData }: any) {
                       </div>
                     </div>
                   </div>
+
+                  {/* claim button */}
+                  <Button
+                    className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+                    onClick={() => {
+                      /*
+                    openModal('SALE_VIEW', {
+                      title: 'Followers',
+                      count: '1,845',
+                      users: data,
+                    })
+                    */
+
+                      alert('Coming Soon');
+                    }}
+                  >
+                    <span className="flex items-center gap-2 font-extrabold ">
+                      <InfoIcon className="h-5 w-5" /> Claim{' '}
+                      {gameHorseAccumulatedBalance.toLocaleString()}
+                    </span>
+                  </Button>
                 </div>
 
                 {/*

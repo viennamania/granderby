@@ -301,6 +301,7 @@ export default function FeedsCoinOwned(
 
   useEffect(() => {
     const main = async () => {
+      /*
       // Call api for get balance by many horse uid
       const response = await fetch('/api/nft/getBalanceByHolder', {
         method: 'POST',
@@ -325,6 +326,30 @@ export default function FeedsCoinOwned(
       });
 
       setTotalBalance(totalBalance);
+      */
+
+      /*
+      // Call api for get balance by many horse uid
+      // getBalanceByHolder
+
+      const response = await fetch('/api/nft/getHorsesBalanceByHolder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          holder: address,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log('data======>', data);
+
+      setTotalBalance(data?.accumulatedBalance);
+      */
+
+      setTotalBalance(0);
     };
 
     main();

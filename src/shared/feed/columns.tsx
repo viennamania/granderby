@@ -197,13 +197,18 @@ export const getColumns = ({
     title: <HeaderCell title="Allowance" />,
     dataIndex: 'accumulatedBalance',
     key: 'accumulatedBalance',
-    width: 50,
+    width: 80,
     render: (value: string) => (
       <>
         {value == null ? (
-          <Text className="text-center">0</Text>
+          <Text className="text-center text-xl font-bold">0</Text>
         ) : (
-          <Text className="text-center">{value}</Text>
+          <Text className="text-center text-xl font-bold">
+            {
+              // currency format
+              value.toLocaleString()
+            }
+          </Text>
         )}
       </>
     ),

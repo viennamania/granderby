@@ -98,7 +98,7 @@ export const getRankByHorseId = async (
     $or: [{ gameId: { $regex: q, $options: 'i' } }],
   };
 
-  console.log('getRankByHorseId horseId', horseId);
+  ///console.log('getRankByHorseId horseId', horseId);
 
   // game_ranks collection
   // ranking is array
@@ -225,7 +225,7 @@ export const HorseTransferModel =
   models.Horsegame || model<ITransferHistory>('Horsegame', HorseTransferSchema);
 
 export const getTransferHistory = async (): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistory=======');
+  ///console.log('getTransferHistory=======');
 
   return await HorseTransferModel.find({
     $and: [
@@ -498,7 +498,7 @@ export const getTransferHistoryByTokenId = async (
 export const getTransferHistoryByHolder = async (
   address: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByHolder===', address);
+  ///console.log('getTransferHistoryByHolder===', address);
 
   if (address === undefined) {
     return [];
@@ -549,7 +549,8 @@ export const getFtTransferHistoryByHolder = async (
   limit: Number,
   address: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getFtTransferHistoryByHolder', address);
+  //console.log('getFtTransferHistoryByHolder', address);
+
   if (address === undefined) {
     return [];
   }
@@ -581,7 +582,8 @@ export const getFtTransferHistoryByHolder = async (
 export const getNftTransferHistoryByHolder = async (
   address: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryByHolder', address);
+  ///console.log('getTransferHistoryByHolder', address);
+
   if (address === undefined) {
     return [];
   }
@@ -615,7 +617,8 @@ export const getTransferHistoryLatestByHolder = async (
   limit: String,
   address: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryLatestByHolder', address);
+  ///console.log('getTransferHistoryLatestByHolder', address);
+
   if (address === undefined) {
     return [];
   }
@@ -637,7 +640,8 @@ export const getTransferHistoryLatestByHolderByCategory = async (
   address: String,
   category: String
 ): Promise<ITransferHistory[]> => {
-  console.log('getTransferHistoryLatestByHolderByCategory', address);
+  //console.log('getTransferHistoryLatestByHolderByCategory', address);
+
   if (address === undefined) {
     return [];
   }

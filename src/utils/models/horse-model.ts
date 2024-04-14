@@ -1062,3 +1062,40 @@ export const getOneGameHorseData = async (gameHorseKey: string) => {
     return { success: false, message: 'horse not found' };
   }
 };
+
+export const getBalanceByHolder = async (holder: string) => {
+  // sum of accumulatedBalance of all horses by holder
+
+  const data = await HorseModel.aggregate([
+    {
+      $match: {
+        holder: holder.toLowerCase(),
+      },
+    },
+    // if accumulatedBalance is empty, then set 0
+    {
+      $set: {
+        accumulatedBalance: { $ifNull: ['$accumulatedBalance', 0] },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: '$accumulatedBalance' },
+      },
+    },
+    /*
+    {
+      $group: {
+        _id: null,
+        total: { $sum: 'accumulatedBalance' },
+      },
+    },
+    */
+  ]);
+
+  console.log('holder', holder);
+  console.log('getBalanceByHolder data', data);
+
+  return { accumulatedBalance: data[0].total };
+};
