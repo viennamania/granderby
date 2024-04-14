@@ -68,6 +68,9 @@ import { Schema, models, model } from 'mongoose';
 /////////connectMongo();
 
 import dbConnect from '@/lib/db/dbConnect';
+import { toInteger } from 'lodash';
+import { tokenContractAddressCARROTDrop } from '@/config/contractAddresses';
+import { parse } from 'path';
 
 dbConnect();
 
@@ -161,25 +164,61 @@ export const getAllHorses = async (
   console.log('getAllHorses holder', holder);
 
   if (holder) {
-    const data = await HorseModel.find({
+    // sort number in ascending order, tokenId is string field, so conver tokenId to number and sort
+
+    const data = await HorseModel.aggregate(
+      [
+        {
+          $match: {
+            holder: holder.toLowerCase(),
+          },
+        },
+        {
+          $sort: {
+            tokenId: 1,
+
+            ///$parse: { tokenId: 'int' },
+
+            // sort number in ascending order, tokenId is string field, so conver tokenId to number and sort
+          },
+        },
+        {
+          $skip: (pageNumber - 1) * pagination,
+        },
+        {
+          $limit: pagination,
+        },
+      ],
+      {
+        collation: { locale: 'en_US', numericOrdering: true },
+      }
+    );
+
+    /*
+    const data = await HorseModel
+
+    .find({
       holder: holder.toLowerCase(),
     })
 
       // search nft.title by q
 
-      .find({
-        $or: [
-          { 'nft.title': { $regex: q, $options: 'i' } },
-          //{ 'nft.description': { $regex: q, $options: 'i' } },
-        ],
-      })
+    .find({
+      $or: [
+        { 'nft.title': { $regex: q, $options: 'i' } },
+        //{ 'nft.description': { $regex: q, $options: 'i' } },
+      ],
+    })
 
-      .sort(
+
+
+    .sort(
         sort === 'Token ID: Ascending'
           ? {
-              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
-
+ 
               tokenId: 1,
+
+
             }
           : sort === 'Token ID: Descending'
           ? {
@@ -206,21 +245,20 @@ export const getAllHorses = async (
             }
       )
 
+      // numericOrdering: true is for sorting numbers in descending order
+
+
+
       //.sort({ tokenId: 1 })
 
       .skip((pageNumber - 1) * pagination)
       //limit is number of Records we want to display
       .limit(pagination)
-      /*
-      .then(data => {
-  
-        return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
-  
-      })
-      */
+
       .catch((err) => {
         ////return err;
       });
+    */
 
     if (data?.length === 0) {
       return { nfts: [], pageNumber: null };
