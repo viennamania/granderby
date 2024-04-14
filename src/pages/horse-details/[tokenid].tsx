@@ -754,9 +754,12 @@ function SinglePrice(tokenid: any) {
       // 5000 => 00204000
       // 6000 => 00205000
       // 7000 => 00206000
+      // 7078 => 00206078
+
+      // 7078 까지 2차 발행
       else if (
         Number(tokenid.tokenid) >= 5000 &&
-        Number(tokenid.tokenid) < 10000
+        Number(tokenid.tokenid) <= 7078
       ) {
         var formattedNumber = Number(tokenid.tokenid) - 1000 + '';
 
