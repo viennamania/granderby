@@ -195,69 +195,18 @@ export const getAllHorses = async (
     );
 
     /*
-    const data = await HorseModel
+      const response = await fetch('/api/nft/getBalanceByTokenId', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tokenId: tokenid.tokenid,
+      }),
+    });
+    const data = await response.json();
 
-    .find({
-      holder: holder.toLowerCase(),
-    })
+    console.log('getBalanceByTokenId data=======', data);
 
-      // search nft.title by q
-
-    .find({
-      $or: [
-        { 'nft.title': { $regex: q, $options: 'i' } },
-        //{ 'nft.description': { $regex: q, $options: 'i' } },
-      ],
-    })
-
-
-
-    .sort(
-        sort === 'Token ID: Ascending'
-          ? {
- 
-              tokenId: 1,
-
-
-            }
-          : sort === 'Token ID: Descending'
-          ? {
-              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
-
-              tokenId: -1,
-            }
-          : sort === 'Price: Ascending'
-          ? {
-              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
-
-              totalPricePaid: 1,
-            }
-          : sort === 'Price: Descending'
-          ? {
-              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
-
-              totalPricePaid: -1,
-            }
-          : {
-              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
-
-              tokenId: -1,
-            }
-      )
-
-      // numericOrdering: true is for sorting numbers in descending order
-
-
-
-      //.sort({ tokenId: 1 })
-
-      .skip((pageNumber - 1) * pagination)
-      //limit is number of Records we want to display
-      .limit(pagination)
-
-      .catch((err) => {
-        ////return err;
-      });
+    setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
     */
 
     if (data?.length === 0) {
@@ -327,69 +276,6 @@ export const getAllHorses = async (
         collation: { locale: 'en_US', numericOrdering: true },
       }
     );
-
-    /*
-    const data = await HorseModel.find({})
-
-      ///.sort({ tokenId: 1 })
-
-      // search nft.title by q
-
-      // if q is not '', then search nft.title by q
-
-      .find({
-        $or: [
-          //{ 'nft.title': { $regex: q, $options: 'i' } },
-          //{ 'nft.description': { $regex: q, $options: 'i' } },
-
-          ///{ 'nft.media[0].raw': { $regex: q, $options: 'i' } },
-
-          //{ 'nft.media[0].raw': { $regex: q, $options: 'i' } },
-
-          { 'nft.media.raw': { $regex: q, $options: 'i' } },
-        ],
-      })
-
-      .sort(
-        sort === 'Token ID: Ascending'
-          ? {
-              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
-
-              tokenId: 1,
-            }
-          : sort === 'Token ID: Descending'
-          ? {
-              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
-
-              tokenId: -1,
-            }
-          : sort === 'Price: Ascending'
-          ? {
-              // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
-
-              totalPricePaid: 1,
-            }
-          : sort === 'Price: Descending'
-          ? {
-              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
-
-              totalPricePaid: -1,
-            }
-          : {
-              // sort number in descending order, tokenId is string, so conver tokenId to number and sort
-
-              tokenId: -1,
-            }
-      )
-
-      .skip((pageNumber - 1) * pagination)
-      //limit is number of Records we want to display
-      .limit(pagination)
-     
-      .catch((err) => {
-        ////return err;
-      });
-    */
 
     return { nfts: data, pageNumber: pageNumber + 1 };
   }

@@ -195,8 +195,8 @@ export const getColumns = ({
 
   {
     title: <HeaderCell title="Allowance" />,
-    dataIndex: 'scrapCount',
-    key: 'scrapCount',
+    dataIndex: 'accumulatedBalance',
+    key: 'accumulatedBalance',
     width: 50,
     render: (value: string) => (
       <>

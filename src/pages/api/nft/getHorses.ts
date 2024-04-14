@@ -28,8 +28,6 @@ export default async function handler(
   //console.log('getHorses manes', manes);
   //console.log('getHorses holder', holder);
 
-  var nfts = [] as any;
-
   const data = await getAllHorses(
     q,
     Number(pageNumber),
@@ -40,15 +38,11 @@ export default async function handler(
     sort
   );
 
-  ///console.log('getHorses data====', data);
+  ///console.log('getHorses nfts====', data.nfts);
 
-  nfts = data.nfts;
+  const pageKey = data?.pageNumber;
 
-  //console.log('getHorses nfts====', nfts);
-
-  const pageKey = data.pageNumber;
-
-  const formattedNfts = nfts?.map((nft: any) => {
+  const formattedNfts = data?.nfts?.map((nft: any) => {
     const {
       contract,
       title,
@@ -57,7 +51,7 @@ export default async function handler(
       description,
       media,
       rawMetadata,
-    } = nft.nft;
+    } = nft?.nft;
 
     //console.log("getHorses nft", nft);
     /*
@@ -313,6 +307,8 @@ export default async function handler(
       */
 
       grade: grade,
+
+      accumulatedBalance: nft.accumulatedBalance,
     };
   });
 

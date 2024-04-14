@@ -2,8 +2,6 @@ import { useState, useEffect, useMemo, use } from 'react';
 import isString from 'lodash/isString';
 import { add } from 'lodash';
 
-
-
 interface AnyObject {
   [key: string]: any;
 }
@@ -19,28 +17,20 @@ export function useTable<T extends AnyObject>(
   endDate?: string,
 
   mealTimeArray?: string[],
-  feedbackArray?: string[],
-
+  feedbackArray?: string[]
 ) {
-
-
   /*
    * Table data
    */
   const [data, setData] = useState(initialData);
 
   /*
-  * Dummy loading state.
-  */
+   * Dummy loading state.
+   */
   const [isLoading, setLoading] = useState(true);
-
-    
-  
 
   /* get total count */
   const [totalCount, setTotalCount] = useState(0);
-
-
 
   /*
    * Handle row selection
@@ -55,7 +45,7 @@ export function useTable<T extends AnyObject>(
       setSelectedRowKeys([...selectedKeys, recordKey]);
     }
   };
-  
+
   const handleSelectAll = () => {
     if (selectedRowKeys.length === data.length) {
       setSelectedRowKeys([]);
@@ -68,10 +58,9 @@ export function useTable<T extends AnyObject>(
    * Handle sorting
    */
   const [sortConfig, setSortConfig] = useState<AnyObject>({
-    
     //key: 'mealDate', // 'mealDate',
 
-    key: 'sequenceNumber', 
+    key: 'sequenceNumber',
 
     direction: 'desc',
   });
@@ -99,7 +88,6 @@ export function useTable<T extends AnyObject>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortConfig, data]);
 
-
   function handleSort(key: string) {
     let direction = 'asc';
     if (sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -107,8 +95,6 @@ export function useTable<T extends AnyObject>(
     }
     setSortConfig({ key, direction });
   }
-
-
 
   /*
    * Handle pagination
@@ -132,13 +118,10 @@ export function useTable<T extends AnyObject>(
   }
   */
 
-
-
   /*
    * Handle delete
    */
   function handleDelete(id: string | string[]) {
-
     /*
     const updatedData = Array.isArray(id)
       ? data.filter((item) => !id.includes(item.id))
@@ -147,24 +130,20 @@ export function useTable<T extends AnyObject>(
     setData(updatedData);
     */
 
-
     const deleteData = async () => {
-
       setLoading(true);
-  
 
-      console.log("start delete id", id);
-  
+      console.log('start delete id', id);
+
       const resDelete = await fetch(`/api/doingdoit/feed/deleteOne?id=${id}`);
 
-      console.log("resDelete", resDelete);
-
+      console.log('resDelete', resDelete);
 
       const res = await fetch('/api/doingdoit/feed/getAll', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          },
+        },
         body: JSON.stringify({
           limit: countPerPage,
           page: currentPage,
@@ -175,17 +154,12 @@ export function useTable<T extends AnyObject>(
           endDate: endDate,
           mealTimeArray: mealTimeArray,
           feedbackArray: feedbackArray,
-          }),
+        }),
       });
 
-  
-      const posts  = await res?.json() as any;
-  
-      
+      const posts = (await res?.json()) as any;
 
       ///setData(posts?.data?.feeds);
-
-  
 
       setData(
         posts?.data?.feeds.map((item: any) => {
@@ -195,35 +169,25 @@ export function useTable<T extends AnyObject>(
             totalCount: posts?.data?.totalCount,
             currentPage: currentPage,
             countPerPage: countPerPage,
-            loginUserId: 0,  
+            loginUserId: 0,
           };
         })
-      )
-
-
-
-
+      );
 
       setTotalCount(posts?.data?.totalCount);
-          
-  
-      setLoading(false);
 
-    }
+      setLoading(false);
+    };
 
     deleteData();
-    
   }
 
-
   ///console.log("data======", data);
-
 
   /*
    * Handle Filters and searching
    */
   const [searchTerm, setSearchTerm] = useState('');
-
 
   const [filters, setFilters] = useState<Record<string, any>>(
     initialFilterState ?? {}
@@ -245,7 +209,6 @@ export function useTable<T extends AnyObject>(
   }
 
   function applyFilters() {
-
     const searchTermLower = searchTerm.toLowerCase();
 
     return (
@@ -300,10 +263,6 @@ export function useTable<T extends AnyObject>(
     );
   }
 
-
-
-
-
   const fetchData = async (
     searchTerm: string = '',
     countPerPage: number = 10,
@@ -312,12 +271,9 @@ export function useTable<T extends AnyObject>(
     endDate: Date | string = '',
     mealTimeArray: string[] = [],
     feedbackArray: string[] = [],
-    address: string = '',
+    address: string = ''
   ) => {
-
-
     setLoading(true);
-
 
     /*
           const data = await fetch('/api/nft/getHorses', {
@@ -338,13 +294,11 @@ export function useTable<T extends AnyObject>(
       });
       */
 
-
-
     const res = await fetch('/api/nft/getHorses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        },
+      },
       body: JSON.stringify({
         pageSize: countPerPage,
         pageNumber: currentPage,
@@ -358,16 +312,13 @@ export function useTable<T extends AnyObject>(
         grades: [],
         manes: [],
         holder: address,
-        }),
+      }),
     });
 
+    const posts = (await res?.json()) as any;
 
-    const posts  = await res?.json() as any;
-
-    console.log("posts?.nfts", posts?.nfts);
-    console.log("posts?.total", posts?.total);
-
-
+    console.log('posts?.nfts', posts?.nfts);
+    console.log('posts?.total', posts?.total);
 
     setData(
       posts?.nfts.map((item: any) => {
@@ -379,28 +330,14 @@ export function useTable<T extends AnyObject>(
           currentPage: currentPage,
           countPerPage: countPerPage,
           loginUserId: 0,
-
-
         };
       })
-    )
-
+    );
 
     setTotalCount(posts?.total);
 
-
-    
-
     setLoading(false);
-
   };
-
-
-
-
-
-
-
 
   /*
    * Handle searching
@@ -413,10 +350,8 @@ export function useTable<T extends AnyObject>(
     endDate: Date | string = '',
     mealTimeArray: string[] = [],
     feedbackArray: string[] = [],
-    address: string = '',
-
+    address: string = ''
   ) {
-    
     ///setSearchTerm(searchValue);
 
     /*
@@ -429,8 +364,6 @@ export function useTable<T extends AnyObject>(
     console.log('handleSearch feedbackArray : ' + feedbackArray);
     */
 
-
-
     fetchData(
       searchValue,
       countPerPage,
@@ -439,12 +372,9 @@ export function useTable<T extends AnyObject>(
       endDate,
       mealTimeArray,
       feedbackArray,
-      address,
-
+      address
     );
-
   }
-
 
   function searchedData() {
     if (!searchTerm) return sortedData;
@@ -463,10 +393,7 @@ export function useTable<T extends AnyObject>(
           : value && String(value).toLowerCase().includes(searchTermLower)
       )
     );
-
   }
-
-  
 
   /*
    * Reset search and filters
@@ -482,7 +409,6 @@ export function useTable<T extends AnyObject>(
    */
   const isFiltered = applyFilters().length > 0;
 
-
   function calculateTotalItems() {
     /*
     if (isFiltered) {
@@ -495,14 +421,12 @@ export function useTable<T extends AnyObject>(
     */
     return totalCount;
   }
-  
+
   const filteredAndSearchedData = isFiltered ? applyFilters() : searchedData();
 
   ////const tableData = paginatedData(filteredAndSearchedData);
 
   const tableData = data;
-
-
 
   /*
    * Go to first page when data is filtered and searched
@@ -514,10 +438,6 @@ export function useTable<T extends AnyObject>(
 
   }, [isFiltered, searchTerm, sortConfig, countPerPage, startDate, endDate, mealTimeArray, feedbackArray]);
   */
-
-
-
-
 
   /*
   useEffect(() => {
@@ -536,15 +456,6 @@ export function useTable<T extends AnyObject>(
   ,[ countPerPage, ]);
   */
 
-
-
-
-
-
-
-
-
-
   // useTable returns
   return {
     isLoading,
@@ -552,7 +463,7 @@ export function useTable<T extends AnyObject>(
     tableData,
     // pagination
     currentPage,
-    
+
     //handlePaginate,
 
     totalItems: calculateTotalItems(),
@@ -575,6 +486,5 @@ export function useTable<T extends AnyObject>(
     applyFilters,
     handleDelete,
     handleReset,
-    
   };
 }
