@@ -28,9 +28,7 @@ import Image from 'next/image';
 import Button from '@/components/ui/button';
 import { ro } from 'date-fns/locale';
 
-
 ///import DeletePopover from '@/shared/popover';
-
 
 function getStatusBadge(status: string) {
   switch (status.toLowerCase()) {
@@ -38,21 +36,21 @@ function getStatusBadge(status: string) {
       return (
         <div className="flex items-center">
           <Badge color="warning" renderAsDot />
-          <Text className="ms-2 font-medium text-orange-dark">{status}</Text>
+          <Text className="text-orange-dark ms-2 font-medium">{status}</Text>
         </div>
       );
     case 'completed':
       return (
         <div className="flex items-center">
           <Badge color="success" renderAsDot />
-          <Text className="ms-2 font-medium text-green-dark">{status}</Text>
+          <Text className="text-green-dark ms-2 font-medium">{status}</Text>
         </div>
       );
     case 'cancelled':
       return (
         <div className="flex items-center">
           <Badge color="danger" renderAsDot />
-          <Text className="ms-2 font-medium text-red-dark">{status}</Text>
+          <Text className="text-red-dark ms-2 font-medium">{status}</Text>
         </div>
       );
     default:
@@ -65,11 +63,6 @@ function getStatusBadge(status: string) {
   }
 }
 
-
-
-
-
-
 // get rating calculation
 function getRating(rating: number[]) {
   let totalRating = rating.reduce((partialSum, value) => partialSum + value, 0);
@@ -80,7 +73,7 @@ function getRating(rating: number[]) {
       <span className="me-1 shrink-0">{review.toFixed(1)}</span>
       {[...new Array(5)].map((arr, index) => {
         return index < Math.round(review) ? (
-          <PiStarFill className="w-4 fill-orange text-orange" key={index} />
+          <PiStarFill className="fill-orange text-orange w-4" key={index} />
         ) : (
           <PiStarFill className="w-4 fill-gray-300 text-gray-300" key={index} />
         );
@@ -89,7 +82,6 @@ function getRating(rating: number[]) {
     </div>
   );
 }
-
 
 type Columns = {
   sortConfig?: any;
@@ -102,9 +94,6 @@ type Columns = {
   totalItems?: number;
 };
 
-
-
-
 export const getColumns = ({
   sortConfig,
   onDeleteItem,
@@ -113,10 +102,7 @@ export const getColumns = ({
   onClickUser,
 
   totalItems,
-  
 }: Columns) => [
-
-
   /*
   {
     title: <HeaderCell title="No" />,
@@ -150,66 +136,37 @@ export const getColumns = ({
   },
   */
 
-
   {
     title: <HeaderCell title="No" />,
     dataIndex: 'id',
     key: 'id',
     width: 80,
     //render: (value: string) => <Text className='  text-center ' >{value}</Text>,
-    render: (
-      _: any,
-      row: any,
-      index: number,
-    ) => (
-      <Text className='  text-center '> 
-      {
-
-
-        row?.totalCount - index - (row?.currentPage - 1) * row?.countPerPage
-
-      }
+    render: (_: any, row: any, index: number) => (
+      <Text className="  text-center ">
+        {row?.totalCount - index - (row?.currentPage - 1) * row?.countPerPage}
       </Text>
     ),
   },
 
-
-
-
   {
-    title: (
-      <HeaderCell
-        title="Token Id"
-      />
-    ),
+    title: <HeaderCell title="Token Id" />,
     dataIndex: 'tokenId',
     key: 'tokenId',
     width: 100,
-    render: (value: string) => (
-      <Text className="text-center">{value}</Text>
-    ),
+    render: (value: string) => <Text className="text-center">{value}</Text>,
   },
 
   {
-    title: (
-      <HeaderCell
-        title="Name"
-      />
-    ),
+    title: <HeaderCell title="Name" />,
     dataIndex: 'gameHorseName',
     key: 'gameHorseName',
     width: 100,
-    render: (value: string) => (
-      <Text className="text-center">#{value}</Text>
-    ),
+    render: (value: string) => <Text className="text-center">#{value}</Text>,
   },
 
   {
-    title: (
-      <HeaderCell
-        title="Grade"
-      />
-    ),
+    title: <HeaderCell title="Grade" />,
     dataIndex: 'grade',
     key: 'grade',
     width: 100,
@@ -219,28 +176,22 @@ export const getColumns = ({
   },
 
   {
-    title: (
-      <HeaderCell
-        title="Image"
-      />
-    ),
-    dataIndex: 'media',
-    key: 'media',
-    width: 100,
+    title: <HeaderCell title="Image" />,
+    dataIndex: 'imageUrl',
+    key: 'imageUrl',
+    width: 200,
     render: (value: string) => (
-      <Image
-        src={value}
-        alt="Granderby Horse NFT"
-        width={100}
-        height={100}
-        className='rounded-lg'
-      />
+      <div className="flex items-center justify-center">
+        <Image
+          src={value}
+          alt="Granderby Horse NFT"
+          width={150}
+          height={150}
+          className="rounded-lg"
+        />
+      </div>
     ),
   },
-
-
-
-  
 
   {
     title: <HeaderCell title="Allowance" />,
@@ -248,7 +199,6 @@ export const getColumns = ({
     key: 'scrapCount',
     width: 50,
     render: (value: string) => (
-
       <>
         {value == null ? (
           <Text className="text-center">0</Text>
@@ -256,14 +206,10 @@ export const getColumns = ({
           <Text className="text-center">{value}</Text>
         )}
       </>
-
     ),
   },
-  
 
   //my-horse-details/87
-
-
 
   ///my-horse-details/${row?.tokenId}
   {
@@ -273,23 +219,14 @@ export const getColumns = ({
     key: 'action',
     width: 80,
     render: (_: string, row: any) => (
-
       <Link
         href={`/my-horse-details/${row?.tokenId}`}
         className="ps-4 text-black  hover:text-gray-900 hover:underline"
       >
-        <Text className='text-center'>
-          Details
-        </Text>
+        <Text className="text-center">Details</Text>
       </Link>
-
-
     ),
   },
-
-
-
-  
 
   /*
   {
@@ -311,8 +248,6 @@ export const getColumns = ({
     ),
   },
   */
-  
-
 
   /*
   {
@@ -355,12 +290,7 @@ export const getColumns = ({
     ),
   },
   */
-
-
 ];
-
-
-
 
 export const getWidgetColumns = ({
   sortConfig,
@@ -390,11 +320,7 @@ export const getWidgetColumns = ({
     width: 300,
     hidden: 'customer',
     render: (_: any, row: any) => (
-      <TableAvatar
-        src={row.avatar}
-        name={row.name}
-        description={row.email}
-      />
+      <TableAvatar src={row.avatar} name={row.name} description={row.email} />
     ),
   },
   {
@@ -402,9 +328,7 @@ export const getWidgetColumns = ({
     dataIndex: 'items',
     key: 'items',
     width: 150,
-    render: (value: string) => (
-      <Text className="">{value}</Text>
-    ),
+    render: (value: string) => <Text className="">{value}</Text>,
   },
   {
     title: (
@@ -420,9 +344,7 @@ export const getWidgetColumns = ({
     dataIndex: 'price',
     key: 'price',
     width: 150,
-    render: (value: string) => (
-      <Text className="">${value}</Text>
-    ),
+    render: (value: string) => <Text className="">${value}</Text>,
   },
   {
     title: (
@@ -463,7 +385,6 @@ export const getWidgetColumns = ({
     width: 140,
     render: (value: string) => getStatusBadge(value),
   },
-
 
   {
     // Need to avoid this issue -> <td> elements in a large <table> do not have table headers.
@@ -519,6 +440,4 @@ export const getWidgetColumns = ({
       </div>
     ),
   },
-
-
 ];
