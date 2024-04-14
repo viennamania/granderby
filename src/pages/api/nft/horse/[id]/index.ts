@@ -375,7 +375,11 @@ export default async function handler(
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'C';
-    } else if (Number(req.query.id) >= 2645 && Number(req.query.id) < 5000) {
+    }
+    // 3645 부터 2차 판매
+    // 3645 => 00202645
+    // 4000 => 00203000
+    else if (Number(req.query.id) >= 2645 && Number(req.query.id) < 5000) {
       var formattedNumber = Number(req.query.id) - 1000 + '';
 
       while (formattedNumber.length < 4) {
@@ -390,7 +394,11 @@ export default async function handler(
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'D';
-    } else if (Number(req.query.id) >= 5000 && Number(req.query.id) < 10000) {
+    }
+    // 5000 => 00204000
+    // 6000 => 00205000
+    // 7000 => 00206000
+    else if (Number(req.query.id) >= 5000 && Number(req.query.id) < 10000) {
       var formattedNumber = Number(req.query.id) - 1000 + '';
 
       while (formattedNumber.length < 4) {

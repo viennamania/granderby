@@ -528,6 +528,261 @@ function SinglePrice(tokenid: any) {
     }
   }
 
+  const [imageSrc, setImageSrc] = useState<string | undefined>(undefined);
+  const [grade, setGrade] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (!tokenid?.tokenid) return;
+
+    const s3url = 'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/';
+
+    let grade = '';
+
+    let imagesrc = '';
+
+    if (Number(tokenid.tokenid) === 0) {
+      imagesrc = 'Hrs_00000000.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 1) {
+      imagesrc = 'Hrs_00000001.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 2) {
+      imagesrc = 'Hrs_00000002.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 3) {
+      imagesrc = 'Hrs_00000003.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 4) {
+      imagesrc = 'Hrs_00000004.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 5) {
+      imagesrc = 'Hrs_00000005.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 6) {
+      imagesrc = 'Hrs_00000006.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 7) {
+      imagesrc = 'Hrs_00000007.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 8) {
+      imagesrc = 'Hrs_00000008.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 9) {
+      imagesrc = 'Hrs_00000009.png';
+      grade = 'S';
+    } else if (Number(tokenid.tokenid) === 10) {
+      imagesrc = 'Hrs_00000010.png';
+      grade = 'S';
+    } else {
+      //console.log('tokenid.tokenid', tokenid.tokenid);
+
+      // A Grade
+      if (Number(tokenid.tokenid) >= 11 && Number(tokenid.tokenid) <= 58) {
+        var formattedNumber = Number(tokenid.tokenid) - 11 + '';
+        while (formattedNumber.length < 3) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        formattedNumber = '00001' + formattedNumber;
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'A';
+
+        // B Grade
+      } else if (
+        Number(tokenid.tokenid) >= 59 &&
+        Number(tokenid.tokenid) <= 299
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 59 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        formattedNumber = '0002' + formattedNumber;
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'B';
+      } else {
+        imagesrc = 'Hrs_00006000.png';
+      }
+
+      // C Grade
+      if (Number(tokenid.tokenid) >= 300 && Number(tokenid.tokenid) <= 599) {
+        var formattedNumber = Number(tokenid.tokenid) - 300 + '';
+
+        while (formattedNumber.length < 3) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '00100' + formattedNumber;
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'C';
+      } else if (
+        Number(tokenid.tokenid) >= 600 &&
+        Number(tokenid.tokenid) < 1000
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 600 + '';
+
+        while (formattedNumber.length < 3) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '00200' + formattedNumber;
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'D';
+      } else if (
+        Number(tokenid.tokenid) >= 1000 &&
+        Number(tokenid.tokenid) < 1800
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 600 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '0020' + formattedNumber;
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'D';
+      } else if (
+        Number(tokenid.tokenid) >= 1800 &&
+        Number(tokenid.tokenid) < 1805
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 1700 + '';
+
+        while (formattedNumber.length < 5) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '000' + formattedNumber;
+        //formattedNumber = '00000000';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'U';
+      } else if (
+        Number(tokenid.tokenid) >= 1805 &&
+        Number(tokenid.tokenid) < 1810
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 1700 + '';
+
+        while (formattedNumber.length < 5) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '0000' + formattedNumber;
+        //formattedNumber = '00000000';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'S';
+      } else if (
+        Number(tokenid.tokenid) >= 1815 &&
+        Number(tokenid.tokenid) < 1915
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 1700 + '';
+
+        while (formattedNumber.length < 3) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '00001' + formattedNumber;
+        //formattedNumber = '00000000';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'A';
+      } else if (
+        Number(tokenid.tokenid) >= 1915 &&
+        Number(tokenid.tokenid) < 2115
+      ) {
+        //var formattedNumber = Number(tokenid.tokenid) - 1800 + 59 + '';
+
+        var formattedNumber = Number(tokenid.tokenid) - 1915 + 241 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        formattedNumber = '0002' + formattedNumber;
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'B';
+      } else if (
+        Number(tokenid.tokenid) >= 2115 &&
+        Number(tokenid.tokenid) < 2645
+      ) {
+        //var formattedNumber = Number(tokenid.tokenid) - 2000 + '';
+        var formattedNumber = Number(tokenid.tokenid) - 1700 + '';
+
+        while (formattedNumber.length < 3) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '00100' + formattedNumber;
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'C';
+      }
+      // 3645 부터 2차 판매
+      // 3645 => 00202645
+      // 4000 => 00203000
+      else if (
+        Number(tokenid.tokenid) >= 2645 &&
+        Number(tokenid.tokenid) < 5000
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 1000 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '0020' + formattedNumber;
+        //formattedNumber = '00000000';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'D';
+      }
+      // 5000 => 00204000
+      // 6000 => 00205000
+      // 7000 => 00206000
+      else if (
+        Number(tokenid.tokenid) >= 5000 &&
+        Number(tokenid.tokenid) < 10000
+      ) {
+        var formattedNumber = Number(tokenid.tokenid) - 1000 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        formattedNumber = '0020' + formattedNumber;
+        //formattedNumber = '00000000';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'D';
+      } else {
+        imagesrc = 'Hrs_00006000.png';
+        grade = 'D';
+      }
+    }
+
+    setImageSrc(s3url + imagesrc);
+    setGrade(grade);
+  }, [tokenid?.tokenid]);
+
+  //console.log('tokenid.tokenid', tokenid?.tokenid);
+  //console.log('imageSrc', imageSrc);
+
   return (
     <>
       {isLoading ? (
@@ -682,9 +937,11 @@ function SinglePrice(tokenid: any) {
                     }
                     */
                     src={
-                      nftMetadata?.rawMetadata?.image
-                        ? nftMetadata?.rawMetadata?.image
-                        : '/default-nft.png'
+                      //nftMetadata?.rawMetadata?.image
+                      //  ? nftMetadata?.rawMetadata?.image
+                      //  : '/default-nft.png'
+
+                      imageSrc ? imageSrc : '/default-nft.png'
                     }
                     alt="nft"
                     width={1024}

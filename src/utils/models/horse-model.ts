@@ -272,6 +272,63 @@ export const getAllHorses = async (
   // subtract 00020023 from url
 
   if (grades.length === 0) {
+    const data = await HorseModel.aggregate(
+      [
+        {
+          $match: {
+            // search nft.title by q
+
+            $or: [
+              { 'nft.title': { $regex: q, $options: 'i' } },
+              //{ 'nft.description': { $regex: q, $options: 'i' } },
+            ],
+          },
+        },
+        {
+          $sort:
+            sort === 'Token ID: Ascending'
+              ? {
+                  // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+                  tokenId: 1,
+                }
+              : sort === 'Token ID: Descending'
+              ? {
+                  // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+                  tokenId: -1,
+                }
+              : sort === 'Price: Ascending'
+              ? {
+                  // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+                  totalPricePaid: 1,
+                }
+              : sort === 'Price: Descending'
+              ? {
+                  // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+                  totalPricePaid: -1,
+                }
+              : {
+                  // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+                  tokenId: -1,
+                },
+        },
+        {
+          $skip: (pageNumber - 1) * pagination,
+        },
+        {
+          $limit: pagination,
+        },
+      ],
+      {
+        collation: { locale: 'en_US', numericOrdering: true },
+      }
+    );
+
+    /*
     const data = await HorseModel.find({})
 
       ///.sort({ tokenId: 1 })
@@ -328,16 +385,11 @@ export const getAllHorses = async (
       .skip((pageNumber - 1) * pagination)
       //limit is number of Records we want to display
       .limit(pagination)
-      /*
-      .then(data => {
-  
-        return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
-  
-      })
-      */
+     
       .catch((err) => {
         ////return err;
       });
+    */
 
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
