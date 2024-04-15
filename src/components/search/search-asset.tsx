@@ -62,6 +62,8 @@ import {
 import { sub } from 'date-fns';
 import { set } from 'lodash';
 
+import { InfoIcon } from '@/components/icons/info-icon';
+
 export default function Search() {
   const tabMenu = [
     /*
@@ -335,10 +337,32 @@ export default function Search() {
               <OwnedFeedsNft searchData={searchDataHorse} />
               */}
 
-              <div className="flex flex-row items-center justify-between">
-                <span className="text-xl font-bold">
+              <div className="flex flex-row items-center justify-start gap-5">
+                <div className="flex  text-xl font-bold  ">
                   Total Allowance: {totalBalanceHorse.toLocaleString()}
-                </span>
+                </div>
+
+                {/* claim button */}
+                <div className="flex flex-row items-center justify-start">
+                  <Button
+                    className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+                    onClick={() => {
+                      /*
+                    openModal('SALE_VIEW', {
+                      title: 'Followers',
+                      count: '1,845',
+                      users: data,
+                    })
+                    */
+
+                      alert('Coming Soon');
+                    }}
+                  >
+                    <span className="flex items-center gap-2 font-extrabold ">
+                      <InfoIcon className="h-5 w-5" /> Claim All
+                    </span>
+                  </Button>
+                </div>
               </div>
 
               <FeedsNftOwnedTable
