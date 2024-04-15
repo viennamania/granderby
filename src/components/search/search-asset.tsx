@@ -406,7 +406,7 @@ export default function Search() {
                     }}
                   >
                     <span className="flex items-center gap-2 font-extrabold ">
-                      <InfoIcon className="h-5 w-5" /> Collect All
+                      Collect All
                     </span>
                   </Button>
                 </div>

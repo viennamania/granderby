@@ -70,6 +70,8 @@ import PointHistoryTable from '@/components/nft-transaction/point-history-table'
 
 import { InfoIcon } from '@/components/icons/info-icon';
 
+import toast from 'react-hot-toast';
+
 // dummy data
 import User1 from '@/assets/images/game/icon_rank_1.jpg';
 import User2 from '@/assets/images/game/icon_rank_2.jpg';
@@ -696,12 +698,30 @@ export default function NftInfo({ horseData }: any) {
                     })
                     */
 
-                      alert('Coming Soon');
+                      //alert('Coming Soon');
+                      /*
+                      Collection has been completed.
+                      9,999,999 GDP
+                      */
+
+                      toast.success(
+                        <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                          <span className="text-xl font-extrabold">
+                            Collection has been completed.
+                          </span>
+                          <span className="text-xl font-extrabold">
+                            {gameHorseAccumulatedBalance.toLocaleString()} GDP
+                          </span>
+                        </div>,
+
+                        {
+                          duration: 5000,
+                        }
+                      );
                     }}
                   >
                     <span className="flex items-center gap-2 font-extrabold ">
-                      <InfoIcon className="h-5 w-5" /> Claim{' '}
-                      {gameHorseAccumulatedBalance.toLocaleString()}
+                      Collect
                     </span>
                   </Button>
                 </div>
