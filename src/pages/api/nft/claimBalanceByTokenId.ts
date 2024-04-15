@@ -134,8 +134,8 @@ export default async function handler(
     body: JSON.stringify({
       uid: uid,
       textureKey: 'horse',
-      beforeWithDraw: accumulatedBalance,
-      withDraw: accumulatedBalance,
+      beforeWithDraw: horseBalance,
+      withDraw: horseBalance,
       resultWithDraw: 0,
     }),
   });

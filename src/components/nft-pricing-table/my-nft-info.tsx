@@ -580,6 +580,8 @@ export default function NftInfo({ horseData }: any) {
 
   const { openModal } = useModal();
 
+  const [claiming, setClaiming] = useState(false);
+
   return (
     <div className="flex">
       <div className="flex h-full w-full flex-col gap-3 rounded-lg border ">
@@ -666,9 +668,9 @@ export default function NftInfo({ horseData }: any) {
                         <div className="  text-xl font-bold">Keep:</div>
                         <div className=" flex w-20 flex-row items-center justify-end gap-2">
                           <span className="  text-xl font-bold">
+                            {gameHorseBalance.toLocaleString()}
                             {
-                              //gameHorseBalance
-                              gameHorseAccumulatedBalance.toLocaleString()
+                              //gameHorseAccumulatedBalance.toLocaleString()
                             }
                           </span>
                         </div>
@@ -688,6 +690,7 @@ export default function NftInfo({ horseData }: any) {
 
                   {/* claim button */}
                   <Button
+                    isLoading={claiming}
                     className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
                     onClick={() => {
                       // fetch api to claim
@@ -701,6 +704,23 @@ export default function NftInfo({ horseData }: any) {
                       */
 
                       async function claim() {
+                        if (gameHorseBalance === 0) {
+                          toast.error(
+                            <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                              <span className="text-xl font-extrabold">
+                                No balance to collect
+                              </span>
+                            </div>,
+
+                            {
+                              duration: 5000,
+                            }
+                          );
+
+                          return;
+                        }
+
+                        setClaiming(true);
                         const response = await fetch(
                           '/api/nft/claimBalanceByTokenId',
                           {
@@ -721,6 +741,10 @@ export default function NftInfo({ horseData }: any) {
                         //setGameHorseLatestAmount(data?.latestAmount || 0);
 
                         //setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
+
+                        setGameHorseBalance(0);
+
+                        setClaiming(false);
 
                         toast.success(
                           <div className=" flex flex-col items-center justify-center gap-5 p-5">
