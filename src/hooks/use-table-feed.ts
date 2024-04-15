@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, use } from 'react';
 import isString from 'lodash/isString';
-import { add } from 'lodash';
+import { add, set } from 'lodash';
 
 interface AnyObject {
   [key: string]: any;
@@ -317,13 +317,47 @@ export function useTable<T extends AnyObject>(
 
     const posts = (await res?.json()) as any;
 
-    console.log('posts?.nfts', posts?.nfts);
-    console.log('posts?.total', posts?.total);
+    //console.log('posts?.nfts', posts?.nfts);
+    //console.log('posts?.total', posts?.total);
 
     setData(
       posts?.nfts.map((item: any) => {
+        // get balance from api asynchrously
+
+        /*
+        const balance = async () => {
+            
+          const response = await fetch('/api/nft/getBalanceByTokenId', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              tokenId: item?.tokenId,
+            }),
+          });
+          const data = await response.json();
+
+          return data?.balance || 0;
+
+        };
+
+
+        const updatedItem = {
+          ...item,
+          balance:
+            async () => {
+
+              const  balanceData = await balance();
+
+              return balanceData;
+
+            },
+        };
+        */
+
         return {
           ...item,
+
+          ///...updatedItem,
 
           key: item.id,
           totalCount: posts?.total,
@@ -338,6 +372,318 @@ export function useTable<T extends AnyObject>(
 
     setLoading(false);
   };
+
+  // when data[0]?.nft?.tokenId is updated, fetch balance from /api/nft/getBalanceByTokenId
+
+  useEffect(() => {
+    if (data[0]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[0]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[0]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[0]?.tokenId]);
+
+  useEffect(() => {
+    if (data[1]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[1]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[1]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[1]?.tokenId]);
+
+  useEffect(() => {
+    if (data[2]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[2]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[2]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[2]?.tokenId]);
+
+  useEffect(() => {
+    if (data[3]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[3]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[3]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[3]?.tokenId]);
+
+  useEffect(() => {
+    if (data[4]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[4]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[4]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[4]?.tokenId]);
+
+  useEffect(() => {
+    if (data[5]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[5]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[5]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[5]?.tokenId]);
+
+  useEffect(() => {
+    if (data[6]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[6]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[6]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[6]?.tokenId]);
+
+  useEffect(() => {
+    if (data[7]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[7]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[7]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[7]?.tokenId]);
+
+  useEffect(() => {
+    if (data[8]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[8]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[8]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[8]?.tokenId]);
+
+  useEffect(() => {
+    if (data[9]?.tokenId) {
+      const fetchBalance = async () => {
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: data[9]?.tokenId,
+          }),
+        });
+        const json = await response.json();
+
+        const balance = json?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.tokenId === data[9]?.tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        });
+      };
+
+      fetchBalance();
+    }
+  }, [data?.[9]?.tokenId]);
 
   /*
    * Handle searching
@@ -375,6 +721,55 @@ export function useTable<T extends AnyObject>(
       address
     );
   }
+
+  ///console.log('data', data);
+
+  // fetch balance from /api/nft/getBalanceByTokenId
+  // and update data
+  // when data is updated, the table will be updated
+
+  /*
+  useEffect(() => {
+
+    data.map((item) => {
+      const tokenId = item?.nft?.tokenId;
+
+      const fetchBalance = async () => {
+
+        const response = await fetch('/api/nft/getBalanceByTokenId', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenId: tokenId,
+          }),
+        });
+        const data = await response.json();
+  
+        const balance = data?.balance || 0;
+
+        setData((prevData) => {
+          return prevData.map((prevItem) => {
+            if (prevItem?.nft?.tokenId === tokenId) {
+              return {
+                ...prevItem,
+                balance: balance,
+              };
+            }
+            return prevItem;
+          });
+        } );
+  
+     
+      };
+
+      fetchBalance();
+    } );
+
+  }
+  , [ data ]);
+  */
+
+  ///console.log('data', data);
 
   function searchedData() {
     if (!searchTerm) return sortedData;

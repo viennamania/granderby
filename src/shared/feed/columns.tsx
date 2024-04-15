@@ -195,8 +195,8 @@ export const getColumns = ({
 
   {
     title: <HeaderCell title="Allowance" />,
-    dataIndex: 'accumulatedBalance',
-    key: 'accumulatedBalance',
+    dataIndex: 'balance',
+    key: 'balance',
     width: 80,
     render: (value: string) => (
       <>
