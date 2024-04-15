@@ -690,6 +690,56 @@ export default function NftInfo({ horseData }: any) {
                   <Button
                     className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
                     onClick={() => {
+                      // fetch api to claim
+                      // http://3.38.2.94:3001/api/horse/claim
+                      /*
+                              const uid = req.query.uid;
+                              const textureKey = req.query.textureKey;
+                              const beforeWithDraw = req.query.beforeWithDraw;
+                              const withDraw = req.query.withDraw;
+                              const resultWithDraw = req.query.resultWithDraw;
+                      */
+
+                      async function claim() {
+                        const response = await fetch(
+                          '/api/nft/claimBalanceByTokenId',
+                          {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              tokenId: horseData?.nft?.tokenId,
+                            }),
+                          }
+                        );
+
+                        const data = await response.json();
+
+                        console.log('claim data', data);
+
+                        //setGameHorseBalance(data?.balance || 0);
+
+                        //setGameHorseLatestAmount(data?.latestAmount || 0);
+
+                        //setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
+
+                        toast.success(
+                          <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                            <span className="text-xl font-extrabold">
+                              Claim Success
+                            </span>
+                            <span className="text-xl font-extrabold">
+                              {gameHorseAccumulatedBalance.toLocaleString()} GDP
+                            </span>
+                          </div>,
+
+                          {
+                            duration: 5000,
+                          }
+                        );
+                      }
+
+                      claim();
+
                       /*
                     openModal('SALE_VIEW', {
                       title: 'Followers',
@@ -704,6 +754,7 @@ export default function NftInfo({ horseData }: any) {
                       9,999,999 GDP
                       */
 
+                      /*
                       toast.success(
                         <div className=" flex flex-col items-center justify-center gap-5 p-5">
                           <span className="text-xl font-extrabold">
@@ -718,6 +769,7 @@ export default function NftInfo({ horseData }: any) {
                           duration: 5000,
                         }
                       );
+                      */
                     }}
                   >
                     <span className="flex items-center gap-2 font-extrabold ">
