@@ -32,7 +32,7 @@ import {
   nftDropContractAddressHorse,
   nftDropContractAddressHorseDerbyStars,
   tokenContractAddressUSDC,
-  tokenContractAddressGRD,
+  tokenContractAddressGDP,
   nftDropContractAddressCoupon,
   tokenContractAddressGCOW,
   tokenContractAddressCARROTDrop,
@@ -125,17 +125,24 @@ export default function FeedsCoinOwned(
   const { data: tokenBalanceUSDC, isLoading: isLoadingBalanceUSDC } =
     useTokenBalance(tokenContractUSDC, address);
 
-  const { contract: tokenContractGRD } = useContract(
-    tokenContractAddressGRD,
+  const { contract: tokenContractGDP } = useContract(
+    tokenContractAddressGDP,
     'token'
   );
-  const { data: tokenBalanceGRD, isLoading: isLoadingBalanceGRD } =
-    useTokenBalance(tokenContractGRD, address);
+
+  console.log('tokenContractGDP', tokenContractGDP);
+
+  const { data: tokenBalanceGDP, isLoading: isLoadingBalanceGDP } =
+    useTokenBalance(tokenContractGDP, address);
+
+  console.log('tokenBalanceGDP', tokenBalanceGDP);
 
   const { contract: tokenContractGCOW } = useContract(
     tokenContractAddressGCOW,
     'token'
   );
+  console.log('tokenContractGCOW', tokenContractGCOW);
+
   const { data: tokenBalanceGCOW, isLoading: isLoadingBalanceGCOW } =
     useTokenBalance(tokenContractGCOW, address);
 
@@ -415,10 +422,10 @@ export default function FeedsCoinOwned(
             </div>
 
             <div className=" w-32 text-right text-2xl font-bold ">
-              {isLoadingBalanceGRD ? (
+              {isLoadingBalanceGDP ? (
                 <span className="text-xs">Loading...</span>
               ) : (
-                Number(tokenBalanceGRD?.displayValue).toFixed(2)
+                Number(tokenBalanceGDP?.displayValue).toFixed(2)
               )}
             </div>
             <div className="ml-2 w-14 text-right text-xs font-bold text-green-600 xl:w-48 xl:text-lg ">
@@ -489,10 +496,18 @@ export default function FeedsCoinOwned(
                 // price format (333,333,333)
                 //totalBalance
 
+                /*
                 totalBalance?.toLocaleString('en-US', {
                   style: 'currency',
                   currency: 'GDP',
                 })
+                */
+
+                isLoadingBalanceGDP ? (
+                  <span className="text-xs">Loading...</span>
+                ) : (
+                  Number(tokenBalanceGDP?.displayValue).toFixed(2)
+                )
               }
               {/*
               {isLoadingBalanceSUGAR ? (

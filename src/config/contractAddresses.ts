@@ -107,6 +107,10 @@ export const marketplaceContractAddressChaoscube =
 export const tokenContractAddressGRD =
   '0xe426D2410f20B0434FE2ce56299a1543d3fDe450';
 
+export const tokenContractAddressGDP =
+  //  '0x9e747a718ca7E24181AA340B9627bBcb2Cb10Dbd';
+  '0x81e6F303C1913f60488f2E01CA868e500b0F5F69';
+
 // USDC Token (USDC)
 export const tokenContractAddressUSDC =
   '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174';
