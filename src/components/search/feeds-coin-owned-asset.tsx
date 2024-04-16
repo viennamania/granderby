@@ -491,7 +491,7 @@ export default function FeedsCoinOwned(
               />
             </div>
 
-            <div className=" w-32 text-right text-2xl font-bold ">
+            <div className=" text-right text-2xl font-bold ">
               {
                 // price format (333,333,333)
                 //totalBalance
@@ -508,7 +508,8 @@ export default function FeedsCoinOwned(
                 ) : (
                   Number(tokenBalanceGDP?.displayValue).toFixed(2)
                 )
-              }
+              }{' '}
+              {tokenBalanceGDP?.symbol}
               {/*
               {isLoadingBalanceSUGAR ? (
                 <span className="text-xs">Loading...</span>

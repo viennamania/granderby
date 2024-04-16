@@ -109,7 +109,7 @@ export const tokenContractAddressGRD =
 
 export const tokenContractAddressGDP =
   //  '0x9e747a718ca7E24181AA340B9627bBcb2Cb10Dbd';
-  '0x81e6F303C1913f60488f2E01CA868e500b0F5F69';
+  '0x2EfbCF4ab90eB860b985036A82d07F5517aAf796';
 
 // USDC Token (USDC)
 export const tokenContractAddressUSDC =
