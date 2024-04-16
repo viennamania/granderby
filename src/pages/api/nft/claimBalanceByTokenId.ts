@@ -38,6 +38,8 @@ export default async function handler(
 
   const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
 
+  const textureKey = data?.horse?.liveHorseInfo?.TEXTURE_KEY;
+
   if (!uid) {
     res.status(404).json({ error: 'Horse uid not found' });
     return;
@@ -133,7 +135,7 @@ export default async function handler(
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       uid: uid,
-      textureKey: 'horse',
+      textureKey: textureKey,
       beforeWithDraw: horseBalance,
       withDraw: horseBalance,
       resultWithDraw: 0,
