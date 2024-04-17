@@ -345,7 +345,9 @@ export default async function handler(
 
     const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
 
-    console.log('balance', horseBalance);
+    //console.log('tokenId', horse.tokenId);
+    //console.log('uid', uid);
+    //console.log('balance', horseBalance);
 
     // update balance
 
@@ -358,9 +360,21 @@ export default async function handler(
         },
       };
 
-      const options = { upsert: true };
+      const options = { upsert: false };
 
-      await db.collection('nfthorses').updateOne(filter, updateDoc, options);
+      const data = await db
+        .collection('nfthorses')
+        .updateOne(filter, updateDoc, options);
+
+      /*
+      const data = await db.collection('nfthorses').findOneAndUpdate(
+        { tokenId: horse.tokenId },
+        { $set: { balance: horseBalance } },
+        { upsert: false }
+      );
+      */
+
+      //console.log('data', data);
     }
 
     /*

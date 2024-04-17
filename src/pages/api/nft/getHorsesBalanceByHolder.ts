@@ -28,6 +28,8 @@ export default async function handler(
 
   const data = await getBalanceByHolder(holder);
 
+  console.log('data', data);
+
   ///console.log('getBalanceByHolder data', data);
 
   res.status(200).json(data);

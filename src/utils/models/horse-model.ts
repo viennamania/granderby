@@ -1099,3 +1099,72 @@ export const getBalanceByHolder = async (holder: string) => {
 
   return { balance: data[0].total };
 };
+
+// setHorseBalanceByTokenId
+
+export const setHorseBalanceByTokenId = async (
+  tokenId: string,
+  balance: number
+) => {
+  // upodate balance of horse by tokenId
+  // findOneAndUpdate
+
+  // tokenId of HorseModel is string, so convert tokenId to string
+
+  const data = await HorseModel.findOneAndUpdate(
+    {
+      tokenId: tokenId,
+    },
+    {
+      balance: balance,
+    },
+    {
+      new: true,
+    }
+  );
+
+  /*
+  const data = await HorseModel.aggregate([
+    {
+      $match: {
+        tokenId: tokenId,
+      },
+    },
+    {
+      $set: {
+        balance: balance,
+      },
+    },
+  ]);
+  */
+
+  console.log('tokenId', tokenId);
+  console.log('balance', balance);
+
+  ///console.log('setHorseBalanceByTokenId data', data);
+
+  return data;
+};
+
+export const getAllHorseUidsByHolder = async (holder: string) => {
+  // select liveHorseInfo?.HORSE_UID from nfthorse collection where holder is holder
+
+  const data = await HorseModel.aggregate([
+    {
+      $match: {
+        holder: holder.toLowerCase(),
+      },
+    },
+
+    {
+      $project: {
+        horseUid: '$liveHorseInfo.HORSE_UID',
+      },
+    },
+  ]);
+
+  console.log('holder', holder);
+  console.log('getAllHorseUidsByHolder data', data);
+
+  return data;
+};

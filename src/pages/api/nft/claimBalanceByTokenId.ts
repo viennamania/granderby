@@ -1,7 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getOneHorse } from '@/utils/models/horse-model';
+import {
+  getOneHorse,
+  setHorseBalanceByTokenId,
+} from '@/utils/models/horse-model';
 
 import {
   LocalWallet,
@@ -145,6 +148,13 @@ export default async function handler(
   const json3 = await result3?.json();
 
   console.log('json3', json3);
+
+  const result4 = await setHorseBalanceByTokenId(tokenId as string, 0);
+
+  if (!result4) {
+    res.status(404).json({ error: 'Horse not found' });
+    return;
+  }
 
   const privateKey = process.env.GDP_MINT_PRIVATE_KEY || '';
 

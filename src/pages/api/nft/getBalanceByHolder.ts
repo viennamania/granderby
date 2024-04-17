@@ -119,6 +119,8 @@ export default async function handler(
 
   const data2 = await response?.json();
 
+  console.log('data2', data2);
+
   res.status(200).json(data2);
 
   // get balance from api
