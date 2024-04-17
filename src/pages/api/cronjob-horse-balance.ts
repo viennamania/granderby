@@ -335,6 +335,35 @@ export default async function handler(
 
     const uid = liveHorseInfo?.HORSE_UID;
 
+    const result = await fetch(
+      `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
+    );
+
+    const balanceData = await result.json();
+
+    ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
+
+    const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+
+    console.log('balance', horseBalance);
+
+    // update balance
+
+    if (horseBalance > 0) {
+      const filter = { tokenId: horse.tokenId };
+
+      const updateDoc = {
+        $set: {
+          balance: horseBalance,
+        },
+      };
+
+      const options = { upsert: true };
+
+      await db.collection('nfthorses').updateOne(filter, updateDoc, options);
+    }
+
+    /*
     let accumulatedBalance = 0;
 
     const result2 = await fetch(
@@ -345,6 +374,7 @@ export default async function handler(
 
     const json2 = await result2.json();
 
+    
     json2?.recordset.forEach((element: any) => {
       if (element?.Payment_Status === 1) {
         //console.log('element?.Amount', element?.Amount);
@@ -372,6 +402,7 @@ export default async function handler(
 
       await db.collection('nfthorses').updateOne(filter, updateDoc, options);
     }
+    */
   });
 
   res.status(200).json({

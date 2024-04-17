@@ -292,7 +292,7 @@ export default function Search() {
 
       console.log('data======>', data);
 
-      setTotalBalanceHorse(data?.accumulatedBalance);
+      setTotalBalanceHorse(data?.balance);
     };
 
     if (address) {

@@ -12,6 +12,10 @@
         {
             "path": "/api/cronjob-ranking",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-horse-balance",
+            "schedule": "* * * * *"
         }
 
 

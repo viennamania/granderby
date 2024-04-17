@@ -1075,13 +1075,13 @@ export const getBalanceByHolder = async (holder: string) => {
     // if accumulatedBalance is empty, then set 0
     {
       $set: {
-        accumulatedBalance: { $ifNull: ['$accumulatedBalance', 0] },
+        balance: { $ifNull: ['$balance', 0] },
       },
     },
     {
       $group: {
         _id: null,
-        total: { $sum: '$accumulatedBalance' },
+        total: { $sum: '$balance' },
       },
     },
     /*
@@ -1097,5 +1097,5 @@ export const getBalanceByHolder = async (holder: string) => {
   console.log('holder', holder);
   console.log('getBalanceByHolder data', data);
 
-  return { accumulatedBalance: data[0].total };
+  return { balance: data[0].total };
 };
