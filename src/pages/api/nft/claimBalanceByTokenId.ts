@@ -3,6 +3,17 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getOneHorse } from '@/utils/models/horse-model';
 
+import {
+  LocalWallet,
+  SmartWallet,
+  PrivateKeyWallet,
+} from '@thirdweb-dev/wallets';
+
+import { ThirdwebSDK } from '@thirdweb-dev/sdk/evm';
+import { Goerli, Polygon } from '@thirdweb-dev/chains';
+
+import { tokenContractAddressGDP } from '@/config/contractAddresses';
+
 type Data = {
   name: string;
 };
@@ -32,6 +43,10 @@ export default async function handler(
     res.status(404).json({ error: 'Horse not found' });
     return;
   }
+
+  // get holder address of the horse
+
+  const holderAddress = data?.horse?.holder;
 
   // get balance from api
   // http://3.38.2.94:3001/api/balanceByHorseUid?uid=2262
@@ -113,22 +128,7 @@ export default async function handler(
   console.log('accumulatedBalance', accumulatedBalance);
   console.log('latestAmount', latestAmount);
 
-  /*
-  const response = await fetch(
-                          'http://3.38.2.94:3001/api/horse/claim',
-                          {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                              uid: gameHorseId,
-                              textureKey: 'horse',
-                              beforeWithDraw: gameHorseAccumulatedBalance,
-                              withDraw: gameHorseAccumulatedBalance,
-                              resultWithDraw: 0,
-                            }),
-                          }
-                        );
-                        */
+  // claim the balance
 
   const result3 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
     method: 'POST',
@@ -145,6 +145,40 @@ export default async function handler(
   const json3 = await result3?.json();
 
   console.log('json3', json3);
+
+  const privateKey = process.env.GDP_MINT_PRIVATE_KEY || '';
+
+  //const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
+  // You can then use this wallet to perform transactions via the SDK using private key of signer
+
+  const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
+    ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
+    secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
+  });
+
+  // GDP Token Contract
+  const tokenContract = await sdk.getContract(tokenContractAddressGDP);
+
+  try {
+    console.log('claimBalanceByTokenId holderAddress', holderAddress);
+    console.log('claimBalanceByTokenId horseBalance', horseBalance);
+
+    const transaction = await tokenContract.erc20.claimTo(
+      holderAddress,
+      horseBalance
+    );
+
+    console.log(
+      'transaction.receipt.transactonHash',
+      transaction?.receipt?.transactionHash
+    );
+
+    if (transaction) {
+    } else {
+    }
+  } catch (error) {
+    console.error(error);
+  }
 
   res.status(200).json({
     accumulatedBalance: accumulatedBalance,
