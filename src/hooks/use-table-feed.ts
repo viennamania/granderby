@@ -11,13 +11,15 @@ export function useTable<T extends AnyObject>(
   countPerPage: number = 10,
   currentPage: number = 1,
 
-  initialFilterState?: Partial<Record<string, any>>,
+  initialFilterState?: Partial<Record<string, any>>
 
+  /*
   startDate?: string,
   endDate?: string,
 
   mealTimeArray?: string[],
   feedbackArray?: string[]
+  */
 ) {
   /*
    * Table data
@@ -150,10 +152,11 @@ export function useTable<T extends AnyObject>(
           sort: sortConfig.key,
           order: sortConfig.direction,
           q: searchTerm,
-          startDate: startDate,
-          endDate: endDate,
-          mealTimeArray: mealTimeArray,
-          feedbackArray: feedbackArray,
+
+          //startDate: startDate,
+          //endDate: endDate,
+          //mealTimeArray: mealTimeArray,
+          //feedbackArray: feedbackArray,
         }),
       });
 
@@ -267,10 +270,13 @@ export function useTable<T extends AnyObject>(
     searchTerm: string = '',
     countPerPage: number = 10,
     currentPage: number = 1,
-    startDate: Date | string = '',
-    endDate: Date | string = '',
-    mealTimeArray: string[] = [],
-    feedbackArray: string[] = [],
+
+    //startDate: Date | string = '',
+    //endDate: Date | string = '',
+
+    //mealTimeArray: string[] = [],
+    //feedbackArray: string[] = [],
+
     address: string = ''
   ) => {
     setLoading(true);
@@ -305,10 +311,12 @@ export function useTable<T extends AnyObject>(
         sort: sortConfig.key,
         order: sortConfig.direction,
         q: searchTerm,
-        startDate: startDate,
-        endDate: endDate,
-        mealTimeArray: mealTimeArray,
-        feedbackArray: feedbackArray,
+
+        //startDate: startDate,
+        //endDate: endDate,
+        //mealTimeArray: mealTimeArray,
+        //feedbackArray: feedbackArray,
+
         grades: [],
         manes: [],
         holder: address,
@@ -692,10 +700,12 @@ export function useTable<T extends AnyObject>(
     searchValue: string,
     countPerPage: number = 10,
     currentPage: number = 1,
-    startDate: Date | string = '',
-    endDate: Date | string = '',
-    mealTimeArray: string[] = [],
-    feedbackArray: string[] = [],
+
+    //startDate: Date | string = '',
+    //endDate: Date | string = '',
+    //mealTimeArray: string[] = [],
+    //feedbackArray: string[] = [],
+
     address: string = ''
   ) {
     ///setSearchTerm(searchValue);
@@ -714,10 +724,12 @@ export function useTable<T extends AnyObject>(
       searchValue,
       countPerPage,
       currentPage,
-      startDate,
-      endDate,
-      mealTimeArray,
-      feedbackArray,
+
+      //startDate,
+      //endDate,
+      //mealTimeArray,
+      //feedbackArray,
+
       address
     );
   }

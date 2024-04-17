@@ -3,62 +3,41 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 
-
-
 import { useColumn } from '@/hooks/use-column';
-
-
 
 //import ControlledTable from '@/components/controlled-table';
 import ControlledTable from '@/components/controlled-table';
 
-
-
 import cn from '@/utils/class-names';
-
 
 //import DateFiled from '@/components/controlled-table/date-field';
 //import { getDateRangeStateValues } from '@/utils/get-formatted-date';
 
 //import { DatePicker } from '@/components/ui/datepicker';
 
-
 ///import { Button } from '@/components/ui/button';
 
 import Button from '@/components/ui/button/button';
 
-
-import { CiSearch } from "react-icons/ci";
+import { CiSearch } from 'react-icons/ci';
 
 ///import TableFooter from '@/app/shared/table-footer';
 
 ///import { exportToCSV } from '@/utils/export-to-csv';
 
-
 import { RadioGroup } from '@/components/ui/radio-group';
 
 //import { Radio } from '@/components/ui/radio';
 
-
 import { PiMagnifyingGlassBold, PiDownloadSimpleBold } from 'react-icons/pi';
-
-
-
 
 import { useTable } from '@/hooks/use-table-feed';
 
-
-
 import { Checkbox } from '@/components/ui/checkbox';
 
+import { useSearchParams, useRouter } from 'next/navigation';
 
-import { useSearchParams, useRouter } from 'next/navigation'
-
-
-import {
-  useAddress,
-} from '@thirdweb-dev/react';
-
+import { useAddress } from '@thirdweb-dev/react';
 
 type ColumnTypes = {
   data?: any[];
@@ -74,14 +53,12 @@ type ColumnTypes = {
   totalItems?: number;
 };
 
-
 type BasicTableWidgetProps = {
-
   title?: React.ReactNode;
   className?: string;
   pageSize?: number;
   setPageSize?: React.Dispatch<React.SetStateAction<number>>;
-  
+
   getColumns: ({
     data,
     sortConfig,
@@ -94,9 +71,7 @@ type BasicTableWidgetProps = {
     onClickUser, // user
 
     totalItems,
-    
   }: ColumnTypes) => any;
-  
 
   data: any[];
   enablePagination?: boolean;
@@ -110,9 +85,7 @@ type BasicTableWidgetProps = {
     y?: number;
   };
   sticky?: boolean;
-
 };
-
 
 type FilterElementProps = {
   isFiltered: boolean;
@@ -121,19 +94,15 @@ type FilterElementProps = {
   handleReset: () => void;
 };
 
-
-
 //export default function FeedTableWidget({
 
 export default function FeedsNftOwnedTable({
-
-  
   title,
 
   data = [],
 
   getColumns,
-  
+
   //pageSize = 7,
 
   //setPageSize,
@@ -146,54 +115,41 @@ export default function FeedsNftOwnedTable({
   scroll = { x: 1300 },
   className,
   searchPlaceholder = 'Search...',
-
-
 }: BasicTableWidgetProps) {
-
   const address = useAddress();
-
-
 
   const router = useRouter();
 
   // get params from query string
   const searchParams = useSearchParams();
 
+  const paramSearchTerm = searchParams.get('paramSearchTerm') || '';
 
-  const paramSearchTerm = searchParams.get('paramSearchTerm')
-  || '';
-
-
+  /*
   const paramStartDate = searchParams.get('paramStartDate')
     || new Date( new Date().getFullYear(), new Date().getMonth(), 1 ).toISOString();
 
   const paramEndDate = searchParams.get('paramEndDate')
     || new Date( new Date().getFullYear(), new Date().getMonth()+1, 0 ).toISOString();
- 
+  */
 
-  const paramPageSize = searchParams.get('paramPageSize')
-    || 10;
+  const paramPageSize = searchParams.get('paramPageSize') || 10;
 
+  const paramCurrentPage = searchParams.get('paramCurrentPage') || 1;
 
-  const paramCurrentPage = searchParams.get('paramCurrentPage')
-    || 1;
+  const paramSortConfigKey =
+    searchParams.get('paramSortConfigKey') || 'createdAt';
 
+  const paramSortConfigDirection =
+    searchParams.get('paramSortConfigDirection') || 'desc';
 
-  
-  
-
-  const paramSortConfigKey = searchParams.get('paramSortConfigKey')
-    || 'createdAt';
-
-  const paramSortConfigDirection = searchParams.get('paramSortConfigDirection')
-    || 'desc';
-
+  /*
   const paramMealTimeArray = searchParams.get('paramMealTimeArray')
     || '아침,점심,저녁,간식,야식';
 
   const paramFeedbackArray = searchParams.get('paramFeedbackArray')
     || '미답변,답변완료';
-
+  */
 
   /*
   console.log('paramSearchTerm=======', paramSearchTerm);
@@ -207,26 +163,15 @@ export default function FeedsNftOwnedTable({
   console.log('paramFeedbackArray===', paramFeedbackArray);
   */
 
+  const [searchTerm, setSearchTerm] = useState(paramSearchTerm as string);
 
-
-
-
-
-
-  const [searchTerm, setSearchTerm] = useState(
-    paramSearchTerm as string
-  );
-
-  const [pageSize, setPageSize] = useState(
-    parseInt(paramPageSize as string)
-  );
-
+  const [pageSize, setPageSize] = useState(parseInt(paramPageSize as string));
 
   const [currentPage, setCurrentPage] = useState(
     parseInt(paramCurrentPage as string)
   );
 
-
+  /*
   const [startDate, setStartDate] = useState<Date>(
     new Date(paramStartDate as string)
   );
@@ -245,14 +190,15 @@ export default function FeedsNftOwnedTable({
 
 
   );
+  */
 
-  // collection of mealTime (아침, 점심, 저녁, 간식, 야식) 
+  // collection of mealTime (아침, 점심, 저녁, 간식, 야식)
   //const [mealTimeArray, setMealTimeArray] = useState(['아침', '점심', '저녁', '간식', '야식']);
 
   // feedbackYn (전체, 미답변, 답변완료)
   //const [feedbackArray, setFeedbackArray] = useState(['미답변', '답변완료']);
 
-
+  /*
   const [mealTimeArray, setMealTimeArray] = useState([
     ...(paramMealTimeArray as string)?.split(',')
     ]);
@@ -260,15 +206,11 @@ export default function FeedsNftOwnedTable({
   const [feedbackArray, setFeedbackArray] = useState([
     ...(paramFeedbackArray as string)?.split(',')
     ]);
+  */
 
+  ///console.log('currentPage=====', currentPage);
 
-
-
-    ///console.log('currentPage=====', currentPage);
-
-
-    console.log('address', address);
-
+  console.log('address', address);
 
   /*
 
@@ -276,13 +218,9 @@ export default function FeedsNftOwnedTable({
   const [endDate, setEndDate] = useState<Date>(new Date( new Date().getFullYear(), new Date().getMonth()+1, 0 ));
   */
 
-
-  
   const onClickUser = (id: string) => {
     console.log('id', id);
-  };  
-
-
+  };
 
   const onHeaderCellClick = (value: string) => ({
     onClick: () => {
@@ -290,17 +228,9 @@ export default function FeedsNftOwnedTable({
     },
   });
 
-
-
   const onDeleteItem = (id: string) => {
     handleDelete(id);
   };
-
-
-
-
-
-
 
   /*
   const handleSearch = (searchValue: string) => {
@@ -308,26 +238,22 @@ export default function FeedsNftOwnedTable({
   }
   */
 
-  
-  
   const handlePaginate = (page: number) => {
-
     setCurrentPage(page);
 
     handleSearch(
       searchTerm,
       pageSize,
       page,
-      startDate,
-      endDate,
-      mealTimeArray,
-      feedbackArray,
-      address,
+
+      //startDate,
+      //endDate,
+      //mealTimeArray,
+      //feedbackArray,
+
+      address
     );
-
   };
-  
-
 
   const {
     isLoading,
@@ -336,40 +262,34 @@ export default function FeedsNftOwnedTable({
     tableData,
 
     ///currentPage,
-    
+
     //searchTerm,
 
     handleSort,
-    
+
     handleDelete,
 
     handleSearch,
-    
-    ///handlePaginate,
 
+    ///handlePaginate,
 
     selectedRowKeys,
     handleRowSelect,
     handleSelectAll,
-
   } = useTable(
     data,
     pageSize,
     currentPage,
-    [],
+    []
 
-    startDate.toISOString(),
-    endDate.toISOString(),
+    //startDate.toISOString(),
+    //endDate.toISOString(),
 
-    mealTimeArray,
-    feedbackArray
+    //mealTimeArray,
+    //feedbackArray
   );
 
-
-  
   //const [searchTerm, setSearchTerm] = useState('');
-
-
 
   const columns = React.useMemo(
     () =>
@@ -403,83 +323,71 @@ export default function FeedsNftOwnedTable({
 
   const { visibleColumns } = useColumn(columns);
 
- 
   const isMediumScreen = true;
-
 
   const [value, setValue] = useState('all');
 
-
-
   const [open, setOpen] = useState(false);
 
-
-
-
-
   useEffect(() => {
-
     console.log('useEffect=====================');
 
     router.push(
-
       // url encoding for url query string
 
-      "/my-asset?paramSearchTerm=" + searchTerm
-      + "&paramPageSize=" + pageSize
-      + "&paramCurrentPage=" + currentPage
-      + "&paramSortConfigKey=" + sortConfig.key
-      + "&paramSortConfigDirection=" + sortConfig.direction
-      + "&paramStartDate=" + startDate.toISOString()
-      + "&paramEndDate=" + endDate.toISOString()
+      '/my-asset?paramSearchTerm=' +
+        searchTerm +
+        '&paramPageSize=' +
+        pageSize +
+        '&paramCurrentPage=' +
+        currentPage +
+        '&paramSortConfigKey=' +
+        sortConfig.key +
+        '&paramSortConfigDirection=' +
+        sortConfig.direction
 
-      + "&paramMealTimeArray=" + mealTimeArray.join(',')
-      + "&paramFeedbackArray=" + feedbackArray.join(',')
-      
-    )
+      //+ "&paramStartDate=" + startDate.toISOString()
+      //+ "&paramEndDate=" + endDate.toISOString()
 
-    
+      //+ "&paramMealTimeArray=" + mealTimeArray.join(',')
+      //+ "&paramFeedbackArray=" + feedbackArray.join(',')
+    );
+  }, [
+    searchTerm,
+    pageSize,
+    currentPage,
+    sortConfig.key,
+    sortConfig.direction,
 
-  } , [
-    searchTerm, pageSize, currentPage, startDate, endDate, sortConfig.key, sortConfig.direction
-    , mealTimeArray, feedbackArray
-
+    //, mealTimeArray, feedbackArray, startDate, endDate
   ]);
 
-
-  
-  
   useEffect(() => {
-
     console.log('useEffect>>>>>>>>>>>>>>>>>>>>>');
     console.log('searchTerm', searchTerm);
     console.log('pageSize', pageSize);
     console.log('currentPage', currentPage);
-    console.log('startDate', startDate);
-    console.log('endDate', endDate);
-    console.log('mealTimeArray', mealTimeArray);
-    console.log('feedbackArray', feedbackArray);
 
+    //console.log('startDate', startDate);
+    //console.log('endDate', endDate);
+    //console.log('mealTimeArray', mealTimeArray);
+    //console.log('feedbackArray', feedbackArray);
 
     if (address !== undefined) {
-      
       handleSearch(
         searchTerm,
         pageSize,
         currentPage,
-        startDate,
-        endDate,
-        mealTimeArray,
-        feedbackArray,
-        address,
-      );
 
+        //startDate,
+        //endDate,
+        //mealTimeArray,
+        //feedbackArray,
+
+        address
+      );
     }
-  
-  } , [address]);
-  
-  
-   
+  }, [address]);
 
   /*
   useEffect(() => {
@@ -489,21 +397,10 @@ export default function FeedsNftOwnedTable({
   } , [searchTerm, pageSize, startDate, endDate, mealTimeArray, feedbackArray]);
   */
 
- 
-
-
-
-
-
   return (
-
     <>
-
-
-      <div className='flex flex-col items-start justify-center gap-3'>
-
-
-      {/*
+      <div className="flex flex-col items-start justify-center gap-3">
+        {/*
       <div className='w-full flex flex-wrap items-center justify-between gap-3'>
 
         
@@ -589,8 +486,7 @@ export default function FeedsNftOwnedTable({
       </div>
       */}
 
-
-      {/*
+        {/*
       <div className='flex flex-wrap items-center justify-center gap-3'>
 
         <RadioGroup
@@ -707,7 +603,7 @@ export default function FeedsNftOwnedTable({
       </div>
       */}
 
-      {/*
+        {/*
       <div className='flex flex-wrap items-center justify-center gap-3'>
 
         <RadioGroup
@@ -776,25 +672,14 @@ export default function FeedsNftOwnedTable({
 
       </div>
       */}
-
-
-
-
       </div>
 
-
-
-      
       <div
         className={cn('table-wrapper flex-grow', noGutter && '-mx-5 lg:-mx-7 ')}
       >
-
-
-
         {/* totalItems */}
-        
-        <div className=" mt-7 flex flex-row items-center justify-between pt-5 border-t  border-slate-300 dark:border-slate-700">
 
+        <div className=" mt-7 flex flex-row items-center justify-between border-t border-slate-300  pt-5 dark:border-slate-700">
           <div className="flex flex-row items-center justify-start gap-3">
             <div className="text-base font-medium text-gray-900 dark:text-gray-100">
               Total {totalItems} items
@@ -819,34 +704,19 @@ export default function FeedsNftOwnedTable({
             새로고침
           </Button>
           */}
-
-        
-          
-
         </div>
 
-
-
         <ControlledTable
-
           showLoadingText={false}
-
           isLoading={isLoading}
-
           data={tableData}
-
           columns={visibleColumns}
-
           scroll={scroll}
           sticky={sticky}
-          
           //variant={variant}
-          variant='modern'
-
+          variant="modern"
           className="mt-6"
-
           {...(enablePagination && {
-            
             /*
             paginatorOptions: {
               pageSize,
@@ -865,17 +735,12 @@ export default function FeedsNftOwnedTable({
               onChange: (page: number) => handlePaginate(page),
             },
 
-
             paginatorClassName: cn(
               'mt-4 lg:mt-5',
               noGutter && 'px-5 lg:px-7',
               paginatorClassName
             ),
           })}
-
-
-
-
           onHeaderRow={(column: any) => {
             return {
               onClick: () => {
@@ -883,14 +748,9 @@ export default function FeedsNftOwnedTable({
                 //alert(column.name);
               },
             };
-          } }
-
-
+          }}
         />
       </div>
-
-    
     </>
-    
   );
 }

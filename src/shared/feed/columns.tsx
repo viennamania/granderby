@@ -156,7 +156,6 @@ export const getColumns = ({
     width: 100,
     render: (value: string) => <Text className="text-center">{value}</Text>,
   },
-
   {
     title: <HeaderCell title="Name" />,
     dataIndex: 'gameHorseName',
