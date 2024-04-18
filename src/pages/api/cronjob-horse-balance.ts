@@ -32,6 +32,60 @@ type Data = {
   error: string;
 };
 
+import dbConnect from '@/lib/db/dbConnect';
+
+dbConnect();
+
+import { IHorse } from '@/utils/interfaces/horse-interface';
+
+import { Schema, models, model } from 'mongoose';
+
+const HorseSchema = new Schema({
+  tokenId: {
+    type: String,
+    required: true,
+    default: false,
+  },
+  contract: {
+    type: String,
+    required: true,
+    default: false,
+  },
+  nft: {
+    type: Object,
+    required: true,
+    default: false,
+  },
+  holder: {
+    type: String,
+    required: true,
+    default: false,
+  },
+  paidToken: {
+    type: String,
+    required: false,
+    default: false,
+  },
+  totalPricePaid: {
+    type: String,
+    required: false,
+    default: false,
+  },
+  logsNewSale: {
+    type: Object,
+    required: false,
+    default: false,
+  },
+  register: {
+    type: String,
+    required: false,
+    default: false,
+  },
+});
+
+export const HorseModel =
+  models.nfthorse || model<IHorse>('nfthorse', HorseSchema);
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -100,7 +154,35 @@ export default async function handler(
   await ranks.updateOne(filter, updateDoc, options);
   */
 
-  const horses = await db.collection('nfthorses').find({}).toArray();
+  //const horses = await db.collection('nfthorses').find({}).toArray();
+
+  // order by tokenId
+  // collation: { locale: 'en_US', numericOrdering: true },
+
+  /*
+  const horses = db
+    .collection('nfthorses').aggregate([
+
+      {
+        $sort: { tokenId: 1 },
+      },
+
+      {
+        collation: { locale: 'en_US', numericOrdering: true },
+      }
+
+
+    ]) as any;
+  */
+
+  const horses = await HorseModel.aggregate(
+    [
+      {
+        $sort: { tokenId: 1 },
+      },
+    ],
+    { collation: { locale: 'en_US', numericOrdering: true } }
+  );
 
   horses.forEach(async (horse: any) => {
     ///const uid = horse?.liveHorseInfo?.HORSE_UID;
@@ -323,11 +405,21 @@ export default async function handler(
 
     const imageUrl = s3url + imagesrc;
 
+    //console.log('gameHorseName', gameHorseName);
+
     const result1 = await fetch(
       `http://3.38.2.94:3001/api/horse?name=${gameHorseName}`
     );
 
+    if (result1.status !== 200) {
+      return;
+    }
+
     const json1 = await result1.json();
+
+    if (json1?.recordset?.length === 0) {
+      return;
+    }
 
     //console.log('data3.recordset[0]', data3?.recordset?.[0]);
 
@@ -335,15 +427,27 @@ export default async function handler(
 
     const uid = liveHorseInfo?.HORSE_UID;
 
+    //console.log('uid', uid);
+
     const result = await fetch(
       `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
     );
 
+    if (result.status !== 200) {
+      return;
+    }
+
     const balanceData = await result.json();
+
+    if (balanceData?.recordset?.length === 0) {
+      return;
+    }
 
     ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
 
     const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+
+    //console.log('tokenId=', horse.tokenId, 'gameHorseName=', gameHorseName, 'uid=', uid, 'balance=', horseBalance);
 
     //console.log('tokenId', horse.tokenId);
     //console.log('uid', uid);
