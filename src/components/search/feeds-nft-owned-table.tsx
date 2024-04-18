@@ -39,6 +39,8 @@ import { useSearchParams, useRouter } from 'next/navigation';
 
 import { useAddress } from '@thirdweb-dev/react';
 
+import toast from 'react-hot-toast';
+
 type ColumnTypes = {
   data?: any[];
   sortConfig?: any;
@@ -397,9 +399,155 @@ export default function FeedsNftOwnedTable({
   } , [searchTerm, pageSize, startDate, endDate, mealTimeArray, feedbackArray]);
   */
 
+  const [totalBalanceHorse, setTotalBalanceHorse] = useState(0);
+
+  useEffect(() => {
+    const main = async () => {
+      // Call api for get balance by many horse uid
+      // getBalanceByHolder
+
+      const response = await fetch('/api/nft/getHorsesBalanceByHolder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          holder: address,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log('data======>', data);
+
+      setTotalBalanceHorse(data?.balance);
+    };
+
+    if (address) {
+      main();
+    }
+  }, [address]);
+
+  const [claiming, setClaiming] = useState(false);
+
   return (
     <>
       <div className="flex flex-col items-start justify-center gap-3">
+        <div className="flex flex-row items-center justify-center gap-3">
+          <div className=" flex  text-xl font-bold  ">
+            Total Allowance: {totalBalanceHorse.toLocaleString()}
+          </div>
+
+          {/* claim button */}
+          <div className="flex flex-row items-center justify-start">
+            <Button
+              disabled={claiming}
+              isLoading={claiming}
+              className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+              onClick={() => {
+                /*
+                      toast.success(
+                        <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                          <div className="flex flex-row items-center justify-center gap-2">
+                            <span className="font-extrabold text-gray-900 dark:text-white">
+                              Collection has been completed.
+                            </span>
+                          </div>
+                          <div className="flex flex-row items-center justify-center gap-2">
+                            <span className="font-extrabold text-gray-900 dark:text-white">
+                              Total : {totalItems}
+                            </span>
+                          </div>
+                          <div className="flex flex-row items-center justify-center gap-2">
+                            <span className="font-extrabold text-gray-900 dark:text-white">
+                              {
+                                totalBalanceHorse.toLocaleString()
+                              } GDP
+                            </span>
+                          </div>
+                          <div className="flex flex-row items-center justify-center gap-2">
+                            <span className="font-extrabold text-gray-900 dark:text-white">
+                              ※ Withdrawals are restricted for 5 minutes after
+                              full collection.
+                            </span>
+                          </div>
+                        </div>,
+
+                        {
+                          duration: 5000,
+                        }
+                      );
+                      */
+
+                async function claim() {
+                  if (totalBalanceHorse === 0) {
+                    toast.error(
+                      <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                        <span className="text-xl font-extrabold">
+                          No balance to collect
+                        </span>
+                      </div>,
+
+                      {
+                        duration: 5000,
+                      }
+                    );
+
+                    return;
+                  }
+
+                  setClaiming(true);
+                  const response = await fetch(
+                    '/api/nft/claimBalanceByHolder',
+                    {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        holderAddress: address,
+                      }),
+                    }
+                  );
+
+                  const data = await response.json();
+
+                  console.log('claim data', data);
+
+                  //setGameHorseBalance(data?.balance || 0);
+
+                  //setGameHorseLatestAmount(data?.latestAmount || 0);
+
+                  //setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
+
+                  //setGameHorseBalance(0);
+
+                  setClaiming(false);
+
+                  toast.success(
+                    <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                      <span className="text-xl font-extrabold">
+                        Claim Success
+                      </span>
+                      <span className="text-xl font-extrabold">
+                        {totalBalanceHorse.toLocaleString()} GDP
+                      </span>
+                    </div>,
+
+                    {
+                      duration: 5000,
+                    }
+                  );
+                }
+
+                claim();
+              }}
+            >
+              <span className="flex items-center gap-2 font-extrabold ">
+                Collect All
+              </span>
+            </Button>
+          </div>
+        </div>
+
         {/*
       <div className='w-full flex flex-wrap items-center justify-between gap-3'>
 

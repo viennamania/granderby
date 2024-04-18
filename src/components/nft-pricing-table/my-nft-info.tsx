@@ -690,6 +690,7 @@ export default function NftInfo({ horseData }: any) {
 
                   {/* claim button */}
                   <Button
+                    disabled={claiming}
                     isLoading={claiming}
                     className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
                     onClick={() => {
