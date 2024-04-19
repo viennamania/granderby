@@ -47,9 +47,14 @@ export default async function handler(
     return;
   }
 
+  /*
   let claimedBalance = 0;
   let claimedCount = 0;
 
+
+
+  
+  
   horses.map(async (horse: any) => {
     const tokenId = horse?.tokenId;
 
@@ -112,6 +117,8 @@ export default async function handler(
     claimedCount += 1;
   });
 
+
+
   console.log('claimedBalance', claimedBalance);
   console.log('claimedCount', claimedCount);
 
@@ -119,6 +126,85 @@ export default async function handler(
     res.status(200).json({
       claimedBalance: claimedBalance,
       claimedCount: claimedCount,
+    });
+    return;
+  }
+
+  */
+
+  // claimedBalance is the sum of all the horse balances
+  // claimedCount is the number of horses with balance > 0
+
+  ///const claimedBalance = horses.map( async (horse: any) => {
+
+  const claimedBalance = (await Promise.all(
+    horses.map(async (horse: any) => {
+      const tokenId = horse?.tokenId;
+
+      ///const horseBalance = horse?.balance;
+
+      const data = (await getOneHorse(tokenId as string)) as any;
+
+      ////console.log('getOneByTokenId horse', horse);
+
+      if (!data) {
+        res.status(404).json({ error: 'Horse not found' });
+        return;
+      }
+
+      const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
+
+      const textureKey = data?.horse?.liveHorseInfo?.TEXTURE_KEY;
+
+      if (!uid) {
+        console.log('uid not found');
+        return;
+      }
+
+      const result1 = await fetch(
+        `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
+      );
+
+      const balanceData = await result1?.json();
+
+      ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
+
+      const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+
+      console.log('horseBalance', horseBalance);
+
+      if (horseBalance === 0) {
+        //console.log('horseBalance is 0');
+        return;
+      }
+
+      // claim the balance
+
+      const result2 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          uid: uid,
+          textureKey: textureKey,
+          beforeWithDraw: horseBalance,
+          withDraw: horseBalance,
+          resultWithDraw: 0,
+        }),
+      });
+
+      const json = await result2?.json();
+
+      return horseBalance;
+    })
+  ).then((values) => {
+    return values.reduce((a, b) => (a || 0) + (b || 0), 0);
+  })) as number;
+
+  console.log('claimedBalance', claimedBalance);
+
+  if (claimedBalance === 0) {
+    res.status(200).json({
+      claimedBalance: claimedBalance,
     });
     return;
   }
@@ -155,6 +241,6 @@ export default async function handler(
   }
 
   res.status(200).json({
-    balance: claimedBalance,
+    claimedBalance: claimedBalance,
   });
 }

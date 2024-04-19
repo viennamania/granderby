@@ -511,7 +511,6 @@ export default function FeedsNftOwnedTable({
                   const data = await response.json();
 
                   const claimedBalance = data?.claimedBalance || 0;
-                  const claimedCount = data?.claimedCount || 0;
 
                   if (claimedBalance === 0) {
                     toast.error(
@@ -564,9 +563,6 @@ export default function FeedsNftOwnedTable({
                       </span>
                       <span className="text-xl font-extrabold">
                         {claimedBalance.toLocaleString()} GDP
-                      </span>
-                      <span className="text-xl font-extrabold">
-                        {claimedCount} items
                       </span>
                     </div>,
 
