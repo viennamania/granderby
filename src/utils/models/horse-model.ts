@@ -1070,6 +1070,16 @@ export const getOneGameHorseData = async (gameHorseKey: string) => {
   }
 };
 
+export const getHorsesAll = async () => {
+  // select all horses
+
+  const data = await HorseModel.find({}).catch((err) => {
+    ////return err;
+  });
+
+  return data;
+};
+
 export const getHorsesByHolder = async (holder: string) => {
   // select all horses by holder
 
@@ -1162,8 +1172,8 @@ export const setHorseBalanceByTokenId = async (
     }
   );
 
-  console.log('tokenId', tokenId);
-  console.log('balance', balance);
+  //console.log('tokenId', tokenId);
+  //console.log('balance', balance);
 
   ///console.log('setHorseBalanceByTokenId data', data);
 

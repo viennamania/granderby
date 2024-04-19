@@ -89,6 +89,11 @@ export const HorseModel =
 
 import clientPromise from '@/lib/mongodb';
 
+import {
+  getHorsesAll,
+  setHorseBalanceByTokenId,
+} from '@/utils/models/horse-model';
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -107,6 +112,7 @@ export default async function handler(
   );
   */
 
+  /*
   const horses = collection.aggregate(
     [
       {
@@ -115,6 +121,15 @@ export default async function handler(
     ],
     { collation: { locale: 'en_US', numericOrdering: true } }
   ) as any;
+  */
+
+  // call api to get horses data
+
+  const horses = (await getHorsesAll()) as any;
+
+  //console.log('horses', horses);
+
+  //return;
 
   horses.forEach(async (horse: any) => {
     //if (horse.tokenId !== '242') return;
@@ -371,6 +386,10 @@ export default async function handler(
 
       const uid = liveHorseInfo?.HORSE_UID;
 
+      if (!uid) {
+        return;
+      }
+
       //console.log('uid', uid);
 
       const result = await fetch(
@@ -391,6 +410,7 @@ export default async function handler(
 
       const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
 
+      /*
       const data = await collection.updateOne(
         {
           tokenId: horse.tokenId,
@@ -401,6 +421,9 @@ export default async function handler(
           },
         }
       );
+      */
+
+      await setHorseBalanceByTokenId(horse.tokenId, horseBalance);
     } catch (error) {
       console.log('error', error);
     }
