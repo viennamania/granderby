@@ -15,7 +15,7 @@
         },
         {
             "path": "/api/cronjob-horse-balance",
-            "schedule": "* * * * *"
+            "schedule": "5 * * * *"
         }
 
 

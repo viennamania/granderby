@@ -39,6 +39,7 @@ dbConnect();
 import { IHorse } from '@/utils/interfaces/horse-interface';
 
 import { Schema, models, model } from 'mongoose';
+import { exit } from 'process';
 
 const HorseSchema = new Schema({
   tokenId: {
@@ -86,94 +87,14 @@ const HorseSchema = new Schema({
 export const HorseModel =
   models.nfthorse || model<IHorse>('nfthorse', HorseSchema);
 
+import clientPromise from '@/lib/mongodb';
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  /*
-  const response = await fetch('http://3.38.2.94:3001/api/horsedata');
-
-  const data = await response.json();
-
-  if (data?.recordset?.length === 0) {
-    res.status(200).json({
-      address: '',
-      length: 0,
-      error: 'no data',
-    });
-
-    return;
-  }
-  */
-
-  // http://3.38.2.94:3001/api/horseinfo?uid=6918
-
-  /*
-  {"recordsets":[[{"ATTACHED_STADIUM":1001,"HORSE_UID":"6918","UUID":"NULL","NAME":"#00203098","TEXTURE_KEY":"Hrs_00203098","SPEED":61,"PRECENDING":59,"OVERTAKING":65,"BRAWN":0,"SPRIT":61,"POWER":67,"STAMINA":55,"AGILIGHTY":64,"GATE":50,"HANDICAP":-1.5,"CHARACTER":0,"SEX":0,"BIRTH":"2020-07-28T00:00:00.000Z","AGE":3,"FATHER":"0","MOTHER":"0","Foals":0,"USER_OWNER":"0","WEIGHT":435,"GRADE":5,"RECORD":31,"RECORD_1R":0,"RECORD_2R":3,"RECORD_3R":2,"RECORD_4R":3,"RECORD_5R":7,"FIRSTARRIVE":5,"SECONDARRIVE":5,"THIRDARRIVE":6,"TOTAL_PRIZE":"520000","LAST_PRIZE":"50000","TRANNING":75,"WEATHER":8,"CONDITION":0,"TREND":50,"LASTGAMETIME":"2024-01-31T16:12:00.000Z","EXP":"0","AutoRegist":34,"AutoRegistCnt":2,"Favorites":0,"PurchaseDate":"2020-03-26T00:00:00.000Z"}]],"recordset":[{"ATTACHED_STADIUM":1001,"HORSE_UID":"6918","UUID":"NULL","NAME":"#00203098","TEXTURE_KEY":"Hrs_00203098","SPEED":61,"PRECENDING":59,"OVERTAKING":65,"BRAWN":0,"SPRIT":61,"POWER":67,"STAMINA":55,"AGILIGHTY":64,"GATE":50,"HANDICAP":-1.5,"CHARACTER":0,"SEX":0,"BIRTH":"2020-07-28T00:00:00.000Z","AGE":3,"FATHER":"0","MOTHER":"0","Foals":0,"USER_OWNER":"0","WEIGHT":435,"GRADE":5,"RECORD":31,"RECORD_1R":0,"RECORD_2R":3,"RECORD_3R":2,"RECORD_4R":3,"RECORD_5R":7,"FIRSTARRIVE":5,"SECONDARRIVE":5,"THIRDARRIVE":6,"TOTAL_PRIZE":"520000","LAST_PRIZE":"50000","TRANNING":75,"WEATHER":8,"CONDITION":0,"TREND":50,"LASTGAMETIME":"2024-01-31T16:12:00.000Z","EXP":"0","AutoRegist":34,"AutoRegistCnt":2,"Favorites":0,"PurchaseDate":"2020-03-26T00:00:00.000Z"}],"output":{},"rowsAffected":[1]}
-  */
-
-  //const horseUids = data?.recordset?.map((item: any) => item.HORSE_UID);
-
-  /*
-  try {
-    const ranks = db.collection('game_horses');
-
-    const filter = { horseId: gameId };
-
-    const updateDoc = {
-      $set: {
-        gameId: gameId,
-        ranking: data?.recordset,
-      },
-    };
-
-    const options = { upsert: true };
-
-    await ranks.updateOne(filter, updateDoc, options);
-  } catch (error) {
-    console.log('error', error);
-  } finally {
-    ////await client.close();
-  }
-  */
-
-  /*
-  const ranks = db.collection('game_horses');
-
-  const filter = { horseId: gameId };
-
-  const updateDoc = {
-    $set: {
-      gameId: gameId,
-      ranking: data?.recordset,
-    },
-  };
-
-  const options = { upsert: true };
-
-  await ranks.updateOne(filter, updateDoc, options);
-  */
-
-  //const horses = await db.collection('nfthorses').find({}).toArray();
-
-  // order by tokenId
-  // collation: { locale: 'en_US', numericOrdering: true },
-
-  /*
-  const horses = db
-    .collection('nfthorses').aggregate([
-
-      {
-        $sort: { tokenId: 1 },
-      },
-
-      {
-        collation: { locale: 'en_US', numericOrdering: true },
-      }
-
-
-    ]) as any;
-  */
+  const client = await clientPromise;
+  const collection = client.db('granderby').collection('nfthorses');
 
   const horses = await HorseModel.aggregate(
     [
@@ -185,6 +106,8 @@ export default async function handler(
   );
 
   horses.forEach(async (horse: any) => {
+    ////if (horse.tokenId !== '242') return;
+
     try {
       ///const uid = horse?.liveHorseInfo?.HORSE_UID;
 
@@ -483,6 +406,7 @@ export default async function handler(
       /// { acknowledged: false }
       */
 
+      /*
       const filter = { tokenId: horse.tokenId };
 
       const updateDoc = {
@@ -493,7 +417,38 @@ export default async function handler(
 
       const options = { upsert: true };
 
-      await HorseModel.updateOne(filter, updateDoc, options);
+    
+
+      const data = await HorseModel.updateOne(filter, updateDoc, options);
+      */
+
+      const data = await collection.updateOne(
+        {
+          tokenId: horse.tokenId,
+        },
+        {
+          $set: {
+            balance: horseBalance,
+          },
+        }
+      );
+
+      ///console.log('tokenId=', horse.tokenId, 'gameHorseName=', gameHorseName, 'uid=', uid, 'balance=', horseBalance, 'result=', data);
+
+      /* result is {
+          acknowledged: true,
+          modifiedCount: 0,
+          upsertedId: null,
+          upsertedCount: 0,
+          matchedCount: 1
+        }
+
+        why modifiedCount is 0?
+
+        because the balance is same as before.
+        */
+
+      //console.log('data', data);
 
       /*
       const filter = { tokenId: horse.tokenId };
