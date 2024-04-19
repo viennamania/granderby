@@ -9,4 +9,5 @@ export interface IHorse {
   totalPricePaid: string;
   logsNewSale: object;
   register: string;
+  balance: number;
 }

@@ -58,6 +58,8 @@ export const horseCount = async () => {
 
 */
 
+import clientPromise from '@/lib/mongodb';
+
 //import { IHorseHistory } from '@/utils/horseRace/interfaces/horseHistory';
 
 import { IHorse } from '../interfaces/horse-interface';
@@ -114,6 +116,11 @@ const HorseSchema = new Schema({
     type: String,
     required: false,
     default: false,
+  },
+  balance: {
+    type: Number,
+    required: false,
+    default: 0,
   },
 });
 
@@ -1063,6 +1070,20 @@ export const getOneGameHorseData = async (gameHorseKey: string) => {
   }
 };
 
+export const getHorsesByHolder = async (holder: string) => {
+  // select all horses by holder
+
+  console.log('holder', holder);
+
+  const data = await HorseModel.find({
+    holder: holder.toLowerCase(),
+  }).catch((err) => {
+    ////return err;
+  });
+
+  return data;
+};
+
 export const getBalanceByHolder = async (holder: string) => {
   // sum of accumulatedBalance of all horses by holder
 
@@ -1110,7 +1131,7 @@ export const setHorseBalanceByTokenId = async (
   // findOneAndUpdate
 
   // tokenId of HorseModel is string, so convert tokenId to string
-
+  /*
   const data = await HorseModel.findOneAndUpdate(
     {
       tokenId: tokenId,
@@ -1122,21 +1143,24 @@ export const setHorseBalanceByTokenId = async (
       new: true,
     }
   );
+  */
 
-  /*
-  const data = await HorseModel.aggregate([
+  const client = await clientPromise;
+  const collection = client.db('granderby').collection('nfthorses');
+
+  const data = await collection.findOneAndUpdate(
     {
-      $match: {
-        tokenId: tokenId,
-      },
+      tokenId: tokenId,
     },
     {
       $set: {
         balance: balance,
       },
     },
-  ]);
-  */
+    {
+      upsert: false,
+    }
+  );
 
   console.log('tokenId', tokenId);
   console.log('balance', balance);

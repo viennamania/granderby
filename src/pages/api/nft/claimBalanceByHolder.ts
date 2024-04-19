@@ -4,6 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import {
   getOneHorse,
   setHorseBalanceByTokenId,
+  getHorsesByHolder,
 } from '@/utils/models/horse-model';
 
 import {
@@ -38,35 +39,57 @@ export default async function handler(
     return;
   }
 
-  // claim the balance
-  /*
-  const result3 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      uid: uid,
-      textureKey: textureKey,
-      beforeWithDraw: horseBalance,
-      withDraw: horseBalance,
-      resultWithDraw: 0,
-    }),
-  });
+  // getHorsesByHolder
+  const horses = await getHorsesByHolder(holderAddress);
 
-  const json3 = await result3?.json();
-
-  console.log('json3', json3);
-  */
-
-  /*
-  const result4 = await setHorseBalanceByTokenId(tokenId as string, 0);
-
-  if (!result4) {
+  if (!horses) {
     res.status(404).json({ error: 'Horse not found' });
     return;
   }
-  */
 
-  const horseBalance = 1;
+  let claimedBalance = 0;
+
+  horses.map(async (horse: any) => {
+    const tokenId = horse?.tokenId;
+    const horseBalance = horse?.balance;
+
+    const data = (await getOneHorse(tokenId as string)) as any;
+
+    ////console.log('getOneByTokenId horse', horse);
+
+    if (!data) {
+      res.status(404).json({ error: 'Horse not found' });
+      return;
+    }
+
+    const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
+
+    const textureKey = data?.horse?.liveHorseInfo?.TEXTURE_KEY;
+
+    // claim the balance
+
+    const result = await fetch('http://3.38.2.94:3001/api/horse/claim', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        uid: uid,
+        textureKey: textureKey,
+        beforeWithDraw: horseBalance,
+        withDraw: horseBalance,
+        resultWithDraw: 0,
+      }),
+    });
+
+    const json = await result?.json();
+
+    if (json?.resultWithDraw) {
+      claimedBalance += horseBalance;
+    }
+
+    ///console.log('json', json);
+  });
+
+  console.log('claimedBalance', claimedBalance);
 
   const privateKey = process.env.GDP_MINT_PRIVATE_KEY || '';
 
@@ -82,13 +105,9 @@ export default async function handler(
   const tokenContract = await sdk.getContract(tokenContractAddressGDP);
 
   try {
-    console.log('claimBalanceByHolder holderAddress', holderAddress);
-
-    console.log('claimBalanceByTokenId horseBalance', horseBalance);
-
     const transaction = await tokenContract.erc20.claimTo(
       holderAddress,
-      horseBalance
+      claimedBalance
     );
 
     console.log(
@@ -104,6 +123,6 @@ export default async function handler(
   }
 
   res.status(200).json({
-    balance: horseBalance,
+    balance: claimedBalance,
   });
 }

@@ -522,6 +522,22 @@ export default function FeedsNftOwnedTable({
 
                   setClaiming(false);
 
+                  setTotalBalanceHorse(0);
+
+                  // reload
+                  handleSearch(
+                    searchTerm,
+                    pageSize,
+                    currentPage,
+
+                    //startDate,
+                    //endDate,
+                    //mealTimeArray,
+                    //feedbackArray,
+
+                    address
+                  );
+
                   toast.success(
                     <div className=" flex flex-col items-center justify-center gap-5 p-5">
                       <span className="text-xl font-extrabold">

@@ -96,6 +96,7 @@ export default async function handler(
   const client = await clientPromise;
   const collection = client.db('granderby').collection('nfthorses');
 
+  /*
   const horses = await HorseModel.aggregate(
     [
       {
@@ -104,9 +105,19 @@ export default async function handler(
     ],
     { collation: { locale: 'en_US', numericOrdering: true } }
   );
+  */
+
+  const horses = collection.aggregate(
+    [
+      {
+        $sort: { tokenId: 1 },
+      },
+    ],
+    { collation: { locale: 'en_US', numericOrdering: true } }
+  ) as any;
 
   horses.forEach(async (horse: any) => {
-    ////if (horse.tokenId !== '242') return;
+    //if (horse.tokenId !== '242') return;
 
     try {
       ///const uid = horse?.liveHorseInfo?.HORSE_UID;
