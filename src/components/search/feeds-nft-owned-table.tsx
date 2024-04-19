@@ -510,7 +510,25 @@ export default function FeedsNftOwnedTable({
 
                   const data = await response.json();
 
-                  console.log('claim data', data);
+                  const claimedBalance = data?.balance || 0;
+
+                  if (claimedBalance === 0) {
+                    toast.error(
+                      <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                        <span className="text-xl font-extrabold">
+                          No balance to collect
+                        </span>
+                      </div>,
+
+                      {
+                        duration: 5000,
+                      }
+                    );
+
+                    setClaiming(false);
+
+                    return;
+                  }
 
                   //setGameHorseBalance(data?.balance || 0);
 
@@ -544,7 +562,7 @@ export default function FeedsNftOwnedTable({
                         Claim Success
                       </span>
                       <span className="text-xl font-extrabold">
-                        {totalBalanceHorse.toLocaleString()} GDP
+                        {claimedBalance.toLocaleString()} GDP
                       </span>
                     </div>,
 
