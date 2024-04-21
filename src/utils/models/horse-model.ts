@@ -1128,7 +1128,7 @@ export const getBalanceByHolder = async (holder: string) => {
   console.log('holder', holder);
   console.log('getBalanceByHolder data', data);
 
-  return { balance: data[0].total };
+  return { balance: data[0].total || 0 };
 };
 
 // setHorseBalanceByTokenId
