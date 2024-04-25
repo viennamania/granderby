@@ -376,6 +376,25 @@ export default async function handler(
 
       grade = 'C';
     }
+
+    // tokenId: 2645 - 3644 =>  grade D  /   Hrs_00201645 - Hrs_00202644
+    else if (Number(req.query.id) >= 2645 && Number(req.query.id) < 3645) {
+      var formattedNumber = Number(req.query.id) - 2645 + 1645 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0020' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'D';
+    }
+
     // 3645 부터 3차 판매
 
     /*
@@ -392,29 +411,28 @@ export default async function handler(
     Grade D (1989EA): tokenId: 5090 - 7078 / Hrs_00202645 - Hrs_00204633
 
     */
-    else if (Number(req.query.id) >= 3645 && Number(req.query.id) < 3650) {
-      var formattedNumber = Number(req.query.id) - 3645 + 5 + '';
-
-      while (formattedNumber.length < 5) {
-        formattedNumber = '0' + formattedNumber;
-      }
-
-      formattedNumber = '9999000' + formattedNumber;
-      //formattedNumber = '00000000';
-
-      console.log('formattedNumber', formattedNumber);
-
-      imagesrc = 'Hrs_' + formattedNumber + '.png';
-
+    else if (Number(req.query.id) === 3645) {
+      imagesrc = 'Hrs_99990005.png';
+      grade = 'U';
+    } else if (Number(req.query.id) === 3646) {
+      imagesrc = 'Hrs_99990006.png';
+      grade = 'U';
+    } else if (Number(req.query.id) === 3647) {
+      imagesrc = 'Hrs_99990007.png';
+      grade = 'U';
+    } else if (Number(req.query.id) === 3648) {
+      imagesrc = 'Hrs_99990008.png';
+      grade = 'U';
+    } else if (Number(req.query.id) === 3649) {
+      imagesrc = 'Hrs_99990009.png';
       grade = 'U';
     } else if (Number(req.query.id) >= 3650 && Number(req.query.id) < 3664) {
       var formattedNumber = Number(req.query.id) - 3650 + 16 + '';
-
       while (formattedNumber.length < 5) {
         formattedNumber = '0' + formattedNumber;
       }
+      formattedNumber = '000' + formattedNumber;
 
-      formattedNumber = '000000' + formattedNumber;
       //formattedNumber = '00000000';
 
       console.log('formattedNumber', formattedNumber);
@@ -424,13 +442,10 @@ export default async function handler(
       grade = 'S';
     } else if (Number(req.query.id) >= 3664 && Number(req.query.id) < 3764) {
       var formattedNumber = Number(req.query.id) - 3664 + 215 + '';
-
-      while (formattedNumber.length < 4) {
+      while (formattedNumber.length < 3) {
         formattedNumber = '0' + formattedNumber;
       }
-
       formattedNumber = '00001' + formattedNumber;
-      //formattedNumber = '00000000';
 
       console.log('formattedNumber', formattedNumber);
 
@@ -439,13 +454,10 @@ export default async function handler(
       grade = 'A';
     } else if (Number(req.query.id) >= 3764 && Number(req.query.id) < 4114) {
       var formattedNumber = Number(req.query.id) - 3764 + 441 + '';
-
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
-
-      formattedNumber = '00020' + formattedNumber;
-      //formattedNumber = '00000000';
+      formattedNumber = '0002' + formattedNumber;
 
       console.log('formattedNumber', formattedNumber);
 
@@ -454,13 +466,10 @@ export default async function handler(
       grade = 'B';
     } else if (Number(req.query.id) >= 4114 && Number(req.query.id) < 5090) {
       var formattedNumber = Number(req.query.id) - 4114 + 945 + '';
-
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
-
-      formattedNumber = '00100' + formattedNumber;
-      //formattedNumber = '00000000';
+      formattedNumber = '0010' + formattedNumber;
 
       console.log('formattedNumber', formattedNumber);
 
@@ -469,13 +478,10 @@ export default async function handler(
       grade = 'C';
     } else if (Number(req.query.id) >= 5090 && Number(req.query.id) < 7079) {
       var formattedNumber = Number(req.query.id) - 5090 + 2645 + '';
-
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
-
       formattedNumber = '0020' + formattedNumber;
-      //formattedNumber = '00000000';
 
       console.log('formattedNumber', formattedNumber);
 

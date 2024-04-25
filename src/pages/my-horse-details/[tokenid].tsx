@@ -208,7 +208,9 @@ const MyHorseDetails: NextPageWithLayout<
 
       ///console.log('dataNft', dataNft);
 
-      setImageUrl(dataNft?.image);
+      //setImageUrl(dataNft?.image);
+
+      setImageUrl(data?.horse?.image);
 
       setNft(data?.horse?.nft);
 

@@ -26,7 +26,7 @@ export default async function handler(
 
   const data = (await getOneHorse(tokenId as string)) as any;
 
-  ////console.log('getOneByTokenId horse', horse);
+  ///console.log('getOneByTokenId horse', data);
 
   if (!data) {
     res.status(404).json({ error: 'Horse not found' });
