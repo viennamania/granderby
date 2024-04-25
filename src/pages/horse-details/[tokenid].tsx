@@ -1224,7 +1224,7 @@ function SinglePrice(tokenid: any) {
                                       {
                                         // capitalize all
 
-                                        owner.toUpperCase()
+                                        owner?.toUpperCase()
                                       }
                                     </span>
                                     {/*

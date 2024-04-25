@@ -376,30 +376,99 @@ export default async function handler(
 
       grade = 'C';
     }
-    // 3645 부터 2차 판매
-    // 3645 => 00202645
-    // 4000 => 00203000
-    else if (Number(req.query.id) >= 2645 && Number(req.query.id) < 5000) {
-      var formattedNumber = Number(req.query.id) - 1000 + '';
+    // 3645 부터 3차 판매
 
-      while (formattedNumber.length < 4) {
+    /*
+    Grade U (5EA): tokenId: 3645, 3646, 3647, 3648, 3649  /  Hrs_99990005 - Hrs_99990010
+
+    Grade S (14EA): tokenId: 3650 - 3663 / Hrs_00000016 - Hrs_00000029
+
+    Grade A (100EA): tokenId: 3664 - 3763  / Hrs_00001215 - Hrs_00001314
+
+    Grade B (350EA): tokenId: 3764 - 4113 / Hrs_00020441 - Hrs_00020790
+
+    Grade C (976EA): tokenId: 4114 - 5089 / Hrs_00100945 - Hrs_00101920
+
+    Grade D (1989EA): tokenId: 5090 - 7078 / Hrs_00202645 - Hrs_00204633
+
+    */
+    else if (Number(req.query.id) >= 3645 && Number(req.query.id) < 3650) {
+      var formattedNumber = Number(req.query.id) - 3645 + 5 + '';
+
+      while (formattedNumber.length < 5) {
         formattedNumber = '0' + formattedNumber;
       }
 
-      formattedNumber = '0020' + formattedNumber;
+      formattedNumber = '9999000' + formattedNumber;
       //formattedNumber = '00000000';
 
       console.log('formattedNumber', formattedNumber);
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
-      grade = 'D';
-    }
-    // 5000 => 00204000
-    // 6000 => 00205000
-    // 7000 => 00206000
-    else if (Number(req.query.id) >= 5000 && Number(req.query.id) < 10000) {
-      var formattedNumber = Number(req.query.id) - 1000 + '';
+      grade = 'U';
+    } else if (Number(req.query.id) >= 3650 && Number(req.query.id) < 3664) {
+      var formattedNumber = Number(req.query.id) - 3650 + 16 + '';
+
+      while (formattedNumber.length < 5) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '000000' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'S';
+    } else if (Number(req.query.id) >= 3664 && Number(req.query.id) < 3764) {
+      var formattedNumber = Number(req.query.id) - 3664 + 215 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00001' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'A';
+    } else if (Number(req.query.id) >= 3764 && Number(req.query.id) < 4114) {
+      var formattedNumber = Number(req.query.id) - 3764 + 441 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00020' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'B';
+    } else if (Number(req.query.id) >= 4114 && Number(req.query.id) < 5090) {
+      var formattedNumber = Number(req.query.id) - 4114 + 945 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '00100' + formattedNumber;
+      //formattedNumber = '00000000';
+
+      console.log('formattedNumber', formattedNumber);
+
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+      grade = 'C';
+    } else if (Number(req.query.id) >= 5090 && Number(req.query.id) < 7079) {
+      var formattedNumber = Number(req.query.id) - 5090 + 2645 + '';
 
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
