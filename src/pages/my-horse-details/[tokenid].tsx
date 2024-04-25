@@ -142,6 +142,54 @@ const MyHorseDetails: NextPageWithLayout<
 
   const address = useAddress();
 
+  const { contract: nftDropContract } = useContract(
+    nftDropContractAddressHorse,
+    'nft-drop'
+  );
+
+  const [toAddress, setToAddress] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  async function transferNft(id: string, toAddress: string) {
+    if (id === undefined) {
+      alert(`🌊 Please enter a valid tokenId`);
+      return;
+    }
+
+    if (toAddress === '') {
+      alert(`🌊 Please enter a valid address`);
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      const transaction = await nftDropContract?.erc721.transfer(toAddress, id);
+
+      console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+
+      //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+
+      alert(`🌊 Successfully transfered!`);
+
+      setIsSending(false);
+
+      setToAddress('');
+
+      // go to my asset
+
+      router.push('/my-asset');
+
+      return transaction;
+    } catch (error) {
+      console.error(error);
+
+      alert(`🌊 Failed to send transaction with hash: ${error}`);
+
+      setIsSending(false);
+    }
+  }
+
   /*
   const settings = {
     ///apiKey: 'XBY-aoD3cF_vjy6le186jtpbWDIqSvrH', // Replace with your Alchemy API Key. creath.park@gmail.com
@@ -179,6 +227,8 @@ const MyHorseDetails: NextPageWithLayout<
 
   const [imageUrl, setImageUrl] = useState<any>(null);
 
+  const [owner, setOwner] = useState<any>(null);
+
   useEffect(() => {
     async function getNft() {
       const response = await fetch('/api/nft/getOneByTokenId', {
@@ -213,6 +263,10 @@ const MyHorseDetails: NextPageWithLayout<
       setImageUrl(data?.horse?.image);
 
       setNft(data?.horse?.nft);
+
+      console.log('data?.horse?.holder', data?.horse?.holder);
+
+      setOwner(data?.horse?.holder);
 
       /*
       data?.horse?.totalPricePaid;
@@ -368,6 +422,56 @@ const MyHorseDetails: NextPageWithLayout<
               */}
 
               <NftInfo horseData={horseData} />
+
+              {address && address.toUpperCase() === owner?.toUpperCase() && (
+                <div className="mt-5 flex flex-row items-center justify-center gap-2">
+                  <input
+                    className=" w-full text-black"
+                    type="text"
+                    name="toAddress"
+                    placeholder="To Address"
+                    value={toAddress}
+                    onChange={(e) => {
+                      setToAddress(e.target.value);
+                    }}
+                  />
+                  <Web3Button
+                    theme="light"
+                    contractAddress={nftDropContractAddressHorse}
+                    action={() => {
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract?.call('withdraw', [[nft.metadata.id]])
+                      //contract.erc1155.claim(0, 1);
+
+                      ///contract.erc20.transfer(toAddress, amount);
+
+                      transferNft(
+                        tokenid as string,
+
+                        toAddress
+                      );
+                    }}
+                    onSuccess={() => {
+                      //setAmount(0);
+                      //setToAddress('');
+
+                      console.log(`🌊 Successfully transfered!`);
+                      //alert('Successfully transfered!');
+
+                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                      //handleClickSucc();
+                    }}
+                    onError={(error) => {
+                      console.error('Failed to transfer', error);
+                      alert('Failed to transfer');
+                      //setErrMsgSnackbar('Failed to transfer');
+                      //handleClickErr();
+                    }}
+                  >
+                    Send
+                  </Web3Button>
+                </div>
+              )}
             </div>
           </div>
 

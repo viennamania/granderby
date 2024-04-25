@@ -667,26 +667,37 @@ export const getOneHorse = async (tokenId: string) => {
 
   if (Number(tokenId) === 0) {
     gameHorseKey = '00000000';
+    imagesrc = 'Hrs_00000000.png';
   } else if (Number(tokenId) === 1) {
     gameHorseKey = '00000001';
+    imagesrc = 'Hrs_00000001.png';
   } else if (Number(tokenId) === 2) {
     gameHorseKey = '00000002';
+    imagesrc = 'Hrs_00000002.png';
   } else if (Number(tokenId) === 3) {
     gameHorseKey = '00000003';
+    imagesrc = 'Hrs_00000003.png';
   } else if (Number(tokenId) === 4) {
     gameHorseKey = '00000004';
+    imagesrc = 'Hrs_00000004.png';
   } else if (Number(tokenId) === 5) {
     gameHorseKey = '00000005';
+    imagesrc = 'Hrs_00000005.png';
   } else if (Number(tokenId) === 6) {
     gameHorseKey = '00000006';
+    imagesrc = 'Hrs_00000006.png';
   } else if (Number(tokenId) === 7) {
     gameHorseKey = '00000007';
+    imagesrc = 'Hrs_00000007.png';
   } else if (Number(tokenId) === 8) {
     gameHorseKey = '00000008';
+    imagesrc = 'Hrs_00000008.png';
   } else if (Number(tokenId) === 9) {
     gameHorseKey = '00000009';
+    imagesrc = 'Hrs_00000009.png';
   } else if (Number(tokenId) === 10) {
     gameHorseKey = '00000010';
+    imagesrc = 'Hrs_00000010.png';
 
     // A Grade
   } else if (Number(tokenId) >= 11 && Number(tokenId) <= 58) {
