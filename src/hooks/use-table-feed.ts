@@ -383,9 +383,24 @@ export function useTable<T extends AnyObject>(
 
   // when data[0]?.nft?.tokenId is updated, fetch balance from /api/nft/getBalanceByTokenId
 
+  const [loadingBalanceArray, setLoadingBalanceArray] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
   useEffect(() => {
     if (data[0]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[0] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -408,6 +423,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[0] = false;
       };
 
       fetchBalance();
@@ -417,6 +434,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[1]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[1] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -439,6 +458,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[1] = false;
       };
 
       fetchBalance();
@@ -448,6 +469,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[2]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[2] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -470,6 +493,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[2] = false;
       };
 
       fetchBalance();
@@ -479,6 +504,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[3]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[3] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -501,6 +528,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[3] = false;
       };
 
       fetchBalance();
@@ -510,6 +539,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[4]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[4] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -532,6 +563,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[4] = false;
       };
 
       fetchBalance();
@@ -541,6 +574,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[5]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[5] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -563,6 +598,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[5] = false;
       };
 
       fetchBalance();
@@ -572,6 +609,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[6]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[6] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -594,6 +633,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[6] = false;
       };
 
       fetchBalance();
@@ -603,6 +644,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[7]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[7] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -625,6 +668,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[7] = false;
       };
 
       fetchBalance();
@@ -634,6 +679,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[8]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[8] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -656,6 +703,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[8] = false;
       };
 
       fetchBalance();
@@ -665,6 +714,8 @@ export function useTable<T extends AnyObject>(
   useEffect(() => {
     if (data[9]?.tokenId) {
       const fetchBalance = async () => {
+        loadingBalanceArray[9] = true;
+
         const response = await fetch('/api/nft/getBalanceByTokenId', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -687,6 +738,8 @@ export function useTable<T extends AnyObject>(
             return prevItem;
           });
         });
+
+        loadingBalanceArray[9] = false;
       };
 
       fetchBalance();

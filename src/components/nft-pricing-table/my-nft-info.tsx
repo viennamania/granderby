@@ -753,7 +753,7 @@ export default function NftInfo({ horseData }: any) {
                               Claim Success
                             </span>
                             <span className="text-xl font-extrabold">
-                              {gameHorseAccumulatedBalance.toLocaleString()} GDP
+                              {gameHorseBalance.toLocaleString()} GDP
                             </span>
                           </div>,
 
