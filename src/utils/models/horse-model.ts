@@ -915,6 +915,8 @@ export const getOneHorse = async (tokenId: string) => {
 
     console.log('formattedNumber', formattedNumber);
 
+    gameHorseKey = '' + formattedNumber + '';
+
     imagesrc = 'Hrs_' + formattedNumber + '.png';
   } else if (Number(tokenId) >= 3664 && Number(tokenId) < 3764) {
     var formattedNumber = Number(tokenId) - 3664 + 215 + '';
@@ -925,6 +927,8 @@ export const getOneHorse = async (tokenId: string) => {
     //formattedNumber = '00000000';
 
     console.log('formattedNumber', formattedNumber);
+
+    gameHorseKey = '' + formattedNumber + '';
 
     imagesrc = 'Hrs_' + formattedNumber + '.png';
   } else if (Number(tokenId) >= 3764 && Number(tokenId) < 4114) {
@@ -937,6 +941,8 @@ export const getOneHorse = async (tokenId: string) => {
 
     console.log('formattedNumber', formattedNumber);
 
+    gameHorseKey = '' + formattedNumber + '';
+
     imagesrc = 'Hrs_' + formattedNumber + '.png';
   } else if (Number(tokenId) >= 4114 && Number(tokenId) < 5090) {
     var formattedNumber = Number(tokenId) - 4114 + 945 + '';
@@ -947,6 +953,8 @@ export const getOneHorse = async (tokenId: string) => {
     formattedNumber = '0010' + formattedNumber;
 
     console.log('formattedNumber', formattedNumber);
+
+    gameHorseKey = '' + formattedNumber + '';
 
     imagesrc = 'Hrs_' + formattedNumber + '.png';
   } else if (Number(tokenId) >= 5090 && Number(tokenId) < 7079) {
@@ -959,6 +967,8 @@ export const getOneHorse = async (tokenId: string) => {
 
     console.log('formattedNumber', formattedNumber);
 
+    gameHorseKey = '' + formattedNumber + '';
+
     imagesrc = 'Hrs_' + formattedNumber + '.png';
   } else {
     ////imagesrc = 'Hrs_00006000.png';
@@ -969,6 +979,8 @@ export const getOneHorse = async (tokenId: string) => {
   // select horseinfo from game_horsekey collection when name is gameHorseKey
 
   // game_horsekey collection is not created yet
+
+  //console.log('gameHorseKey', gameHorseKey);
 
   const name = '#' + gameHorseKey;
 

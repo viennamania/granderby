@@ -38,6 +38,8 @@ export default async function handler(
 
   const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
 
+  console.log('uid', uid);
+
   if (!uid) {
     res.status(404).json({ error: 'Horse uid not found' });
     return;
