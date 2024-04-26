@@ -331,34 +331,153 @@ export default async function handler(
           gameHorseName = '00100' + formattedNumber;
         } else if (
           Number(horse.tokenId) >= 2645 &&
-          Number(horse.tokenId) < 5000
+          Number(horse.tokenId) < 3645
         ) {
-          var formattedNumber = Number(horse.tokenId) - 1000 + '';
+          var formattedNumber = Number(horse.tokenId) - 2645 + 1645 + '';
 
           while (formattedNumber.length < 4) {
             formattedNumber = '0' + formattedNumber;
           }
 
-          imagesrc = 'Hrs_' + '0020' + formattedNumber + '.png';
-          grade = 'D';
+          formattedNumber = '0020' + formattedNumber;
+          //formattedNumber = '00000000';
 
-          gameHorseName = '0020' + formattedNumber;
+          ///console.log('horse-model formattedNumber', formattedNumber);
+
+          gameHorseName = formattedNumber;
+
+          imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+          grade = 'D';
+        }
+
+        // 3645 부터 3차 판매
+
+        /*
+        Grade U (5EA): tokenId: 3645, 3646, 3647, 3648, 3649  /  Hrs_99990005 - Hrs_99990010
+
+        Grade S (14EA): tokenId: 3650 - 3663 / Hrs_00000016 - Hrs_00000029
+
+        Grade A (100EA): tokenId: 3664 - 3763  / Hrs_00001215 - Hrs_00001314
+
+        Grade B (350EA): tokenId: 3764 - 4113 / Hrs_00020441 - Hrs_00020790
+
+        Grade C (976EA): tokenId: 4114 - 5089 / Hrs_00100945 - Hrs_00101920
+
+        Grade D (1989EA): tokenId: 5090 - 7078 / Hrs_00202645 - Hrs_00204633
+
+        */
+        else if (Number(horse.tokenId) === 3645) {
+          gameHorseName = '99990005';
+          imagesrc = 'Hrs_99990005.png';
+          grade = 'U';
+        } else if (Number(horse.tokenId) === 3646) {
+          gameHorseName = '99990006';
+          imagesrc = 'Hrs_99990006.png';
+          grade = 'U';
+        } else if (Number(horse.tokenId) === 3647) {
+          gameHorseName = '99990007';
+          imagesrc = 'Hrs_99990007.png';
+          grade = 'U';
+        } else if (Number(horse.tokenId) === 3648) {
+          gameHorseName = '99990008';
+          imagesrc = 'Hrs_99990008.png';
+          grade = 'U';
+        } else if (Number(horse.tokenId) === 3649) {
+          gameHorseName = '99990009';
+          imagesrc = 'Hrs_99990009.png';
+          grade = 'U';
         } else if (
-          Number(horse.tokenId) >= 5000 &&
-          Number(horse.tokenId) < 10000
+          Number(horse.tokenId) >= 3650 &&
+          Number(horse.tokenId) < 3664
         ) {
-          var formattedNumber = Number(horse.tokenId) - 1000 + '';
+          var formattedNumber = Number(horse.tokenId) - 3650 + 16 + '';
+          while (formattedNumber.length < 5) {
+            formattedNumber = '0' + formattedNumber;
+          }
+          formattedNumber = '000' + formattedNumber;
+
+          //console.log('formattedNumber', formattedNumber);
+
+          gameHorseName = '' + formattedNumber + '';
+
+          imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+          grade = 'S';
+        } else if (
+          Number(horse.tokenId) >= 3664 &&
+          Number(horse.tokenId) < 3764
+        ) {
+          var formattedNumber = Number(horse.tokenId) - 3664 + 215 + '';
+          while (formattedNumber.length < 3) {
+            formattedNumber = '0' + formattedNumber;
+          }
+          formattedNumber = '00001' + formattedNumber;
+          //formattedNumber = '00000000';
+
+          //console.log('formattedNumber', formattedNumber);
+
+          gameHorseName = '' + formattedNumber + '';
+
+          imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+          grade = 'A';
+        } else if (
+          Number(horse.tokenId) >= 3764 &&
+          Number(horse.tokenId) < 4114
+        ) {
+          var formattedNumber = Number(horse.tokenId) - 3764 + 441 + '';
 
           while (formattedNumber.length < 4) {
             formattedNumber = '0' + formattedNumber;
           }
+          formattedNumber = '0002' + formattedNumber;
 
-          imagesrc = 'Hrs_' + '0020' + formattedNumber + '.png';
+          ///console.log('formattedNumber', formattedNumber);
+
+          gameHorseName = '' + formattedNumber + '';
+
+          imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+          grade = 'B';
+        } else if (
+          Number(horse.tokenId) >= 4114 &&
+          Number(horse.tokenId) < 5090
+        ) {
+          var formattedNumber = Number(horse.tokenId) - 4114 + 945 + '';
+
+          while (formattedNumber.length < 4) {
+            formattedNumber = '0' + formattedNumber;
+          }
+          formattedNumber = '0010' + formattedNumber;
+
+          //console.log('formattedNumber', formattedNumber);
+
+          gameHorseName = '' + formattedNumber + '';
+
+          imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+          grade = 'C';
+        } else if (
+          Number(horse.tokenId) >= 5090 &&
+          Number(horse.tokenId) < 7079
+        ) {
+          var formattedNumber = Number(horse.tokenId) - 5090 + 2645 + '';
+
+          while (formattedNumber.length < 4) {
+            formattedNumber = '0' + formattedNumber;
+          }
+          formattedNumber = '0020' + formattedNumber;
+
+          ///console.log('formattedNumber', formattedNumber);
+
+          gameHorseName = '' + formattedNumber + '';
+
+          imagesrc = 'Hrs_' + formattedNumber + '.png';
+
           grade = 'D';
-
-          gameHorseName = '0020' + formattedNumber;
         } else {
-          ////gameHorseName = 'Hrs_00006000.png';
+          ////imagesrc = 'Hrs_00006000.png';
         }
       }
 
@@ -369,6 +488,8 @@ export default async function handler(
       const result1 = await fetch(
         `http://3.38.2.94:3001/api/horse?name=${gameHorseName}`
       );
+
+      //console.log('result1', result1);
 
       if (result1.status !== 200) {
         return;
@@ -385,6 +506,8 @@ export default async function handler(
       const liveHorseInfo = json1?.recordset?.[0] || {};
 
       const uid = liveHorseInfo?.HORSE_UID;
+
+      //console.log('uid', uid);
 
       if (!uid) {
         return;
@@ -409,6 +532,8 @@ export default async function handler(
       ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
 
       const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+
+      //console.log('horseBalance', horseBalance);
 
       /*
       const data = await collection.updateOne(

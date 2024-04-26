@@ -855,10 +855,7 @@ export const getOneHorse = async (tokenId: string) => {
     gameHorseKey = '' + formattedNumber + '';
 
     imagesrc = 'Hrs_' + formattedNumber + '.png';
-  }
-
-  // tokenId: 2645 - 3644 =>  grade D  /   Hrs_00201645 - Hrs_00202644
-  else if (Number(tokenId) >= 2645 && Number(tokenId) < 3645) {
+  } else if (Number(tokenId) >= 2645 && Number(tokenId) < 3645) {
     var formattedNumber = Number(tokenId) - 2645 + 1645 + '';
 
     while (formattedNumber.length < 4) {
