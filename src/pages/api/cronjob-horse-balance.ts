@@ -531,7 +531,8 @@ export default async function handler(
 
       ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
 
-      const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+      const horseBalance =
+        parseInt(balanceData?.recordset[0]?.Horse_balance) || 0;
 
       //console.log('horseBalance', horseBalance);
 

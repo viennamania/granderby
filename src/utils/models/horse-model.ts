@@ -1219,7 +1219,9 @@ export const getHorsesByHolder = async (holder: string) => {
 };
 
 export const getBalanceByHolder = async (holder: string) => {
-  // sum of accumulatedBalance of all horses by holder
+  // sum of balance of all horses by holder
+
+  console.log('holder.toLowerCase', holder.toLowerCase());
 
   const data = await HorseModel.aggregate([
     {
