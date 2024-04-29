@@ -132,6 +132,8 @@ const MyHorseDetails: NextPageWithLayout<
     [stakerAddress]
   );
 
+  console.log('stakeInfo', stakeInfo);
+
   const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
 
   useEffect(() => {
@@ -187,6 +189,56 @@ const MyHorseDetails: NextPageWithLayout<
       alert(`🌊 Failed to send transaction with hash: ${error}`);
 
       setIsSending(false);
+    }
+  }
+
+  async function stakeNft(id: string) {
+    if (!address) return;
+
+    const isApproved = await nftDropContract?.isApproved(
+      address,
+      stakingContractAddressHorseAAA
+    );
+
+    //onsole.log('isApproved', isApproved);
+
+    if (!isApproved) {
+      const data = await nftDropContract?.setApprovalForAll(
+        stakingContractAddressHorseAAA,
+        true
+      );
+
+      alert(data);
+    }
+
+    try {
+      const data = await contractStaking?.call('stake', [[id]]);
+
+      //console.log('staking data', data);
+
+      if (data) {
+        //alert('Your request has been sent successfully');
+
+        alert('staking success');
+      } else {
+        console.log('error');
+      }
+    } catch (error) {
+      console.log('stake error', error);
+    }
+  }
+
+  async function withdrawNft(id: string) {
+    if (!address) return;
+
+    const data = await contractStaking?.call('withdraw', [[id]]);
+
+    console.log('withdraw data', data);
+
+    if (data) {
+      alert('Your request has been sent successfully');
+    } else {
+      alert(data);
     }
   }
 
@@ -401,6 +453,18 @@ const MyHorseDetails: NextPageWithLayout<
                   height={1024}
                   className=" rounded-lg "
                 />
+
+                {address && address === stakerAddress && (
+                  <div className="mt-5">
+                    <Web3Button
+                      theme="light"
+                      contractAddress={stakingContractAddressHorseAAA}
+                      action={() => withdrawNft(tokenid || '')}
+                    >
+                      Unregister
+                    </Web3Button>
+                  </div>
+                )}
 
                 {/*
                 <NftSinglePrice

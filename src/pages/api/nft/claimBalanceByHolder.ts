@@ -180,6 +180,13 @@ export default async function handler(
 
       // claim the balance
 
+      console.log(
+        'claiming balance uid textureKey horseBalance',
+        uid,
+        textureKey,
+        horseBalance
+      );
+
       const result2 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

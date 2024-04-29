@@ -506,7 +506,14 @@ export default function FeedsCoinOwned(
                 isLoadingBalanceGDP ? (
                   <span className="text-xs">Loading...</span>
                 ) : (
-                  Number(tokenBalanceGDP?.displayValue).toFixed(2)
+                  tokenBalanceGDP &&
+                  tokenBalanceGDP?.displayValue &&
+                  //Number(tokenBalanceGDP?.displayValue).toFixed(2)
+                  //tokenBalanceGDP?.displayValue
+
+                  // price format (333,333,333)
+
+                  tokenBalanceGDP?.displayValue
                 )
               }{' '}
               {tokenBalanceGDP?.symbol}

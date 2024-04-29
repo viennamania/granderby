@@ -98,8 +98,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const client = await clientPromise;
-  const collection = client.db('granderby').collection('nfthorses');
+  //const client = await clientPromise;
+  //const collection = client.db('granderby').collection('nfthorses');
 
   /*
   const horses = await HorseModel.aggregate(
@@ -127,7 +127,7 @@ export default async function handler(
 
   const horses = (await getHorsesAll()) as any;
 
-  //console.log('horses', horses);
+  console.log('cronjob-horse-balance horses length', horses.length);
 
   //return;
 
