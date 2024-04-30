@@ -488,52 +488,60 @@ const MyHorseDetails: NextPageWithLayout<
               <NftInfo horseData={horseData} />
 
               {address && address.toUpperCase() === owner?.toUpperCase() && (
-                <div className="mt-5 flex flex-row items-center justify-center gap-2">
-                  <input
-                    className=" w-full text-black"
-                    type="text"
-                    name="toAddress"
-                    placeholder="To Address"
-                    value={toAddress}
-                    onChange={(e) => {
-                      setToAddress(e.target.value);
-                    }}
-                  />
-                  <Web3Button
-                    theme="light"
-                    contractAddress={nftDropContractAddressHorse}
-                    action={() => {
-                      //contract?.call('withdraw', [[nft.metadata.id]])
-                      //contract?.call('withdraw', [[nft.metadata.id]])
-                      //contract.erc1155.claim(0, 1);
+                <div className="flex flex-col gap-5">
+                  <div className="mt-5 flex flex-row items-start justify-start gap-2">
+                    <div className="text-left text-xl font-bold capitalize text-black dark:text-white xl:text-2xl">
+                      Transfer NFT
+                    </div>
+                  </div>
 
-                      ///contract.erc20.transfer(toAddress, amount);
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <input
+                      className=" w-full text-black"
+                      type="text"
+                      name="toAddress"
+                      placeholder="To Address"
+                      value={toAddress}
+                      onChange={(e) => {
+                        setToAddress(e.target.value);
+                      }}
+                    />
+                    <Web3Button
+                      theme="light"
+                      contractAddress={nftDropContractAddressHorse}
+                      action={() => {
+                        //contract?.call('withdraw', [[nft.metadata.id]])
+                        //contract?.call('withdraw', [[nft.metadata.id]])
+                        //contract.erc1155.claim(0, 1);
 
-                      transferNft(
-                        tokenid as string,
+                        ///contract.erc20.transfer(toAddress, amount);
 
-                        toAddress
-                      );
-                    }}
-                    onSuccess={() => {
-                      //setAmount(0);
-                      //setToAddress('');
+                        transferNft(
+                          tokenid as string,
 
-                      console.log(`🌊 Successfully transfered!`);
-                      //alert('Successfully transfered!');
+                          toAddress
+                        );
+                      }}
+                      onSuccess={() => {
+                        //setAmount(0);
+                        //setToAddress('');
 
-                      //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                      //handleClickSucc();
-                    }}
-                    onError={(error) => {
-                      console.error('Failed to transfer', error);
-                      alert('Failed to transfer');
-                      //setErrMsgSnackbar('Failed to transfer');
-                      //handleClickErr();
-                    }}
-                  >
-                    Send
-                  </Web3Button>
+                        console.log(`🌊 Successfully transfered!`);
+                        //alert('Successfully transfered!');
+
+                        //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                        //handleClickSucc();
+                      }}
+                      onError={(error) => {
+                        console.error('Failed to transfer', error);
+                        alert('Failed to transfer');
+                        //setErrMsgSnackbar('Failed to transfer');
+                        //handleClickErr();
+                      }}
+                    >
+                      Send
+                    </Web3Button>
+                  </div>
                 </div>
               )}
             </div>
