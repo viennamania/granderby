@@ -285,7 +285,8 @@ export default function OwnedFeedsFt({ className }: { className?: string }) {
                     </div>
                     <div className=" w-80 text-right text-4xl font-bold underline decoration-sky-500 xl:text-6xl">
                       {Number(
-                        (parseFloat(tokenBalanceHV?.displayValue ?? '0') / 10000.0) *
+                        (parseFloat(tokenBalanceHV?.displayValue ?? '0') /
+                          5000.0) *
                           100.0
                       ).toFixed(2)}
                       &nbsp;%

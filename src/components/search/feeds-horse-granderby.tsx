@@ -161,6 +161,8 @@ export default function Feeds({
   };
   */
 
+  const [totalCount, setTotalCount] = useState(0);
+
   const {
     data: searchData,
     status,
@@ -236,6 +238,8 @@ export default function Feeds({
 
   return (
     <>
+      {/* totla count */}
+
       {/*
       <ScrollToTopButton />
       */}

@@ -383,7 +383,7 @@ export default function Search() {
             label="Track"
             description={`${Number(tokenBalanceHV?.displayValue).toFixed(
               0
-            )} / 10000 `}
+            )} / 5000 `}
             initialOpen={true}
           >
             <div className="itmes-start flex flex-col justify-center p-3 pb-10">

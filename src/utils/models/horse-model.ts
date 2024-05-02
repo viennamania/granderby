@@ -1304,24 +1304,6 @@ export const setHorseBalanceByTokenId = async (
   tokenId: string,
   balance: number
 ) => {
-  // upodate balance of horse by tokenId
-  // findOneAndUpdate
-
-  // tokenId of HorseModel is string, so convert tokenId to string
-  /*
-  const data = await HorseModel.findOneAndUpdate(
-    {
-      tokenId: tokenId,
-    },
-    {
-      balance: balance,
-    },
-    {
-      new: true,
-    }
-  );
-  */
-
   const client = await clientPromise;
   const collection = client.db('granderby').collection('nfthorses');
 
@@ -1339,10 +1321,24 @@ export const setHorseBalanceByTokenId = async (
     }
   );
 
-  //console.log('tokenId', tokenId);
-  //console.log('balance', balance);
+  return data;
+};
 
-  ///console.log('setHorseBalanceByTokenId data', data);
+// set horse nft object by tokenId
+export const setHorseNftByTokenId = async (tokenId: string, nft: any) => {
+  const data = await HorseModel.findOneAndUpdate(
+    {
+      tokenId: tokenId,
+    },
+    {
+      $set: {
+        nft: nft,
+      },
+    },
+    {
+      upsert: true,
+    }
+  );
 
   return data;
 };
