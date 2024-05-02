@@ -775,12 +775,12 @@ export default function GameHistoryTable() {
                       height={18}
                     />
 
-                    <span className="text-xl font-bold text-black  underline decoration-sky-500">
+                    <span className=" w-20 text-xl font-bold text-black  underline decoration-sky-500">
                       #{transfer.tokenId}
                     </span>
                   </button>
 
-                  <span className="text-xs">Sent to</span>
+                  <span className=" w-36 text-xs">Sent to</span>
 
                   <button
                     className=" flex flex-row items-center justify-start "
