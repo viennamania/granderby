@@ -288,6 +288,7 @@ export const getAllHorses = async (
     return { nfts: data, pageNumber: pageNumber + 1 };
   }
 
+  /*
   const totalData = await HorseModel.find({
     'nft.rawMetadata.attributes': {
       $elemMatch: {
@@ -301,49 +302,31 @@ export const getAllHorses = async (
   });
 
   const total = totalData?.length;
+  */
+  // total is number of Records we want to display
 
-  const data = await HorseModel.find({
+  const total = await HorseModel.find({
     'nft.rawMetadata.attributes': {
       $elemMatch: {
-        /*
-                    "closed": false,
-            "$or": [
-                {
-                    "openingEvening": { "$lte": currentTime  },
-                    "closingEvening": { "$gte": currentTime  }
-                },
-                {
-                    "openingMorning": { "$lte": currentTime },
-                    "closingMorning": { "$gte": currentTime  }
-                }
-
-            ]
-            */
-
-        /*
-        $and: [
-          {
-            trait_type: 'Grade',
-            //value: grades,
-            value: { $in: grades },
-          },
-          
-          {
-            trait_type: 'Mane',
-            value: { $in: manes },
-          }
-          
-        ]
-        */
-
         trait_type: 'Grade',
         //value: grades,
         value: { $in: grades },
       },
     },
-  })
+  }).countDocuments();
 
-    /* if q is not '', then search nft.title by q */
+  /*
+  const data = await HorseModel
+    .find({
+      'nft.rawMetadata.attributes': {
+        $elemMatch: {
+
+          trait_type: 'Grade',
+          //value: grades,
+          value: { $in: grades },
+        },
+      },
+    })
 
     .find({
       $or: [
@@ -393,16 +376,74 @@ export const getAllHorses = async (
     .skip((pageNumber - 1) * pagination)
     //limit is number of Records we want to display
     .limit(pagination)
-    /*
-    .then(data => {
 
-      return {'nfts' : data, 'pageNumber' : (pageNumber + 1) };
-
-    })
-    */
     .catch((err) => {
       ////return err;
     });
+    */
+
+  const data = await HorseModel.aggregate(
+    [
+      {
+        $match: {
+          // search nft.title by q
+
+          $or: [
+            { 'nft.title': { $regex: q, $options: 'i' } },
+            //{ 'nft.description': { $regex: q, $options: 'i' } },
+          ],
+          'nft.rawMetadata.attributes': {
+            $elemMatch: {
+              trait_type: 'Grade',
+              //value: grades,
+              value: { $in: grades },
+            },
+          },
+        },
+      },
+      {
+        $sort:
+          sort === 'Token ID: Ascending'
+            ? {
+                // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+                tokenId: 1,
+              }
+            : sort === 'Token ID: Descending'
+            ? {
+                // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+                tokenId: -1,
+              }
+            : sort === 'Price: Ascending'
+            ? {
+                // sort number in ascending order, tokenId is string, so conver tokenId to number and sort
+
+                totalPricePaid: 1,
+              }
+            : sort === 'Price: Descending'
+            ? {
+                // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+                totalPricePaid: -1,
+              }
+            : {
+                // sort number in descending order, tokenId is string, so conver tokenId to number and sort
+
+                tokenId: -1,
+              },
+      },
+      {
+        $skip: (pageNumber - 1) * pagination,
+      },
+      {
+        $limit: pagination,
+      },
+    ],
+    {
+      collation: { locale: 'en_US', numericOrdering: true },
+    }
+  );
 
   ///console.log('data', data);
   console.log('data.length', data?.length);
