@@ -32,6 +32,7 @@ import {
   nftDropContractAddressHorse,
   nftDropContractAddressHorseDerbyStars,
   tokenContractAddressUSDC,
+  tokenContractAddressUSDT,
   tokenContractAddressGDP,
   nftDropContractAddressCoupon,
   tokenContractAddressGCOW,
@@ -124,6 +125,13 @@ export default function FeedsCoinOwned(
   );
   const { data: tokenBalanceUSDC, isLoading: isLoadingBalanceUSDC } =
     useTokenBalance(tokenContractUSDC, address);
+
+  const { contract: tokenContractUSDT } = useContract(
+    tokenContractAddressUSDT,
+    'token'
+  );
+  const { data: tokenBalanceUSDT, isLoading: isLoadingBalanceUSDT } =
+    useTokenBalance(tokenContractUSDT, address);
 
   const { contract: tokenContractGDP } = useContract(
     tokenContractAddressGDP,
@@ -492,39 +500,65 @@ export default function FeedsCoinOwned(
             </div>
 
             <div className=" text-right text-2xl font-bold ">
-              {
-                // price format (333,333,333)
-                //totalBalance
-
-                /*
-                totalBalance?.toLocaleString('en-US', {
-                  style: 'currency',
-                  currency: 'GDP',
-                })
-                */
-
-                isLoadingBalanceGDP ? (
-                  <span className="text-xs">Loading...</span>
-                ) : (
-                  tokenBalanceGDP &&
-                  tokenBalanceGDP?.displayValue &&
-                  //Number(tokenBalanceGDP?.displayValue).toFixed(2)
-                  //tokenBalanceGDP?.displayValue
-
-                  // price format (333,333,333)
-
-                  tokenBalanceGDP?.displayValue
-                )
-              }{' '}
-              {tokenBalanceGDP?.symbol}
-              {/*
-              {isLoadingBalanceSUGAR ? (
+              {isLoadingBalanceGDP ? (
                 <span className="text-xs">Loading...</span>
               ) : (
-                Number(tokenBalanceSUGAR?.displayValue).toFixed(2)
-              )}
-              */}
+                tokenBalanceGDP &&
+                tokenBalanceGDP?.displayValue &&
+                //Number(tokenBalanceGDP?.displayValue).toFixed(2)
+                //tokenBalanceGDP?.displayValue
+
+                // price format (333,333,333)
+
+                Number(tokenBalanceGDP?.displayValue).toFixed(2)
+              )}{' '}
+              {tokenBalanceGDP?.symbol}
             </div>
+
+            <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
+              0(0.0%)
+            </div>
+
+            {/*
+            <button
+              className="ml-10 flex flex-row items-center justify-center gap-3"
+              ///onClick={(e) => router.push('/coin/usdc')}
+              onClick={() => {
+                closeInventories();
+                ///router.push('/coin/sugar');
+
+                router.push('/coin/grd');
+
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+            */}
+          </div>
+
+          <div className="ml-10 flex flex-row items-center justify-start">
+            <div className=" flex  w-10 ">
+              <Image
+                //src="/images/icon-sugar.png"
+                src="/images/icon-usdt.png"
+                alt="gdp"
+                width={30}
+                height={30}
+              />
+            </div>
+
+            <div className=" text-right text-2xl font-bold ">
+              {isLoadingBalanceUSDT ? (
+                <span className="text-xs">Loading...</span>
+              ) : (
+                tokenBalanceUSDT &&
+                tokenBalanceUSDT?.displayValue &&
+                Number(tokenBalanceUSDT?.displayValue).toFixed(2)
+              )}{' '}
+              {tokenBalanceUSDT?.symbol}
+            </div>
+
             <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
               0(0.0%)
             </div>
