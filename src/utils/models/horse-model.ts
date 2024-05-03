@@ -164,7 +164,9 @@ export const getAllHorses = async (
 ) => {
   //console.log('getAllHorses pageNumber', pageNumber);
   //console.log('getAllHorses pagination', pagination);
+
   console.log('getAllHorses grades', grades);
+
   //console.log('getAllHorses manes', manes);
 
   //console.log('getAllHorses sort', sort);
@@ -179,6 +181,14 @@ export const getAllHorses = async (
         {
           $match: {
             holder: holder.toLowerCase(),
+
+            'nft.rawMetadata.attributes': {
+              $elemMatch: {
+                trait_type: 'Grade',
+                //value: grades,
+                value: { $in: grades },
+              },
+            },
           },
         },
         {
@@ -217,11 +227,25 @@ export const getAllHorses = async (
     setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
     */
 
+    //console.log('data', data);
+
+    ///  total count search by holder and grades
+    const totalData = await HorseModel.find({
+      holder: holder.toLowerCase(),
+      'nft.rawMetadata.attributes': {
+        $elemMatch: {
+          trait_type: 'Grade',
+          //value: grades,
+          value: { $in: grades },
+        },
+      },
+    }).countDocuments();
+
     if (data?.length === 0) {
       return { nfts: [], pageNumber: null };
     }
 
-    return { nfts: data, pageNumber: pageNumber + 1 };
+    return { nfts: data, pageNumber: pageNumber + 1, total: totalData };
   }
 
   // nft.media[0].raw

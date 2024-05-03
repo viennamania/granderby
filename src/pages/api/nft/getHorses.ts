@@ -241,35 +241,136 @@ export default async function handler(
         grade = 'D';
 
         gameHorseName = '00100' + formattedNumber;
-      } else if (Number(tokenId) >= 2645 && Number(tokenId) < 5000) {
-        var formattedNumber = Number(tokenId) - 1000 + '';
+      } else if (Number(tokenId) >= 2645 && Number(tokenId) < 3645) {
+        var formattedNumber = Number(tokenId) - 2645 + 1645 + '';
 
         while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
         }
 
-        imagesrc = 'Hrs_' + '0020' + formattedNumber + '.png';
-        grade = 'D';
+        formattedNumber = '0020' + formattedNumber;
+        //formattedNumber = '00000000';
 
-        gameHorseName = '0020' + formattedNumber;
-      } else if (Number(tokenId) >= 5000 && Number(tokenId) < 10000) {
-        var formattedNumber = Number(tokenId) - 1000 + '';
+        gameHorseName = '' + formattedNumber + '';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+
+        grade = 'D';
+      }
+
+      // 3645 부터 3차 판매
+
+      /*
+        Grade U (5EA): tokenId: 3645, 3646, 3647, 3648, 3649  /  Hrs_99990005 - Hrs_99990010
+
+        Grade S (14EA): tokenId: 3650 - 3663 / Hrs_00000016 - Hrs_00000029
+
+        Grade A (100EA): tokenId: 3664 - 3763  / Hrs_00001215 - Hrs_00001314
+
+        Grade B (350EA): tokenId: 3764 - 4113 / Hrs_00020441 - Hrs_00020790
+
+        Grade C (976EA): tokenId: 4114 - 5089 / Hrs_00100945 - Hrs_00101920
+
+        Grade D (1989EA): tokenId: 5090 - 7078 / Hrs_00202645 - Hrs_00204633
+
+        */
+      else if (Number(tokenId) === 3645) {
+        gameHorseName = '99990005';
+        imagesrc = 'Hrs_99990005.png';
+        grade = 'U';
+      } else if (Number(tokenId) === 3646) {
+        gameHorseName = '99990006';
+        imagesrc = 'Hrs_99990006.png';
+        grade = 'U';
+      } else if (Number(tokenId) === 3647) {
+        gameHorseName = '99990007';
+        imagesrc = 'Hrs_99990007.png';
+        grade = 'U';
+      } else if (Number(tokenId) === 3648) {
+        gameHorseName = '99990008';
+        imagesrc = 'Hrs_99990008.png';
+        grade = 'U';
+      } else if (Number(tokenId) === 3649) {
+        gameHorseName = '99990009';
+        imagesrc = 'Hrs_99990009.png';
+        grade = 'U';
+      } else if (Number(tokenId) >= 3650 && Number(tokenId) < 3664) {
+        var formattedNumber = Number(tokenId) - 3650 + 16 + '';
+        while (formattedNumber.length < 5) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        formattedNumber = '000' + formattedNumber;
+
+        console.log('formattedNumber', formattedNumber);
+
+        gameHorseName = '' + formattedNumber + '';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+        grade = 'S';
+      } else if (Number(tokenId) >= 3664 && Number(tokenId) < 3764) {
+        var formattedNumber = Number(tokenId) - 3664 + 215 + '';
+        while (formattedNumber.length < 3) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        formattedNumber = '00001' + formattedNumber;
+        //formattedNumber = '00000000';
+
+        console.log('formattedNumber', formattedNumber);
+
+        gameHorseName = '' + formattedNumber + '';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+        grade = 'A';
+      } else if (Number(tokenId) >= 3764 && Number(tokenId) < 4114) {
+        var formattedNumber = Number(tokenId) - 3764 + 441 + '';
 
         while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
         }
+        formattedNumber = '0002' + formattedNumber;
 
-        imagesrc = 'Hrs_' + '0020' + formattedNumber + '.png';
+        console.log('formattedNumber', formattedNumber);
+
+        gameHorseName = '' + formattedNumber + '';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+        grade = 'B';
+      } else if (Number(tokenId) >= 4114 && Number(tokenId) < 5090) {
+        var formattedNumber = Number(tokenId) - 4114 + 945 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        formattedNumber = '0010' + formattedNumber;
+
+        console.log('formattedNumber', formattedNumber);
+
+        gameHorseName = '' + formattedNumber + '';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+        grade = 'C';
+      } else if (Number(tokenId) >= 5090 && Number(tokenId) < 7079) {
+        var formattedNumber = Number(tokenId) - 5090 + 2645 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+        formattedNumber = '0020' + formattedNumber;
+
+        console.log('formattedNumber', formattedNumber);
+
+        gameHorseName = '' + formattedNumber + '';
+
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
         grade = 'D';
-
-        gameHorseName = '0020' + formattedNumber;
       } else {
-        ////gameHorseName = 'Hrs_00006000.png';
+        ////imagesrc = 'Hrs_00006000.png';
       }
     }
 
     const imageUrl = s3url + imagesrc;
 
+    /*
     return {
       gameHorseName: gameHorseName,
       register: register,
@@ -298,30 +399,48 @@ export default async function handler(
 
       //attributes: rawMetadata?.attributes,
 
-      /*
-      grade: rawMetadata
-        ? rawMetadata.attributes?.find(
-            (attribute: any) => attribute.trait_type === 'Grade'
-          )?.value
-        : 'D',
-      */
 
       grade: grade,
 
       accumulatedBalance: nft.accumulatedBalance,
     };
+    */
+
+    return {
+      gameHorseName: gameHorseName,
+      totalPricePaid: nft?.totalPricePaid,
+      paidToken: nft?.paidToken,
+      holder: nft?.holder,
+      contract: nft?.contract?.address,
+      symbol: nft?.contract?.symbol,
+
+      tokenId: nft?.tokenId,
+
+      imageUrl: imageUrl,
+
+      /*
+      grade: nft?.rawMetadata?.attributes?.find (
+        (attr: any) => attr?.trait_type === 'Grade'
+      )?.value,
+      */
+      grade: grade,
+    };
   });
 
   //const total = data.total;
 
-  const horsesCount = await getAllHorsesCount(grades, manes, holder);
+  ////// const horsesCount = await getAllHorsesCount(grades, manes, holder);
 
   res.status(200).json({
     nfts: formattedNfts ? formattedNfts : [],
+
+    ///nfts: data.nfts,
+
     //pageKey: nfts.pageKey,
     ///pageKey: null,
     pageKey: pageKey,
-    total: horsesCount?.total,
+
+    total: data.total,
   });
 
   ///return res.status(200).json({ success: true, nfts: response, pageKey: 'aaaaa' });

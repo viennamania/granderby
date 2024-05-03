@@ -35,6 +35,8 @@ export function useTable<T extends AnyObject>(
   /* get total count */
   const [totalCount, setTotalCount] = useState(0);
 
+  console.log('totalCount', totalCount);
+
   /*
    * Handle row selection
    */
@@ -132,7 +134,7 @@ export function useTable<T extends AnyObject>(
 
     setData(updatedData);
     */
-
+    /*
     const deleteData = async () => {
       setLoading(true);
 
@@ -184,6 +186,7 @@ export function useTable<T extends AnyObject>(
     };
 
     deleteData();
+    */
   }
 
   ///console.log("data======", data);
@@ -278,6 +281,8 @@ export function useTable<T extends AnyObject>(
     //mealTimeArray: string[] = [],
     //feedbackArray: string[] = [],
 
+    gradeArray: string[] = [],
+
     address: string = ''
   ) => {
     setLoading(true);
@@ -318,7 +323,10 @@ export function useTable<T extends AnyObject>(
         //mealTimeArray: mealTimeArray,
         //feedbackArray: feedbackArray,
 
-        grades: [],
+        //grades: [],
+
+        grades: gradeArray,
+
         manes: [],
         holder: address,
       }),
@@ -760,6 +768,8 @@ export function useTable<T extends AnyObject>(
     //mealTimeArray: string[] = [],
     //feedbackArray: string[] = [],
 
+    gradeArray: string[] = [],
+
     address: string = ''
   ) {
     ///setSearchTerm(searchValue);
@@ -783,6 +793,8 @@ export function useTable<T extends AnyObject>(
       //endDate,
       //mealTimeArray,
       //feedbackArray,
+
+      gradeArray,
 
       address
     );

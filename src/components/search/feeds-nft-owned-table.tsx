@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { Input } from '@/components/ui/input';
 
 import { useColumn } from '@/hooks/use-column';
@@ -40,6 +40,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useAddress } from '@thirdweb-dev/react';
 
 import toast from 'react-hot-toast';
+import { tr } from 'date-fns/locale';
 
 type ColumnTypes = {
   data?: any[];
@@ -145,6 +146,8 @@ export default function FeedsNftOwnedTable({
   const paramSortConfigDirection =
     searchParams.get('paramSortConfigDirection') || 'desc';
 
+  const paramGradeArray = searchParams.get('paramGradeArray') || 'U,S,A,B,C,D';
+
   /*
   const paramMealTimeArray = searchParams.get('paramMealTimeArray')
     || '아침,점심,저녁,간식,야식';
@@ -210,15 +213,30 @@ export default function FeedsNftOwnedTable({
     ]);
   */
 
+  const [gradeArray, setGradeArray] = useState([
+    ...(paramGradeArray as string)?.split(','),
+  ]);
+
+  console.log('gradeArray', gradeArray);
+
   ///console.log('currentPage=====', currentPage);
 
-  console.log('address', address);
+  //console.log('address', address);
 
   /*
 
   const [startDate, setStartDate] = useState<Date>(new Date( new Date().getFullYear(), new Date().getMonth(), 1 ));
   const [endDate, setEndDate] = useState<Date>(new Date( new Date().getFullYear(), new Date().getMonth()+1, 0 ));
   */
+
+  const [checkedAll, setCheckedAll] = useState(true);
+
+  const [checkedU, setCheckedU] = useState(gradeArray.includes('U'));
+  const [checkedS, setCheckedS] = useState(gradeArray.includes('S'));
+  const [checkedA, setCheckedA] = useState(gradeArray.includes('A'));
+  const [checkedB, setCheckedB] = useState(gradeArray.includes('B'));
+  const [checkedC, setCheckedC] = useState(gradeArray.includes('C'));
+  const [checkedD, setCheckedD] = useState(gradeArray.includes('D'));
 
   const onClickUser = (id: string) => {
     console.log('id', id);
@@ -253,6 +271,8 @@ export default function FeedsNftOwnedTable({
       //mealTimeArray,
       //feedbackArray,
 
+      gradeArray,
+
       address
     );
   };
@@ -282,6 +302,7 @@ export default function FeedsNftOwnedTable({
     data,
     pageSize,
     currentPage,
+
     []
 
     //startDate.toISOString(),
@@ -346,13 +367,15 @@ export default function FeedsNftOwnedTable({
         '&paramSortConfigKey=' +
         sortConfig.key +
         '&paramSortConfigDirection=' +
-        sortConfig.direction
+        sortConfig.direction +
+        //+ "&paramStartDate=" + startDate.toISOString()
+        //+ "&paramEndDate=" + endDate.toISOString()
 
-      //+ "&paramStartDate=" + startDate.toISOString()
-      //+ "&paramEndDate=" + endDate.toISOString()
+        //+ "&paramMealTimeArray=" + mealTimeArray.join(',')
+        //+ "&paramFeedbackArray=" + feedbackArray.join(',')
 
-      //+ "&paramMealTimeArray=" + mealTimeArray.join(',')
-      //+ "&paramFeedbackArray=" + feedbackArray.join(',')
+        '&paramGradeArray=' +
+        gradeArray.join(',')
     );
   }, [
     searchTerm,
@@ -362,6 +385,8 @@ export default function FeedsNftOwnedTable({
     sortConfig.direction,
 
     //, mealTimeArray, feedbackArray, startDate, endDate
+
+    gradeArray,
   ]);
 
   useEffect(() => {
@@ -386,10 +411,16 @@ export default function FeedsNftOwnedTable({
         //mealTimeArray,
         //feedbackArray,
 
+        gradeArray,
+
         address
       );
     }
-  }, [address]);
+  }, [address, searchTerm, pageSize, currentPage, gradeArray]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, pageSize, gradeArray]);
 
   /*
   useEffect(() => {
@@ -553,6 +584,8 @@ export default function FeedsNftOwnedTable({
                     //mealTimeArray,
                     //feedbackArray,
 
+                    gradeArray,
+
                     address
                   );
 
@@ -582,91 +615,238 @@ export default function FeedsNftOwnedTable({
           </div>
         </div>
 
-        {/*
-      <div className='w-full flex flex-wrap items-center justify-between gap-3'>
+        <div className=" flex w-full  flex-row items-center justify-center gap-5 ">
+          <h4 className="text-sm font-bold text-gray-900 dark:text-white">
+            Grades
+          </h4>
 
-        
-        <div className='flex flex-row items-center justify-center gap-3'>
-
-            <Input
-              type="search"
-              placeholder={searchPlaceholder}
-              value={searchTerm}
-
-              onClear={() => {
-
-                  //setCurrentPage(1);
-
-                  //handleSearch('')
-
-                }
+          <div className="mb-10 mt-10 flex flex-row  justify-between gap-5 ">
+            <Checkbox
+              label="All"
+              checked={
+                checkedU &&
+                checkedS &&
+                checkedA &&
+                checkedB &&
+                checkedC &&
+                checkedD
               }
+              // if checked this will check or uncheck all grades
+              onChange={() => {
+                setCheckedAll(!checkedAll);
 
-              onChange={(event) => {
+                if (checkedAll) {
+                  setCheckedU(false);
+                  setCheckedS(false);
+                  setCheckedA(false);
+                  setCheckedB(false);
+                  setCheckedC(false);
+                  setCheckedD(false);
 
-                //setCurrentPage(1);
-                //handleSearch(event.target.value)
+                  //setSelectedGrades([]);
 
-                setSearchTerm(event.target.value);
+                  setGradeArray([]);
+                } else {
+                  setCheckedU(true);
+                  setCheckedS(true);
+                  setCheckedA(true);
+                  setCheckedB(true);
+                  setCheckedC(true);
+                  setCheckedD(true);
 
-              } }
-              //clearable
+                  //setSelectedGrades(['U', 'S', 'A', 'B', 'C', 'D']);
 
-              prefix={<PiMagnifyingGlassBold className="h-4 w-4" />}
+                  setGradeArray(['U', 'S', 'A', 'B', 'C', 'D']);
+                }
+              }}
+              className="mr-5"
             />
 
+            <div className="flex flex-wrap gap-5">
+              <Checkbox
+                label="U"
+                checked={checkedU}
+                onChange={() => {
+                  setCheckedU(!checkedU);
+                  if (checkedU) {
+                    const temp = gradeArray?.filter(
+                      (item: any) => item !== 'U'
+                    );
+                    setGradeArray(temp);
+                  } else {
+                    setGradeArray([...gradeArray, 'U']);
+                  }
+                }}
+              />
 
-            <Button
-              onClick={() => {
-                setStartDate(new Date( new Date().getFullYear(), new Date().getMonth(), 1 ));
-                setEndDate(new Date( new Date().getFullYear(), new Date().getMonth()+1, 0 ));
-                setSearchTerm('');
-                setCurrentPage(1);
-                setPageSize(10);
-                setMealTimeArray(['아침', '점심', '저녁', '간식', '야식']);
-                setFeedbackArray(['미답변', '답변완료']);
+              <Checkbox
+                label="S"
+                checked={checkedS}
+                onChange={() => {
+                  setCheckedS(!checkedS);
+                  if (checkedS) {
+                    const temp = gradeArray?.filter(
+                      (item: any) => item !== 'S'
+                    );
+                    setGradeArray(temp);
+                  } else {
+                    setGradeArray([...gradeArray, 'S']);
+                  }
+                }}
+              />
 
-                handleSearch(
-                  '',
-                  10,
-                  1,
-                  new Date( new Date().getFullYear(), new Date().getMonth(), 1 ),
-                  new Date( new Date().getFullYear(), new Date().getMonth()+1, 0 ),
-                  ['아침', '점심', '저녁', '간식', '야식'],
-                  ['미답변', '답변완료'],
-                );
-              }}
-              className="w-24 bg-gray-200 text-black "
-            >
-              초기화
-            </Button>
+              <Checkbox
+                label="A"
+                checked={checkedA}
+                onChange={() => {
+                  setCheckedA(!checkedA);
+                  if (checkedA) {
+                    const temp = gradeArray?.filter(
+                      (item: any) => item !== 'A'
+                    );
+                    setGradeArray(temp);
+                  } else {
+                    setGradeArray([...gradeArray, 'A']);
+                  }
+                }}
+              />
 
-            <Button
-              onClick={() => {
+              <Checkbox
+                label="B"
+                checked={checkedB}
+                onChange={() => {
+                  setCheckedB(!checkedB);
+                  if (checkedB) {
+                    const temp = gradeArray?.filter(
+                      (item: any) => item !== 'B'
+                    );
+                    setGradeArray(temp);
+                  } else {
+                    setGradeArray([...gradeArray, 'B']);
+                  }
+                }}
+              />
 
-                setCurrentPage(1);
-                
-                handleSearch(
-                  searchTerm,
-                  pageSize,
-                  currentPage,
-                  startDate,
-                  endDate,
-                  mealTimeArray,
-                  feedbackArray,
-                  address,
-                );
-              }}
-              className="w-24 @lg:w-auto dark:bg-gray-100 dark:text-white dark:active:bg-gray-100"
-              >
-              <CiSearch className="me-1.5 h-[17px] w-[17px]" />
-              검색
-            </Button>
+              <Checkbox
+                label="C"
+                checked={checkedC}
+                onChange={() => {
+                  setCheckedC(!checkedC);
+                  if (checkedC) {
+                    const temp = gradeArray?.filter(
+                      (item: any) => item !== 'C'
+                    );
+                    setGradeArray(temp);
+                  } else {
+                    setGradeArray([...gradeArray, 'C']);
+                  }
+                }}
+              />
 
+              <Checkbox
+                label="D"
+                checked={checkedD}
+                onChange={() => {
+                  setCheckedD(!checkedD);
+                  if (checkedD) {
+                    const temp = gradeArray?.filter(
+                      (item: any) => item !== 'D'
+                    );
+                    setGradeArray(temp);
+                  } else {
+                    setGradeArray([...gradeArray, 'D']);
+                  }
+                }}
+              />
+            </div>
+          </div>
         </div>
 
-      </div>
-      */}
+        {/*
+        <div className='w-full flex flex-wrap items-center justify-between gap-3'>
+
+          
+          <div className='flex flex-row items-center justify-center gap-3'>
+
+              <Input
+                type="search"
+                placeholder={searchPlaceholder}
+                value={searchTerm}
+
+                onClear={() => {
+
+                    //setCurrentPage(1);
+
+                    //handleSearch('')
+
+                  }
+                }
+
+                onChange={(event) => {
+
+                  //setCurrentPage(1);
+                  //handleSearch(event.target.value)
+
+                  setSearchTerm(event.target.value);
+
+                } }
+                //clearable
+
+                prefix={<PiMagnifyingGlassBold className="h-4 w-4" />}
+              />
+
+
+              <Button
+                onClick={() => {
+                  setStartDate(new Date( new Date().getFullYear(), new Date().getMonth(), 1 ));
+                  setEndDate(new Date( new Date().getFullYear(), new Date().getMonth()+1, 0 ));
+                  setSearchTerm('');
+                  setCurrentPage(1);
+                  setPageSize(10);
+                  setMealTimeArray(['아침', '점심', '저녁', '간식', '야식']);
+                  setFeedbackArray(['미답변', '답변완료']);
+
+                  handleSearch(
+                    '',
+                    10,
+                    1,
+                    new Date( new Date().getFullYear(), new Date().getMonth(), 1 ),
+                    new Date( new Date().getFullYear(), new Date().getMonth()+1, 0 ),
+                    ['아침', '점심', '저녁', '간식', '야식'],
+                    ['미답변', '답변완료'],
+                  );
+                }}
+                className="w-24 bg-gray-200 text-black "
+              >
+                초기화
+              </Button>
+
+              <Button
+                onClick={() => {
+
+                  setCurrentPage(1);
+                  
+                  handleSearch(
+                    searchTerm,
+                    pageSize,
+                    currentPage,
+                    startDate,
+                    endDate,
+                    mealTimeArray,
+                    feedbackArray,
+                    address,
+                  );
+                }}
+                className="w-24 @lg:w-auto dark:bg-gray-100 dark:text-white dark:active:bg-gray-100"
+                >
+                <CiSearch className="me-1.5 h-[17px] w-[17px]" />
+                검색
+              </Button>
+
+          </div>
+
+        </div>
+        */}
 
         {/*
       <div className='flex flex-wrap items-center justify-center gap-3'>
