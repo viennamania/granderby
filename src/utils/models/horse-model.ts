@@ -730,6 +730,7 @@ export const getOneHorse = async (tokenId: string) => {
 
   let gameHorseKey = '';
 
+  // S Grade
   if (Number(tokenId) === 0) {
     gameHorseKey = '00000000';
     imagesrc = 'Hrs_00000000.png';
@@ -1350,13 +1351,77 @@ export const setHorseBalanceByTokenId = async (
 
 // set horse nft object by tokenId
 export const setHorseNftByTokenId = async (tokenId: string, nft: any) => {
-  const data = await HorseModel.findOneAndUpdate(
+  let grade = '';
+
+  // S Grade  0 ~ 10
+  if (Number(tokenId) >= 0 && Number(tokenId) <= 10) {
+    grade = 'S';
+  } else if (Number(tokenId) >= 11 && Number(tokenId) <= 58) {
+    grade = 'A';
+  } else if (Number(tokenId) >= 59 && Number(tokenId) <= 299) {
+    grade = 'B';
+  } else if (Number(tokenId) >= 300 && Number(tokenId) <= 599) {
+    grade = 'C';
+  } else if (Number(tokenId) >= 600 && Number(tokenId) < 1800) {
+    grade = 'D';
+  } else if (Number(tokenId) >= 1800 && Number(tokenId) < 1805) {
+    grade = 'U';
+  } else if (Number(tokenId) >= 1805 && Number(tokenId) < 1810) {
+    grade = 'S';
+  } else if (Number(tokenId) >= 1815 && Number(tokenId) < 1915) {
+    grade = 'A';
+  } else if (Number(tokenId) >= 1915 && Number(tokenId) < 2115) {
+    grade = 'B';
+  } else if (Number(tokenId) >= 2115 && Number(tokenId) < 2645) {
+    grade = 'C';
+  } else if (Number(tokenId) >= 2645 && Number(tokenId) < 3645) {
+    grade = 'D';
+  }
+  // grade U (5EA)
+  else if (Number(tokenId) >= 3645 && Number(tokenId) < 3650) {
+    grade = 'U';
+  } else if (Number(tokenId) >= 3650 && Number(tokenId) < 3664) {
+    grade = 'S';
+  } else if (Number(tokenId) >= 3664 && Number(tokenId) < 3764) {
+    grade = 'A';
+  } else if (Number(tokenId) >= 3764 && Number(tokenId) < 4114) {
+    grade = 'B';
+  } else if (Number(tokenId) >= 4114 && Number(tokenId) < 5090) {
+    grade = 'C';
+  } else if (Number(tokenId) >= 5090 && Number(tokenId) < 7079) {
+    grade = 'D';
+  }
+
+  // update nft and grade by tokenId
+  /*
+  const data = await HorseModel.updateOne(
     {
       tokenId: tokenId,
     },
     {
       $set: {
         nft: nft,
+        grade: grade,
+      },
+    },
+    {
+      upsert: true,
+    }
+
+  );
+  */
+  // updateOne didn't work
+
+  const client = await clientPromise;
+  const collection = client.db('granderby').collection('nfthorses');
+  const data = await collection.findOneAndUpdate(
+    {
+      tokenId: tokenId,
+    },
+    {
+      $set: {
+        nft: nft,
+        grade: grade,
       },
     },
     {

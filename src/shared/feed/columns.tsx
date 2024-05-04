@@ -182,13 +182,26 @@ export const getColumns = ({
 
     render: (_: string, row: any) => (
       <div className="flex items-center justify-center">
-        <Image
-          src={row?.imageUrl}
-          alt="Granderby Horse NFT"
-          width={150}
-          height={150}
-          className="rounded-lg"
-        />
+        {
+          // if grade is 'U' then show default image (/images/default-horse.png)
+          row?.grade === 'U' ? (
+            <Image
+              src="/images/default-horse.png"
+              alt="Granderby Horse NFT"
+              width={150}
+              height={150}
+              className="rounded-lg"
+            />
+          ) : (
+            <Image
+              src={row?.imageUrl}
+              alt="Granderby Horse NFT"
+              width={150}
+              height={150}
+              className="rounded-lg"
+            />
+          )
+        }
       </div>
     ),
   },

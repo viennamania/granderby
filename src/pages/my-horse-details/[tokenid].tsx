@@ -312,7 +312,10 @@ const MyHorseDetails: NextPageWithLayout<
 
       //setImageUrl(dataNft?.image);
 
-      setImageUrl(data?.horse?.image);
+      // if grade is 'U' then set default image (https://images/defaul-horse.png)
+      setImageUrl(
+        data?.horse?.grade === 'U' ? '/default-horse.png' : dataNft?.image
+      );
 
       setNft(data?.horse?.nft);
 
