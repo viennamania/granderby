@@ -979,7 +979,7 @@ export default function PortfolioScreen() {
         </div>
 
         {/* message list */}
-        {/* comming soon */}
+        {/* coming soon */}
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-2 rounded-lg border p-10">
           <span className="text-lg font-bold text-gray-600 xl:text-xl">
             Race Entry List

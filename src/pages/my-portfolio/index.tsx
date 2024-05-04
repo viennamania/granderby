@@ -45,6 +45,8 @@ import { useQRCode } from 'next-qrcode';
 import Button from '@/components/ui/button/button';
 import { InfoIcon } from '@/components/icons/info-icon';
 
+import { useRouter } from 'next/navigation';
+
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
@@ -54,6 +56,8 @@ export const getStaticProps: GetStaticProps = async () => {
 const PortfolioPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
+  const router = useRouter();
+
   const { layout } = useLayout();
 
   const address = useAddress();
@@ -118,12 +122,12 @@ const PortfolioPage: NextPageWithLayout<
               <Button
                 className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
                 onClick={() => {
-                  //router.push('/coin/grd');
-                  alert('Coming Soon');
+                  router.push('/coin/sell-gdp');
+                  //alert('Coming Soon');
                 }}
               >
                 <span className="flex items-center gap-2 font-extrabold">
-                  <InfoIcon className="h-5 w-5" /> Withraw
+                  <InfoIcon className="h-5 w-5" /> Swap
                 </span>
               </Button>
             </div>
