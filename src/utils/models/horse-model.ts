@@ -182,6 +182,7 @@ export const getAllHorses = async (
           $match: {
             holder: holder.toLowerCase(),
 
+            /*
             'nft.rawMetadata.attributes': {
               $elemMatch: {
                 trait_type: 'Grade',
@@ -189,6 +190,9 @@ export const getAllHorses = async (
                 value: { $in: grades },
               },
             },
+            */
+
+            grade: { $in: grades },
           },
         },
         {
@@ -232,6 +236,7 @@ export const getAllHorses = async (
     ///  total count search by holder and grades
     const totalData = await HorseModel.find({
       holder: holder.toLowerCase(),
+      /*
       'nft.rawMetadata.attributes': {
         $elemMatch: {
           trait_type: 'Grade',
@@ -239,6 +244,8 @@ export const getAllHorses = async (
           value: { $in: grades },
         },
       },
+      */
+      grade: { $in: grades },
     }).countDocuments();
 
     if (data?.length === 0) {
@@ -1317,10 +1324,18 @@ export const getBalanceByHolder = async (holder: string) => {
     */
   ]);
 
+  // total items
+  const total = await HorseModel.find({
+    holder: holder.toLowerCase(),
+  }).countDocuments();
+
   console.log('holder', holder);
   console.log('getBalanceByHolder data', data);
 
-  return { balance: data[0].total || 0 };
+  return {
+    balance: data[0].total || 0,
+    totalItems: total,
+  };
 };
 
 // setHorseBalanceByTokenId

@@ -430,6 +430,7 @@ export default function FeedsNftOwnedTable({
   } , [searchTerm, pageSize, startDate, endDate, mealTimeArray, feedbackArray]);
   */
 
+  const [totalItemsHorse, setTotalItemsHorse] = useState(0);
   const [totalBalanceHorse, setTotalBalanceHorse] = useState(0);
 
   useEffect(() => {
@@ -452,6 +453,7 @@ export default function FeedsNftOwnedTable({
       console.log('data======>', data);
 
       setTotalBalanceHorse(data?.balance);
+      setTotalItemsHorse(data?.totalItems);
     };
 
     if (address) {
@@ -464,6 +466,13 @@ export default function FeedsNftOwnedTable({
   return (
     <>
       <div className="flex flex-col items-start justify-center gap-3">
+        {/* Total Items */}
+        <div className="flex flex-row items-center justify-between gap-3">
+          <div className="text-xl font-bold text-gray-900 dark:text-white">
+            Total Items: {totalItemsHorse}
+          </div>
+        </div>
+
         <div className="flex flex-row items-center justify-center gap-3">
           <div className=" flex  text-xl font-bold  ">
             Total Allowance: {totalBalanceHorse.toLocaleString()}
