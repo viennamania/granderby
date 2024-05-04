@@ -42,6 +42,7 @@ import {
   useContract,
   usePaperWalletUserEmail,
   useDisconnect,
+  useTokenBalance,
 } from '@thirdweb-dev/react';
 
 import { darkTheme, lightTheme } from '@thirdweb-dev/react';
@@ -60,6 +61,11 @@ import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 import DefaultProfileImage from '@/assets/images/profile-default.png';
+
+import {
+  tokenContractAddressUSDT,
+  tokenContractAddressGDP,
+} from '@/config/contractAddresses';
 
 //import { FlagIcon } from 'flag-icons'
 
@@ -216,94 +222,225 @@ function HeaderRightArea() {
     checkUser();
   }, [address, emailQuery]);
 
-  return (
-    <div className="order-last flex shrink-0 items-center">
-      <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
-        {/*
-        <SearchButton
-          color="white"
-          className="shadow-main dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white"
-        />
-  */}
-      </div>
+  const { contract: tokenContractUSDT } = useContract(
+    tokenContractAddressUSDT,
+    'token'
+  );
+  const { data: tokenBalanceUSDT, isLoading: isLoadingBalanceUSDT } =
+    useTokenBalance(tokenContractUSDT, address);
 
-      <div className="hidden  items-center gap-2  lg:flex">
-        {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
-          <div>
-            {/*
-            <SearchButton variant="transparent" className="dark:text-white" />
+  const { contract: tokenContractGDP } = useContract(
+    tokenContractAddressGDP,
+    'token'
+  );
+
+  console.log('tokenContractGDP', tokenContractGDP);
+
+  const { data: tokenBalanceGDP, isLoading: isLoadingBalanceGDP } =
+    useTokenBalance(tokenContractGDP, address);
+
+  console.log('tokenBalanceGDP', tokenBalanceGDP);
+
+  return (
+    <div className="flex flex-col items-center gap-3 lg:flex-row lg:gap-5">
+      <div className=" flex shrink-0 items-center">
+        <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
+          {/*
+          <SearchButton
+            color="white"
+            className="shadow-main dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white"
+          />
+          */}
+        </div>
+
+        <div className="hidden  items-center gap-2  lg:flex">
+          {isMounted && ['xs', 'sm', 'md', 'lg'].indexOf(breakpoint) == -1 && (
+            <div>
+              {/*
+              <SearchButton variant="transparent" className="dark:text-white" />
+            */}
+
+              {/*address && (
+                <button
+                  //onClick={() => setIsOpenLng(!isOpenLng)}
+                  type="button"
+                  className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  //id={LANGUAGE_SELECTOR_ID}
+                  //aria-expanded={isOpenLng}
+                >
+                  My Page
+                </button>
+              )*/}
+            </div>
+          )}
+
+          {/*
+          <NotificationButton />
           */}
 
-            {/*address && (
+          {/*
+          <WalletConnect />
+          */}
+
+          {/*
+          {address ? (
+            <></>
+          ) : (
+          */}
+
+          {!isLoadingContract && !address && (
+            <ConnectWallet
+              theme="light"
+              welcomeScreen={() => {
+                return (
+                  <div className=" mt-10 flex flex-col items-center justify-center p-20">
+                    <Image
+                      src="/images/logo.png"
+                      alt="logo"
+                      width={300}
+                      height={300}
+                    />
+                  </div>
+                );
+              }}
+              btnTitle="Login"
+            />
+          )}
+        </div>
+
+        {isLoadingContract && !address && (
+          <span className="text-lg text-green-600">Loading Wallet Info...</span>
+        )}
+
+        {address && (
+          <>
+            <div className="items-cneter ml-2 flex">
               <button
-                //onClick={() => setIsOpenLng(!isOpenLng)}
+                onClick={() => setIsOpenLogout(!isOpenLogout)}
                 type="button"
-                className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                //id={LANGUAGE_SELECTOR_ID}
-                //aria-expanded={isOpenLng}
+                className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                aria-expanded={isOpenLogout}
               >
-                My Page
-              </button>
-            )*/}
-          </div>
-        )}
+                {/* profile image */}
+                <Image
+                  src={DefaultProfileImage}
+                  alt="avatar"
+                  width={30}
+                  height={30}
+                />
 
-        {/*
-        <NotificationButton />
-        */}
-
-        {/*
-        <WalletConnect />
-        */}
-
-        {/*
-        {address ? (
-          <></>
-        ) : (
-        */}
-
-        {!isLoadingContract && !address && (
-          <ConnectWallet
-            theme="light"
-            welcomeScreen={() => {
-              return (
-                <div className=" mt-10 flex flex-col items-center justify-center p-20">
-                  <Image
-                    src="/images/logo.png"
-                    alt="logo"
-                    width={300}
-                    height={300}
+                <span className="ml-2 ">{address?.substring(0, 6)}...</span>
+                <svg
+                  className="-me-1 ms-2 h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
+                    clipRule="evenodd"
                   />
+                </svg>
+              </button>
+            </div>
+
+            {isOpenLogout && (
+              <div
+                className="absolute right-40 mt-40 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+                role="menu"
+                aria-orientation="vertical"
+              >
+                <div className="grid grid-cols-1 gap-2 py-1" role="none">
+                  <button
+                    onClick={() => {
+                      setIsOpenLogout(false);
+                      router.push('/mypage');
+                    }}
+                    className="block items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
+                    role="menuitem"
+                  >
+                    {/*
+                            <FlagIcon countryCode={language.key}/>
+                            */}
+                    &nbsp;<span className="truncate">MY PAGE</span>
+                  </button>
+
+                  <button
+                    onClick={disconnect}
+                    className="block  items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
+                    role="menuitem"
+                  >
+                    {/*
+                            <FlagIcon countryCode={language.key}/>
+                            */}
+                    &nbsp;<span className="truncate">LOGOUT</span>
+                  </button>
                 </div>
-              );
-            }}
-            btnTitle="Login"
-          />
+              </div>
+            )}
+
+            {/* message view button */}
+            {/* route to message page */}
+            <div className="items-cneter ml-2 flex">
+              <button
+                onClick={() => router.push('/mypage/inbox/game')}
+                type="button"
+                className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                {/* message icon MailOutlineIcon */}
+                <MailOutlineIcon className="h-5 w-5" />
+
+                {/* notify icon */}
+                {/* if new message then show notify icon */}
+                {/*
+                <span className="ml-2">
+                  <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
+                </span>
+                */}
+              </button>
+            </div>
+
+            <div className="items-cneter ml-2 flex">
+              <button
+                onClick={() => router.push('/mypage/inbox/gift')}
+                type="button"
+                className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                {/* message icon CardGiftcardIcon */}
+                <CardGiftcardIcon className="h-5 w-5" />
+
+                {/* notify icon */}
+                {/* if new message then show notify icon */}
+                {/*
+                <span className="ml-2">
+                  <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
+                </span>
+                */}
+              </button>
+            </div>
+          </>
         )}
-      </div>
 
-      {isLoadingContract && !address && (
-        <span className="text-lg text-green-600">Loading Wallet Info...</span>
-      )}
-
-      {address && (
-        <>
+        {!address && (
           <div className="items-cneter ml-2 flex">
             <button
-              onClick={() => setIsOpenLogout(!isOpenLogout)}
+              onClick={() => setIsOpenLng(!isOpenLng)}
               type="button"
               className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              aria-expanded={isOpenLogout}
+              id={LANGUAGE_SELECTOR_ID}
+              aria-expanded={isOpenLng}
             >
-              {/* profile image */}
-              <Image
-                src={DefaultProfileImage}
-                alt="avatar"
-                width={30}
-                height={30}
-              />
-
-              <span className="ml-2 ">{address?.substring(0, 6)}...</span>
+              {selectedLanguage?.key === 'kr' ? (
+                <span className="fi fis fi-kr " />
+              ) : (
+                <span className="fi fis fi-us " />
+              )}
+              {/*
+              <FlagIcon countryCode={selectedLanguage.key}/>
+              */}
+              &nbsp;{selectedLanguage?.name}
               <svg
                 className="-me-1 ms-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -319,169 +456,72 @@ function HeaderRightArea() {
               </svg>
             </button>
           </div>
+        )}
 
-          {isOpenLogout && (
-            <div
-              className="absolute right-40 mt-40 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
-              role="menu"
-              aria-orientation="vertical"
-            >
-              <div className="grid grid-cols-1 gap-2 py-1" role="none">
-                <button
-                  onClick={() => {
-                    setIsOpenLogout(false);
-                    router.push('/mypage');
-                  }}
-                  className="block items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
-                  role="menuitem"
-                >
-                  {/*
-                          <FlagIcon countryCode={language.key}/>
-                          */}
-                  &nbsp;<span className="truncate">MY PAGE</span>
-                </button>
-
-                <button
-                  onClick={disconnect}
-                  className="block  items-center px-4 py-2 text-start text-sm hover:bg-gray-100"
-                  role="menuitem"
-                >
-                  {/*
-                          <FlagIcon countryCode={language.key}/>
-                          */}
-                  &nbsp;<span className="truncate">LOGOUT</span>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* message view button */}
-          {/* route to message page */}
-          <div className="items-cneter ml-2 flex">
-            <button
-              onClick={() => router.push('/mypage/inbox/game')}
-              type="button"
-              className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              {/* message icon MailOutlineIcon */}
-              <MailOutlineIcon className="h-5 w-5" />
-
-              {/* notify icon */}
-              {/* if new message then show notify icon */}
-              {/*
-              <span className="ml-2">
-                <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
-              </span>
-              */}
-            </button>
-          </div>
-
-          <div className="items-cneter ml-2 flex">
-            <button
-              onClick={() => router.push('/mypage/inbox/gift')}
-              type="button"
-              className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              {/* message icon CardGiftcardIcon */}
-              <CardGiftcardIcon className="h-5 w-5" />
-
-              {/* notify icon */}
-              {/* if new message then show notify icon */}
-              {/*
-              <span className="ml-2">
-                <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
-              </span>
-              */}
-            </button>
-          </div>
-        </>
-      )}
-
-      {!address && (
-        <div className="items-cneter ml-2 flex">
-          <button
-            onClick={() => setIsOpenLng(!isOpenLng)}
-            type="button"
-            className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            id={LANGUAGE_SELECTOR_ID}
-            aria-expanded={isOpenLng}
+        {isOpenLng && (
+          <div
+            className="absolute right-5 mt-40 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby={LANGUAGE_SELECTOR_ID}
           >
-            {selectedLanguage?.key === 'kr' ? (
-              <span className="fi fis fi-kr " />
-            ) : (
-              <span className="fi fis fi-us " />
-            )}
-            {/*
-            <FlagIcon countryCode={selectedLanguage.key}/>
-            */}
-            &nbsp;{selectedLanguage?.name}
-            <svg
-              className="-me-1 ms-2 h-5 w-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-      )}
-
-      {isOpenLng && (
-        <div
-          className="absolute right-5 mt-40 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby={LANGUAGE_SELECTOR_ID}
-        >
-          <div className="grid grid-cols-1 gap-2 py-1" role="none">
-            {languages.map((language, index) => {
-              return (
-                <button
-                  key={language.key}
-                  onClick={() => handleLanguageChange(language)}
-                  className={`${
-                    selectedLanguage?.key === language.key
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-700'
-                  } block inline-flex items-center px-4 py-2 text-start text-sm hover:bg-gray-100 ${
-                    index % 2 === 0 ? 'rounded-r' : 'rounded-l'
-                  }`}
-                  role="menuitem"
-                >
-                  {/*
-                          <FlagIcon countryCode={language.key}/>
-                          */}
-                  {language.key === 'kr' ? (
-                    <span className="fi fis fi-kr " />
-                  ) : (
-                    <span className="fi fis fi-us " />
-                  )}
-                  &nbsp;<span className="truncate">{language.name}</span>
-                </button>
-              );
-            })}
+            <div className="grid grid-cols-1 gap-2 py-1" role="none">
+              {languages.map((language, index) => {
+                return (
+                  <button
+                    key={language.key}
+                    onClick={() => handleLanguageChange(language)}
+                    className={`${
+                      selectedLanguage?.key === language.key
+                        ? 'bg-gray-100 text-gray-900'
+                        : 'text-gray-700'
+                    } block inline-flex items-center px-4 py-2 text-start text-sm hover:bg-gray-100 ${
+                      index % 2 === 0 ? 'rounded-r' : 'rounded-l'
+                    }`}
+                    role="menuitem"
+                  >
+                    {/*
+                            <FlagIcon countryCode={language.key}/>
+                            */}
+                    {language.key === 'kr' ? (
+                      <span className="fi fis fi-kr " />
+                    ) : (
+                      <span className="fi fis fi-us " />
+                    )}
+                    &nbsp;<span className="truncate">{language.name}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
+        )}
+
+        <div className="flex items-center lg:hidden">
+          {/*
+          <NotificationButton />
+      */}
+
+          <Hamburger
+            isOpen={isOpen}
+            onClick={() => openDrawer('DRAWER_MENU')}
+            color="white"
+            className="shadow-main ltr:ml-3.5 rtl:mr-3.5 dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white ltr:sm:ml-5 rtl:sm:mr-5"
+          />
+        </div>
+      </div>
+
+      {address && (
+        <div className="flex flex-row items-center gap-3 lg:flex-col lg:gap-1">
+          <span className="text-xs lg:text-sm">
+            {Number(tokenBalanceGDP?.displayValue).toFixed(2)}{' '}
+            {tokenBalanceGDP?.symbol}
+          </span>
+          <span className="text-xs lg:text-sm">
+            {Number(tokenBalanceUSDT?.displayValue).toFixed(2)}{' '}
+            {tokenBalanceUSDT?.symbol}
+          </span>
         </div>
       )}
-
-      <div className="flex items-center lg:hidden">
-        {/*
-        <NotificationButton />
-    */}
-
-        <Hamburger
-          isOpen={isOpen}
-          onClick={() => openDrawer('DRAWER_MENU')}
-          color="white"
-          className="shadow-main ltr:ml-3.5 rtl:mr-3.5 dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white ltr:sm:ml-5 rtl:sm:mr-5"
-        />
-      </div>
     </div>
   );
 }
@@ -499,8 +539,8 @@ export function Header() {
       className={cn(
         'sticky top-0 z-30 flex w-full items-center justify-between px-4 transition-all duration-300 ltr:right-0 rtl:left-0 sm:px-6 lg:px-8 3xl:px-10',
         isMounted && windowScroll.y > 10
-          ? 'h-16 bg-gradient-to-b from-white to-white/80 shadow-card backdrop-blur dark:from-dark dark:to-dark/80 sm:h-20'
-          : 'h-16 bg-body dark:bg-dark sm:h-24'
+          ? 'h-24  bg-gradient-to-b from-white to-white/80 shadow-card backdrop-blur dark:from-dark dark:to-dark/80 sm:h-24 '
+          : 'h-24 bg-body dark:bg-dark sm:h-24'
       )}
     >
       <div className="mx-auto flex w-full max-w-[2160px] items-center justify-between">
@@ -516,7 +556,7 @@ export function Header() {
 
           {/*
           <Logo />
-      */}
+          */}
 
           <button
             className="flex flex-row items-center justify-center gap-2"
