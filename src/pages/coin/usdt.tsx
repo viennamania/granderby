@@ -400,7 +400,7 @@ const WalletPage: NextPageWithLayout<
       />
 
       <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-sky-600 pb-5 pt-5 text-white">
-        <div className="text-2xl font-bold">USDC</div>
+        <div className="text-2xl font-bold">USDT</div>
       </div>
 
       <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">

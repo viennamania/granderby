@@ -514,10 +514,29 @@ export default function FeedsCoinOwned(
               )}{' '}
               {tokenBalanceGDP?.symbol}
             </div>
+            {/*
+              goto wallet
+              /coin/grd
+            */}
+            <button
+              className="ml-10 flex flex-row items-center justify-center gap-3"
+              onClick={() => {
+                //closeInventories();
+                ///router.push('/coin/sugar');
 
+                router.push('/coin/gdp');
+
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+
+            {/*
             <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
               0(0.0%)
             </div>
+            */}
 
             {/*
             <button
@@ -559,9 +578,22 @@ export default function FeedsCoinOwned(
               {tokenBalanceUSDT?.symbol}
             </div>
 
+            <button
+              className="ml-10 flex flex-row items-center justify-center gap-3"
+              onClick={() => {
+                closeInventories();
+                router.push('/coin/usdt');
+                ///router.push('/horse-details/' + nft?.metadata?.id);
+              }}
+            >
+              <ChevronForward className="mr-10 rtl:rotate-180" />
+            </button>
+
+            {/*
             <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
               0(0.0%)
             </div>
+            */}
 
             {/*
             <button
