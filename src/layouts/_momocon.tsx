@@ -516,10 +516,12 @@ function HeaderRightArea() {
             {Number(tokenBalanceGDP?.displayValue).toFixed(2)}{' '}
             {tokenBalanceGDP?.symbol}
           </span>
+          {/*
           <span className="text-xs lg:text-sm">
             {Number(tokenBalanceUSDT?.displayValue).toFixed(2)}{' '}
             {tokenBalanceUSDT?.symbol}
           </span>
+          */}
         </div>
       )}
     </div>

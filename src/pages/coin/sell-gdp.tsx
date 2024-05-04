@@ -81,7 +81,7 @@ import {
 import { BigNumber, ethers } from 'ethers';
 
 import styles from '@/styles/Home.module.css';
-import { add } from 'lodash';
+import { add, set } from 'lodash';
 
 import CoinInput from '@/components/ui/coin-input';
 
@@ -149,6 +149,8 @@ const WalletPage: NextPageWithLayout<
   const [toAddress, setToAddress] = useState(
     '0x26597616ed4e44379ba0Eb1EB86C4cFd82606F3E'
   );
+
+  const [receiverAddress, setReceiverAddress] = useState('');
 
   const [amount, setAmount] = useState(0);
 
@@ -471,16 +473,16 @@ const WalletPage: NextPageWithLayout<
             </div>
             */}
 
-            {/* NFT Contract Address Field */}
+            {/* receiver wallet address */}
             <input
-              className="mb-2 hidden w-full text-black"
+              className="mb-2 w-full text-black"
               type="text"
-              name="toAddress"
-              placeholder="To Address"
-              value={toAddress}
-              //onChange={(e) => {
-              //  setToAddress(e.target.value);
-              //}}
+              name="receiverAddress"
+              placeholder="Address for USDT"
+              value={receiverAddress}
+              onChange={(e) => {
+                setReceiverAddress(e.target.value);
+              }}
             />
 
             {/*
@@ -545,7 +547,7 @@ const WalletPage: NextPageWithLayout<
                 <span className="text-lg">1 USDT = 100,000 GDP</span>
                 {amount && amount > 0 && (
                   <span className="text-lg font-bold lg:text-xl">
-                    {amount} GDP = {(amount / 100000).toFixed(2)} USDT
+                    Receive Amount: {(amount / 100000).toFixed(2)} USDT
                   </span>
                 )}
               </div>
@@ -581,6 +583,16 @@ const WalletPage: NextPageWithLayout<
                 ) : (
                   <>
                     <Web3Button
+                      // if receiver address is empty, disable the button
+
+                      //disabled={receiverAddress === '' ? true : false}
+
+                      isDisabled={receiverAddress === '' ? true : false}
+                      className={
+                        receiverAddress === ''
+                          ? 'cursor-not-allowed bg-gray-300'
+                          : ''
+                      }
                       theme="light"
                       contractAddress={tokenContractAddressGDP}
                       action={(contract) => {

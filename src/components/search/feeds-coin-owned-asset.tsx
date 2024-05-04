@@ -557,6 +557,7 @@ export default function FeedsCoinOwned(
           </div>
 
           <div className="ml-10 flex flex-row items-center justify-start">
+            {/*
             <div className=" flex  w-10 ">
               <Image
                 //src="/images/icon-sugar.png"
@@ -567,6 +568,7 @@ export default function FeedsCoinOwned(
               />
             </div>
 
+            {/*
             <div className=" text-right text-2xl font-bold ">
               {isLoadingBalanceUSDT ? (
                 <span className="text-xs">Loading...</span>
@@ -588,6 +590,7 @@ export default function FeedsCoinOwned(
             >
               <ChevronForward className="mr-10 rtl:rotate-180" />
             </button>
+            */}
 
             {/*
             <div className="ml-2 w-14 text-right text-xs font-bold text-black xl:w-48 xl:text-lg ">
