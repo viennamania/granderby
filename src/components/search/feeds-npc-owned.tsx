@@ -383,7 +383,7 @@ export default function Feeds({ className }: { className?: string }) {
                         src={
                           nft?.media[0]?.gateway
                             ? nft?.media[0]?.gateway
-                            : '/default-nft.png'
+                            : '/default-horse.png'
                         }
                         alt="nft"
                         height={300}

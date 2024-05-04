@@ -436,18 +436,18 @@ const MyHorseDetails: NextPageWithLayout<
                   src={
                     nftMetadata?.metadata?.image
                       ? nftMetadata?.metadata?.image
-                      : '/default-nft.png'
+                      : '/default-horse.png'
                   }
                   */
                   /*
                   src={
                     nft?.rawMetadata?.image
                       ? nft?.rawMetadata?.image
-                      : '/default-nft.png'
+                      : '/default-horse.png'
                   }
                   */
 
-                  src={imageUrl ? imageUrl : '/default-nft.png'}
+                  src={imageUrl ? imageUrl : '/default-horse.png'}
                   alt="nft"
                   width={1024}
                   height={1024}

@@ -148,7 +148,7 @@ export default function Feeds({ className }: { className?: string }) {
                   }
                 >
                   <Image
-                    src={nft?.media ? nft?.media : '/default-nft.png'}
+                    src={nft?.media ? nft?.media : '/default-horse.png'}
                     alt={nft?.title}
                     height={500}
                     width={500}

@@ -252,7 +252,7 @@ function SinglePrice(tokenid: any) {
                   src={
                     nftMetadata?.metadata?.image
                       ? nftMetadata?.metadata?.image
-                      : '/default-nft.png'
+                      : '/default-horse.png'
                   }
                   alt="nft"
                   width={1024}

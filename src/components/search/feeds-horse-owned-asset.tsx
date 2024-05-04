@@ -450,7 +450,7 @@ export default function OwnedFeeds(
                             src={
                               nft?.metadata?.image
                                 ? nft?.metadata?.image
-                                : '/default-nft.png'
+                                : '/default-horse.png'
                             }
                             alt="nft"
                             height={300}
@@ -560,7 +560,7 @@ export default function OwnedFeeds(
                           src={
                             nft?.metadata?.image
                               ? nft?.metadata?.image
-                              : '/default-nft.png'
+                              : '/default-horse.png'
                           }
                           alt="nft"
                           height={200}

@@ -205,7 +205,7 @@ export default function OwnedFeeds(
                 }}
               >
                 <Image
-                  src={nft?.media ? nft?.media : '/default-nft.png'}
+                  src={nft?.media ? nft?.media : '/default-horse.png'}
                   alt={nft?.title}
                   height={300}
                   width={300}

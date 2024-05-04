@@ -695,7 +695,7 @@ export default function NftSinglePrice({
                     src={
                       nftMetadata?.metadata?.image
                         ? nftMetadata?.metadata?.image
-                        : '/default-nft.png'
+                        : '/default-horse.png'
                     }
                     alt="nft"
                     width={300}
@@ -884,7 +884,7 @@ export default function NftSinglePrice({
                       src={
                         nftMetadata?.metadata?.image
                           ? nftMetadata?.metadata?.image
-                          : '/default-nft.png'
+                          : '/default-horse.png'
                       }
                       alt="nft"
                       width={300}

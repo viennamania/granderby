@@ -385,7 +385,7 @@ export function useTable<T extends AnyObject>(
       })
     );
 
-    setTotalCount(posts?.total);
+    setTotalCount(posts?.total || 0);
 
     setLoading(false);
   };

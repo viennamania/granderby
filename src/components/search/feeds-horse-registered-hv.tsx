@@ -388,7 +388,7 @@ export default function RegisteredFeeds({ className }: { className?: string }) {
                         src={
                           nft?.media[0]?.gateway
                             ? nft?.media[0]?.gateway
-                            : '/default-nft.png'
+                            : '/default-horse.png'
                         }
                         alt={nft?.title}
                         height={300}

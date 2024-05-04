@@ -437,7 +437,7 @@ export default function NftSinglePrice({
                     src={
                       nft?.media[0]?.gateway
                         ? nft?.medial[0]?.gateway
-                        : '/default-nft.png'
+                        : '/default-horse.png'
                     }
                     //src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_00000000.png"
 
@@ -660,7 +660,7 @@ export default function NftSinglePrice({
                     src={
                       nft?.media[0]?.gateway
                         ? nft?.media[0]?.gateway
-                        : '/default-nft.png'
+                        : '/default-horse.png'
                     }
                     alt="nft"
                     width={1024}

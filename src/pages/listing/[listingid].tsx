@@ -345,7 +345,7 @@ function SinglePrice(listingid: any) {
               src={
                 directListing.asset.image
                   ? directListing.asset.image
-                  : '/default-nft.png'
+                  : '/default-horse.png'
               }
               alt="nft"
               width={1024}

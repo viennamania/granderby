@@ -179,10 +179,11 @@ export const getColumns = ({
     dataIndex: 'imageUrl',
     key: 'imageUrl',
     width: 200,
-    render: (value: string) => (
+
+    render: (_: string, row: any) => (
       <div className="flex items-center justify-center">
         <Image
-          src={value}
+          src={row?.imageUrl}
           alt="Granderby Horse NFT"
           width={150}
           height={150}

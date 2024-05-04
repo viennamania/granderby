@@ -209,7 +209,7 @@ export default function OwnedFeeds({ className }: { className?: string }) {
                       src={
                         nft?.metadata?.image
                           ? nft?.metadata?.image
-                          : '/default-nft.png'
+                          : '/default-horse.png'
                       }
                       alt="nft"
                       height={20}

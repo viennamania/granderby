@@ -266,7 +266,7 @@ export default function SaleFeeds({ className }: { className?: string }) {
                     src={
                       listing.asset?.image
                         ? listing.asset?.image
-                        : '/default-nft.png'
+                        : '/default-horse.png'
                     }
                     alt="nft"
                     height={300}

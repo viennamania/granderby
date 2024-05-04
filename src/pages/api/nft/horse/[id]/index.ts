@@ -533,7 +533,11 @@ export default async function handler(
   const drivinghabits = 0;
   const record = 0;
 
-  const imagesrcUrl = s3url + imagesrc;
+  let imagesrcUrl = s3url + imagesrc;
+
+  if (grade === 'U') {
+    imagesrcUrl = 'https://granderby.io/images/default-horse.png';
+  }
 
   //const asset = imagesrc.substring(-3);
 

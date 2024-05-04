@@ -936,15 +936,15 @@ function SinglePrice(tokenid: any) {
                     src={
                       nftMetadata?.metadata?.image
                         ? nftMetadata?.metadata?.image
-                        : '/default-nft.png'
+                        : '/default-horse.png'
                     }
                     */
                     src={
                       //nftMetadata?.rawMetadata?.image
                       //  ? nftMetadata?.rawMetadata?.image
-                      //  : '/default-nft.png'
+                      //  : '/default-horse.png'
 
-                      imageSrc ? imageSrc : '/default-nft.png'
+                      imageSrc ? imageSrc : '/default-horse.png'
                     }
                     alt="nft"
                     width={1024}

@@ -264,7 +264,7 @@ export default function Feeds({ className }: { className?: string }) {
                       src={
                         listing.asset?.image
                           ? listing.asset?.image
-                          : '/default-nft.png'
+                          : '/default-horse.png'
                       }
                       alt="nft"
                       height={500}
