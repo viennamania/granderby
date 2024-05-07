@@ -189,38 +189,67 @@ export default async function handler(
 
         gameHorseName = '0020' + formattedNumber;
       } else if (Number(tokenId) >= 1800 && Number(tokenId) < 1805) {
-        var formattedNumber = Number(tokenId) - 1700 + '';
+        // 1800 => 99990000
+        // 1801 => 99990001
+        // 1802 => 99990002
+        // 1803 => 99990003
+        // 1804 => 99990004
 
-        while (formattedNumber.length < 5) {
+        var formattedNumber = Number(tokenId) - 1800 + '';
+
+        while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
         }
 
-        imagesrc = 'Hrs_' + '000' + formattedNumber + '.png';
-        grade = 'D';
+        imagesrc = 'Hrs_' + '9999' + formattedNumber + '.png';
+        grade = 'U';
 
-        gameHorseName = '000' + formattedNumber;
+        gameHorseName = '9999' + formattedNumber;
       } else if (Number(tokenId) >= 1805 && Number(tokenId) < 1810) {
-        var formattedNumber = Number(tokenId) - 1700 + '';
+        // 1805 => 00000011
+        // 1806 => 00000012
+        // 1807 => 00000013
+        // 1808 => 00000014
+        // 1809 => 00000015
 
-        while (formattedNumber.length < 5) {
+        var formattedNumber = Number(tokenId) - 1805 + 11 + '';
+
+        while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
         }
 
         imagesrc = 'Hrs_' + '0000' + formattedNumber + '.png';
-        grade = 'D';
-
+        grade = 'S';
         gameHorseName = '0000' + formattedNumber;
-      } else if (Number(tokenId) >= 1815 && Number(tokenId) < 1915) {
-        var formattedNumber = Number(tokenId) - 1700 + '';
+      } else if (Number(tokenId) >= 1810 && Number(tokenId) < 1815) {
+        // 1810 => 00201200
+        // 1811 => 00201201
+        // 1812 => 00201202
+        // 1813 => 00201203
+        // 1814 => 00201204
 
-        while (formattedNumber.length < 3) {
+        var formattedNumber = Number(tokenId) - 1810 + 1200 + '';
+
+        while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
         }
 
-        imagesrc = 'Hrs_' + '00001' + formattedNumber + '.png';
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
         grade = 'D';
+        gameHorseName = '0020' + formattedNumber;
+      } else if (Number(tokenId) >= 1815 && Number(tokenId) < 1915) {
+        // 1815 => 00001115
+        // 1816 => 00001116
 
-        gameHorseName = '00001' + formattedNumber;
+        var formattedNumber = Number(tokenId) - 1815 + 1115 + '';
+
+        while (formattedNumber.length < 4) {
+          formattedNumber = '0' + formattedNumber;
+        }
+
+        imagesrc = 'Hrs_' + '0000' + formattedNumber + '.png';
+        grade = 'A';
+        gameHorseName = '0000' + formattedNumber;
       } else if (Number(tokenId) >= 1915 && Number(tokenId) < 2115) {
         var formattedNumber = Number(tokenId) - 1915 + 241 + '';
         while (formattedNumber.length < 4) {
@@ -301,8 +330,6 @@ export default async function handler(
         }
         formattedNumber = '000' + formattedNumber;
 
-        console.log('formattedNumber', formattedNumber);
-
         gameHorseName = '' + formattedNumber + '';
 
         imagesrc = 'Hrs_' + formattedNumber + '.png';
@@ -314,8 +341,6 @@ export default async function handler(
         }
         formattedNumber = '00001' + formattedNumber;
         //formattedNumber = '00000000';
-
-        console.log('formattedNumber', formattedNumber);
 
         gameHorseName = '' + formattedNumber + '';
 
@@ -329,8 +354,6 @@ export default async function handler(
         }
         formattedNumber = '0002' + formattedNumber;
 
-        console.log('formattedNumber', formattedNumber);
-
         gameHorseName = '' + formattedNumber + '';
 
         imagesrc = 'Hrs_' + formattedNumber + '.png';
@@ -343,8 +366,6 @@ export default async function handler(
         }
         formattedNumber = '0010' + formattedNumber;
 
-        console.log('formattedNumber', formattedNumber);
-
         gameHorseName = '' + formattedNumber + '';
 
         imagesrc = 'Hrs_' + formattedNumber + '.png';
@@ -356,8 +377,6 @@ export default async function handler(
           formattedNumber = '0' + formattedNumber;
         }
         formattedNumber = '0020' + formattedNumber;
-
-        console.log('formattedNumber', formattedNumber);
 
         gameHorseName = '' + formattedNumber + '';
 
@@ -430,6 +449,8 @@ export default async function handler(
   //const total = data.total;
 
   ////// const horsesCount = await getAllHorsesCount(grades, manes, holder);
+
+  //console.log('getHorses formattedNfts', formattedNfts);
 
   res.status(200).json({
     nfts: formattedNfts ? formattedNfts : [],

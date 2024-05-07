@@ -194,10 +194,13 @@ export default function Feeds({
 
             ///grades: selectedGradesStorage,
 
+            //grades: selectedGrades ?? [],
+
             grades: selectedGrades ?? [],
 
             manes: selectedManesStorage ?? [],
-            holder: holderAddress,
+
+            ///holder: holderAddress,
 
             ///sort: selectedGSortStorage,
 
@@ -332,8 +335,8 @@ export default function Feeds({
                     }}
                   >
                     <Image
-                      src={nft?.media ? nft?.media : '/default-horse.png'}
-                      alt={nft?.title}
+                      src={nft?.imageUrl || '/default-horse.png'}
+                      alt={nft?.tokenId}
                       height={300}
                       width={300}
                       loading="lazy"
@@ -357,7 +360,7 @@ export default function Feeds({
 
                     <div className=" h-18 mb-2  mt-4 flex w-full  flex-col items-center  justify-center  gap-1 xl:h-24   ">
                       <div className="text-sm font-bold ">
-                        #{nft?.gameTitle}
+                        #{nft?.gameHorseName}
                       </div>
 
                       <div className="ml-5 flex w-full flex-row items-center justify-start gap-1">

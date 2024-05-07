@@ -181,74 +181,79 @@ export default async function handler(
 
   let imagesrc = '';
 
-  if (Number(req.query.id) === 0) {
-    imagesrc = 'Hrs_00000000.png';
+  const tokenId = Number(req.query.id);
+
+  let gameHorseKey = '';
+
+  if (tokenId === 0) {
+    gameHorseKey = '00000000';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 1) {
-    imagesrc = 'Hrs_00000001.png';
+  } else if (tokenId === 1) {
+    gameHorseKey = '00000001';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 2) {
-    imagesrc = 'Hrs_00000002.png';
+  } else if (tokenId === 2) {
+    gameHorseKey = '00000002';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 3) {
-    imagesrc = 'Hrs_00000003.png';
+  } else if (tokenId === 3) {
+    gameHorseKey = '00000003';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 4) {
-    imagesrc = 'Hrs_00000004.png';
+  } else if (tokenId === 4) {
+    gameHorseKey = '00000004';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 5) {
-    imagesrc = 'Hrs_00000005.png';
+  } else if (tokenId === 5) {
+    gameHorseKey = '00000005';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 6) {
-    imagesrc = 'Hrs_00000006.png';
+  } else if (tokenId === 6) {
+    gameHorseKey = '00000006';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 7) {
-    imagesrc = 'Hrs_00000007.png';
+  } else if (tokenId === 7) {
+    gameHorseKey = '00000007';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 8) {
-    imagesrc = 'Hrs_00000008.png';
+  } else if (tokenId === 8) {
+    gameHorseKey = '00000008';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 9) {
-    imagesrc = 'Hrs_00000009.png';
+  } else if (tokenId === 9) {
+    gameHorseKey = '00000009';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
-  } else if (Number(req.query.id) === 10) {
-    imagesrc = 'Hrs_00000010.png';
+  } else if (tokenId === 10) {
+    gameHorseKey = '00000010';
+    imagesrc = 'Hrs_' + gameHorseKey + '.png';
     grade = 'S';
   } else {
     //console.log('req.query.id', req.query.id);
 
     // A Grade
-    if (Number(req.query.id) >= 11 && Number(req.query.id) <= 58) {
-      console.log('A Grade req.query.id', req.query.id);
-
-      var formattedNumber = Number(req.query.id) - 11 + '';
+    if (tokenId >= 11 && tokenId <= 58) {
+      var formattedNumber = tokenId - 11 + '';
       while (formattedNumber.length < 3) {
         formattedNumber = '0' + formattedNumber;
       }
       formattedNumber = '00001' + formattedNumber;
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'A';
 
       // B Grade
-    } else if (Number(req.query.id) >= 59 && Number(req.query.id) <= 299) {
-      //console.log('B Grade req.query.id', req.query.id);
-
-      //const filename = util.format("%08d", Number(req.query.id));
-
-      //const formattedNumber = ("0000600" + Number(req.query.id)).slice(-8);
-
-      //Number(req.query.id).padStart(2, "0");
-
-      //imagesrc = 'Hrs_00006000.png';
-
-      var formattedNumber = Number(req.query.id) - 59 + '';
+    } else if (tokenId >= 59 && tokenId <= 299) {
+      var formattedNumber = tokenId - 59 + '';
 
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
       formattedNumber = '0002' + formattedNumber;
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
@@ -258,140 +263,160 @@ export default async function handler(
     }
 
     // C Grade
-    if (Number(req.query.id) >= 300 && Number(req.query.id) <= 599) {
-      var formattedNumber = Number(req.query.id) - 300 + '';
+    if (tokenId >= 300 && tokenId <= 599) {
+      var formattedNumber = tokenId - 300 + '';
 
       while (formattedNumber.length < 3) {
         formattedNumber = '0' + formattedNumber;
       }
 
       formattedNumber = '00100' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'C';
-    } else if (Number(req.query.id) >= 600 && Number(req.query.id) < 1000) {
-      var formattedNumber = Number(req.query.id) - 600 + '';
+    } else if (tokenId >= 600 && tokenId < 1000) {
+      var formattedNumber = tokenId - 600 + '';
 
       while (formattedNumber.length < 3) {
         formattedNumber = '0' + formattedNumber;
       }
 
       formattedNumber = '00200' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'D';
-    } else if (Number(req.query.id) >= 1000 && Number(req.query.id) < 1800) {
-      var formattedNumber = Number(req.query.id) - 600 + '';
+    } else if (tokenId >= 1000 && tokenId < 1800) {
+      var formattedNumber = tokenId - 600 + '';
 
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
 
       formattedNumber = '0020' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'D';
-    } else if (Number(req.query.id) >= 1800 && Number(req.query.id) < 1805) {
-      var formattedNumber = Number(req.query.id) - 1700 + '';
 
-      while (formattedNumber.length < 5) {
+      // U Grade
+    } else if (Number(tokenId) >= 1800 && Number(tokenId) < 1805) {
+      // 1800 => 99990000
+      // 1801 => 99990001
+      // 1802 => 99990002
+      // 1803 => 99990003
+      // 1804 => 99990004
+
+      var formattedNumber = Number(tokenId) - 1800 + '';
+
+      while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
-
-      formattedNumber = '000' + formattedNumber;
-      //formattedNumber = '00000000';
-
-      console.log('formattedNumber', formattedNumber);
+      formattedNumber = '9999' + formattedNumber;
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
-
       grade = 'U';
-    } else if (Number(req.query.id) >= 1805 && Number(req.query.id) < 1810) {
-      var formattedNumber = Number(req.query.id) - 1700 + '';
 
-      while (formattedNumber.length < 5) {
-        formattedNumber = '0' + formattedNumber;
-      }
+      // S Grade
+    } else if (Number(tokenId) >= 1805 && Number(tokenId) < 1810) {
+      // 1805 => 00000011
+      // 1806 => 00000012
+      // 1807 => 00000013
+      // 1808 => 00000014
+      // 1809 => 00000015
 
-      formattedNumber = '0000' + formattedNumber;
-      //formattedNumber = '00000000';
-
-      console.log('formattedNumber', formattedNumber);
-
-      imagesrc = 'Hrs_' + formattedNumber + '.png';
-
-      grade = 'S';
-    } else if (Number(req.query.id) >= 1815 && Number(req.query.id) < 1915) {
-      var formattedNumber = Number(req.query.id) - 1700 + '';
-
-      while (formattedNumber.length < 3) {
-        formattedNumber = '0' + formattedNumber;
-      }
-
-      formattedNumber = '00001' + formattedNumber;
-      //formattedNumber = '00000000';
-
-      console.log('formattedNumber', formattedNumber);
-
-      imagesrc = 'Hrs_' + formattedNumber + '.png';
-
-      grade = 'A';
-    } else if (Number(req.query.id) >= 1915 && Number(req.query.id) < 2115) {
-      //var formattedNumber = Number(req.query.id) - 1800 + 59 + '';
-
-      var formattedNumber = Number(req.query.id) - 1915 + 241 + '';
+      var formattedNumber = Number(tokenId) - 1805 + 11 + '';
 
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
-      formattedNumber = '0002' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
-
+      formattedNumber = '0000' + formattedNumber;
+      gameHorseKey = formattedNumber;
       imagesrc = 'Hrs_' + formattedNumber + '.png';
+      grade = 'S';
 
-      grade = 'B';
-    } else if (Number(req.query.id) >= 2115 && Number(req.query.id) < 2645) {
-      //var formattedNumber = Number(req.query.id) - 2000 + '';
-      var formattedNumber = Number(req.query.id) - 1700 + '';
+      // D Grade
+    } else if (Number(tokenId) >= 1810 && Number(tokenId) < 1815) {
+      // 1810 => 00201200
+      // 1811 => 00201201
+      // 1812 => 00201202
+      // 1813 => 00201203
+      // 1814 => 00201204
 
-      while (formattedNumber.length < 3) {
-        formattedNumber = '0' + formattedNumber;
-      }
-
-      formattedNumber = '00100' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
-
-      imagesrc = 'Hrs_' + formattedNumber + '.png';
-
-      grade = 'C';
-    }
-
-    // tokenId: 2645 - 3644 =>  grade D  /   Hrs_00201645 - Hrs_00202644
-    else if (Number(req.query.id) >= 2645 && Number(req.query.id) < 3645) {
-      var formattedNumber = Number(req.query.id) - 2645 + 1645 + '';
+      var formattedNumber = Number(tokenId) - 1810 + 1200 + '';
 
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
 
       formattedNumber = '0020' + formattedNumber;
-      //formattedNumber = '00000000';
+      gameHorseKey = formattedNumber;
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+      grade = 'D';
 
-      console.log('formattedNumber', formattedNumber);
+      // A Grade
+    } else if (Number(tokenId) >= 1815 && Number(tokenId) < 1915) {
+      // 1815 => 00001115
+      // 1816 => 00001116
+
+      var formattedNumber = Number(tokenId) - 1815 + 1115 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+      formattedNumber = '0000' + formattedNumber;
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
+      grade = 'A';
 
+      // B Grade
+    } else if (Number(tokenId) >= 1915 && Number(tokenId) < 2115) {
+      // 1915 => 00020241
+      // 1916 => 00020242
+      var formattedNumber = Number(tokenId) - 1915 + 241 + '';
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0002' + formattedNumber;
+      gameHorseKey = formattedNumber;
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
+      grade = 'B';
+
+      // C Grade
+    } else if (Number(tokenId) >= 2115 && Number(tokenId) < 2645) {
+      // 2115 => 00100415
+      // 2116 => 00100416
+      var formattedNumber = Number(tokenId) - 2115 + 415 + '';
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0010' + formattedNumber;
+      gameHorseKey = formattedNumber;
+      imagesrc = 'Hrs_' + '0010' + formattedNumber + '.png';
+      grade = 'C';
+
+      // D Grade
+    } else if (Number(tokenId) >= 2645 && Number(tokenId) < 3645) {
+      // 2645 => 00201645
+      // 2646 => 00201646
+
+      var formattedNumber = Number(tokenId) - 2645 + 1645 + '';
+
+      while (formattedNumber.length < 4) {
+        formattedNumber = '0' + formattedNumber;
+      }
+
+      formattedNumber = '0020' + formattedNumber;
+      gameHorseKey = formattedNumber;
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
       grade = 'D';
     }
 
@@ -411,79 +436,77 @@ export default async function handler(
     Grade D (1989EA): tokenId: 5090 - 7078 / Hrs_00202645 - Hrs_00204633
 
     */
-    else if (Number(req.query.id) === 3645) {
-      imagesrc = 'Hrs_99990005.png';
+    else if (tokenId === 3645) {
+      gameHorseKey = '99990005';
+      imagesrc = 'Hrs_' + gameHorseKey + '.png';
       grade = 'U';
-    } else if (Number(req.query.id) === 3646) {
-      imagesrc = 'Hrs_99990006.png';
+    } else if (tokenId === 3646) {
+      gameHorseKey = '99990006';
+      imagesrc = 'Hrs_' + gameHorseKey + '.png';
       grade = 'U';
-    } else if (Number(req.query.id) === 3647) {
-      imagesrc = 'Hrs_99990007.png';
+    } else if (tokenId === 3647) {
+      gameHorseKey = '99990007';
+      imagesrc = 'Hrs_' + gameHorseKey + '.png';
       grade = 'U';
-    } else if (Number(req.query.id) === 3648) {
-      imagesrc = 'Hrs_99990008.png';
+    } else if (tokenId === 3648) {
+      gameHorseKey = '99990008';
+      imagesrc = 'Hrs_' + gameHorseKey + '.png';
       grade = 'U';
-    } else if (Number(req.query.id) === 3649) {
-      imagesrc = 'Hrs_99990009.png';
+    } else if (tokenId === 3649) {
+      gameHorseKey = '99990009';
+      imagesrc = 'Hrs_' + gameHorseKey + '.png';
       grade = 'U';
-    } else if (Number(req.query.id) >= 3650 && Number(req.query.id) < 3664) {
-      var formattedNumber = Number(req.query.id) - 3650 + 16 + '';
+    } else if (tokenId >= 3650 && tokenId < 3664) {
+      var formattedNumber = tokenId - 3650 + 16 + '';
       while (formattedNumber.length < 5) {
         formattedNumber = '0' + formattedNumber;
       }
       formattedNumber = '000' + formattedNumber;
-
-      //formattedNumber = '00000000';
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'S';
-    } else if (Number(req.query.id) >= 3664 && Number(req.query.id) < 3764) {
-      var formattedNumber = Number(req.query.id) - 3664 + 215 + '';
+    } else if (tokenId >= 3664 && tokenId < 3764) {
+      var formattedNumber = tokenId - 3664 + 215 + '';
       while (formattedNumber.length < 3) {
         formattedNumber = '0' + formattedNumber;
       }
       formattedNumber = '00001' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'A';
-    } else if (Number(req.query.id) >= 3764 && Number(req.query.id) < 4114) {
-      var formattedNumber = Number(req.query.id) - 3764 + 441 + '';
+    } else if (tokenId >= 3764 && tokenId < 4114) {
+      var formattedNumber = tokenId - 3764 + 441 + '';
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
       formattedNumber = '0002' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'B';
-    } else if (Number(req.query.id) >= 4114 && Number(req.query.id) < 5090) {
-      var formattedNumber = Number(req.query.id) - 4114 + 945 + '';
+    } else if (tokenId >= 4114 && tokenId < 5090) {
+      var formattedNumber = tokenId - 4114 + 945 + '';
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
       formattedNumber = '0010' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
       grade = 'C';
-    } else if (Number(req.query.id) >= 5090 && Number(req.query.id) < 7079) {
-      var formattedNumber = Number(req.query.id) - 5090 + 2645 + '';
+    } else if (tokenId >= 5090 && tokenId < 7079) {
+      var formattedNumber = tokenId - 5090 + 2645 + '';
       while (formattedNumber.length < 4) {
         formattedNumber = '0' + formattedNumber;
       }
       formattedNumber = '0020' + formattedNumber;
-
-      console.log('formattedNumber', formattedNumber);
+      gameHorseKey = formattedNumber;
 
       imagesrc = 'Hrs_' + formattedNumber + '.png';
 
@@ -519,9 +542,9 @@ export default async function handler(
 
   //https://granderby.io/nft/horse/Hrs_00200000.png
 
-  const speed = parseInt(((Number(req.query.id) / 100) * 2 + 11).toString());
-  const stamina = parseInt(((Number(req.query.id) / 40) * 2 + 11).toString());
-  const power = parseInt(((Number(req.query.id) / 80) * 2 + 11).toString());
+  const speed = parseInt(((tokenId / 100) * 2 + 11).toString());
+  const stamina = parseInt(((tokenId / 40) * 2 + 11).toString());
+  const power = parseInt(((tokenId / 80) * 2 + 11).toString());
 
   const preceding = 0;
   const overtaking = 0;
@@ -769,7 +792,7 @@ export default async function handler(
 
   console.log('imagesrc', imagesrc);
 
-  const gameHorseKey = imagesrc.slice(4, -4);
+  /////const gameHorseKey = imagesrc.slice(4, -4);
 
   const gameHorse = await getOneGameHorseData(gameHorseKey);
 

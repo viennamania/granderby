@@ -71,8 +71,6 @@ export default function Search() {
   const [selectedGradesStorage, setSelectedGradesStorage] =
     useLocalStorage('selected-grades') ?? ([] as Array<string>);
 
-  const [selectedGrades, setSelectedGrades] = useState<any>([]);
-
   const [selectedManesStorage, setSelectedManesStorage] =
     useLocalStorage('selected-manes');
 
@@ -186,14 +184,23 @@ export default function Search() {
 
   const [grade, setGrade] = useState('U');
 
-  const [checkedU, setCheckedU] = useState(false);
-  const [checkedS, setCheckedS] = useState(false);
-  const [checkedA, setCheckedA] = useState(false);
-  const [checkedB, setCheckedB] = useState(false);
-  const [checkedC, setCheckedC] = useState(false);
-  const [checkedD, setCheckedD] = useState(false);
+  const [checkedU, setCheckedU] = useState(true);
+  const [checkedS, setCheckedS] = useState(true);
+  const [checkedA, setCheckedA] = useState(true);
+  const [checkedB, setCheckedB] = useState(true);
+  const [checkedC, setCheckedC] = useState(true);
+  const [checkedD, setCheckedD] = useState(true);
 
-  const [checkedAll, setCheckedAll] = useState(false);
+  const [checkedAll, setCheckedAll] = useState(true);
+
+  const [selectedGrades, setSelectedGrades] = useState<any>([
+    'U',
+    'S',
+    'A',
+    'B',
+    'C',
+    'D',
+  ]);
 
   return (
     <>
@@ -333,7 +340,7 @@ export default function Search() {
                   className="mr-5"
                 />
 
-                <div className="flex flex-wrap gap-5">
+                <div className="grid grid-cols-3 gap-2">
                   <Checkbox
                     label="Grade U"
                     checked={checkedU}
