@@ -591,7 +591,7 @@ const WalletPage: NextPageWithLayout<
                     <Web3Button
                       theme="light"
                       contractAddress={tokenContractAddressGDP}
-                      action={(contract) => {
+                      action={() => {
                         //contract?.call('withdraw', [[nft.metadata.id]])
                         //contract?.call('withdraw', [[nft.metadata.id]])
                         //contract.erc1155.claim(0, 1);

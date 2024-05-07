@@ -705,6 +705,7 @@ export default function NftSinglePrice({
                 </div>
 
                 {/* CommitIcon */}
+                {/*
                 <div className="mt-10 flex flex-row items-center justify-start gap-2">
                   <CommitIcon className="h-[18px] w-[18px]" />
                   <span className=" text-sm font-bold">
@@ -714,6 +715,7 @@ export default function NftSinglePrice({
                 <div className="mt-3">
                   <HorseProfitChart tokenid={nftMetadata?.metadata?.id} />
                 </div>
+                */}
 
                 {/* registered in */}
                 <div
@@ -895,11 +897,13 @@ export default function NftSinglePrice({
                   </div>
                   */}
 
+                  {/*
                   <div className="mt-5 flex w-full items-center ">
                     <Collapse label="Race History" initialOpen={true}>
                       <RaceHistoryTable tokenId={nftMetadata?.metadata?.id} />
                     </Collapse>
                   </div>
+                  */}
                 </div>
               </div>
 

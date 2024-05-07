@@ -109,12 +109,12 @@ const WalletPage: NextPageWithLayout<
 
   const address = useAddress();
 
-  const { contract: tokenContractUSDC } = useContract(
+  const { contract: tokenContractUSDT } = useContract(
     tokenContractAddressUSDT,
     'token'
   );
-  const { data: tokenBalanceUSDC } = useTokenBalance(
-    tokenContractUSDC,
+  const { data: tokenBalanceUSDT } = useTokenBalance(
+    tokenContractUSDT,
     address
   );
 
@@ -314,28 +314,20 @@ const WalletPage: NextPageWithLayout<
     });
     */
 
+    /*
     if (sdk === undefined) {
       alert(`🌊 Please connect your wallet`);
       return;
     }
-
-    const contract = await sdk.getContract(tokenContractAddressUSDT, 'token');
+    */
 
     try {
+      /*
+      const contract = await sdk.getContract(tokenContractAddressUSDT, 'token');
+
       // Prepare an ERC20 transfer
       const tx = await contract.erc20.transfer.prepare(toAddress, amount);
 
-      /*
-      {
-        "openzeppelin": {
-            "relayerUrl": "https://api.defender.openzeppelin.com/autotasks/3067ee45-9e49-4a66-ad9f-21855aa5ceac/runs/webhook/32a6dbb5-b039-403b-bd1c-ff44e65cf6ab/R2wNZuXcnMwPyhxGBfwdEh",
-            "useEOAForwarder": false,
-            "domainName": "GSNv2 Forwarder",
-            "domainVersion": "0.0.1"
-        },
-        "experimentalChainlessSupport": false
-    }
-      */
 
       tx.setGaslessOptions({
         openzeppelin: {
@@ -355,15 +347,17 @@ const WalletPage: NextPageWithLayout<
 
       console.log(`🌊 Sent transaction with hash: ${txHash}`);
 
+      */
+
       //const gaslessOptions = tx.getGaslessOptions();
 
       //console.log(`🌊 gaslessOptions: ${gaslessOptions}`);
 
-      /*
-      const transaction = await contract?.erc20.transfer(toAddress, amount);
+      ///const transaction = await contract?.erc20.transfer(toAddress, amount);
+
+      const transaction = await tokenContractUSDT?.transfer(toAddress, amount);
 
       console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
-      */
 
       //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 
@@ -461,16 +455,16 @@ const WalletPage: NextPageWithLayout<
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             <GrdIcon className="h-auto w-8 lg:w-auto" />
             <b>
-              {tokenBalanceUSDC === undefined ? (
+              {tokenBalanceUSDT === undefined ? (
                 <>Loading...</>
               ) : (
                 <div className="m-5 text-5xl font-bold xl:text-7xl">
-                  {Number(tokenBalanceUSDC?.displayValue).toFixed(2)}
+                  {Number(tokenBalanceUSDT?.displayValue).toFixed(2)}
                 </div>
               )}
             </b>{' '}
             <span className="text-lg text-[#2b57a2] ">
-              {tokenBalanceUSDC?.symbol}
+              {tokenBalanceUSDT?.symbol}
             </span>
             {/* reload button */}
             {/*
@@ -506,7 +500,7 @@ const WalletPage: NextPageWithLayout<
           {/* Form Section */}
           <div className={styles.collectionContainer}>
             <div className="mb-2 text-lg">
-              Send my {tokenBalanceUSDC?.symbol} to another address:
+              Send my {tokenBalanceUSDT?.symbol} to another address:
             </div>
 
             {/* Toggle between direct listing and auction listing */}
@@ -575,9 +569,9 @@ const WalletPage: NextPageWithLayout<
                 else if (Number(e.target.value) < 0) setAmount(undefined);
                 else if (
                   Number(e.target.value) >
-                  Number(tokenBalanceUSDC?.displayValue)
+                  Number(tokenBalanceUSDT?.displayValue)
                 ) {
-                  setAmount(Number(tokenBalanceUSDC?.displayValue));
+                  setAmount(Number(tokenBalanceUSDT?.displayValue));
                 } else {
                   setAmount(Number(e.target.value));
                 }
@@ -587,9 +581,9 @@ const WalletPage: NextPageWithLayout<
             {address && (
               <div className="mb-3 text-lg">
                 {(
-                  Number(tokenBalanceUSDC?.displayValue) - (amount || 0)
+                  Number(tokenBalanceUSDT?.displayValue) - (amount || 0)
                 ).toFixed(2)}{' '}
-                {tokenBalanceUSDC?.symbol} left
+                {tokenBalanceUSDT?.symbol} left
               </div>
             )}
 
@@ -614,7 +608,7 @@ const WalletPage: NextPageWithLayout<
                     </div>
                     <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
                       <span>
-                        Sending {amount} {tokenBalanceUSDC?.symbol} to
+                        Sending {amount} {tokenBalanceUSDT?.symbol} to
                       </span>
                       <span className="text-xs">{toAddress}</span>
                       <span>Please wait...</span>
@@ -658,7 +652,7 @@ const WalletPage: NextPageWithLayout<
                         //handleClickErr();
                       }}
                     >
-                      Transfer ({amount} {tokenBalanceUSDC?.symbol})
+                      Transfer ({amount} {tokenBalanceUSDT?.symbol})
                     </Web3Button>
                   </>
                 )}

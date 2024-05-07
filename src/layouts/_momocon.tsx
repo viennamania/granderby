@@ -234,12 +234,12 @@ function HeaderRightArea() {
     'token'
   );
 
-  console.log('tokenContractGDP', tokenContractGDP);
+  //console.log('tokenContractGDP', tokenContractGDP);
 
   const { data: tokenBalanceGDP, isLoading: isLoadingBalanceGDP } =
     useTokenBalance(tokenContractGDP, address);
 
-  console.log('tokenBalanceGDP', tokenBalanceGDP);
+  ///console.log('tokenBalanceGDP', tokenBalanceGDP);
 
   return (
     <div className="flex flex-col items-center gap-3 lg:flex-row lg:gap-5">

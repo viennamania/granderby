@@ -183,7 +183,11 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
           //queryClient={queryClient}
           ///clientId={process.env.THIRDWEB_CLIENT_ID || ''}
 
-          clientId="79125a56ef0c1629d4863b6df0a43cce"
+          //clientId="79125a56ef0c1629d4863b6df0a43cce"
+
+          //clientId="c010fb6a9ed040cb62604793a5e56982"
+
+          clientId="054cf4b72c7cd869a7e49cfb8ea6a26d"
           activeChain={Polygon}
           supportedWallets={[
             ///smartWalletConfig,

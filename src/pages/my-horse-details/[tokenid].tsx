@@ -509,6 +509,7 @@ const MyHorseDetails: NextPageWithLayout<
                         setToAddress(e.target.value);
                       }}
                     />
+
                     <Web3Button
                       theme="light"
                       contractAddress={nftDropContractAddressHorse}

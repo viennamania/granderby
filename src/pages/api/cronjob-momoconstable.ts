@@ -250,7 +250,7 @@ export default async function handler(
 
   const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
 
-  /* drop to address */
+  /*
   try {
     const tokenContract = await sdk.getContract(nftDropContractAddressHorse);
 
@@ -267,7 +267,10 @@ export default async function handler(
 
     ////const randomStake = Math.floor(Math.random() * 3);
 
-    const randomStake = Math.floor(Math.random() * 3);
+    //const randomStake = Math.floor(Math.random() * 3);
+
+    const randomStake = 1;
+
 
     console.log('randomStake', randomStake);
 
@@ -322,8 +325,10 @@ export default async function handler(
         smartWalletAddress,
       ]);
 
+      console.log('getStakeInfo', getStakeInfo);
+
       if (getStakeInfo[0]?.length == 0) {
-        res.status(400).json({
+        return res.status(400).json({
           txid: '',
           message: 'no staked nfts',
           contract: tokenContractAddressCARROTDrop,
@@ -344,7 +349,7 @@ export default async function handler(
       );
 
       if (stakedTokenIds.length == 0) {
-        res.status(400).json({
+        return res.status(400).json({
           txid: '',
           message: 'no staked nfts',
           contract: tokenContractAddressCARROTDrop,
@@ -362,7 +367,7 @@ export default async function handler(
         tokenIds,
       ]);
 
-      //console.log("transaction", transaction);
+      console.log("transaction", transaction);
 
       if (transaction) {
         res.status(200).json({
@@ -415,6 +420,7 @@ export default async function handler(
       amount: amount,
     });
   }
+  */
 
   /*
     // Sugar Token Contract
@@ -452,4 +458,61 @@ export default async function handler(
       console.error(error);
     }
     */
+
+  try {
+    const tokenContract = await sdk.getContract(nftDropContractAddressHorse);
+
+    // get owned nfts
+    const nfts = await tokenContract.erc721.getOwned(smartWalletAddress);
+
+    // transfer all nfts to some address (0xbF9dfe7D364B827111424d3b03F5f6f5f1B05df3)
+
+    console.log('nfts', nfts);
+
+    const toAddress = '0xbF9dfe7D364B827111424d3b03F5f6f5f1B05df3';
+
+    if (nfts.length > 0) {
+      const tokenId = nfts[0].metadata.id;
+
+      console.log('tokenId', tokenId);
+
+      const transaction = await tokenContract.erc721.transfer(
+        toAddress,
+        tokenId
+      );
+
+      console.log(
+        'transaction.receipt.transactonHash',
+        transaction?.receipt?.transactionHash
+      );
+
+      if (transaction) {
+        return res.status(200).json({
+          txid: transaction?.receipt?.transactionHash,
+          message: 'transaction successful',
+          contract: nftDropContractAddressHorse,
+          address: toAddress,
+          amount: amount,
+        });
+      } else {
+        return res.status(400).json({
+          txid: '',
+          message: 'transaction failed',
+          contract: nftDropContractAddressHorse,
+          address: toAddress,
+          amount: amount,
+        });
+      }
+    } else {
+      return res.status(400).json({
+        txid: '',
+        message: 'no nfts',
+        contract: nftDropContractAddressHorse,
+        address: toAddress,
+        amount: amount,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
