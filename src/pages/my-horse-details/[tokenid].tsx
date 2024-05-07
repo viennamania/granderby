@@ -305,12 +305,20 @@ const MyHorseDetails: NextPageWithLayout<
       //console.log('data.horse.nft.rawMetadata.image', data?.horse?.nft?.rawMetadata?.image);
 
       const tokenUrl = data?.horse?.nft?.tokenUri?.raw;
+
+      //console.log('tokenUrl', tokenUrl);
+
       const responseNft = await fetch(tokenUrl);
+
       const dataNft = await responseNft.json();
 
-      ///console.log('dataNft', dataNft);
+      //console.log('dataNft', dataNft);
 
-      //setImageUrl(dataNft?.image);
+      // error
+      // image url:
+      // https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/Hrs_001000100300.png
+
+      setImageUrl(dataNft?.image);
 
       // if grade is 'U' then set default image (https://images/defaul-horse.png)
       setImageUrl(

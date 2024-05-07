@@ -102,7 +102,7 @@ const data = [
 //export default function NftInfo({ nftMetadata }: any) {
 
 export default function NftInfo({ horseData }: any) {
-  console.log('horseData=========================', horseData);
+  ////console.log('horseData=========================', horseData);
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();

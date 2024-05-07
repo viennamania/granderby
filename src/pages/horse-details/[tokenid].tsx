@@ -126,7 +126,10 @@ function SinglePrice(tokenid: any) {
       });
       const data = await response.json();
 
-      ///console.log('data', data);
+      ///console.log('horse-details data=======', data);
+
+      //setImageSrc(data?.horse?.image
+      //setGrade(grade);
 
       //console.log('tokenid.tokenid======', tokenid.tokenid);
       //console.log('data.horse', data?.horse);
@@ -139,7 +142,7 @@ function SinglePrice(tokenid: any) {
 
       setNftMetadata(data?.horse?.nft);
 
-      console.log('data?.horse?.nft', data?.horse?.nft);
+      ///console.log('data?.horse?.nft', data?.horse?.nft);
 
       // gameHorseDescription => {trait_type: "name"}
       setGameHorseName(
@@ -787,6 +790,7 @@ function SinglePrice(tokenid: any) {
     }
 
     setImageSrc(s3url + imagesrc);
+
     setGrade(grade);
   }, [tokenid?.tokenid]);
 

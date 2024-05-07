@@ -403,7 +403,7 @@ export default async function handler(
 
       formattedNumber = '0010' + formattedNumber;
       gameHorseKey = formattedNumber;
-      imagesrc = 'Hrs_' + '0010' + formattedNumber + '.png';
+      imagesrc = 'Hrs_' + formattedNumber + '.png';
       grade = 'C';
 
       // D Grade
