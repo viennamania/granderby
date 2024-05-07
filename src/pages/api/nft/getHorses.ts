@@ -261,15 +261,20 @@ export default async function handler(
 
         gameHorseName = '0002' + formattedNumber;
       } else if (Number(tokenId) >= 2115 && Number(tokenId) < 2645) {
-        var formattedNumber = Number(tokenId) - 1700 + '';
-        while (formattedNumber.length < 3) {
+        // 토큰번호 2115번부터 텍스쳐번호 00100300번 부터 다시 부여하면 됩니다.
+        // 2115 => 00100300
+        // 2116 => 00100301
+        // 2117 => 00100302
+
+        var formattedNumber = Number(tokenId) - 2115 + 300 + '';
+        while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
         }
+        formattedNumber = '0010' + formattedNumber;
+        gameHorseName = formattedNumber;
 
-        imagesrc = 'Hrs_' + '00100' + formattedNumber + '.png';
-        grade = 'D';
-
-        gameHorseName = '00100' + formattedNumber;
+        imagesrc = 'Hrs_' + formattedNumber + '.png';
+        grade = 'C';
       } else if (Number(tokenId) >= 2645 && Number(tokenId) < 3645) {
         var formattedNumber = Number(tokenId) - 2645 + 1645 + '';
 

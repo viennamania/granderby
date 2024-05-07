@@ -714,18 +714,25 @@ function SinglePrice(tokenid: any) {
         imagesrc = 'Hrs_' + formattedNumber + '.png';
 
         grade = 'B';
-      } else if (
+      }
+
+      // 2115 부터 2차 판매
+      else if (
         Number(tokenid.tokenid) >= 2115 &&
         Number(tokenid.tokenid) < 2645
       ) {
-        //var formattedNumber = Number(tokenid.tokenid) - 2000 + '';
-        var formattedNumber = Number(tokenid.tokenid) - 1700 + '';
+        // 토큰번호 2115번부터 텍스쳐번호 00100300번 부터 다시 부여하면 됩니다.
+        // 2115 => 00100300
+        // 2116 => 00100301
+        // 2117 => 00100302
 
-        while (formattedNumber.length < 3) {
+        var formattedNumber = Number(tokenid.tokenid) - 2115 + 300 + '';
+
+        while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
         }
 
-        formattedNumber = '00100' + formattedNumber;
+        formattedNumber = '0010' + formattedNumber;
 
         imagesrc = 'Hrs_' + formattedNumber + '.png';
 

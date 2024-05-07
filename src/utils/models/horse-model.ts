@@ -939,9 +939,12 @@ export const getOneHorse = async (tokenId: string) => {
 
     // C Grade
   } else if (Number(tokenId) >= 2115 && Number(tokenId) < 2645) {
-    // 2115 => 00100415
-    // 2116 => 00100416
-    var formattedNumber = Number(tokenId) - 2115 + 415 + '';
+    // 토큰번호 2115번부터 텍스쳐번호 00100300번 부터 다시 부여하면 됩니다.
+    // 2115 => 00100300
+    // 2116 => 00100301
+    // 2117 => 00100302
+
+    var formattedNumber = Number(tokenId) - 2115 + 300 + '';
     while (formattedNumber.length < 4) {
       formattedNumber = '0' + formattedNumber;
     }
