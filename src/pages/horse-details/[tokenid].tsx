@@ -114,6 +114,9 @@ function SinglePrice(tokenid: any) {
 
   const [liveHorseInfo, setLiveHorseInfo] = useState<any>(null);
 
+  const [imageSrc, setImageSrc] = useState<string | undefined>(undefined);
+  const [grade, setGrade] = useState<string | undefined>(undefined);
+
   useEffect(() => {
     async function getNft() {
       setIsLoading(true);
@@ -128,8 +131,8 @@ function SinglePrice(tokenid: any) {
 
       ///console.log('horse-details data=======', data);
 
-      //setImageSrc(data?.horse?.image
-      //setGrade(grade);
+      setImageSrc(data?.horse?.image);
+      setGrade(data?.horse?.grade);
 
       //console.log('tokenid.tokenid======', tokenid.tokenid);
       //console.log('data.horse', data?.horse);
@@ -303,7 +306,7 @@ function SinglePrice(tokenid: any) {
       });
       const data = await response.json();
 
-      console.log('getBalanceByTokenId data=======', data);
+      ///console.log('getBalanceByTokenId data=======', data);
 
       setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
 
@@ -365,7 +368,7 @@ function SinglePrice(tokenid: any) {
 
     const attributes = nftMetadata?.rawMetadata?.attributes as any;
 
-    console.log('attributes', attributes);
+    ////console.log('attributes', attributes);
 
     attributes?.map((attribute: any) => {
       if (false) {
@@ -531,8 +534,7 @@ function SinglePrice(tokenid: any) {
     }
   }
 
-  const [imageSrc, setImageSrc] = useState<string | undefined>(undefined);
-  const [grade, setGrade] = useState<string | undefined>(undefined);
+  /*
 
   useEffect(() => {
     if (!tokenid?.tokenid) return;
@@ -792,7 +794,10 @@ function SinglePrice(tokenid: any) {
     setImageSrc(s3url + imagesrc);
 
     setGrade(grade);
+
+
   }, [tokenid?.tokenid]);
+  */
 
   //console.log('tokenid.tokenid', tokenid?.tokenid);
   //console.log('imageSrc', imageSrc);
