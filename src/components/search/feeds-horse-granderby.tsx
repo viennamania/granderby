@@ -334,14 +334,27 @@ export default function Feeds({
                       //openDrawer('DRAWER_HORSE_INFO', nft?.tokenId);
                     }}
                   >
-                    <Image
-                      src={nft?.imageUrl || '/default-horse.png'}
-                      alt={nft?.tokenId}
-                      height={300}
-                      width={300}
-                      loading="lazy"
-                      className="cursor-pointer object-cover transition duration-500 hover:scale-110"
-                    />
+                    {/* grade is 'U' */}
+                    {nft?.grade === 'U' ? (
+                      <Image
+                        src="/images/default-horse.png"
+                        alt={nft?.tokenId}
+                        height={300}
+                        width={300}
+                        loading="lazy"
+                        className="cursor-pointer object-cover transition duration-500 hover:scale-110"
+                      />
+                    ) : (
+                      <Image
+                        src={nft?.imageUrl || '/default-horse.png'}
+                        alt={nft?.tokenId}
+                        height={300}
+                        width={300}
+                        loading="lazy"
+                        className="cursor-pointer object-cover transition duration-500 hover:scale-110"
+                      />
+                    )}
+
                     {/*
                   <div className="ml-2 mt-2 flex w-full flex-row items-center justify-start gap-2">
                     
