@@ -359,11 +359,19 @@ const WalletPage: NextPageWithLayout<
         description="Granderby - NFT Marketplace for the people, by the people."
       />
 
-      <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-sky-600 pb-5 pt-5 text-white">
-        <div className="text-2xl font-bold">Swap GDP</div>
-      </div>
+      <div className="flex flex-col items-center justify-center gap-3  ">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-lg bg-green-500 pb-5 pt-5 text-white">
+          <div className="mb-5 ml-10 w-full text-left text-lg font-bold lg:text-2xl">
+            SWAP
+          </div>
 
-      {/*
+          {/*
+      <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-sky-600 pb-5 pt-5 text-white">
+        <div className="text-2xl font-bold">SWAP</div>
+      </div>
+      */}
+
+          {/*
       <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
         {!address ? (
           <></>
@@ -434,14 +442,12 @@ const WalletPage: NextPageWithLayout<
       </div>
       */}
 
-      <form>
-        <div className=" flex flex-row items-center justify-center text-lime-600">
-          {/* Form Section */}
-          <div className={styles.collectionContainer}>
-            <div className="mb-0 text-lg">Swap my GDP for USDT</div>
-
-            {/* Toggle between direct listing and auction listing */}
-            {/*
+          <form>
+            <div className=" flex flex-row items-center justify-center text-lime-600">
+              {/* Form Section */}
+              <div className={styles.collectionContainer}>
+                {/* Toggle between direct listing and auction listing */}
+                {/*
             <div className={styles.listingTypeContainer}>
               <input
                 type="radio"
@@ -473,19 +479,40 @@ const WalletPage: NextPageWithLayout<
             </div>
             */}
 
-            {/* receiver wallet address */}
-            <input
-              className="mb-2 w-full text-black"
-              type="text"
-              name="receiverAddress"
-              placeholder="Address for USDT"
-              value={receiverAddress}
-              onChange={(e) => {
-                setReceiverAddress(e.target.value);
-              }}
-            />
+                <div className="flex w-full flex-row items-center justify-center gap-3">
+                  <div className=" w-64 text-lg font-bold text-white">
+                    Select Coin
+                  </div>
+                  <select
+                    className="w-full text-black"
+                    name="coin"
+                    id="coin"
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                    }}
+                  >
+                    <option value="usdt">USDT</option>
+                    <option value="usdc">USDC</option>
+                  </select>
+                </div>
 
-            {/*
+                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
+                  <div className="text-lg font-bold text-white">Address</div>
+
+                  {/* receiver wallet address */}
+                  <input
+                    className=" w-full text-black"
+                    type="text"
+                    name="receiverAddress"
+                    placeholder="Wallet address to receive"
+                    value={receiverAddress}
+                    onChange={(e) => {
+                      setReceiverAddress(e.target.value);
+                    }}
+                  />
+                </div>
+
+                {/*
             <button
               onClick={showModal2}
               className="m-5 text-xl font-bold text-blue-600"
@@ -494,9 +521,9 @@ const WalletPage: NextPageWithLayout<
             </button>
             */}
 
-            <div className="mb-3 text-lg"></div>
+                <div className="mb-3 text-lg"></div>
 
-            {/*
+                {/*
             <div className="flex flex-col items-center justify-center">
               <CoinInput
                 label={'From'}
@@ -507,53 +534,120 @@ const WalletPage: NextPageWithLayout<
             </div>
             */}
 
-            {/* Amount Field */}
+                {/*
+            GDP balance
+            1234567.0000000 GDP
+            Minimum withdraw
+            1 USDT
+            */}
 
-            <input
-              className="mt-10 w-full text-right text-5xl font-bold text-lime-600"
-              type="number"
-              name="amount"
-              placeholder="0"
-              value={amount}
-              onChange={(e) => {
-                if (e.target.value === null) setAmount(undefined);
-                else if (Number(e.target.value) === 0) setAmount(undefined);
-                else if (Number(e.target.value) < 0) setAmount(undefined);
-                else if (
-                  Number(e.target.value) > Number(tokenBalanceGDP?.displayValue)
-                ) {
-                  setAmount(Number(tokenBalanceGDP?.displayValue));
-                } else {
-                  setAmount(Number(e.target.value));
-                }
-              }}
-            />
+                <div className="mt-5 grid w-full grid-cols-2 gap-3 rounded-lg border-2 border-red-500 p-5">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="flex w-full flex-col items-center justify-center gap-1">
+                      <div className="w-full text-left text-lg text-white">
+                        GDP balance
+                      </div>
+                      <div className="w-full text-left text-lg font-bold text-white">
+                        {tokenBalanceGDP === undefined ? (
+                          <>Loading...</>
+                        ) : (
+                          <div className="text-lg font-bold xl:text-3xl">
+                            {Number(tokenBalanceGDP?.displayValue).toFixed(2)}
+                          </div>
+                        )}
+                      </div>
+                    </div>
 
-            {address && (
-              <div className="mb-3 mt-2 text-lg">
-                {(
-                  Number(tokenBalanceGDP?.displayValue) - (amount || 0)
-                ).toFixed(2)}{' '}
-                {tokenBalanceGDP?.symbol} left
-              </div>
-            )}
+                    <div className="flex w-full flex-col items-center justify-center gap-1">
+                      <div className="w-full text-left text-lg text-white">
+                        Swap fee
+                      </div>
+                      <div className="w-full text-left text-lg font-bold text-white">
+                        2%
+                      </div>
+                    </div>
+                  </div>
 
-            {/*
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="flex w-full flex-col items-center justify-center gap-1">
+                      <div className="w-full text-left text-lg text-white">
+                        Minimum withdraw
+                      </div>
+                      <div className="w-full text-left text-lg font-bold text-white">
+                        1 USDT
+                      </div>
+                    </div>
+
+                    <div className="flex w-full flex-col items-center justify-center gap-1">
+                      <div className="w-full text-left text-lg text-white">
+                        Withdraw limit per day
+                      </div>
+                      <div className="w-full text-left text-lg font-bold text-white">
+                        0 / 10,000 USDT
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
+                  <div className=" w-72 text-lg font-bold text-white"></div>
+                  <div className="w-full text-left text-lg font-bold text-white">
+                    1 USDT = 100,000 GDP
+                  </div>
+                </div>
+
+                <div className="flex w-full flex-row items-center justify-center gap-3">
+                  <div className=" w-72 text-lg font-bold text-white">
+                    Withdraw Amount
+                  </div>
+                  {/* Amount Field */}
+                  <input
+                    className=" w-full text-right text-3xl font-bold text-black"
+                    type="number"
+                    name="amount"
+                    placeholder="0"
+                    value={amount}
+                    onChange={(e) => {
+                      if (e.target.value === null) setAmount(undefined);
+                      else if (Number(e.target.value) === 0)
+                        setAmount(undefined);
+                      else if (Number(e.target.value) < 0) setAmount(undefined);
+                      else if (
+                        Number(e.target.value) >
+                        Number(tokenBalanceGDP?.displayValue)
+                      ) {
+                        setAmount(Number(tokenBalanceGDP?.displayValue));
+                      } else {
+                        setAmount(Number(e.target.value));
+                      }
+                    }}
+                  />
+                </div>
+
+                {address && (
+                  <div className="mb-3 mt-2 w-full text-right text-lg font-bold text-white">
+                    {(
+                      Number(tokenBalanceGDP?.displayValue) - (amount || 0)
+                    ).toFixed(2)}{' '}
+                    left
+                  </div>
+                )}
+
+                {/*
               display usdt swap value
               usdt = gdp / 100000
             */}
-            {address && (
-              <div className="flex flex-col gap-2 text-right">
-                <span className="text-lg">1 USDT = 100,000 GDP</span>
-                {amount && amount > 0 && (
-                  <span className="text-lg font-bold lg:text-xl">
-                    Receive Amount: {(amount / 100000).toFixed(2)} USDT
-                  </span>
+                {address && (
+                  <div className="flex flex-col gap-2 text-right">
+                    {amount && amount > 0 && (
+                      <span className=" text-lg font-bold text-white lg:text-xl">
+                        Receive Amount: {(amount / 100000).toFixed(2)} USDT
+                      </span>
+                    )}
+                  </div>
                 )}
-              </div>
-            )}
 
-            {/*}
+                {/*}
             <button
               type="submit"
               className={styles.mainButton}
@@ -563,77 +657,77 @@ const WalletPage: NextPageWithLayout<
             </button>
             */}
 
-            {address ? (
-              <div className="mt-5 flex flex-row justify-center">
-                {/*{isTransferTokensLoading ? (*/}
+                {address ? (
+                  <div className="mt-5 flex flex-row justify-center">
+                    {/*{isTransferTokensLoading ? (*/}
 
-                {isSending ? (
-                  <div className="flex flex-row items-center justify-center gap-2">
-                    <div className="animate-spin">
-                      <GdpIcon className="h-35 w-35" />
-                    </div>
-                    <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                      <span>
-                        Sending {amount} {tokenBalanceGDP?.symbol} to
-                      </span>
-                      <span className="text-xs">{toAddress}</span>
-                      <span>Please wait...</span>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <Web3Button
-                      // if receiver address is empty, disable the button
+                    {isSending ? (
+                      <div className="flex flex-row items-center justify-center gap-2">
+                        <div className="animate-spin">
+                          <GdpIcon className="h-35 w-35" />
+                        </div>
+                        <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
+                          <span>
+                            Sending {amount} {tokenBalanceGDP?.symbol} to
+                          </span>
+                          <span className="text-xs">{toAddress}</span>
+                          <span>Please wait...</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <Web3Button
+                          // if receiver address is empty, disable the button
 
-                      //disabled={receiverAddress === '' ? true : false}
+                          //disabled={receiverAddress === '' ? true : false}
 
-                      isDisabled={receiverAddress === '' ? true : false}
-                      className={
-                        receiverAddress === ''
-                          ? 'cursor-not-allowed bg-gray-300'
-                          : ''
-                      }
-                      theme="light"
-                      contractAddress={tokenContractAddressGDP}
-                      action={(contract) => {
-                        //contract?.call('withdraw', [[nft.metadata.id]])
-                        //contract?.call('withdraw', [[nft.metadata.id]])
-                        //contract.erc1155.claim(0, 1);
+                          isDisabled={receiverAddress === '' ? true : false}
+                          className={
+                            receiverAddress === ''
+                              ? 'cursor-not-allowed bg-gray-300'
+                              : ''
+                          }
+                          theme="light"
+                          contractAddress={tokenContractAddressGDP}
+                          action={(contract) => {
+                            //contract?.call('withdraw', [[nft.metadata.id]])
+                            //contract?.call('withdraw', [[nft.metadata.id]])
+                            //contract.erc1155.claim(0, 1);
 
-                        ///contract.erc20.transfer(toAddress, amount);
+                            ///contract.erc20.transfer(toAddress, amount);
 
-                        transferToken(toAddress, amount);
+                            transferToken(toAddress, amount);
 
-                        /*
+                            /*
                           transferTokens({
                             to: toAddress, // Address to transfer to
                             amount: amount, // Amount to transfer
                           })
                           */
-                      }}
-                      onSuccess={() => {
-                        //setAmount(0);
-                        //setToAddress('');
+                          }}
+                          onSuccess={() => {
+                            //setAmount(0);
+                            //setToAddress('');
 
-                        console.log(`🌊 Successfully transfered!`);
-                        //alert('Successfully transfered!');
+                            console.log(`🌊 Successfully transfered!`);
+                            //alert('Successfully transfered!');
 
-                        //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                        //handleClickSucc();
-                      }}
-                      onError={(error) => {
-                        console.error('Failed to transfer', error);
-                        alert('Failed to transfer');
-                        //setErrMsgSnackbar('Failed to transfer');
-                        //handleClickErr();
-                      }}
-                    >
-                      Swap ({amount} GDP)
-                    </Web3Button>
-                  </>
-                )}
+                            //setSuccessMsgSnackbar('Your request has been sent successfully' );
+                            //handleClickSucc();
+                          }}
+                          onError={(error) => {
+                            console.error('Failed to transfer', error);
+                            alert('Failed to transfer');
+                            //setErrMsgSnackbar('Failed to transfer');
+                            //handleClickErr();
+                          }}
+                        >
+                          Swap ({amount} GDP)
+                        </Web3Button>
+                      </>
+                    )}
 
-                {/*
+                    {/*
                 <div className="ml-5 flex items-center justify-center">
                   {isTransferTokensLoading && (
                     <div className="animate-spin">
@@ -650,19 +744,19 @@ const WalletPage: NextPageWithLayout<
                   
                 </div>
                    */}
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
-            ) : (
-              <></>
-            )}
+            </div>
+          </form>
+
+          <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+            <TransferTable {...{ contractAddress: tokenContractAddressGDP }} />
           </div>
-        </div>
-      </form>
 
-      <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        <TransferTable {...{ contractAddress: tokenContractAddressGDP }} />
-      </div>
-
-      {/*
+          {/*
       {address && (
         <iframe
           className="mt-10 h-[500px] w-full border"
@@ -671,7 +765,7 @@ const WalletPage: NextPageWithLayout<
       )}
       */}
 
-      {/*
+          {/*
       <Web3Button
         contractAddress={tokenContractAddressGDP}
         action={() =>
@@ -685,25 +779,25 @@ const WalletPage: NextPageWithLayout<
       </Web3Button>
         */}
 
-      {/** MODAL **/}
+          {/** MODAL **/}
 
-      <div className={`${styles2.modal} ${modal2 ? styles2.show : ''}`}>
-        <div className={styles2.modalheader}>
-          <div onClick={hideModal2} className={styles.closeicon}>
-            <FontAwesomeIcon icon={faAngleLeft} />
+          <div className={`${styles2.modal} ${modal2 ? styles2.show : ''}`}>
+            <div className={styles2.modalheader}>
+              <div onClick={hideModal2} className={styles.closeicon}>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </div>
+              <div className={styles2.modaltitle}>Scan QR Code</div>
+
+              <div></div>
+            </div>
+
+            <div className={styles2.modalinput}>
+              <div id="reader" className={styles2.camera} />
+              <div className={styles2.result}>{result}</div>
+            </div>
           </div>
-          <div className={styles2.modaltitle}>Scan QR Code</div>
 
-          <div></div>
-        </div>
-
-        <div className={styles2.modalinput}>
-          <div id="reader" className={styles2.camera} />
-          <div className={styles2.result}>{result}</div>
-        </div>
-      </div>
-
-      {/*
+          {/*
       
       <Stack spacing={2} sx={{ width: "100%" }}>
 
@@ -733,7 +827,7 @@ const WalletPage: NextPageWithLayout<
       </Stack>
             */}
 
-      {/*
+          {/*
       <Stack spacing={2} sx={{ width: "100%" }}>
 
         <Snackbar
@@ -765,6 +859,8 @@ const WalletPage: NextPageWithLayout<
 
       </Stack>
             */}
+        </div>
+      </div>
     </>
   );
 };
