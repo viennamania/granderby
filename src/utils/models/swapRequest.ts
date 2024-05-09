@@ -11,7 +11,7 @@ import { tr } from 'date-fns/locale';
 
 dbConnect();
 
-// fromCointTxHash, fromCoin, toCoin, fromAmount, toAmount, fromWallet, toWallet, status, txHash, userID, email1, createdAt
+// fromCoinTxHash, fromCoin, toCoin, fromAmount, toAmount, fromWallet, toWallet, status, txHash, userID, email1, createdAt
 
 export const SwapRequestSchema = new Schema({
   fromCoinTxHash: {
@@ -80,7 +80,7 @@ export const SwapRequestModel =
   models.Swaprequest || model<ISwapRequest>('Swaprequest', SwapRequestSchema);
 
 export const newSwapRequest = async (
-  fromCointTxHash: string,
+  fromCoinTxHash: string,
   fromCoin: string,
   toCoin: string,
   fromAmount: number,
@@ -91,7 +91,7 @@ export const newSwapRequest = async (
   email1: string
 ) => {
   const newSwapRequest = new SwapRequestModel({
-    fromCointTxHash,
+    fromCoinTxHash,
     fromCoin,
     toCoin,
     fromAmount,
