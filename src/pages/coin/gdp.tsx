@@ -64,6 +64,9 @@ import {
   useTransferToken,
 } from '@thirdweb-dev/react';
 
+import { createThirdwebClient, getContract } from 'thirdweb';
+import { defineChain } from 'thirdweb/chains';
+
 import {
   ThirdwebSDK,
   ChainId,
@@ -316,6 +319,8 @@ const WalletPage: NextPageWithLayout<
         amount
       );
 
+      ///const transaction = transferTokens({ to: toAddress, amount: amount });
+
       console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
 
       //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
@@ -425,9 +430,7 @@ const WalletPage: NextPageWithLayout<
                 </div>
               )}
             </b>{' '}
-            <span className="text-lg text-[#2b57a2] ">
-              {tokenBalanceGDP?.symbol}
-            </span>
+            <span className="text-lg text-[#2b57a2] ">GDP</span>
             {/* reload button */}
             {/*
             <div className="flex items-center justify-center gap-2">
@@ -555,7 +558,7 @@ const WalletPage: NextPageWithLayout<
                 {(
                   Number(tokenBalanceGDP?.displayValue) - (amount || 0)
                 ).toFixed(2)}{' '}
-                {tokenBalanceGDP?.symbol} left
+                GDP left
               </div>
             )}
 
@@ -579,9 +582,7 @@ const WalletPage: NextPageWithLayout<
                       <GdpIcon className="h-35 w-35" />
                     </div>
                     <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                      <span>
-                        Sending {amount} {tokenBalanceGDP?.symbol} to
-                      </span>
+                      <span>Sending {amount} GDP to</span>
                       <span className="text-xs">{toAddress}</span>
                       <span>Please wait...</span>
                     </div>

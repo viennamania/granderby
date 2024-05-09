@@ -14,6 +14,9 @@ export const tokenContractAddressCARROTDrop =
 export const tokenContractAddressSUGARDrop =
   '0x631459BF14c9Dd1A30b955DfcBA08106B00c1359';
 
+// for GDP test
+//'0x2EfbCF4ab90eB860b985036A82d07F5517aAf796';
+
 export const nftDropContractAddressHorse =
   '0x41FBA0bd9f4DC9a968a10aEBb792af6A09969F60';
 
@@ -110,7 +113,11 @@ export const tokenContractAddressGRD =
 export const tokenContractAddressGDP =
   ///'0x9e747a718ca7E24181AA340B9627bBcb2Cb10Dbd';
 
-  '0x2EfbCF4ab90eB860b985036A82d07F5517aAf796';
+  //'0x2EfbCF4ab90eB860b985036A82d07F5517aAf796'; // old
+
+  //'0x88Bf8F435A494eD7E1EE9A0494400D1a037414e6'; // new
+
+  '0x631459BF14c9Dd1A30b955DfcBA08106B00c1359'; // sugar
 
 // USDC Token (USDC)
 export const tokenContractAddressUSDC =

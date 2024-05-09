@@ -513,8 +513,7 @@ function HeaderRightArea() {
       {address && (
         <div className="flex flex-row items-center gap-3 lg:flex-col lg:gap-1">
           <span className="text-xs lg:text-sm">
-            {Number(tokenBalanceGDP?.displayValue).toFixed(2)}{' '}
-            {tokenBalanceGDP?.symbol}
+            {Number(tokenBalanceGDP?.displayValue).toFixed(2)} GDP
           </span>
           {/*
           <span className="text-xs lg:text-sm">

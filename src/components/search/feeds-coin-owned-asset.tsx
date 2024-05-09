@@ -512,7 +512,7 @@ export default function FeedsCoinOwned(
 
                 Number(tokenBalanceGDP?.displayValue).toFixed(2)
               )}{' '}
-              {tokenBalanceGDP?.symbol}
+              GDP
             </div>
             {/*
               goto wallet

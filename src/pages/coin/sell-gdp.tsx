@@ -430,7 +430,7 @@ const WalletPage: NextPageWithLayout<
               )}
             </b>{' '}
             <span className="text-lg text-[#2b57a2] ">
-              {tokenBalanceGDP?.symbol}
+              GDP
             </span>
 
           </div>
@@ -667,9 +667,7 @@ const WalletPage: NextPageWithLayout<
                           <GdpIcon className="h-35 w-35" />
                         </div>
                         <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                          <span>
-                            Sending {amount} {tokenBalanceGDP?.symbol} to
-                          </span>
+                          <span>Sending {amount} GDP to</span>
                           <span className="text-xs">{toAddress}</span>
                           <span>Please wait...</span>
                         </div>

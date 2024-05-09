@@ -187,7 +187,9 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
           //clientId="c010fb6a9ed040cb62604793a5e56982"
 
-          clientId="054cf4b72c7cd869a7e49cfb8ea6a26d"
+          //clientId="054cf4b72c7cd869a7e49cfb8ea6a26d" // 0xe38
+
+          clientId="2da76340ce7c9721c232ca29f9a6bd0e" // 0x4897
           activeChain={Polygon}
           supportedWallets={[
             ///smartWalletConfig,
