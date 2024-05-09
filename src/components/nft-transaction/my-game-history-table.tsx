@@ -741,7 +741,7 @@ export default function GameHistoryTable() {
                     width={18}
                     height={18}
                   />
-                  <span className=" w-28 text-xl font-bold text-black">
+                  <span className=" w-32 text-xl font-bold text-black">
                     {Number(transfer.value).toFixed(2)}
                   </span>
                   <span className="text-xs">Sent to</span>
@@ -838,7 +838,7 @@ export default function GameHistoryTable() {
                   {transfer.asset === 'SUGAR' && (
                     <div className="flex items-center justify-start gap-2">
                       <Image
-                        src="/images/shop/icon-sugar.png"
+                        src="/images/icon-gdp.png"
                         alt="gd"
                         width={18}
                         height={18}
