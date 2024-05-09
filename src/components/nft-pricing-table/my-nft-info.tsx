@@ -68,6 +68,8 @@ import { useModal } from '@/components/modal-views/context';
 
 import PointHistoryTable from '@/components/nft-transaction/point-history-table';
 
+import ClaimHistoryTable from '@/components/nft-transaction/claim-history-table';
+
 import { InfoIcon } from '@/components/icons/info-icon';
 
 import toast from 'react-hot-toast';
@@ -805,9 +807,13 @@ export default function NftInfo({ horseData }: any) {
 
                 {/*
                 <div className="flex w-full flex-row items-center justify-center gap-20">
-                  <PointHistoryTable tokenid={nftMetadata.id} />
+                  <PointHistoryTable tokenid={ horseData?.nft?.tokenId} />
                 </div>
                 */}
+
+                <div className="flex w-full flex-row items-center justify-center gap-20">
+                  <ClaimHistoryTable tokenid={horseData?.nft?.tokenId} />
+                </div>
 
                 {/*
                 <div className="flex w-full flex-row items-center justify-center gap-5">
