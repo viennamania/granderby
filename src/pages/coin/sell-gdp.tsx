@@ -146,15 +146,39 @@ const WalletPage: NextPageWithLayout<
     address
   );
 
-  const [toAddress, setToAddress] = useState(
-    '0x26597616ed4e44379ba0Eb1EB86C4cFd82606F3E'
-  );
+  const [toAddress, setToAddress] = useState('');
 
   const [receiverAddress, setReceiverAddress] = useState('');
 
   const [amount, setAmount] = useState(0);
 
   const [fee, setFee] = useState(0);
+
+  const [sumDay, setSumDay] = useState(0);
+
+  useEffect(() => {
+    const getSumDay = async () => {
+      const response = await fetch('/api/ft/swapSumDay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fromWallet: address,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log('🌊 getSumDay', data);
+
+      setSumDay(data.sumDay);
+    };
+
+    if (address) {
+      getSumDay();
+    }
+  }, [address]);
 
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
@@ -293,8 +317,8 @@ const WalletPage: NextPageWithLayout<
     );
   }
 
-  async function transferToken(toAddress: string, amount: number) {
-    if (toAddress === '') {
+  async function transferToken(amount: number) {
+    if (receiverAddress === '') {
       alert(`🌊 Please enter a valid address`);
       return;
     }
@@ -312,10 +336,14 @@ const WalletPage: NextPageWithLayout<
     setIsSending(true);
 
     try {
+      /*
       const transaction = await tokenContractGDP?.erc20.transfer(
         toAddress,
         amount + fee
       );
+      */
+
+      const transaction = await tokenContractGDP?.erc20.burn(amount);
 
       ///const transaction = transferTokens({ to: toAddress, amount: amount });
 
@@ -605,7 +633,7 @@ const WalletPage: NextPageWithLayout<
                         Withdraw limit per day
                       </div>
                       <div className="w-full text-left text-lg font-bold text-white">
-                        0 / 10,000 USDT
+                        {sumDay} / 10,000 USDT
                       </div>
                     </div>
                   </div>
@@ -751,7 +779,7 @@ const WalletPage: NextPageWithLayout<
 
                             ///contract.erc20.transfer(toAddress, amount);
 
-                            transferToken(toAddress, amount);
+                            transferToken(amount);
 
                             /*
                           transferTokens({

@@ -146,3 +146,29 @@ export const getAllPaymentRequests = async () => {
   }
 };
 */
+
+// get sum of from now to 24 hours ago of toAmount by fromWallet
+export const getSumDayFromAmountByWallet = async (fromWallet: string) => {
+  const date = new Date();
+  date.setDate(date.getDate() - 1);
+  const sum = await SwapRequestModel.aggregate([
+    {
+      $match: {
+        fromWallet,
+        createdAt: { $gte: date },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: '$toAmount' },
+      },
+    },
+  ]);
+
+  if (sum) {
+    return sum[0].total;
+  } else {
+    return 0;
+  }
+};

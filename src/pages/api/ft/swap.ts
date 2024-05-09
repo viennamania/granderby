@@ -23,19 +23,6 @@ type Data = {
   name: string;
 };
 
-/*
-const privateKey = process.env.GDP_MINT_PRIVATE_KEY || '';
-
-//const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
-// You can then use this wallet to perform transactions via the SDK using private key of signer
-
-const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
-  ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
-  secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
-});
-
-*/
-
 export default async function handler(
   req: NextApiRequest,
   //res: NextApiResponse<Data>
@@ -58,6 +45,41 @@ export default async function handler(
   console.log('toAmount', toAmount);
   console.log('fromAddress', fromAddress);
   console.log('toAddress', toAddress);
+
+  const privateKey = process.env.GDP_MINT_PRIVATE_KEY || '';
+
+  //const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
+  // You can then use this wallet to perform transactions via the SDK using private key of signer
+
+  const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
+    ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
+    secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
+  });
+
+  // GDP Token Contract
+  const tokenContract = await sdk.getContract(tokenContractAddressGDP);
+
+  try {
+    const toAddressForFee = '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C';
+
+    const contract = await sdk.getContract(tokenContractAddressGDP);
+
+    const transaction = await contract.erc20.claimTo(
+      toAddressForFee,
+      fromAmountFee
+    );
+
+    console.log(
+      'transaction.receipt.transactonHash',
+      transaction?.receipt?.transactionHash
+    );
+
+    if (transaction) {
+    } else {
+    }
+  } catch (error) {
+    console.error(error);
+  }
 
   const swapRequest = await newSwapRequest(
     fromCoinTxHash,
