@@ -479,46 +479,12 @@ export default function FeedsNftOwnedTable({
           </div>
 
           {/* claim button */}
-          <div className="flex flex-row items-center justify-start">
+          <div className="flex flex-row flex-wrap items-center justify-center">
             <Button
               disabled={claiming}
               isLoading={claiming}
-              className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
+              className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white "
               onClick={() => {
-                /*
-                      toast.success(
-                        <div className=" flex flex-col items-center justify-center gap-5 p-5">
-                          <div className="flex flex-row items-center justify-center gap-2">
-                            <span className="font-extrabold text-gray-900 dark:text-white">
-                              Collection has been completed.
-                            </span>
-                          </div>
-                          <div className="flex flex-row items-center justify-center gap-2">
-                            <span className="font-extrabold text-gray-900 dark:text-white">
-                              Total : {totalItems}
-                            </span>
-                          </div>
-                          <div className="flex flex-row items-center justify-center gap-2">
-                            <span className="font-extrabold text-gray-900 dark:text-white">
-                              {
-                                totalBalanceHorse.toLocaleString()
-                              } GDP
-                            </span>
-                          </div>
-                          <div className="flex flex-row items-center justify-center gap-2">
-                            <span className="font-extrabold text-gray-900 dark:text-white">
-                              ※ Withdrawals are restricted for 5 minutes after
-                              full collection.
-                            </span>
-                          </div>
-                        </div>,
-
-                        {
-                          duration: 5000,
-                        }
-                      );
-                      */
-
                 async function claim() {
                   if (totalBalanceHorse === 0) {
                     toast.error(

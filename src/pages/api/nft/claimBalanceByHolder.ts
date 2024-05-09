@@ -169,9 +169,12 @@ export default async function handler(
 
       ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
 
-      const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+      let horseBalance = 0;
+      if (balanceData?.recordset[0]?.Horse_balance) {
+        horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+      }
 
-      console.log('horseBalance', horseBalance);
+      //console.log('horseBalance', horseBalance);
 
       if (horseBalance === 0) {
         //console.log('horseBalance is 0');
@@ -180,12 +183,14 @@ export default async function handler(
 
       // claim the balance
 
+      /*
       console.log(
         'claiming balance uid textureKey horseBalance',
         uid,
         textureKey,
         horseBalance
       );
+      */
 
       const result2 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
         method: 'POST',
