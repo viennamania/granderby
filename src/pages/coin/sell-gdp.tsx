@@ -676,11 +676,16 @@ const WalletPage: NextPageWithLayout<
                     {isSending ? (
                       <div className="flex flex-row items-center justify-center gap-2">
                         <div className="animate-spin">
-                          <GdpIcon className="h-35 w-35" />
+                          <Image
+                            src="/images/icon-gdp.png"
+                            alt="loading"
+                            width={20}
+                            height={20}
+                          />
                         </div>
                         <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                          <span>Sending {amount} GDP to</span>
-                          <span className="text-xs">{toAddress}</span>
+                          <span>Swap {amount} GDP to USDT</span>
+                          <span className="text-xs">{receiverAddress}</span>
                           <span>Please wait...</span>
                         </div>
                       </div>
