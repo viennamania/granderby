@@ -35,7 +35,7 @@ import { Alert, Snackbar, Stack } from '@mui/material';
 
 import dynamic from 'next/dynamic';
 
-import TransferTable from '@/components/ft-transaction/transfer-table';
+import SwapTable from '@/components/ft-transaction/swap-table';
 
 import { useCopyToClipboard } from 'react-use';
 import { Copy } from '@/components/icons/copy';
@@ -336,7 +336,7 @@ const WalletPage: NextPageWithLayout<
           fromAmount: amount,
           toAmount: amount / 100000,
           fromAddress: address,
-          toAddress: toAddress,
+          toAddress: receiverAddress,
         }),
       });
 
@@ -345,6 +345,8 @@ const WalletPage: NextPageWithLayout<
       console.log('🌊 Sent transaction with hash: ', data);
 
       alert(`🌊 successfully request to swap`);
+
+      setAmount(0);
     } catch (error) {
       console.error(error);
 
@@ -369,88 +371,88 @@ const WalletPage: NextPageWithLayout<
         description="Granderby - NFT Marketplace for the people, by the people."
       />
 
-      <div className="flex flex-col items-center justify-center gap-3  ">
-        <div className="flex flex-col items-center justify-center gap-3 rounded-lg bg-green-500 pb-5 pt-5 text-white">
-          <div className="mb-5 ml-10 w-full text-left text-lg font-bold lg:text-2xl">
+      <div className=" flex flex-col items-center justify-center gap-3  ">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-lg bg-green-500 p-10 text-white">
+          <div className=" w-full text-left text-lg font-bold lg:text-2xl">
             SWAP
           </div>
 
           {/*
-      <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-sky-600 pb-5 pt-5 text-white">
-        <div className="text-2xl font-bold">SWAP</div>
-      </div>
-      */}
+          <div className="flex-cols mt-5 flex items-center justify-center gap-3 rounded-lg bg-sky-600 pb-5 pt-5 text-white">
+            <div className="text-2xl font-bold">SWAP</div>
+          </div>
+          */}
 
           {/*
-      <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        {!address ? (
-          <></>
-        ) : (
-          <>
+          <div className="mx-auto flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+            {!address ? (
+              <></>
+            ) : (
+              <>
 
 
-            <div className="mt-5 flex flex-col items-center justify-center">
-              <div className="mb-5 mt-5 flex flex-row items-center justify-center gap-3">
-                <span className=" text-sm">{address}</span>
+                <div className="mt-5 flex flex-col items-center justify-center">
+                  <div className="mb-5 mt-5 flex flex-row items-center justify-center gap-3">
+                    <span className=" text-sm">{address}</span>
 
-                <div
-                  title="Copy Address"
-                  onClick={() => handleCopyToClipboard()}
-                >
-                  {copyButtonStatus ? (
-                    <Check className="h-auto w-3.5 text-green-500" />
+                    <div
+                      title="Copy Address"
+                      onClick={() => handleCopyToClipboard()}
+                    >
+                      {copyButtonStatus ? (
+                        <Check className="h-auto w-3.5 text-green-500" />
+                      ) : (
+                        <Copy className="h-auto w-3.5" />
+                      )}
+                    </div>
+                  </div>
+
+                  <Canvas
+                    text={address}
+                    options={{
+                      level: 'M',
+                      margin: 3,
+                      scale: 4,
+                      width: 150,
+                      color: {
+                        dark: '#010599FF',
+                        light: '#FFBF60FF',
+                      },
+                    }}
+                  />
+                </div>
+              </>
+            )}
+
+
+            <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+              My Balance
+            </h3>
+
+            {address ? (
+              <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                <GdpIcon className="h-auto w-8 lg:w-auto" />
+                <b>
+                  {tokenBalanceGDP === undefined ? (
+                    <>Loading...</>
                   ) : (
-                    <Copy className="h-auto w-3.5" />
+                    <div className="m-5 text-5xl font-bold xl:text-7xl">
+                      {Number(tokenBalanceGDP?.displayValue).toFixed(2)}
+                    </div>
                   )}
-                </div>
+                </b>{' '}
+                <span className="text-lg text-[#2b57a2] ">
+                  GDP
+                </span>
+
               </div>
-
-              <Canvas
-                text={address}
-                options={{
-                  level: 'M',
-                  margin: 3,
-                  scale: 4,
-                  width: 150,
-                  color: {
-                    dark: '#010599FF',
-                    light: '#FFBF60FF',
-                  },
-                }}
-              />
-            </div>
-          </>
-        )}
-
-
-        <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
-          My Balance
-        </h3>
-
-        {address ? (
-          <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            <GdpIcon className="h-auto w-8 lg:w-auto" />
-            <b>
-              {tokenBalanceGDP === undefined ? (
-                <>Loading...</>
-              ) : (
-                <div className="m-5 text-5xl font-bold xl:text-7xl">
-                  {Number(tokenBalanceGDP?.displayValue).toFixed(2)}
-                </div>
-              )}
-            </b>{' '}
-            <span className="text-lg text-[#2b57a2] ">
-              GDP
-            </span>
-
+            ) : (
+              <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+                <ConnectWallet theme="light" />
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            <ConnectWallet theme="light" />
-          </div>
-        )}
-      </div>
-      */}
+          */}
 
           <form>
             <div className=" flex flex-row items-center justify-center text-lime-600">
@@ -760,32 +762,28 @@ const WalletPage: NextPageWithLayout<
             </div>
           </form>
 
-          <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-            <TransferTable {...{ contractAddress: tokenContractAddressGDP }} />
-          </div>
+          {/*
+            {address && (
+              <iframe
+                className="mt-10 h-[500px] w-full border"
+                src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c"
+              />
+            )}
+            */}
 
           {/*
-      {address && (
-        <iframe
-          className="mt-10 h-[500px] w-full border"
-          src="https://withpaper.com/sdk/2022-08-12/embedded-wallet/export?clientId=efa05253-e8b1-4adb-b978-996f8f2f409c"
-        />
-      )}
-      */}
-
-          {/*
-      <Web3Button
-        contractAddress={tokenContractAddressGDP}
-        action={() =>
-          transferTokens({
-            to: "0xb6012B608DB2ad15e4Fb53d8AD2A2A8B6805F1a2", // Address to transfer to
-            amount: 3, // Amount to transfer
-          })
-        }
-      >
-        Transfer
-      </Web3Button>
-        */}
+            <Web3Button
+              contractAddress={tokenContractAddressGDP}
+              action={() =>
+                transferTokens({
+                  to: "0xb6012B608DB2ad15e4Fb53d8AD2A2A8B6805F1a2", // Address to transfer to
+                  amount: 3, // Amount to transfer
+                })
+              }
+            >
+              Transfer
+            </Web3Button>
+          */}
 
           {/** MODAL **/}
 
@@ -806,67 +804,71 @@ const WalletPage: NextPageWithLayout<
           </div>
 
           {/*
-      
-      <Stack spacing={2} sx={{ width: "100%" }}>
+          
+          <Stack spacing={2} sx={{ width: "100%" }}>
 
-        <Snackbar
-            open={succ}
-            autoHideDuration={6000}
-            onClose={handleCloseSucc}
-        >
-            <Alert
+            <Snackbar
+                open={succ}
+                autoHideDuration={6000}
                 onClose={handleCloseSucc}
-                severity="success"
-                sx={{ width: "100%" }}
             >
-                {successMsgSnackbar}
-            </Alert>
-        </Snackbar>
-        <Snackbar open={err} autoHideDuration={6000} onClose={handleCloseErr}>
-            <Alert
-                onClose={handleCloseErr}
-                severity="error"
-                sx={{ width: "100%" }}
-            >
-              {errMsgSnackbar}
+                <Alert
+                    onClose={handleCloseSucc}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                >
+                    {successMsgSnackbar}
+                </Alert>
+            </Snackbar>
+            <Snackbar open={err} autoHideDuration={6000} onClose={handleCloseErr}>
+                <Alert
+                    onClose={handleCloseErr}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                >
+                  {errMsgSnackbar}
 
-            </Alert>
-        </Snackbar>
-      </Stack>
+                </Alert>
+            </Snackbar>
+          </Stack>
             */}
 
           {/*
-      <Stack spacing={2} sx={{ width: "100%" }}>
+            <Stack spacing={2} sx={{ width: "100%" }}>
 
-        <Snackbar
-          open={succ}
-          autoHideDuration={6000}
-          onClose={handleCloseSucc}
-        >
-          <Alert
-            onClose={handleCloseSucc}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
-            {successMsgSnackbar}
-          </Alert>
-        </Snackbar>
+              <Snackbar
+                open={succ}
+                autoHideDuration={6000}
+                onClose={handleCloseSucc}
+              >
+                <Alert
+                  onClose={handleCloseSucc}
+                  severity="success"
+                  sx={{ width: "100%" }}
+                >
+                  {successMsgSnackbar}
+                </Alert>
+              </Snackbar>
 
-        <Snackbar
-            open={err}
-            autoHideDuration={6000}
-            onClose={handleCloseErr}>
-          <Alert
-            onClose={handleCloseErr}
-            severity="error"
-            sx={{ width: "100%" }}
-          >
-            {errMsgSnackbar}
-          </Alert>
-        </Snackbar>
+              <Snackbar
+                  open={err}
+                  autoHideDuration={6000}
+                  onClose={handleCloseErr}>
+                <Alert
+                  onClose={handleCloseErr}
+                  severity="error"
+                  sx={{ width: "100%" }}
+                >
+                  {errMsgSnackbar}
+                </Alert>
+              </Snackbar>
 
-      </Stack>
+            </Stack>
             */}
+        </div>
+
+        <div className="mx-auto mt-8 flex w-full shrink-0 flex-col md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+          <SwapTable />
         </div>
       </div>
     </>

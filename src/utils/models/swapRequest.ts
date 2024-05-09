@@ -107,27 +107,21 @@ export const newSwapRequest = async (
   return await newSwapRequest.save();
 };
 
-/*
-export const newSwapRequest = async (
-  userID: string,
-  email1: string,
-  withdrawAmount: number,
-  walletTo: string,
-  type: string
-) => {
-  const newSwapRequest = new SwapRequest({
-    userID,
-    email1,
-    withdrawAmount,
-    walletTo,
-    type,
+// getAllSwapRequestsByWallet order by createdAt desc
+
+export const getAllSwapRequestsByWallet = async (fromWallet: string) => {
+  const requests = await SwapRequestModel.find({ fromWallet }).sort({
+    createdAt: -1,
   });
-  if (!newSwapRequest) {
+
+  if (requests) {
+    return requests;
+  } else {
     return null;
   }
-  return await newSwapRequest.save();
 };
 
+/*
 export const getPaymentRequest = async (_id: string) => {
   const request = await PaymentRequest.find({ _id });
   if (request) {
