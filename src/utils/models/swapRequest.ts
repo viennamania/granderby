@@ -30,6 +30,10 @@ export const SwapRequestSchema = new Schema({
     type: Number,
     required: true,
   },
+  fromAmountFee: {
+    type: Number,
+    required: true,
+  },
   toAmount: {
     type: Number,
     required: true,
@@ -84,6 +88,7 @@ export const newSwapRequest = async (
   fromCoin: string,
   toCoin: string,
   fromAmount: number,
+  fromAmountFee: number,
   toAmount: number,
   fromWallet: string,
   toWallet: string,
@@ -95,6 +100,7 @@ export const newSwapRequest = async (
     fromCoin,
     toCoin,
     fromAmount,
+    fromAmountFee,
     toAmount,
     fromWallet,
     toWallet,

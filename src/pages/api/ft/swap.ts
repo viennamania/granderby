@@ -45,6 +45,7 @@ export default async function handler(
   const fromCoin = req.body.fromCoin;
   const toCoin = req.body.toCoin;
   const fromAmount = req.body.fromAmount;
+  const fromAmountFee = req.body.fromAmountFee;
   const toAmount = req.body.toAmount;
   const fromAddress = req.body.fromAddress;
   const toAddress = req.body.toAddress;
@@ -53,6 +54,7 @@ export default async function handler(
   console.log('fromCoin', fromCoin);
   console.log('toCoin', toCoin);
   console.log('fromAmount', fromAmount);
+  console.log('fromAmountFee', fromAmountFee);
   console.log('toAmount', toAmount);
   console.log('fromAddress', fromAddress);
   console.log('toAddress', toAddress);
@@ -62,6 +64,7 @@ export default async function handler(
     fromCoin,
     toCoin,
     fromAmount,
+    fromAmountFee,
     toAmount,
     fromAddress,
     toAddress,

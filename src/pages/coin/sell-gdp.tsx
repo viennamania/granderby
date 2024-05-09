@@ -154,6 +154,8 @@ const WalletPage: NextPageWithLayout<
 
   const [amount, setAmount] = useState(0);
 
+  const [fee, setFee] = useState(0);
+
   const [copyButtonStatus, setCopyButtonStatus] = useState(false);
   const [_, copyToClipboard] = useCopyToClipboard();
   function handleCopyToClipboard() {
@@ -302,12 +304,17 @@ const WalletPage: NextPageWithLayout<
       return;
     }
 
+    if (amount + fee > Number(tokenBalanceGDP?.displayValue)) {
+      alert(`🌊 Insufficient balance`);
+      return;
+    }
+
     setIsSending(true);
 
     try {
       const transaction = await tokenContractGDP?.erc20.transfer(
         toAddress,
-        amount
+        amount + fee
       );
 
       ///const transaction = transferTokens({ to: toAddress, amount: amount });
@@ -334,6 +341,7 @@ const WalletPage: NextPageWithLayout<
           fromCoin: 'GDP',
           toCoin: 'USDT',
           fromAmount: amount,
+          fromAmountFee: fee,
           toAmount: amount / 100000,
           fromAddress: address,
           toAddress: receiverAddress,
@@ -347,6 +355,8 @@ const WalletPage: NextPageWithLayout<
       alert(`🌊 successfully request to swap`);
 
       setAmount(0);
+      setFee(0);
+      //setReceiverAddress('');
     } catch (error) {
       console.error(error);
 
@@ -620,6 +630,8 @@ const WalletPage: NextPageWithLayout<
                     placeholder="0"
                     value={amount}
                     onChange={(e) => {
+                      console.log('e.target.value', e.target.value);
+
                       if (e.target.value === null) setAmount(undefined);
                       else if (Number(e.target.value) === 0)
                         setAmount(undefined);
@@ -629,8 +641,19 @@ const WalletPage: NextPageWithLayout<
                         Number(tokenBalanceGDP?.displayValue)
                       ) {
                         setAmount(Number(tokenBalanceGDP?.displayValue));
+
+                        setFee(
+                          (Number(tokenBalanceGDP?.displayValue) / 100) * 2
+                        );
                       } else {
                         setAmount(Number(e.target.value));
+
+                        setFee((Number(e.target.value) / 100) * 2);
+
+                        if (Number(e.target.value) === 0) setFee(0);
+                        if (e.target.value === null) setFee(0);
+                        if (e.target.value === undefined) setFee(0);
+                        if (e.target.value === '') setFee(0);
                       }
                     }}
                   />
@@ -639,16 +662,17 @@ const WalletPage: NextPageWithLayout<
                 {address && (
                   <div className="mb-3 mt-2 w-full text-right text-lg font-bold text-white">
                     {(
-                      Number(tokenBalanceGDP?.displayValue) - (amount || 0)
+                      Number(tokenBalanceGDP?.displayValue) -
+                      ((amount || 0) + fee)
                     ).toFixed(2)}{' '}
                     left
                   </div>
                 )}
 
                 {/*
-              display usdt swap value
-              usdt = gdp / 100000
-            */}
+                  display usdt swap value
+                  usdt = gdp / 100000
+                */}
                 {address && (
                   <div className="flex flex-col gap-2 text-right">
                     {amount && amount > 0 && (
@@ -659,15 +683,31 @@ const WalletPage: NextPageWithLayout<
                   </div>
                 )}
 
+                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
+                  <div className=" w-24 text-lg font-bold text-white">
+                    Swap fee
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-1">
+                    <div className="w-full text-right text-lg font-bold text-white">
+                      {fee} GDP
+                    </div>
+                    <div className="w-full text-right text-sm font-bold text-white">
+                      * 2% of the withdraw amount will be paid as a swap fee.
+                      <br />
+                      The fee will be deducted from the balance after the swap.
+                    </div>
+                  </div>
+                </div>
+
                 {/*}
-            <button
-              type="submit"
-              className={styles.mainButton}
-              style={{ marginTop: 32, borderStyle: 'none' }}
-            >
-              Send
-            </button>
-            */}
+                  <button
+                    type="submit"
+                    className={styles.mainButton}
+                    style={{ marginTop: 32, borderStyle: 'none' }}
+                  >
+                    Send
+                  </button>
+                  */}
 
                 {address ? (
                   <div className="mt-5 flex flex-row justify-center">
@@ -684,7 +724,7 @@ const WalletPage: NextPageWithLayout<
                           />
                         </div>
                         <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                          <span>Swap {amount} GDP to USDT</span>
+                          <span>Swap {amount + fee} GDP to USDT</span>
                           <span className="text-xs">{receiverAddress}</span>
                           <span>Please wait...</span>
                         </div>

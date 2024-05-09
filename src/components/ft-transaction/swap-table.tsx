@@ -126,6 +126,20 @@ const COLUMNS = [
     maxWidth: 100,
   },
   {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Fee(GDP)</div>,
+    accessor: 'fromAmountFee',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="ltext-left">
+        <strong className="mb-0.5 flex justify-end text-2xl font-bold md:mb-1.5 md:text-2xl xl:text-3xl 3xl:text-3xl">
+          {value === undefined ? '0.00' : Number(value).toFixed(2)}
+        </strong>
+      </div>
+    ),
+    minWidth: 80,
+    maxWidth: 80,
+  },
+  {
     Header: () => (
       <div className="ltr:ml-auto rtl:mr-auto">To Amount(USDT)</div>
     ),
@@ -141,6 +155,7 @@ const COLUMNS = [
     minWidth: 100,
     maxWidth: 100,
   },
+
   /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Asset</div>,
@@ -190,14 +205,14 @@ const COLUMNS = [
         {moment(value).local().format('YYYY-MM-DD HH:mm:ss')}
       </div>
     ),
-    minWidth: 100,
-    maxWidth: 130,
+    minWidth: 80,
+    maxWidth: 80,
   },
 ];
 
 export default function SwapTable() {
-//contractAddress: string
-///address : string,
+  //contractAddress: string
+  ///address : string,
   /////console.log('TransferTable contractAddress: ', contractAddress);
 
   ///const data = React.useMemo(() => TransactionData, []);
