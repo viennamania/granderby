@@ -6,11 +6,7 @@
             "schedule": "* * * * *"
         },
         {
-            "path": "/api/cronjob-game",
-            "schedule": "* * * * *"
-        },
-        {
-            "path": "/api/cronjob-ranking",
+            "path": "/api/cronjob-sugar",
             "schedule": "* * * * *"
         },
         {
