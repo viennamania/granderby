@@ -305,43 +305,53 @@ const WalletPage: NextPageWithLayout<
     setIsSending(true);
 
     try {
-      /*
-      const tx = await tokenContractGDP?.erc20.transfer.prepare(toAddress, amount);
-
-      const gaslessOptions = tx?.getGaslessOptions();
-
-      console.log("gallessOptions", gaslessOptions);
-
-
-      return;
-      */
-
       const transaction = await tokenContractGDP?.erc20.transfer(
         toAddress,
         amount
       );
 
-      console.log(`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+      ///const transaction = transferTokens({ to: toAddress, amount: amount });
 
-      //alert (`🌊 Sent transaction with hash: ${transaction?.receipt}`);
+      if (!transaction) {
+        setIsSending(false);
+        alert(`🌊 Failed to send transaction with hash: ${transaction}`);
+        return;
+      }
 
-      alert(`🌊 Successfully transfered!`);
+      console.log(
+        `🌊 Sent transaction with hash: ${transaction?.receipt?.transactionHash}`
+      );
 
-      setIsSending(false);
+      //alert(`🌊 Successfully sent transaction with hash: ${transaction?.receipt?.transactionHash}`);
 
-      setAmount(0);
-      setToAddress('');
+      const response = await fetch('/api/ft/swap', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fromCoinTxHash: transaction?.receipt?.transactionHash,
+          fromCoin: 'GDP',
+          toCoin: 'USDT',
+          fromAmount: amount,
+          toAmount: amount / 100000,
+          fromAddress: address,
+          toAddress: toAddress,
+        }),
+      });
 
-      //router.reload();
+      const data = await response.json();
 
-      return transaction;
+      console.log('🌊 Sent transaction with hash: ', data);
+
+      alert(`🌊 successfully request to swap`);
     } catch (error) {
       console.error(error);
 
       alert(`🌊 Failed to send transaction with hash: ${error}`);
-
-      setIsSending(false);
     }
+
+    setIsSending(false);
   }
 
   ///const CC = dynamic(() => import("@/components/copy-clipboard").then(mod => mod.CopyClipboard), { ssr: false })
