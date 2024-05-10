@@ -1380,6 +1380,30 @@ export const setHorseBalanceByTokenId = async (
   return data;
 };
 
+export const setHorseGradeByTokenId = async (
+  tokenId: string,
+  grade: string
+) => {
+  const client = await clientPromise;
+  const collection = client.db('granderby').collection('nfthorses');
+
+  const data = await collection.findOneAndUpdate(
+    {
+      tokenId: tokenId,
+    },
+    {
+      $set: {
+        grade: grade,
+      },
+    },
+    {
+      upsert: true,
+    }
+  );
+
+  return data;
+};
+
 // set horse nft object by tokenId
 export const setHorseNftByTokenId = async (tokenId: string, nft: any) => {
   let grade = '';

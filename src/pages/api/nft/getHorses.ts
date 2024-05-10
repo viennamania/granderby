@@ -257,7 +257,7 @@ export default async function handler(
         }
 
         imagesrc = 'Hrs_' + '0002' + formattedNumber + '.png';
-        grade = 'D';
+        grade = 'B';
 
         gameHorseName = '0002' + formattedNumber;
       } else if (Number(tokenId) >= 2115 && Number(tokenId) < 2645) {
