@@ -494,7 +494,38 @@ export default async function handler(
 
       //console.log('gameHorseKey', gameHorseKey);
 
-      await setHorseGradeByTokenId(tokenId, grade);
+      //let horseUid = '';
+      /*
+      try {
+
+        const result = await fetch(
+          `http://3.38.2.94:3001/api/horse?name=${gameHorseKey}`
+        );
+
+        //console.log('result1', result1);
+
+        
+        if (result.status === 200) {
+          const json = await result.json();
+          horseUid = json?.recordset?.[0]?.HORSE_UID;
+        }
+
+      } catch (error) {
+        console.log('error', error);
+      }
+      */
+
+      // fetch horseUid from game server and update it
+
+      fetch(`http://3.38.2.94:3001/api/horse?name=${gameHorseKey}`)
+        .then((res) => res.json())
+        .then((json) => {
+          const horseUid = json?.recordset?.[0]?.HORSE_UID;
+
+          setHorseGradeByTokenId(tokenId, grade, gameHorseKey, horseUid);
+        });
+
+      //await setHorseGradeByTokenId(tokenId, grade, gameHorseKey, horseUid);
     } catch (error) {
       console.log('error', error);
     }

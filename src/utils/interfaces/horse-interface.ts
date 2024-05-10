@@ -10,4 +10,7 @@ export interface IHorse {
   logsNewSale: object;
   register: string;
   balance: number;
+  grade: string;
+  textureKey: string;
+  horseUid: string;
 }

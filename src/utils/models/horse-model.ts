@@ -123,6 +123,21 @@ const HorseSchema = new Schema({
     required: false,
     default: 0,
   },
+  grade: {
+    type: String,
+    required: false,
+    default: false,
+  },
+  textureKey: {
+    type: String,
+    required: false,
+    default: false,
+  },
+  horseUid: {
+    type: String,
+    required: false,
+    default: false,
+  },
 });
 
 /*
@@ -1382,7 +1397,9 @@ export const setHorseBalanceByTokenId = async (
 
 export const setHorseGradeByTokenId = async (
   tokenId: string,
-  grade: string
+  grade: string,
+  textureKey: string,
+  horseUid: string
 ) => {
   const client = await clientPromise;
   const collection = client.db('granderby').collection('nfthorses');
@@ -1394,6 +1411,8 @@ export const setHorseGradeByTokenId = async (
     {
       $set: {
         grade: grade,
+        textureKey: textureKey,
+        horseUid: horseUid,
       },
     },
     {
