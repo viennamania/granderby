@@ -343,7 +343,7 @@ const WalletPage: NextPageWithLayout<
       );
       */
 
-      const transaction = await tokenContractGDP?.erc20.burn(amount);
+      const transaction = await tokenContractGDP?.erc20.burn(amount + fee);
 
       ///const transaction = transferTokens({ to: toAddress, amount: amount });
 
