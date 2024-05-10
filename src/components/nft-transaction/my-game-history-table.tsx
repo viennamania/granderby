@@ -812,11 +812,11 @@ export default function GameHistoryTable() {
                         height={18}
                       />
 
-                      <span className="text-xs">Minted</span>
-
                       <span className="text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
+
+                      <span className="text-xs">Minted</span>
                     </div>
                   )}
                   {transfer.asset === 'CARROT' && (
@@ -843,11 +843,12 @@ export default function GameHistoryTable() {
                         width={18}
                         height={18}
                       />
-                      <span className="text-xs">Minted</span>
 
-                      <span className="text-xl font-bold text-black">
+                      <span className=" w-32 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
+
+                      <span className="text-xs">Minted</span>
                     </div>
                   )}
                 </div>
@@ -975,7 +976,7 @@ export default function GameHistoryTable() {
                 </span>
               </button>
 
-              <span className="text-xs">Received from holder</span>
+              <span className="text-xs">Received from</span>
 
               <button
                 className=" flex flex-row items-center justify-start "

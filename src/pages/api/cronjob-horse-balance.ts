@@ -306,7 +306,6 @@ export default async function handler(
           while (formattedNumber.length < 4) {
             formattedNumber = '0' + formattedNumber;
           }
-
           formattedNumber = '0020' + formattedNumber;
           gameHorseKey = formattedNumber;
           imagesrc = 'Hrs_' + formattedNumber + '.png';

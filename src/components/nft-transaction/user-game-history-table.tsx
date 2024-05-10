@@ -972,7 +972,7 @@ export default function GameHistoryTable(
                 </span>
               </button>
 
-              <span className="text-xs">Received from holder</span>
+              <span className="text-xs">Received from</span>
 
               <button
                 className=" flex flex-row items-center justify-start "
