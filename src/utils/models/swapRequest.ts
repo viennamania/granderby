@@ -11,6 +11,10 @@ import { tr } from 'date-fns/locale';
 
 dbConnect();
 
+import clientPromise from '@/lib/mongodb';
+
+///import { ObjectId } from 'mongodb';
+
 // fromCoinTxHash, fromCoin, toCoin, fromAmount, toAmount, fromWallet, toWallet, status, txHash, userID, email1, createdAt
 
 export const SwapRequestSchema = new Schema({
@@ -127,6 +131,18 @@ export const getAllSwapRequests = async () => {
   }
 };
 
+export const getAllSwapRequestsByStatusWaiting = async () => {
+  const requests = await SwapRequestModel.find({ status: 'Waiting' }).sort({
+    createdAt: -1,
+  });
+
+  if (requests) {
+    return requests;
+  } else {
+    return null;
+  }
+};
+
 // getAllSwapRequestsByWallet order by createdAt desc
 
 export const getAllSwapRequestsByWallet = async (fromWallet: string) => {
@@ -184,5 +200,51 @@ export const getSumDayFromAmountByWallet = async (fromWallet: string) => {
     return sum[0].total;
   } else {
     return 0;
+  }
+};
+
+// setSwapRequestsStatusById from 'waiting' to 'Completed' and update txHash
+
+export const setSwapRequestsStatusById = async (
+  _id: string,
+  txHash: string
+) => {
+  /*
+  const swapRequest = await SwapRequestModel.findOne ({ _id });
+  
+  // check if swapRequest exists and status is 'Waiting'
+
+  if (swapRequest && swapRequest.status === 'Waiting') {
+
+    swapRequest.status = 'Completed';
+    swapRequest.txHash = txHash;
+
+    return await swapRequest.save();
+
+  } else {
+    return null;
+  }
+  */
+
+  const client = await clientPromise;
+  const collection = client.db('granderby').collection('swaprequests');
+
+  const data = await collection.findOneAndUpdate(
+    {
+      _id: new mongoose.Types.ObjectId(_id),
+      status: 'Waiting',
+    },
+    {
+      $set: {
+        status: 'Completed',
+        txHash: txHash,
+      },
+    }
+  );
+
+  if (data) {
+    return data;
+  } else {
+    return null;
   }
 };

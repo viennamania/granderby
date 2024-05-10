@@ -28,6 +28,13 @@ import {
 } from '@thirdweb-dev/wallets';
 import { Goerli, Polygon } from '@thirdweb-dev/chains';
 
+import { tokenContractAddressUSDT } from '@/config/contractAddresses';
+
+import {
+  getAllSwapRequestsByStatusWaiting,
+  setSwapRequestsStatusById,
+} from '@/utils/models/swapRequest';
+
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
   network: Network.MATIC_MAINNET, // Replace with your network.
@@ -47,256 +54,70 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  var toAddress = '';
-  var amount = 0;
+  const privateKey = process.env.GDP_MINT_PRIVATE_KEY || '';
 
-  const horsehistories = db.collection('horsehistories');
-  const results = await horsehistories
-    .aggregate([
-      //{"$project": {"author": 1, "title": 1, "tags": 1, "date": 1}},
+  //const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
+  // You can then use this wallet to perform transactions via the SDK using private key of signer
 
-      //{ $match: { nftOwner: { $exists: false } } },
-      /* match nftOwner is null or not exists  */
-      {
-        $match: {
-          $or: [{ nftOwner: { $exists: false } }, { nftOwner: null }],
-        },
-      },
+  const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
+    ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
+    secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
+  });
 
-      ///{"$match": {"nft": {"$exists": false}}},
+  // get all swap requests
+  const swapRequests = (await getAllSwapRequestsByStatusWaiting()) || [];
 
-      { $sort: { date: -1 } },
-      { $limit: 1 },
-    ])
-    .toArray();
+  // if swap requests status is 'waiting' then process withdrawal and if success then update status to 'completed'
 
-  ///console.log("result[0] from horsehistories", results[0]);
+  swapRequests.forEach(async (swapRequest) => {
+    ///console.log('swapRequest', swapRequest);
 
-  /*
-  console.log('_id', results[0]._id);
-  console.log('winnerHorse', results[0].winnerHorse);
+    if (
+      swapRequest.status === 'Waiting' &&
+      swapRequest.toWallet &&
+      swapRequest.toAmount
+    ) {
+      try {
+        const toWallet = swapRequest.toWallet;
+        const toAmount = swapRequest.toAmount;
 
-  console.log('winnerNft', results[0].winnerNft);
+        console.log('toWallet', toWallet);
+        console.log('toAmount', toAmount);
 
-  console.log('totalBet', results[0].totalBet);
-  console.log('winPrize', results[0].winPrize);
-  console.log('nftOwner', results[0].nftOwner);
+        //return null;
 
-  console.log('tokenId', results[0].winnerNft.tokenId);
-  */
+        const contract = await sdk.getContract(tokenContractAddressUSDT);
 
-  const tokenId = results[0].winnerNft.tokenId;
+        const transaction = await contract.erc20.transfer(toWallet, toAmount);
 
-  console.log('tokenId', tokenId);
+        console.log(
+          'transaction.receipt.transactonHash',
+          transaction?.receipt?.transactionHash
+        );
 
-  try {
-    const result = await db
-      .collection('nfthorses')
-      .findOne({ tokenId: tokenId?.toString() });
+        if (transaction) {
+          const txHash = transaction?.receipt?.transactionHash;
 
-    console.log('result from nfthorses', result);
+          //console.log('txHash', txHash);
 
-    console.log('holder', result?.holder);
-
-    const filter = { _id: results[0]._id };
-    const updateNft = {
-      $set: {
-        nftOwner: result?.holder,
-        nft: result?.nft,
-      },
-    };
-    const options = { upsert: false };
-
-    await horsehistories.updateOne(filter, updateNft, options);
-
-    toAddress = result?.holder;
-
-    amount = results[0].winPrize * 10;
-  } catch (error) {
-    console.error(error);
-  }
-
-  console.log('toAddress', toAddress);
-  console.log('amount', amount);
-
-  if (toAddress && amount) {
-    const privateKey = process.env.REWARD_PRIVATE_KEY;
-
-    /*
-    // can be any ethers.js signer
-    ///const privateKey = process.env.PRIVATE_KEY;
-    const personalWallet = new PrivateKeyWallet(privateKey);
-
-    const config = {
-      chain: Polygon, // the chain where your smart wallet will be or is deployed
-      factoryAddress: '0xaC1fb0e77770ee3BE8e0Fa1E2eC8e313C8526660', // your own deployed account factory address
-      ///clientId: "3af7ae04bda0e7a51c444c3a9464458d", // Use client id if using on the client side, get it from dashboard settings
-      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
-      gasless: true, // enable or disable gasless transactions
-    };
-
-    // Then, connect the Smart wallet
-    const smartWallet = new SmartWallet(config);
-
-    const smartWalletAddress = await smartWallet.connect({
-      personalWallet: personalWallet,
-    });
-
-    console.log('smartWallet address', smartWalletAddress);
-
-    const contract = tokenContractAddressSUGARDrop;
-    const address = '0x1d54e58e4519d576be8D61DD86c3054Dc4A9642c';
-    const amount = 2;
-
-    try {
-      // You can then use this wallet to perform transactions via the SDK
-      const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
-
-      // Token (ERC20)
-      const tokenContract = await sdk.getContract(contract);
-
-      // Address of the wallet you want to send the tokens to
-      const toAddress = address;
-      // The amount of tokens you want to send
-      const transferAmount = amount;
-      const transaction = await tokenContract.erc20.transfer(
-        toAddress,
-        transferAmount
-      );
-
-      console.log(
-        'transaction.receipt.transactonHash',
-        transaction?.receipt?.transactionHash
-      );
-
-      if (transaction) {
-        res.status(200).json({
-          txid: transaction?.receipt?.transactionHash,
-          message: 'transaction successful',
-          contract: contract,
-          address: address,
-          amount: amount,
-        });
-      } else {
-        res.status(400).json({
-          txid: '',
-          message: 'transaction failed',
-          contract: contract,
-          address: address,
-          amount: amount,
-        });
+          if (txHash) {
+            await setSwapRequestsStatusById(swapRequest._id, txHash);
+          }
+        } else {
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error: any) {
-      console.error(error);
-
-      res.status(400).json({
-        txid: '',
-        message: error.message,
-        contract: contract,
-        address: address,
-        amount: amount,
-      });
+    } else {
+      console.log('swapRequest status is not waiting');
     }
-    */
+  });
 
-    /*
-    const sdk = ThirdwebSDK.fromPrivateKey(privateKey, 'polygon', {
-      ////clientId: process.env.THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
-      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
-
-      gasless: {
-        // By specifying a gasless configuration - all transactions will get forwarded to enable gasless transactions
-        openzeppelin: {
-          relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL, // your OZ Defender relayer URL
-          //////relayerForwarderAddress: "<open-zeppelin-forwarder-address>", // the OZ defender relayer address (defaults to the standard one)
-        },
-      },
-    });
-    */
-
-    // can be any ethers.js signer
-    ///const privateKey = process.env.PRIVATE_KEY;
-    const personalWallet = new PrivateKeyWallet(privateKey);
-
-    const config = {
-      chain: Polygon, // the chain where your smart wallet will be or is deployed
-      factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB', // your own deployed account factory address
-      ///clientId: "3af7ae04bda0e7a51c444c3a9464458d", // Use client id if using on the client side, get it from dashboard settings
-      secretKey: process.env.THIRDWEB_SECRET_KEY, // Use secret key if using on the server, get it from dashboard settings
-      gasless: true, // enable or disable gasless transactions
-    };
-
-    // Then, connect the Smart wallet
-    const smartWallet = new SmartWallet(config);
-
-    const smartWalletAddress = await smartWallet.connect({
-      personalWallet: personalWallet,
-    });
-
-    console.log('smartWallet address', smartWalletAddress);
-
-    // You can then use this wallet to perform transactions via the SDK
-    const sdk = await ThirdwebSDK.fromWallet(smartWallet, Polygon);
-
-    // Sugar Token Contract
-    const tokenContract = await sdk.getContract(tokenContractAddressSUGARDrop);
-
-    try {
-      const transaction = await tokenContract.erc20.transfer(toAddress, amount);
-
-      console.log(
-        'transaction.receipt.transactonHash',
-        transaction?.receipt?.transactionHash
-      );
-
-      /*
-      const horsehistories = db.collection("horsehistories");
-      const filter = { _id: results[0]._id };
-      const updateNft = {
-        $set: {
-          nftOwner: nft.owner,
-          nft: nft,
-        },
-      };
-      const options = { upsert: false };
-  
-      horsehistories.updateOne( filter, updateNft, options, (err, collection) => {
-  
-        if(err) throw err;
-  
-        console.log("Record updated successfully");
-        console.log(collection);
-        
-      });
-      */
-
-      if (transaction) {
-        res.status(200).json({
-          txid: transaction?.receipt?.transactionHash,
-          message: 'transaction successful',
-          contract: tokenContractAddressSUGARDrop,
-          address: toAddress,
-          amount: amount,
-        });
-      } else {
-        res.status(400).json({
-          txid: '',
-          message: 'transaction failed',
-          contract: tokenContractAddressSUGARDrop,
-          address: toAddress,
-          amount: amount,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  } else {
-    res.status(400).json({
-      txid: '',
-      message: 'private key not found',
-      contract: '',
-      address: toAddress,
-      amount: amount,
-    });
-  }
+  res.status(200).json({
+    txid: 'txid',
+    message: 'message',
+    address: 'address',
+    contract: 'contract',
+    amount: 0,
+  });
 }
