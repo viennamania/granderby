@@ -16,7 +16,7 @@
         {
             "path": "/api/cronjob-withdrawal",
             "schedule": "* * * * *"
-        },
+        }
 
 
     ]
