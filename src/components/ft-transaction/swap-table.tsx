@@ -222,11 +222,19 @@ const COLUMNS = [
             ? 'text-[#FFA502]'
             : value === 'Progressing'
             ? 'text-[#2DCE89]'
+            : value === 'Pending'
+            ? 'text-[#FF0000]'
             : 'text-[#2DCE89]'
         }
       `}
       >
-        {value === 'Waiting' ? 'Progressing' : 'Completed'}
+        {value === 'Waiting'
+          ? 'Waiting'
+          : value === 'Progressing'
+          ? 'Progressing'
+          : value === 'Pending'
+          ? 'Pending'
+          : 'Completed'}
       </div>
     ),
     minWidth: 70,
