@@ -113,6 +113,20 @@ export const newSwapRequest = async (
   return await newSwapRequest.save();
 };
 
+// getAllSwapRequests order by createdAt desc
+
+export const getAllSwapRequests = async () => {
+  const requests = await SwapRequestModel.find().sort({
+    createdAt: -1,
+  });
+
+  if (requests) {
+    return requests;
+  } else {
+    return null;
+  }
+};
+
 // getAllSwapRequestsByWallet order by createdAt desc
 
 export const getAllSwapRequestsByWallet = async (fromWallet: string) => {
