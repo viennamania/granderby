@@ -12,7 +12,11 @@
         {
             "path": "/api/cronjob-horse-balance",
             "schedule": "5 * * * *"
-        }
+        },
+        {
+            "path": "/api/cronjob-withdrawal",
+            "schedule": "* * * * *"
+        },
 
 
     ]
