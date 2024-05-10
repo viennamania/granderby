@@ -176,11 +176,38 @@ const COLUMNS = [
     Cell: ({ cell: { value } }) => (
       <div className="flex items-center justify-center  ">
         <LinkIcon className="h-[18px] w-[18px] ltr:mr-2 rtl:ml-2" />
-        {value}
+        {
+          <div className="text-left  text-xl font-bold -tracking-[1px] ">
+            {value.substring(0, 6) + '...'}
+          </div>
+        }
       </div>
     ),
-    minWidth: 180,
-    maxWidth: 180,
+    minWidth: 100,
+    maxWidth: 100,
+  },
+  {
+    Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
+    accessor: 'txHash',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <button
+        className=" flex flex-row items-center justify-center "
+        onClick={() =>
+          //alert("clicked")
+
+          (location.href = 'https://polygonscan.com/tx/' + value)
+        }
+      >
+        <Image src="/images/logo-polygon.png" alt="gd" width={13} height={13} />
+
+        <div className="ml-1 text-left  -tracking-[1px]  ">
+          {value.substring(0, 6) + '...'}
+        </div>
+      </button>
+    ),
+    minWidth: 50,
+    maxWidth: 50,
   },
 
   {
@@ -188,7 +215,17 @@ const COLUMNS = [
     accessor: 'status',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="font-bold text-green-600 ltr:text-right rtl:text-left">
+      <div
+        className={`font-bold ltr:text-right rtl:text-left
+        ${
+          value === 'Waiting'
+            ? 'text-[#FFA502]'
+            : value === 'Progressing'
+            ? 'text-[#2DCE89]'
+            : 'text-[#2DCE89]'
+        }
+      `}
+      >
         {value === 'Waiting' ? 'Progressing' : 'Completed'}
       </div>
     ),
