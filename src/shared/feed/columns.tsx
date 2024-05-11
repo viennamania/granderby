@@ -241,7 +241,7 @@ export const getColumns = ({
         href={`/my-horse-details/${row?.tokenId}`}
         className="ps-4 text-black  hover:text-gray-900 hover:underline"
       >
-        <Text className="text-center">Details</Text>
+        <Text className="text-center text-lg font-bold ">Details</Text>
       </Link>
     ),
   },
