@@ -111,7 +111,8 @@ const PortfolioPage: NextPageWithLayout<
                 })
                 */
 
-                  alert('Coming Soon');
+                  //alert('Coming Soon');
+                  router.push('/coin/buy-gdp');
                 }}
               >
                 <span className="flex items-center gap-2 font-extrabold ">

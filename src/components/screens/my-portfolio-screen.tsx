@@ -809,7 +809,7 @@ export default function PortfolioScreen() {
                   />
                 </div>
 
-                <div className="grid w-full grid-cols-3 items-center justify-center gap-1">
+                <div className="grid w-full grid-cols-1 items-center justify-center gap-1 lg:grid-cols-3">
                   {/*
                     <button
 
@@ -849,7 +849,7 @@ export default function PortfolioScreen() {
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-row items-center justify-center">
+                    <div className="flex flex-row items-center justify-center gap-3 ">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Horse</span>
 
@@ -869,7 +869,11 @@ export default function PortfolioScreen() {
                     </div>
 
                     <span className="text-lg font-bold text-green-600 xl:text-xl">
-                      {horsesTotalPricePaid} USDC
+                      {horsesTotalPricePaid &&
+                        Number(horsesTotalPricePaid)
+                          .toFixed(0)
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      USDC
                     </span>
                   </button>
 
@@ -881,7 +885,7 @@ export default function PortfolioScreen() {
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-row items-center justify-center">
+                    <div className="flex flex-row items-center justify-center gap-3">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Jockey</span>
 
@@ -913,13 +917,16 @@ export default function PortfolioScreen() {
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
-                    <div className="flex flex-row items-center justify-center">
+                    <div className="flex flex-row items-center justify-center gap-3">
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Track</span>
 
-                        <span className="text-xl font-bold xl:text-2xl">
-                          {Number(tokenBalanceHV?.displayValue).toFixed(0)}
-                        </span>
+                        <div className="flex flex-row items-center justify-center gap-2">
+                          <span className="text-xl font-bold xl:text-2xl">
+                            {Number(tokenBalanceHV?.displayValue).toFixed(0)}
+                          </span>
+                          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                        </div>
                       </div>
                       <Image
                         src="/images/button/track.png"

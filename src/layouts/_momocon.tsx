@@ -242,7 +242,7 @@ function HeaderRightArea() {
   ///console.log('tokenBalanceGDP', tokenBalanceGDP);
 
   return (
-    <div className="flex flex-col items-center gap-3 lg:flex-row lg:gap-5">
+    <div className="flex flex-col items-end justify-center gap-3  lg:flex-row lg:items-center lg:gap-5">
       <div className=" flex shrink-0 items-center">
         <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
           {/*
@@ -494,7 +494,7 @@ function HeaderRightArea() {
         <div className="flex items-center lg:hidden">
           {/*
           <NotificationButton />
-      */}
+          */}
 
           <Hamburger
             isOpen={isOpen}
