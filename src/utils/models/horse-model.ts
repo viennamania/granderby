@@ -1359,27 +1359,28 @@ export const getBalanceByHolder = async (holder: string) => {
   // so, change query for total doesn't have NaN
 
   // sum of balance of all horses by holder
+  // except balance is empty and is not null
+
+  // if balance is not number, then set 0
+
   const data = await HorseModel.aggregate([
     {
       $match: {
         holder: holder.toLowerCase(),
       },
     },
-    // if balance is empty, then set 0
-    // if balance doesn't exist, then set 0
-
-    {
-      $set: {
-        balance: {
-          $ifNull: ['$balance', 0],
-        },
-      },
-    },
-
     {
       $group: {
         _id: null,
-        total: { $sum: '$balance' },
+        total: {
+          $sum: {
+            $cond: {
+              if: { $eq: [{ $type: '$balance' }, 'number'] },
+              then: '$balance',
+              else: 0,
+            },
+          },
+        },
       },
     },
   ]);

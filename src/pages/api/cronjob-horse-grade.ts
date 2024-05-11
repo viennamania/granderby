@@ -535,6 +535,9 @@ export default async function handler(
           }
 
           setHorseGradeByTokenId(tokenId, grade, gameHorseKey, horseUid);
+        })
+        .catch((error) => {
+          console.log('error', error);
         });
 
       //await setHorseGradeByTokenId(tokenId, grade, gameHorseKey, horseUid);
