@@ -522,6 +522,18 @@ export default async function handler(
         .then((json) => {
           const horseUid = json?.recordset?.[0]?.HORSE_UID;
 
+          if (!horseUid) {
+            console.log(
+              'tokenId',
+              tokenId,
+              'gameHorseKey',
+              gameHorseKey,
+              'horseUid not found'
+            );
+
+            return;
+          }
+
           setHorseGradeByTokenId(tokenId, grade, gameHorseKey, horseUid);
         });
 

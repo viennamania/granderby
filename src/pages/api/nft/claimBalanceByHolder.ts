@@ -141,72 +141,61 @@ export default async function handler(
     horses.map(async (horse: any) => {
       const tokenId = horse?.tokenId;
 
-      ///const horseBalance = horse?.balance;
-
-      const data = (await getOneHorse(tokenId as string)) as any;
-
-      ////console.log('getOneByTokenId horse', horse);
-
-      if (!data) {
-        res.status(404).json({ error: 'Horse not found' });
-        return;
-      }
-
-      const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
-
-      const textureKey = data?.horse?.liveHorseInfo?.TEXTURE_KEY;
+      const uid = horse?.horseUid;
+      const textureKey = horse?.textureKey;
 
       if (!uid) {
-        console.log('uid not found');
+        console.log('tokenId', tokenId, 'uid not found');
         return;
       }
 
-      const result1 = await fetch(
-        `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
-      );
-
-      const balanceData = await result1?.json();
-
-      ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
-
-      let horseBalance = 0;
-      if (balanceData?.recordset[0]?.Horse_balance) {
-        horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
-      }
-
-      //console.log('horseBalance', horseBalance);
-
-      if (horseBalance === 0) {
-        //console.log('horseBalance is 0');
+      if (!textureKey) {
+        console.log('textureKey not found');
         return;
       }
 
-      // claim the balance
+      try {
+        const result = await fetch(
+          `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
+        );
 
-      /*
-      console.log(
-        'claiming balance uid textureKey horseBalance',
-        uid,
-        textureKey,
-        horseBalance
-      );
-      */
+        const balanceData = await result?.json();
 
-      const result2 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          uid: uid,
-          textureKey: textureKey,
-          beforeWithDraw: horseBalance,
-          withDraw: horseBalance,
-          resultWithDraw: 0,
-        }),
-      });
+        ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
 
-      const json = await result2?.json();
+        let horseBalance = 0;
+        if (balanceData?.recordset[0]?.Horse_balance) {
+          horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+        }
 
-      return horseBalance;
+        //console.log('horseBalance', horseBalance);
+
+        if (horseBalance === 0) {
+          //console.log('horseBalance is 0');
+          return;
+        }
+
+        //console.log('tokenId', tokenId, 'horseBalance', horseBalance);
+
+        const result2 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            uid: uid,
+            textureKey: textureKey,
+            beforeWithDraw: horseBalance,
+            withDraw: horseBalance,
+            resultWithDraw: 0,
+          }),
+        });
+
+        const json = await result2?.json();
+
+        return horseBalance;
+      } catch (error) {
+        console.error(error);
+        return 0;
+      }
     })
   ).then((values) => {
     return values.reduce((a, b) => (a || 0) + (b || 0), 0);
