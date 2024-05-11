@@ -137,8 +137,6 @@ export default async function handler(
     const tokenId = horse.tokenId;
     const uid = horse.horseUid; // horseUid
 
-    console.log('tokenId', tokenId, 'uid', uid);
-
     try {
       fetch(`http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`)
         .then((res) => res.json())
@@ -152,12 +150,14 @@ export default async function handler(
 
           const horseBalance = parseInt(json?.recordset[0]?.Horse_balance);
 
-          console.log('horseBalance', horseBalance);
+          if (horseBalance > 0) {
+            console.log('tokenId', tokenId, 'horseBalance', horseBalance);
 
-          setHorseBalanceByTokenId(tokenId, horseBalance);
+            setHorseBalanceByTokenId(tokenId, horseBalance);
+          }
         })
         .catch((error) => {
-          console.log('error====', error);
+          //console.log('tokenId', tokenId, 'error', error);
         });
     } catch (error) {
       console.log('error', error);

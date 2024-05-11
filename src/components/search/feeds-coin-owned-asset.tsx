@@ -499,7 +499,7 @@ export default function FeedsCoinOwned(
               />
             </div>
 
-            <div className=" text-right text-2xl font-bold ">
+            <div className=" text-right text-lg font-bold lg:text-2xl ">
               {isLoadingBalanceGDP ? (
                 <span className="text-xs">Loading...</span>
               ) : (
@@ -510,7 +510,11 @@ export default function FeedsCoinOwned(
 
                 // price format (333,333,333)
 
-                Number(tokenBalanceGDP?.displayValue).toFixed(2)
+                //Number(tokenBalanceGDP?.displayValue).toFixed(2)
+
+                Number(tokenBalanceGDP?.displayValue)
+                  .toFixed(0)
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               )}{' '}
               GDP
             </div>

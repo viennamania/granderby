@@ -147,12 +147,14 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   );
   */
 
+  /*
   const walletConfig = metamaskWallet(); // or use any other wallet
 
   const smartWalletConfig = smartWallet(walletConfig, {
     factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB',
     gasless: true,
   });
+  */
 
   return (
     <>

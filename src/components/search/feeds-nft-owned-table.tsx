@@ -468,14 +468,21 @@ export default function FeedsNftOwnedTable({
       <div className="flex flex-col items-start justify-center gap-3">
         {/* Total Items */}
         <div className="flex flex-row items-center justify-between gap-3">
-          <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="text-sm font-bold text-gray-900 dark:text-white lg:text-xl">
             Total Items: {totalItemsHorse}
           </div>
         </div>
 
         <div className="flex flex-row items-center justify-center gap-3">
-          <div className=" flex  text-xl font-bold  ">
-            Total Allowance: {totalBalanceHorse.toLocaleString()}
+          <div className=" flex  text-sm font-bold lg:text-xl  ">
+            Total Allowance:{' '}
+            {
+              //totalBalanceHorse.toLocaleString()
+
+              Number(totalBalanceHorse)
+                .toFixed(0)
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            }
           </div>
 
           {/* claim button */}

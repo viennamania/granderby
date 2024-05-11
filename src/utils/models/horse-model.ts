@@ -1327,41 +1327,69 @@ export const getBalanceByHolder = async (holder: string) => {
 
   console.log('holder.toLowerCase', holder.toLowerCase());
 
+  /*
   const data = await HorseModel.aggregate([
     {
       $match: {
         holder: holder.toLowerCase(),
       },
     },
-    // if accumulatedBalance is empty, then set 0
+    // if balance is empty, then set 0
+    // if balance doesn't exist, then set 0
+
     {
       $set: {
-        balance: { $ifNull: ['$balance', 0] },
+        balance: {
+          $ifNull: ['$balance', 0],
+        },
       },
     },
+    
     {
       $group: {
         _id: null,
         total: { $sum: '$balance' },
       },
     },
-    /*
+
+  ]);
+  */
+
+  // the result is like this => [ { _id: null, total: NaN } ]
+  // so, change query for total doesn't have NaN
+
+  // sum of balance of all horses by holder
+  const data = await HorseModel.aggregate([
+    {
+      $match: {
+        holder: holder.toLowerCase(),
+      },
+    },
+    // if balance is empty, then set 0
+    // if balance doesn't exist, then set 0
+
+    {
+      $set: {
+        balance: {
+          $ifNull: ['$balance', 0],
+        },
+      },
+    },
+
     {
       $group: {
         _id: null,
-        total: { $sum: 'accumulatedBalance' },
+        total: { $sum: '$balance' },
       },
     },
-    */
   ]);
+
+  console.log('getBalanceByHolder data', data); // [ { _id: null, total: NaN } ]
 
   // total items
   const total = await HorseModel.find({
     holder: holder.toLowerCase(),
   }).countDocuments();
-
-  console.log('holder', holder);
-  console.log('getBalanceByHolder data', data);
 
   return {
     balance: data[0].total || 0,

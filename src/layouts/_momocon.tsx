@@ -512,8 +512,19 @@ function HeaderRightArea() {
 
       {address && (
         <div className="flex flex-row items-center gap-3 lg:flex-col lg:gap-1">
-          <span className="text-xs lg:text-sm">
-            {Number(tokenBalanceGDP?.displayValue).toFixed(2)} GDP
+          <span className="text-xl lg:text-lg ">
+            {isLoadingBalanceGDP
+              ? 'Loading...'
+              : //Number(tokenBalanceGDP?.displayValue).toFixed(2)
+                // display money format
+                // Invalid currency code
+
+                // format => 000,000GDP
+
+                Number(tokenBalanceGDP?.displayValue)
+                  .toFixed(0)
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+            GDP
           </span>
           {/*
           <span className="text-xs lg:text-sm">
