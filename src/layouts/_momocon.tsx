@@ -402,24 +402,19 @@ function HeaderRightArea() {
               </button>
             </div>
 
+            {/*}
             <div className="items-cneter ml-2 flex">
               <button
                 onClick={() => router.push('/mypage/inbox/gift')}
                 type="button"
                 className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
-                {/* message icon CardGiftcardIcon */}
+                
                 <CardGiftcardIcon className="h-5 w-5" />
 
-                {/* notify icon */}
-                {/* if new message then show notify icon */}
-                {/*
-                <span className="ml-2">
-                  <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
-                </span>
-                */}
               </button>
             </div>
+            */}
           </>
         )}
 

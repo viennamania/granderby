@@ -205,11 +205,13 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.myasset,
       },
+      /*
       {
         name: 'Item',
         icon: <PlusCircle />,
         href: routes.myitem,
       },
+      */
 
       /*
       {

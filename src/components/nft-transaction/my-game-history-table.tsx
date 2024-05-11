@@ -847,7 +847,6 @@ export default function GameHistoryTable() {
                       <span className=" w-32 text-xl font-bold text-black">
                         {Number(transfer.value).toFixed(2)}
                       </span>
-
                       <span className="text-xs">Minted</span>
                     </div>
                   )}
