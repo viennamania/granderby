@@ -44,7 +44,7 @@ export default async function handler(
 
   const uid = await getHorseUidByTokenId(tokenId as string);
 
-  console.log('uid==', uid);
+  ///console.log('uid==', uid);
 
   if (!uid) {
     res.status(404).json({ error: 'Horse uid not found' });
@@ -63,7 +63,7 @@ export default async function handler(
 
   const horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
 
-  console.log('balance', horseBalance);
+  ///console.log('balance', horseBalance);
 
   ///console.log('getOneByTokenId horse', horse);
 

@@ -76,6 +76,8 @@ export default async function handler(
 
     const register = nft.register;
 
+    const balance = nft.balance;
+
     const s3url = 'https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/hrs/';
 
     let grade = '';
@@ -448,6 +450,8 @@ export default async function handler(
       )?.value,
       */
       grade: grade,
+
+      balance: balance,
     };
   });
 

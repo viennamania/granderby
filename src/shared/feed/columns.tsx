@@ -227,6 +227,29 @@ export const getColumns = ({
     ),
   },
 
+  /*
+  {
+    title: <HeaderCell title="Allowance" />,
+    dataIndex: 'balanceRealtime',
+    key: 'balanceRealtime',
+    width: 80,
+    render: (value: string) => (
+      <>
+        {value == null ? (
+          <Text className="text-center text-xl font-bold">0</Text>
+        ) : (
+          <Text className="text-center text-xl font-bold">
+            {
+              // currency format
+              value.toLocaleString()
+            }
+          </Text>
+        )}
+      </>
+    ),
+  },
+  */
+
   //my-horse-details/87
 
   ///my-horse-details/${row?.tokenId}

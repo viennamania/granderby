@@ -405,6 +405,7 @@ export function useTable<T extends AnyObject>(
     false,
   ]);
 
+  /*
   useEffect(() => {
     if (data[0]?.tokenId) {
       const fetchBalance = async () => {
@@ -426,7 +427,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[0]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -461,7 +462,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[1]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -496,7 +497,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[2]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -531,7 +532,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[3]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -566,7 +567,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[4]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -601,7 +602,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[5]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -636,7 +637,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[6]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -671,7 +672,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[7]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -706,7 +707,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[8]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -741,7 +742,7 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[9]?.tokenId) {
               return {
                 ...prevItem,
-                balance: balance,
+                balanceRealtime: balance,
               };
             }
             return prevItem;
@@ -754,6 +755,7 @@ export function useTable<T extends AnyObject>(
       fetchBalance();
     }
   }, [data?.[9]?.tokenId]);
+  */
 
   /*
    * Handle searching

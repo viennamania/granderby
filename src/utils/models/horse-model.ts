@@ -1393,7 +1393,7 @@ export const getBalanceByHolder = async (holder: string) => {
         holder: holder.toLowerCase(),
       },
     },
-    */
+    
     {
       $group: {
         _id: null,
@@ -1408,14 +1408,36 @@ export const getBalanceByHolder = async (holder: string) => {
         },
       },
     },
+    */
+    // match holder and balance is not empty and balance is number
+
+    {
+      $match: {
+        holder: holder.toLowerCase(),
+        balance: {
+          $exists: true,
+          $ne: null,
+          $type: 'number',
+          $gt: 0,
+        },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: '$balance' },
+      },
+    },
   ]);
 
-  console.log('getBalanceByHolder data', data); // [ { _id: null, total: NaN } ]
+  console.log('getBalanceByHolder data=======', data); // [ { _id: null, total: NaN } ]
 
   // total items
   const total = await HorseModel.find({
     holder: holder.toLowerCase(),
   }).countDocuments();
+
+  console.log('total====', total);
 
   return {
     balance: data[0].total || 0,
