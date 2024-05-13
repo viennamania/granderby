@@ -196,7 +196,7 @@ export const getSumDayFromAmountByWallet = async (fromWallet: string) => {
     },
   ]);
 
-  if (sum) {
+  if (sum[0]) {
     return sum[0].total;
   } else {
     return 0;

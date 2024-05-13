@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getOneHorse } from '@/utils/models/horse-model';
+import { getHorseUidByTokenId } from '@/utils/models/horse-model';
 
 type Data = {
   name: string;
@@ -17,16 +17,17 @@ export default async function handler(
   // POST tokenId
   const tokenId = req.body.tokenId;
 
-  console.log('getBalanceByTokenId tokenId', tokenId);
+  //console.log('getBalanceByTokenId tokenId', tokenId);
 
   if (!tokenId) {
     res.status(400).json({ error: 'Missing tokenId' });
     return;
   }
 
+  /*
   const data = (await getOneHorse(tokenId as string)) as any;
 
-  ////console.log('getOneByTokenId horse', horse);
+  ///console.log('getOneByTokenId data', data);
 
   if (!data) {
     res.status(404).json({ error: 'Horse not found' });
@@ -36,16 +37,21 @@ export default async function handler(
   // get balance from api
   // http://3.38.2.94:3001/api/balanceByHorseUid?uid=2262
 
-  const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
+  //const uid = data?.horse?.liveHorseInfo?.HORSE_UID;
+  
+  const uid = data?.horse?.horseUid;
+  */
 
-  console.log('uid', uid);
+  const uid = await getHorseUidByTokenId(tokenId as string);
+
+  console.log('uid==', uid);
 
   if (!uid) {
     res.status(404).json({ error: 'Horse uid not found' });
     return;
   }
 
-  console.log('uid========', uid);
+  //console.log('uid========', uid);
 
   const result = await fetch(
     `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
@@ -110,8 +116,8 @@ export default async function handler(
     }
   });
 
-  console.log('accumulatedBalance', accumulatedBalance);
-  console.log('latestAmount', latestAmount);
+  //console.log('accumulatedBalance', accumulatedBalance);
+  ///console.log('latestAmount', latestAmount);
 
   res.status(200).json({
     accumulatedBalance: accumulatedBalance,

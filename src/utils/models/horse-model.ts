@@ -1278,6 +1278,29 @@ export const getOneHorse = async (tokenId: string) => {
   }
 };
 
+// getHorseUidByTokenId
+// get horseUid from nfthorses collection by tokenId
+
+export const getHorseUidByTokenId = async (tokenId: string) => {
+  const result = await HorseModel.aggregate([
+    {
+      $match: {
+        tokenId: tokenId,
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        horseUid: 1,
+      },
+    },
+  ]);
+
+  ///console.log('getHorseUidByTokenId result', result);
+
+  return result[0].horseUid;
+};
+
 export const getOneGameHorseData = async (gameHorseKey: string) => {
   console.log('gameHorseKey', gameHorseKey);
 
@@ -1364,11 +1387,13 @@ export const getBalanceByHolder = async (holder: string) => {
   // if balance is not number, then set 0
 
   const data = await HorseModel.aggregate([
+    /*
     {
       $match: {
         holder: holder.toLowerCase(),
       },
     },
+    */
     {
       $group: {
         _id: null,

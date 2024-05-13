@@ -588,11 +588,11 @@ const WalletPage: NextPageWithLayout<
             */}
 
                 {/*
-            GDP balance
-            1234567.0000000 GDP
-            Minimum withdraw
-            1 USDT
-            */}
+                GDP balance
+                1234567.0000000 GDP
+                Minimum withdraw
+                1 USDT
+                */}
 
                 <div className="mt-5 grid w-full grid-cols-2 gap-3 rounded-lg border-2 border-red-400  p-5 ">
                   <div className="flex flex-col items-center justify-center gap-3">
