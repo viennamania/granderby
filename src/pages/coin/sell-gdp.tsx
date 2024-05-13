@@ -410,7 +410,10 @@ const WalletPage: NextPageWithLayout<
       />
 
       <div className=" flex flex-col items-center justify-center gap-3  ">
-        <div className="flex flex-col items-center justify-center gap-3 rounded-lg bg-green-500 p-10 text-white">
+        <div
+          className="flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-gray-500
+         bg-white p-10 text-black"
+        >
           <div className=" w-full text-left text-lg font-bold lg:text-2xl">
             SWAP
           </div>
@@ -493,44 +496,44 @@ const WalletPage: NextPageWithLayout<
           */}
 
           <form>
-            <div className=" flex flex-row items-center justify-center text-lime-600">
+            <div className=" flex flex-row items-center justify-center text-black">
               {/* Form Section */}
               <div className={styles.collectionContainer}>
                 {/* Toggle between direct listing and auction listing */}
                 {/*
-            <div className={styles.listingTypeContainer}>
-              <input
-                type="radio"
-                name="listingType"
-                id="directListing"
-                value="directListing"
-                defaultChecked
-                className={styles.listingType}
-              />
-              <label
-                htmlFor="directListing"
-                className={styles.listingTypeLabel}
-              >
-                Direct Listing
-              </label>
-              <input
-                type="radio"
-                name="listingType"
-                id="auctionListing"
-                value="auctionListing"
-                className={styles.listingType}
-              />
-              <label
-                htmlFor="auctionListing"
-                className={styles.listingTypeLabel}
-              >
-                Auction Listing
-              </label>
-            </div>
-            */}
+                <div className={styles.listingTypeContainer}>
+                  <input
+                    type="radio"
+                    name="listingType"
+                    id="directListing"
+                    value="directListing"
+                    defaultChecked
+                    className={styles.listingType}
+                  />
+                  <label
+                    htmlFor="directListing"
+                    className={styles.listingTypeLabel}
+                  >
+                    Direct Listing
+                  </label>
+                  <input
+                    type="radio"
+                    name="listingType"
+                    id="auctionListing"
+                    value="auctionListing"
+                    className={styles.listingType}
+                  />
+                  <label
+                    htmlFor="auctionListing"
+                    className={styles.listingTypeLabel}
+                  >
+                    Auction Listing
+                  </label>
+                </div>
+                */}
 
                 <div className="flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-64 text-lg font-bold text-white">
+                  <div className=" w-64 text-lg font-bold text-black">
                     Select Coin
                   </div>
                   <select
@@ -547,7 +550,7 @@ const WalletPage: NextPageWithLayout<
                 </div>
 
                 <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
-                  <div className="text-lg font-bold text-white">Address</div>
+                  <div className="text-lg font-bold text-black">Address</div>
 
                   {/* receiver wallet address */}
                   <input
@@ -591,13 +594,13 @@ const WalletPage: NextPageWithLayout<
             1 USDT
             */}
 
-                <div className="mt-5 grid w-full grid-cols-2 gap-3 rounded-lg border-2 border-red-500 p-5">
+                <div className="mt-5 grid w-full grid-cols-2 gap-3 rounded-lg border-2 border-red-400  p-5 ">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
+                      <div className="w-full text-left text-lg">
                         GDP balance
                       </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
+                      <div className="w-full text-left text-lg font-bold">
                         {tokenBalanceGDP === undefined ? (
                           <>Loading...</>
                         ) : (
@@ -609,10 +612,8 @@ const WalletPage: NextPageWithLayout<
                     </div>
 
                     <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
-                        Swap fee
-                      </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
+                      <div className="w-full text-left text-lg">Swap fee</div>
+                      <div className="w-full text-left text-lg font-bold">
                         2%
                       </div>
                     </div>
@@ -620,34 +621,34 @@ const WalletPage: NextPageWithLayout<
 
                   <div className="flex flex-col items-center justify-center gap-3">
                     <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
+                      <div className="w-full text-left text-lg">
                         Minimum withdraw
                       </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
+                      <div className="w-full text-left text-lg font-bold">
                         1 USDT
                       </div>
                     </div>
 
                     <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
+                      <div className="w-full text-left text-lg">
                         Withdraw limit per day
                       </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
+                      <div className="w-full text-left text-lg font-bold">
                         {sumDay} / 10,000 USDT
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-72 text-lg font-bold text-white"></div>
-                  <div className="w-full text-left text-lg font-bold text-white">
+                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3 ">
+                  <div className=" w-72 text-lg font-bold "></div>
+                  <div className="w-full text-left text-lg font-bold ">
                     1 USDT = 100,000 GDP
                   </div>
                 </div>
 
                 <div className="flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-72 text-lg font-bold text-white">
+                  <div className=" w-72 text-lg font-bold ">
                     Withdraw Amount
                   </div>
                   {/* Amount Field */}
@@ -688,7 +689,7 @@ const WalletPage: NextPageWithLayout<
                 </div>
 
                 {address && (
-                  <div className="mb-3 mt-2 w-full text-right text-lg font-bold text-white">
+                  <div className="mb-3 mt-2 w-full text-right text-lg font-bold ">
                     {(
                       Number(tokenBalanceGDP?.displayValue) -
                       ((amount || 0) + fee)
@@ -704,7 +705,7 @@ const WalletPage: NextPageWithLayout<
                 {address && (
                   <div className="flex flex-col gap-2 text-right">
                     {amount && amount > 0 && (
-                      <span className=" text-lg font-bold text-white lg:text-xl">
+                      <span className=" text-lg font-bold  lg:text-xl">
                         Receive Amount: {(amount / 100000).toFixed(2)} USDT
                       </span>
                     )}
@@ -712,14 +713,12 @@ const WalletPage: NextPageWithLayout<
                 )}
 
                 <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-24 text-lg font-bold text-white">
-                    Swap fee
-                  </div>
+                  <div className=" w-24 text-lg font-bold ">Swap fee</div>
                   <div className="flex flex-col items-center justify-center gap-1">
-                    <div className="w-full text-right text-lg font-bold text-white">
+                    <div className="w-full text-right text-lg font-bold ">
                       {fee} GDP
                     </div>
-                    <div className="w-full text-right text-sm font-bold text-white">
+                    <div className="w-full text-right text-sm font-bold ">
                       * 2% of the withdraw amount will be paid as a swap fee.
                       <br />
                       The fee will be deducted from the balance after the swap.
