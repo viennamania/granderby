@@ -118,14 +118,79 @@ export const newSwapRequest = async (
 };
 
 // getAllSwapRequests order by createdAt desc
+// join with user table to get email1
+// fromWallet of swapRequest is wallet address of user
+// walletAddress of user is wallet address of user
+// aggregate swapRequest by fromWallet and user walletAddress
 
+/*
 export const getAllSwapRequests = async () => {
+
   const requests = await SwapRequestModel.find().sort({
     createdAt: -1,
   });
 
   if (requests) {
     return requests;
+  } else {
+    return null;
+  }
+};
+*/
+
+// conver fromWallet of swapRequest to lowercase
+// and covert walletAddress of user to lowercase
+
+export const getAllSwapRequests = async () => {
+  const client = await clientPromise;
+  const collection = client
+    .db('granderby')
+    .collection('swaprequests')
+    .aggregate([
+      {
+        $lookup: {
+          // convert fromWallet of swapRequest to lowercase
+          // and covert walletAddress of user to lowercase
+
+          from: 'users', // left join with users table for each swapRequest
+
+          localField: 'fromWallet', // primary key of swapRequest table
+
+          foreignField: 'walletAddress', // primary key of users table
+
+          as: 'user', // alias for userinfo table
+        },
+      },
+      {
+        $unwind: '$user',
+      },
+      {
+        $project: {
+          fromCoinTxHash: 1,
+          fromCoin: 1,
+          toCoin: 1,
+          fromAmount: 1,
+          fromAmountFee: 1,
+          toAmount: 1,
+          fromWallet: 1,
+          toWallet: 1,
+          status: 1,
+          txHash: 1,
+          userID: 1,
+          email: '$user.email',
+          createdAt: 1,
+          type: 1,
+        },
+      },
+      {
+        $sort: { createdAt: -1 },
+      },
+    ]);
+
+  const data = await collection.toArray();
+
+  if (data) {
+    return data;
   } else {
     return null;
   }

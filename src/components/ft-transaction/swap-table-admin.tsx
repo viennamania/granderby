@@ -87,6 +87,29 @@ userID
 
 const COLUMNS = [
   {
+    Header: () => <div className=" ml-auto ">User Account</div>,
+    accessor: 'email',
+    // @ts-ignore
+    Cell: ({ cell: { value } }) => (
+      <div className="flex items-center justify-center  ">
+        {
+          <div className="text-left  text-xs font-bold -tracking-[1px] xl:text-sm ">
+            {
+              // if value include '@granderby.io' then show the value excluding '@granderby.io'
+              value.includes('@granderby.io')
+                ? value.substring(0, value.indexOf('@')).substring(0, 10) +
+                  '...'
+                : value
+            }
+          </div>
+        }
+      </div>
+    ),
+    minWidth: 150,
+    maxWidth: 150,
+  },
+  /*
+  {
     Header: () => <div className=" ml-auto ">From Wallet Address</div>,
     accessor: 'fromWallet',
     // @ts-ignore
@@ -103,6 +126,7 @@ const COLUMNS = [
     minWidth: 100,
     maxWidth: 100,
   },
+  */
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Hash</div>,
@@ -135,7 +159,7 @@ const COLUMNS = [
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="ltext-left">
-        <strong className="mb-0.5 flex justify-end text-2xl font-bold md:mb-1.5 md:text-2xl xl:text-3xl 3xl:text-3xl">
+        <strong className="mb-0.5 flex justify-end text-xl font-bold md:mb-1.5 md:text-2xl xl:text-2xl ">
           {Number(value).toFixed(2)}
         </strong>
       </div>
@@ -149,7 +173,7 @@ const COLUMNS = [
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="ltext-left">
-        <strong className="mb-0.5 flex justify-end text-2xl font-bold md:mb-1.5 md:text-2xl xl:text-3xl 3xl:text-3xl">
+        <strong className="mb-0.5 flex justify-end text-xl font-bold md:mb-1.5 md:text-2xl xl:text-2xl ">
           {value === undefined ? '0.00' : Number(value).toFixed(2)}
         </strong>
       </div>
@@ -165,7 +189,7 @@ const COLUMNS = [
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
       <div className="-tracking-[1px] ltr:text-right rtl:text-left">
-        <strong className="mb-0.5 flex justify-end text-2xl font-bold md:mb-1.5 md:text-2xl xl:text-3xl 3xl:text-3xl">
+        <strong className="mb-0.5 flex justify-end text-xl font-bold md:mb-1.5 md:text-2xl xl:text-2xl ">
           {Number(value).toFixed(2)}
         </strong>
       </div>
@@ -338,9 +362,9 @@ export default function SwapTable() {
 
     const data = await res.json();
 
-    ///console.log('swaphistory data.swapRequests: ', data?.swapRequests );
+    //console.log('swaphistory data.swapRequests: ', data?.swapRequests );
 
-    ///console.log('transfer-table transfers: ', transfers);
+    //console.log('transfer-table transfers: ', transfers);
 
     // setTransfers(transfers);
 
