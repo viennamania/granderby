@@ -186,7 +186,7 @@ function HeaderRightArea() {
         if (emailQuery.data) {
           email = emailQuery.data;
         } else {
-          email = address + '@granderby.io';
+          return;
         }
 
         const username = email;

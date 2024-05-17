@@ -666,6 +666,25 @@ export default function ModernScreen() {
     }, 10000);
   }, []);
 
+  const [sumOfBalance, setSumOfBalance] = useState<any>(0);
+  useEffect(() => {
+    const getSumOfBalance = async () => {
+      const res = await fetch('/api/nft/getSumOfBalance');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setSumOfBalance(data?.recordsets[0][0]?.SumOfBalance);
+    };
+
+    getSumOfBalance();
+
+    // time interval
+    const interval = setInterval(() => {
+      getSumOfBalance();
+    }, 10000);
+  }, []);
+
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
@@ -687,7 +706,19 @@ export default function ModernScreen() {
           {/* sumOfWithDraw */}
           <div className="items-center justify-center p-2 text-xl xl:text-2xl">
             Total Withdrawn:{' '}
-            {Number(sumOfWithDraw) > 0 ? sumOfWithDraw.toLocaleString() : 0} GDP
+            {Number(sumOfWithDraw) > 0
+              ? String(sumOfWithDraw).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              : 0}{' '}
+            GDP
+          </div>
+
+          {/* sumOfBalance */}
+          <div className="items-center justify-center p-2 text-xl xl:text-2xl">
+            Total Allowance:{' '}
+            {Number(sumOfBalance) > 0
+              ? String(sumOfBalance).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+              : 0}{' '}
+            GDP
           </div>
 
           <Button

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -396,8 +396,76 @@ export default function SwapTable() {
     }, 10000);
   }, []);
 
+  const [sumOfWithDraw, setSumOfWithDraw] = useState<any>(0);
+  useEffect(() => {
+    const getSumOfWithDraw = async () => {
+      const res = await fetch('/api/nft/getSumOfWithDraw');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setSumOfWithDraw(data?.recordsets[0][0]?.SumOfWithDraw);
+    };
+
+    getSumOfWithDraw();
+
+    // time interval
+    const interval = setInterval(() => {
+      getSumOfWithDraw();
+    }, 10000);
+  }, []);
+
+  const [sumOfBalance, setSumOfBalance] = useState<any>(0);
+  useEffect(() => {
+    const getSumOfBalance = async () => {
+      const res = await fetch('/api/nft/getSumOfBalance');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setSumOfBalance(data?.recordsets[0][0]?.SumOfBalance);
+    };
+
+    getSumOfBalance();
+
+    // time interval
+    const interval = setInterval(() => {
+      getSumOfBalance();
+    }, 10000);
+  }, []);
+
   return (
-    <div className="">
+    <div className="flex flex-col rounded-lg bg-white dark:bg-light-dark">
+      {/* sumOfWithDraw */}
+      <div className="flex items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8">
+        <div className="flex items-center gap-2">
+          <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+            Total Withdrawn:
+          </div>
+          <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+            {Number(sumOfWithDraw) > 0
+              ? String(sumOfWithDraw).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+              : '0'}{' '}
+            GDP
+          </div>
+        </div>
+      </div>
+
+      {/* sumOfBalance */}
+      <div className="flex items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8">
+        <div className="flex items-center gap-2">
+          <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+            Total Allowance:
+          </div>
+          <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+            {Number(sumOfBalance) > 0
+              ? String(sumOfBalance).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+              : '0'}{' '}
+            GDP
+          </div>
+        </div>
+      </div>
+
       <div className="rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
         <div className="flex flex-row items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 ">
           <div className="flex items-center justify-start gap-2">
