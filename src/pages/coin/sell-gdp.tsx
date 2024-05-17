@@ -333,6 +333,13 @@ const WalletPage: NextPageWithLayout<
       return;
     }
 
+    // check if the amount is less than 1 USDT
+
+    if (amount < 100000) {
+      alert(`🌊 Minimum withdraw amount is 1 USDT`);
+      return;
+    }
+
     setIsSending(true);
 
     try {
