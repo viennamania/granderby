@@ -183,10 +183,14 @@ function HeaderRightArea() {
 
         var email = '';
 
+        if (emailQuery.isLoading) {
+          return;
+        }
+
         if (emailQuery.data) {
           email = emailQuery.data;
         } else {
-          return;
+          email = address + '@granderby.io';
         }
 
         const username = email;
