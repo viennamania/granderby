@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, use } from 'react';
 import { NextSeo } from 'next-seo';
 
 import CoinSlider from '@/components/ui/coin-card';
@@ -647,6 +647,25 @@ export default function ModernScreen() {
     }, 10000);
   }, []);
 
+  const [sumOfWithDraw, setSumOfWithDraw] = useState<any>(0);
+  useEffect(() => {
+    const getSumOfWithDraw = async () => {
+      const res = await fetch('/api/nft/getSumOfWithDraw');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setSumOfWithDraw(data?.recordsets[0][0]?.SumOfWithDraw);
+    };
+
+    getSumOfWithDraw();
+
+    // time interval
+    const interval = setInterval(() => {
+      getSumOfWithDraw();
+    }, 10000);
+  }, []);
+
   return (
     <div className="mb-10">
       <NextSeo title="Granderby" description="Granderby - Web3 NFT Game" />
@@ -663,6 +682,12 @@ export default function ModernScreen() {
           {/* blockNumber */}
           <div className="items-center justify-center p-2 text-xl xl:text-2xl">
             Block Number: {blockNumber}
+          </div>
+
+          {/* sumOfWithDraw */}
+          <div className="items-center justify-center p-2 text-xl xl:text-2xl">
+            Total Withdrawn:{' '}
+            {Number(sumOfWithDraw) > 0 ? sumOfWithDraw.toLocaleString() : 0} GDP
           </div>
 
           <Button
