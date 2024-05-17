@@ -465,6 +465,23 @@ export default function SwapTable() {
           </div>
         </div>
       </div>
+      {/* sum of sumOfBalance and sumOfWithDraw */}
+      <div className="flex items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8">
+        <div className="flex items-center gap-2">
+          <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+            Total Supply:
+          </div>
+          <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+            {Number(sumOfWithDraw) + Number(sumOfBalance) > 0
+              ? String(Number(sumOfWithDraw) + Number(sumOfBalance)).replace(
+                  /\B(?=(\d{3})+(?!\d))/g,
+                  ','
+                )
+              : '0'}{' '}
+            GDP
+          </div>
+        </div>
+      </div>
 
       <div className="rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
         <div className="flex flex-row items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 ">
