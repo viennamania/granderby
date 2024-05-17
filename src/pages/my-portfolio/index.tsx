@@ -100,16 +100,11 @@ const PortfolioPage: NextPageWithLayout<
         ) : (
           <div className=" flex flex-col items-start justify-center">
             <div className="mb-5 flex w-full flex-row items-center justify-end gap-5">
+              {/*
               <Button
                 className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
                 onClick={() => {
-                  /*
-                openModal('SALE_VIEW', {
-                  title: 'Followers',
-                  count: '1,845',
-                  users: data,
-                })
-                */
+              
 
                   //alert('Coming Soon');
                   router.push('/coin/buy-gdp');
@@ -119,6 +114,7 @@ const PortfolioPage: NextPageWithLayout<
                   <InfoIcon className="h-5 w-5" /> Charge
                 </span>
               </Button>
+              */}
 
               <Button
                 className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white md:h-9 md:px-4 lg:mt-6"
