@@ -26,7 +26,7 @@ import { SearchIcon } from '@/components/icons/search';
 
 import { GrdIcon } from '@/components/icons/grd-icon';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 
 import TransactionTable from '@/components/ft-transaction/transfer-table';
 
@@ -54,10 +54,13 @@ import {
   useTokenBalance,
   Web3Button,
   useTransferToken,
+  useNFT,
 } from '@thirdweb-dev/react';
 
 import {
-  tokenContractAddressHV,
+  //tokenContractAddressHV,
+
+  nftContractAddressHV,
   tokenContractAddressGRD,
   stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
@@ -77,12 +80,31 @@ const TrackPage: NextPageWithLayout<
 
   const [isSending, setIsSending] = useState(false);
 
-  const { contract: tokenContractHV } = useContract(
-    tokenContractAddressHV,
-    'token'
+  const { contract: nftContractHV } = useContract(
+    nftContractAddressHV,
+    'edition-drop'
   );
 
-  const { data: tokenBalanceHV } = useTokenBalance(tokenContractHV, address);
+  ///const { data: nftBalanceHV } = useTokenBalance(nftContractHV, address);
+
+  // balance of erc1155
+  //const ( data: nftBalanceHV } = useTokenBalance(nftContractHV, address);
+
+  const [nftBalanceHV, setNftBalanceHV] = useState<any>(0);
+  useEffect(() => {
+    async function getNftBalanceHV() {
+      if (!address) return;
+      const balance = await nftContractHV?.erc1155.balanceOf(address, 0);
+
+      console.log('getNftBalanceHV balance', balance);
+
+      // balance is BigNumber
+
+      setNftBalanceHV(balance?.toNumber());
+    }
+
+    getNftBalanceHV();
+  }, [address, nftContractHV]);
 
   const [status, setStatus] = useState<any>(false);
   const [npcNames, setNpcNames] = useState<any>([]);
@@ -256,8 +278,10 @@ const TrackPage: NextPageWithLayout<
 
         {address ? (
           <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+            {/*
             <GrdIcon className="h-auto w-8 lg:w-auto" />
             <b>
+              
               {tokenBalanceHV === undefined ? (
                 <>Loading...</>
               ) : (
@@ -269,6 +293,9 @@ const TrackPage: NextPageWithLayout<
             <span className="text-lg text-[#2b57a2] ">
               {tokenBalanceHV?.symbol}
             </span>
+            */}
+
+            {nftBalanceHV}
           </div>
         ) : (
           <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
@@ -305,10 +332,8 @@ const TrackPage: NextPageWithLayout<
               if (e.target.value === null) setAmount(undefined);
               else if (Number(e.target.value) === 0) setAmount(undefined);
               else if (Number(e.target.value) < 0) setAmount(undefined);
-              else if (
-                Number(e.target.value) > Number(tokenBalanceHV?.displayValue)
-              ) {
-                setAmount(Number(tokenBalanceHV?.displayValue));
+              else if (Number(e.target.value) > Number(nftBalanceHV)) {
+                setAmount(nftBalanceHV);
               } else {
                 setAmount(Number(e.target.value));
               }
@@ -317,10 +342,13 @@ const TrackPage: NextPageWithLayout<
 
           {address && (
             <div className="mb-3 text-lg">
+              {/*
               {(Number(tokenBalanceHV?.displayValue) - (amount || 0)).toFixed(
                 2
               )}{' '}
               {tokenBalanceHV?.symbol} left
+              */}
+              {nftBalanceHV} left
             </div>
           )}
 
@@ -334,9 +362,7 @@ const TrackPage: NextPageWithLayout<
                     <GrdIcon className="h-35 w-35" />
                   </div>
                   <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                    <span>
-                      Sending {amount} {tokenBalanceHV?.symbol} to
-                    </span>
+                    <span>Sending {amount} to</span>
                     <span className="text-xs">{toAddress}</span>
                     <span>Please wait...</span>
                   </div>
@@ -345,7 +371,7 @@ const TrackPage: NextPageWithLayout<
                 <>
                   <Web3Button
                     theme="light"
-                    contractAddress={tokenContractAddressHV}
+                    contractAddress={nftBalanceHV}
                     action={(contract) => {
                       //contract?.call('withdraw', [[nft.metadata.id]])
                       //contract?.call('withdraw', [[nft.metadata.id]])

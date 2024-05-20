@@ -68,7 +68,9 @@ import {
   stakingContractAddressHorseAAA,
   stakingContractAddressJockey,
   tokenContractAddressGRD,
-  tokenContractAddressHV,
+
+  //tokenContractAddressHV,
+  nftContractAddressHV,
 } from '@/config/contractAddresses';
 
 import { BigNumber, ethers } from 'ethers';
@@ -346,11 +348,34 @@ export default function PortfolioScreen() {
   );
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
 
+  /*
   const { contract: tokenContractHV } = useContract(
     tokenContractAddressHV,
     'token'
   );
   const { data: tokenBalanceHV } = useTokenBalance(tokenContractHV, address);
+  */
+
+  const { contract: nftContractHV } = useContract(
+    nftContractAddressHV,
+    'edition-drop'
+  );
+
+  const [nftBalanceHV, setNftBalanceHV] = useState<any>(0);
+  useEffect(() => {
+    async function getNftBalanceHV() {
+      if (!address) return;
+      const balance = await nftContractHV?.erc1155.balanceOf(address, 0);
+
+      console.log('getNftBalanceHV balance', balance);
+
+      // balance is BigNumber
+
+      setNftBalanceHV(balance?.toNumber());
+    }
+
+    getNftBalanceHV();
+  }, [address, nftContractHV]);
 
   const [claimableRewardsHorse, setClaimableRewardsHorse] =
     useState<BigNumber>();
@@ -923,7 +948,8 @@ export default function PortfolioScreen() {
 
                         <div className="flex flex-row items-center justify-center gap-2">
                           <span className="text-xl font-bold xl:text-2xl">
-                            {Number(tokenBalanceHV?.displayValue).toFixed(0)}
+                            {/*Number(tokenBalanceHV?.displayValue).toFixed(0)*/}
+                            {nftBalanceHV}
                           </span>
                           <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
                         </div>

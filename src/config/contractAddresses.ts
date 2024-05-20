@@ -141,6 +141,10 @@ export const contractAddressRace = '0x5e52c17869F8fF63Eeb5f832Bfbf98465bc213bf';
 export const tokenContractAddressHV =
   '0x83491d67EAaCD25C0cC237008C2bB0e6b38e7b1B';
 
+// Happy Valley Racecourse for Horse NFT
+export const nftContractAddressHV =
+  '0x61746Ed33c2371A48119C14bDcc58Bd1E373C59A';
+
 export const tokenContractAddressSTEC =
   '0x96451Ce84a33dFCAAd776c99308fABe27e0b183B';
 
