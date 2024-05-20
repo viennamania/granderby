@@ -913,7 +913,7 @@ export default function PortfolioScreen() {
                     className={`gold-btn flex  flex-col items-center justify-center gap-2  rounded-lg border  p-2 text-center text-black ${'bg-transparent'} disabled:bg-transparent disabled:text-white disabled:opacity-70 disabled:shadow-none`}
                     ///onClick={(e) => router.push('/coin/usdc')}
                     onClick={() => {
-                      router.push('/my-asset');
+                      router.push('/my-track');
                       ///router.push('/horse-details/' + nft?.metadata?.id);
                     }}
                   >
