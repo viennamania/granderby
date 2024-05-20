@@ -313,3 +313,35 @@ export const setSwapRequestsStatusById = async (
     return null;
   }
 };
+
+// getSumSwap
+// get sum of fromAmount+fromAmountFee, toAmount
+// where status is 'Completed'
+export const getSumSwap = async () => {
+  const sum = await SwapRequestModel.aggregate([
+    {
+      $match: {
+        status: 'Completed',
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        fromAmount: {
+          $sum: {
+            $add: ['$fromAmount', '$fromAmountFee'],
+          },
+        },
+        toAmount: { $sum: '$toAmount' },
+      },
+    },
+  ]);
+
+  ///console.log('sum', sum);
+
+  if (sum[0]) {
+    return sum[0];
+  } else {
+    return null;
+  }
+};

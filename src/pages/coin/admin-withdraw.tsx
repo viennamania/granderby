@@ -5,18 +5,6 @@ import { useLayout } from '@/lib/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/lib/constants';
 import Image from '@/components/ui/image';
 import Avatar from '@/components/ui/avatar';
-import AnchorLink from '@/components/ui/links/anchor-link';
-
-import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
-
-import { Github } from '@/components/icons/brands/github';
-import { Instagram } from '@/components/icons/brands/instagram';
-import { Twitter } from '@/components/icons/brands/twitter';
-//import { Check } from '@/components/icons/check';
-//import { Copy } from '@/components/icons/copy';
-import { SearchIcon } from '@/components/icons/search';
-
-import Profile from '@/components/profile/profile';
 
 import RetroProfile from '@/components/profile/retro-profile';
 // static data
@@ -28,8 +16,6 @@ import routes from '@/config/routes';
 import { useRouter } from 'next/router';
 
 import React, { useState, useEffect } from 'react';
-
-import { useQRCode } from 'next-qrcode';
 
 import { Alert, Snackbar, Stack } from '@mui/material';
 
@@ -92,10 +78,6 @@ const readOnlySdk = new ThirdwebSDK("goerli", {
 });
 */
 
-const qrConfig = { fps: 10, qrbox: { width: 200, height: 200 } };
-
-let html5QrCode: Html5Qrcode;
-
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
@@ -106,8 +88,6 @@ const WalletPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = () => {
   const { layout } = useLayout();
-
-  const { Canvas } = useQRCode();
 
   const router = useRouter();
 
@@ -196,95 +176,71 @@ const WalletPage: NextPageWithLayout<
 
   const [msg, setMsg] = useState('');
 
-  const showModal2 = () => {
-    setModal2(true);
-    setMsg('');
-    handleClickAdvanced();
-  };
-
-  const handleClickAdvanced = () => {
-    setResult('');
-
-    const qrCodeSuccessCallback = (decodedText: any, decodedResult: any) => {
-      setResult(decodedText);
-      //let vproduct = getParameterByName('product', decodedText);
-      //let vprice = getParameterByName('price', decodedText);
-      handleStop();
-      setModal2(false);
-      ///updateBalance(vproduct, vprice);
-
-      const arr1 = decodedText.split(':');
-      if (arr1.length < 2) {
-        setToAddress(decodedText);
-      } else {
-        setToAddress(arr1[1]);
-      }
-    };
-    html5QrCode.start(
-      { facingMode: 'environment' },
-      qrConfig,
-      qrCodeSuccessCallback
-    );
-  };
-
-  const handleStop = () => {
-    try {
-      html5QrCode
-        .stop()
-        .then((res) => {
-          html5QrCode.clear();
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const hideModal2 = () => {
-    setModal2(false);
-    handleStop();
-  };
-
-  useEffect(() => {
-    html5QrCode = new Html5Qrcode('reader');
-  }, []);
-
   const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>('');
   const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>('');
   const [succ, setSucc] = useState(false);
   const [err, setErr] = useState(false);
 
-  const handleClickSucc = () => {
-    setSucc(true);
-  };
+  const [sumOfWithDraw, setSumOfWithDraw] = useState<any>(0);
+  useEffect(() => {
+    const getSumOfWithDraw = async () => {
+      const res = await fetch('/api/nft/getSumOfWithDraw');
+      const data = await res.json();
 
-  const handleClickErr = () => {
-    setErr(true);
-  };
+      console.log('data', data);
 
-  const handleCloseSucc = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
+      setSumOfWithDraw(data?.recordsets[0][0]?.SumOfWithDraw);
+    };
 
-    setSucc(false);
-  };
+    getSumOfWithDraw();
 
-  const handleCloseErr = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
+    // time interval
+    const interval = setInterval(() => {
+      getSumOfWithDraw();
+    }, 10000);
+  }, []);
 
-    setErr(false);
-  };
+  const [sumOfBalance, setSumOfBalance] = useState<any>(0);
+  useEffect(() => {
+    const getSumOfBalance = async () => {
+      const res = await fetch('/api/nft/getSumOfBalance');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setSumOfBalance(data?.recordsets[0][0]?.SumOfBalance);
+    };
+
+    getSumOfBalance();
+
+    // time interval
+    const interval = setInterval(() => {
+      getSumOfBalance();
+    }, 10000);
+  }, []);
+
+  // get sum of swap
+  const [sumSwapFrom, setSumSwapFrom] = useState<any>(0);
+  const [sumSwapTo, setSumSwapTo] = useState<any>(0);
+
+  useEffect(() => {
+    const getSumSwap = async () => {
+      const res = await fetch('/api/ft/getSumOfSwap');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setSumSwapFrom(data?.sumSwap?.fromAmount);
+      setSumSwapTo(data?.sumSwap?.toAmount);
+    };
+
+    getSumSwap();
+
+    // time interval
+    //const interval = setInterval(() => {
+    //  getSumSwap();
+    //}, 10000);
+  }, []);
 
   // render retro layout profile
   if (layout === LAYOUT_OPTIONS.RETRO) {
@@ -410,264 +366,73 @@ const WalletPage: NextPageWithLayout<
       />
 
       <div className=" flex flex-col items-center justify-center gap-3  ">
-        <div className="hidden  flex-col items-center justify-center gap-3 rounded-lg bg-green-500 p-10 text-white">
-          <div className=" w-full text-left text-lg font-bold lg:text-2xl">
-            SWAP
+        <div className="flex flex-col items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8 xl:flex-row">
+          {/* sum of sumOfBalance and sumOfWithDraw */}
+          <div className="flex items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8">
+            <div className="flex items-center gap-2">
+              <div className=" text-lg text-black dark:text-white xl:text-xl">
+                Total Supply:
+              </div>
+              <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+                {Number(sumOfWithDraw) + Number(sumOfBalance) > 0
+                  ? String(
+                      Number(sumOfWithDraw) + Number(sumOfBalance)
+                    ).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                  : '0'}{' '}
+                GDP
+              </div>
+            </div>
           </div>
 
-          <form>
-            <div className=" flex flex-row items-center justify-center text-lime-600">
-              <div className={styles.collectionContainer}>
-                <div className="flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-64 text-lg font-bold text-white">
-                    Select Coin
-                  </div>
-                  <select
-                    className="w-full text-black"
-                    name="coin"
-                    id="coin"
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                    }}
-                  >
-                    <option value="usdt">USDT</option>
-                    <option value="usdc">USDC</option>
-                  </select>
-                </div>
-
-                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
-                  <div className="text-lg font-bold text-white">Address</div>
-
-                  <input
-                    className=" w-full text-black"
-                    type="text"
-                    name="receiverAddress"
-                    placeholder="Wallet address to receive"
-                    value={receiverAddress}
-                    onChange={(e) => {
-                      setReceiverAddress(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <div className="mt-5 grid w-full grid-cols-2 gap-3 rounded-lg border-2 border-red-500 p-5">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
-                        GDP balance
-                      </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
-                        {tokenBalanceGDP === undefined ? (
-                          <>Loading...</>
-                        ) : (
-                          <div className="text-lg font-bold xl:text-3xl">
-                            {Number(tokenBalanceGDP?.displayValue).toFixed(2)}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
-                        Swap fee
-                      </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
-                        2%
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
-                        Minimum withdraw
-                      </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
-                        1 USDT
-                      </div>
-                    </div>
-
-                    <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <div className="w-full text-left text-lg text-white">
-                        Withdraw limit per day
-                      </div>
-                      <div className="w-full text-left text-lg font-bold text-white">
-                        {sumDay} / 10,000 USDT
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-72 text-lg font-bold text-white"></div>
-                  <div className="w-full text-left text-lg font-bold text-white">
-                    1 USDT = 100,000 GDP
-                  </div>
-                </div>
-
-                <div className="flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-72 text-lg font-bold text-white">
-                    Withdraw Amount
-                  </div>
-
-                  <input
-                    className=" w-full text-right text-3xl font-bold text-black"
-                    type="number"
-                    name="amount"
-                    placeholder="0"
-                    value={amount}
-                    onChange={(e) => {
-                      console.log('e.target.value', e.target.value);
-
-                      if (e.target.value === null) setAmount(undefined);
-                      else if (Number(e.target.value) === 0)
-                        setAmount(undefined);
-                      else if (Number(e.target.value) < 0) setAmount(undefined);
-                      else if (
-                        Number(e.target.value) >
-                        Number(tokenBalanceGDP?.displayValue)
-                      ) {
-                        setAmount(Number(tokenBalanceGDP?.displayValue));
-
-                        setFee(
-                          (Number(tokenBalanceGDP?.displayValue) / 100) * 2
-                        );
-                      } else {
-                        setAmount(Number(e.target.value));
-
-                        setFee((Number(e.target.value) / 100) * 2);
-
-                        if (Number(e.target.value) === 0) setFee(0);
-                        if (e.target.value === null) setFee(0);
-                        if (e.target.value === undefined) setFee(0);
-                        if (e.target.value === '') setFee(0);
-                      }
-                    }}
-                  />
-                </div>
-
-                {address && (
-                  <div className="mb-3 mt-2 w-full text-right text-lg font-bold text-white">
-                    {(
-                      Number(tokenBalanceGDP?.displayValue) -
-                      ((amount || 0) + fee)
-                    ).toFixed(2)}{' '}
-                    left
-                  </div>
-                )}
-
-                {address && (
-                  <div className="flex flex-col gap-2 text-right">
-                    {amount && amount > 0 && (
-                      <span className=" text-lg font-bold text-white lg:text-xl">
-                        Receive Amount: {(amount / 100000).toFixed(2)} USDT
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                <div className="mt-5 flex w-full flex-row items-center justify-center gap-3">
-                  <div className=" w-24 text-lg font-bold text-white">
-                    Swap fee
-                  </div>
-                  <div className="flex flex-col items-center justify-center gap-1">
-                    <div className="w-full text-right text-lg font-bold text-white">
-                      {fee} GDP
-                    </div>
-                    <div className="w-full text-right text-sm font-bold text-white">
-                      * 2% of the withdraw amount will be paid as a swap fee.
-                      <br />
-                      The fee will be deducted from the balance after the swap.
-                    </div>
-                  </div>
-                </div>
-
-                {address ? (
-                  <div className="mt-5 flex flex-row justify-center">
-                    {/*{isTransferTokensLoading ? (*/}
-
-                    {isSending ? (
-                      <div className="flex flex-row items-center justify-center gap-2">
-                        <div className="animate-spin">
-                          <Image
-                            src="/images/icon-gdp.png"
-                            alt="loading"
-                            width={20}
-                            height={20}
-                          />
-                        </div>
-                        <div className="flex flex-col items-center justify-center text-2xl font-bold text-orange-600">
-                          <span>Swap {amount + fee} GDP to USDT</span>
-                          <span className="text-xs">{receiverAddress}</span>
-                          <span>Please wait...</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <Web3Button
-                          // if receiver address is empty, disable the button
-
-                          //disabled={receiverAddress === '' ? true : false}
-
-                          isDisabled={receiverAddress === '' ? true : false}
-                          className={
-                            receiverAddress === ''
-                              ? 'cursor-not-allowed bg-gray-300'
-                              : ''
-                          }
-                          theme="light"
-                          contractAddress={tokenContractAddressGDP}
-                          action={(contract) => {
-                            //contract?.call('withdraw', [[nft.metadata.id]])
-                            //contract?.call('withdraw', [[nft.metadata.id]])
-                            //contract.erc1155.claim(0, 1);
-
-                            ///contract.erc20.transfer(toAddress, amount);
-
-                            transferToken(amount);
-                          }}
-                          onSuccess={() => {
-                            //setAmount(0);
-                            //setToAddress('');
-
-                            console.log(`🌊 Successfully transfered!`);
-                            //alert('Successfully transfered!');
-
-                            //setSuccessMsgSnackbar('Your request has been sent successfully' );
-                            //handleClickSucc();
-                          }}
-                          onError={(error) => {
-                            console.error('Failed to transfer', error);
-                            alert('Failed to transfer');
-                            //setErrMsgSnackbar('Failed to transfer');
-                            //handleClickErr();
-                          }}
-                        >
-                          Swap ({amount} GDP)
-                        </Web3Button>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  <></>
-                )}
+          {/* sumOfWithDraw */}
+          <div className="flex items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8">
+            <div className="flex items-center gap-2">
+              <div className=" text-lg text-black dark:text-white xl:text-xl">
+                Total Withdrawn:
+              </div>
+              <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+                {Number(sumOfWithDraw) > 0
+                  ? String(sumOfWithDraw).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                  : '0'}{' '}
+                GDP
               </div>
             </div>
-          </form>
+          </div>
 
-          <div className={`${styles2.modal} ${modal2 ? styles2.show : ''}`}>
-            <div className={styles2.modalheader}>
-              <div onClick={hideModal2} className={styles.closeicon}>
-                <FontAwesomeIcon icon={faAngleLeft} />
+          {/* sumOfBalance */}
+          <div className="flex items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8">
+            <div className="flex items-center gap-2">
+              <div className=" text-lg text-black dark:text-white xl:text-xl">
+                Total Allowance:
               </div>
-              <div className={styles2.modaltitle}>Scan QR Code</div>
-
-              <div></div>
+              <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+                {Number(sumOfBalance) > 0
+                  ? String(sumOfBalance).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                  : '0'}{' '}
+                GDP
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div className={styles2.modalinput}>
-              <div id="reader" className={styles2.camera} />
-              <div className={styles2.result}>{result}</div>
+        {/* total Swap (GDP, USDT) */}
+        <div className="flex items-center justify-between border-b border-dashed border-gray-200 px-4 pt-6 dark:border-gray-700 dark:bg-light-dark md:px-8 md:pt-8">
+          <div className="flex items-center gap-2">
+            <div className=" text-lg text-black dark:text-white xl:text-xl">
+              Total Swap:
+            </div>
+            <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+              {Number(sumSwapFrom) > 0
+                ? String(sumSwapFrom).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                : '0'}{' '}
+              GDP
+            </div>
+            {'=>'}
+            <div className="text-lg font-medium uppercase text-black dark:text-white sm:text-xl md:mb-0 md:text-2xl">
+              {Number(sumSwapTo) > 0
+                ? String(sumSwapTo).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                : '0'}{' '}
+              USDT
             </div>
           </div>
         </div>
