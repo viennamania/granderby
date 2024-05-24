@@ -399,7 +399,7 @@ export default function SwapTable() {
   const [sumOfWithDraw, setSumOfWithDraw] = useState<any>(0);
   useEffect(() => {
     const getSumOfWithDraw = async () => {
-      const res = await fetch('/api/nft/getSumOfWithDraw');
+      const res = await fetch('/api/nft/getSumOfHorseWithdraw');
       const data = await res.json();
 
       console.log('data', data);
@@ -418,7 +418,7 @@ export default function SwapTable() {
   const [sumOfBalance, setSumOfBalance] = useState<any>(0);
   useEffect(() => {
     const getSumOfBalance = async () => {
-      const res = await fetch('/api/nft/getSumOfBalance');
+      const res = await fetch('/api/nft/getSumOfHorseBalance');
       const data = await res.json();
 
       console.log('data', data);

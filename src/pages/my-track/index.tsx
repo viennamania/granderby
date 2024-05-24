@@ -154,6 +154,27 @@ const TrackPage: NextPageWithLayout<
 
   const [claiming, setClaiming] = useState(false);
 
+  const [sumOfBalance, setSumOfBalance] = useState<any>(0);
+  useEffect(() => {
+    const getSumOfBalance = async () => {
+      const res = await fetch('/api/nft/getSumOfStadiumBalance');
+      const data = await res.json();
+
+      console.log('data', data);
+
+      setSumOfBalance(data?.recordsets[0][0]?.SumOfBalance);
+    };
+
+    getSumOfBalance();
+
+    // time interval
+    const interval = setInterval(() => {
+      getSumOfBalance();
+    }, 10000);
+  }, []);
+
+  //console.log('sumOfBalance', sumOfBalance);
+
   return (
     <>
       <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
@@ -215,7 +236,9 @@ const TrackPage: NextPageWithLayout<
           </div>
 
           <div className="flex flex-row items-center justify-between gap-5 rounded-lg  bg-slate-100 p-5 ">
-            <span className="text-xl font-bold xl:text-2xl">42,534.00</span>
+            <span className="text-xl font-bold xl:text-2xl">
+              {sumOfBalance?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} GDP
+            </span>
 
             <Button
               disabled={claiming}
@@ -296,7 +319,7 @@ const TrackPage: NextPageWithLayout<
         </div>
 
         <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
-          My Balance
+          My NFTs
         </h3>
 
         {address ? (
@@ -329,7 +352,7 @@ const TrackPage: NextPageWithLayout<
         <div className=" flex w-96 flex-col items-center justify-center text-lime-600">
           {/* Form Section */}
 
-          <div className="mb-2 text-lg">Send my HV to another address:</div>
+          <div className="mb-2 text-lg">Send my NFT to another address:</div>
 
           {/* NFT Contract Address Field */}
           <input
@@ -428,7 +451,7 @@ const TrackPage: NextPageWithLayout<
                       //handleClickErr();
                     }}
                   >
-                    Transfer ({amount} HV)
+                    Transfer ({amount} NFT)
                   </Web3Button>
                 </>
               )}
