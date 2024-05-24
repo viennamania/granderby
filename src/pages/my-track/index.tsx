@@ -43,6 +43,8 @@ import Button from '@/components/ui/button';
 import CollapseLastWinners from '@/components/ui/collapse-last-winners';
 import LastWinners from '@/components/horseRace/watchScreen/lastWinnersGranderby';
 
+import toast from 'react-hot-toast';
+
 import {
   ConnectWallet,
   useDisconnect,
@@ -61,8 +63,6 @@ import {
   //tokenContractAddressHV,
 
   nftContractAddressHV,
-  tokenContractAddressGRD,
-  stakingContractAddressHorseAAA,
 } from '@/config/contractAddresses';
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -106,66 +106,8 @@ const TrackPage: NextPageWithLayout<
     getNftBalanceHV();
   }, [address, nftContractHV]);
 
-  const [status, setStatus] = useState<any>(false);
-  const [npcNames, setNpcNames] = useState<any>([]);
-
-  useEffect(() => {
-    if (status === false) {
-      ////deleteCookie('horse');
-      //toast.success('status false')
-    }
-
-    async function getNpcNames() {
-      const npcNamesResponse = await fetch(
-        `/api/games/horseRace/settings/horseNames?method=all`
-      );
-      const response = await npcNamesResponse.json();
-
-      ///console.log('getNpcNames response', response);
-
-      //const data = useOwnedNFTs(nftDropContractHorse, address);
-
-      setNpcNames(response.npcNames[0]);
-    }
-
-    getNpcNames();
-  }, [status]);
-
   const [toAddress, setToAddress] = useState('');
   const [amount, setAmount] = useState();
-
-  const { contract: tokenContractGRD } = useContract(
-    tokenContractAddressGRD,
-    'token'
-  );
-
-  const { data: tokenBalanceGRD } = useTokenBalance(
-    tokenContractGRD,
-    stakingContractAddressHorseAAA
-  );
-
-  console.log('tokenBalanceGRD', tokenBalanceGRD);
-
-  const { contract: contractStaking, isLoading: isLoadingContractStaking } =
-    useContract(stakingContractAddressHorseAAA);
-
-  /*
-  const { data: stakerAddress, isLoading } = useContractRead(
-    contractStaking,
-    'stakerAddress',
-    [tokenId]
-  );
-  */
-
-  /*
-  const { data: rewardTokenBalance, isLoading } = useContractRead(
-    contractStaking,
-    "getRewardTokenBalance",
-    []
-  );
-  
-  console.log('rewardTokenBalance', rewardTokenBalance);
-    */
 
   async function transferToken(toAddress: string, amount: number) {
     if (toAddress === '') {
@@ -181,8 +123,9 @@ const TrackPage: NextPageWithLayout<
     setIsSending(true);
 
     try {
-      const transaction = await tokenContractHV?.erc20.transfer(
+      const transaction = await nftContractHV?.erc1155.transfer(
         toAddress,
+        0,
         amount
       );
 
@@ -209,18 +152,26 @@ const TrackPage: NextPageWithLayout<
     }
   }
 
+  const [claiming, setClaiming] = useState(false);
+
   return (
     <>
       <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
+      {/*
       <div
-        className="relative h-36 w-full overflow-hidden rounded-lg
+        className="
+          relative h-36 w-full overflow-hidden rounded-lg
           sm:h-44
           md:h-64
           xl:h-80
           2xl:h-96
           3xl:h-[448px]"
       >
+      */}
+
+      <div className=" ">
+        {/*
         <Image
           //src={authorData?.cover_image?.thumbnail}
           src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/NFT_HappyValley.png"
@@ -233,44 +184,116 @@ const TrackPage: NextPageWithLayout<
           className="h-full w-full object-cover"
           alt="Cover Image"
         />
+        */}
+        {/* mp4 video */}
+
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          //className="h-full w-full object-cover"
+          className="h-full w-full object-cover"
+        >
+          <source
+            src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/JoyValley.mp4"
+            type="video/mp4"
+          />
+        </video>
       </div>
 
       <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
-        {/*
-        {!address ? (
-          <></>
-        ) : (
-          
-          <Avatar
-            size="xl"
-            image={authorData?.avatar?.thumbnail}
-            alt="Author"
-            className="z-10 mx-auto -mt-12 dark:border-gray-500 sm:-mt-14 md:mx-0 md:-mt-16 xl:mx-0 3xl:-mt-20"
-          />
-        )}
-        */}
+        <div className="mt-10 flex w-full flex-row items-center justify-center gap-20 p-3">
+          <div className="flex flex-col items-center justify-center gap-5">
+            <span className="text-xl font-bold">ALLOWANCE</span>
+            <Image
+              src="/images/icon-gdp.png"
+              alt="sugar"
+              width={30}
+              height={30}
+            />
+          </div>
 
-        {/*
-        <Profile />
-        */}
+          <div className="flex flex-row items-center justify-between gap-5 rounded-lg  bg-slate-100 p-5 ">
+            <span className="text-xl font-bold xl:text-2xl">42,534.00</span>
 
-        {/*
-        <div className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-          <span className="text-lg text-[#2b57a2] ">Total Profit:</span>
-          <b>
-            {tokenBalanceGRD === undefined ? (
-              <>Loading...</>
-            ) : (
-              <div className="m-2 text-5xl font-bold xl:text-7xl">
-                {Number(tokenBalanceGRD?.displayValue).toFixed(2)}
-              </div>
-            )}
-          </b>{' '}
-          <span className="text-lg text-[#2b57a2] ">
-            {tokenBalanceGRD?.symbol}
-          </span>
+            <Button
+              disabled={claiming}
+              isLoading={claiming}
+              className="h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white "
+              onClick={() => {
+                async function claim() {
+                  setClaiming(true);
+                  const response = await fetch(
+                    '/api/nft/claimBalanceByHolder',
+                    {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        holderAddress: address,
+                      }),
+                    }
+                  );
+
+                  const data = await response.json();
+
+                  const claimedBalance = data?.claimedBalance || 0;
+
+                  if (claimedBalance === 0) {
+                    toast.error(
+                      <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                        <span className="text-xl font-extrabold">
+                          No balance to collect
+                        </span>
+                      </div>,
+
+                      {
+                        duration: 5000,
+                      }
+                    );
+
+                    //setClaiming(false);
+
+                    return;
+                  }
+
+                  //setGameHorseBalance(data?.balance || 0);
+
+                  //setGameHorseLatestAmount(data?.latestAmount || 0);
+
+                  //setGameHorseAccumulatedBalance(data?.accumulatedBalance || 0);
+
+                  //setGameHorseBalance(0);
+
+                  setClaiming(false);
+
+                  //setTotalBalanceHorse(0);
+
+                  toast.success(
+                    <div className=" flex flex-col items-center justify-center gap-5 p-5">
+                      <span className="text-xl font-extrabold">
+                        Claim Success
+                      </span>
+                      <span className="text-xl font-extrabold">
+                        {claimedBalance.toLocaleString()} GDP
+                      </span>
+                    </div>,
+
+                    {
+                      duration: 5000,
+                    }
+                  );
+                }
+
+                claim();
+              }}
+            >
+              <span className="flex items-center gap-2 font-extrabold ">
+                Collect All
+              </span>
+            </Button>
+          </div>
         </div>
-          */}
 
         <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
           My Balance
@@ -371,7 +394,7 @@ const TrackPage: NextPageWithLayout<
                 <>
                   <Web3Button
                     theme="light"
-                    contractAddress={nftBalanceHV}
+                    contractAddress={nftContractAddressHV}
                     action={(contract) => {
                       //contract?.call('withdraw', [[nft.metadata.id]])
                       //contract?.call('withdraw', [[nft.metadata.id]])
