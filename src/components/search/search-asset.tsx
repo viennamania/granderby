@@ -10,7 +10,9 @@ import { getColumns, getWidgetColumns } from '@/shared/feed/columns';
 
 import FeedsNftOwnedTable from './feeds-nft-owned-table';
 
-import OwnedFeedsFt from './feeds-ft-owned';
+//import OwnedFeedsFt from './feeds-ft-owned';
+
+import OwnedFeedsTrack from './feeds-track-owned';
 
 import OwnedFeedsDerbystars from './feeds-horse-owned-asset-derbystars';
 
@@ -27,7 +29,9 @@ import {
   nftDropContractAddressJockey,
   nftDropContractAddressHorseDerbyStars,
   nftDropContractAddressHorseZedRun,
-  tokenContractAddressHV,
+
+  //tokenContractAddressHV,
+  nftContractAddressHV,
 } from '@/config/contractAddresses';
 
 //////import { Filters, GridSwitcher, SortList } from '@/components/search/filters';
@@ -264,12 +268,35 @@ export default function Search() {
   }, [address]);
   */
 
+  /*
   const { contract: tokenContractHV } = useContract(
     tokenContractAddressHV,
     'token'
   );
   const { data: tokenBalanceHV, isLoading: isLoadingBalanceHV } =
     useTokenBalance(tokenContractHV, address);
+  */
+
+  const { contract: nftContractHV } = useContract(
+    nftContractAddressHV,
+    'edition-drop'
+  );
+
+  const [nftBalanceHV, setNftBalanceHV] = useState<any>(0);
+  useEffect(() => {
+    async function getNftBalanceHV() {
+      if (!address) return;
+      const balance = await nftContractHV?.erc1155.balanceOf(address, 0);
+
+      console.log('getNftBalanceHV balance', balance);
+
+      // balance is BigNumber
+
+      setNftBalanceHV(balance?.toNumber());
+    }
+
+    getNftBalanceHV();
+  }, [address, nftContractHV]);
 
   const [totalBalanceHorse, setTotalBalanceHorse] = useState(0);
 
@@ -381,13 +408,11 @@ export default function Search() {
         <div className="mt-5 flex w-full flex-col rounded-lg border ">
           <Collapse
             label="Track"
-            description={`${Number(tokenBalanceHV?.displayValue).toFixed(
-              0
-            )} / 5000 `}
+            description={`${Number(nftBalanceHV).toFixed(0)} / 5000 `}
             initialOpen={true}
           >
             <div className="itmes-start flex flex-col justify-center p-3 pb-10">
-              <OwnedFeedsFt
+              <OwnedFeedsTrack
               //contractAddress={tokenContractAddressHV}
               />
             </div>

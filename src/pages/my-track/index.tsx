@@ -237,7 +237,12 @@ const TrackPage: NextPageWithLayout<
 
           <div className="flex flex-row items-center justify-between gap-5 rounded-lg  bg-slate-100 p-5 ">
             <span className="text-xl font-bold xl:text-2xl">
-              {sumOfBalance?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} GDP
+              {
+                //sumOfBalance?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+                sumOfBalance?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+              }{' '}
+              GDP
             </span>
 
             <Button
@@ -248,7 +253,7 @@ const TrackPage: NextPageWithLayout<
                 async function claim() {
                   setClaiming(true);
                   const response = await fetch(
-                    '/api/nft/claimBalanceByHolder',
+                    '/api/nft/claimTrackBalanceByHolder',
                     {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
