@@ -36,6 +36,7 @@ import {
   walletConnect,
   localWallet,
   smartWallet,
+  embeddedWallet,
 } from '@thirdweb-dev/react';
 
 //import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';

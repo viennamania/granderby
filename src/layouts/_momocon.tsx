@@ -33,7 +33,7 @@ import { nftDropContractAddressHorse } from '@/config/contractAddresses';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 
 import {
-  ThirdwebProvider,
+  //ThirdwebProvider,
   smartWallet,
   embeddedWallet,
   ConnectWallet,
@@ -68,6 +68,27 @@ import {
 } from '@/config/contractAddresses';
 
 //import { FlagIcon } from 'flag-icons'
+
+import { ThirdwebProvider, ConnectButton } from 'thirdweb/react';
+
+import { createWallet, walletConnect, inAppWallet } from 'thirdweb/wallets';
+
+import { createThirdwebClient } from 'thirdweb';
+
+const client = createThirdwebClient({
+  clientId: '2da76340ce7c9721c232ca29f9a6bd0e',
+});
+
+const wallets = [
+  createWallet('io.metamask'),
+  createWallet('com.coinbase.wallet'),
+  walletConnect(),
+  inAppWallet({
+    auth: {
+      options: ['email', 'google', 'apple', 'facebook', 'phone'],
+    },
+  }),
+];
 
 function NotificationButton() {
   return (
@@ -310,6 +331,17 @@ function HeaderRightArea() {
               btnTitle="Login"
             />
           )}
+
+          {/*
+        <ThirdwebProvider>
+          <ConnectButton
+            client={client}
+            wallets={wallets}
+            theme={"dark"}
+            connectModal={{ size: "wide" }}
+          />
+        </ThirdwebProvider>
+      */}
         </div>
 
         {isLoadingContract && !address && (
