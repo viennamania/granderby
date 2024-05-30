@@ -40,68 +40,60 @@ export default async function handler(
   }
 
   // getHorsesByHolder
-  const horses = await getHorsesByHolder(holderAddress);
+  //const horses = await getHorsesByHolder(holderAddress);
 
-  if (!horses) {
-    res.status(404).json({ error: 'Horse not found' });
+  //const uids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // uids is an array of track uids from 1 to 5000
+
+  let uids = [];
+  for (let i = 1; i <= 5000; i++) {
+    uids.push(i);
+  }
+
+  if (!uids) {
+    res.status(404).json({ error: 'uids not found' });
     return;
   }
 
   const claimedBalance = (await Promise.all(
-    horses.map(async (horse: any) => {
-      const tokenId = horse?.tokenId;
-
-      const uid = horse?.horseUid;
-      const textureKey = horse?.textureKey;
-
-      if (!uid) {
-        console.log('tokenId', tokenId, 'uid not found');
-        return;
-      }
-
-      if (!textureKey) {
-        console.log('textureKey not found');
-        return;
-      }
-
+    uids.map(async (uid: any) => {
       try {
         const result = await fetch(
-          `http://3.38.2.94:3001/api/balanceByHorseUid?uid=${uid}`
+          `http://3.38.2.94:3001/api/balanceByTrackUid?uid=${uid}`
         );
 
         const balanceData = await result?.json();
 
         ///console.log('balanceData', JSON.stringify(balanceData, null, 2));
 
-        let horseBalance = 0;
-        if (balanceData?.recordset[0]?.Horse_balance) {
-          horseBalance = parseInt(balanceData?.recordset[0]?.Horse_balance);
+        let stadiumBalance = 0;
+        if (balanceData?.recordset[0]?.Stadium_balance) {
+          stadiumBalance = parseInt(balanceData?.recordset[0]?.Stadium_balance);
         }
 
         //console.log('horseBalance', horseBalance);
 
-        if (horseBalance === 0) {
+        if (stadiumBalance === 0) {
           //console.log('horseBalance is 0');
           return;
         }
 
         //console.log('tokenId', tokenId, 'horseBalance', horseBalance);
 
-        const result2 = await fetch('http://3.38.2.94:3001/api/horse/claim', {
+        const result2 = await fetch('http://3.38.2.94:3001/api/stadium/claim', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             uid: uid,
-            textureKey: textureKey,
-            beforeWithDraw: horseBalance,
-            withDraw: horseBalance,
+            beforeWithDraw: stadiumBalance,
+            withDraw: stadiumBalance,
             resultWithDraw: 0,
           }),
         });
 
         const json = await result2?.json();
 
-        return horseBalance;
+        return stadiumBalance;
       } catch (error) {
         console.error(error);
         return 0;
