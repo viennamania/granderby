@@ -55,6 +55,7 @@ export default async function handler(
     return;
   }
 
+  /*
   const claimedBalance = (await Promise.all(
     uids.map(async (uid: any) => {
       try {
@@ -104,6 +105,28 @@ export default async function handler(
   })) as number;
 
   console.log('claimedBalance', claimedBalance);
+
+  if (claimedBalance === 0) {
+    res.status(200).json({
+      claimedBalance: claimedBalance,
+    });
+    return;
+  }
+  */
+
+  // fetch get 'http://3.38.2.94:3001/api/stadium/claimAll'
+  // method: 'GET'
+  // result; {"claimedBalance":0}
+
+  const result = await fetch('http://3.38.2.94:3001/api/stadium/claimAll', {
+    method: 'GET',
+  });
+
+  const json = await result?.json();
+
+  console.log('json', json);
+
+  const claimedBalance = json?.claimedBalance;
 
   if (claimedBalance === 0) {
     res.status(200).json({
