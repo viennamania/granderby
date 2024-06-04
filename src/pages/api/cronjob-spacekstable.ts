@@ -461,6 +461,7 @@ export default async function handler(
     */
 
   try {
+    /*
     const tokenContract = await sdk.getContract(nftDropContractAddressHorse);
 
     // get owned nfts
@@ -486,6 +487,31 @@ export default async function handler(
         'transaction.receipt.transactonHash',
         transaction?.receipt?.transactionHash
       );
+    }
+    */
+
+    //getStakeInfo
+    const tokenContractStaking = await sdk.getContract(
+      stakingContractAddressHorseAAA
+    );
+
+    const getStakeInfo = await tokenContractStaking.call('getStakeInfo', [
+      smartWalletAddress,
+    ]);
+
+    console.log('getStakeInfo', getStakeInfo);
+
+    if (getStakeInfo[0]?.length > 0) {
+      var stakedTokenIds = [] as string[];
+
+      getStakeInfo[0]?.map(
+        (stakedToken: BigNumber) => (
+          console.log('stakedToken', stakedToken.toString()),
+          stakedTokenIds.push(stakedToken.toString())
+        )
+      );
+
+      console.log('stakedTokenIds', stakedTokenIds);
     }
   } catch (error) {
     console.error(error);

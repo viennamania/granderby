@@ -206,22 +206,16 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
               paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
             }),
           ]}
+
+          /*
           sdkOptions={{
             gasless: {
               openzeppelin: {
                 relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
               },
             },
-
-            /*
-              gasless: {
-                biconomy: {
-                  apiKey: 'BlotrRJre.fe0d620c-d56f-4663-8e63-8cf5e6400dcd',
-                  apiId: 'fd500daa-7efb-4e68-b488-4b2f9f212ab6',
-                },
-              },
-              */
           }}
+          */
         >
           {/* <div className={`${firaCode.variable} font-body`}> */}
 

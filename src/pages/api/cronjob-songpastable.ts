@@ -50,6 +50,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  /*
   var toAddress = '';
   var amount = 0;
 
@@ -61,7 +62,7 @@ export default async function handler(
       ///{ $match: { nftOwner: { $exists: false } } },
 
       ///{"$match": {"nft": {"$exists": false}}},
-      /* match nftOwner is null or not exists  */
+    
       {
         $match: {
           $or: [{ nftOwner: { $exists: false } }, { nftOwner: null }],
@@ -87,20 +88,6 @@ export default async function handler(
     return;
   }
 
-  /*
-  console.log('_id', results[0]._id);
-  console.log('winnerHorse', results[0].winnerHorse);
-
-  console.log('winnerNft', results[0].winnerNft);
-
-  console.log('totalBet', results[0].totalBet);
-  console.log('winPrize', results[0].winPrize);
-  console.log('nftOwner', results[0].nftOwner);
-
-  console.log('tokenId', results[0].winnerNft.tokenId);
-  */
-
-  //console.log('winnerNft', results[0].winnerNft);
 
   const tokenId = results[0].winnerNft.tokenId;
 
@@ -135,6 +122,8 @@ export default async function handler(
 
   console.log('toAddress', toAddress);
   console.log('amount', amount);
+
+  */
 
   const privateKey = process.env.SONGPASTABLE_PRIVATE_KEY;
 
@@ -462,6 +451,7 @@ export default async function handler(
     */
 
   try {
+    /*
     const tokenContract = await sdk.getContract(nftDropContractAddressHorse);
 
     // get owned nfts
@@ -486,6 +476,32 @@ export default async function handler(
         transaction?.receipt?.transactionHash
       );
     }
+
+    */
+
+    //getStakeInfo
+    const tokenContractStaking = await sdk.getContract(
+      stakingContractAddressHorseAAA
+    );
+
+    const getStakeInfo = await tokenContractStaking.call('getStakeInfo', [
+      smartWalletAddress,
+    ]);
+
+    console.log('getStakeInfo', getStakeInfo);
+
+    if (getStakeInfo[0]?.length > 0) {
+      var stakedTokenIds = [] as string[];
+
+      getStakeInfo[0]?.map(
+        (stakedToken: BigNumber) => (
+          console.log('stakedToken', stakedToken.toString()),
+          stakedTokenIds.push(stakedToken.toString())
+        )
+      );
+
+      console.log('stakedTokenIds', stakedTokenIds);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -494,7 +510,7 @@ export default async function handler(
     txid: '',
     message: 'transaction successful',
     contract: tokenContractAddressCARROTDrop,
-    address: toAddress,
-    amount: amount,
+    address: '',
+    amount: 0,
   });
 }
