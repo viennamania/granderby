@@ -76,6 +76,8 @@ import { Toaster } from 'react-hot-toast';
 
 import 'node_modules/flag-icons/css/flag-icons.min.css';
 
+import { Suspense } from 'react';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -185,7 +187,9 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
       {/* Under construction page */}
 
-      <Component {...pageProps} />
+      <Suspense fallback={<>Loading...</>}>
+        <Component {...pageProps} />
+      </Suspense>
     </>
   );
 }

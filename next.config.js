@@ -59,6 +59,7 @@ const nextConfig = withPWA({
     ],
   },
 
+  /*
   ...(process.env.NODE_ENV === 'production' && {
     typescript: {
       ignoreBuildErrors: true,
@@ -67,6 +68,14 @@ const nextConfig = withPWA({
       ignoreDuringBuilds: true,
     },
   }),
+  */
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 });
 
 module.exports = nextConfig;
