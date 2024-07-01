@@ -183,9 +183,78 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <title>{title}</title>
       </Head>
 
-      {/* Under construction page */}
+      <QueryClientProvider client={queryClient}>
+        <ThirdwebProvider
+          //queryClient={queryClient}
+          ///clientId={process.env.THIRDWEB_CLIENT_ID || ''}
 
-      <Component {...pageProps} />
+          //clientId="79125a56ef0c1629d4863b6df0a43cce"
+
+          //clientId="c010fb6a9ed040cb62604793a5e56982"
+
+          //clientId="054cf4b72c7cd869a7e49cfb8ea6a26d" // 0xe38
+
+          clientId="2da76340ce7c9721c232ca29f9a6bd0e" // 0x4897
+          activeChain={Polygon}
+          supportedWallets={[
+            ///smartWalletConfig,
+
+            walletConnect(),
+
+            metamaskWallet(),
+
+            /*
+            paperWallet({
+              //paperClientId: process.env.PAPER_CLIENT_ID || '', // granderby
+              paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
+            }),
+            */
+          ]}
+
+          /*
+          sdkOptions={{
+            gasless: {
+              openzeppelin: {
+                relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
+              },
+            },
+          }}
+          */
+        >
+          {/* <div className={`${firaCode.variable} font-body`}> */}
+
+          <Analytics />
+
+          {getLayout(<Component {...pageProps} />)}
+          {/*
+            <Component {...pageProps} />
+            */}
+
+          {/*
+            <SettingsButton />
+            */}
+
+          {/*}
+          <SettingsDrawer />
+          */}
+
+          {/*
+          <EntriesButton />
+          <EntriesDrawer />
+          */}
+
+          <Toaster />
+
+          {/*
+          <InventoriesButton />
+          <InventoriesDrawer />
+        */}
+
+          <ModalsContainer />
+
+          <DrawersContainer />
+        </ThirdwebProvider>
+      </QueryClientProvider>
     </>
   );
 }

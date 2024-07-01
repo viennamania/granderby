@@ -15,23 +15,6 @@ import MomoconScreen from '@/components/screens/momocon-screen';
 
 import Head from 'next/head';
 
-import Image from '@/components/ui/image';
-
-import LogoMomocon from '@/assets-landing/images/logo-momocon.svg';
-
-import { Github } from '@/components/icons/brands/github';
-import { Instagram } from '@/components/icons/brands/instagram';
-import { Twitter } from '@/components/icons/brands/twitter';
-import { Check } from '@/components/icons/check';
-import { Copy } from '@/components/icons/copy';
-import { SearchIcon } from '@/components/icons/search';
-import AnchorLink from '@/components/ui/links/anchor-link';
-
-import { use, useEffect } from 'react';
-
-import { useAddress, usePaperWalletUserEmail } from '@thirdweb-dev/react';
-import { de } from 'date-fns/locale';
-
 export const getStaticProps: GetStaticProps = async () => {
   const pageid = 'home';
   const title = 'Granderby - Home';
@@ -52,158 +35,6 @@ const HomePage: NextPageWithLayout<
   const { title, image, description } = props;
 
   const { layout } = useLayout();
-
-  const address = useAddress();
-  const emailQuery = usePaperWalletUserEmail();
-
-  // render morden screen/page
-  /*
-  if (layout === LAYOUT_OPTIONS.MODERN) {
-    return (
-      <>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1 maximum-scale=1"
-          />
-          <meta property="og:type" content="website"></meta>
-
-          <meta property="og:site_name" content="GRANDERBY"></meta>
-          <meta name="twitter:card" content="summary_large_image"></meta>
-
-          <meta property="og:image:width" content="1400"></meta>
-          <meta property="og:image:height" content="1400"></meta>
-
-          <meta property="og:title" content={title}></meta>
-          <meta property="og:description" content={description}></meta>
-          <meta property="og:image" content={image}></meta>
-
-          <meta name="twitter:image" content={image}></meta>
-
-          <title>{title}</title>
-        </Head>
-
-        <ModernScreen />
-
-        <footer>
-          <div className="flex-cols mt-10 flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
-            <div>Copyright ©MOMOCON</div>
-
-            <AnchorLink href="/terms">Terms of Service</AnchorLink>
-
-            <div>Privacy Policy</div>
-          </div>
-
-          <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
-            <div>
-              <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
-            </div>
-
-            <AnchorLink
-              href="https://www.instagram.com/nftgranderby"
-              target="_blank"
-              className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-            >
-              <Instagram className="h-4 w-4" /> Instagram
-            </AnchorLink>
-            <AnchorLink
-              href="https://twitter.com/nftgranderby"
-              target="_blank"
-              className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-            >
-              <Twitter className="h-4 w-4" /> Twitter
-            </AnchorLink>
-          </div>
-        </footer>
-      </>
-    );
-  }
-  */
-
-  /*
-  // render minimal screen/page
-  if (layout === LAYOUT_OPTIONS.MINIMAL) {
-    return <MinimalScreen />;
-  }
-
-  // render classic screen/page
-  if (layout === LAYOUT_OPTIONS.CLASSIC) {
-    return <ClassicScreen />;
-  }
-
-  // render retro screen/page
-  if (layout === LAYOUT_OPTIONS.RETRO) {
-    return <RetroScreen />;
-  }
-
-  // render retro screen/page
-  if (layout === LAYOUT_OPTIONS.MOMOCON) {
-    return (
-      <>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1 maximum-scale=1"
-          />
-          <meta property="og:type" content="website"></meta>
-
-          <meta property="og:site_name" content="GRANDERBY"></meta>
-          <meta name="twitter:card" content="summary_large_image"></meta>
-
-          <meta property="og:image:width" content="1400"></meta>
-          <meta property="og:image:height" content="1400"></meta>
-
-          <meta property="og:title" content={title}></meta>
-          <meta property="og:description" content={description}></meta>
-          <meta property="og:image" content={image}></meta>
-
-          <meta name="twitter:image" content={image}></meta>
-
-          <title>{title}</title>
-        </Head>
-
-        <MomoconScreen />
-
-        <footer>
-          <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-5 pt-10 text-white ">
-            <div>Copyright ©MOMOCON</div>
-
-            <AnchorLink href="/terms">Terms of Service</AnchorLink>
-
-            <div>Privacy Policy</div>
-          </div>
-
-          <div className=" flex-cols flex items-center justify-center gap-3 bg-gray-800 pb-20 pt-3 text-white ">
-            <div>
-              <Image src={LogoMomocon} alt="MOMOCON" width={48} height={48} />
-            </div>
-
-            <AnchorLink
-              href="https://www.instagram.com/nftgranderby"
-              target="_blank"
-              className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-            >
-              <Instagram className="h-4 w-4" /> Instagram
-            </AnchorLink>
-            <AnchorLink
-              href="https://twitter.com/nftgranderby"
-              target="_blank"
-              className="flex items-center gap-1 rounded-lg bg-gray-100 px-3 pb-1 pt-[6px] text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white"
-            >
-              <Twitter className="h-4 w-4" /> Twitter
-            </AnchorLink>
-          </div>
-        </footer>
-      </>
-    );
-  }
-  */
-
-  // render default screen/page which is modern
-  ///return <ModernScreen />;
-
-  // render default screen/page which is minimal
-  //return <MinimalScreen />;
 
   // render default screen/page which is momocon
   return (
@@ -230,7 +61,21 @@ const HomePage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
+      {/*
       <ModernScreen />
+      */}
+
+      {/* Under construction page
+        Sorry for the inconvenience, we are currently under construction. Please check back later.
+      */}
+
+      <div className="flex flex-col gap-10 justify-center items-center h-screen">
+        <h1 className="text-4xl font-bold">Under Construction</h1>
+        <h3 className="text-2xl font-bold">
+          Sorry for the inconvenience, we are currently under construction.
+          Please check back later.
+        </h3>
+      </div>
     </>
   );
 };
