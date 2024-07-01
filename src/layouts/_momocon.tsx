@@ -314,6 +314,8 @@ function HeaderRightArea() {
           */}
 
           {!isLoadingContract && !address && (
+            <>
+              {/*
             <ConnectWallet
               theme="light"
               welcomeScreen={() => {
@@ -330,6 +332,16 @@ function HeaderRightArea() {
               }}
               btnTitle="Login"
             />
+            */}
+
+              <ConnectButton
+                client={client}
+                wallets={wallets}
+                //theme={"dark"}
+                theme={'light'}
+                connectModal={{ size: 'compact' }}
+              />
+            </>
           )}
 
           {/*

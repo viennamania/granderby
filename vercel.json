@@ -9,6 +9,7 @@
             "path": "/api/cronjob-sugar",
             "schedule": "* * * * *"
         },
+
         {
             "path": "/api/cronjob-horse-balance",
             "schedule": "5 * * * *"

@@ -87,6 +87,8 @@ type AppPropsWithLayout = AppProps & {
 //   variable: '--font-body',
 // });
 
+// : JSX.Element {
+
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   // inject the next app with the latest version of `@google/model-viewer`
 
@@ -109,8 +111,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   /******* */
 
-  const [queryClient] = useState(() => new QueryClient());
-  ////const queryClient = new QueryClient();
+  //const [queryClient] = useState(() => new QueryClient());
+  const queryClient = new QueryClient();
 
   const clientId =
     process.env.NEXT_PUBLIC_CLIENT_ID === undefined
@@ -201,10 +203,12 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
             metamaskWallet(),
 
+            /*
             paperWallet({
               //paperClientId: process.env.PAPER_CLIENT_ID || '', // granderby
               paperClientId: 'efa05253-e8b1-4adb-b978-996f8f2f409c',
             }),
+            */
           ]}
 
           /*
