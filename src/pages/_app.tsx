@@ -186,7 +186,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         supportedWallets={[
           ///smartWalletConfig,
 
-          smartWallet(embeddedWallet(), config),
+          ///smartWallet(embeddedWallet(), config),
 
           //smartWallet(metamaskWallet(), config),
           metamaskWallet(),
