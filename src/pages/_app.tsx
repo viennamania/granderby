@@ -167,40 +167,33 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      {/*
       <QueryClientProvider client={queryClient}>
-        */}
+        <ThirdwebProvider
+          //queryClient={queryClient}
+          ///clientId={process.env.THIRDWEB_CLIENT_ID || ''}
 
-      <ThirdwebProvider
-        //queryClient={queryClient}
-        ///clientId={process.env.THIRDWEB_CLIENT_ID || ''}
+          ///clientId='c010fb6a9ed040cb62604793a5e56982'
 
-        ///clientId='c010fb6a9ed040cb62604793a5e56982'
+          ///clientId="f7d4ff666f01564c938b1de5d769084c"  // vienna API Key
 
-        ///clientId="f7d4ff666f01564c938b1de5d769084c"  // vienna API Key
+          clientId="79125a56ef0c1629d4863b6df0a43cce" // Granderby Server API Key
+          //////clientId="3af7ae04bda0e7a51c444c3a9464458d" // songpa API Key
 
-        clientId="79125a56ef0c1629d4863b6df0a43cce" // Granderby Server API Key
-        //////clientId="3af7ae04bda0e7a51c444c3a9464458d" // songpa API Key
+          activeChain={Polygon}
+          supportedWallets={[
+            ///smartWalletConfig,
 
-        activeChain={Polygon}
-        supportedWallets={[
-          ///smartWalletConfig,
+            ///smartWallet(embeddedWallet(), config),
 
-          ///smartWallet(embeddedWallet(), config),
+            //smartWallet(metamaskWallet(), config),
 
-          //smartWallet(metamaskWallet(), config),
-          metamaskWallet(),
-
-          //smartWallet(coinbaseWallet(), config),
-          //smartWallet(walletConnect(), config),
-
-          /*
-            walletConnect(),
+            //smartWallet(coinbaseWallet(), config),
+            //smartWallet(walletConnect(), config),
 
             metamaskWallet(),
-            */
+            walletConnect(),
 
-          /*
+            /*
             smartWallet(
               paperWallet({
                 //paperClientId: process.env.PAPER_CLIENT_ID || '', // granderby
@@ -209,17 +202,17 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
               config,
             ),
             */
-        ]}
-        sdkOptions={
-          {
-            /*
+          ]}
+          sdkOptions={
+            {
+              /*
             gasless: {
               openzeppelin: {
                 relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
               },
             },
             */
-            /*
+              /*
               gasless: {
                 biconomy: {
                   apiKey: 'BlotrRJre.fe0d620c-d56f-4663-8e63-8cf5e6400dcd',
@@ -227,48 +220,45 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
                 },
               },
               */
+            }
           }
-        }
-      >
-        {/* <div className={`${firaCode.variable} font-body`}> */}
+        >
+          {/* <div className={`${firaCode.variable} font-body`}> */}
 
-        {/*
+          {/*
           <Analytics />
           */}
 
-        {getLayout(<Component {...pageProps} />)}
-        {/*
+          {getLayout(<Component {...pageProps} />)}
+          {/*
             <Component {...pageProps} />
             */}
 
-        {/*
+          {/*
             <SettingsButton />
             */}
 
-        {/*}
+          {/*}
           <SettingsDrawer />
           */}
 
-        {/*
+          {/*
           <EntriesButton />
           <EntriesDrawer />
           */}
 
-        <Toaster />
+          <Toaster />
 
-        {/*
+          {/*
           <InventoriesButton />
           <InventoriesDrawer />
         */}
 
-        <ModalsContainer />
+          <ModalsContainer />
 
-        <DrawersContainer />
-      </ThirdwebProvider>
-
-      {/*
+          <DrawersContainer />
+        </ThirdwebProvider>
       </QueryClientProvider>
-      */}
     </>
   );
 }
