@@ -61,14 +61,13 @@ const HomePage: NextPageWithLayout<
         <title>{title}</title>
       </Head>
 
-      {/*
       <ModernScreen />
-      */}
 
       {/* Under construction page
         Sorry for the inconvenience, we are currently under construction. Please check back later.
       */}
 
+      {/*
       <div className="flex flex-col gap-10 justify-center items-center h-screen">
         <h1 className="text-4xl font-bold">Under Construction</h1>
         <h3 className="text-2xl font-bold">
@@ -76,6 +75,7 @@ const HomePage: NextPageWithLayout<
           Please check back later.
         </h3>
       </div>
+      */}
     </>
   );
 };

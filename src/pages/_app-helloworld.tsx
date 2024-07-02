@@ -37,10 +37,7 @@ import {
   localWallet,
   smartWallet,
   embeddedWallet,
-  coinbaseWallet,
 } from '@thirdweb-dev/react';
-
-///import { EmbeddedWallet } from "@thirdweb-dev/wallets";
 
 //import { PaperEmbeddedWalletProvider } from '@paperxyz/embedded-wallet-service-rainbowkit';
 
@@ -79,6 +76,8 @@ import { Toaster } from 'react-hot-toast';
 
 import 'node_modules/flag-icons/css/flag-icons.min.css';
 
+import { Suspense } from 'react';
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -89,6 +88,8 @@ type AppPropsWithLayout = AppProps & {
 //   subsets: ['latin'],
 //   variable: '--font-body',
 // });
+
+// : JSX.Element {
 
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   // inject the next app with the latest version of `@google/model-viewer`
@@ -112,8 +113,8 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
   /******* */
 
-  const [queryClient] = useState(() => new QueryClient());
-  ////const queryClient = new QueryClient();
+  //const [queryClient] = useState(() => new QueryClient());
+  const queryClient = new QueryClient();
 
   const clientId =
     process.env.NEXT_PUBLIC_CLIENT_ID === undefined
@@ -160,115 +161,35 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   });
   */
 
-  const config = {
-    factoryAddress: '0x20c70BD6588511F1824fbe116928c3D6c4B989aB',
-    gasless: true,
-  };
-
   return (
     <>
-      {/*
-      <QueryClientProvider client={queryClient}>
-        */}
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 maximum-scale=1"
+        />
+        <meta property="og:type" content="website"></meta>
 
-      <ThirdwebProvider
-        //queryClient={queryClient}
-        ///clientId={process.env.THIRDWEB_CLIENT_ID || ''}
+        <meta property="og:site_name" content="GRANDERBY"></meta>
+        <meta name="twitter:card" content="summary_large_image"></meta>
 
-        ///clientId='c010fb6a9ed040cb62604793a5e56982'
+        <meta property="og:image:width" content="1400"></meta>
+        <meta property="og:image:height" content="1400"></meta>
 
-        ///clientId="f7d4ff666f01564c938b1de5d769084c"  // vienna API Key
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:description" content={description}></meta>
+        <meta property="og:image" content={image}></meta>
 
-        clientId="79125a56ef0c1629d4863b6df0a43cce" // Granderby Server API Key
-        //////clientId="3af7ae04bda0e7a51c444c3a9464458d" // songpa API Key
+        <meta name="twitter:image" content={image}></meta>
 
-        activeChain={Polygon}
-        supportedWallets={[
-          ///smartWalletConfig,
+        <title>{title}</title>
+      </Head>
 
-          smartWallet(embeddedWallet(), config),
+      {/* Under construction page */}
 
-          //smartWallet(metamaskWallet(), config),
-          metamaskWallet(),
-
-          //smartWallet(coinbaseWallet(), config),
-          //smartWallet(walletConnect(), config),
-
-          /*
-            walletConnect(),
-
-            metamaskWallet(),
-            */
-
-          /*
-            smartWallet(
-              paperWallet({
-                //paperClientId: process.env.PAPER_CLIENT_ID || '', // granderby
-                paperClientId: 'd6faf82c-092d-4e91-8141-560a7e8f0370',
-              }),
-              config,
-            ),
-            */
-        ]}
-        sdkOptions={
-          {
-            /*
-            gasless: {
-              openzeppelin: {
-                relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL,
-              },
-            },
-            */
-            /*
-              gasless: {
-                biconomy: {
-                  apiKey: 'BlotrRJre.fe0d620c-d56f-4663-8e63-8cf5e6400dcd',
-                  apiId: 'fd500daa-7efb-4e68-b488-4b2f9f212ab6',
-                },
-              },
-              */
-          }
-        }
-      >
-        {/* <div className={`${firaCode.variable} font-body`}> */}
-
-        {/*
-          <Analytics />
-          */}
-
-        {getLayout(<Component {...pageProps} />)}
-        {/*
-            <Component {...pageProps} />
-            */}
-
-        {/*
-            <SettingsButton />
-            */}
-
-        {/*}
-          <SettingsDrawer />
-          */}
-
-        {/*
-          <EntriesButton />
-          <EntriesDrawer />
-          */}
-
-        <Toaster />
-
-        {/*
-          <InventoriesButton />
-          <InventoriesDrawer />
-        */}
-
-        <ModalsContainer />
-
-        <DrawersContainer />
-      </ThirdwebProvider>
-
-      {/*
-      </QueryClientProvider>
-      */}
+      <Suspense fallback={<>Loading...</>}>
+        <Component {...pageProps} />
+      </Suspense>
     </>
   );
 }

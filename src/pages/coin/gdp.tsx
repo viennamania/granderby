@@ -64,7 +64,8 @@ import {
   useTransferToken,
 } from '@thirdweb-dev/react';
 
-import { createThirdwebClient, getContract } from 'thirdweb';
+//import { createThirdwebClient, getContract } from 'thirdweb';
+
 import { defineChain } from 'thirdweb/chains';
 
 import {

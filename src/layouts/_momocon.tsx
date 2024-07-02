@@ -69,12 +69,15 @@ import {
 
 //import { FlagIcon } from 'flag-icons'
 
-import { ThirdwebProvider, ConnectButton } from 'thirdweb/react';
+///import { ThirdwebProvider, ConnectButton } from 'thirdweb/react';
 
-import { createWallet, walletConnect, inAppWallet } from 'thirdweb/wallets';
+///import { createWallet, walletConnect, inAppWallet } from 'thirdweb/wallets';
 
-import { createThirdwebClient } from 'thirdweb';
+///import { createThirdwebClient } from 'thirdweb';
 
+///import { QueryClient, QueryClientProvider } from 'react-query';
+
+/*
 const client = createThirdwebClient({
   clientId: '2da76340ce7c9721c232ca29f9a6bd0e',
 });
@@ -89,6 +92,7 @@ const wallets = [
     },
   }),
 ];
+*/
 
 function NotificationButton() {
   return (
@@ -194,7 +198,10 @@ function HeaderRightArea() {
   }, []);
   */
 
+  /*
+
   const emailQuery = usePaperWalletUserEmail();
+
 
   useEffect(() => {
     async function checkUser() {
@@ -246,6 +253,7 @@ function HeaderRightArea() {
 
     checkUser();
   }, [address, emailQuery]);
+  */
 
   const { contract: tokenContractUSDT } = useContract(
     tokenContractAddressUSDT,
@@ -269,7 +277,7 @@ function HeaderRightArea() {
   return (
     <div className="flex flex-col items-end justify-center gap-3  lg:flex-row lg:items-center lg:gap-5">
       <div className=" flex shrink-0 items-center">
-        <div className="ltr:mr-3.5 rtl:ml-3.5 ltr:sm:mr-5 rtl:sm:ml-5 xl:hidden">
+        <div className="xl:hidden ltr:mr-3.5 ltr:sm:mr-5 rtl:ml-3.5 rtl:sm:ml-5">
           {/*
           <SearchButton
             color="white"
@@ -315,25 +323,24 @@ function HeaderRightArea() {
 
           {!isLoadingContract && !address && (
             <>
+              <ConnectWallet
+                theme="light"
+                welcomeScreen={() => {
+                  return (
+                    <div className=" mt-10 flex flex-col items-center justify-center p-20">
+                      <Image
+                        src="/images/logo.png"
+                        alt="logo"
+                        width={300}
+                        height={300}
+                      />
+                    </div>
+                  );
+                }}
+                btnTitle="Login"
+              />
+              *
               {/*
-            <ConnectWallet
-              theme="light"
-              welcomeScreen={() => {
-                return (
-                  <div className=" mt-10 flex flex-col items-center justify-center p-20">
-                    <Image
-                      src="/images/logo.png"
-                      alt="logo"
-                      width={300}
-                      height={300}
-                    />
-                  </div>
-                );
-              }}
-              btnTitle="Login"
-            />
-            */}
-
               <ConnectButton
                 client={client}
                 wallets={wallets}
@@ -341,6 +348,7 @@ function HeaderRightArea() {
                 theme={'light'}
                 connectModal={{ size: 'compact' }}
               />
+              */}
             </>
           )}
 
@@ -548,7 +556,7 @@ function HeaderRightArea() {
             isOpen={isOpen}
             onClick={() => openDrawer('DRAWER_MENU')}
             color="white"
-            className="shadow-main ltr:ml-3.5 rtl:mr-3.5 dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white ltr:sm:ml-5 rtl:sm:mr-5"
+            className="shadow-main dark:border dark:border-solid dark:border-gray-700 dark:bg-light-dark dark:text-white ltr:ml-3.5 ltr:sm:ml-5 rtl:mr-3.5 rtl:sm:mr-5"
           />
         </div>
       </div>
@@ -592,7 +600,7 @@ export function Header() {
   return (
     <nav
       className={cn(
-        'sticky top-0 z-30 flex w-full items-center justify-between px-4 transition-all duration-300 ltr:right-0 rtl:left-0 sm:px-6 lg:px-8 3xl:px-10',
+        'sticky top-0 z-30 flex w-full items-center justify-between px-4 transition-all duration-300 sm:px-6 lg:px-8 3xl:px-10 ltr:right-0 rtl:left-0',
         isMounted && windowScroll.y > 10
           ? 'h-24  bg-gradient-to-b from-white to-white/80 shadow-card backdrop-blur dark:from-dark dark:to-dark/80 sm:h-24 '
           : 'h-24 bg-body dark:bg-dark sm:h-24'
