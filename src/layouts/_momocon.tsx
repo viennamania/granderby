@@ -339,7 +339,7 @@ function HeaderRightArea() {
                 }}
                 btnTitle="Login"
               />
-              *
+
               {/*
               <ConnectButton
                 client={client}

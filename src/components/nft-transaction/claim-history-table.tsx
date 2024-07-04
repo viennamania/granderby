@@ -97,7 +97,7 @@ function LivePricingFeed({
 
         <div className="flex items-center text-xs font-medium 2xl:text-sm">
           <span
-            className="truncate tracking-tighter text-gray-600 ltr:mr-5 rtl:ml-5 dark:text-gray-400 2xl:w-24 3xl:w-auto"
+            className="truncate tracking-tighter text-gray-600 dark:text-gray-400 2xl:w-24 3xl:w-auto ltr:mr-5 rtl:ml-5"
             title={`${usdBalance} USD`}
           >
             {usdBalance} USD
@@ -395,6 +395,12 @@ export default function ClaimHistoryTable({
       ///console.log('claim-history-table data', data);
 
       setTransactions(data?.claimHistory || null);
+
+      // reload every 3 seconds
+
+      setTimeout(() => {
+        getBalanceHistory();
+      }, 3000);
     };
 
     getBalanceHistory();
@@ -567,7 +573,7 @@ export default function ClaimHistoryTable({
                           column.getSortByToggleProps()
                         )}
                         key={idx}
-                        className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                        className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg dark:bg-light-dark md:px-4 ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8"
                       >
                         <div className="flex items-center">
                           {column.render('Header')}
@@ -613,7 +619,7 @@ export default function ClaimHistoryTable({
                           <td
                             {...cell.getCellProps()}
                             key={idx}
-                            className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                            className="px-2 py-4 tracking-[1px] md:px-4 md:py-6 3xl:py-5 ltr:first:pl-4 ltr:last:pr-4 md:ltr:first:pl-8 md:ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8"
                           >
                             {cell.render('Cell')}
                           </td>
