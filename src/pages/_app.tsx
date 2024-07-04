@@ -176,7 +176,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
 
           ///clientId="f7d4ff666f01564c938b1de5d769084c"  // vienna API Key
 
-          clientId="79125a56ef0c1629d4863b6df0a43cce" // Granderby Server API Key
+          clientId="d8458fa2c1a9dd5801878b9bbb69d529" // Granderby Server API Key
           //////clientId="3af7ae04bda0e7a51c444c3a9464458d" // songpa API Key
 
           activeChain={Polygon}
