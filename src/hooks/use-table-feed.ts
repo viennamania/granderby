@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo, use } from 'react';
 import isString from 'lodash/isString';
 import { add, set } from 'lodash';
 import { da } from 'date-fns/locale';
+import { ba } from '@upstash/redis/zmscore-9faf292c';
+import { promises } from 'dns';
 
 interface AnyObject {
   [key: string]: any;
@@ -341,9 +343,9 @@ export function useTable<T extends AnyObject>(
       posts?.nfts.map((item: any) => {
         // get balance from api asynchrously
 
-        /*
         const balance = async () => {
-            
+          console.log('tokenId', item?.tokenId);
+
           const response = await fetch('/api/nft/getBalanceByTokenId', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -353,28 +355,67 @@ export function useTable<T extends AnyObject>(
           });
           const data = await response.json();
 
-          return data?.balance || 0;
+          console.log('data?.balance', data?.balance);
 
+          return data?.balance || 0;
         };
 
+        //balance();
 
+        /*
         const updatedItem = {
           ...item,
+
           balance:
+     
             async () => {
+              
+              const response = await fetch('/api/nft/getBalanceByTokenId', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  tokenId: item?.tokenId,
+                }),
+              });
 
-              const  balanceData = await balance();
+              const data = await response.json();
 
-              return balanceData;
+              console.log('data?.balance', data?.balance);
 
-            },
+              return data?.balance || 0;
+
+            }
+
+            
+             
         };
         */
 
-        return {
+        const updatedItem = {
           ...item,
 
-          ///...updatedItem,
+          // [object Promise]
+
+          balance: balance(),
+
+          key: item.id,
+
+          totalCount: posts?.total,
+          currentPage: currentPage,
+
+          countPerPage: countPerPage,
+
+          loginUserId: 0,
+        };
+
+        return updatedItem;
+
+        /*
+        return {
+
+          /////...item,
+
+          ...updatedItem,
 
           key: item.id,
           totalCount: posts?.total,
@@ -382,6 +423,7 @@ export function useTable<T extends AnyObject>(
           countPerPage: countPerPage,
           loginUserId: 0,
         };
+        */
       })
     );
 

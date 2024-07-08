@@ -206,7 +206,6 @@ export const getColumns = ({
     ),
   },
 
-  /*
   {
     title: <HeaderCell title="Allowance" />,
     dataIndex: 'balance',
@@ -227,7 +226,6 @@ export const getColumns = ({
       </>
     ),
   },
-  */
 
   /*
   {
