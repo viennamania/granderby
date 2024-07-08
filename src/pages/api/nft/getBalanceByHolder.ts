@@ -12,7 +12,7 @@ type Data = {
 //nextjs /pages/api
 export const config = {
   //runtime: 'edge',
-  maxDuration: 120, // This function can run for a maximum of 60 seconds
+  maxDuration: 300, // This function can run for a maximum of 60 seconds
 };
 
 export default async function handler(
