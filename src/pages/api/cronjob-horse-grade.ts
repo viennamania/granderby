@@ -387,6 +387,8 @@ export default async function handler(
         Grade B (350EA): tokenId: 3764 - 4113 / Hrs_00020441 - Hrs_00020790
 
         Grade C (976EA): tokenId: 4114 - 5089 / Hrs_00100945 - Hrs_00101920
+        =>  Grade C (976EA): tokenId: 4114 - 5089 / Hrs_00100830 - Hrs_00101805
+
 
         Grade D (1989EA): tokenId: 5090 - 7078 / Hrs_00202645 - Hrs_00204633
 
@@ -455,8 +457,12 @@ export default async function handler(
           imagesrc = 'Hrs_' + formattedNumber + '.png';
 
           grade = 'B';
+
+          // 4114 => 00100830
+          // 4115 => 00100831
+          // 4116 => 00100832
         } else if (Number(tokenId) >= 4114 && Number(tokenId) < 5090) {
-          var formattedNumber = Number(tokenId) - 4114 + 945 + '';
+          var formattedNumber = Number(tokenId) - 4114 + 830 + '';
 
           while (formattedNumber.length < 4) {
             formattedNumber = '0' + formattedNumber;

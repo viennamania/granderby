@@ -1050,7 +1050,7 @@ export const getOneHorse = async (tokenId: string) => {
 
     imagesrc = 'Hrs_' + formattedNumber + '.png';
   } else if (Number(tokenId) >= 4114 && Number(tokenId) < 5090) {
-    var formattedNumber = Number(tokenId) - 4114 + 945 + '';
+    var formattedNumber = Number(tokenId) - 4114 + 830 + '';
 
     while (formattedNumber.length < 4) {
       formattedNumber = '0' + formattedNumber;

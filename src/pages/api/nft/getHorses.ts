@@ -366,7 +366,7 @@ export default async function handler(
         imagesrc = 'Hrs_' + formattedNumber + '.png';
         grade = 'B';
       } else if (Number(tokenId) >= 4114 && Number(tokenId) < 5090) {
-        var formattedNumber = Number(tokenId) - 4114 + 945 + '';
+        var formattedNumber = Number(tokenId) - 4114 + 830 + '';
 
         while (formattedNumber.length < 4) {
           formattedNumber = '0' + formattedNumber;
