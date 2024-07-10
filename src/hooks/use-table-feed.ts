@@ -100,6 +100,7 @@ export function useTable<T extends AnyObject>(
     if (sortConfig.key === key && sortConfig.direction === 'asc') {
       direction = 'desc';
     }
+
     setSortConfig({ key, direction });
   }
 
@@ -355,10 +356,13 @@ export function useTable<T extends AnyObject>(
           });
           const data = await response.json();
 
-          console.log('data?.balance', data?.balance);
+          ////console.log('data?.balance===', data?.balance);
 
           return data?.balance || 0;
         };
+
+        // balance() is a promise
+        // {} is returned
 
         //balance();
 
@@ -391,6 +395,7 @@ export function useTable<T extends AnyObject>(
         };
         */
 
+        /*
         const updatedItem = {
           ...item,
 
@@ -410,12 +415,15 @@ export function useTable<T extends AnyObject>(
 
         return updatedItem;
 
-        /*
+        */
+
         return {
+          ...item,
 
-          /////...item,
+          // [object Promise]
+          ////balance: balance(),
 
-          ...updatedItem,
+          balance: 0,
 
           key: item.id,
           totalCount: posts?.total,
@@ -423,7 +431,6 @@ export function useTable<T extends AnyObject>(
           countPerPage: countPerPage,
           loginUserId: 0,
         };
-        */
       })
     );
 
@@ -447,7 +454,6 @@ export function useTable<T extends AnyObject>(
     false,
   ]);
 
-  /*
   useEffect(() => {
     if (data[0]?.tokenId) {
       const fetchBalance = async () => {
@@ -469,7 +475,8 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[0]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+                ////balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -504,7 +511,8 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[1]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+                ///balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -539,7 +547,8 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[2]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -574,7 +583,9 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[3]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -609,7 +620,8 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[4]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -644,7 +656,9 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[5]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -679,7 +693,9 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[6]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -714,7 +730,9 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[7]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -749,7 +767,9 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[8]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -784,7 +804,9 @@ export function useTable<T extends AnyObject>(
             if (prevItem?.tokenId === data[9]?.tokenId) {
               return {
                 ...prevItem,
-                balanceRealtime: balance,
+
+                //balanceRealtime: balance,
+                balance: balance,
               };
             }
             return prevItem;
@@ -797,7 +819,6 @@ export function useTable<T extends AnyObject>(
       fetchBalance();
     }
   }, [data?.[9]?.tokenId]);
-  */
 
   /*
    * Handle searching
@@ -986,7 +1007,9 @@ export function useTable<T extends AnyObject>(
     totalItems: calculateTotalItems(),
     // sorting
     sortConfig,
+
     handleSort,
+
     // row selection
     selectedRowKeys,
     setSelectedRowKeys,
