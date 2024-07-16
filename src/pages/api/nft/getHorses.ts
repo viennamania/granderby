@@ -236,9 +236,10 @@ export default async function handler(
           formattedNumber = '0' + formattedNumber;
         }
 
+        formattedNumber = '0020' + formattedNumber;
+        gameHorseName = formattedNumber;
         imagesrc = 'Hrs_' + formattedNumber + '.png';
         grade = 'D';
-        gameHorseName = '0020' + formattedNumber;
       } else if (Number(tokenId) >= 1815 && Number(tokenId) < 1915) {
         // 1815 => 00001115
         // 1816 => 00001116
