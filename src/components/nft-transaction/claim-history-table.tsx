@@ -519,7 +519,7 @@ export default function ClaimHistoryTable({
     <div className="flex w-full flex-col rounded-lg bg-slate-100 p-5 dark:bg-light-dark">
       {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
-  */}
+      */}
 
       {/*
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">

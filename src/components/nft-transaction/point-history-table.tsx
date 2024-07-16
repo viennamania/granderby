@@ -48,6 +48,9 @@ import {
 ///import { priceFeedData } from '@/data/static/price-feed';
 import { priceFeedData } from '@/data/static/nft-horse-price-feed';
 
+import { HistoryIcon } from '@/components/icons/history';
+import { Refresh } from '@/components/icons/refresh';
+
 type Price = {
   name: number;
   value: number;
@@ -94,7 +97,7 @@ function LivePricingFeed({
 
         <div className="flex items-center text-xs font-medium 2xl:text-sm">
           <span
-            className="truncate tracking-tighter text-gray-600 ltr:mr-5 rtl:ml-5 dark:text-gray-400 2xl:w-24 3xl:w-auto"
+            className="truncate tracking-tighter text-gray-600 dark:text-gray-400 2xl:w-24 3xl:w-auto ltr:mr-5 rtl:ml-5"
             title={`${usdBalance} USD`}
           >
             {usdBalance} USD
@@ -510,10 +513,10 @@ export default function PointHistoryTable({
   const [priceFeedDataIndex, setPriceFeedDataIndex] = useState(0);
 
   return (
-    <div>
+    <div className="flex w-full flex-col rounded-lg bg-slate-100 p-5 dark:bg-light-dark">
       {/*
       <LivePricingFeed {...priceFeedData[priceFeedDataIndex]} />
-  */}
+      */}
 
       {/*
       <div className=" rounded-tl-lg rounded-tr-lg bg-white px-4 pt-6 dark:bg-light-dark md:px-8 md:pt-8">
@@ -524,6 +527,34 @@ export default function PointHistoryTable({
         </div>
       </div>
       */}
+
+      <div className="flex flex-row items-center justify-between border-b border-dashed border-gray-200 pb-5 dark:border-gray-700 ">
+        <div className="flex items-center justify-start gap-2">
+          <HistoryIcon className="h-4 w-4" />
+
+          <div className="   text-sm font-medium  text-black dark:text-white lg:text-lg">
+            Allowance History
+          </div>
+        </div>
+
+        {/* reload button */}
+        {/*
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            onClick={() => {
+              //getTransfers();
+            }}
+            title="Reload"
+            shape="circle"
+            variant="transparent"
+            size="small"
+            className="text-gray-700 dark:text-white"
+          >
+            <Refresh className="h-auto w-4 rtl:rotate-180" />
+          </Button>
+        </div>
+        */}
+      </div>
 
       <div className="-mx-0.5 dark:[&_.os-scrollbar_.os-scrollbar-track_.os-scrollbar-handle:before]:!bg-white/50">
         <Scrollbar style={{ width: '100%' }} autoHide="never" className="">
@@ -541,7 +572,7 @@ export default function PointHistoryTable({
                           column.getSortByToggleProps()
                         )}
                         key={idx}
-                        className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                        className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg dark:bg-light-dark md:px-4 ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8"
                       >
                         <div className="flex items-center">
                           {column.render('Header')}
@@ -587,7 +618,7 @@ export default function PointHistoryTable({
                           <td
                             {...cell.getCellProps()}
                             key={idx}
-                            className="px-2 py-4 tracking-[1px] ltr:first:pl-4 ltr:last:pr-4 rtl:first:pr-8 rtl:last:pl-8 md:px-4 md:py-6 md:ltr:first:pl-8 md:ltr:last:pr-8 3xl:py-5"
+                            className="px-2 py-4 tracking-[1px] md:px-4 md:py-6 3xl:py-5 ltr:first:pl-4 ltr:last:pr-4 md:ltr:first:pl-8 md:ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8"
                           >
                             {cell.render('Cell')}
                           </td>

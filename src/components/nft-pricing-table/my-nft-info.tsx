@@ -805,11 +805,9 @@ export default function NftInfo({ horseData }: any) {
                   </Button>
                 </div>
 
-                {/*
                 <div className="flex w-full flex-row items-center justify-center gap-20">
-                  <PointHistoryTable tokenid={ horseData?.nft?.tokenId} />
+                  <PointHistoryTable tokenid={horseData?.nft?.tokenId} />
                 </div>
-                */}
 
                 <div className="flex w-full flex-row items-center justify-center gap-20">
                   <ClaimHistoryTable tokenid={horseData?.nft?.tokenId} />

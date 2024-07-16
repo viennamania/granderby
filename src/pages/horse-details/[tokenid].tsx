@@ -1114,6 +1114,7 @@ function SinglePrice(tokenid: any) {
                   </Collapse>
                 </div>
                 */}
+
                 {/* end of nft profits */}
 
                 {/*
