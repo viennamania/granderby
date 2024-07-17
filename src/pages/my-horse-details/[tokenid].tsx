@@ -118,6 +118,7 @@ const MyHorseDetails: NextPageWithLayout<
 
   ////console.log('nftMetadata======>', nftMetadata);
 
+  /*
   const { contract: contractStaking, isLoading: isLoadingContractStaking } =
     useContract(stakingContractAddressHorseAAA);
 
@@ -126,13 +127,17 @@ const MyHorseDetails: NextPageWithLayout<
       nftMetadata?.metadata?.id,
     ]);
 
+
+  
   const { data: stakeInfo, isLoading: isLoadingStakeInfo } = useContractRead(
     contractStaking,
     'getStakeInfo',
     [stakerAddress]
   );
 
+  
   console.log('stakeInfo', stakeInfo);
+
 
   const [stakeInfoCount, setStakeInfoCount] = useState<any>(null);
 
@@ -141,6 +146,7 @@ const MyHorseDetails: NextPageWithLayout<
 
     setStakeInfoCount(stakeInfo?.[0]?.length);
   }, [stakeInfo]);
+  */
 
   const address = useAddress();
 
@@ -380,8 +386,9 @@ const MyHorseDetails: NextPageWithLayout<
   if (
     address &&
     !isLoading &&
-    nftMetadata?.owner !== address &&
-    stakerAddress !== address
+    nftMetadata?.owner !== address
+
+    //&& stakerAddress !== address
   ) {
     return (
       <div className="flex h-screen items-center justify-center text-2xl">
@@ -465,7 +472,7 @@ const MyHorseDetails: NextPageWithLayout<
                   className=" rounded-lg "
                 />
 
-                {address && address === stakerAddress && (
+                {/*address && address === stakerAddress && (
                   <div className="mt-5">
                     <Web3Button
                       theme="light"
@@ -475,7 +482,7 @@ const MyHorseDetails: NextPageWithLayout<
                       Unregister
                     </Web3Button>
                   </div>
-                )}
+                )*/}
 
                 {/*
                 <NftSinglePrice

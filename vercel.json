@@ -17,6 +17,10 @@
         {
             "path": "/api/cronjob-withdrawal",
             "schedule": "* * * * *"
+        },
+        {
+            "path": "/api/cronjob-ranking",
+            "schedule": "* * * * *"
         }
 
 

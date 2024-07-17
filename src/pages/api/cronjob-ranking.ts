@@ -40,10 +40,13 @@ export default async function handler(
 
   var gameId: any = await kv.get(contractAddress);
 
+  console.log('gameId', gameId);
+
   if (gameId) {
     // gameId += 1;
 
     gameId = parseInt(gameId) + 1;
+
     gameId = gameId.toString();
   } else {
     gameId = '1001031377';
@@ -55,6 +58,8 @@ export default async function handler(
     `http://3.38.2.94:3001/api/game/ranking?gameId=${gameId}`
   );
   const data = await response.json();
+
+  ///console.log('gameId', gameId, 'data', data);
 
   //console.log(data?.recordset);
   /*
