@@ -320,8 +320,8 @@ const COLUMNS = [
         </strong>
       </div>
     ),
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 150,
+    maxWidth: 150,
   },
 
   {
@@ -339,8 +339,8 @@ const COLUMNS = [
         </strong>
       </div>
     ),
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 150,
+    maxWidth: 150,
   },
 
   {
@@ -356,8 +356,8 @@ const COLUMNS = [
         </strong>
       </div>
     ),
-    minWidth: 100,
-    maxWidth: 100,
+    minWidth: 150,
+    maxWidth: 150,
   },
 ];
 
@@ -397,10 +397,11 @@ export default function ClaimHistoryTable({
       setTransactions(data?.claimHistory || null);
 
       // reload every 3 seconds
-
+      /*
       setTimeout(() => {
         getBalanceHistory();
       }, 3000);
+      */
     };
 
     getBalanceHistory();

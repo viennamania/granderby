@@ -332,7 +332,7 @@ const COLUMNS = [
       <div className="ltr:text-right rtl:text-left">{value}</div>
     ),
     minWidth: 80,
-    maxWidth: 120,
+    maxWidth: 150,
   },
 
   {
@@ -345,7 +345,7 @@ const COLUMNS = [
       </div>
     ),
     minWidth: 80,
-    maxWidth: 120,
+    maxWidth: 150,
   },
 ];
 

@@ -56,7 +56,11 @@ import { RaceIcon } from '@/components/icons/race-icon';
 import { set } from 'lodash';
 
 import { StaticImageData } from 'next/image';
+
 import ParamTab, { TabPanel } from '@/components/ui/param-tab';
+
+import { Tab, TabItem, TabPanels } from '@/components/ui/tab';
+
 import FeaturedCard from '@/components/nft/featured-card';
 import ListCard from '@/components/ui/list-card';
 
@@ -805,13 +809,36 @@ export default function NftInfo({ horseData }: any) {
                   </Button>
                 </div>
 
-                <div className="flex w-full flex-row items-center justify-center gap-20">
-                  <PointHistoryTable tokenid={horseData?.nft?.tokenId} />
-                </div>
+                {/* tap menu */}
+                {/* IN Tap / OUT Tap */}
 
-                <div className="flex w-full flex-row items-center justify-center gap-20">
-                  <ClaimHistoryTable tokenid={horseData?.nft?.tokenId} />
-                </div>
+                <Tab.Group
+                  defaultIndex={0}
+                  onChange={(index) => console.log(index)}
+                >
+                  <Tab.List className="flex w-full flex-row items-center justify-end gap-5">
+                    <TabItem className="flex items-center justify-center gap-2">
+                      <span className="text-xl font-extrabold">IN</span>
+                    </TabItem>
+                    <TabItem className="flex items-center justify-center gap-2">
+                      <span className="text-xl font-extrabold">OUT</span>
+                    </TabItem>
+                  </Tab.List>
+
+                  <TabPanels className="flex w-full flex-col items-center justify-center gap-5">
+                    <TabPanel className="focus:outline-none">
+                      <div className="flex w-full flex-col items-center justify-center gap-5">
+                        <PointHistoryTable tokenid={horseData?.nft?.tokenId} />
+                      </div>
+                    </TabPanel>
+
+                    <TabPanel className="focus:outline-none">
+                      <div className="flex w-full flex-col items-center justify-center gap-5">
+                        <ClaimHistoryTable tokenid={horseData?.nft?.tokenId} />
+                      </div>
+                    </TabPanel>
+                  </TabPanels>
+                </Tab.Group>
 
                 {/*
                 <div className="flex w-full flex-row items-center justify-center gap-5">
