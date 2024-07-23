@@ -249,11 +249,13 @@ export const menuItems = [
     icon: <PlusCircle />,
     href: routes.live,
     dropdownItems: [
+      /*
       {
         name: 'Schedule',
         icon: <PlusCircle />,
         href: routes.raceSchedule,
       },
+      */
       /*
       {
         name: 'Finished',
