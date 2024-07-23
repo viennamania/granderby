@@ -146,7 +146,7 @@ const COLUMNS = [
     accessor: 'asset',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-xs font-bold ltr:text-right rtl:text-left xl:text-xs ">
+      <div className="text-xs font-bold xl:text-xs ltr:text-right rtl:text-left ">
         {value === 'CARROT' && (
           <Image
             src="/images/shop/icon-carrot.png"
@@ -187,7 +187,7 @@ const COLUMNS = [
     accessor: 'amount',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-sm font-bold ltr:text-right rtl:text-left xl:text-xl ">
+      <div className="text-sm font-bold xl:text-xl ltr:text-right rtl:text-left ">
         {value}
       </div>
     ),
@@ -614,7 +614,7 @@ export default function PortfolioScreen() {
                                     column.getSortByToggleProps()
                                   )}
                                   key={idx}
-                                  className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                                  className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg dark:bg-light-dark md:px-4 ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8"
                                 >
                                   <div className="flex items-center">
                                     {column.render('Header')}
@@ -881,6 +881,7 @@ export default function PortfolioScreen() {
 
         {/* message list */}
         {/* coming soon */}
+        {/*
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-2 rounded-lg border p-10">
           <span className="text-lg font-bold text-gray-600 xl:text-xl">
             Race Entry List
@@ -889,6 +890,7 @@ export default function PortfolioScreen() {
             Coming Soon
           </span>
         </div>
+        */}
       </div>
 
       {/*

@@ -290,8 +290,8 @@ const COLUMNS = [
     Cell: ({ cell: { value } }) => (
       <div className="ml-1 text-left text-xs -tracking-[1px]">{value}</div>
     ),
-    minWidth: 80,
-    maxWidth: 80,
+    minWidth: 50,
+    maxWidth: 50,
   },
 
   {
@@ -303,8 +303,8 @@ const COLUMNS = [
         {format(Date.parse(value), 'yyy-MM-dd hh:mm:ss')}
       </div>
     ),
-    minWidth: 200,
-    maxWidth: 200,
+    minWidth: 180,
+    maxWidth: 180,
   },
 
   {
@@ -339,8 +339,8 @@ const COLUMNS = [
         </strong>
       </div>
     ),
-    minWidth: 150,
-    maxWidth: 150,
+    minWidth: 200,
+    maxWidth: 200,
   },
 
   {
@@ -356,8 +356,8 @@ const COLUMNS = [
         </strong>
       </div>
     ),
-    minWidth: 150,
-    maxWidth: 150,
+    minWidth: 200,
+    maxWidth: 200,
   },
 ];
 

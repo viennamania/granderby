@@ -254,11 +254,13 @@ export const menuItems = [
         icon: <PlusCircle />,
         href: routes.raceSchedule,
       },
+      /*
       {
         name: 'Finished',
         icon: <PlusCircle />,
         href: routes.raceFinished,
       },
+      */
       {
         name: 'Live',
         icon: <PlusCircle />,
