@@ -144,7 +144,7 @@ const COLUMNS = [
     accessor: 'asset',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-xs font-bold ltr:text-right rtl:text-left xl:text-xs ">
+      <div className="text-xs font-bold xl:text-xs ltr:text-right rtl:text-left ">
         {value === 'CARROT' && (
           <Image
             src="/images/shop/icon-carrot.png"
@@ -185,7 +185,7 @@ const COLUMNS = [
     accessor: 'amount',
     // @ts-ignore
     Cell: ({ cell: { value } }) => (
-      <div className="text-sm font-bold ltr:text-right rtl:text-left xl:text-xl ">
+      <div className="text-sm font-bold xl:text-xl ltr:text-right rtl:text-left ">
         {value}
       </div>
     ),
@@ -257,7 +257,7 @@ const COLUMNS = [
         {Math.floor(
           (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
         ) > 0 ? (
-          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+          <div className="text-xs text-gray-500 xl:text-xs ltr:text-right rtl:text-left">
             {Math.floor(
               (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60 / 24
             )}{' '}
@@ -266,7 +266,7 @@ const COLUMNS = [
         ) : Math.floor(
             (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
           ) > 0 ? (
-          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+          <div className="text-xs text-gray-500 xl:text-xs ltr:text-right rtl:text-left">
             {Math.floor(
               (new Date().getTime() - Date.parse(value)) / 1000 / 60 / 60
             )}{' '}
@@ -274,18 +274,18 @@ const COLUMNS = [
           </div>
         ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60) >
           0 ? (
-          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+          <div className="text-xs text-gray-500 xl:text-xs ltr:text-right rtl:text-left">
             {Math.floor((new Date().getTime() - Date.parse(value)) / 1000 / 60)}{' '}
             minutes ago
           </div>
         ) : Math.floor((new Date().getTime() - Date.parse(value)) / 1000) >
           0 ? (
-          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+          <div className="text-xs text-gray-500 xl:text-xs ltr:text-right rtl:text-left">
             {Math.floor((new Date().getTime() - Date.parse(value)) / 1000)}{' '}
             seconds ago
           </div>
         ) : (
-          <div className="text-xs text-gray-500 ltr:text-right rtl:text-left xl:text-xs">
+          <div className="text-xs text-gray-500 xl:text-xs ltr:text-right rtl:text-left">
             just now
           </div>
         )}
@@ -689,7 +689,7 @@ export default function PortfolioScreen({
                                     column.getSortByToggleProps()
                                   )}
                                   key={idx}
-                                  className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8 dark:bg-light-dark md:px-4"
+                                  className="group  bg-white px-2 py-5 font-normal first:rounded-bl-lg last:rounded-br-lg dark:bg-light-dark md:px-4 ltr:first:pl-8 ltr:last:pr-8 rtl:first:pr-8 rtl:last:pl-8"
                                 >
                                   <div className="flex items-center">
                                     {column.render('Header')}
@@ -852,7 +852,10 @@ export default function PortfolioScreen({
                       <div className="flex flex-col items-center justify-center gap-5">
                         <span className="text-lg">Jockey</span>
                         <span className="text-xl font-bold xl:text-2xl">
-                          {jockeysCount}
+                          {
+                            //jockeysCount
+                            0
+                          }
                         </span>
                       </div>
                       <Image

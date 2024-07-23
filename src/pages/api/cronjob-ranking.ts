@@ -40,22 +40,20 @@ export default async function handler(
 
   var gameId: any = await kv.get(contractAddress);
 
-  ///gameId = '1001100000';
+  gameId = '1001100000';
 
   console.log('gameId', gameId);
 
   if (gameId) {
     // gameId += 1;
 
-    gameId = parseInt(gameId) + 1;
-
-    gameId = gameId.toString();
+    gameId = (parseInt(gameId) + 1).toString();
   } else {
     gameId = '1001036727';
   }
 
   try {
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 1; i++) {
       const response = await fetch(
         /////`http://3.38.2.94:3001/api/game/history?gameId=${gameId}`
 
@@ -85,7 +83,7 @@ export default async function handler(
         */
 
       if (data?.recordset?.length === 0) {
-        console.log('no data');
+        console.log('no data', gameId);
 
         /*
           res.status(200).json({
@@ -129,9 +127,9 @@ export default async function handler(
         await ranks.updateOne(filter, updateDoc, options);
 
         //gameId = toString(parseInt(gameId) + 1);
-
-        gameId = '' + (parseInt(gameId) + 1);
       }
+
+      gameId = (parseInt(gameId) + 1).toString();
     }
   } catch (error) {
     console.log('error', error);

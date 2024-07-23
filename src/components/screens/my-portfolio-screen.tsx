@@ -916,7 +916,10 @@ export default function PortfolioScreen() {
 
                         <div className="flex flex-row items-center justify-center gap-2">
                           <span className="text-xl font-bold xl:text-2xl">
-                            {jockeysCount}
+                            {
+                              //jockeysCount
+                              0
+                            }
                           </span>
                           <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
                         </div>
