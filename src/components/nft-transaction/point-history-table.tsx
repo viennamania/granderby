@@ -290,8 +290,8 @@ const COLUMNS = [
     Cell: ({ cell: { value } }) => (
       <div className="ml-1 text-left text-xs -tracking-[1px]">{value}</div>
     ),
-    minWidth: 80,
-    maxWidth: 80,
+    minWidth: 150,
+    maxWidth: 150,
   },
 
   {
@@ -320,10 +320,11 @@ const COLUMNS = [
         </strong>
       </div>
     ),
-    minWidth: 100,
+    minWidth: 200,
     maxWidth: 200,
   },
 
+  /*
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">GameId</div>,
     accessor: 'GameId',
@@ -334,6 +335,7 @@ const COLUMNS = [
     minWidth: 80,
     maxWidth: 150,
   },
+  */
 
   {
     Header: () => <div className="ltr:ml-auto rtl:mr-auto">Status</div>,
