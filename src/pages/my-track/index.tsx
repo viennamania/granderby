@@ -162,6 +162,10 @@ const TrackPage: NextPageWithLayout<
 
       ///console.log('getSumOfBalance data', data);
 
+      if (data?.recordsets[0][0]?.SumOfBalance === null) {
+        return;
+      }
+
       const totalBalance = Number(data?.recordsets[0][0]?.SumOfBalance);
 
       ///setSumOfBalance(data?.recordsets[0][0]?.SumOfBalance);
@@ -175,6 +179,8 @@ const TrackPage: NextPageWithLayout<
     const interval = setInterval(() => {
       getSumOfBalance();
     }, 10000);
+
+    return () => clearInterval(interval);
   }, [nftBalanceHV]);
 
   //console.log('sumOfBalance', sumOfBalance);
