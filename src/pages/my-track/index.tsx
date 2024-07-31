@@ -160,9 +160,13 @@ const TrackPage: NextPageWithLayout<
       const res = await fetch('/api/nft/getSumOfStadiumBalance');
       const data = await res.json();
 
-      console.log('data', data);
+      ///console.log('getSumOfBalance data', data);
 
-      setSumOfBalance(data?.recordsets[0][0]?.SumOfBalance);
+      const totalBalance = Number(data?.recordsets[0][0]?.SumOfBalance);
+
+      ///setSumOfBalance(data?.recordsets[0][0]?.SumOfBalance);
+
+      setSumOfBalance(totalBalance * (nftBalanceHV / 5000));
     };
 
     getSumOfBalance();
