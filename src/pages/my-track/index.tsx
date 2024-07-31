@@ -175,7 +175,7 @@ const TrackPage: NextPageWithLayout<
     const interval = setInterval(() => {
       getSumOfBalance();
     }, 10000);
-  }, []);
+  }, [nftBalanceHV]);
 
   //console.log('sumOfBalance', sumOfBalance);
 
