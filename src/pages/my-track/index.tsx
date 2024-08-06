@@ -65,6 +65,8 @@ import {
   nftContractAddressHV,
 } from '@/config/contractAddresses';
 
+import ClaimHistoryTable from '@/components/nft-transaction/claim-history-table-track';
+
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
@@ -183,7 +185,7 @@ const TrackPage: NextPageWithLayout<
     return () => clearInterval(interval);
   }, [nftBalanceHV]);
 
-  //console.log('sumOfBalance', sumOfBalance);
+  console.log('address=====', address);
 
   return (
     <div className="flex-cols flex w-full items-start justify-center gap-5 xl:grid xl:grid-cols-2 ">
@@ -224,7 +226,7 @@ const TrackPage: NextPageWithLayout<
           muted
           playsInline
           //className="h-full w-full object-cover"
-          className=" h-full w-full object-cover"
+          className=" h-full w-full rounded-lg object-cover"
         >
           <source
             src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/JoyValley.mp4"
@@ -234,7 +236,7 @@ const TrackPage: NextPageWithLayout<
       </div>
 
       <div
-        className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center rounded-md border-2
+        className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center rounded-lg border-2
         border-gray-200 dark:border-gray-800 md:px-4 xl:px-6
        "
       >
@@ -342,7 +344,7 @@ const TrackPage: NextPageWithLayout<
         </h3>
 
         {address ? (
-          <div className="mb-7 flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+          <div className="mb-7 flex flex-col items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             {/*
             <GrdIcon className="h-auto w-8 lg:w-auto" />
             <b>
@@ -360,7 +362,12 @@ const TrackPage: NextPageWithLayout<
             </span>
             */}
 
-            {nftBalanceHV}
+            <div className="mb-2 text-lg">{nftBalanceHV}</div>
+
+            {/* claim history table  format */}
+            <div className="flex w-96 flex-col items-center justify-center gap-2">
+              <ClaimHistoryTable holderAddress={address} />
+            </div>
           </div>
         ) : (
           <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">

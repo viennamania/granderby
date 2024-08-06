@@ -1,11 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import {
-  getOneHorse,
-  setHorseBalanceByTokenId,
-  getHorsesByHolder,
-} from '@/utils/models/horse-model';
+import { insertTrackClaim } from '@/utils/models/track-model';
 
 import {
   LocalWallet,
@@ -17,6 +13,7 @@ import { ThirdwebSDK } from '@thirdweb-dev/sdk/evm';
 import { Goerli, Polygon } from '@thirdweb-dev/chains';
 
 import { tokenContractAddressGDP } from '@/config/contractAddresses';
+import toast from 'react-hot-toast';
 
 type Data = {
   name: string;
@@ -118,9 +115,36 @@ export default async function handler(
   // method: 'GET'
   // result; {"claimedBalance":0}
 
+  // test for claimAll
+  // 임시로 차단
+
+  /*
   const result = await fetch('http://3.38.2.94:3001/api/stadium/claimAll', {
     method: 'GET',
   });
+
+  const json = await result?.json();
+
+  console.log('json', json);
+
+  const claimedBalance = json?.claimedBalance;
+
+  if (claimedBalance === 0) {
+    res.status(200).json({
+      claimedBalance: claimedBalance,
+    });
+    return;
+  }
+  */
+
+  const claimAmount = 10;
+
+  const result = await fetch(
+    'http://3.38.2.94:3001/api/stadium/claimSome?amount=' + claimAmount,
+    {
+      method: 'GET',
+    }
+  );
 
   const json = await result?.json();
 
@@ -160,6 +184,20 @@ export default async function handler(
     );
 
     if (transaction) {
+      // write claim history
+      // holderAddress, claimedBalance, transaction?.receipt?.transactionHash
+
+      try {
+        await insertTrackClaim(
+          holderAddress,
+          claimedBalance,
+          transaction?.receipt?.transactionHash
+        );
+
+        toast.success('Claimed Balance');
+      } catch (error) {
+        console.error(error);
+      }
     } else {
     }
   } catch (error) {
