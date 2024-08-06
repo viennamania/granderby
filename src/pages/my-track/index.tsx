@@ -186,7 +186,7 @@ const TrackPage: NextPageWithLayout<
   //console.log('sumOfBalance', sumOfBalance);
 
   return (
-    <>
+    <div className="flex-cols flex w-full items-start justify-center gap-5 xl:grid xl:grid-cols-2 ">
       <NextSeo title="Profile" description="Granderby - Web3 NFT Game" />
 
       {/*
@@ -201,7 +201,7 @@ const TrackPage: NextPageWithLayout<
       >
       */}
 
-      <div className=" ">
+      <div className="flex w-full items-center justify-center ">
         {/*
         <Image
           //src={authorData?.cover_image?.thumbnail}
@@ -224,7 +224,7 @@ const TrackPage: NextPageWithLayout<
           muted
           playsInline
           //className="h-full w-full object-cover"
-          className="h-full w-full object-cover"
+          className=" h-full w-full object-cover"
         >
           <source
             src="https://dshujxhbbpmz18304035.gcdn.ntruss.com/nft/HV/JoyValley.mp4"
@@ -233,7 +233,11 @@ const TrackPage: NextPageWithLayout<
         </video>
       </div>
 
-      <div className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center md:px-4 xl:px-6 3xl:max-w-[1700px] 3xl:px-12">
+      <div
+        className=" mx-auto flex w-full shrink-0 flex-col items-center justify-center rounded-md border-2
+        border-gray-200 dark:border-gray-800 md:px-4 xl:px-6
+       "
+      >
         <div className="mt-10 flex w-full flex-row items-center justify-center gap-20 p-3">
           <div className="flex flex-col items-center justify-center gap-5">
             <span className="text-xl font-bold">ALLOWANCE</span>
@@ -414,7 +418,7 @@ const TrackPage: NextPageWithLayout<
           )}
 
           {address ? (
-            <div className="mt-5 flex flex-row justify-center">
+            <div className="mb-10 mt-5 flex flex-row justify-center">
               {/*{isTransferTokensLoading ? (*/}
 
               {isSending ? (
@@ -502,7 +506,7 @@ const TrackPage: NextPageWithLayout<
         </div>
         */}
       </div>
-    </>
+    </div>
   );
 };
 
