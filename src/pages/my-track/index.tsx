@@ -65,7 +65,13 @@ import {
   nftContractAddressHV,
 } from '@/config/contractAddresses';
 
+import PointHistoryTable from '@/components/nft-transaction/point-history-table-track';
+
 import ClaimHistoryTable from '@/components/nft-transaction/claim-history-table-track';
+
+import ParamTab, { TabPanel } from '@/components/ui/param-tab';
+
+import { Tab, TabItem, TabPanels } from '@/components/ui/tab';
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -377,10 +383,43 @@ const TrackPage: NextPageWithLayout<
 
         {address ? (
           <div className="mb-7 mt-10 flex flex-col items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
+            {/* tap menu */}
+            {/* IN Tap / OUT Tap */}
+
+            <Tab.Group
+              defaultIndex={0}
+              onChange={(index) => console.log(index)}
+            >
+              <Tab.List className="flex w-full flex-row items-center justify-end gap-5">
+                <TabItem className="flex items-center justify-center gap-2">
+                  <span className="text-xl font-extrabold">IN</span>
+                </TabItem>
+                <TabItem className="flex items-center justify-center gap-2">
+                  <span className="text-xl font-extrabold">OUT</span>
+                </TabItem>
+              </Tab.List>
+
+              <TabPanels className="flex w-full flex-col items-center justify-center gap-5">
+                <TabPanel className="focus:outline-none">
+                  <div className="flex w-full flex-col items-center justify-center gap-5">
+                    <PointHistoryTable holderAddress={address} />
+                  </div>
+                </TabPanel>
+
+                <TabPanel className="focus:outline-none">
+                  <div className="flex w-full flex-col items-center justify-center gap-5">
+                    <ClaimHistoryTable holderAddress={address} />
+                  </div>
+                </TabPanel>
+              </TabPanels>
+            </Tab.Group>
+
             {/* claim history table  format */}
+            {/*
             <div className="flex w-96 flex-col items-center justify-center gap-2">
               <ClaimHistoryTable holderAddress={address} />
             </div>
+            */}
           </div>
         ) : (
           <div className="mb-7 text-center text-2xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
