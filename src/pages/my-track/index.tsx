@@ -240,6 +240,34 @@ const TrackPage: NextPageWithLayout<
         border-gray-200 dark:border-gray-800 md:px-4 xl:px-6
        "
       >
+        <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
+          My Stadium NFTs
+        </h3>
+        <div className="flex flex-row items-center justify-between gap-5 rounded-lg  bg-slate-100 p-5 ">
+          {/*
+            <GrdIcon className="h-auto w-8 lg:w-auto" />
+            <b>
+              
+              {tokenBalanceHV === undefined ? (
+                <>Loading...</>
+              ) : (
+                <div className="m-5 text-5xl font-bold xl:text-7xl">
+                  {Number(tokenBalanceHV?.displayValue).toFixed(2)}
+                </div>
+              )}
+            </b>{' '}
+            <span className="text-lg text-[#2b57a2] ">
+              {tokenBalanceHV?.symbol}
+            </span>
+            */}
+
+          <div className=" text-4xl font-bold ">{nftBalanceHV}</div>
+          {/* share holder of stadium  share of total balance  5000 */}
+          <div className="text-lg text-[#2b57a2]">
+            {((nftBalanceHV / 5000) * 100).toFixed(2)} % of Total Balance
+          </div>
+        </div>
+
         <div className="mt-10 flex w-full flex-row items-center justify-center gap-20 p-3">
           <div className="flex flex-col items-center justify-center gap-5">
             <span className="text-xl font-bold">ALLOWANCE</span>
@@ -347,31 +375,8 @@ const TrackPage: NextPageWithLayout<
           </div>
         </div>
 
-        <h3 className="mb-2 mt-10 text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 3xl:mb-3">
-          My NFTs
-        </h3>
-
         {address ? (
-          <div className="mb-7 flex flex-col items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
-            {/*
-            <GrdIcon className="h-auto w-8 lg:w-auto" />
-            <b>
-              
-              {tokenBalanceHV === undefined ? (
-                <>Loading...</>
-              ) : (
-                <div className="m-5 text-5xl font-bold xl:text-7xl">
-                  {Number(tokenBalanceHV?.displayValue).toFixed(2)}
-                </div>
-              )}
-            </b>{' '}
-            <span className="text-lg text-[#2b57a2] ">
-              {tokenBalanceHV?.symbol}
-            </span>
-            */}
-
-            <div className="mb-2 text-lg">{nftBalanceHV}</div>
-
+          <div className="mb-7 mt-10 flex flex-col items-center justify-center gap-2 text-center text-3xl font-bold tracking-tighter text-gray-900 dark:text-white xl:text-2xl 3xl:mb-8 3xl:text-[32px]">
             {/* claim history table  format */}
             <div className="flex w-96 flex-col items-center justify-center gap-2">
               <ClaimHistoryTable holderAddress={address} />
