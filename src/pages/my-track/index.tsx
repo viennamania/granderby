@@ -264,7 +264,15 @@ const TrackPage: NextPageWithLayout<
             <Button
               disabled={claiming}
               isLoading={claiming}
-              className="hidden h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white "
+              className={`
+                ${
+                  address &&
+                  address === '0x54C19eD3D131307e5D6B50d28Ea1E7A12ac52Af0'
+                    ? ''
+                    : 'hidden'
+                }
+                 h-8 bg-green-500 font-normal text-gray-600 hover:text-gray-900 dark:bg-gray-600 dark:text-gray-200 dark:hover:text-white
+                `}
               onClick={() => {
                 async function claim() {
                   setClaiming(true);
